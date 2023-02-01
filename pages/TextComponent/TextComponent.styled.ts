@@ -1,8 +1,26 @@
 import styled from 'styled-components';
 
-export const Text = styled.div<{ fontFamily: string; fontSize:string; color: string; fontWeight:string }>`
-    font-family:${props=>props.fontFamily};
-    font-size:${props=>props.fontSize};
-    color:${props=>props.color};
-    font-weight:${props=>props.fontWeight};
+export const Text = styled.span<{color:string; type:string}>`
+  ${(props) => {
+    switch (props.type) {
+        case "head":
+            return `
+                font-family:Times New Roman;
+                font-size:16px;
+                color:${props.color};
+            `;
+        case "body":
+            return `
+                font-family:Times New Roman;
+                font-size:16px;
+                color:${props.color};
+            `;
+        default:
+            return `
+            font-family:Times New Roman;
+            font-size:16px;
+            color:${props.color};
+        `;
+    }
+  }}
 `;
