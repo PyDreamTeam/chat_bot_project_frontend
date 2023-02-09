@@ -1,6 +1,5 @@
-// @ts-ignore
 import styled from "styled-components";
 
-export const Label = styled.label <{ st: string }>`
+export const Label = styled.label <{ htmlFor: string }>`
   color: black;  
 `;

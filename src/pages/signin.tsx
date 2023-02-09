@@ -12,35 +12,33 @@ import Link from "next/link";
 import * as Yup from "yup";
 
 
-
-export const Signup = () => {
-    const [, setFormValues] = useState();
+export const Signin = () => {
+    const [formValues, setFormValues] = useState();
     return (
         <WrapperRegister>
             <BlockLeft/>
             <BlockRight>
                 <Title>
-                    Регистрация
+                    Вход
                 </Title>
-                <p>Уже есть аккаунт? <Link href={"/signin"}>
-                    Войдите
+                <p>Ещё нет аккаунта?  <Link href={"/signup"}>
+                    Регистрация
                 </Link></p>
+                <p>Войдите через соцсеть</p>
+
+
                 <Formik initialValues={{
                     name: '',
                     email: '',
                     password: '',
                 }}
                         validationSchema={Yup.object().shape({
-                            name: Yup.string()
-                                .min(0, "Введите имя")
-                                .required("Введите имя"),
                             email: Yup.string()
                                 .email("Электронная почта неверна")
                                 .required("Введите электронную почту"),
                             password: Yup.string()
-                                .min(8, "Пароль слишком короткий")
+                                .min(8, "Неверный пароль")
                                 .required("Введите пароль"),
-
                         })}
                         onSubmit={(values, actions) => {
                             console.log(values);
@@ -64,23 +62,7 @@ export const Signup = () => {
                           isValid
                       }) => (
                         <Form name="contact" method="post" onSubmit={handleSubmit}>
-                            <Label htmlFor="name">
-                                <p>Имя</p>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    autoCorrect="off"
-                                    autoComplete="name"
-                                    placeholder="Иван"
-                                    valid={Boolean(touched.name && !errors.name)}
-                                    error={Boolean(touched.name && errors.name)}
-                                />
-                            </Label>
-                            {errors.name && touched.name && (
-                                <StyledInlineErrorMessage>
-                                    {errors.name}
-                                </StyledInlineErrorMessage>
-                            )}
+                         <p>Или с помощью почты и пароля</p>
                             <Label htmlFor="email">
                                 <p>E-mail</p>
                                 <Input
@@ -107,7 +89,7 @@ export const Signup = () => {
                                     autoCapitalize="off"
                                     autoCorrect="off"
                                     autoComplete="password"
-                                    placeholder="Придумайте пароль"
+                                    placeholder="Введите пароль"
                                     valid={Boolean(touched.password && !errors.password)}
                                     error={Boolean(touched.password && errors.password)}
                                 />
@@ -117,17 +99,10 @@ export const Signup = () => {
                                     <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
                                 )}
                             </ErrorMessage>
-                            <Label htmlFor="checkbox">
-                                <Input
-                                    type="checkbox"
-                                    name="checkbox"
-                                />
-                            </Label>
-                            <p>Я хочу получать уведомления и новости на почту</p>
                             <Submit type="submit" disabled={!isValid || isSubmitting}>
-                                {isSubmitting ? `Подождите...` : `Зарегистрироваться`}
+                                {isSubmitting ? `Войти...` : `Войти`}
                             </Submit>
-                            <p>Нажимая кнопку «Зарегистрироваться», вы принимаете условия <span>пользовательского соглашения</span> </p>
+                            <p>Забыли пароль?  <span>Восстановите здесь</span> </p>
                         </Form>
                     )}
                 </Formik>
@@ -136,4 +111,4 @@ export const Signup = () => {
     );
 };
 
-export default Signup;
+export default Signin;
