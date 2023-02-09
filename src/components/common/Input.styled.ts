@@ -7,6 +7,7 @@ type Props = {
     valid: boolean;
 }
 export const Input = styled(FilteredPropsInputField) <Props>`
+height: 64px;
   background: #F4F5F6;
   border-radius: 20px;
   border: none;
@@ -14,9 +15,9 @@ export const Input = styled(FilteredPropsInputField) <Props>`
   line-height: 1.5rem;
   font-style: normal;
   font-weight: 400;
-  width: 100%;
+  width: ${props=>(props.type==='checkbox'?'18px':'100%')};
   margin-top: 0.5rem;
-  padding: 0.75rem 0.75rem;
+  padding: 16px;
 
   &:focus,
   &:active {

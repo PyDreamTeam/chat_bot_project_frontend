@@ -16,9 +16,7 @@ export const BlockRight = styled.div`
   &,
   & * {
     box-sizing: border-box;
-    display: block;
   }
-  margin-top: 20%;
   margin-left: auto;
   margin-right: auto;
   display: flex;

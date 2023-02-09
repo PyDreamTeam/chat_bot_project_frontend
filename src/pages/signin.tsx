@@ -12,7 +12,7 @@ import Link from "next/link";
 import * as Yup from "yup";
 
 
-export const Signin = () => {
+export const SignIn = () => {
     const [formValues, setFormValues] = useState();
     return (
         <WrapperRegister>
@@ -21,7 +21,7 @@ export const Signin = () => {
                 <Title>
                     Вход
                 </Title>
-                <p>Ещё нет аккаунта?  <Link href={"/signup"}>
+                <p>Ещё нет аккаунта?  <Link href={"/SignUp"}>
                     Регистрация
                 </Link></p>
                 <p>Войдите через соцсеть</p>
@@ -111,4 +111,4 @@ export const Signin = () => {
     );
 };
 
-export default Signin;
+export default SignIn;

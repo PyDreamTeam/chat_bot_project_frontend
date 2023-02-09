@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.title`
+  display:block;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 600;
