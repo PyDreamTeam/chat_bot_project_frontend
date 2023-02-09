@@ -19,8 +19,9 @@ export const Button = styled.button <{ type: string; primary: string; }>`
 export const Submit = styled.button`
   width: 100%;
   margin-top: 1.5rem;
-
-  background-color: rgb(24, 81, 187);
+  background-color: #4466F5;
+  border: none;
+  border-radius: 20px;
   display: block;
   text-align: center;
   font-size: 1rem;
@@ -42,6 +43,8 @@ export const Submit = styled.button`
     cursor: pointer;
     background-color: rgb(163, 168, 173);
     box-shadow: none;
+    border-radius: 20px;
+    border: none;
     color: rgb(255, 255, 255) !important;
 
     &:hover,
