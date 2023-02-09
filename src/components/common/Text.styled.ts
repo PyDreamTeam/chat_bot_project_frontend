@@ -1,5 +1,3 @@
-
-// @ts-ignore
 import styled from "styled-components";
 
 export const Text = styled.span<{color:string; type:string}>`
