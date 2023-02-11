@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const LabelsBox = styled.div `
   width: 440px;
-  height:339px;
+  height:auto;
 
   display: flex;
   flex-direction: column;

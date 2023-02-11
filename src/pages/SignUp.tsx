@@ -13,9 +13,8 @@ import * as Yup from "yup";
 import {setCredentials} from "@/src/features/auth/authSlice";
 import {LoginRequest} from "@/src/app/services/auth";
 import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {useToast} from "@chakra-ui/react";
 import {ProtectedComponent} from "@/src/features/auth/ProtectedComponent";
+import { useToast } from "@chakra-ui/react";
 
 export const Signup = () => {
     //для пароля
@@ -109,62 +108,75 @@ export const Signup = () => {
                           }) => (
                             <Form name="contact" method="post" onSubmit={handleSubmit}>
                                 <LabelsBox>
-                                    <Label htmlFor="name">
-                                        <p>Имя</p>
-                                        <Input
-                                            type="text"
-                                            name="name"
-                                            autoCorrect="off"
-                                            autoComplete="name"
-                                            placeholder="Иван"
-                                            valid={Boolean(touched.username && !errors.username)}
-                                            error={Boolean(touched.username && errors.username)}
-                                            onChange={handleChange}
-                                        />
-                                    </Label>
-                                    {errors.username && touched.username && (
-                                        <StyledInlineErrorMessage>
-                                            {errors.username}
-                                        </StyledInlineErrorMessage>
-                                    )}
-                                    <Label htmlFor="email">
-                                        <p>E-mail</p>
-                                        <Input
-                                            type="email"
-                                            name="email"
-                                            autoCapitalize="off"
-                                            autoCorrect="off"
-                                            autoComplete="email"
-                                            placeholder="example@mail.com"
-                                            valid={Boolean(touched.email && !errors.email)}
-                                            error={Boolean(touched.email && errors.email)}
-                                            onChange={handleChange}
-                                        />
-                                    </Label>
-                                    <ErrorMessage name="email">
-                                        {message => (
-                                            <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
+                                    <div style={{
+                                            height:'120px',
+                                        }}>
+                                        <Label htmlFor="name">
+                                            <p>Имя</p>
+                                            <Input
+                                                type="text"
+                                                name="name"
+                                                autoCorrect="off"
+                                                autoComplete="name"
+                                                placeholder="Иван"
+                                                valid={Boolean(touched.username && !errors.username)}
+                                                error={Boolean(touched.username && errors.username)}
+                                                onChange={handleChange}
+                                            />
+                                        </Label>
+                                        {errors.username && touched.username && (
+                                            <StyledInlineErrorMessage>
+                                                {errors.username}
+                                            </StyledInlineErrorMessage>
                                         )}
-                                    </ErrorMessage>
-                                    <Label htmlFor="password">
-                                        <p>Пароль</p>
-                                        <Input
-                                            type="password"
-                                            name="password"
-                                            autoCapitalize="off"
-                                            autoCorrect="off"
-                                            autoComplete="password"
-                                            placeholder="Придумайте пароль"
-                                            valid={Boolean(touched.password && !errors.password)}
-                                            error={Boolean(touched.password && errors.password)}
-                                            onChange={handleChange}
-                                        />
-                                    </Label>
-                                    <ErrorMessage name="password">
-                                        {message => (
-                                            <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
-                                        )}
-                                    </ErrorMessage>
+                                    </div>
+                                    <div style={{
+                                        height:'120px',
+                                    }}>
+                                        <Label htmlFor="email">
+                                            <p>E-mail</p>
+                                            <Input
+                                                type="email"
+                                                name="email"
+                                                autoCapitalize="off"
+                                                autoCorrect="off"
+                                                autoComplete="email"
+                                                placeholder="example@mail.com"
+                                                valid={Boolean(touched.email && !errors.email)}
+                                                error={Boolean(touched.email && errors.email)}
+                                                onChange={handleChange}
+                                            />
+                                            
+                                        </Label>
+                                        <ErrorMessage name="email">
+                                            {message => (
+                                                <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
+                                            )}
+                                        </ErrorMessage>
+                                    </div>
+                                    <div style={{
+                                        height:'120px',
+                                    }}>
+                                        <Label htmlFor="password">
+                                            <p>Пароль</p>
+                                            <Input
+                                                type="password"
+                                                name="password"
+                                                autoCapitalize="off"
+                                                autoCorrect="off"
+                                                autoComplete="password"
+                                                placeholder="Придумайте пароль"
+                                                valid={Boolean(touched.password && !errors.password)}
+                                                error={Boolean(touched.password && errors.password)}
+                                                onChange={handleChange}
+                                            />
+                                        </Label>
+                                        <ErrorMessage name="password">
+                                            {message => (
+                                                <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
+                                            )}
+                                        </ErrorMessage>
+                                    </div>
                                     <Label htmlFor="checkbox">
                                         <Input
                                             type="checkbox"
@@ -199,7 +211,7 @@ export const Signup = () => {
                     </Formik>
                 </div>
             </BlockRight>
-            <ProtectedComponent/>
+            {/* <ProtectedComponent/> */}
         </WrapperRegister>
 
     );
