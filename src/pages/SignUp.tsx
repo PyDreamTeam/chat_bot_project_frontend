@@ -23,7 +23,7 @@ export const Signup = () => {
     // const handleClick = () => setShow(!show)
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const toast = useToast()
 
 
@@ -173,13 +173,12 @@ export const Signup = () => {
                                         <p>Я хочу получать уведомления и новости на почту</p>
                                     </Label>
                                 </LabelsBox>
-                                <Submit type="submit" disabled={!isValid || isSubmitting}>
-                                    {isSubmitting ? `Подождите...` : `Зарегистрироваться`}
-                                    onClick={async () => {
+                                <Submit type="submit" disabled={!isValid || isSubmitting}
+                                        onClick={async () => {
                                     try {
                                         const user = await login(formState).unwrap()
                                         dispatch(setCredentials(user))
-                                        navigate('/')
+
                                     } catch (err) {
                                         toast({
                                             status: 'error',
@@ -188,7 +187,8 @@ export const Signup = () => {
                                             isClosable: true,
                                         })
                                     }
-                                }}
+                                        }}>
+                                    {isSubmitting ? `Подождите...` : `Зарегистрироваться`}
                                 </Submit>
                                 <p style={{
                                     textAlign: 'center'
