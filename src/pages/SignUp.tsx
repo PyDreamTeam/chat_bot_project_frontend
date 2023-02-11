@@ -2,7 +2,7 @@ import {Formik, Form, ErrorMessage} from "formik";
 import React, {useState} from "react";
 
 import {Title} from "@/src/components/common/Title.styled"
-import {Label,LabelsBox} from "@/src/components/common/Label.styled";
+import {Label, LabelsBox} from "@/src/components/common/Label.styled";
 import {Input} from "@/src/components/common/Input.styled";
 import {Button, Submit} from "@/src/components/common/Button.styled";
 import {StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
@@ -10,19 +10,42 @@ import {StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
 import {WrapperRegister, BlockLeft, BlockRight} from "@/src/components/common/StyledRegister.styled";
 import Link from "next/link";
 import * as Yup from "yup";
-
-
+import {setCredentials} from "@/src/features/auth/authSlice";
+import {LoginRequest} from "@/src/app/services/auth";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {useToast} from "@chakra-ui/react";
+import {ProtectedComponent} from "@/src/features/auth/ProtectedComponent";
 
 export const Signup = () => {
-    const [, setFormValues] = useState();
+    //для пароля
+    // const [show, setShow] = React.useState(false)
+    // const handleClick = () => setShow(!show)
+
+    const dispatch = useDispatch()
+    // const navigate = useNavigate()
+    const toast = useToast()
+
+
+    const [formState, setFormState] = React.useState<LoginRequest>({
+        username: '',
+        password: '',
+    })
+
+    const handleChange = (
+        {
+            target: {name, value},
+        }: React.ChangeEvent<HTMLInputElement>) =>
+        setFormState((prev) => ({...prev, [name]: value}))
+
     return (
         <WrapperRegister>
             <BlockLeft/>
             <BlockRight>
                 <div style={{
-                    display:'flex',
-                    flexDirection:'column',
-                    alignItems:'center'
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
                 }}>
                     <Title>
                         Регистрация
@@ -35,24 +58,24 @@ export const Signup = () => {
                         lineHeight: '150%',
                         textAlign: 'center',
                         color: "#595F6C",
-                        display:'flex',
-                        flexDirection:'row',
+                        display: 'flex',
+                        flexDirection: 'row',
                         width: '216px',
-                    }} >
-                        Уже есть аккаунт? 
+                    }}>
+                        Уже есть аккаунт?
                         <Link href={"/SignIn"} style={{
-                            textDecoration:'none',
+                            textDecoration: 'none',
                         }}>
                             Войдите
                         </Link>
                     </p>
                     <Formik initialValues={{
-                        name: '',
+                        username: '',
                         email: '',
                         password: '',
                     }}
                             validationSchema={Yup.object().shape({
-                                name: Yup.string()
+                                username: Yup.string()
                                     .min(0, "Введите имя")
                                     .required("Введите имя"),
                                 email: Yup.string()
@@ -76,14 +99,14 @@ export const Signup = () => {
                             }}
                     >
                         {({
-                            values,
-                            errors,
-                            touched,
-                            handleSubmit,
-                            isSubmitting,
-                            isValidating,
-                            isValid
-                        }) => (
+                              values,
+                              errors,
+                              touched,
+                              handleSubmit,
+                              isSubmitting,
+                              isValidating,
+                              isValid
+                          }) => (
                             <Form name="contact" method="post" onSubmit={handleSubmit}>
                                 <LabelsBox>
                                     <Label htmlFor="name">
@@ -94,13 +117,14 @@ export const Signup = () => {
                                             autoCorrect="off"
                                             autoComplete="name"
                                             placeholder="Иван"
-                                            valid={Boolean(touched.name && !errors.name)}
-                                            error={Boolean(touched.name && errors.name)}
+                                            valid={Boolean(touched.username && !errors.username)}
+                                            error={Boolean(touched.username && errors.username)}
+                                            onChange={handleChange}
                                         />
                                     </Label>
-                                    {errors.name && touched.name && (
+                                    {errors.username && touched.username && (
                                         <StyledInlineErrorMessage>
-                                            {errors.name}
+                                            {errors.username}
                                         </StyledInlineErrorMessage>
                                     )}
                                     <Label htmlFor="email">
@@ -114,6 +138,7 @@ export const Signup = () => {
                                             placeholder="example@mail.com"
                                             valid={Boolean(touched.email && !errors.email)}
                                             error={Boolean(touched.email && errors.email)}
+                                            onChange={handleChange}
                                         />
                                     </Label>
                                     <ErrorMessage name="email">
@@ -132,6 +157,7 @@ export const Signup = () => {
                                             placeholder="Придумайте пароль"
                                             valid={Boolean(touched.password && !errors.password)}
                                             error={Boolean(touched.password && errors.password)}
+                                            onChange={handleChange}
                                         />
                                     </Label>
                                     <ErrorMessage name="password">
@@ -147,19 +173,35 @@ export const Signup = () => {
                                         <p>Я хочу получать уведомления и новости на почту</p>
                                     </Label>
                                 </LabelsBox>
-                                <Submit type="submit" disabled={!isValid || isSubmitting}>
+                                <Submit type="submit" disabled={!isValid || isSubmitting}
+                                        onClick={async () => {
+                                    try {
+                                        const user = await login(formState).unwrap()
+                                        dispatch(setCredentials(user))
+
+                                    } catch (err) {
+                                        toast({
+                                            status: 'error',
+                                            title: 'Error',
+                                            description: 'Oh no, there was an error!',
+                                            isClosable: true,
+                                        })
+                                    }
+                                        }}>
                                     {isSubmitting ? `Подождите...` : `Зарегистрироваться`}
                                 </Submit>
                                 <p style={{
-                                    textAlign:'center'
-                                }}>Нажимая кнопку «Зарегистрироваться», вы принимаете условия <span>пользовательского соглашения</span></p>
-                            </Form> 
+                                    textAlign: 'center'
+                                }}>Нажимая кнопку «Зарегистрироваться», вы принимаете условия <span>пользовательского соглашения</span>
+                                </p>
+                            </Form>
                         )}
                     </Formik>
                 </div>
-                
             </BlockRight>
+            <ProtectedComponent/>
         </WrapperRegister>
+
     );
 };
 

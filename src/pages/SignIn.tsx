@@ -18,6 +18,11 @@ export const SignIn = () => {
         <WrapperRegister>
             <BlockLeft/>
             <BlockRight>
+                <div style={{
+                    display:'flex',
+                    flexDirection:'column',
+                    alignItems:'center'
+                }}>
                 <Title>
                     Вход
                 </Title>
@@ -106,6 +111,7 @@ export const SignIn = () => {
                         </Form>
                     )}
                 </Formik>
+                </div>
             </BlockRight>
         </WrapperRegister>
     );
