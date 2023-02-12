@@ -87,7 +87,7 @@ export const StyledInlineErrorMessage = styled.div`
   color: #F53527;
   display: block;
 
-  padding: 0.5rem 0.75rem;
-  margin-top: 0.5rem;
+  // padding: 0.5rem 0.75rem;
+  // margin-top: 0.5rem;
   white-space: pre-line;
 `;
