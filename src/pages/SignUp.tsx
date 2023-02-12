@@ -14,10 +14,6 @@ import {setCredentials} from "@/src/features/auth/authSlice";
 import {LoginRequest} from "@/src/app/services/auth";
 import {useDispatch} from "react-redux";
 
-
-import {useToast} from "@chakra-ui/react";
-
-import {ProtectedComponent} from "@/src/features/auth/ProtectedComponent";
 import { useToast } from "@chakra-ui/react";
 
 export const Signup = () => {
