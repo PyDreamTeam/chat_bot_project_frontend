@@ -13,7 +13,6 @@ import * as Yup from "yup";
 import {setCredentials} from "@/src/features/auth/authSlice";
 import {LoginRequest} from "@/src/app/services/auth";
 import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
 import {useToast} from "@chakra-ui/react";
 import {ProtectedComponent} from "@/src/features/auth/ProtectedComponent";
 
@@ -23,7 +22,6 @@ export const Signup = () => {
     // const handleClick = () => setShow(!show)
 
     const dispatch = useDispatch()
-    // const navigate = useNavigate()
     const toast = useToast()
 
 

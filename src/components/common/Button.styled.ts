@@ -1,8 +1,11 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
-export const Button = styled.button <{ type: string; primary: string; }>`
-  background: ${props => props.primary ? "#4466F5" : "black"};
-  
+type Props = {
+    button: string;
+    submit: string;
+}
+
+export const Button = styled.button <Props>`
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -10,12 +13,26 @@ export const Button = styled.button <{ type: string; primary: string; }>`
   line-height: 28px;
   color: white;
   padding: 18px;
-  gap: 10px;
-  width: 100%;
+
   border-radius: 20px;
-  border: none;
+
   cursor: pointer;
-`;
+
+  ${({button}: Props) =>
+          button &&
+          css`
+            background: transparent;
+            border: 1px solid #4466F5;
+            border-radius: 20px;
+          `}
+
+  ${({submit}: Props) =>
+          submit &&
+          css`
+
+          `}`
+;
+
 export const Submit = styled.button`
   width: 100%;
   margin-top: 1.5rem;
