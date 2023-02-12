@@ -1,15 +1,17 @@
 import Head from 'next/head'
 import React from 'react';
-import { Inter } from '@next/font/google'
+import {Inter} from '@next/font/google'
 
 import Link from "next/link";
+
 import Header from '../components/common/Header/Header';
 
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({subsets: ['latin']})
 
 export default function Home() {
     return (
+
     <>
       <Head>
         <title>Create Next App</title>
