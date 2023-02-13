@@ -1,30 +1,24 @@
 import {Formik, Form, ErrorMessage} from "formik";
-import React, {useState} from "react";
+import React from "react";
 
 import {Title} from "@/src/components/common/Title.styled"
 import {Label, LabelsBox} from "@/src/components/common/Label.styled";
 import {Input} from "@/src/components/common/Input.styled";
-import {Button, Submit} from "@/src/components/common/Button.styled";
+import {Submit} from "@/src/components/common/Button.styled";
 import {StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
 
 import {WrapperRegister, BlockLeft, BlockRight} from "@/src/components/common/StyledRegister.styled";
 import Link from "next/link";
 import * as Yup from "yup";
-import {setCredentials} from "@/src/features/auth/authSlice";
-import {SignUpRequest, useSignUpMutation} from "@/src/app/services/auth";
-import {useDispatch} from "react-redux";
 
-import { useToast } from "@chakra-ui/react";
+import {useSignUpMutation} from "@/src/app/services/auth";
 
 export const Signup = () => {
     //для пароля
     // const [show, setShow] = React.useState(false)
     // const handleClick = () => setShow(!show)
 
-    const dispatch = useDispatch()
-    const toast = useToast()
-
-    const [signUp, signUpResponse] = useSignUpMutation()
+    const [signUp, signUpResponse] = useSignUpMutation()     // signUp - функция для запроса + signUpResponse - объект ответа, он показывает статусы
 
     console.log(signUpResponse?.data)
 
@@ -78,7 +72,7 @@ export const Signup = () => {
                             })}
                             onSubmit={(values, actions) => {
                                 // console.log(values);
-                                signUp(values)
+                                signUp(values)                // при нажати на кнопку, мы вызываем функцию signup и она вызывает функцию в файле auth.ts - строка 33
                             }}
                     >
                         {({
@@ -93,8 +87,8 @@ export const Signup = () => {
                             <Form name="contact" method="post" onSubmit={handleSubmit}>
                                 <LabelsBox>
                                     <div style={{
-                                            height:'120px',
-                                        }}>
+                                        height: '120px',
+                                    }}>
                                         <Label htmlFor="username">
                                             <p>Имя</p>
                                             <Input
@@ -114,7 +108,7 @@ export const Signup = () => {
                                         )}
                                     </div>
                                     <div style={{
-                                        height:'120px',
+                                        height: '120px',
                                     }}>
                                         <Label htmlFor="email">
                                             <p>E-mail</p>
@@ -128,7 +122,7 @@ export const Signup = () => {
                                                 valid={Boolean(touched.email && !errors.email)}
                                                 error={Boolean(touched.email && errors.email)}
                                             />
-                                            
+
                                         </Label>
                                         <ErrorMessage name="email">
                                             {message => (
@@ -137,7 +131,7 @@ export const Signup = () => {
                                         </ErrorMessage>
                                     </div>
                                     <div style={{
-                                        height:'120px',
+                                        height: '120px',
                                     }}>
                                         <Label htmlFor="password">
                                             <p>Пароль</p>
@@ -161,7 +155,7 @@ export const Signup = () => {
                                     <Label htmlFor="checkbox">
                                         <Input
                                             type="checkbox"
-                                            name="checkbox"
+                                            name="get_email_notifications"
                                         />
                                         <p>Я хочу получать уведомления и новости на почту</p>
                                     </Label>

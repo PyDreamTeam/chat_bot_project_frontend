@@ -1,8 +1,8 @@
 import styled, {css} from "styled-components";
 
 type Props = {
-    button: string;
-    submit: string;
+    SignInButton?: string;
+    SignUpButton?: string;
 }
 
 export const Button = styled.button <Props>`
@@ -11,25 +11,25 @@ export const Button = styled.button <Props>`
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
-  color: white;
   padding: 18px;
-
   border-radius: 20px;
-
   cursor: pointer;
-
-  ${({button}: Props) =>
-          button &&
+  ${({SignInButton}: Props) =>
+          SignInButton &&
           css`
-            background: transparent;
+            padding: 10px 12px;
             border: 1px solid #4466F5;
-            border-radius: 20px;
+            background: transparent;
+            color: #4466F5;
           `}
 
-  ${({submit}: Props) =>
-          submit &&
+  ${({SignUpButton}: Props) =>
+          SignUpButton &&
           css`
-
+            padding: 10px 12px;
+            background: #4466F5;
+            border: 1px solid #4466F5;
+            color: #FFFFFF;
           `}`
 ;
 
