@@ -1,5 +1,5 @@
 import {Formik, Form, ErrorMessage} from "formik";
-import React from "react";
+import React, { useState } from "react";
 
 import {Title} from "@/src/components/common/Title.styled"
 import {Label, LabelsBox} from "@/src/components/common/Label.styled";
@@ -7,8 +7,12 @@ import {Input} from "@/src/components/common/Input.styled";
 import {Submit} from "@/src/components/common/Button.styled";
 import {StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
 
+import OpenEye from '../images/OpenEye.png'
+import CloseEye from '../images/CloseEye.png'
+
 import {WrapperRegister, BlockLeft, BlockRight} from "@/src/components/common/StyledRegister.styled";
 import Link from "next/link";
+import Image from 'next/image';
 import * as Yup from "yup";
 
 import {useSignUpMutation} from "@/src/app/services/auth";
@@ -21,6 +25,12 @@ export const Signup = () => {
     const [signUp, signUpResponse] = useSignUpMutation()     // signUp - функция для запроса + signUpResponse - объект ответа, он показывает статусы
 
     console.log(signUpResponse?.data)
+
+    const [show, setShow] = useState<boolean>(false);
+
+    const showPassword=()=>{
+        setShow(!show)
+    }
 
     return (
         <WrapperRegister>
@@ -135,8 +145,15 @@ export const Signup = () => {
                                     }}>
                                         <Label htmlFor="password">
                                             <p>Пароль</p>
+                                            <div style={{
+                                                width:'100%',
+                                                height:'100%',
+                                                display:'flex',
+                                                flexDirection:'row',
+                                                alignItems:'center'
+                                            }}>
                                             <Input
-                                                type="password"
+                                                type={show?'text':'password'}
                                                 name="password"
                                                 autoCapitalize="off"
                                                 autoCorrect="off"
@@ -145,6 +162,17 @@ export const Signup = () => {
                                                 valid={Boolean(touched.password && !errors.password)}
                                                 error={Boolean(touched.password && errors.password)}
                                             />
+                                            <Image
+                                                src={show? OpenEye: CloseEye}
+                                                alt="Picture of the author"
+                                                width={20}
+                                                height={20}
+                                                onClick={showPassword}
+                                                style={{
+                                                    margin:'0 -40px'
+                                                }}
+                                            />
+                                            </div>
                                         </Label>
                                         <ErrorMessage name="password">
                                             {message => (

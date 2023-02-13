@@ -6,6 +6,8 @@ type Props = {
     error: string;
     valid: boolean;
 }
+
+
 export const Input = styled(FilteredPropsInputField) <Props>`
   height: 64px;
   background: #F4F5F6;

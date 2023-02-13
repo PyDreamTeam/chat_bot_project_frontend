@@ -9,11 +9,21 @@ import {StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
 
 import {WrapperRegister, BlockLeft, BlockRight} from "@/src/components/common/StyledRegister.styled";
 import Link from "next/link";
+import Image from 'next/image';
 import * as Yup from "yup";
 
+import OpenEye from '../images/OpenEye.png'
+import CloseEye from '../images/CloseEye.png'
 
 export const SignIn = () => {
     const [formValues, setFormValues] = useState();
+
+    const [show, setShow] = useState<boolean>(false);
+
+    const showPassword=()=>{
+        setShow(!show)
+    }
+
     return (
         <WrapperRegister>
             <BlockLeft/>
@@ -93,8 +103,16 @@ export const SignIn = () => {
                                 </div>
                                 <Label htmlFor="password">
                                     <p>Пароль</p>
+                                    <div style={{
+                                        width:'100%',
+                                        height:'100%',
+                                        display:'flex',
+                                        flexDirection:'row',
+                                        alignItems:'center'
+
+                                    }}>
                                     <Input
-                                        type="password"
+                                        type={show?'text':'password'}
                                         name="password"
                                         autoCapitalize="off"
                                         autoCorrect="off"
@@ -103,6 +121,17 @@ export const SignIn = () => {
                                         valid={Boolean(touched.password && !errors.password)}
                                         error={Boolean(touched.password && errors.password)}
                                     />
+                                    <Image
+                                        src={show? OpenEye: CloseEye}
+                                        alt="Picture of the author"
+                                        width={20}
+                                        height={20}
+                                        onClick={showPassword}
+                                        style={{
+                                            margin:'0 -40px'
+                                        }}
+                                        />
+                                    </div>
                                 </Label>
                                 <ErrorMessage name="password">
                                     {message => (
