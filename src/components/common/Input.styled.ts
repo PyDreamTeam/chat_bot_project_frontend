@@ -22,20 +22,17 @@ export const Input = styled(FilteredPropsInputField) <Props>`
   &:focus,
   &:active {
     background: #F4F5F6;
-    //box-shadow: rgb(210, 213, 217) 0px 0px 2px 1px, rgb(227, 230, 232) 0px 0px 0px 3px;
     border: none;
     outline: none;
   }
-
-  /* Autocomplete styles in Chrome*/
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
     background: #F4F5F6;
     border: none;
-    box-shadow: 0 0 0px 1000px #F4F5F6 inset;
-    -webkit-box-shadow: 0 0 0px 1000px #F4F5F6 inset;
+    box-shadow: 0 0 0 1000px #F4F5F6 inset;
+    -webkit-box-shadow: 0 0 0 1000px #F4F5F6 inset;
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: black;
   }
@@ -48,11 +45,9 @@ export const Input = styled(FilteredPropsInputField) <Props>`
             &:focus,
             &:active {
               border: 1px solid rgb(0, 156, 38);
-              box-shadow: rgb(106, 237, 97) 0px 0px 2px 1px, rgb(177, 247, 160) 0px 0px 0px 3px;
+              box-shadow: rgb(106, 237, 97) 0 0 2px 1px, rgb(177, 247, 160) 0 0 0 3px;
               outline: none;
             }
-
-            /* Autocomplete styles in Chrome*/
 
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
@@ -73,8 +68,6 @@ export const Input = styled(FilteredPropsInputField) <Props>`
               outline: none;
             }
 
-            /* Autocomplete styles in Chrome*/
-
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
             &:-webkit-autofill:focus {
@@ -86,8 +79,5 @@ export const Input = styled(FilteredPropsInputField) <Props>`
 export const StyledInlineErrorMessage = styled.div`
   color: #F53527;
   display: block;
-
-  // padding: 0.5rem 0.75rem;
-  // margin-top: 0.5rem;
   white-space: pre-line;
 `;

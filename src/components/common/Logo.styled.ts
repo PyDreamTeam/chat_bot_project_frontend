@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 type logoProps = {
-    // прописать цвет для header или footer
+    header?: string;
+    footer?: string;
 }
 
 export const Logo = styled.div <logoProps>`
@@ -10,5 +11,14 @@ export const Logo = styled.div <logoProps>`
   font-weight: 500;
   font-size: 40px;
   line-height: 48px;
-  color: #17181A;
+  ${({header}: logoProps) =>
+          header &&
+          css`
+            color: #17181A;
+          `}
+  ${({footer}: logoProps) =>
+          footer &&
+          css`
+            color: #FFFFFF;
+          `} 
 `
