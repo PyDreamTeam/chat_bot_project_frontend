@@ -3,6 +3,7 @@ import React from 'react';
 import {Inter} from '@next/font/google'
 
 import Link from "next/link";
+import Footer from '../components/common/Footer/Footer';
 
 import Header from '../components/common/Header/Header';
 
@@ -22,6 +23,7 @@ export default function Home() {
     
       </Head>
       <Header/>
+      <Footer/>
     </>
   )
 }
