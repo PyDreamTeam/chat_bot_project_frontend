@@ -11,9 +11,10 @@ export interface UserResponse {
   token: string
 }
 
-export interface LoginRequest {
+export interface SignUpRequest {
   username: string
   password: string
+  email: string
 }
 
 export const api = createApi({
@@ -29,11 +30,11 @@ export const api = createApi({
     },
   }),
   endpoints: (builder) => ({
-    login: builder.mutation<UserResponse, LoginRequest>({
-      query: (credentials) => ({
-        url: 'login',
+    signUp: builder.mutation<UserResponse, SignUpRequest>({
+      query: ({username, password, email}) => ({
+        url: 'user',
         method: 'POST',
-        body: credentials,
+        body: {password, email, first_name: username},
       }),
     }),
     protected: builder.mutation<{ message: string }, void>({
@@ -42,4 +43,4 @@ export const api = createApi({
   }),
 })
 
-export const { useLoginMutation, useProtectedMutation } = api
+export const { useSignUpMutation, useProtectedMutation } = api
