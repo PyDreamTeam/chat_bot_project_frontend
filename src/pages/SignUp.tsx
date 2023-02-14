@@ -1,5 +1,5 @@
 import {Formik, Form, ErrorMessage} from "formik";
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import {Title} from "@/src/components/common/Title.styled"
 import {Label, LabelsBox} from "@/src/components/common/Label.styled";
@@ -17,18 +17,14 @@ import * as Yup from "yup";
 
 import {useSignUpMutation} from "@/src/app/services/auth";
 
-export const Signup = () => {
-    //для пароля
-    // const [show, setShow] = React.useState(false)
-    // const handleClick = () => setShow(!show)
+export const SignUp = () => {
 
     const [signUp, signUpResponse] = useSignUpMutation()     // signUp - функция для запроса + signUpResponse - объект ответа, он показывает статусы
 
     console.log(signUpResponse?.data)
 
     const [show, setShow] = useState<boolean>(false);
-
-    const showPassword=()=>{
+    const showPassword = () => {
         setShow(!show)
     }
 
@@ -146,32 +142,32 @@ export const Signup = () => {
                                         <Label htmlFor="password">
                                             <p>Пароль</p>
                                             <div style={{
-                                                width:'100%',
-                                                height:'100%',
-                                                display:'flex',
-                                                flexDirection:'row',
-                                                alignItems:'center'
+                                                width: '100%',
+                                                height: '100%',
+                                                display: 'flex',
+                                                flexDirection: 'row',
+                                                alignItems: 'center'
                                             }}>
-                                            <Input
-                                                type={show?'text':'password'}
-                                                name="password"
-                                                autoCapitalize="off"
-                                                autoCorrect="off"
-                                                autoComplete="password"
-                                                placeholder="Придумайте пароль"
-                                                valid={Boolean(touched.password && !errors.password)}
-                                                error={Boolean(touched.password && errors.password)}
-                                            />
-                                            <Image
-                                                src={show? OpenEye: CloseEye}
-                                                alt="Picture of the author"
-                                                width={20}
-                                                height={20}
-                                                onClick={showPassword}
-                                                style={{
-                                                    margin:'0 -40px'
-                                                }}
-                                            />
+                                                <Input
+                                                    type={show ? 'text' : 'password'}
+                                                    name="password"
+                                                    autoCapitalize="off"
+                                                    autoCorrect="off"
+                                                    autoComplete="password"
+                                                    placeholder="Придумайте пароль"
+                                                    valid={Boolean(touched.password && !errors.password)}
+                                                    error={Boolean(touched.password && errors.password)}
+                                                />
+                                                <Image
+                                                    src={show ? OpenEye : CloseEye}
+                                                    alt="Picture of the author"
+                                                    width={20}
+                                                    height={20}
+                                                    onClick={showPassword}
+                                                    style={{
+                                                        margin: '0 -40px'
+                                                    }}
+                                                />
                                             </div>
                                         </Label>
                                         <ErrorMessage name="password">
@@ -206,4 +202,4 @@ export const Signup = () => {
     );
 };
 
-export default Signup;
+export default SignUp;
