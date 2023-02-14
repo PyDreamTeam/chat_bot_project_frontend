@@ -8,7 +8,7 @@ export const FooterRightContainer = styled.div`
   h2{
     max-width: 552px;
     height: 84px;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
@@ -21,7 +21,7 @@ export const FooterInputBlock = styled.div`
   color: #E1E2E6;
   max-width: 424px;
   border-bottom: 1px solid #E1E2E6;
-  padding: 10px;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
 `
