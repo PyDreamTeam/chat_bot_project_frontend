@@ -12,7 +12,7 @@ export const BoxButton = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 `;
-export const MenuBox = styled.div`  
+export const MenuBox = styled.div`
   display: flex;
   justify-content: space-between;
   color: #17181A;
@@ -29,7 +29,7 @@ export const MenuBtnBox = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 28px;
-  margin-right: 60px;    
+  margin-right: 60px;
 `;
 
 export const MenuBtn = styled.div`

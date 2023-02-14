@@ -83,3 +83,20 @@ export const StyledInlineErrorMessage = styled.div`
   display: block;
   white-space: pre-line;
 `;
+
+export const FooterInput = styled(FilteredPropsInputField) <Props>`
+  background: none;
+  border: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #E1E2E6;
+
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  }
+`
