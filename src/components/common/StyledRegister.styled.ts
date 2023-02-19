@@ -22,7 +22,6 @@ export const BlockRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 440px;
   
   p {
     font-family: 'Inter',sans-serif;
@@ -31,9 +30,23 @@ export const BlockRight = styled.div`
     font-size: 18px;
     line-height: 150%;
     color: #17181A;
+    padding-bottom: 18px;
     span {
       color: #4466F5;
     }
     
   }
 `;
+
+export const ContentBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 468px;
+  
+  form {
+    max-width: 468px;
+    width: 100%;
+  }
+`

@@ -1,8 +1,8 @@
 import {Logo} from "@/src/components/common/Logo.styled";
 import Link from "next/link";
 import {FooterInfo, FooterLogoBlock, FooterLeftContainer}
-    from "@/src/components/common/Footer/FooterLeftBlock/FooterLeftBlock.styled";
-import {TelegramLogo, VkLogo, WhatsAppLogo} from "@/src/components/common/Footer/SvgConfig";
+    from "@/src/components/common/MainWrapper/Footer/FooterLeftBlock/FooterLeftBlock.styled";
+import {TelegramLogo, VkLogo, WhatsAppLogo} from "@/src/components/common/MainWrapper/Footer/SvgConfig";
 
 const FooterLeftBlock = () => {
     return (
