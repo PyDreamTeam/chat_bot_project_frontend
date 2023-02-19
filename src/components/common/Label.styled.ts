@@ -24,6 +24,7 @@ export const Label = styled.label<{ htmlFor:string }>`
               margin:0;
             }
             input{
+              max-width: 440px;
               margin:0px;
               styleName: 16pt -T2 -Text_2- Regular;
               font-family: Inter;
@@ -36,16 +37,17 @@ export const Label = styled.label<{ htmlFor:string }>`
           `;
       default:
         return `
-          width: 440px;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           gap:8px;
           p{
             margin:0;
+            padding: 0;
           }
           input{
-            margin:0px
+            margin:0px;
+            max-width: 440px;
           }
         `;
     }

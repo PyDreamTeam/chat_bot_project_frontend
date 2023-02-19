@@ -1,4 +1,4 @@
-import {FooterWrapper, FooterBox} from "@/src/components/common/Footer/Footer.styled";
+import {FooterWrapper, FooterBox} from "@/src/components/common/MainWrapper/Footer/Footer.styled";
 
 import FooterLeftBlock from "./FooterLeftBlock/FooterLeftBlock"
 import FooterRightBlock from "./FooterRightBlock/FooterRightBlock"

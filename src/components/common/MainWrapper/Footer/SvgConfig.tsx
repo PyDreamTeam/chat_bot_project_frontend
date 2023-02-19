@@ -1,4 +1,4 @@
-import {LogoSvg} from "@/src/components/common/Footer/Footer.styled";
+import {LogoSvg} from "@/src/components/common/MainWrapper/Footer/Footer.styled";
 
 export const TelegramLogo = <LogoSvg width="37" height="30" viewBox="0 0 37 30"  xmlns="http://www.w3.org/2000/svg">
     <path d="M36.3317 2.99699L30.8995 27.9032C30.4897 29.6611 29.4209 30.0986 27.9022 29.2704L19.6254 23.3407L15.6317 27.0751C15.1897 27.5048 14.8201 27.8642 13.9683 27.8642L14.5629 19.6689L29.9031 6.19231C30.5701 5.61418 29.7584 5.29387 28.8665 5.87199L9.9022 17.4814L1.73791 14.997C-0.0379804 14.4579 -0.0701234 13.2704 2.10756 12.4423L34.0415 0.48137C35.5201 -0.0576926 36.8138 0.801682 36.3317 2.99699Z" fill="current"/>

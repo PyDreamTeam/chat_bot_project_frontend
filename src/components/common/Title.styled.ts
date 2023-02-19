@@ -8,6 +8,6 @@ export const Title = styled.title`
   font-size: 56px;
   line-height: 110%;
   color: #17181A;
-  text-align: center;
+  text-align: left;
   letter-spacing: -0.01em;
 `;

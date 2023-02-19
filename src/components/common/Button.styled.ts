@@ -34,6 +34,7 @@ export const Button = styled.button <Props>`
 ;
 
 export const Submit = styled.button`
+  max-width: 440px;
   width: 100%;
   margin-top: 1.5rem;
   background-color: #4466F5;

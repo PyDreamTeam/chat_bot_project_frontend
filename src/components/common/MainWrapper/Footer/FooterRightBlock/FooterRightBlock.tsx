@@ -1,8 +1,8 @@
-import {Arrow} from "@/src/components/common/Footer/SvgConfig";
+import {Arrow} from "@/src/components/common/MainWrapper/Footer/SvgConfig";
 import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import {FooterArrowButton, FooterInputBlock, FooterRightContainer}
-    from "@/src/components/common/Footer/FooterRightBlock/FooterRightBlock.styled";
+    from "@/src/components/common/MainWrapper/Footer/FooterRightBlock/FooterRightBlock.styled";
 import {Label} from "@/src/components/common/Label.styled";
 import {FooterInput} from "@/src/components/common/Input.styled";
 
