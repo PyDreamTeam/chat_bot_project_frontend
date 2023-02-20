@@ -1,17 +1,16 @@
-import {FooterWrapper, FooterBox} from "@/src/components/common/MainWrapper/Footer/Footer.styled";
-
+import styles from "./Footer.module.css"
 import FooterLeftBlock from "./FooterLeftBlock/FooterLeftBlock"
 import FooterRightBlock from "./FooterRightBlock/FooterRightBlock"
 
 const Footer = () => {
 
     return (
-        <FooterWrapper>
-            <FooterBox>
+        <footer className={styles.footerWrapper}>
+            <div className={styles.footerBox}>
                 <FooterLeftBlock/>
                 <FooterRightBlock/>
-            </FooterBox>
-        </FooterWrapper>
+            </div>
+        </footer>
     );
 };
 

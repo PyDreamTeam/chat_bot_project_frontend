@@ -1,21 +1,19 @@
-import {Logo} from "@/src/components/common/Logo.styled";
+import Logo, {LogoVariantProps} from "../../../Logo/Logo"
 import Link from "next/link";
-import {FooterInfo, FooterLogoBlock, FooterLeftContainer}
-    from "@/src/components/common/MainWrapper/Footer/FooterLeftBlock/FooterLeftBlock.styled";
 import {TelegramLogo, VkLogo, WhatsAppLogo} from "@/src/components/common/MainWrapper/Footer/SvgConfig";
+
+import styles from "./FooterLeftBlock.module.css"
 
 const FooterLeftBlock = () => {
     return (
-        <FooterLeftContainer>
-            <Logo footer={'footer'}>
-                TOWNSEND
-            </Logo>
+        <div className={styles.footerLeftContainer}>
+            <Logo variant={LogoVariantProps.secondary}/>
             <Link href={'/'}>
-                <FooterInfo>
+                <p className={styles.footerInfo} >
                     info@townsend.pro
-                </FooterInfo>
+                </p>
             </Link>
-            <FooterLogoBlock>
+            <div className={styles.footerLogoBlock}>
                 <Link href={'/'}>
                     {WhatsAppLogo}
                 </Link>
@@ -25,8 +23,8 @@ const FooterLeftBlock = () => {
                 <Link href={'/'}>
                     {TelegramLogo}
                 </Link>
-            </FooterLogoBlock>
-        </FooterLeftContainer>
+            </div>
+        </div>
     );
 };
 

@@ -1,14 +1,13 @@
 import {Arrow} from "@/src/components/common/MainWrapper/Footer/SvgConfig";
 import {Form, Formik} from "formik";
 import * as Yup from "yup";
-import {FooterArrowButton, FooterInputBlock, FooterRightContainer}
-    from "@/src/components/common/MainWrapper/Footer/FooterRightBlock/FooterRightBlock.styled";
 import {Label} from "@/src/components/common/Label.styled";
 import {FooterInput} from "@/src/components/common/Input.styled";
+import styles from "./FooterRightBlock.module.css"
 
 const FooterLeftBlock = () => {
     return (
-        <FooterRightContainer>
+        <div className={styles.footerRightContainer} >
             <h2>Портал о мессенджер-маркетинге и чат-ботах</h2>
             <Formik initialValues={{email : ''}}
                     onSubmit={()=>{}}
@@ -25,7 +24,7 @@ const FooterLeftBlock = () => {
                       isValidating,
                       isValid})=> (
                     <Form name="contact" method="post" onSubmit={()=>{}}>
-                        <FooterInputBlock>
+                        <div className={styles.footerInputBlock}>
                             <Label htmlFor={"email"}>
                                 <FooterInput
                                     type="email"
@@ -38,13 +37,13 @@ const FooterLeftBlock = () => {
                                     error={Boolean(touched.email && errors.email)}>
                                 </FooterInput>
                             </Label>
-                            <FooterArrowButton onClick={()=>{}}>
+                            <button className={styles.footerArrowButton} onClick={()=>{}}>
                                 {Arrow}
-                            </FooterArrowButton>
-                        </FooterInputBlock>
+                            </button>
+                        </div>
                     </Form>)}
             </Formik>
-        </FooterRightContainer>
+        </div>
     );
 };
 
