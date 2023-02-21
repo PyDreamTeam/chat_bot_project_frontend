@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Logo, {LogoVariantProps} from "../../Logo/Logo"
 import {
     BoxButton,
     HeaderBox,
@@ -9,15 +10,12 @@ import {
 } from "./Header.styled"
 
 import {Button} from "@/src/components/common/Button.styled";
-import {Logo} from "@/src/components/common/Logo.styled";
 
 export default function Header() {
     return (
         <HeaderBox>
             <BoxButton>
-                <Logo header="header">
-                    TOWNSEND
-                </Logo>
+                <Logo variant={LogoVariantProps.primary}/>
                 <MenuBox>
                     <MenuBtnBox>
                         <MenuBtn>
