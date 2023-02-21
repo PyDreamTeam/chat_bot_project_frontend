@@ -17,6 +17,15 @@ export interface SignUpRequest {
     email: string
 }
 
+export interface SignInRequest {
+    password: string
+    email: string
+}
+
+export interface RecoveryPasswordRequest {
+    email: string
+}
+
 export const api = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: '/',
@@ -37,10 +46,24 @@ export const api = createApi({
                 body: {password, email, first_name: username},
             }),
         }),
+        signIn: builder.mutation<UserResponse, SignInRequest>({     // тип ответа - UserResponse, тип запроса - SignInRequest
+            query: ({password, email}) => ({
+                url: 'user',
+                method: 'POST',
+                body: {password, email},
+            }),
+        }),
+        recoveryPassword: builder.mutation<UserResponse, RecoveryPasswordRequest>({
+            query: ({email}) => ({
+                url: 'recoverypassword',
+                method: 'POST',
+                body: {email},
+            }),
+        }),
         protected: builder.mutation<{ message: string }, void>({
             query: () => 'protected',
         }),
     }),
 })
 
-export const {useSignUpMutation, useProtectedMutation} = api
+export const {useSignUpMutation, useProtectedMutation, useSignInMutation, useRecoveryPasswordMutation} = api

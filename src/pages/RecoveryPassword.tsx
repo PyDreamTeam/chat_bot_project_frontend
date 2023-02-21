@@ -7,8 +7,13 @@ import * as Yup from "yup";
 import {Label} from "@/src/components/common/Label.styled";
 import {Input, StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
 import {Submit} from "@/src/components/common/Button.styled";
+import {useRecoveryPasswordMutation} from "@/src/app/services/auth";
 
 const RecoveryPassword = () => {
+
+    const [recoveryPassword, recoveryPasswordResponse] = useRecoveryPasswordMutation()
+    console.log(recoveryPasswordResponse.isSuccess)
+
     return (
         <WrapperRegister>
             <BlockLeft/>
@@ -17,9 +22,12 @@ const RecoveryPassword = () => {
                     <Title>
                         Восстановление пароля
                     </Title>
-                    <p>Укажите Email, на который вы создавали личный кабинет</p>
+                    <p>{recoveryPasswordResponse.isSuccess ? "Письмо отправлено"
+                        :
+                        "Укажите Email, на который вы создавали личный кабинет"}</p>
                     <Formik initialValues={{email : ''}}
-                            onSubmit={()=>{}}
+                            onSubmit={(values, actions) => {
+                                recoveryPassword(values)}}
                             validationSchema={Yup.object().shape({
                                 email: Yup.string()
                                     .email("Электронная почта неверна")

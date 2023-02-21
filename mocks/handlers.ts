@@ -14,4 +14,7 @@ export const handlers = [
       )
     )
   }),
+    rest.post('/recoverypassword', (_req, res) => {
+        return res()
+    })
 ]
