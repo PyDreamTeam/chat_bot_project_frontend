@@ -30,7 +30,7 @@ export const BlockRight = styled.div`
     font-size: 18px;
     line-height: 150%;
     color: #17181A;
-    padding-bottom: 18px;
+    text-align: left;
     span {
       color: #4466F5;
     }
@@ -41,12 +41,26 @@ export const BlockRight = styled.div`
 export const ContentBlock = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 16px;
   max-width: 468px;
+  width: 100%;
   
   form {
     max-width: 468px;
+    width: 100%;
+  }
+`
+
+export const ChangePasswordBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 16px;
+  max-width: 483px;
+  align-items: baseline;
+
+  form {
+    max-width: 483px;
     width: 100%;
   }
 `
