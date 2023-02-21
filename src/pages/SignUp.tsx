@@ -10,7 +10,7 @@ import {StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
 import OpenEye from '../images/OpenEye.png'
 import CloseEye from '../images/CloseEye.png'
 
-import {WrapperRegister, BlockLeft, BlockRight} from "@/src/components/common/StyledRegister.styled";
+import {WrapperRegister, BlockLeft, BlockRight, ContentBlock} from "@/src/components/common/StyledRegister.styled";
 import Link from "next/link";
 import Image from 'next/image';
 import * as Yup from "yup";
@@ -32,11 +32,7 @@ export const SignUp = () => {
         <WrapperRegister>
             <BlockLeft/>
             <BlockRight>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
+                <ContentBlock>
                     <Title>
                         Регистрация
                     </Title>
@@ -194,7 +190,7 @@ export const SignUp = () => {
                             </Form>
                         )}
                     </Formik>
-                </div>
+                </ContentBlock>
             </BlockRight>
             {/* <ProtectedComponent/> */}
         </WrapperRegister>

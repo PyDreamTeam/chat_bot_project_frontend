@@ -7,18 +7,23 @@ import {Input} from "@/src/components/common/Input.styled";
 import {Submit} from "@/src/components/common/Button.styled";
 import {StyledInlineErrorMessage} from "@/src/components/common/Input.styled";
 
-import {WrapperRegister, BlockLeft, BlockRight} from "@/src/components/common/StyledRegister.styled";
+import {WrapperRegister, BlockLeft, BlockRight, ContentBlock} from "@/src/components/common/StyledRegister.styled";
 import Link from "next/link";
 import Image from 'next/image';
 import * as Yup from "yup";
 
 import OpenEye from '../images/OpenEye.png'
 import CloseEye from '../images/CloseEye.png'
+import {useSignInMutation} from "@/src/app/services/auth";
 
 export const SignIn = () => {
     const [formValues, setFormValues] = useState();
 
     const [show, setShow] = useState<boolean>(false);
+
+    const [signIn, signInResponse] = useSignInMutation()     // signIn - функция для запроса + signInResponse - объект ответа, он показывает статусы
+
+    console.log(signInResponse?.data)
 
     const showPassword=()=>{
         setShow(!show)
@@ -28,11 +33,7 @@ export const SignIn = () => {
         <WrapperRegister>
             <BlockLeft/>
             <BlockRight>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
+                <ContentBlock>
                     <Title>
                         Вход
                     </Title>
@@ -56,7 +57,7 @@ export const SignIn = () => {
                                     .required("Введите пароль"),
                             })}
                             onSubmit={(values, actions) => {
-                                console.log(values);
+                                signIn(values);
                                 // @ts-ignore
                                 setFormValues(values);
 
@@ -84,14 +85,14 @@ export const SignIn = () => {
                                     <Label htmlFor="email">
                                         <p>E-mail</p>
                                         <Input
-                                            type="email"
+                                            type="password"
                                             name="email"
                                             autoCapitalize="off"
                                             autoCorrect="off"
                                             autoComplete="email"
                                             placeholder="example@mail.com"
-                                            valid={Boolean(touched.email && !errors.email)}
-                                            error={Boolean(touched.email && errors.email)}
+                                            valid={Boolean(touched.password && !errors.password)}
+                                            error={Boolean(touched.password && errors.password)}
                                         />
                                     </Label>
                                     <ErrorMessage name="email">
@@ -141,11 +142,13 @@ export const SignIn = () => {
                                 <Submit type="submit" disabled={!isValid || isSubmitting}>
                                     {isSubmitting ? `Войти...` : `Войти`}
                                 </Submit>
-                                <p>Забыли пароль? <span>Восстановите здесь</span></p>
+                                <p>Забыли пароль? <Link href={'/RecoveryPassword'} style={{
+                                    textDecoration: 'none'
+                                }}>Восстановите здесь</Link></p>
                             </Form>
                         )}
                     </Formik>
-                </div>
+                </ContentBlock>
             </BlockRight>
         </WrapperRegister>
     );
