@@ -30,14 +30,7 @@ export const WhatsAppLogo = (
 );
 
 export const Arrow = (
-     <svg
-          className={styles.logoSvg}
-          width="26"
-          height="12"
-          viewBox="0 0 26 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-     >
+     <svg className={styles.logoSvg} width="26" height="12" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="-4.37114e-08" y1="6" x2="25" y2="6" stroke="white" />
           <path d="M20 1L24.9497 5.94975L20 10.8995" stroke="white" />
      </svg>

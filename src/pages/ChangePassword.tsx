@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 
-import {
-     WrapperRegister,
-     BlockLeft,
-     BlockRight,
-     ChangePasswordBlock,
-} from "@/src/components/common/StyledRegister.styled";
+import { WrapperRegister, BlockLeft, BlockRight, ChangePasswordBlock } from "@/src/components/common/StyledRegister.styled";
 import { Title } from "@/src/components/common/Title.styled";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -37,9 +32,7 @@ const ChangePassword = () => {
                               }}
                               onSubmit={() => console.log(1)}
                               validationSchema={Yup.object().shape({
-                                   password: Yup.string()
-                                        .min(8, "Пароль слишком короткий")
-                                        .required("Введите новый пароль"),
+                                   password: Yup.string().min(8, "Пароль слишком короткий").required("Введите новый пароль"),
                                    passwordConfirmation: Yup.string()
                                         .required("Повторите пароль")
                                         .oneOf([Yup.ref("password")], "Пароли должны совпадать"),
@@ -86,9 +79,7 @@ const ChangePassword = () => {
                                                   </div>
                                              </Label>
                                              <ErrorMessage name="password">
-                                                  {(message) => (
-                                                       <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
-                                                  )}
+                                                  {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                                              </ErrorMessage>
                                         </div>
                                         <div
@@ -114,14 +105,8 @@ const ChangePassword = () => {
                                                             autoCorrect="off"
                                                             autoComplete="password"
                                                             placeholder="Введите новый пароль"
-                                                            valid={Boolean(
-                                                                 touched.passwordConfirmation &&
-                                                                      !errors.passwordConfirmation
-                                                            )}
-                                                            error={Boolean(
-                                                                 touched.passwordConfirmation &&
-                                                                      errors.passwordConfirmation
-                                                            )}
+                                                            valid={Boolean(touched.passwordConfirmation && !errors.passwordConfirmation)}
+                                                            error={Boolean(touched.passwordConfirmation && errors.passwordConfirmation)}
                                                        />
                                                        <Image
                                                             src={show ? OpenEye : CloseEye}
@@ -136,9 +121,7 @@ const ChangePassword = () => {
                                                   </div>
                                              </Label>
                                              <ErrorMessage name="passwordConfirmation">
-                                                  {(message) => (
-                                                       <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
-                                                  )}
+                                                  {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                                              </ErrorMessage>
                                         </div>
                                         <Submit type="submit" disabled={!isValid || isSubmitting}>

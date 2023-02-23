@@ -30,9 +30,7 @@ const RecoveryPassword = () => {
                                    recoveryPassword(values);
                               }}
                               validationSchema={Yup.object().shape({
-                                   email: Yup.string()
-                                        .email("Электронная почта неверна")
-                                        .required("Введите электронную почту"),
+                                   email: Yup.string().email("Электронная почта неверна").required("Введите электронную почту"),
                               })}
                          >
                               {({ values, errors, touched, handleSubmit, isSubmitting, isValidating, isValid }) => (
@@ -51,9 +49,7 @@ const RecoveryPassword = () => {
                                              />
                                         </Label>
                                         <ErrorMessage name="email">
-                                             {(message) => (
-                                                  <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
-                                             )}
+                                             {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                                         </ErrorMessage>
                                         <Submit type="submit" disabled={!isValid || isSubmitting}>
                                              Отправить

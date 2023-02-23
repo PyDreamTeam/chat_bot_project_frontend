@@ -65,9 +65,7 @@ export const SignUp = () => {
                               }}
                               validationSchema={Yup.object().shape({
                                    username: Yup.string().min(0, "Введите имя").required("Введите имя"),
-                                   email: Yup.string()
-                                        .email("Электронная почта неверна")
-                                        .required("Введите электронную почту"),
+                                   email: Yup.string().email("Электронная почта неверна").required("Введите электронную почту"),
                                    password: Yup.string().min(8, "Пароль слишком короткий").required("Введите пароль"),
                               })}
                               onSubmit={(values, actions) => {
@@ -96,9 +94,7 @@ export const SignUp = () => {
                                                        />
                                                   </Label>
                                                   {errors.username && touched.username && (
-                                                       <StyledInlineErrorMessage>
-                                                            {errors.username}
-                                                       </StyledInlineErrorMessage>
+                                                       <StyledInlineErrorMessage>{errors.username}</StyledInlineErrorMessage>
                                                   )}
                                              </div>
                                              <div
@@ -120,11 +116,7 @@ export const SignUp = () => {
                                                        />
                                                   </Label>
                                                   <ErrorMessage name="email">
-                                                       {(message) => (
-                                                            <StyledInlineErrorMessage>
-                                                                 {message}
-                                                            </StyledInlineErrorMessage>
-                                                       )}
+                                                       {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                                                   </ErrorMessage>
                                              </div>
                                              <div
@@ -166,11 +158,7 @@ export const SignUp = () => {
                                                        </div>
                                                   </Label>
                                                   <ErrorMessage name="password">
-                                                       {(message) => (
-                                                            <StyledInlineErrorMessage>
-                                                                 {message}
-                                                            </StyledInlineErrorMessage>
-                                                       )}
+                                                       {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                                                   </ErrorMessage>
                                              </div>
                                              <Label htmlFor="checkbox">

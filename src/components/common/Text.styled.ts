@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const Text = styled.span<{ color: string; type: string }>`
+export const Text = styled.span<{
+     color: string;
+     type: string;
+}>`
      ${(props: { type: string; color: string }) => {
           switch (props.type) {
                case "head":

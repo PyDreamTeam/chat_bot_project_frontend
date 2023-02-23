@@ -47,9 +47,7 @@ export const SignIn = () => {
                                    password: "",
                               }}
                               validationSchema={Yup.object().shape({
-                                   email: Yup.string()
-                                        .email("Электронная почта неверна")
-                                        .required("Введите электронную почту"),
+                                   email: Yup.string().email("Электронная почта неверна").required("Введите электронную почту"),
                                    password: Yup.string().min(8, "Неверный пароль").required("Введите пароль"),
                               })}
                               onSubmit={(values, actions) => {
@@ -86,9 +84,7 @@ export const SignIn = () => {
                                                   />
                                              </Label>
                                              <ErrorMessage name="email">
-                                                  {(message) => (
-                                                       <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
-                                                  )}
+                                                  {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                                              </ErrorMessage>
                                         </div>
                                         <Label htmlFor="password">
@@ -125,9 +121,7 @@ export const SignIn = () => {
                                              </div>
                                         </Label>
                                         <ErrorMessage name="password">
-                                             {(message) => (
-                                                  <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>
-                                             )}
+                                             {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                                         </ErrorMessage>
                                         <Submit type="submit" disabled={!isValid || isSubmitting}>
                                              {isSubmitting ? "Войти..." : "Войти"}

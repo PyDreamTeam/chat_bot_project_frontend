@@ -1,10 +1,10 @@
 async function initMocks() {
-  if (typeof window !== 'undefined') {
-    const { worker } = await import('./browser')
-    worker.start()
-  }
+     if (typeof window !== "undefined") {
+          const { worker } = await import("./browser");
+          worker.start();
+     }
 }
 
-initMocks()
+initMocks();
 
-export {}
+export {};
