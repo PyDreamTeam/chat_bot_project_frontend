@@ -1,20 +1,20 @@
 .footerWrapper {
-    background: #000000;
+     background: #000000;
 }
 
 .footerBox {
-    max-width: 1440px;
-    display: flex;
-    justify-content: space-between;
-    padding: 90px 148px 143px 88px;
-    margin: auto;
+     max-width: 1440px;
+     display: flex;
+     justify-content: space-between;
+     padding: 90px 148px 143px 88px;
+     margin: auto;
 }
 
 .logoSvg {
-    fill: #FFFFFF;
-    transition: 0.3s;
+     fill: #ffffff;
+     transition: 0.3s;
 }
 
 .logoSvg:hover {
-    fill: powderblue;
+     fill: powderblue;
 }

@@ -1,21 +1,19 @@
 import styled from "styled-components";
 
+export const LabelsBox = styled.div`
+     width: 440px;
+     height: auto;
 
-export const LabelsBox = styled.div `
-  width: 440px;
-  height:auto;
-
-  display: flex;
-  flex-direction: column;
-  justify-content:space-between;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
 `;
 
-
-export const Label = styled.label<{ htmlFor:string }>`
-  ${(props: { htmlFor:string }) => {
-    switch (props.htmlFor) {
-      case "checkbox":
-        return `
+export const Label = styled.label<{ htmlFor: string }>`
+     ${(props: { htmlFor: string }) => {
+          switch (props.htmlFor) {
+               case "checkbox":
+                    return `
           display: flex;
           flex-direction: row;
           align-items: flex-start;
@@ -35,8 +33,8 @@ export const Label = styled.label<{ htmlFor:string }>`
               text-align: left;
             }
           `;
-      default:
-        return `
+               default:
+                    return `
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -50,6 +48,6 @@ export const Label = styled.label<{ htmlFor:string }>`
             max-width: 440px;
           }
         `;
-    }
-  }}
+          }
+     }}
 `;
