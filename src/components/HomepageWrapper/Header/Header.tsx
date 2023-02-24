@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Logo, { LogoVariantProps } from "../../Logo/Logo";
+import Logo, { LogoVariantProps } from "../../shared/Logo/Logo";
 import { BoxButton, HeaderBox, RegistrBox, MenuBox, MenuBtnBox, MenuBtn } from "./Header.styled";
 
-import { Button } from "@/src/components/common/Button.styled";
+import { Button } from "@/src/components/Button.styled";
 
 export default function Header() {
      return (
@@ -17,7 +17,7 @@ export default function Header() {
                          </MenuBtnBox>
                          <RegistrBox>
                               <Link
-                                   href={"/SignIn"}
+                                   href={"/sign-in"}
                                    style={{
                                         textDecoration: "none",
                                    }}
@@ -25,7 +25,7 @@ export default function Header() {
                                    <Button SignInButton="SignInButton">Войти</Button>
                               </Link>
                               <Link
-                                   href={"/SignUp"}
+                                   href={"/sign-up"}
                                    style={{
                                         textDecoration: "none",
                                    }}

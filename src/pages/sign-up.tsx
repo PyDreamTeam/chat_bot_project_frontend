@@ -1,21 +1,21 @@
 import { Formik, Form, ErrorMessage } from "formik";
 import React, { useState } from "react";
 
-import { Title } from "@/src/components/common/Title.styled";
-import { Label, LabelsBox } from "@/src/components/common/Label.styled";
-import { Input } from "@/src/components/common/Input.styled";
-import { Submit } from "@/src/components/common/Button.styled";
-import { StyledInlineErrorMessage } from "@/src/components/common/Input.styled";
+import { Title } from "@/src/components/Title.styled";
+import { Label, LabelsBox } from "@/src/components/Label.styled";
+import { Input } from "@/src/components/Input.styled";
+import { Submit } from "@/src/components/Button.styled";
+import { StyledInlineErrorMessage } from "@/src/components/Input.styled";
 
 import OpenEye from "../images/OpenEye.png";
 import CloseEye from "../images/CloseEye.png";
 
-import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/common/StyledRegister.styled";
+import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/StyledRegister.styled";
 import Link from "next/link";
 import Image from "next/image";
 import * as Yup from "yup";
 
-import { useSignUpMutation } from "@/src/app/services/auth";
+import { useSignUpMutation } from "@/src/store/services/authApi";
 
 export const SignUp = () => {
      const [signUp, signUpResponse] = useSignUpMutation(); // signUp - функция для запроса + signUpResponse - объект ответа, он показывает статусы

@@ -26,7 +26,7 @@ export interface RecoveryPasswordRequest {
      email: string;
 }
 
-export const api = createApi({
+export const authApi = createApi({
      baseQuery: fetchBaseQuery({
           baseUrl: "/",
           prepareHeaders: (headers, { getState }) => {
@@ -72,4 +72,4 @@ export const api = createApi({
      }),
 });
 
-export const { useSignUpMutation, useProtectedMutation, useSignInMutation, useRecoveryPasswordMutation } = api;
+export const { useSignUpMutation, useProtectedMutation, useSignInMutation, useRecoveryPasswordMutation } = authApi;

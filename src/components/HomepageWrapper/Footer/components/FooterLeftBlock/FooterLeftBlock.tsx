@@ -1,6 +1,6 @@
-import Logo, { LogoVariantProps } from "../../../Logo/Logo";
+import Logo, { LogoVariantProps } from "../../../../shared/Logo/Logo";
 import Link from "next/link";
-import { TelegramLogo, VkLogo, WhatsAppLogo } from "@/src/components/common/MainWrapper/Footer/SvgConfig";
+import { TelegramLogo, VkLogo, WhatsAppLogo } from "@/src/components/HomepageWrapper/Footer/pictures/SvgConfig";
 
 import styles from "./FooterLeftBlock.module.css";
 

@@ -1,20 +1,20 @@
 import { Formik, Form, ErrorMessage } from "formik";
 import React, { useState } from "react";
 
-import { Title } from "@/src/components/common/Title.styled";
-import { Label } from "@/src/components/common/Label.styled";
-import { Input } from "@/src/components/common/Input.styled";
-import { Submit } from "@/src/components/common/Button.styled";
-import { StyledInlineErrorMessage } from "@/src/components/common/Input.styled";
+import { Title } from "@/src/components/Title.styled";
+import { Label } from "@/src/components/Label.styled";
+import { Input } from "@/src/components/Input.styled";
+import { Submit } from "@/src/components/Button.styled";
+import { StyledInlineErrorMessage } from "@/src/components/Input.styled";
 
-import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/common/StyledRegister.styled";
+import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/StyledRegister.styled";
 import Link from "next/link";
 import Image from "next/image";
 import * as Yup from "yup";
 
 import OpenEye from "../images/OpenEye.png";
 import CloseEye from "../images/CloseEye.png";
-import { useSignInMutation } from "@/src/app/services/auth";
+import { useSignInMutation } from "@/src/store/services/authApi";
 
 export const SignIn = () => {
      const [formValues, setFormValues] = useState();
@@ -50,7 +50,7 @@ export const SignIn = () => {
                                    email: Yup.string().email("Электронная почта неверна").required("Введите электронную почту"),
                                    password: Yup.string().min(8, "Неверный пароль").required("Введите пароль"),
                               })}
-                              onSubmit={(values, actions) => {
+                              onSubmit={(values: any, actions) => {
                                    signIn(values);
 
                                    setFormValues(values);

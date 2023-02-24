@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import { WrapperRegister, BlockLeft, BlockRight, ChangePasswordBlock } from "@/src/components/common/StyledRegister.styled";
-import { Title } from "@/src/components/common/Title.styled";
+import { WrapperRegister, BlockLeft, BlockRight, ChangePasswordBlock } from "@/src/components/StyledRegister.styled";
+import { Title } from "@/src/components/Title.styled";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { Label } from "@/src/components/common/Label.styled";
-import { Input, StyledInlineErrorMessage } from "@/src/components/common/Input.styled";
-import { Submit } from "@/src/components/common/Button.styled";
+import { Label } from "@/src/components/Label.styled";
+import { Input, StyledInlineErrorMessage } from "@/src/components/Input.styled";
+import { Submit } from "@/src/components/Button.styled";
 import Image from "next/image";
 import OpenEye from "@/src/images/OpenEye.png";
 import CloseEye from "@/src/images/CloseEye.png";

@@ -1,0 +1,16 @@
+.label {
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 400;
+     line-height: 150%;
+}
+
+.checkbox {
+     font-size: 16px;
+     color: #595f6c;
+}
+
+.inputField {
+     color: #17181a;
+     font-size: 18px;
+}

@@ -1,5 +1,5 @@
 import { Center, VStack, Box, Button } from "@chakra-ui/react";
-import { useProtectedMutation } from "../../app/services/auth";
+import { useProtectedMutation } from "../../store/services/authApi";
 
 export function ProtectedComponent() {
      const [attemptAccess, { data, error, isLoading }] = useProtectedMutation();

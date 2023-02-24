@@ -1,9 +1,9 @@
 import React, { FC, ReactNode } from "react";
-import Footer from "@/src/components/common/MainWrapper/Footer/Footer";
-import Header from "@/src/components/common/MainWrapper/Header/Header";
+import Footer from "@/src/components/HomepageWrapper/Footer/Footer";
+import Header from "@/src/components/HomepageWrapper/Header/Header";
 import { WithChildren } from "@/src/types/withChildren";
 
-const MainWrapper: FC<WithChildren> = ({ children }) => {
+const HomepageWrapper: FC<WithChildren> = ({ children }) => {
      return (
           <>
                <Header />
@@ -13,4 +13,4 @@ const MainWrapper: FC<WithChildren> = ({ children }) => {
      );
 };
 
-export default MainWrapper;
+export default HomepageWrapper;

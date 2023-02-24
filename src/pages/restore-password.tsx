@@ -1,13 +1,13 @@
 import React from "react";
 
-import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/common/StyledRegister.styled";
-import { Title } from "@/src/components/common/Title.styled";
+import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/StyledRegister.styled";
+import { Title } from "@/src/components/Title.styled";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { Label } from "@/src/components/common/Label.styled";
-import { Input, StyledInlineErrorMessage } from "@/src/components/common/Input.styled";
-import { Submit } from "@/src/components/common/Button.styled";
-import { useRecoveryPasswordMutation } from "@/src/app/services/auth";
+import { Label } from "@/src/components/Label.styled";
+import { Input, StyledInlineErrorMessage } from "@/src/components/Input.styled";
+import { Submit } from "@/src/components/Button.styled";
+import { useRecoveryPasswordMutation } from "@/src/store/services/authApi";
 
 const RecoveryPassword = () => {
      const [recoveryPassword, recoveryPasswordResponse] = useRecoveryPasswordMutation();

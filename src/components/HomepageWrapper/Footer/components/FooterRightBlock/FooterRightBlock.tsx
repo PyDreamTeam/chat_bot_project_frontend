@@ -1,8 +1,8 @@
-import { Arrow } from "@/src/components/common/MainWrapper/Footer/SvgConfig";
+import { Arrow } from "@/src/components/HomepageWrapper/Footer/pictures/SvgConfig";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { Label } from "@/src/components/common/Label.styled";
-import { FooterInput } from "@/src/components/common/Input.styled";
+import { Label } from "@/src/components/Label.styled";
+import { FooterInput } from "@/src/components/Input.styled";
 import styles from "./FooterRightBlock.module.css";
 
 const FooterLeftBlock = () => {
