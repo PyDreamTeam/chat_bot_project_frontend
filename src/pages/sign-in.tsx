@@ -12,8 +12,8 @@ import Link from "next/link";
 import Image from "next/image";
 import * as Yup from "yup";
 
-import OpenEye from "../images/OpenEye.png";
-import CloseEye from "../images/CloseEye.png";
+import OpenEye from "../public/png/OpenEye.png";
+import CloseEye from "../public/png/CloseEye.png";
 import { useSignInMutation } from "@/src/store/services/authApi";
 
 export const SignIn = () => {

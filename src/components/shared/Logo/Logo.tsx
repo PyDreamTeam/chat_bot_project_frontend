@@ -1,18 +1,18 @@
 import React, { FC } from "react";
-import styles from "./Logo.module.css";
+import styles from "./styles/Logo.module.css";
 
 export enum LogoVariantProps {
-     primary = "primary",
-     secondary = "secondary",
+     header = "header",
+     footer = "footer",
 }
 
-interface ILogo {
-     variant: LogoVariantProps;
-}
+type ILogo = {
+     variant: LogoVariantProps.header | LogoVariantProps.footer;
+};
 
 const Logo: FC<ILogo> = ({ variant }) => {
      return (
-          <div className={`${styles.logo} ${variant === LogoVariantProps.primary ? styles.logoHeader : styles.logoFooter} `}>TOWNSEND</div>
+          <div className={`${styles.logo} ${variant === LogoVariantProps.header ? styles.logoHeader : styles.logoFooter} `}>TOWNSEND</div>
      );
 };
 

@@ -1,3 +1,5 @@
+/*    --------------------   SUBMIT BUTTON   -------------------------        */
+
 .submit {
      font-family: "Inter";
      font-style: normal;
@@ -20,3 +22,31 @@
 .submitDisabled {
      background: #cdd4f2;
 }
+
+/*           ---------------------------- SIGN IN/ SIGN UP BUTTONS  ------------------------          */
+
+.buttonAuth {
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     padding: 10px;
+     gap: 10px;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 500;
+     font-size: 24px;
+     line-height: 28px;
+     border-radius: 20px;
+}
+.signIn {
+     color: #4466f5;
+     border: 1px solid #4466f5;
+     background: transparent;
+}
+.signUp {
+     background: #4466f5;
+     color: #ffffff;
+}
+
+/* --------------------------------- ------------------------------------------------*/

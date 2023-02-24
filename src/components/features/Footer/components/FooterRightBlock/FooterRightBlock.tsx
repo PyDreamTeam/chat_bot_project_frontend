@@ -1,4 +1,4 @@
-import { Arrow } from "@/src/components/HomepageWrapper/Footer/pictures/SvgConfig";
+import { Arrow } from "@/src/components/features/Footer/pictures/SvgConfig";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Label } from "@/src/components/Label.styled";

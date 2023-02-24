@@ -1,4 +1,4 @@
-import styles from "./Footer.module.css";
+import styles from "../Footer.module.css";
 
 export const TelegramLogo = (
      <svg className={styles.logoSvg} width="37" height="30" viewBox="0 0 37 30" xmlns="http://www.w3.org/2000/svg">
