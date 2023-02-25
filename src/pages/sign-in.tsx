@@ -91,7 +91,7 @@ export const SignIn = () => {
                                         <p>
                                              Забыли пароль?{" "}
                                              <Link
-                                                  href={"/RecoveryPassword"}
+                                                  href={"/restore-password"}
                                                   style={{
                                                        textDecoration: "none",
                                                   }}
