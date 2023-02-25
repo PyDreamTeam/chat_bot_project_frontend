@@ -1,0 +1,15 @@
+.link {
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 500;
+     font-size: 20px;
+     line-height: 28px;
+     color: #17181a;
+}
+.navBarHome {
+     max-width: 367px;
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
