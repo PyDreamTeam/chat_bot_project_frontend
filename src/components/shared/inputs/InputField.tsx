@@ -8,8 +8,8 @@ import Image from "next/image";
 import { Arrow } from "@/src/components/features/Footer/pictures/SvgConfig";
 
 export enum InputVariantProps {
-     primary = "primary",
-     secondary = "secondary"
+     forFooter = "forFooter",
+     forAuth = "forAuth",
 }
 
 export interface IInputField extends LabelProps {
@@ -25,7 +25,7 @@ export interface IInputField extends LabelProps {
 }
 
 const InputField: FC<IInputField> = ({
-     variant= InputVariantProps.primary,
+     variant= InputVariantProps.forAuth,
      htmlFor = "",
      typeLabel,
      text = "",
@@ -39,7 +39,7 @@ const InputField: FC<IInputField> = ({
 
 }) => {
      return (
-          variant === InputVariantProps.primary ?  <>
+          variant === InputVariantProps.forAuth ?  <>
                <Label htmlFor={htmlFor} typeLabel={typeLabel} text={text}>
                     <Field
                          className={styles.inputField}

@@ -19,7 +19,7 @@ const FooterLeftBlock = () => {
                     {({ values, errors, touched, handleSubmit, isSubmitting, isValidating, isValid }) => (
                          <Form name="contact" method="post" onSubmit={() => console.log(1)}>
                               <InputField
-                                   variant={InputVariantProps.secondary}
+                                   variant={InputVariantProps.forFooter}
                                    name={"email"}
                                    autoComplete={"email"}
                                    placeholder={"E-mail"}
