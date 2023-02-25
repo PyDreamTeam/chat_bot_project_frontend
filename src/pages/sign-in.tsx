@@ -17,7 +17,7 @@ export const SignIn = () => {
 
      const [show, setShow] = useState<boolean>(false);
 
-     const [signIn, signInResponse] = useSignInMutation(); // signIn - функция для запроса + signInResponse - объект ответа, он показывает статусы
+     const [signIn, signInResponse] = useSignInMutation(); //signIn - функция для запроса + signInResponse - объект ответа, он показывает статусы
 
      console.log(signInResponse?.data);
 
