@@ -1,0 +1,93 @@
+.inputField {
+     height: 64px;
+     background: #f4f5f6;
+     border-radius: 20px;
+     border: none;
+     font-size: 1rem;
+     line-height: 1.5rem;
+     font-style: normal;
+     font-weight: 400;
+     width: 100%;
+     margin-top: 0.5rem;
+     padding: 16px;
+}
+
+.inputFieldFooter {
+     background: none;
+     border: none;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 700;
+     font-size: 16px;
+     line-height: 19px;
+     color: #e1e2e6;
+}
+
+.footerInputBlock {
+     color: #e1e2e6;
+     max-width: 424px;
+     border-bottom: 1px solid #e1e2e6;
+     padding: 10px 0;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     position: relative;
+}
+
+.inputFieldFooter:focus,
+.inputFieldFooter:active {
+      border: none;
+      outline: none;
+ }
+
+.inputError {
+     color: #f53527;
+     display: block;
+     white-space: pre-line;
+}
+
+.inputImage {
+     width: 20px;
+     height: 20px;
+     margin: 0 -40px;
+     cursor: pointer;
+}
+
+.footerArrowButton {
+     position: absolute;
+     top: 44%;
+     right: 0;
+     border: none;
+     background: none;
+     outline: none;
+     cursor: pointer;
+}
+
+.inputField:focus,
+.inputField:active {
+     background: #f4f5f6;
+     border: none;
+     outline: none;
+}
+
+.inputField:-webkit-autofill,
+.inputField:-webkit-autofill:hover,
+.inputField:-webkit-autofill:focus {
+     background: #f4f5f6;
+     border: none;
+     box-shadow: 0 0 0 1000px #f4f5f6 inset;
+     -webkit-box-shadow: 0 0 0 1000px #f4f5f6 inset;
+     transition: background-color 5000s ease-in-out 0s;
+     -webkit-text-fill-color: black;
+}
+
+.inputFieldValid {
+     border: 1px solid rgb(0, 156, 38);
+}
+
+.inputField:focus,
+.inputField:active {
+     border: 1px solid rgb(0, 156, 38);
+     box-shadow: rgb(106, 237, 97) 0 0 2px 1px, rgb(177, 247, 160) 0 0 0 3px;
+     outline: none;
+}

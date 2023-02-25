@@ -1,9 +1,9 @@
-import { Arrow } from "@/src/components/features/Footer/pictures/SvgConfig";
+
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { Label } from "@/src/components/Label.styled";
-import { FooterInput } from "@/src/components/Input.styled";
 import styles from "./FooterRightBlock.module.css";
+import InputField, { InputVariantProps } from "@/src/components/shared/inputs/InputField";
+import { LabelTypes } from "@/src/components/shared/labels/Label";
 
 const FooterLeftBlock = () => {
      return (
@@ -18,21 +18,16 @@ const FooterLeftBlock = () => {
                >
                     {({ values, errors, touched, handleSubmit, isSubmitting, isValidating, isValid }) => (
                          <Form name="contact" method="post" onSubmit={() => console.log(1)}>
-                              <div className={styles.footerInputBlock}>
-                                   <Label htmlFor={"email"}>
-                                        <FooterInput
-                                             type="email"
-                                             name="email"
-                                             autoCapitalize="off"
-                                             autoCorrect="off"
-                                             autoComplete="email"
-                                             placeholder="E-mail"
-                                             valid={Boolean(touched.email && !errors.email)}
-                                             error={Boolean(touched.email && errors.email)}
-                                        ></FooterInput>
-                                   </Label>
-                                   <button className={styles.footerArrowButton}>{Arrow}</button>
-                              </div>
+                              <InputField
+                                   variant={InputVariantProps.secondary}
+                                   name={"email"}
+                                   autoComplete={"email"}
+                                   placeholder={"E-mail"}
+                                   valid={Boolean(touched.email && !errors.email)}
+                                   error={Boolean(touched.email && errors.email)}
+                                   htmlFor={"email"}
+                                   typeLabel={LabelTypes.inputField}>
+                              </InputField>
                          </Form>
                     )}
                </Formik>

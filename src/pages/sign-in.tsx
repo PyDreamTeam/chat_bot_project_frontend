@@ -1,19 +1,15 @@
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage, Field } from "formik";
 import React, { useState } from "react";
 
 import { Title } from "@/src/components/Title.styled";
-import { Label } from "@/src/components/Label.styled";
-import { Input } from "@/src/components/Input.styled";
+import Label, { LabelTypes } from "@/src/components/shared/labels/Label";
+import InputField from "@/src/components/shared/inputs/InputField";
 import { Submit } from "@/src/components/Button.styled";
-import { StyledInlineErrorMessage } from "@/src/components/Input.styled";
 
 import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/StyledRegister.styled";
 import Link from "next/link";
-import Image from "next/image";
 import * as Yup from "yup";
 
-import OpenEye from "../public/png/OpenEye.png";
-import CloseEye from "../public/png/CloseEye.png";
 import { useSignInMutation } from "@/src/store/services/authApi";
 
 export const SignIn = () => {
@@ -65,64 +61,30 @@ export const SignIn = () => {
                               {({ values, errors, touched, handleSubmit, isSubmitting, isValidating, isValid }) => (
                                    <Form name="contact" method="post" onSubmit={handleSubmit}>
                                         <p>Или с помощью почты и пароля</p>
-                                        <div
-                                             style={{
-                                                  height: "120px",
-                                             }}
-                                        >
-                                             <Label htmlFor="email">
-                                                  <p>E-mail</p>
-                                                  <Input
-                                                       type="password"
-                                                       name="email"
-                                                       autoCapitalize="off"
-                                                       autoCorrect="off"
-                                                       autoComplete="email"
-                                                       placeholder="example@mail.com"
-                                                       valid={Boolean(touched.password && !errors.password)}
-                                                       error={Boolean(touched.password && errors.password)}
-                                                  />
-                                             </Label>
-                                             <ErrorMessage name="email">
-                                                  {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
-                                             </ErrorMessage>
-                                        </div>
-                                        <Label htmlFor="password">
-                                             <p>Пароль</p>
-                                             <div
-                                                  style={{
-                                                       width: "100%",
-                                                       height: "100%",
-                                                       display: "flex",
-                                                       flexDirection: "row",
-                                                       alignItems: "center",
-                                                  }}
-                                             >
-                                                  <Input
-                                                       type={show ? "text" : "password"}
-                                                       name="password"
-                                                       autoCapitalize="off"
-                                                       autoCorrect="off"
-                                                       autoComplete="password"
-                                                       placeholder="Введите пароль"
-                                                       valid={Boolean(touched.password && !errors.password)}
-                                                       error={Boolean(touched.password && errors.password)}
-                                                  />
-                                                  <Image
-                                                       src={show ? OpenEye : CloseEye}
-                                                       alt="Picture of the author"
-                                                       width={20}
-                                                       height={20}
-                                                       onClick={showPassword}
-                                                       style={{
-                                                            margin: "0 -40px",
-                                                       }}
-                                                  />
-                                             </div>
-                                        </Label>
-                                        <ErrorMessage name="password">
-                                             {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
-                                        </ErrorMessage>
+                                        <InputField
+                                             text="E-mail"
+                                             typeLabel={LabelTypes.inputField}
+                                             type="text"
+                                             htmlFor="email"
+                                             name="email"
+                                             autoComplete="email"
+                                             placeholder="example@mail.com"
+                                             valid={Boolean(touched.password && !errors.password)}
+                                             error={Boolean(touched.password && errors.password)}
+                                        />
+                                        <InputField
+                                             text="Пароль"
+                                             typeLabel={LabelTypes.inputField}
+                                             type={show ? "text" : "password"}
+                                             htmlFor="password"
+                                             name="password"
+                                             autoComplete="password"
+                                             placeholder="Введите пароль"
+                                             valid={Boolean(touched.password && !errors.password)}
+                                             error={Boolean(touched.password && errors.password)}
+                                             onClick={showPassword}
+                                             show={show}
+                                        />
                                         <Submit type="submit" disabled={!isValid || isSubmitting}>
                                              {isSubmitting ? "Войти..." : "Войти"}
                                         </Submit>

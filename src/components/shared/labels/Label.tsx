@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, ReactNode } from "react";
 import styles from "./styles/styles.module.css";
 
 export enum LabelTypes {
@@ -6,16 +6,18 @@ export enum LabelTypes {
      inputField = "inputField",
 }
 
-interface LabelProps {
+export interface LabelProps {
      htmlFor: string;
-     text: string;
-     type: LabelTypes.checkbox | LabelTypes.inputField;
+     text?: string;
+     typeLabel: LabelTypes.checkbox | LabelTypes.inputField;
+     children?: ReactNode;
 }
 
-const Label = ({ htmlFor, text, type }: LabelProps) => {
+const Label = ({ htmlFor, text, typeLabel, children }: LabelProps) => {
      return (
-          <label className={`${styles.label} ${type}`} htmlFor={htmlFor}>
-               {text}
+          <label className={`${styles.label} ${typeLabel}`} htmlFor={htmlFor}>
+               <p>{text}</p>
+               {children}
           </label>
      );
 };

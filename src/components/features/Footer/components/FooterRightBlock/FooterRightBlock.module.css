@@ -15,18 +15,3 @@
      color: #ffffff;
 }
 
-.footerInputBlock {
-     color: #e1e2e6;
-     max-width: 424px;
-     border-bottom: 1px solid #e1e2e6;
-     padding: 10px 0;
-     display: flex;
-     justify-content: space-between;
-}
-
-.footerArrowButton {
-     border: none;
-     background: none;
-     outline: none;
-     cursor: pointer;
-}
