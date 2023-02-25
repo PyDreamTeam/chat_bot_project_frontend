@@ -1,0 +1,28 @@
+.authRightBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.authContentBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 468px;
+    width: 100%;
+}
+
+.authContentBlock p{
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #17181a;
+    text-align: left;
+}
+
+.authContentBlock a{
+    color: #4466f5;
+}
