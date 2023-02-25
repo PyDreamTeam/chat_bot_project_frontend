@@ -1,7 +1,6 @@
 import { Formik, Form, ErrorMessage } from "formik";
 import React, { useState } from "react";
 
-import { Title } from "@/src/components/Title.styled";
 import { Label, LabelsBox } from "@/src/components/Label.styled";
 import { Input } from "@/src/components/Input.styled";
 import { Submit } from "@/src/components/Button.styled";
@@ -10,12 +9,12 @@ import { StyledInlineErrorMessage } from "@/src/components/Input.styled";
 import OpenEye from "../public/png/OpenEye.png";
 import CloseEye from "../public/png/CloseEye.png";
 
-import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/StyledRegister.styled";
-import Link from "next/link";
 import Image from "next/image";
 import * as Yup from "yup";
 
 import { useSignUpMutation } from "@/src/store/services/authApi";
+import AuthWrapper from "@/src/components/widgets/AuthWrapper/AuthWrapper";
+
 import FormUniversal, { IInputField } from "../components/entities/forms/FormUniversal";
 
 const initialValuesSignUp = {
@@ -59,6 +58,9 @@ export const SignUp = () => {
      };
 
      return (
+          <AuthWrapper titleText={"Регистрация"}>
+               
+          </AuthWrapper>
           <FormUniversal
                classNameForm="signUp"
                buttonSubmitText="Зарегистрироваться"

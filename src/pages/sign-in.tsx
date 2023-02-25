@@ -1,16 +1,15 @@
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import React, { useState } from "react";
 
-import { Title } from "@/src/components/Title.styled";
 import Label, { LabelTypes } from "@/src/components/shared/labels/Label";
 import InputField from "@/src/components/shared/inputs/InputField";
 import { Submit } from "@/src/components/Button.styled";
 
-import { WrapperRegister, BlockLeft, BlockRight, ContentBlock } from "@/src/components/StyledRegister.styled";
 import Link from "next/link";
 import * as Yup from "yup";
 
 import { useSignInMutation } from "@/src/store/services/authApi";
+import AuthWrapper from "@/src/components/widgets/AuthWrapper/AuthWrapper";
 
 export const SignIn = () => {
      const [formValues, setFormValues] = useState();
@@ -26,85 +25,62 @@ export const SignIn = () => {
      };
 
      return (
-          <WrapperRegister>
-               <BlockLeft />
-               <BlockRight>
-                    <ContentBlock>
-                         <Title>Вход</Title>
-                         <p>
-                              Ещё нет аккаунта? <Link href={"/SignUp"}>Регистрация</Link>
-                         </p>
-                         <p>Войдите через соцсеть</p>
+          <AuthWrapper titleText={"Вход"}>
+               <Formik
+                    initialValues={{
+                         name: "",
+                         email: "",
+                         password: "",
+                    }}
+                    validationSchema={Yup.object().shape({
+                         email: Yup.string().email("Электронная почта неверна").required("Введите электронную почту"),
+                         password: Yup.string().min(8, "Неверный пароль").required("Введите пароль"),
+                    })}
+                    onSubmit={(values: any, actions) => {
+                         signIn(values);
 
-                         <Formik
-                              initialValues={{
-                                   name: "",
-                                   email: "",
-                                   password: "",
-                              }}
-                              validationSchema={Yup.object().shape({
-                                   email: Yup.string().email("Электронная почта неверна").required("Введите электронную почту"),
-                                   password: Yup.string().min(8, "Неверный пароль").required("Введите пароль"),
-                              })}
-                              onSubmit={(values: any, actions) => {
-                                   signIn(values);
+                         setFormValues(values);
 
-                                   setFormValues(values);
+                         const timeOut = setTimeout(() => {
+                              actions.setSubmitting(false);
 
-                                   const timeOut = setTimeout(() => {
-                                        actions.setSubmitting(false);
-
-                                        clearTimeout(timeOut);
-                                   }, 1000);
-                              }}
-                         >
-                              {({ values, errors, touched, handleSubmit, isSubmitting, isValidating, isValid }) => (
-                                   <Form name="contact" method="post" onSubmit={handleSubmit}>
-                                        <p>Или с помощью почты и пароля</p>
-                                        <InputField
-                                             text="E-mail"
-                                             typeLabel={LabelTypes.inputField}
-                                             type="text"
-                                             htmlFor="email"
-                                             name="email"
-                                             autoComplete="email"
-                                             placeholder="example@mail.com"
-                                             valid={Boolean(touched.password && !errors.password)}
-                                             error={Boolean(touched.password && errors.password)}
-                                        />
-                                        <InputField
-                                             text="Пароль"
-                                             typeLabel={LabelTypes.inputField}
-                                             type={show ? "text" : "password"}
-                                             htmlFor="password"
-                                             name="password"
-                                             autoComplete="password"
-                                             placeholder="Введите пароль"
-                                             valid={Boolean(touched.password && !errors.password)}
-                                             error={Boolean(touched.password && errors.password)}
-                                             onClick={showPassword}
-                                             show={show}
-                                        />
-                                        <Submit type="submit" disabled={!isValid || isSubmitting}>
-                                             {isSubmitting ? "Войти..." : "Войти"}
-                                        </Submit>
-                                        <p>
-                                             Забыли пароль?{" "}
-                                             <Link
-                                                  href={"/restore-password"}
-                                                  style={{
-                                                       textDecoration: "none",
-                                                  }}
-                                             >
-                                                  Восстановите здесь
-                                             </Link>
-                                        </p>
-                                   </Form>
-                              )}
-                         </Formik>
-                    </ContentBlock>
-               </BlockRight>
-          </WrapperRegister>
+                              clearTimeout(timeOut);
+                         }, 1000);
+                    }}
+               >
+                    {({ values, errors, touched, handleSubmit, isSubmitting, isValidating, isValid }) => (
+                         <Form name="contact" method="post" onSubmit={handleSubmit}>
+                              <InputField
+                                   text="E-mail"
+                                   typeLabel={LabelTypes.inputField}
+                                   type="text"
+                                   htmlFor="email"
+                                   name="email"
+                                   autoComplete="email"
+                                   placeholder="example@mail.com"
+                                   valid={Boolean(touched.password && !errors.password)}
+                                   error={Boolean(touched.password && errors.password)}
+                              />
+                              <InputField
+                                   text="Пароль"
+                                   typeLabel={LabelTypes.inputField}
+                                   type={show ? "text" : "password"}
+                                   htmlFor="password"
+                                   name="password"
+                                   autoComplete="password"
+                                   placeholder="Введите пароль"
+                                   valid={Boolean(touched.password && !errors.password)}
+                                   error={Boolean(touched.password && errors.password)}
+                                   onClick={showPassword}
+                                   show={show}
+                              />
+                              <Submit type="submit" disabled={!isValid || isSubmitting}>
+                                   {isSubmitting ? "Войти..." : "Войти"}
+                              </Submit>
+                         </Form>
+                    )}
+               </Formik>
+          </AuthWrapper>
      );
 };
 
