@@ -9,7 +9,7 @@ import Link from "next/link";
 import * as Yup from "yup";
 
 import { useSignInMutation } from "@/src/store/services/authApi";
-import AuthWrapper from "@/src/components/widgets/AuthWrapper/AuthWrapper";
+import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
 
 export const SignIn = () => {
      const [formValues, setFormValues] = useState();

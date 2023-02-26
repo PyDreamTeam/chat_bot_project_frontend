@@ -6,9 +6,9 @@ import { Label } from "@/src/components/Label.styled";
 import { Input, StyledInlineErrorMessage } from "@/src/components/Input.styled";
 import { Submit } from "@/src/components/Button.styled";
 import Image from "next/image";
-import OpenEye from "@/src/images/OpenEye.png";
-import CloseEye from "@/src/images/CloseEye.png";
-import AuthWrapper from "@/src/components/widgets/AuthWrapper/AuthWrapper";
+import OpenEye from "../public/png/OpenEye.png";
+import CloseEye from "../public/png/CloseEye.png";
+import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
 
 const ChangePassword = () => {
      const [show, setShow] = useState<boolean>(false);
@@ -118,7 +118,7 @@ const ChangePassword = () => {
                                    </ErrorMessage>
                               </div>
                               <Submit type="submit" disabled={!isValid || isSubmitting}>
-                                             Отправить
+                                   Отправить
                               </Submit>
                          </Form>
                     )}

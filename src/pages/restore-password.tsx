@@ -6,7 +6,7 @@ import { Label } from "@/src/components/Label.styled";
 import { Input, StyledInlineErrorMessage } from "@/src/components/Input.styled";
 import { Submit } from "@/src/components/Button.styled";
 import { useRecoveryPasswordMutation } from "@/src/store/services/authApi";
-import AuthWrapper from "@/src/components/widgets/AuthWrapper/AuthWrapper";
+import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
 
 const RecoveryPassword = () => {
      const [recoveryPassword, recoveryPasswordResponse] = useRecoveryPasswordMutation();
@@ -42,7 +42,7 @@ const RecoveryPassword = () => {
                                    {(message) => <StyledInlineErrorMessage>{message}</StyledInlineErrorMessage>}
                               </ErrorMessage>
                               <Submit type="submit" disabled={!isValid || isSubmitting}>
-                                             Отправить
+                                   Отправить
                               </Submit>
                          </Form>
                     )}
