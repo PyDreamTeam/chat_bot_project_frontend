@@ -10,10 +10,12 @@ export enum HtmlForVariants {
      password = "password",
      email = "email",
      name = "name",
+     checkboxForm = "checkboxForm",
+     repeatPassword = "repeatPassword",
 }
 
 export interface LabelProps {
-     htmlFor: keyof typeof HtmlForVariants | "";
+     htmlFor: keyof typeof HtmlForVariants;
      textLabel?: string;
      typeLabel: keyof typeof LabelTypes;
      children?: ReactNode;

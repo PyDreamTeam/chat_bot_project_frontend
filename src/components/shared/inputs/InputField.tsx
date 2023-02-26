@@ -6,6 +6,7 @@ import OpenEye from "@/src/public/png/OpenEye.png";
 import CloseEye from "@/src/public/png/CloseEye.png";
 import Image from "next/image";
 import { Arrow } from "@/src/components/features/Footer/pictures/SvgConfig";
+import uuid from "uuid-random";
 
 export enum InputVariantProps {
      forFooter = "forFooter",
@@ -16,11 +17,11 @@ export enum InputFieldNameVariants {
      password = "password",
      email = "email",
      name = "name",
+     repeatPassword = "repeatPassword",
 }
 export interface IInputField extends LabelProps {
-     variant?: InputVariantProps;
+     variant?: keyof typeof InputVariantProps;
      name: keyof typeof InputFieldNameVariants;
-     // autoComplete: string;
      placeholder: string;
      valid: boolean;
      error: boolean;
@@ -31,12 +32,11 @@ export interface IInputField extends LabelProps {
 
 const InputField: FC<IInputField> = ({
      variant = InputVariantProps.forAuth,
-     htmlFor = "",
+     htmlFor,
      typeLabel,
      textLabel = "",
      name,
      placeholder,
-     // autoComplete,
      valid,
      error,
      type,
@@ -44,23 +44,7 @@ const InputField: FC<IInputField> = ({
      show,
 }) => {
      return variant === InputVariantProps.forAuth ? (
-          <>
-               <Label htmlFor={htmlFor} typeLabel={typeLabel} textLabel={textLabel}>
-                    <Field
-                         placeholder={placeholder}
-                         className={styles.inputField}
-                         name={name}
-                         // autoComplete={autoComplete}
-                         valid={valid}
-                         error={error}
-                         type={type}
-                    />
-                    {htmlFor === "password" && (
-                         <Image className={styles.inputImage} src={show ? OpenEye : CloseEye} alt="eye" onClick={onClick} />
-                    )}
-               </Label>
-               <ErrorMessage name={htmlFor}>{(message) => <div className={styles.inputError}>{message}</div>}</ErrorMessage>
-          </>
+          <Field key={uuid()} placeholder={placeholder} className={styles.inputField} name={name} />
      ) : (
           <>
                <div className={styles.footerInputBlock}>
@@ -69,7 +53,6 @@ const InputField: FC<IInputField> = ({
                               placeholder={placeholder}
                               className={styles.inputFieldFooter}
                               name={name}
-                              // autoComplete={autoComplete}
                               valid={valid}
                               error={error}
                               type={type}
@@ -84,4 +67,4 @@ const InputField: FC<IInputField> = ({
      );
 };
 
-export default InputField;
+export default React.memo(InputField);
