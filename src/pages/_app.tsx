@@ -6,7 +6,6 @@ import { store } from "../store/store";
 import { useRouter } from "next/router";
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-     console.log("test");
      require("../../mocks");
 }
 

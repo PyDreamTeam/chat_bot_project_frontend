@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSignUpMutation } from "@/src/store/services/authApi";
 import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
 import FormUniversal, { IInputField } from "../components/entities/forms/FormUniversal";
-import { inputFieldDataSignUp, initialValuesSignUp } from "../pagesData/sign-up";
+import { inputFieldDataSignUp, initialValuesSignUp, validationSchemaSignUp } from "../pagesData/sign-up";
 
 export const SignUp = () => {
      // const [signUp, signUpResponse] = useSignUpMutation(); // signUp - функция для запроса + signUpResponse - объект ответа, он показывает статусы
@@ -15,6 +15,7 @@ export const SignUp = () => {
      return (
           <AuthWrapper titleText={"Регистрация"}>
                <FormUniversal
+                    validationSchema={validationSchemaSignUp}
                     classNameForm="signUp"
                     buttonSubmitText="Зарегистрироваться"
                     initialValues={initialValuesSignUp}

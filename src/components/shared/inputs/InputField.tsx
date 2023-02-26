@@ -32,7 +32,7 @@ export interface IInputField extends LabelProps {
 
 const InputField: FC<IInputField> = ({
      variant = InputVariantProps.forAuth,
-     htmlFor = "",
+     htmlFor,
      typeLabel,
      textLabel = "",
      name,
