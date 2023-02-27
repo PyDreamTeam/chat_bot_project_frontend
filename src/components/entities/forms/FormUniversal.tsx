@@ -71,7 +71,7 @@ const FormUniversal: FC<FormUniversalProps> = ({ validationSchema, inputFieldDat
                                    <Label
                                         typeLabel="checkbox"
                                         htmlFor="checkboxForm"
-                                        textLabel="Я хочу получать уведомления и новости на почту"
+                                        textLabel="Я хочу получать уведомления и новости на почту"
                                    />
                               </div>
                          )}

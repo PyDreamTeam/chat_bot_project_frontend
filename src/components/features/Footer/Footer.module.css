@@ -2,11 +2,11 @@
      background: #000000;
 }
 
-.footerBox {
+.footer {
      max-width: 1440px;
      display: flex;
      justify-content: space-between;
-     padding: 90px 148px 143px 88px;
+     padding: 81px 148px 148px 88px;
      margin: auto;
 }
 

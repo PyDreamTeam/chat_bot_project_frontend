@@ -9,7 +9,7 @@ const RecoveryPassword = () => {
                <FormUniversal
                     validationSchema={validationSchemaRestore}
                     classNameForm="restorePassword"
-                    buttonSubmitText="Войти"
+                    buttonSubmitText="Отправить"
                     initialValues={initialValuesRestore}
                     inputFieldData={inputFieldDataRestore}
                />

@@ -5,7 +5,7 @@ import FooterRightBlock from "./components/FooterRightBlock/FooterRightBlock";
 const Footer = () => {
      return (
           <footer className={styles.footerWrapper}>
-               <div className={styles.footerBox}>
+               <div className={styles.footer}>
                     <FooterLeftBlock />
                     <FooterRightBlock />
                </div>

@@ -24,7 +24,7 @@ export interface LabelProps {
 const Label = ({ htmlFor, textLabel, typeLabel, children }: LabelProps) => {
      return (
           <label className={`${styles.label} ${styles[typeLabel]}`} htmlFor={htmlFor}>
-               <p>{textLabel}</p>
+               <p className={styles.nameInput}>{textLabel}</p>
                {children}
           </label>
      );
