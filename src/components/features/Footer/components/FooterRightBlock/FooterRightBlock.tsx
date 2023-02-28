@@ -1,4 +1,3 @@
-
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import styles from "./FooterRightBlock.module.css";
@@ -26,8 +25,8 @@ const FooterLeftBlock = () => {
                                    valid={Boolean(touched.email && !errors.email)}
                                    error={Boolean(touched.email && errors.email)}
                                    htmlFor={"email"}
-                                   typeLabel={LabelTypes.inputField}>
-                              </InputField>
+                                   typeLabel={LabelTypes.inputField}
+                              ></InputField>
                          </Form>
                     )}
                </Formik>

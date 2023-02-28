@@ -9,7 +9,7 @@ const CheckboxForm = () => {
                id={"checkboxForm"}
                type="checkbox"
                name="get_email_notifications"
-               value="Я хочу получать уведомления и новости на почту"
+               value="Я хочу получать уведомления и новости на почту"
           />
      );
 };

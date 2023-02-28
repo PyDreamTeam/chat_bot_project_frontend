@@ -1,13 +1,13 @@
 .checkboxForm {
-     margin-right: 8px;
+     margin-right: 10px;
      appearance: none;
      -webkit-appearance: none;
-     width: 24px;
-     height: 24px;
+     width: 22px;
+     height: 22px;
      background: rgba(255, 255, 255, 0.0001);
      background-blend-mode: multiply;
-     border: 2px solid greenyellow;
-     border-radius: 6px;
+     border: 3px solid greenyellow;
+     border-radius: 7px;
      display: flex;
      justify-content: center;
      align-items: center;
