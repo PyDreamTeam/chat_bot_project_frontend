@@ -1,7 +1,7 @@
 import NavbarHome, { NavBarClasses } from "@/src/components/entities/navbars/NavbarHome";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import React from "react";
-import styles from "../../Header.module.css";
+import styles from "../HeaderRightBlock/HeaderRightBlock.module.css";
 
 const navElements = [
      { href: "/home", text: "О сервисе" },

@@ -10,7 +10,7 @@ const ChangePassword = () => {
                <FormUniversal
                     validationSchema={validationSchemaChange}
                     classNameForm="changePassword"
-                    buttonSubmitText="Войти"
+                    buttonSubmitText="Обновить пароль"
                     initialValues={initialValuesChange}
                     inputFieldData={inputFieldDataChange}
                />

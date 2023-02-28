@@ -1,0 +1,13 @@
+.rightBlock {
+    display: flex;
+    justify-content: right;
+    width: 70%;
+}
+
+.rightBlock .buttonsAuthWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 306px;
+    margin-left: 60px;
+}

@@ -1,10 +1,9 @@
 .label {
-     font-family: "Inter";
+     font-family: "Inter", sans-serif;
      font-style: normal;
      font-weight: 400;
      font-size: 18px;
      line-height: 150%;
-     /* margin-bottom: 100px; */
 }
 
 .checkbox {
@@ -15,4 +14,7 @@
 .inputField {
      color: #17181a;
      font-size: 18px;
+}
+.nameInput {
+    padding-bottom: 8px;
 }
