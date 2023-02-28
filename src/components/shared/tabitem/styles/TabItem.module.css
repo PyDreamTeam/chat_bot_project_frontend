@@ -1,0 +1,30 @@
+.tabItem {
+     width: 100%;
+     border: none;
+     background: none;
+     display: flex;
+     gap: 12px;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 500;
+     font-size: 20px;
+     line-height: 28px;
+     color: #17181a;
+     transition: 0.3s;
+     cursor: pointer;
+     align-items: center;
+     padding: 14px 0 14px 56px;
+}
+
+.tabItem.active {
+     background: #ffffff;
+}
+
+.tabItem:last-child {
+     color: #4466f5;
+     fill: #4466f5;
+}
+
+.tabItem:nth-child(2n) {
+     margin-bottom: 40px;
+}
