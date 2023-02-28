@@ -5,16 +5,14 @@ import { WithChildren } from "@/src/types/withChildren";
 import styles from "./AuthWrapper.module.css";
 
 export interface IAuthWrapper {
-  titleText: string;
+     titleText: string;
 }
 
-const AuthWrapper:FC <WithChildren & IAuthWrapper> = ({children, titleText}) => {
+const AuthWrapper: FC<WithChildren & IAuthWrapper> = ({ children, titleText }) => {
      return (
           <div className={styles.authWrapper}>
-               <AuthLeftBlock/>
-               <AuthRightBlock titleText={titleText}>
-                    {children}
-               </AuthRightBlock>
+               <AuthLeftBlock />
+               <AuthRightBlock titleText={titleText}>{children}</AuthRightBlock>
           </div>
      );
 };
