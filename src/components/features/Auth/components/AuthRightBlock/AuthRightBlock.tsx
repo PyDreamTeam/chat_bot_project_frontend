@@ -27,7 +27,7 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                                        Ещё нет аккаунта?
                                    <Link href={"/sign-up"}> Регистрация </Link>
                               </h4>
-                              <h3 className={`${styles.h3} ${styles.questionReg}`}>Войдите через соцсеть</h3>
+                              <h3 className={`${styles.h3} ${styles.questionSocials}`}>Войдите через соцсеть</h3>
                               <h3 className={`${styles.h3} ${styles.signIn}`}>Или с помощью почты и пароля</h3>
                          </>
                     )}

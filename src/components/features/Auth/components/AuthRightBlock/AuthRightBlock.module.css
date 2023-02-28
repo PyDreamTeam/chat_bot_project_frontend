@@ -19,17 +19,17 @@
 .questionSignIn {
     padding: 18px 0  34px;
 }
-.questionReg {
+.questionSocials {
     text-align: center;
 }
 .signIn {
     padding-bottom: 24px;
 }
 .addEmail {
-    padding-bottom: 15px;
+    padding: 12px 0 35px 20px;
 }
 .updateName {
-    padding: 24px 0 34px;
+    padding: 25px 0 34px 20px;
 }
 .agreement {
     padding: 16px 20px;
