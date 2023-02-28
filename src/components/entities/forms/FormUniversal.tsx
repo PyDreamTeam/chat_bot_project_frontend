@@ -31,7 +31,7 @@ interface FormUniversalProps {
           name?: string;
           email?: string;
           password?: string;
-          getNotifications?: string | Array<string>;
+          get_email_notifications?: string | Array<string>;
           repeatPassword?: string;
      };
      classNameForm: keyof typeof ClassNameFormVariants;

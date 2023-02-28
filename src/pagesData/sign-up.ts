@@ -30,7 +30,7 @@ export const initialValuesSignUp = {
      name: "",
      email: "",
      password: "",
-     getNotifications: "",
+     get_email_notifications: "",
 };
 
 export const validationSchemaSignUp = Yup.object({

@@ -8,7 +8,7 @@ const CheckboxForm = () => {
                className={styles.checkboxForm}
                id={"checkboxForm"}
                type="checkbox"
-               name="getNotifications"
+               name="get_email_notifications"
                value="Я хочу получать уведомления и новости на почту"
           />
      );
