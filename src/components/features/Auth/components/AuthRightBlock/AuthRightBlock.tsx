@@ -20,11 +20,11 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
           <div className={styles.authRightBlock}>
                <div className={styles.authContentBlock}>
                     <AuthTitle text={titleText} />
-                    
+
                     {isSignIn && (
                          <>
                               <h4 className={`${styles.h4} ${styles.questionRoute}`}>
-                                       Ещё нет аккаунта?
+                                   Ещё нет аккаунта?
                                    <Link href={"/sign-up"}> Регистрация </Link>
                               </h4>
                               <h3 className={`${styles.h3} ${styles.questionSocials}`}>Войдите через соцсеть</h3>
@@ -33,11 +33,13 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                     )}
                     {isSignUp && (
                          <h4 className={`${styles.h4} ${styles.questionSignIn}`}>
-                                  Уже есть аккаунт?
+                              Уже есть аккаунт?
                               <Link href={"/sign-in"}> Войдите </Link>
                          </h4>
                     )}
-                    {isRestorePassword && <h2 className={`${styles.h2} ${styles.addEmail}`}>Укажите Email, на который вы создавали личный кабинет</h2>}
+                    {isRestorePassword && (
+                         <h2 className={`${styles.h2} ${styles.addEmail}`}>Укажите Email, на который вы создавали личный кабинет</h2>
+                    )}
                     {isChangePassword && (
                          <>
                               <div className={styles.updateName}>
@@ -46,22 +48,18 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                               </div>
                          </>
                     )}
-                    <div className={styles.formCenter}>
-                         {children}
-                    </div>
+                    <div className={styles.formCenter}>{children}</div>
                     {isSignIn && (
                          <h4 className={styles.h4}>
-                                  Забыли пароль? <Link href={"/restore-password"}>Восстановите здесь</Link>
+                              Забыли пароль? <Link href={"/restore-password"}>Восстановите здесь</Link>
                          </h4>
                     )}
                     {isSignUp && (
                          <h4 className={`${styles.h4} ${styles.agreement}`}>
-                                  Нажимая кнопку «Зарегистрироваться», вы принимаете условия
+                              Нажимая кнопку «Зарегистрироваться», вы принимаете условия
                               <Link href={"/home"}> пользовательского соглашения</Link>
                          </h4>
                     )}
-                    
-                    
                </div>
           </div>
      );

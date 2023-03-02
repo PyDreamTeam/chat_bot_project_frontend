@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesSignIn, inputFieldDataSignIn, validationSchemaSignIn } from "../pagesData/sign-in";
@@ -6,15 +6,15 @@ import { initialValuesSignIn, inputFieldDataSignIn, validationSchemaSignIn } fro
 export const SignIn = () => {
      // const [formValues, setFormValues] = useState();
 
-     // const [show, setShow] = useState<boolean>(false);
+     const [show, setShow] = useState<boolean>(false);
 
      // const [signIn, signInResponse] = useSignInMutation(); //signIn - функция для запроса + signInResponse - объект ответа, он показывает статусы
 
      // console.log(signInResponse?.data);
-
-     // const showPassword = () => {
-     //      setShow(!show);
-     // };
+     
+     const showPassword = () => {
+          setShow(!show);
+     };
 
      return (
           <AuthWrapper titleText={"Вход"}>
@@ -24,6 +24,8 @@ export const SignIn = () => {
                     buttonSubmitText="Войти"
                     initialValues={initialValuesSignIn}
                     inputFieldData={inputFieldDataSignIn}
+                    showEye={show}
+                    onClick={showPassword}
                />
           </AuthWrapper>
      );

@@ -7,6 +7,7 @@ import uuid from "uuid-random";
 import Label, { HtmlForVariants, LabelTypes } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
 import ImageErrorForm from "../../shared/images/ImageErrorForm";
+import ButtonEye from "@/src/components/shared/buttons/ButtonEye";
 
 export interface IInputField {
      htmlFor: keyof typeof HtmlForVariants;
@@ -35,9 +36,21 @@ interface FormUniversalProps {
           repeatPassword?: string;
      };
      classNameForm: keyof typeof ClassNameFormVariants;
+     onClick?: any;
+     showEye: { firstEye: boolean; secondEye: boolean } | boolean;
+     activeEye: string;
 }
 
-const FormUniversal: FC<FormUniversalProps> = ({ validationSchema, inputFieldData, buttonSubmitText, initialValues, classNameForm }) => {
+const FormUniversal: FC<FormUniversalProps> = ({
+     validationSchema,
+     inputFieldData,
+     buttonSubmitText,
+     initialValues,
+     classNameForm,
+     showEye,
+     onClick,
+     activeEye,
+}) => {
      return (
           <Formik
                validationSchema={validationSchema}
@@ -49,16 +62,29 @@ const FormUniversal: FC<FormUniversalProps> = ({ validationSchema, inputFieldDat
                {({ values, errors, touched }) => (
                     <Form className={`${styles.formUniversal} ${styles[classNameForm]}`}>
                          {inputFieldData.map(({ htmlFor, name, placeholder, textLabel, typeField }, index) => (
-                              <div className={styles.inputLabelErrorWrapper} key={index}>
+                              <div className={styles.inputLabelErrorWrapper} key={htmlFor}>
                                    <Label htmlFor={htmlFor} typeLabel="inputField" textLabel={textLabel} />
                                    {errors[name] && touched[name] && <ImageErrorForm />}
                                    <Field
                                         className={`${styles.inputField} ${errors[name] && touched[name] ? styles.inputError : null}`}
-                                        type={typeField}
+                                        type={
+                                             showEye === true
+                                                  ? "text"
+                                                  : typeField && htmlFor === "password"
+                                                  ? showEye.firstEye === true
+                                                       ? "text"
+                                                       : typeField
+                                                  : showEye.secondEye === true
+                                                  ? "text"
+                                                  : typeField
+                                        }
                                         id={htmlFor}
                                         name={name}
                                         placeholder={placeholder}
                                    />
+                                   {typeField === "password" && (
+                                        <ButtonEye activeEye={activeEye} id={htmlFor} onClick={() => onClick(htmlFor)} show={showEye} />
+                                   )}
                                    <div className={styles.errorMessage}>
                                         <ErrorMessage name={name} />
                                    </div>

@@ -7,10 +7,10 @@ import { inputFieldDataSignUp, initialValuesSignUp, validationSchemaSignUp } fro
 export const SignUp = () => {
      // const [signUp, signUpResponse] = useSignUpMutation(); // signUp - функция для запроса + signUpResponse - объект ответа, он показывает статусы
 
-     // const [show, setShow] = useState<boolean>(false);
-     // const showPassword = () => {
-     //      setShow(!show);
-     // };
+     const [show, setShow] = useState<boolean>(false);
+     const showPassword = () => {
+          setShow(!show);
+     };
 
      return (
           <AuthWrapper titleText={"Регистрация"}>
@@ -20,6 +20,8 @@ export const SignUp = () => {
                     buttonSubmitText="Зарегистрироваться"
                     initialValues={initialValuesSignUp}
                     inputFieldData={inputFieldDataSignUp}
+                    showEye={show}
+                    onClick={showPassword}
                />
           </AuthWrapper>
      );
