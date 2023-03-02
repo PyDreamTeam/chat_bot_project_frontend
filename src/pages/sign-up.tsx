@@ -6,8 +6,14 @@ import { useCreateUserMutation } from "../store/services/authApi";
 import { useRouter } from "next/router";
 
 export const SignUp = () => {
+
      const [createUser, { data, isSuccess }]: any = useCreateUserMutation();
      const router = useRouter();
+
+     const [show, setShow] = useState<boolean>(false);
+     const showPassword = () => {
+          setShow(!show);
+     };
 
      React.useEffect(() => {
           isSuccess &&
@@ -25,6 +31,8 @@ export const SignUp = () => {
                     buttonSubmitText="Зарегистрироваться"
                     initialValues={initialValuesSignUp}
                     inputFieldData={inputFieldDataSignUp}
+                    showEye={show}
+                    onClick={showPassword}
                />
           </AuthWrapper>
      );
