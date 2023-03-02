@@ -22,7 +22,7 @@ export const inputFieldDataSignUp: Array<IInputField> = [
           name: "password",
           placeholder: "Придумайте пароль",
           textLabel: "Пароль",
-          typeField: "password",
+          typeField: "name",
      },
 ];
 
@@ -30,7 +30,7 @@ export const initialValuesSignUp = {
      name: "",
      email: "",
      password: "",
-     getNotifications: "",
+     get_email_notifications: "",
 };
 
 export const validationSchemaSignUp = Yup.object({
