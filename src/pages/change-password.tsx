@@ -10,15 +10,18 @@ export interface IShowEye {
 }
 
 const ChangePassword = () => {
-     const [activeEye, setActiveEye] = useState<string>("");
-     const [show, setShow] = useState<{ firstEye: boolean; secondEye: boolean }>({
-          firstEye: false,
-          secondEye: false,
-     });
-     const showPassword = (id: string) => {
-          id === "password" ? setShow({ ...show, firstEye: !show.firstEye }) : setShow({ ...show, secondEye: !show.secondEye });
-          setActiveEye(id);
+     const [activeEye, setActiveEye] = useState({password: false, repeatPassword: false});
+
+
+     const showPassword = (id: 'password' | 'repeatPassword') => {
+          if(activeEye[id]) {
+               setActiveEye(value => ({...value, [id]: false}))
+          } else {
+               setActiveEye(value => ({...value, [id]: true}))
+
+          }
      };
+     
      return (
           <AuthWrapper titleText={"Обновите пароль"}>
                <FormUniversal
@@ -27,7 +30,6 @@ const ChangePassword = () => {
                     buttonSubmitText="Обновить пароль"
                     initialValues={initialValuesChange}
                     inputFieldData={inputFieldDataChange}
-                    showEye={show}
                     onClick={showPassword}
                     activeEye={activeEye}
                />

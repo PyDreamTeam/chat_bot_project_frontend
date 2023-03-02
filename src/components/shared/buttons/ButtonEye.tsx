@@ -9,11 +9,11 @@ interface IButtonEye {
      show?: boolean | IShowEye;
      onClick?: () => void;
      id?: any;
-     activeEye?: string;
+     isOpenEye?: boolean
 }
 
-const ButtonEye: FC<IButtonEye> = ({ show, onClick, id, activeEye }) => {
-     return <Image alt="eye" src={id === activeEye ? OpenEye : CloseEye} id={id} onClick={onClick} className={styles.buttonEye} />;
+const ButtonEye: FC<IButtonEye> = ({ onClick, id, isOpenEye }) => {
+     return <Image alt="eye" src={isOpenEye ? OpenEye : CloseEye} id={id} onClick={onClick} className={styles.buttonEye} />;
 };
 
 export default ButtonEye;

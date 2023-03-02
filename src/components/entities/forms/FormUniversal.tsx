@@ -37,8 +37,16 @@ interface FormUniversalProps {
      };
      classNameForm: keyof typeof ClassNameFormVariants;
      onClick?: any;
-     showEye: { firstEye: boolean; secondEye: boolean } | boolean;
-     activeEye: string;
+     showEye?:  boolean;
+     activeEye?: Record<string, boolean>
+}
+
+const getFieldType = (type: string, isHidePassword: boolean) => {
+     if (type !== 'password' || isHidePassword) {
+          return type;
+     }
+
+     return 'text'
 }
 
 const FormUniversal: FC<FormUniversalProps> = ({
@@ -67,23 +75,13 @@ const FormUniversal: FC<FormUniversalProps> = ({
                                    {errors[name] && touched[name] && <ImageErrorForm />}
                                    <Field
                                         className={`${styles.inputField} ${errors[name] && touched[name] ? styles.inputError : null}`}
-                                        type={
-                                             showEye === true
-                                                  ? "text"
-                                                  : typeField && htmlFor === "password"
-                                                  ? showEye.firstEye === true
-                                                       ? "text"
-                                                       : typeField
-                                                  : showEye.secondEye === true
-                                                  ? "text"
-                                                  : typeField
-                                        }
+                                        type={getFieldType(typeField, activeEye ? Boolean(activeEye[name]) : !!showEye)}
                                         id={htmlFor}
                                         name={name}
                                         placeholder={placeholder}
                                    />
                                    {typeField === "password" && (
-                                        <ButtonEye activeEye={activeEye} id={htmlFor} onClick={() => onClick(htmlFor)} show={showEye} />
+                                        <ButtonEye isOpenEye={!activeEye?.[name]} id={htmlFor} onClick={() => onClick(htmlFor)} />
                                    )}
                                    <div className={styles.errorMessage}>
                                         <ErrorMessage name={name} />
