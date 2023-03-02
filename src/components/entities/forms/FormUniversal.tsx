@@ -3,11 +3,11 @@ import React, { FC } from "react";
 import ButtonSubmit from "../../shared/buttons/ButtonSubmit";
 import InputField, { InputFieldNameVariants } from "../../shared/inputs/InputField";
 import styles from "./styles/styles.module.css";
-import uuid from "uuid-random";
 import Label, { HtmlForVariants, LabelTypes } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
 import ImageErrorForm from "../../shared/images/ImageErrorForm";
-
+import { useRouter } from "next/router";
+import { User } from "../../../store/services/authApi";
 export interface IInputField {
      htmlFor: keyof typeof HtmlForVariants;
      name: keyof typeof InputFieldNameVariants;
@@ -23,30 +23,35 @@ enum ClassNameFormVariants {
      changePassword = "changePassword",
 }
 
+export interface IInitialValues {
+     name?: string;
+     email?: string;
+     password?: string;
+     get_email_notifications?: string | Array<string>;
+     repeatPassword?: string;
+}
 interface FormUniversalProps {
      inputFieldData: Array<IInputField>;
      validationSchema: any;
      buttonSubmitText: string;
-     initialValues: {
-          name?: string;
-          email?: string;
-          password?: string;
-          get_email_notifications?: string | Array<string>;
-          repeatPassword?: string;
-     };
+     initialValues: IInitialValues;
      classNameForm: keyof typeof ClassNameFormVariants;
+     onSubmit: (values: any) => void | Promise<any>;
 }
 
-const FormUniversal: FC<FormUniversalProps> = ({ validationSchema, inputFieldData, buttonSubmitText, initialValues, classNameForm }) => {
+const FormUniversal: FC<FormUniversalProps> = ({
+     validationSchema,
+     inputFieldData,
+     buttonSubmitText,
+     initialValues,
+     classNameForm,
+     onSubmit,
+}) => {
+     const router = useRouter();
+
      return (
-          <Formik
-               validationSchema={validationSchema}
-               initialValues={initialValues}
-               onSubmit={(values) => {
-                    console.log("FORMIK VALUES", values);
-               }}
-          >
-               {({ values, errors, touched }) => (
+          <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={(values: IInitialValues) => onSubmit(values)}>
+               {({ errors, touched }) => (
                     <Form className={`${styles.formUniversal} ${styles[classNameForm]}`}>
                          {inputFieldData.map(({ htmlFor, name, placeholder, textLabel, typeField }, index) => (
                               <div className={styles.inputLabelErrorWrapper} key={index}>

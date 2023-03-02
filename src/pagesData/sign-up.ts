@@ -22,7 +22,7 @@ export const inputFieldDataSignUp: Array<IInputField> = [
           name: "password",
           placeholder: "Придумайте пароль",
           textLabel: "Пароль",
-          typeField: "password",
+          typeField: "name",
      },
 ];
 

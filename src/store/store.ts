@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import signUpError from "./reducers/signUpError";
 import { authApi } from "./services/authApi";
-import authReducer from "./reducers/credentialsSlice";
-
 export const store = configureStore({
      reducer: {
           [authApi.reducerPath]: authApi.reducer,
-          auth: authReducer,
+          signUpError,
      },
      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware),
 });

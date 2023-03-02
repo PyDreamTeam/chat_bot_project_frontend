@@ -5,7 +5,7 @@ import Main from "../features/Main/Main";
 import Sidebar from "@/src/components/features/Sidebar/Sidebar";
 
 const HomepageWrapper: FC = () => {
-     const isAuth = true;
+     const isAuth = false;
 
      return (
           <>

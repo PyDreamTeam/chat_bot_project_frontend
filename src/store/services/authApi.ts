@@ -1,29 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../store";
 
 export interface User {
-     first_name: string;
-     last_name: string;
-}
-
-export interface UserResponse {
-     user: User;
-     token: string;
-}
-
-export interface SignUpRequest {
-     username: string;
+     id: string;
+     name: string;
+     email: string;
      password: string;
-     email: string;
-}
-
-export interface SignInRequest {
-     password: string;
-     email: string;
-}
-
-export interface RecoveryPasswordRequest {
-     email: string;
 }
 
 export const authApi = createApi({
@@ -31,14 +12,20 @@ export const authApi = createApi({
           baseUrl: "http://localhost:5000/",
      }),
      endpoints: (builder) => ({
-          getUsers: builder.query<any, string>({
-               query: () => ({
+          createUser: builder.mutation<Array<User>, User>({
+               query: (user) => ({
                     url: "/users",
                     method: "POST",
+                    body: user,
+               }),
+          }),
+          validateUser: builder.query<any, any>({
+               query: () => ({
+                    url: "/users",
+                    method: "GET",
                }),
           }),
      }),
 });
 
-export const { useLazyGetUsersQuery } = authApi;
-export default authApi.reducer;
+export const { useCreateUserMutation, useLazyValidateUserQuery } = authApi;
