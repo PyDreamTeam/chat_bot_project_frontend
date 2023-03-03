@@ -4,6 +4,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import { useRouter } from "next/router";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { clientId } from "../pagesData/sign-in";
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
      require("../../mocks");
@@ -17,7 +19,9 @@ export default function App({ Component, pageProps }: AppProps) {
      }, []);
      return (
           <Provider store={store}>
-               <Component {...pageProps} />
+               <GoogleOAuthProvider clientId={clientId}>
+                    <Component {...pageProps} />
+               </GoogleOAuthProvider>
           </Provider>
      );
 }
