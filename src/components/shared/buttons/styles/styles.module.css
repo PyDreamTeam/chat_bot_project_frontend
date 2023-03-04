@@ -50,46 +50,24 @@
 
 /* --------------------------------- For RadioInput SUBMIT BUTTON----------------------------------*/
 .btnForRadio {
-     font-family: 'Inter', sans-serif;
+     font-family: "Inter", sans-serif;
      font-style: normal;
      font-weight: 400;
      font-size: 18px;
      line-height: 150%;
      border-radius: 20px;
-     border: 1px solid #4466F5;
+     border: 1px solid #4466f5;
      padding: 5px 10px;
 }
 
 .submitRadioInput {
-     color: #595F6C;
+     color: #595f6c;
      background: transparent;
 }
 
 .applyRadioInput {
-     color: #FFFFFF;
-     background: #4466F5;
+     color: #ffffff;
+     background: #4466f5;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**/

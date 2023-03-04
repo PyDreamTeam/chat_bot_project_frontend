@@ -4,13 +4,11 @@ import styles from "./styles/selectInAccount.module.css";
 
 import DropDownSelect from "@/src/components/entities/dropDownSelect/DropDownSelect";
 import SelectTitle from "@/src/components/entities/selectTitle/SelectTitle";
-import {SELECT_TITLE_CONFIG} from "@/src/components/entities/selectTitle/SelectTitleConfig";
-import {DROPDOWN_SELECT_CONFIG} from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
-import {IDropDownItem} from "@/src/components/shared/dropDownItem/DropDownItem";
+import { SELECT_TITLE_CONFIG } from "@/src/components/entities/selectTitle/SelectTitleConfig";
+import { DROPDOWN_SELECT_CONFIG } from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
+import { IDropDownItem } from "@/src/components/shared/dropDownItem/DropDownItem";
 
-
-const SelectInAccount: FC<IDropDownItem> = ({id}) => {
-
+const SelectInAccount: FC<IDropDownItem> = ({ id }) => {
      const [isOpen, setOpen] = useState(false);
      const handleOpen = () => setOpen(true);
 
@@ -20,7 +18,7 @@ const SelectInAccount: FC<IDropDownItem> = ({id}) => {
           setSelectedInput(inputValue);
      };
 
-     const handleRadioChange = (event: { currentTarget: { id: any; }; }) => {
+     const handleRadioChange = (event: { currentTarget: { id: any } }) => {
           const { id } = event.currentTarget;
           handleChange(id);
      };
@@ -28,22 +26,14 @@ const SelectInAccount: FC<IDropDownItem> = ({id}) => {
      return (
           <>
                <div className={styles.select}>
-                    <SelectTitle config={SELECT_TITLE_CONFIG} onClick={handleOpen} /> 
+                    <SelectTitle config={SELECT_TITLE_CONFIG} onClick={handleOpen} />
                </div>
-               
-               {
-                    isOpen && (
-                         <div  className={styles.radioButton}>
-                              <DropDownSelect
-                                   config={DROPDOWN_SELECT_CONFIG}
-                                   key={id}
-                                   onChange={handleRadioChange}
-                                   isChecked={selectedInput}
 
-                              />
-                         </div>
-                    )
-               }
+               {isOpen && (
+                    <div className={styles.radioButton}>
+                         <DropDownSelect config={DROPDOWN_SELECT_CONFIG} key={id} onChange={handleRadioChange} isChecked={selectedInput} />
+                    </div>
+               )}
           </>
      );
 };

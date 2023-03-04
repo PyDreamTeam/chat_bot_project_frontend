@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import ButtonSubmit from "../../shared/buttons/ButtonSubmit";
 import { InputFieldNameVariants } from "../../shared/inputs/InputField";
 import styles from "./styles/styles.module.css";
-import Label, { HtmlForVariants} from "../../shared/labels/Label";
+import Label, { HtmlForVariants } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
 import ImageErrorForm from "../../shared/images/ImageErrorForm";
 
@@ -41,8 +41,8 @@ interface FormUniversalProps {
      classNameForm: keyof typeof ClassNameFormVariants;
      onSubmit: (values: any) => void | Promise<any>;
      onClick?: any;
-     showEye?:  boolean;
-     activeEye?: Record<string, boolean>
+     showEye?: boolean;
+     activeEye?: Record<string, boolean>;
 }
 
 const getFieldType = (type: string, isHidePassword: boolean) => {

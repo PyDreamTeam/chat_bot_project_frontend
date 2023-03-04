@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import TabSelect, {ITabSelect, TabSelectProps} from "@/src/components/shared/tabSelect/TabSelect";
+import TabSelect, { ITabSelect, TabSelectProps } from "@/src/components/shared/tabSelect/TabSelect";
 
 import styles from "./styles/SelectTitle.module.css";
 
