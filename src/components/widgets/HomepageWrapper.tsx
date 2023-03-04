@@ -8,23 +8,22 @@ import styles from "./HomepageWrapper.module.css";
 import AuthMain from "@/src/components/features/AuthMain/AuthMain";
 
 const HomepageWrapper: FC = () => {
-
      const isAuth = true;
 
      return (
           <>
-               {isAuth ?
-                 <div className={styles.authWrapper}>
-                      <Sidebar />
-                      <AuthMain/>
-                 </div>
-                 :
-                 <>
-                      <Header />
-                      <Main />
-                      <Footer />
-                 </>
-               }
+               {isAuth ? (
+                    <div className={styles.authWrapper}>
+                         <Sidebar />
+                         <AuthMain />
+                    </div>
+               ) : (
+                    <>
+                         <Header />
+                         <Main />
+                         <Footer />
+                    </>
+               )}
           </>
      );
 };
