@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import styles from "./AuthHeader.module.css";
+import styles from "./HomePageHeader.module.css";
 
-import UserInfo from "@/src/components/features/AuthHeader/UserMenu/UserInfo";
+import UserInfo from "@/src/components/features/HomePage/HomePageHeader/UserMenu/UserInfo";
 
 
-const AuthHeader = () => {
+const HomePageHeader = () => {
 
      const user = "Иван";
 
@@ -24,4 +24,4 @@ const AuthHeader = () => {
      );
 };
 
-export default AuthHeader;
+export default HomePageHeader;

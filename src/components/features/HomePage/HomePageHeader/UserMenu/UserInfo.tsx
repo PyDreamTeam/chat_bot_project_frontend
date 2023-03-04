@@ -1,14 +1,19 @@
 import React, { FC } from "react";
 
-import Avatar from "../../../shared/UserAvatar/UserAvatar";
+import Avatar from "../../../../shared/UserAvatar/UserAvatar";
 
 import styles from "./UserInfo.module.css";
 
-import UserMenuHeader from "../../../shared/UserMenuHeader/UserMenuHeader";
-import { headerArrow } from "@/src/components/features/AuthHeader/pictures/SvgConfig";
+import UserMenuHeader from "../../../../shared/UserMenuHeader/UserMenuHeader";
+import { headerArrow } from "@/src/components/features/HomePage/HomePageHeader/pictures/SvgConfig";
+
+const navElements = [
+     { href: "/home", text: "Профиль" },
+     { href: "/home", text: "Настройки аккаунта" },
+     { href: "/home", text: "Выйти", onClick: () =>{console.log(1);} },
+];
 
 interface IUserInfoProps {
-  onClickLogOut?: () => void;
   onClick?: () => void;
   userName?: string | undefined;
   avatarUrl?: string
@@ -22,7 +27,6 @@ const UserInfo: FC<IUserInfoProps> = (
           userName="",
           avatarUrl,
           className = "",
-          onClickLogOut,
           isOpen= false,
      }) => {
      return (
@@ -32,7 +36,7 @@ const UserInfo: FC<IUserInfoProps> = (
                </div>
                {userName && <span className={styles.userName}>{userName}</span>}
                <div>{headerArrow}</div>
-               {isOpen && <UserMenuHeader activeMenu={isOpen} onClick={onClickLogOut}/> }
+               {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} /> }
           </div>
      );
 };

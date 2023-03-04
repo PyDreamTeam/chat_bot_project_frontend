@@ -3,18 +3,29 @@ import React, { FC } from "react";
 import styles from "./UserMenuHeader.module.css";
 
 import Link from "next/link";
+import uuid from "uuid-random";
 
-interface IUserMenu {
-    onClick?: ()=>void;
-    activeMenu?: boolean;
+interface IUserMenuButton {
+  text: string;
+  href: string;
+  onClick?: () => void;
 }
 
-const UserMenuHeader: FC <IUserMenu> = ({onClick, activeMenu}) => {
+interface IUserMenu {
+    activeMenu?: boolean;
+    navButtons: Array<IUserMenuButton>;
+}
+
+
+
+const UserMenuHeader: FC <IUserMenu> = ({activeMenu, navButtons}) => {
      return (
           <ul className={`${styles.menuWrapper} ${activeMenu ? styles.active : null}`}>
-               <Link className={styles.navigateButton} href={"/home"}>Профиль</Link>
-               <Link className={styles.navigateButton} href={"/home"}>Настройки аккаунта</Link>
-               <li className={styles.navigateButton} onClick={onClick}>Выйти</li>
+               {navButtons.map((button) => (
+                    <Link className={styles.navigateButton} key={uuid()} href={button.href} onClick={button.onClick}>
+                         {button.text}
+                    </Link>
+               ))}
           </ul>
 
      );
