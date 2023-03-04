@@ -1,18 +1,19 @@
 import HomepageWrapper from "@/src/components/widgets/HomepageWrapper";
+import { useAppSelector } from "@/src/hooks/types";
 import { useRouter } from "next/router";
 import React from "react";
 
 const index = () => {
      const router = useRouter();
-     const data = router.query;
+     const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
      React.useEffect(() => {
-          console.log("MY DATA", data);
-     }, [data]);
+          console.log("MY DATA", credentials);
+     }, [credentials]);
      return (
           <>
-               <h1>Welcome, {data.name}!</h1>
-               <h2>Username: {data.name}</h2>
-               <h2>Email: {data.email}</h2>
+               <h1>Welcome, {credentials.name}!</h1>
+               <h2>Username: {credentials.name}</h2>
+               <h2>Email: {credentials.email}</h2>
           </>
      );
 };
