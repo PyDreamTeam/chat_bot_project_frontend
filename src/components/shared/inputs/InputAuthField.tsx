@@ -2,9 +2,6 @@ import React, { FC } from "react";
 import { ErrorMessage, Field } from "formik";
 import styles from "./styles/styles.module.css";
 import Label, { LabelProps } from "@/src/components/shared/labels/Label";
-import OpenEye from "@/src/public/png/OpenEye.png";
-import CloseEye from "@/src/public/png/CloseEye.png";
-import Image from "next/image";
 import { Arrow } from "@/src/components/features/Footer/pictures/SvgConfig";
 import uuid from "uuid-random";
 
@@ -30,7 +27,7 @@ export interface IInputField extends LabelProps {
      show?: boolean;
 }
 
-const InputField: FC<IInputField> = ({
+const InputAuthField: FC<IInputField> = ({
      variant = InputVariantProps.forAuth,
      htmlFor,
      typeLabel,
@@ -67,4 +64,4 @@ const InputField: FC<IInputField> = ({
      );
 };
 
-export default React.memo(InputField);
+export default React.memo(InputAuthField);
