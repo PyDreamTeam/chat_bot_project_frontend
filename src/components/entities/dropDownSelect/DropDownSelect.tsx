@@ -14,11 +14,11 @@ export interface IDropDownSelect {
 const DropDownSelect: FC<IDropDownSelect & DropDownItemProps> = ({ config = [] }, activeDropDownItem) => {
      return (
           <div className={styles.dropDown}>
-               {config.map((sel) => (
-                    <DropDownItem id={sel.id} type={sel.type} key={sel.id} activeDropDownItem={activeDropDownItem} />
+               {config.map((radio) => (
+                    <DropDownItem id={radio.id} type={radio.type} key={radio.id} activeDropDownItem={activeDropDownItem} />
                ))}
                <div className={styles.btn}>
-                    <ButtonRadioInput text={"Отменить"} isDisabled={true} variant={BtnVariants.submit} />
+                    <ButtonRadioInput text={"Отменить"} isDisabled={true} variant={BtnVariants.cansel} />
                     <ButtonRadioInput text={"Применить"} isDisabled={true} variant={BtnVariants.apply} />
                </div>
           </div>

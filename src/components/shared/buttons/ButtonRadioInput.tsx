@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles/styles.module.css";
 
 export enum BtnVariants {
-     submit = "submit",
+     cansel = "cansel",
      apply = "apply",
 }
 
@@ -18,7 +18,7 @@ const ButtonRadioInput = ({ text, isDisabled, variant }: ButtonRadioInputProps) 
                type="submit"
                disabled={isDisabled}
                className={`${
-                    variant === "submit" ? styles.submitRadioInput : variant === "apply" ? styles.applyRadioInput : styles.default
+                    variant === "cansel" ? styles.canselRadioInput : variant === "apply" ? styles.applyRadioInput : styles.default
                } ${styles.btnForRadio} ${isDisabled ? styles.submitDisabled : null}`}
           >
                {text}
