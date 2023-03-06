@@ -14,8 +14,8 @@ export interface IDropDownSelect {
 const DropDownSelect: FC<IDropDownSelect & DropDownItemProps> = ({ config = [] }, activeDropDownItem) => {
      return (
           <div className={styles.dropDown}>
-               {config.map((radio) => (
-                    <DropDownItem id={radio.id} type={radio.type} key={radio.id} activeDropDownItem={activeDropDownItem} />
+               {config.map((item) => (
+                    <DropDownItem id={item.id} type={item.type} key={item.id} activeDropDownItem={activeDropDownItem} />
                ))}
                <div className={styles.btn}>
                     <ButtonRadioInput text={"Отменить"} isDisabled={true} variant={BtnVariants.cansel} />

@@ -58,6 +58,7 @@
      border-radius: 20px;
      border: 1px solid #4466f5;
      padding: 5px 10px;
+     cursor: pointer;
 }
 
 .canselRadioInput {
@@ -69,5 +70,3 @@
      color: #ffffff;
      background: #4466f5;
 }
-
-/**/

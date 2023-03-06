@@ -9,3 +9,10 @@
      padding: 10px;
      gap: 10px;
 }
+.blockSelect {
+     position: relative;
+}
+.radioButton {
+     position: absolute;
+     top: 52px;
+}
