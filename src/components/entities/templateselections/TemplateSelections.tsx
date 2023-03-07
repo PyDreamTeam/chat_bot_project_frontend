@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./TemplateSelections.module.css";
 import Link from "next/link";
-import mailTemplate from "./images/Mail-template.png";
+import mailTemplate from "../../shared/images/pictures/png/Mail-template.png";
 import arrowTemplate from "./images/arrow-template.png";
 import Image from "next/image";
 
