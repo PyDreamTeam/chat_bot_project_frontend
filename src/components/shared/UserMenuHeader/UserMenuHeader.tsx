@@ -6,19 +6,17 @@ import Link from "next/link";
 import uuid from "uuid-random";
 
 interface IUserMenuButton {
-  text: string;
-  href: string;
-  onClick?: () => void;
+     text: string;
+     href: string;
+     onClick?: () => void;
 }
 
 interface IUserMenu {
-    activeMenu?: boolean;
-    navButtons: Array<IUserMenuButton>;
+     activeMenu?: boolean;
+     navButtons: Array<IUserMenuButton>;
 }
 
-
-
-const UserMenuHeader: FC <IUserMenu> = ({activeMenu, navButtons}) => {
+const UserMenuHeader: FC<IUserMenu> = ({ activeMenu, navButtons }) => {
      return (
           <ul className={`${styles.menuWrapper} ${activeMenu ? styles.active : null}`}>
                {navButtons.map((button) => (
@@ -27,7 +25,6 @@ const UserMenuHeader: FC <IUserMenu> = ({activeMenu, navButtons}) => {
                     </Link>
                ))}
           </ul>
-
      );
 };
 

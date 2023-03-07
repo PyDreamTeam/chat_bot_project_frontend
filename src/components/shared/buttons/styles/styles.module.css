@@ -47,3 +47,13 @@
      top: 47px;
      right: 20px;
 }
+
+.googleLoginButton svg {
+     width: 100px !important;
+     height: 100px !important;
+}
+.facebookLogin {
+     background: transparent;
+     border: none;
+     cursor: pointer;
+}

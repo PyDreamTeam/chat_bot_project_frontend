@@ -4,11 +4,13 @@ import FormUniversal, { IInputField } from "../components/entities/forms/FormUni
 import { inputFieldDataSignUp, initialValuesSignUp, validationSchemaSignUp } from "../pagesData/sign-up";
 import { useCreateUserMutation } from "../store/services/authApi";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "../hooks/types";
+import { setCredentials } from "../store/reducers/credentialsSlice";
 
 export const SignUp = () => {
-
      const [createUser, { data, isSuccess }]: any = useCreateUserMutation();
      const router = useRouter();
+     const dispatch = useAppDispatch();
 
      const [show, setShow] = useState<boolean>(false);
      const showPassword = () => {
@@ -16,11 +18,10 @@ export const SignUp = () => {
      };
 
      React.useEffect(() => {
-          isSuccess &&
-               router.push({
-                    pathname: "/my-account",
-                    query: data,
-               });
+          if (isSuccess) {
+               dispatch(setCredentials(data));
+               router.push("/home");
+          }
      }, [isSuccess]);
      return (
           <AuthWrapper titleText={"Регистрация"}>

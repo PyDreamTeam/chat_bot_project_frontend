@@ -3,12 +3,9 @@ import React, { FC } from "react";
 import ButtonSubmit from "../../shared/buttons/ButtonSubmit";
 import { InputFieldNameVariants } from "../../shared/inputs/InputAuthField";
 import styles from "./styles/styles.module.css";
-import Label, { HtmlForVariants} from "../../shared/labels/Label";
+import Label, { HtmlForVariants } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
 import ImageErrorForm from "../../shared/images/ImageErrorForm";
-
-import { useRouter } from "next/router";
-
 import ButtonEye from "@/src/components/shared/buttons/ButtonEye";
 
 export interface IInputField {
@@ -41,8 +38,8 @@ interface FormUniversalProps {
      classNameForm: keyof typeof ClassNameFormVariants;
      onSubmit: (values: any) => void | Promise<any>;
      onClick?: any;
-     showEye?:  boolean;
-     activeEye?: Record<string, boolean>
+     showEye?: boolean;
+     activeEye?: Record<string, boolean>;
 }
 
 const getFieldType = (type: string, isHidePassword: boolean) => {
@@ -64,8 +61,6 @@ const FormUniversal: FC<FormUniversalProps> = ({
      onClick,
      activeEye,
 }) => {
-     const router = useRouter();
-
      return (
           <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={(values: IInitialValues) => onSubmit(values)}>
                {({ errors, touched }) => (

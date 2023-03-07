@@ -28,7 +28,7 @@ export const SignIn = () => {
      };
 
      React.useEffect(() => {
-          credentials.name && router.push("/my-account");
+          credentials.name && router.push("/home");
      }, [credentials]);
      return (
           <AuthWrapper titleText={"Вход"}>

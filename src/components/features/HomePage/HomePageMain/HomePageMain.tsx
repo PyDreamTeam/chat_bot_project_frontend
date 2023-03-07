@@ -12,7 +12,7 @@ const HomePageMain = () => {
                <HomePageHeader />
                <InputSearchField />
                <Solutions />
-               <TemplateSelections/>
+               <TemplateSelections />
           </main>
      );
 };

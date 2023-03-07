@@ -8,12 +8,11 @@ import InputSearch from "./images/SearchInput.png";
 
 const InputSearchField = () => {
      return (
-          <Formik initialValues={{ searchValue: "" }}
-               onSubmit={() => console.log(1)}>
-               {({touched }) => (
+          <Formik initialValues={{ searchValue: "" }} onSubmit={() => console.log(1)}>
+               {({ touched }) => (
                     <div className={styles.inputSearchBlock}>
                          <Form className={styles.inputSearchForm}>
-                              <Image className={styles.inputSearchImg} alt={"magnifier"} src={InputSearch}/>
+                              <Image className={styles.inputSearchImg} alt={"magnifier"} src={InputSearch} />
                               <Field
                                    className={styles.inputSearchField}
                                    type={"text"}
