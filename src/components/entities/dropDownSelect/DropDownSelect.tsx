@@ -18,7 +18,7 @@ const DropDownSelect: FC<IDropDownSelect & DropDownItemProps> = ({ config = [] }
                     <DropDownItem id={item.id} type={item.type} key={item.id} activeDropDownItem={activeDropDownItem} />
                ))}
                <div className={styles.btn}>
-                    <ButtonRadioInput text={"Отменить"} isDisabled={true} variant={BtnVariants.cansel} />
+                    <ButtonRadioInput text={"Отменить"} isDisabled={true} variant={BtnVariants.cancel} />
                     <ButtonRadioInput text={"Применить"} isDisabled={true} variant={BtnVariants.apply} />
                </div>
           </div>

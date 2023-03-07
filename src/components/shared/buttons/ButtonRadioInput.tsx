@@ -1,24 +1,24 @@
-import React from "react";
+import React, {FC} from "react";
 import styles from "./styles/styles.module.css";
 
 export enum BtnVariants {
-     cansel = "cansel",
+     cancel = "cancel",
      apply = "apply",
 }
 
-interface ButtonRadioInputProps {
+interface IButtonRadioInput {
      variant: keyof typeof BtnVariants;
      text: string;
      isDisabled: boolean;
 }
 
-const ButtonRadioInput = ({ text, isDisabled, variant }: ButtonRadioInputProps) => {
+const ButtonRadioInput: FC<IButtonRadioInput> = ({ text, isDisabled, variant }) => {
      return (
           <button
                type="submit"
                disabled={isDisabled}
                className={`${
-                    variant === "cansel" ? styles.canselRadioInput : variant === "apply" ? styles.applyRadioInput : styles.default
+                    variant === "cancel" ? styles.canselRadioInput : styles.applyRadioInput
                } ${styles.btnForRadio} ${isDisabled ? styles.submitDisabled : null}`}
           >
                {text}

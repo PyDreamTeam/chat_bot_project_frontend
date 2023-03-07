@@ -4,8 +4,8 @@ import styles from "@/src/components/shared/tabSelect/styles/tabSelect.module.cs
 export interface IDropDownItem {
      id?: number;
      type: JSX.Element;
-     onChange?: any;
-     isChecked?: any;
+     onChange?: () => void;
+     isChecked?: boolean;
 }
 
 export interface DropDownItemProps {

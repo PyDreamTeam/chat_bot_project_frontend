@@ -6,7 +6,7 @@ export interface IRadioInput {
      name: string;
      label: string;
      value: string;
-     isChecked?: boolean | undefined;
+     isChecked?: boolean;
      type?: string;
 }
 
