@@ -12,7 +12,10 @@ export const SignIn = () => {
      const router = useRouter();
      const dispatch = useAppDispatch();
      const [show, setShow] = useState<boolean>(false);
+
+
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
+
      const showPassword = () => {
           setShow(!show);
      };
