@@ -18,10 +18,12 @@ export default function App({ Component, pageProps }: AppProps) {
           router.pathname === "/_error" && router.push("/home");
      }, []);
      return (
-          <Provider store={store}>
-               <GoogleOAuthProvider clientId={clientId}>
+
+          <GoogleOAuthProvider clientId={clientId}>
+               <Provider store={store}>
                     <Component {...pageProps} />
-               </GoogleOAuthProvider>
-          </Provider>
+               </Provider>
+          </GoogleOAuthProvider>
+
      );
 }

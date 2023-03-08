@@ -5,6 +5,7 @@ enum CredentialsTypes {
      email = "email",
      password = "password",
      token = "token",
+     id = "id",
 }
 
 type Credentials = Record<keyof typeof CredentialsTypes, string>;
@@ -15,6 +16,7 @@ const initialState: { credentials: Credentials } = {
           email: "",
           password: "",
           token: "",
+          id: "",
      },
 };
 
@@ -31,6 +33,7 @@ const credentialsSlice = createSlice({
                     email: "",
                     password: "",
                     token: "",
+                    id: "",
                };
           },
      },

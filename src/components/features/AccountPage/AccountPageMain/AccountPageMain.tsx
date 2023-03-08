@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import styles from "./HomePageMain.module.css";
-import HomePageHeader from "@/src/components/features/HomePage/HomePageHeader/HomePageHeader";
 import InputSearchField from "@/src/components/shared/inputs/InputSearchField";
 import Solutions from "@/src/components/entities/solutions/Solutions";
 import TemplateSelections from "@/src/components/entities/templateselections/TemplateSelections";
 import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
+import { useAppSelector } from "@/src/hooks/types";
 
-const HomePageMain = () => {
+const AccountPageMain = () => {
+
+     const { name } = useAppSelector((state) => state.credentialsSlice.credentials);
+
+     // useEffect(() => {
+     //      console.log(name);
+     // }, [name]);
+  
+
      return (
-          <main className={styles.mainContentBlock}>
-               <HomePageHeader />
+          <main>
                <InputSearchField />
                <Solutions />
                <TemplateSelections/>
@@ -19,4 +25,4 @@ const HomePageMain = () => {
      );
 };
 
-export default HomePageMain;
+export default AccountPageMain;

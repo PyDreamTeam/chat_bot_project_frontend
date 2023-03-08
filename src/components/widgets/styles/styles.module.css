@@ -1,4 +1,8 @@
-.mainContentBlock {
+.accountWrapper {
+    display: flex;
+}
+
+.accountContentBlock {
     width: 100%;
     display: flex;
     flex-direction: column;

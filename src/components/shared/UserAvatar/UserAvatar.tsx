@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {userDefaultAvatar} from "../../features/HomePage/HomePageHeader/pictures/SvgConfig";
+import {userDefaultAvatar} from "../../features/AccountPage/AccountPageHeader/pictures/SvgConfig";
 import Image from "next/image";
 
 interface AvatarProps {

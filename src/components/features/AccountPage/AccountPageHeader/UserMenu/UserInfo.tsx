@@ -1,19 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, FormEvent } from "react";
 
 import Avatar from "../../../../shared/UserAvatar/UserAvatar";
 
 import styles from "./UserInfo.module.css";
 
 import UserMenuHeader from "../../../../shared/UserMenuHeader/UserMenuHeader";
-import { headerArrow } from "@/src/components/features/HomePage/HomePageHeader/pictures/SvgConfig";
+import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/pictures/SvgConfig";
 
-const navElements = [
-     { href: "/home", text: "Профиль" },
-     { href: "/home", text: "Настройки аккаунта" },
-     { href: "/home", text: "Выйти", onClick: () =>{console.log(1);} },
-];
+
 
 interface IUserInfoProps {
+  profileOnClick?: () => void;
   onClick?: () => void;
   userName?: string | undefined;
   avatarUrl?: string
@@ -28,7 +25,15 @@ const UserInfo: FC<IUserInfoProps> = (
           avatarUrl,
           className = "",
           isOpen= false,
+          profileOnClick
      }) => {
+
+     const navElements = [
+          { text: "Профиль", onClick: profileOnClick },
+          { text: "Настройки аккаунта" },
+          { text: "Выйти", onClick: () =>{console.log(1);} },
+     ];
+
      return (
           <div className={`${styles.userInfoWrapper} ${className}`} onClick={onClick}>
                <div className={styles.avatarCircle}>
