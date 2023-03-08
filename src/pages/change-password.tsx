@@ -23,6 +23,7 @@ const ChangePassword = () => {
      return (
           <AuthWrapper titleText={"Обновите пароль"}>
                <FormUniversal
+                    onSubmit={() => console.log(1)}
                     validationSchema={validationSchemaChange}
                     classNameForm="changePassword"
                     buttonSubmitText="Обновить пароль"
