@@ -48,6 +48,7 @@
      right: 20px;
 }
 
+
 .googleLoginButton svg {
      width: 100px !important;
      height: 100px !important;
@@ -56,4 +57,27 @@
      background: transparent;
      border: none;
      cursor: pointer;
+}
+
+/* --------------------------------- For RadioInput SUBMIT BUTTON----------------------------------*/
+.btnForRadio {
+     font-family: "Inter", sans-serif;
+     font-style: normal;
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 150%;
+     border-radius: 20px;
+     border: 1px solid #4466f5;
+     padding: 5px 10px;
+     cursor: pointer;
+}
+
+.canselRadioInput {
+     color: #595f6c;
+     background: transparent;
+}
+
+.applyRadioInput {
+     color: #ffffff;
+     background: #4466f5;
 }

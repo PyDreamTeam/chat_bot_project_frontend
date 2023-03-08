@@ -5,6 +5,7 @@ import HomePageHeader from "@/src/components/features/HomePage/HomePageHeader/Ho
 import InputSearchField from "@/src/components/shared/inputs/InputSearchField";
 import Solutions from "@/src/components/entities/solutions/Solutions";
 import TemplateSelections from "@/src/components/entities/templateselections/TemplateSelections";
+import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
 
 const HomePageMain = () => {
      return (
@@ -12,7 +13,8 @@ const HomePageMain = () => {
                <HomePageHeader />
                <InputSearchField />
                <Solutions />
-               <TemplateSelections />
+               <TemplateSelections/>
+               <SearchHistory/>
           </main>
      );
 };

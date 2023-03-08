@@ -4,6 +4,7 @@ import styles from "./styles/styles.module.css";
 export enum LabelTypes {
      checkbox = "checkbox",
      inputField = "inputField",
+     radioInput = "radioInput",
 }
 
 export enum HtmlForVariants {
@@ -12,6 +13,7 @@ export enum HtmlForVariants {
      name = "name",
      checkboxForm = "checkboxForm",
      repeatPassword = "repeatPassword",
+     text = "textInput",
 }
 
 export interface LabelProps {
