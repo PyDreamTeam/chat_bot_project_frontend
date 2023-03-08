@@ -7,4 +7,5 @@
 .socialsButton {
      background: transparent;
      border: none;
+     cursor: pointer;
 }

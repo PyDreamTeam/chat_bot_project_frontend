@@ -6,13 +6,14 @@ import Sidebar from "@/src/components/features/Sidebar/Sidebar";
 
 import styles from "./HomepageWrapper.module.css";
 import HomePageMain from "@/src/components/features/HomePage/HomePageMain/HomePageMain";
+import { useAppSelector } from "@/src/hooks/types";
 
 const HomepageWrapper: FC = () => {
-     const isAuth = true;
+     const { email } = useAppSelector((state) => state.credentialsSlice.credentials);
 
      return (
           <>
-               {isAuth ? (
+               {email ? (
                     <div className={styles.authWrapper}>
                          <Sidebar />
                          <HomePageMain />
