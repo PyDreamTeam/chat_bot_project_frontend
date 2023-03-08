@@ -1,0 +1,25 @@
+.userInfoWrapper {
+    width: 100%;
+    max-width: 251px;
+    padding: 10px 20px;
+    background: #FFFFFF;
+    box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    position: relative;
+}
+
+.avatarCircle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #E2ECFF;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}

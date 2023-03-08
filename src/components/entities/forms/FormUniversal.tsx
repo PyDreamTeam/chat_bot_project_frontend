@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { FC } from "react";
 import ButtonSubmit from "../../shared/buttons/ButtonSubmit";
-import { InputFieldNameVariants } from "../../shared/inputs/InputField";
+import { InputFieldNameVariants } from "../../shared/inputs/InputAuthField";
 import styles from "./styles/styles.module.css";
 import Label, { HtmlForVariants } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
