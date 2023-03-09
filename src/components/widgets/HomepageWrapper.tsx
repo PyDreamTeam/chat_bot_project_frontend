@@ -4,9 +4,7 @@ import Header from "@/src/components/features/HomePage/Header/Header";
 import Main from "../features/HomePage/Main/Main";
 import { useAppSelector } from "@/src/hooks/types";
 
-
 const HomepageWrapper = () => {
-
      const { id } = useAppSelector((state) => state.credentialsSlice.credentials);
      console.log(id);
 

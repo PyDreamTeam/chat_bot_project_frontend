@@ -1,47 +1,41 @@
-import React, { FC, FormEvent } from "react";
+import React, { FC, FormEvent, MouseEventHandler } from "react";
 
-import Avatar from "../../../../shared/UserAvatar/UserAvatar";
+import Avatar from "../../../../shared/Avatar/Avatar";
 
 import styles from "./UserInfo.module.css";
 
 import UserMenuHeader from "../../../../shared/UserMenuHeader/UserMenuHeader";
 import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/pictures/SvgConfig";
 
-
-
 interface IUserInfoProps {
-  profileOnClick?: () => void;
-  onClick?: () => void;
-  userName?: string | undefined;
-  avatarUrl?: string
-  className?: string
-  isOpen?: boolean
+     profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
+     onClick?: () => void;
+     userName?: string | undefined;
+     avatarUrl?: string;
+     className?: string;
+     isOpen?: boolean;
 }
 
-const UserInfo: FC<IUserInfoProps> = (
-     {
-          onClick,
-          userName="",
-          avatarUrl,
-          className = "",
-          isOpen= false,
-          profileOnClick
-     }) => {
-
+const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, className = "", isOpen = false, profileOnClick }) => {
      const navElements = [
           { text: "Профиль", onClick: profileOnClick },
           { text: "Настройки аккаунта" },
-          { text: "Выйти", onClick: () =>{console.log(1);} },
+          {
+               text: "Выйти",
+               onClick: () => {
+                    console.log(1);
+               },
+          },
      ];
 
      return (
           <div className={`${styles.userInfoWrapper} ${className}`} onClick={onClick}>
                <div className={styles.avatarCircle}>
-                    <Avatar url={avatarUrl} />
+                    <Avatar type={"forHeader"} url={avatarUrl} />
                </div>
                {userName && <span className={styles.userName}>{userName}</span>}
                <div>{headerArrow}</div>
-               {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} /> }
+               {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
           </div>
      );
 };

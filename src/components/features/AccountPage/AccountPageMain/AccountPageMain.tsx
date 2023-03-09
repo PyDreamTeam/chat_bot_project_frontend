@@ -7,20 +7,18 @@ import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory
 import { useAppSelector } from "@/src/hooks/types";
 
 const AccountPageMain = () => {
-
      const { name } = useAppSelector((state) => state.credentialsSlice.credentials);
 
      // useEffect(() => {
      //      console.log(name);
      // }, [name]);
-  
 
      return (
           <main>
                <InputSearchField />
                <Solutions />
-               <TemplateSelections/>
-               <SearchHistory/>
+               <TemplateSelections />
+               <SearchHistory title={"История поиска"} />
           </main>
      );
 };

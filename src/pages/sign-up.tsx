@@ -6,7 +6,6 @@ import { useCreateUserMutation } from "../store/services/authApi";
 import { useRouter } from "next/router";
 
 export const SignUp = () => {
-
      const [createUser, { data, isSuccess }]: any = useCreateUserMutation();
      const router = useRouter();
 

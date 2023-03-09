@@ -5,7 +5,6 @@ import AccountPageMain from "@/src/components/features/AccountPage/AccountPageMa
 import id from "@/src/pages/my-account/[slug]";
 import { useRouter } from "next/router";
 
-
 const index = () => {
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
      React.useEffect(() => {
@@ -14,10 +13,9 @@ const index = () => {
 
      const router = useRouter();
 
-
      return (
           <AccountPageWrapper title={credentials.name}>
-               <AccountPageMain/>
+               <AccountPageMain />
           </AccountPageWrapper>
      );
 };

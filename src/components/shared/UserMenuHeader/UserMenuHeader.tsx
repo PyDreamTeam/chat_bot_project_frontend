@@ -1,22 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, FormEvent, MouseEventHandler } from "react";
 
 import styles from "./UserMenuHeader.module.css";
 
 import uuid from "uuid-random";
 
 interface IUserMenuButton {
-  text: string;
-  onClick?: () => void;
+     text: string;
+     onClick?: any;
 }
 
 interface IUserMenu {
-    activeMenu?: boolean;
-    navButtons: Array<IUserMenuButton>;
+     activeMenu?: boolean;
+     navButtons: Array<IUserMenuButton>;
 }
 
-
-
-const UserMenuHeader: FC <IUserMenu> = ({activeMenu, navButtons}) => {
+const UserMenuHeader: FC<IUserMenu> = ({ activeMenu, navButtons }) => {
      return (
           <ul className={`${styles.menuWrapper} ${activeMenu ? styles.active : null}`}>
                {navButtons.map((button) => (
@@ -25,7 +23,6 @@ const UserMenuHeader: FC <IUserMenu> = ({activeMenu, navButtons}) => {
                     </button>
                ))}
           </ul>
-
      );
 };
 

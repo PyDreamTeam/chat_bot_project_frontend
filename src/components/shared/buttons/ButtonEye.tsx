@@ -9,7 +9,7 @@ interface IButtonEye {
      show?: boolean | IShowEye;
      onClick?: () => void;
      id?: any;
-     isOpenEye?: boolean
+     isOpenEye?: boolean;
 }
 
 const ButtonEye: FC<IButtonEye> = ({ onClick, id, isOpenEye }) => {
