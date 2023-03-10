@@ -1,5 +1,5 @@
 import React from "react";
-import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
+import AuthWrapper from "@/src/components/widgets/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesRestore, inputFieldDataRestore, validationSchemaRestore } from "../pagesData/restore-password";
 
