@@ -6,9 +6,6 @@ import styles from "./styles/styles.module.css";
 import Label, { HtmlForVariants } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
 import ImageErrorForm from "../../shared/images/ImageErrorForm";
-
-import { useRouter } from "next/router";
-
 import ButtonEye from "@/src/components/shared/buttons/ButtonEye";
 
 export interface IInputField {
@@ -67,8 +64,6 @@ const FormUniversal: FC<FormUniversalProps> = ({
      onClick,
      activeEye,
 }) => {
-     const router = useRouter();
-
      return (
           <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={(values: IInitialValues) => onSubmit(values)}>
                {({ errors, touched }) => (

@@ -6,6 +6,8 @@ import InputSearchField from "@/src/components/shared/inputs/InputSearchField";
 import Solutions from "@/src/components/entities/solutions/Solutions";
 import TemplateSelections from "@/src/components/entities/templateselections/TemplateSelections";
 import SelectInAccount from "@/src/components/entities/selectInAccount/selectInAccount";
+import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
+
 
 const HomePageMain = () => {
      return (
@@ -15,6 +17,7 @@ const HomePageMain = () => {
                <SelectInAccount />
                <Solutions />
                <TemplateSelections/>
+               <SearchHistory/>
           </main>
      );
 };
