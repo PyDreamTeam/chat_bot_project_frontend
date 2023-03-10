@@ -5,8 +5,6 @@ import Link from "next/link";
 
 interface Icon {
      src: React.ReactNode;
-     width: number;
-     height: number;
      id: number;
      onClick?: () => any;
 }

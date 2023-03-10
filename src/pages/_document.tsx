@@ -11,7 +11,6 @@ export default function Document() {
                <body>
                     <Main />
                     <NextScript />
-                    <script src="https://aacounts.google/gsi/client" async defer></script>
                </body>
           </Html>
      );

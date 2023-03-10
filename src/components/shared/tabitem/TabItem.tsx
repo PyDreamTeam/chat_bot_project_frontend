@@ -10,7 +10,7 @@ export interface ITabItem {
 }
 
 export interface TabItemProps {
-     activeTabItem: number;
+     activeTabItem: number | null;
      onClick: any;
 }
 

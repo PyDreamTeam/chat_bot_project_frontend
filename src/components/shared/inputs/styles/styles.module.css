@@ -30,6 +30,8 @@
 }
 
 .inputSearchField {
+     cursor: pointer;
+     font-family: "Inter";
      cursor: text;
      font-family: "Inter";
      font-style: normal;

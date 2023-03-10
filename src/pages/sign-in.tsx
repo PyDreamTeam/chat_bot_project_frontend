@@ -12,7 +12,10 @@ export const SignIn = () => {
      const router = useRouter();
      const dispatch = useAppDispatch();
      const [show, setShow] = useState<boolean>(false);
+
+
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
+
      const showPassword = () => {
           setShow(!show);
      };
@@ -28,7 +31,7 @@ export const SignIn = () => {
      };
 
      React.useEffect(() => {
-          credentials.name && router.push("/my-account");
+          credentials.name && router.push("/home");
      }, [credentials]);
      return (
           <AuthWrapper titleText={"Вход"}>
