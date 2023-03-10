@@ -1,5 +1,5 @@
 import React from "react";
-import {initialValuesPersonData, inputPersonData, validationSchemaPersonData} from "@/src/pagesData/personal-data";
+import { initialValuesPersonalData, inputPersonalData, validationSchemaPersonalData } from "@/src/pagesData/personal-data";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 
 const PersonalData = () => {
@@ -7,11 +7,11 @@ const PersonalData = () => {
           <>
                <FormUniversal
                     onSubmit={() => console.log(1)}
-                    validationSchema={validationSchemaPersonData}
+                    validationSchema={validationSchemaPersonalData}
                     classNameForm="personalData"
                     buttonSubmitText="Сохранить изменения"
-                    initialValues={initialValuesPersonData}
-                    inputFieldData={inputPersonData}
+                    initialValues={initialValuesPersonalData}
+                    inputFieldData={inputPersonalData}
                />
           </>
      );
