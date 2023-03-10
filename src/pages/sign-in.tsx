@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
+import AuthWrapper from "@/src/components/widgets/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesSignIn, inputFieldDataSignIn, validationSchemaSignIn } from "../pagesData/sign-in";
 import { useLazyValidateUserQuery, User } from "../store/services/authApi";

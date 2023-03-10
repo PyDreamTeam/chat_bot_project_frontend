@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
+import AuthWrapper from "@/src/components/widgets/AuthWrapper";
 import FormUniversal, { IInputField } from "../components/entities/forms/FormUniversal";
 import { inputFieldDataSignUp, initialValuesSignUp, validationSchemaSignUp } from "../pagesData/sign-up";
 import { useCreateUserMutation } from "../store/services/authApi";
