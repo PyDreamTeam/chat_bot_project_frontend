@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, useState } from "react";
 
-import AuthWrapper from "@/src/components/features/Auth/AuthWrapper";
+import AuthWrapper from "@/src/components/widgets/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesChange, inputFieldDataChange, validationSchemaChange } from "../pagesData/change-password";
 

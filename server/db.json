@@ -62,7 +62,13 @@
                "password": "11111111",
                "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
                "id": "UulPmpz"
-
+          },
+          {
+               "name": "Nikita",
+               "email": "nikita@gmail",
+               "password": "Nikita123",
+               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
+               "id": "VhFz7L3"
           }
      ]
 }
