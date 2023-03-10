@@ -5,7 +5,8 @@ import { WithChildren } from "@/src/types/withChildren";
 import AuthTitle from "@/src/components/shared/textfields/AuthTitle";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
+import IconsAuthBar from "@/src/components/entities/iconbars/IconsAuthBar";
+import { svgArray } from "@/src/components/entities/iconbars/pictures/svgConfig";
 export interface IAuthRightBlock {
      titleText: string;
 }
@@ -28,6 +29,7 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                                    <Link href={"/sign-up"}> Регистрация </Link>
                               </h4>
                               <h3 className={`${styles.h3} ${styles.questionSocials}`}>Войдите через соцсеть</h3>
+                              <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
                               <h3 className={`${styles.h3} ${styles.signIn}`}>Или с помощью почты и пароля</h3>
                          </>
                     )}

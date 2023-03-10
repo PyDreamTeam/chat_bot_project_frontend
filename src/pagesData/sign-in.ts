@@ -1,6 +1,8 @@
 import { IInputField } from "../components/entities/forms/FormUniversal";
 import * as Yup from "yup";
 
+export const clientId = "149315774337-b84cvdjcif34r3gdihgusfs7benh122j.apps.googleusercontent.com";
+
 export const initialValuesSignIn = {
      email: "",
      password: "",

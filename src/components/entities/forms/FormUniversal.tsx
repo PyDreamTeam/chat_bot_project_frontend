@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { FC } from "react";
 import ButtonSubmit from "../../shared/buttons/ButtonSubmit";
-import { InputFieldNameVariants } from "../../shared/inputs/InputField";
+import { InputFieldNameVariants } from "../../shared/inputs/InputAuthField";
 import styles from "./styles/styles.module.css";
 import Label, { HtmlForVariants } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
@@ -24,6 +24,7 @@ enum ClassNameFormVariants {
      signIn = "signIn",
      restorePassword = "restorePassword",
      changePassword = "changePassword",
+     personalData = "personalData",
 }
 
 export interface IInitialValues {
@@ -32,6 +33,8 @@ export interface IInitialValues {
      password?: string;
      get_email_notifications?: string | Array<string>;
      repeatPassword?: string;
+     surname?: string;
+     tel?: string;
 }
 interface FormUniversalProps {
      inputFieldData: Array<IInputField>;
