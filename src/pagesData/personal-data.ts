@@ -1,8 +1,8 @@
-import { NameRegExp, PhoneRegExp } from "./../utils/regExps";
+import {NameRegExp, PhoneRegExp} from "./../utils/regExps";
 import { IInputField } from "../components/entities/forms/FormUniversal";
 import * as Yup from "yup";
 
-export const inputPersonalData: Array<IInputField> = [
+export const inputPersonData: Array<IInputField> = [
      {
           htmlFor: "name",
           name: "name",
@@ -26,13 +26,13 @@ export const inputPersonalData: Array<IInputField> = [
      },
 ];
 
-export const initialValuesPersonalData = {
+export const initialValuesPersonData = {
      name: "",
      surname: "",
      tel: "",
 };
 
-export const validationSchemaPersonalData = Yup.object({
+export const validationSchemaPersonData = Yup.object({
      name: Yup.string()
           .matches(NameRegExp, "Допустимы только английские символы и цифры")
           .max(15, "Максимум 15 символов")
@@ -46,6 +46,6 @@ export const validationSchemaPersonalData = Yup.object({
      tel: Yup.string()
           .required("Введите номер телефона")
           .matches(PhoneRegExp, "Номер телефона не правильный")
-          .max(12, "Некорректный номер")
-          .min(12, "Некорректный номер"),
+          .max(12, "Не корректный номер")
+          .min(12, "Не корректный номер")
 });

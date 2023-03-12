@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { initialValuesUpdate, inputFieldDataChange, validationSchemaUpdate } from "@/src/pagesData/update-password";
+import React, {useState} from "react";
+import {initialValuesUpdate, inputFieldDataChange, validationSchemaUpdate} from "@/src/pagesData/update-password";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 
 const ChangePassword = () => {
@@ -12,7 +12,7 @@ const ChangePassword = () => {
                setActiveEye((value) => ({ ...value, [id]: true }));
           }
      };
-
+    
      return (
           <>
                <FormUniversal
@@ -22,13 +22,11 @@ const ChangePassword = () => {
                     initialValues={initialValuesUpdate}
                     inputFieldData={inputFieldDataChange}
                     onClick={showPassword}
-                    activeEye={activeEye}
-                    onSubmit={function (): void | Promise<never> {
+                    activeEye={activeEye} onSubmit={function (): void | Promise<never> {
                          throw new Error("Function not implemented.");
-                    }}
-               />
+                    }}               />
           </>
-     );
+     ); 
 };
 
 export default ChangePassword;

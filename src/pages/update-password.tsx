@@ -23,15 +23,20 @@ const UpdatePassword = () => {
      return (
           <AuthWrapper titleText={"Обновите пароль"}>
                <FormUniversal
+<<<<<<< HEAD:src/pages/update-password.tsx
                     validationSchema={validationSchemaUpdate}
+=======
                     onSubmit={() => console.log(1)}
+                    validationSchema={validationSchemaChange}
+>>>>>>> origin/dev:src/pages/change-password.tsx
                     classNameForm="changePassword"
                     buttonSubmitText="Обновить пароль"
                     initialValues={initialValuesUpdate}
                     inputFieldData={inputFieldDataUpdate}
                     onClick={showPassword}
-                    activeEye={activeEye}
-               />
+                    activeEye={activeEye} onSubmit={function (): void | Promise<never> {
+                         throw new Error("Function not implemented.");
+                    }}               />
           </AuthWrapper>
      );
 };
