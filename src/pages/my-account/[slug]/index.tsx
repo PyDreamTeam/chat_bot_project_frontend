@@ -5,6 +5,8 @@ import { useAppSelector } from "@/src/hooks/types";
 import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
 import UserAvatar from "@/src/components/shared/Avatar/Avatar";
 import AccountPageCredential from "@/src/components/entities/accountpageSettings/AccountpageCredentials";
+import SelectTitle from "@/src/components/entities/selectTitle/SelectTitle";
+import { SELECT_TITLE_CONFIG } from "@/src/components/entities/selectTitle/SelectTitleConfig";
 
 const ProfilePage = () => {
      const router = useRouter();
@@ -14,7 +16,7 @@ const ProfilePage = () => {
 
      return (
           <AccountPageWrapper title={"Профиль"}>
-               <AccountPageCredential mobileNumber={mobileNumber} email={email} isEmailVerified={true} name={name} />
+               <AccountPageCredential id={id} mobileNumber={mobileNumber} email={email} isEmailVerified={true} name={name} />
                <SearchHistory title={"Сохраненные шаблоны"} />
           </AccountPageWrapper>
      );

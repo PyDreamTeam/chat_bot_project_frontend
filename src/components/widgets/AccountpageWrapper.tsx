@@ -11,7 +11,7 @@ interface IAccountWrapper {
      title?: string;
 }
 
-const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = () => {
+const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children}) => {
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
      React.useEffect(() => {
           console.log("MY DATA", credentials);
@@ -22,8 +22,8 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = () => {
           <div className={styles.accountWrapper}>
                <Sidebar />
                <div className={styles.accountContentBlock}>
-                    <AccountPageHeader id={credentials?.id} name={credentials?.name} />
-                    <AccountPageMain />
+                    <AccountPageHeader title={title} id={credentials?.id} name={credentials?.name} />
+                    {children}
                </div>
           </div>
      );

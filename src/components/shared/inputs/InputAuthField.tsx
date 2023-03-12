@@ -15,6 +15,8 @@ export enum InputFieldNameVariants {
      email = "email",
      name = "name",
      repeatPassword = "repeatPassword",
+     surname = "surname",
+     tel = "tel",
 }
 export interface IInputField extends LabelProps {
      variant?: keyof typeof InputVariantProps;
@@ -25,6 +27,7 @@ export interface IInputField extends LabelProps {
      type?: string;
      onClick?: () => void;
      show?: boolean;
+     tel?: string;
 }
 
 const InputAuthField: FC<IInputField> = ({

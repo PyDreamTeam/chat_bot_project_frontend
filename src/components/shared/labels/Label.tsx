@@ -11,6 +11,8 @@ export enum HtmlForVariants {
      password = "password",
      email = "email",
      name = "name",
+     surname = "surname",
+     phone = "phone",
      checkboxForm = "checkboxForm",
      repeatPassword = "repeatPassword",
      text = "textInput",

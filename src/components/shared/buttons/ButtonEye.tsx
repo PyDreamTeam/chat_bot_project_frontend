@@ -3,7 +3,7 @@ import styles from "./styles/styles.module.css";
 import OpenEye from "../images/pictures/png/showPassword.png";
 import CloseEye from "../images/pictures/png/hidePassword.png";
 import Image from "next/image";
-import { IShowEye } from "@/src/pages/change-password";
+import { IShowEye } from "@/src/pages/update-password";
 
 interface IButtonEye {
      show?: boolean | IShowEye;

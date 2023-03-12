@@ -11,9 +11,10 @@ interface IAccountPageCredential {
      name: string;
      avatarUrl?: string;
      mobileNumber?: string;
+     id?: string;
 }
 
-const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, email, avatarUrl, mobileNumber, name }) => {
+const AccountPageCredential: FC<IAccountPageCredential> = ({id, isEmailVerified, email, avatarUrl, mobileNumber, name }) => {
      return (
           <div className={styles.credentialsWrapper}>
                <UserAvatar type={"forSettings"} username={name} />
@@ -24,7 +25,8 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
                          {<p className={styles.credentialsInfo}>{email}</p>}
                          {isEmailVerified && <VerifiedEmail />}
                     </div>
-                    <ButtonAuthHeader className={ButtonAuthClasses.credentials} href={"/home"} text={"Редактировать"} />
+                    <ButtonAuthHeader className={ButtonAuthClasses.credentials} href={{pathname: "/my-account/[slug]/settings",
+                         query: { slug: id}}} text={"Редактировать"} />
                </div>
           </div>
      );
