@@ -20,7 +20,7 @@ export const SignUp = () => {
      React.useEffect(() => {
           if (isSuccess) {
                dispatch(setCredentials(data));
-               router.push("/home");
+               router.push("/my-account");
           }
      }, [isSuccess]);
      return (

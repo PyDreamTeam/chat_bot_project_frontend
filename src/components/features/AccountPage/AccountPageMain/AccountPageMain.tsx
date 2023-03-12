@@ -5,6 +5,7 @@ import Solutions from "@/src/components/entities/solutions/Solutions";
 import TemplateSelections from "@/src/components/entities/templateselections/TemplateSelections";
 import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
 import { useAppSelector } from "@/src/hooks/types";
+import SelectInAccount from "@/src/components/entities/selectInAccount/selectInAccount";
 
 const AccountPageMain = () => {
      const { name } = useAppSelector((state) => state.credentialsSlice.credentials);
@@ -16,6 +17,7 @@ const AccountPageMain = () => {
      return (
           <main>
                <InputSearchField />
+               <SelectInAccount />
                <Solutions />
                <TemplateSelections />
                <SearchHistory title={"История поиска"} />

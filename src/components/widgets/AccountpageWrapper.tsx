@@ -5,12 +5,13 @@ import Sidebar from "@/src/components/features/Sidebar/Sidebar";
 import AccountPageHeader from "@/src/components/features/AccountPage/AccountPageHeader/AccountPageHeader";
 import { WithChildren } from "@/src/types/withChildren";
 import { useRouter } from "next/router";
+import AccountPageMain from "../features/AccountPage/AccountPageMain/AccountPageMain";
 
 interface IAccountWrapper {
-     title: string;
+     title?: string;
 }
 
-const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ title, children }) => {
+const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = () => {
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
      React.useEffect(() => {
           console.log("MY DATA", credentials);
@@ -21,8 +22,8 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ title, childre
           <div className={styles.accountWrapper}>
                <Sidebar />
                <div className={styles.accountContentBlock}>
-                    <AccountPageHeader id={credentials?.id} name={credentials?.name} title={title} />
-                    {children}
+                    <AccountPageHeader id={credentials?.id} name={credentials?.name} />
+                    <AccountPageMain />
                </div>
           </div>
      );

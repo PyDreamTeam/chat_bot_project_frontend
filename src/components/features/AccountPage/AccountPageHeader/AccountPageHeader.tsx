@@ -1,7 +1,5 @@
 import React, { FC, FormEvent, useState } from "react";
-
-import styles from "./AccauntPageHeader.module.css";
-
+import styles from "./AccountPageHeader.module.css";
 import UserInfo from "@/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@/src/hooks/types";
