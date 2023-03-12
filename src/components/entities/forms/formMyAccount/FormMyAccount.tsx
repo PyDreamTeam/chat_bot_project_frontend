@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import ProfileTitle from "@/src/components/shared/textfields/ProfileTitle";
 import styles from "./styles/FormMyAccount.module.css";
-import PersonalData from "./personalData/PersonalData";
-import ChangePassword from "./changePassword/ChangePassword";
+import ChangePassword from "../../formMyAccount/changePassword/ChangePassword";
+import PersonalData from "../../../entities/formMyAccount/personalData/PersonalData";
 
 enum FormMyAccountTypes {
      personalData = "personalData",
@@ -16,7 +16,7 @@ const FormMyAccount: FC<IFormMyAccount> = ({ type }) => {
      return (
           <div className={styles.formMyAccount}>
                <ProfileTitle text={"Изменить пароль"} />
-               {type === "changePassword" ? <ChangePassword /> : <PersonalData /> }
+               {type === "changePassword" ? <ChangePassword /> : <PersonalData />}
           </div>
      );
 };
