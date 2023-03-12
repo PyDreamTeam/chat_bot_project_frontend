@@ -1,15 +1,15 @@
-import React, { ChangeEventHandler, useState } from "react";
+import React, { useState } from "react";
 
 import AuthWrapper from "@/src/components/widgets/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
-import { initialValuesChange, inputFieldDataChange, validationSchemaChange } from "../pagesData/change-password";
+import { initialValuesUpdate, inputFieldDataUpdate, validationSchemaUpdate } from "../pagesData/update-password";
 
 export interface IShowEye {
      password: boolean;
      repeatPassword: boolean;
 }
 
-const ChangePassword = () => {
+const UpdatePassword = () => {
      const [activeEye, setActiveEye] = useState({ password: false, repeatPassword: false });
 
      const showPassword = (id: "password" | "repeatPassword") => {
@@ -23,17 +23,22 @@ const ChangePassword = () => {
      return (
           <AuthWrapper titleText={"Обновите пароль"}>
                <FormUniversal
+<<<<<<< HEAD:src/pages/update-password.tsx
+                    validationSchema={validationSchemaUpdate}
+=======
                     onSubmit={() => console.log(1)}
                     validationSchema={validationSchemaChange}
+>>>>>>> origin/dev:src/pages/change-password.tsx
                     classNameForm="changePassword"
                     buttonSubmitText="Обновить пароль"
-                    initialValues={initialValuesChange}
-                    inputFieldData={inputFieldDataChange}
+                    initialValues={initialValuesUpdate}
+                    inputFieldData={inputFieldDataUpdate}
                     onClick={showPassword}
-                    activeEye={activeEye}
-               />
+                    activeEye={activeEye} onSubmit={function (): void | Promise<never> {
+                         throw new Error("Function not implemented.");
+                    }}               />
           </AuthWrapper>
      );
 };
 
-export default ChangePassword;
+export default UpdatePassword;

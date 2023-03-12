@@ -1,74 +1,97 @@
 {
-     "users": [
-          {
-               "name": "asd231",
-               "email": "21321@dqw",
-               "password": "qweqweD32",
-               "get_email_notifications": "",
-               "id": "0f593dd4-a5dc-4e66-b534-8f03b2a791b7"
-          },
-          {
-               "name": "asd231",
-               "email": "213211@dqw",
-               "password": "qweqweD32",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "e205af0a-e816-4925-a325-3cc9b941fd7c"
-          },
-          {
-               "name": "12312",
-               "email": "123wqe@das",
-               "password": "a2131312",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "8cd3dbfb-73a9-4641-93fb-deca398e9700"
-          },
-          {
-               "name": "Yura",
-               "email": "yura@mail.ru",
-               "password": "11111111",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "a4d341ef-3569-4a3f-916f-8a7c407cc80c"
-          },
-          {
-               "name": "12312",
-               "email": "123wqe@dwqs",
-               "password": "as123323d",
-               "get_email_notifications": "",
-               "id": "70b34d94-094f-4fd8-909c-93be8c195fc7"
-          },
-          {
-               "name": "Pavel",
-               "email": "asdasd@das",
-               "password": "23123dsa3",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "498baf9e-cc2a-4caf-8fe7-9feb88844de9"
-          },
-          {
-               "name": "123123",
-               "email": "12312@asd",
-               "password": "213123DE",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "XZuWQJ2"
-          },
-          {
-               "name": "Yurii",
-               "email": "yura@mail.ru",
-               "password": "22222222",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "pZTMTtU"
-          },
-          {
-               "name": "Pavel",
-               "email": "pavel@mail.ru",
-               "password": "11111111",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "UulPmpz"
-          },
-          {
-               "name": "Nikita",
-               "email": "nikita@gmail",
-               "password": "Nikita123",
-               "get_email_notifications": ["Я хочу получать уведомления и новости на почту"],
-               "id": "VhFz7L3"
-          }
-     ]
+  "users": [
+    {
+      "name": "asd231",
+      "email": "21321@dqw",
+      "password": "qweqweD32",
+      "get_email_notifications": "",
+      "id": "0f593dd4-a5dc-4e66-b534-8f03b2a791b7"
+    },
+    {
+      "name": "asd231",
+      "email": "213211@dqw",
+      "password": "qweqweD32",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "e205af0a-e816-4925-a325-3cc9b941fd7c"
+    },
+    {
+      "name": "12312",
+      "email": "123wqe@das",
+      "password": "a2131312",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "8cd3dbfb-73a9-4641-93fb-deca398e9700"
+    },
+    {
+      "name": "Yura",
+      "email": "yura@mail.ru",
+      "password": "11111111",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "a4d341ef-3569-4a3f-916f-8a7c407cc80c"
+    },
+    {
+      "name": "12312",
+      "email": "123wqe@dwqs",
+      "password": "as123323d",
+      "get_email_notifications": "",
+      "id": "70b34d94-094f-4fd8-909c-93be8c195fc7"
+    },
+    {
+      "name": "Pavel",
+      "email": "asdasd@das",
+      "password": "23123dsa3",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "498baf9e-cc2a-4caf-8fe7-9feb88844de9"
+    },
+    {
+      "name": "123123",
+      "email": "12312@asd",
+      "password": "213123DE",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "XZuWQJ2"
+    },
+    {
+      "name": "Yurii",
+      "email": "yura@mail.ru",
+      "password": "22222222",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "pZTMTtU"
+    },
+    {
+      "name": "Pavel",
+      "email": "pavel@mail.ru",
+      "password": "11111111",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "UulPmpz"
+    },
+    {
+      "name": "Nikita",
+      "email": "nikita@gmail",
+      "password": "Nikita123",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "VhFz7L3"
+    },
+    {
+      "name": "Natali",
+      "email": "pashkinanata@mail.ru",
+      "password": "dsfgadfgdafgad",
+      "get_email_notifications": [],
+      "id": "7HyHTbO"
+    }
+  ]
 }

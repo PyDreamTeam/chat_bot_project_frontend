@@ -21,6 +21,7 @@ enum ClassNameFormVariants {
      signIn = "signIn",
      restorePassword = "restorePassword",
      changePassword = "changePassword",
+     personalData = "personalData",
 }
 
 export interface IInitialValues {
@@ -29,6 +30,8 @@ export interface IInitialValues {
      password?: string;
      get_email_notifications?: string | Array<string>;
      repeatPassword?: string;
+     surname?: string;
+     tel?: string;
 }
 interface FormUniversalProps {
      inputFieldData: Array<IInputField>;

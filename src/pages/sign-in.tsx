@@ -13,7 +13,6 @@ export const SignIn = () => {
      const dispatch = useAppDispatch();
      const [show, setShow] = useState<boolean>(false);
 
-
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
 
      const showPassword = () => {
