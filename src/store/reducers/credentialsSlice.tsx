@@ -5,6 +5,7 @@ enum CredentialsTypes {
      email = "email",
      password = "password",
      token = "token",
+     id = "id",
      picture = "picture",
 }
 
@@ -16,6 +17,7 @@ const initialState: { credentials: Credentials } = {
           email: "",
           password: "",
           token: "",
+          id: "",
           picture: "",
      },
 };
@@ -33,6 +35,7 @@ const credentialsSlice = createSlice({
                     email: "",
                     password: "",
                     token: "",
+                    id: "",
                     picture: "",
                };
           },

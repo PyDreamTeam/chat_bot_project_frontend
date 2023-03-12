@@ -1,30 +1,18 @@
-import React, { FC } from "react";
-import Footer from "@/src/components/features/Footer/Footer";
-import Header from "@/src/components/features/Header/Header";
-import Main from "../features/Main/Main";
-import Sidebar from "@/src/components/features/Sidebar/Sidebar";
-
-import styles from "./HomepageWrapper.module.css";
-import HomePageMain from "@/src/components/features/HomePage/HomePageMain/HomePageMain";
+import React from "react";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
+import Header from "@/src/components/features/HomePage/Header/Header";
+import Main from "../features/HomePage/Main/Main";
 import { useAppSelector } from "@/src/hooks/types";
 
-const HomepageWrapper: FC = () => {
-     const { email } = useAppSelector((state) => state.credentialsSlice.credentials);
+const HomepageWrapper = () => {
+     const { id } = useAppSelector((state) => state.credentialsSlice.credentials);
+     console.log(id);
 
      return (
           <>
-               {email ? (
-                    <div className={styles.authWrapper}>
-                         <Sidebar />
-                         <HomePageMain />
-                    </div>
-               ) : (
-                    <>
-                         <Header />
-                         <Main />
-                         <Footer />
-                    </>
-               )}
+               <Header />
+               <Main />
+               <Footer />
           </>
      );
 };

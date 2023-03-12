@@ -18,7 +18,12 @@ export const SearchHistorySvgConfig: { [index: string]: any } = {
      //           </linearGradient>
      //      </defs>
      // </svg>),
-     Mark: (<svg width="29" height="37" viewBox="0 0 29 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24.417 0.25H4.41699C2.21699 0.25 0.436993 2.05 0.436993 4.25L0.416992 36.25L14.417 30.25L28.417 36.25V4.25C28.417 2.05 26.617 0.25 24.417 0.25Z" fill="#4466F5"/>
-     </svg>),
+     Mark: (
+          <svg width="29" height="37" viewBox="0 0 29 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path
+                    d="M24.417 0.25H4.41699C2.21699 0.25 0.436993 2.05 0.436993 4.25L0.416992 36.25L14.417 30.25L28.417 36.25V4.25C28.417 2.05 26.617 0.25 24.417 0.25Z"
+                    fill="#4466F5"
+               />
+          </svg>
+     ),
 };

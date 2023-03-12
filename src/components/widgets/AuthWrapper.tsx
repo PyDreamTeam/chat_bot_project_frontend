@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import AuthLeftBlock from "@/src/components/features/Auth/components/AuthLeftBlock/AuthLeftBlock";
-import AuthRightBlock from "@/src/components/features/Auth/components/AuthRightBlock/AuthRightBlock";
+import AuthLeftBlock from "@/src/components/features/Auth/AuthLeftBlock/AuthLeftBlock";
+import AuthRightBlock from "@/src/components/features/Auth/AuthRightBlock/AuthRightBlock";
 import { WithChildren } from "@/src/types/withChildren";
-import styles from "./AuthWrapper.module.css";
+import styles from "./styles/AuthWrapper.module.css";
 
 export interface IAuthWrapper {
      titleText: string;

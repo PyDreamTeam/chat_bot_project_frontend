@@ -48,6 +48,21 @@
      right: 20px;
 }
 
+/* ---------------------------------  CREDENTIALS BUTTON------------------------------------------------*/
+
+.credentials {
+     max-width: 157px;
+     margin-top: 8px;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 500;
+     font-size: 18px;
+     line-height: 28px;
+     color: #4466f5;
+     border: 1px solid #4466f5;
+     background: transparent;
+     box-sizing: border-box;
+}
 
 .googleLoginButton svg {
      width: 100px !important;
