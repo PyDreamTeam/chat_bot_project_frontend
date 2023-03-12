@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import ProfileTitle from "@/src/components/shared/textfields/ProfileTitle";
 import styles from "./styles/FormMyAccount.module.css";
-import ChangePassword from "../../formMyAccount/changePassword/ChangePassword";
-import PersonalData from "../../../entities/formMyAccount/personalData/PersonalData";
+import ChangePassword from "./changePassword/ChangePassword";
+import PersonalData from "./personalData/PersonalData";
 
 enum FormMyAccountTypes {
      personalData = "personalData",

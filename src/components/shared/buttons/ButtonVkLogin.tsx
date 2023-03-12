@@ -1,5 +1,4 @@
 import React from "react";
-// import bridge from "@vkontakte/vk-bridge";
 
 const ButtonVkLogin = () => {
      const onAuth = async () => {
