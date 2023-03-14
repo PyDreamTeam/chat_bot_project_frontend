@@ -12,10 +12,10 @@ export enum UserDefaultAvatar {
 interface AvatarProps {
      type: keyof typeof UserDefaultAvatar;
      url?: string;
-     username?: string | undefined;
+     username?: string;
 }
 
-const Avatar: FC<AvatarProps> = ({ url, type, username }) => {
+const Avatar: FC<AvatarProps> = ({ url, type, username="" }) => {
      return type === "forHeader" ? (
           url ? (
                <Image src={url} alt={"avatar"} />

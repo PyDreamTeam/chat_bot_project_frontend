@@ -13,7 +13,6 @@ const index = () => {
 
      return (
           <AccountPageWrapper title={credentials.name}>
-               <SelectTitle config={SELECT_TITLE_CONFIG}/>
                <AccountPageMain />
           </AccountPageWrapper>
      );

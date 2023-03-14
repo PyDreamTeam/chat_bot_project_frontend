@@ -7,8 +7,8 @@ import ButtonRadioInput, { BtnVariants } from "@/src/components/shared/buttons/B
 
 export interface IDropDownSelect {
      config?: IDropDownItem[] | undefined;
-     onChange?: () => void;
-     isChecked?: boolean;
+     onChange?: (event: { currentTarget: { id: any; }; }) => void;
+     isChecked?: string;
 }
 
 const DropDownSelect: FC<IDropDownSelect & DropDownItemProps> = ({ config = [] }, activeDropDownItem) => {

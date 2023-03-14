@@ -15,7 +15,7 @@ interface IFormMyAccount {
 const FormMyAccount: FC<IFormMyAccount> = ({ type }) => {
      return (
           <div className={styles.formMyAccount}>
-               <ProfileTitle text={"Изменить пароль"} />
+               <ProfileTitle text={`${type === "changePassword" ? "Изменить пароль" : "Персональные данные"}`} />
                {type === "changePassword" ? <ChangePassword /> : <PersonalData /> }
           </div>
      );

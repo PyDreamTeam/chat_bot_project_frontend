@@ -1,0 +1,19 @@
+.tabItem {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #000000;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tabItem:first-child{
+    padding: 10px 10px 10px 0;
+}
+
+.active {
+    color: #4466F5;
+    border-bottom: 2px solid #4466F5;
+}
