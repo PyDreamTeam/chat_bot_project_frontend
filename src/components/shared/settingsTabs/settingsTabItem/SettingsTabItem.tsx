@@ -4,27 +4,26 @@ import styles from "./SettingsTabItem.module.css";
 import Link from "next/link";
 
 export interface ISettingsTabItem {
-  id: number
-  title: string
-  href: object
+  id: number,
+  title: string,
+  href: object,
 }
 
-export interface ISettingsTabItemProps extends ISettingsTabItem {
+export interface ISettingsTabItemProps {
   activeTabItem: number,
-  onClick: (id: number) => void
+  onClick: MouseEventHandler<HTMLAnchorElement>,
+  tabProps: ISettingsTabItem
 }
 
-const SettingsTabItem:FC <ISettingsTabItemProps> = ({id, title, onClick, activeTabItem, href}) => {
-
-     const handleTabItemClick = () => onClick(id);
+const SettingsTabItem:FC <ISettingsTabItemProps> = ({tabProps, onClick, activeTabItem}) => {
 
      return (
-          <Link href={href}
-               onClick={handleTabItemClick}
+          <Link href={tabProps.href}
+               onClick={onClick}
                className={`${styles.tabItem} 
-            ${activeTabItem === id ? styles.active : ""}`}
+            ${activeTabItem === tabProps.id ? styles.active : ""}`}
           >
-               {title}
+               {tabProps.title}
           </Link>
      );
 };

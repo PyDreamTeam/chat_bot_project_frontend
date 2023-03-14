@@ -4,6 +4,7 @@ import styles from "./AccountpageCredential.module.css";
 import UserAvatar from "@/src/components/shared/Avatar/Avatar";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import VerifiedEmail from "@/src/components/shared/verifiedEmail/verifiedEmail";
+import { useRouter } from "next/router";
 
 interface IAccountPageCredential {
      email: string;
@@ -15,9 +16,12 @@ interface IAccountPageCredential {
 }
 
 const AccountPageCredential: FC<IAccountPageCredential> = ({id, isEmailVerified, email, avatarUrl, mobileNumber, name }) => {
+
+     const route = useRouter();
+
      return (
           <div className={styles.credentialsWrapper}>
-               <UserAvatar type={"forSettings"} username={name} />
+               <UserAvatar url={avatarUrl} type={"forSettings"} username={name} />
                <div className={styles.credentialsRightBlock}>
                     <h4>{name}</h4>
                     {mobileNumber && <p className={styles.credentialsInfo}>{mobileNumber}</p>}
@@ -25,8 +29,8 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({id, isEmailVerified,
                          {<p className={styles.credentialsInfo}>{email}</p>}
                          {isEmailVerified && <VerifiedEmail />}
                     </div>
-                    <ButtonAuthHeader className={ButtonAuthClasses.credentials} href={{pathname: "/my-account/[slug]/settings",
-                         query: { slug: id}}} text={"Редактировать"} />
+                    {route.pathname === "/my-account/[slug]" && <ButtonAuthHeader className={ButtonAuthClasses.credentials} href={{pathname: "/my-account/[slug]/settings",
+                         query: { slug: id}}} text={"Редактировать"} />}
                </div>
           </div>
      );

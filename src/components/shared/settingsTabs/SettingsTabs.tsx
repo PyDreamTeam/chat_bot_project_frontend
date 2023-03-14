@@ -12,7 +12,7 @@ const SettingsTabs:FC <ISettingsTabs> = ({config, activeTabItem=1, onClick }) =>
      return (
           <nav className={styles.tabs}>
                {config.map(tab => (
-                    <SettingsTabItem href={tab.href} key={tab.id} id={tab.id} title={tab.title} activeTabItem={activeTabItem} onClick={onClick} />
+                    <SettingsTabItem tabProps={tab} key={tab.id} activeTabItem={activeTabItem} onClick={() => onClick(tab.id)} />
                ))}
           </nav>
      );

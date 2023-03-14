@@ -36,7 +36,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children
           {
                id: 3,
                title: "Способ оплаты",
-               href: {pathname: "/my-account/[slug]/payment",
+               href: {pathname: "/my-account/[slug]",
                     query: { slug: credentials.id}
                },
           },
