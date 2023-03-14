@@ -32,12 +32,9 @@
 }
 
 .textBlock p:last-child {
-     font-family: "Inter";
-     font-style: normal;
      font-weight: 400;
      font-size: 14px;
-     line-height: 140%;
-     color: #595f6c;
+     line-height: 20px;
      padding-top: 8px;
 }
 
