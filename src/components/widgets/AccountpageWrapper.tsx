@@ -1,16 +1,22 @@
-import React, { FC, FormEvent, useState } from "react";
+import React, { FC, FormEvent, useEffect, useState } from "react";
 import { useAppSelector } from "@/src/hooks/types";
 import styles from "@/src/components/widgets/styles/styles.module.css";
 import Sidebar from "@/src/components/features/Sidebar/Sidebar";
 import AccountPageHeader from "@/src/components/features/AccountPage/AccountPageHeader/AccountPageHeader";
 import { WithChildren } from "@/src/types/withChildren";
 import { useRouter } from "next/router";
-import AccountPageMain from "../features/AccountPage/AccountPageMain/AccountPageMain";
 import SettingsTabs from "@/src/components/shared/settingsTabs/SettingsTabs";
 
 interface IAccountWrapper {
      title?: string;
 }
+
+const settingsRoute = "/my-account/[slug]/settings";
+const changePasswordRoute = "/my-account/[slug]/changepassword";
+const paymentRoute = "/my-account/[slug]/payment";
+const firstTab = 1;
+const secondTab = 2;
+const thirdTab = 3;
 
 const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children}) => {
 
@@ -42,10 +48,19 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children
           },
      ];
 
-     const [activeTabItem, setActiveTabItem] = useState<number>(1);
-     const handleSetActiveTabItem = (id: number) => {
-          setActiveTabItem(id);
-     };
+     const [activeTabItem, setActiveTabItem] = useState<number>(firstTab);
+
+     useEffect(() => {
+          switch (router.route) {
+               case settingsRoute :
+                    return setActiveTabItem(firstTab);
+               case changePasswordRoute :
+                    return setActiveTabItem(secondTab);
+               case paymentRoute :
+                    return setActiveTabItem(thirdTab);
+               default : setActiveTabItem(firstTab);
+          }
+     }, [router]);
 
      return (
           <div className={styles.accountWrapper}>
@@ -54,7 +69,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children
                     <AccountPageHeader title={title} id={credentials?.id} name={credentials?.name} />
                     {router.route !== "/my-account" && router.route !== "/my-account/[slug]"
                       ?
-                      <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} onClick={handleSetActiveTabItem}/> : null}
+                      <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem}/> : null}
                     {children}
                </div>
           </div>

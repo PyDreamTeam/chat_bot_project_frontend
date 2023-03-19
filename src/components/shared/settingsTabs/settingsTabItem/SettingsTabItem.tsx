@@ -11,15 +11,13 @@ export interface ISettingsTabItem {
 
 export interface ISettingsTabItemProps {
   activeTabItem: number,
-  onClick: MouseEventHandler<HTMLAnchorElement>,
   tabProps: ISettingsTabItem
 }
 
-const SettingsTabItem:FC <ISettingsTabItemProps> = ({tabProps, onClick, activeTabItem}) => {
+const SettingsTabItem:FC <ISettingsTabItemProps> = ({tabProps, activeTabItem}) => {
 
      return (
           <Link href={tabProps.href}
-               onClick={onClick}
                className={`${styles.tabItem} 
             ${activeTabItem === tabProps.id ? styles.active : ""}`}
           >

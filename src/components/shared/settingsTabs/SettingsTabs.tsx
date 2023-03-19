@@ -5,14 +5,13 @@ import styles from "./SettingsTabs.module.css";
 interface ISettingsTabs {
      config: ISettingsTabItem[]
      activeTabItem: number
-     onClick: any
 }
 
-const SettingsTabs:FC <ISettingsTabs> = ({config, activeTabItem=1, onClick }) => {
+const SettingsTabs:FC <ISettingsTabs> = ({config, activeTabItem }) => {
      return (
           <nav className={styles.tabs}>
                {config.map(tab => (
-                    <SettingsTabItem tabProps={tab} key={tab.id} activeTabItem={activeTabItem} onClick={() => onClick(tab.id)} />
+                    <SettingsTabItem tabProps={tab} key={tab.id} activeTabItem={activeTabItem} />
                ))}
           </nav>
      );
