@@ -1,0 +1,49 @@
+.h1 {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 62px;
+    letter-spacing: -0.01em;
+}
+.h2 {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 82px;
+}
+.h3 {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 82px;
+}
+.h4 {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 39px;
+}
+.p {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+}
+
+.black{
+    color: #17181A;
+}
+.grey {
+    color: #595F6C;
+}
+.telegray {
+    color: #909090;
+}
+.red {
+    color: #F53527;
+}
+.green {
+    color: #4F8325;
+}
