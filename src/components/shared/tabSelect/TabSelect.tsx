@@ -1,8 +1,8 @@
-import React, {FC, useState} from "react";
+import React, { FC, useState } from "react";
 
 import styles from "./styles/tabSelect.module.css";
 import DropDownSelect from "@/src/components/entities/dropDownSelect/DropDownSelect";
-import {DROPDOWN_SELECT_CONFIG} from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
+import { DROPDOWN_SELECT_CONFIG } from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
 
 export interface ITabSelect {
      id?: number;
@@ -16,17 +16,16 @@ export interface TabSelectProps {
 }
 
 const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onClick, activeTabSelect }) => {
-
      const [toggle, setToggle] = useState(false);
      const handleOpenClose = () => setToggle(!toggle);
 
-     const [selectedInput, setSelectedInput] = useState("");
+     const [selectedInput, setSelectedInput] = useState<any>(false);
 
-     const handleChange = (inputValue: React.SetStateAction<string>) => {
+     const handleChange = (inputValue: any) => {
           setSelectedInput(inputValue);
      };
 
-     const handleRadioChange = (event: { currentTarget: { id: any } }) => {
+     const handleRadioChange = (event: any) => {
           const { id } = event.currentTarget;
           handleChange(id);
      };

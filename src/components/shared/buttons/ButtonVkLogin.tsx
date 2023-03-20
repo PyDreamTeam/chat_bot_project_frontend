@@ -1,21 +1,15 @@
 import React from "react";
-// import bridge from "@vkontakte/vk-bridge";
+// import VkAuth from "react-vk-auth";
+import styles from "./styles/styles.module.css";
 
 const ButtonVkLogin = () => {
-     const onAuth = async () => {
-          console.log(1);
+     const onAuth = async (data: any) => {
+          console.log("VK DATA", data);
      };
 
      return (
-          <svg
-               id="vk_auth"
-               onClick={() => onAuth()}
-               width="46"
-               height="26"
-               viewBox="0 0 46 26"
-               fill="none"
-               xmlns="http://www.w3.org/2000/svg"
-          >
+          // <VkAuth className={styles.vkLogin} apiId={"51572250"} callback={onAuth}>
+          <svg id="vk_auth" width="46" height="26" viewBox="0 0 46 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -23,6 +17,7 @@ const ButtonVkLogin = () => {
                     fill="#2787F5"
                />
           </svg>
+          // </VkAuth>
      );
 };
 
