@@ -1,0 +1,66 @@
+.authRightBlock {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto;
+}
+.formCenter {
+     display: flex;
+     justify-content: center;
+}
+.authContentBlock {
+     display: flex;
+     flex-direction: column;
+     max-width: 480px;
+}
+.questionRoute {
+     padding: 16px 0 34px;
+}
+.questionSignIn {
+     padding: 18px 0 34px;
+}
+.questionSocials {
+     text-align: center;
+}
+.signIn {
+     padding-bottom: 24px;
+}
+.addEmail {
+     padding: 12px 0 35px 20px;
+}
+.updateName {
+     padding: 25px 0 34px 20px;
+}
+.agreement {
+     padding: 16px 20px;
+}
+.h3,
+.h2,
+.h4 {
+     font-family: "Inter", sans-serif;
+     font-style: normal;
+     font-weight: 400;
+}
+
+.h3 {
+     font-size: 18px;
+     line-height: 150%;
+     color: #17181a;
+}
+
+.h2 {
+     color: #595f6c;
+     font-size: 20px;
+     line-height: 28px;
+}
+
+.h4 {
+     color: #595f6c;
+     font-size: 16px;
+     line-height: 150%;
+     text-align: center;
+}
+
+.authContentBlock a {
+     color: #4466f5;
+}

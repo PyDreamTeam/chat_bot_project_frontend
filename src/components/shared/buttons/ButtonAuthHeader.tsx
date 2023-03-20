@@ -5,12 +5,13 @@ import styles from "./styles/styles.module.css";
 export enum ButtonAuthClasses {
      signIn = "signIn",
      signUp = "signUp",
+     credentials = "credentials",
 }
 
 interface ButtonAuthProps {
      text: string;
      href: string;
-     className: ButtonAuthClasses.signIn | ButtonAuthClasses.signUp;
+     className: ButtonAuthClasses.signIn | ButtonAuthClasses.signUp | ButtonAuthClasses.credentials;
 }
 
 const ButtonAuthHeader = ({ text, href, className }: ButtonAuthProps) => {

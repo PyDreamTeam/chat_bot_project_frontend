@@ -1,0 +1,11 @@
+.iconsSignIn {
+     display: flex;
+     align-items: center;
+     width: 100%;
+     justify-content: space-around;
+}
+.socialsButton {
+     background: transparent;
+     border: none;
+     cursor: pointer;
+}

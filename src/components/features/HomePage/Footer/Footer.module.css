@@ -1,0 +1,20 @@
+.footerWrapper {
+     background: #000000;
+}
+
+.footer {
+     max-width: 1440px;
+     display: flex;
+     justify-content: space-between;
+     padding: 81px 148px 148px 88px;
+     margin: auto;
+}
+
+.logoSvg {
+     fill: #ffffff;
+     transition: 0.3s;
+}
+
+.logoSvg:hover {
+     fill: powderblue;
+}

@@ -1,9 +1,14 @@
 import React from "react";
 import styles from "./styles/styles.module.css";
 
-const ButtonSubmit = ({ text, isDisabled }: any) => {
+interface ButtonSubmitProps {
+     text: string;
+     isDisabled: boolean;
+}
+
+const ButtonSubmit = ({ text, isDisabled }: ButtonSubmitProps) => {
      return (
-          <button disabled={isDisabled} className={`${styles.submit} ${isDisabled ? styles.submitDisabled : null}`}>
+          <button type="submit" disabled={isDisabled} className={`${styles.submit} ${isDisabled ? styles.submitDisabled : null}`}>
                {text}
           </button>
      );

@@ -1,0 +1,35 @@
+.menuWrapper {
+     min-width: 200px;
+     width: 100%;
+     position: absolute;
+     top: 70px;
+     right: 0;
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     text-align: left;
+     list-style-type: none;
+     padding: 10px;
+     background: #f4f5f6;
+     box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
+     border-radius: 20px;
+     z-index: 2;
+}
+
+.navigateButton {
+     border: none;
+     display: block;
+     background: transparent;
+     position: relative;
+     width: 100%;
+     text-align: left;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 150%;
+     color: #17181a;
+     padding: 10px 0 10px 10px;
+     transition: 0.5s;
+     cursor: pointer;
+}

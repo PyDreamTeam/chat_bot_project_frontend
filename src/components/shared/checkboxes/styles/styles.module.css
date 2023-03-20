@@ -1,0 +1,24 @@
+.checkboxForm {
+     margin-right: 10px;
+     appearance: none;
+     -webkit-appearance: none;
+     width: 22px;
+     height: 22px;
+     background: rgba(255, 255, 255, 0.0001);
+     background-blend-mode: multiply;
+     border: 3px solid greenyellow;
+     border-radius: 7px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+}
+.checkboxForm:after {
+     content: "✔";
+     font-size: 19px;
+     color: green;
+     visibility: hidden;
+}
+.checkboxForm:checked:after {
+     visibility: visible;
+}

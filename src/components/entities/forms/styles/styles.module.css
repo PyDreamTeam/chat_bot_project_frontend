@@ -1,0 +1,43 @@
+.formUniversal {
+     width: 440px;
+     display: flex;
+     flex-direction: column;
+}
+/*------------------  inputLabelErrorWrapper состоит из поля для ввода, лейбла, иконки с ошибкой и сообщения с ошибкой   -------------------------------------------------------*/
+.inputLabelErrorWrapper {
+     margin-bottom: 16px;
+     position: relative;
+}
+
+.inputField {
+     font-family: "Inter", sans-serif;
+     font-style: normal;
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 150%;
+     height: 64px;
+     background: #f4f5f6;
+     border-radius: 20px;
+     border: none;
+     width: 100%;
+     padding: 16px;
+     /*border: 2px solid #9CE562;*/
+}
+.inputError {
+     border: 2px solid #f53527;
+}
+
+.errorMessage {
+     color: #f53527;
+     font-family: "Inter", sans-serif;
+     font-style: normal;
+     font-weight: 400;
+     font-size: 16px;
+     line-height: 150%;
+     margin-top: 8px;
+}
+/*  ------------- CHECKBOX with getting notifications             -------------------------     */
+.notificationsBlock {
+     display: flex;
+     margin-bottom: 16px;
+}
