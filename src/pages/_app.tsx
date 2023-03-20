@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import React from "react";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
-import { useRouter } from "next/router";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { googleId } from "../pagesData/sign-in";
 
