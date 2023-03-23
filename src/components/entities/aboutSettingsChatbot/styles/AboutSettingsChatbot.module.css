@@ -1,6 +1,6 @@
 .wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 80px 0;
 }
 .blockImg {
