@@ -127,6 +127,36 @@
       "password": "11111111111",
       "get_email_notifications": "",
       "id": "rkgiYhS"
+    },
+    {
+      "name": "Natali",
+      "email": "pashkinanata@mail.ru",
+      "password": "11111111111",
+      "get_email_notifications": "",
+      "id": "iGOs6Xj"
+    },
+    {
+      "name": "Natali",
+      "email": "pashkinanata@mail.ru",
+      "password": "11111111111",
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "MW-y41u"
+    },
+    {
+      "name": "Natali",
+      "email": "pashkinanata@mail.ru",
+      "password": "11111111111",
+      "get_email_notifications": "",
+      "id": "k0joqhD"
+    },
+    {
+      "name": "Natali",
+      "email": "pashkinanata@mail.ru",
+      "password": "11111111111",
+      "get_email_notifications": "",
+      "id": "nMY47Ed"
     }
   ]
 }

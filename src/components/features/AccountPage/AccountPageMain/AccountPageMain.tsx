@@ -6,6 +6,7 @@ import TemplateSelections from "@/src/components/entities/templateselections/Tem
 import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
 import { useAppSelector } from "@/src/hooks/types";
 import SelectInAccount from "@/src/components/entities/selectInAccount/selectInAccount";
+import AboutSettingsChatbot from "@/src/components/entities/aboutSettingsChatbot/AboutSettingsChatbot";
 
 const AccountPageMain = () => {
      const { name } = useAppSelector((state) => state.credentialsSlice.credentials);
@@ -19,6 +20,7 @@ const AccountPageMain = () => {
                <InputSearchField />
                <SelectInAccount />
                <Solutions />
+               <AboutSettingsChatbot/>
                <TemplateSelections />
                <SearchHistory title={"История поиска"} />
           </main>
