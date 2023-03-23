@@ -4,7 +4,7 @@ import ListSettingChatbotSettings
      from "@/src/components/entities/aboutSettingsChatbot/listSettingsChatbot/ListSettingChatbotSettings";
 import {ABOUT_SETTINGS_CHATBOT} from "@/src/components/entities/aboutSettingsChatbot/AboutSettingsConfig";
 import Image from "next/image";
-import imageDev from "./pictures/Developers.png";
+import imageDev from "./pictures/Group.svg";
 
 import styles from "./styles/AboutSettingsChatbot.module.css";
 
