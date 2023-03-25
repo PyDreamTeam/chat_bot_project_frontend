@@ -26,5 +26,14 @@ pipeline {
         sh 'docker run -d -p 3000:3000 nextapp'
       }
     }
+    stage('Notify') {
+      steps {
+        telegramSend(
+          message: 'Build complete',
+          chatId: '6131951003:AAGZI_f51Phspi6bVhW5YRALpETRxJE1ocs',
+          tokenCredentialId: '498456131'
+        )
+      }
+    }
   }
 }
