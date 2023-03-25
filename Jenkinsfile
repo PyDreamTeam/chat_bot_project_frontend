@@ -17,16 +17,7 @@ pipeline {
         checkout scm
       }
     }
-    stage('Build') {
-      steps {
-        
-        
-        sh 'npm install --legacy-peer-deps'
-
-        
-        sh 'npm run build'
-      }
-    }
+    
     stage('Docker build') {
       steps {
         
