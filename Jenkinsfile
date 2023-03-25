@@ -26,14 +26,32 @@ pipeline {
         sh 'docker run -d -p 3000:3000 nextapp'
       }
     }
-    stage('Notify') {
-      steps {
-        telegramSend(
-          message: 'Build complete',
-          chatId: '6131951003:AAGZI_f51Phspi6bVhW5YRALpETRxJE1ocs',
-          tokenCredentialId: '498456131'
-        )
-      }
-    }
+    
   }
+  post {
+     success {
+        withCredentials([string(credentialsId: 'botSecret', variable: 'TOKEN'), string(credentialsId: 'chatId', variable: 'CHAT_ID')]) {
+        sh  ("""
+            curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC *Branch*: ${env.GIT_BRANCH} *Build* : OK *Published* = YES'
+        """)
+        }
+     }
+
+     aborted {
+        withCredentials([string(credentialsId: 'botSecret', variable: 'TOKEN'), string(credentialsId: 'chatId', variable: 'CHAT_ID')]) {
+        sh  ("""
+            curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC *Branch*: ${env.GIT_BRANCH} *Build* : `Aborted` *Published* = `Aborted`'
+        """)
+        }
+
+     }
+     failure {
+        withCredentials([string(credentialsId: 'botSecret', variable: 'TOKEN'), string(credentialsId: 'chatId', variable: 'CHAT_ID')]) {
+        sh  ("""
+            curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC  *Branch*: ${env.GIT_BRANCH} *Build* : `not OK` *Published* = `no`'
+        """)
+        }
+     }
+
+ }
 }
