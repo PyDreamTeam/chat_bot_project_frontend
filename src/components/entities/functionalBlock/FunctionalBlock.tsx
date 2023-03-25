@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@/src/components/shared/textfields/TextField";
 import ListWithCheck
      from "@/src/components/entities/lists/listWithCheck/ListWithCheck";
-import {CONFIG} from "@/src/components/entities/aboutSettingsChatbot/AboutSettingsConfig";
+import {CONFIG} from "@/src/components/entities/functionalBlock/Config";
 import Image from "next/image";
 import imageDev from "./pictures/Group.svg";
 
