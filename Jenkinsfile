@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools {
+    nodejs "18.15.0"
+}
 
   environment {
     DOCKER_REGISTRY = 'https://hub.docker.com/repositories/mamicheck'
