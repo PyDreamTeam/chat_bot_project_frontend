@@ -25,21 +25,21 @@ pipeline {
       }
     }
 
-    // stage('Docker push') {
-    //   steps {
+    stage('Docker push') {
+      steps {
         
-    //     withCredentials([string(credentialsId: env.DOCKER_REGISTRY_CREDENTIALS_ID, variable: 'DOCKER_REGISTRY_CREDENTIALS')]) {
-    //       sh "docker login -u ${withCredentials([string(credentialsId: env.DOCKER_REGISTRY_CREDENTIALS_ID, variable: 'USERNAME')]) { return USERNAME }} -p '$DOCKER_REGISTRY_CREDENTIALS' ${env.DOCKER_REGISTRY_URL}"
-    //     }
-    //     sh "docker push ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}"
-    //   }
-    // }
+        withCredentials([string(credentialsId: env.DOCKER_REGISTRY_CREDENTIALS_ID, variable: 'DOCKER_REGISTRY_CREDENTIALS')]) {
+          sh "docker login -u ${withCredentials([string(credentialsId: env.DOCKER_REGISTRY_CREDENTIALS_ID, variable: 'USERNAME')]) { return USERNAME }} -p '$DOCKER_REGISTRY_CREDENTIALS' ${env.DOCKER_REGISTRY_URL}"
+        }
+        sh "docker push ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}"
+      }
+    }
 
-    // stage('Deploy') {
-    //   steps {
+    stage('Deploy') {
+      steps {
         
-    //     sh "docker run -d -p ${env.HOST_PORT}:${env.CONTAINER_PORT} ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}"
-    //   }
-    // }
+        sh "docker run -d -p ${env.HOST_PORT}:${env.CONTAINER_PORT} ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}"
+      }
+    }
   }
 }
