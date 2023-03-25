@@ -7,12 +7,7 @@ pipeline {
         checkout scm
       }
     }
-    stage('Stop and delete old containers') {
-      steps {
-        
-        sh 'docker rm $(docker ps -a -q)'
-      }
-    }
+    
     stage('Docker build') {
       steps {
         // Build Docker image with the Next.js application
