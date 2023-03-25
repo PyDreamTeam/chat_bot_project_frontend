@@ -1,17 +1,6 @@
 pipeline {
   agent any
 
-  environment {
-    IMAGE_NAME = 'nextjs-app'
-    DOCKER_REGISTRY_URL = 'https://hub.docker.com/repositories/mamicheck'
-    DOCKERHUB_USERNAME = credentials('DOCKERHUB_CREDENTIALS').username
-    DOCKERHUB_PASSWORD = credentials('DOCKERHUB_CREDENTIALS').password
-    CONTAINER_PORT = '3000'
-    HOST_PORT = '3000'
-    // TELEGRAM_BOT_TOKEN = credentials('5964679894:AAHWYbBdQGcfi3N6kPIva9eMGgoFiihZm_E')
-    // TELEGRAM_CHAT_ID = '498456131'
-  }
-
   stages {
     stage('Checkout') {
       steps {
@@ -26,19 +15,20 @@ pipeline {
       }
     }
 
-    stage('Docker push') {
+    stage('Build Docker image') {
       steps {
-        
-        sh "echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin"
-        
-        sh "docker push ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}"
+        script {
+          docker.build("nextapp:${env.BUILD_ID}")
+          docker.withRegistry('https://hub.docker.com/repositories/mamicheck', 'DOCKERHUB_CREDENTIALS') {
+            docker.image("myapp:${env.BUILD_ID}").push()
+          }
+        }
       }
     }
-
-    stage('Deploy') {
+    
+    stage('Deploy using Docker Compose') {
       steps {
-        
-        sh "docker run -d -p ${env.HOST_PORT}:${env.CONTAINER_PORT} ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}"
+        sh 'docker-compose up -d'
       }
     }
   }
