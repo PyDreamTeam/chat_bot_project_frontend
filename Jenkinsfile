@@ -10,18 +10,19 @@ pipeline {
             steps {
                 sh 'npm install --legacy-peer-deps'
                 sh 'npm run build'
-                sh 'docker build -t my-next-app .'
             }
         }
 
-        stage('Push') {
+       stage('Test') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
-                    sh 'docker tag my-next-app:latest mamicheck/my-next-app:latest'
-                    sh 'docker push mamicheck/my-next-app:latest'
-                }
+                sh 'npm run test'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh 'npm start'
+            }
+        }
+        }
     }
-}
