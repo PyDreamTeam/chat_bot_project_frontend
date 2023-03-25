@@ -1,7 +1,10 @@
 pipeline {
   agent {
-    label 'docker'
-    } 
+    docker {
+      image '18.15.0-alpine'
+      args '-p 3000:3000'
+    }
+  }
   environment {
     DOCKER_IMAGE = 'next-app-image'
     DOCKER_CONTAINER_NAME = 'next-app'
