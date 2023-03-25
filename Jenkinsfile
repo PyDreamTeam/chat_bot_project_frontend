@@ -10,7 +10,7 @@ pipeline {
     stage('Stop and delete old containers') {
       steps {
         
-        sh 'docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'
+        sh 'docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
       }
     }
     stage('Docker build') {
