@@ -1,6 +1,6 @@
 import ListIcon from "@/src/components/shared/listIcon/ListIcon";
 
-export const ABOUT_SETTINGS_CHATBOT = [
+export const CONFIG = [
      {      
           id: 1,
           icon: <ListIcon/>,

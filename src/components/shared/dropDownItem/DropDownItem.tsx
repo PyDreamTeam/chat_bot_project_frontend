@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "@/src/components/shared/tabSelect/styles/tabSelect.module.css";
+import styles from "./styles/DropDownItem.module.css";
 
 export interface IDropDownItem {
      id?: number;

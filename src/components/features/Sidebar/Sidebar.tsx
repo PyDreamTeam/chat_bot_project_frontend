@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 
 import styles from "./Sidebar.module.css";
 import Logo, { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
-import ListSidebar from "@/src/components/entities/listsidebar/ListSidebar";
+import ListSidebar from "@/src/components/entities/lists/listsidebar/ListSidebar";
 import { SIDEBAR_CONFIG } from "@/src/components/features/Sidebar/pictures/SidebarConfig";
 import { useAppDispatch } from "@/src/hooks/types";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";

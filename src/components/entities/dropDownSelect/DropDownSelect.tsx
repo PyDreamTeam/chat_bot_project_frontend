@@ -1,17 +1,18 @@
 import React, { FC } from "react";
 
 import styles from "./styles/DropDownSelect.module.css";
-import DropDownItem, { DropDownItemProps, IDropDownItem } from "@/src/components/shared/dropDownItem/DropDownItem";
+import DropDownItem, { IDropDownItem } from "@/src/components/shared/dropDownItem/DropDownItem";
 
 import ButtonRadioInput, { BtnVariants } from "@/src/components/shared/buttons/ButtonRadioInput";
 
 export interface IDropDownSelect {
      config?: IDropDownItem[] | undefined;
-     onChange?: () => void;
+     onChange?: (event: { currentTarget: { id: any } }) => void;
      isChecked?: boolean;
+     activeDropDownItem?: number | string;
 }
 
-const DropDownSelect: FC<IDropDownSelect & DropDownItemProps> = ({ config = [] }, activeDropDownItem) => {
+const DropDownSelect: FC<IDropDownSelect> = ({ config = [] }, activeDropDownItem) => {
      return (
           <div className={styles.dropDown}>
                {config.map((item) => (

@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import SettingsChatbotItem from "@/src/components/shared/settingsChatbotItem/SettingsChatbotItem";
+import TabCheck from "@/src/components/shared/tabs/tabCheck/TabCheck";
 
 import styles from "./styles/ListSettingChatbotSettings.module.css";
 
@@ -17,7 +17,7 @@ const ListSettingChatbotSettings: FC<IListSettingChatbotSettings> = ({titleConfi
      return (
           <div className={styles.listItem}>
                {titleConfig.map((item) => (
-                    <SettingsChatbotItem
+                    <TabCheck
                          id={item.id}
                          icon={item.icon}
                          title={item.title}

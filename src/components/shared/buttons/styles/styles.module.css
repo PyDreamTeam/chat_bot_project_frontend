@@ -96,3 +96,8 @@
      color: #ffffff;
      background: #4466f5;
 }
+.vkLogin {
+     border: none;
+     background: transparent;
+     cursor: pointer;
+}

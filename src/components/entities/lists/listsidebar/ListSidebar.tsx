@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import TabItem, { ITabItem, TabItemProps } from "../../shared/tabitem/TabItem";
-
 import styles from "./ListSidebar.module.css";
+
+import TabItem, { ITabItem, TabItemProps } from "../../../shared/tabs/tabitem/TabItem";
 
 interface IListSidebar {
      config: ITabItem[];
