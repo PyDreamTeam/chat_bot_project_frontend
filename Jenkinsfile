@@ -10,7 +10,6 @@ pipeline {
             steps {
                 sh 'npm install --legacy-peer-deps'
                 sh 'npm run build'
-                sh 'npm prune --production'
                 sh 'docker build -t my-next-app .'
             }
         }
