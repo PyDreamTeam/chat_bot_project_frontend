@@ -1,70 +1,28 @@
 pipeline {
-  agent any
-  tools {
-    nodejs "18.15.0"
-}
+    agent any
 
-  environment {
-    DOCKER_REGISTRY = 'https://hub.docker.com/repositories/mamicheck'
-    DOCKER_IMAGE_NAME = 'nextjs'
-    DOCKER_IMAGE_TAG = 'latest'
-    SSH_KEY = credentials('SERVER_SSH')
-    SERVER_HOST = 'jenkins'
-    SERVER_USERNAME = 'evgeniy_r92'
-    NPM_VERSION = '18.15.0'
-  }
-
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+    tools {
+        nodejs "node18.15.0"
     }
 
-    stage('Install dependencies') {
-      tools {
-        nodejs "${NPM_VERSION}"
-      }
-      steps {
-        sh 'npm install'
-      }
-    }
-
-    stage('Run tests') {
-      tools {
-        nodejs "${NPM_VERSION}"
-      }
-      steps {
-        sh 'npm run test'
-      }
-    }
-
-    stage('Build and push Docker image') {
-      steps {
-        script {
-          def dockerImage = docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", "-f Dockerfile .")
-          docker.withRegistry("${DOCKER_REGISTRY}", 'docker-registry-credential-id') {
-            dockerImage.push()
-          }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+                sh 'npm prune --production'
+                sh 'docker build -t my-next-app .'
+            }
         }
-      }
-    }
 
-    stage('Deploy to server') {
-      steps {
-        sshagent(['your-ssh-key-credential-id']) {
-          sh '''
-            ssh -o StrictHostKeyChecking=no ${SERVER_USERNAME}@${SERVER_HOST} << EOF
-            docker stop ${DOCKER_IMAGE_NAME} || true
-            docker rm ${DOCKER_IMAGE_NAME} || true
-            docker pull ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
-            docker run -d --name ${DOCKER_IMAGE_NAME} \
-              -p 3000:3000 \
-              ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
-            EOF
-          '''
+        stage('Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
+                    sh 'docker tag my-next-app:latest mamicheck/my-next-app:latest'
+                    sh 'docker push mamicheck/my-next-app:latest'
+                }
+            }
         }
-      }
     }
-  }
 }
