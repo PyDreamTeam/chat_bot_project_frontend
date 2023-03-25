@@ -15,16 +15,6 @@ pipeline {
       }
     }
 
-    stage('Docker push') {
-      steps {
-        // Push Docker image to Docker Hub or other Docker registry
-        withCredentials([string(credentialsId: 'DOCKERHUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-          sh 'docker login -u mamicheck -p "$DOCKER_HUB_CREDENTIALS"'
-        }
-        sh 'docker push nextapp'
-      }
-    }
-
     stage('Deploy') {
       steps {
         // Deploy Docker container to a server
