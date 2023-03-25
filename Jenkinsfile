@@ -30,7 +30,7 @@ pipeline {
       steps {
         
         sh "echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin"
-        }
+        
         sh "docker push ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}"
       }
     }
