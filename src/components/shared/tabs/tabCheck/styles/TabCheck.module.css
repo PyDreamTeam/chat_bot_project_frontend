@@ -1,0 +1,10 @@
+.setting{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 31px;
+    display: flex;
+    gap: 24px ;
+    padding: 12px 0;
+}
