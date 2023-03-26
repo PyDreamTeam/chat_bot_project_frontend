@@ -1,14 +1,14 @@
 import React, {FC} from "react";
 
-import styles from "./styles/SettingsChatbotItem.module.css";
+import styles from "./styles/TabCheck.module.css";
 
-export interface ISettingsSelect {
+export interface ITabCheck {
      id: number;
      icon: React.ReactNode;
      title: string;
 }
 
-const SettingsChatbotItem: FC<ISettingsSelect> = ({id, icon, title}) => {
+const TabCheck: FC<ITabCheck> = ({id, icon, title}) => {
      return (
           <div key={id}  className={styles.setting}>
                {icon}
@@ -18,4 +18,4 @@ const SettingsChatbotItem: FC<ISettingsSelect> = ({id, icon, title}) => {
      );
 };
 
-export default SettingsChatbotItem;
+export default TabCheck;

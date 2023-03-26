@@ -6,7 +6,7 @@ import {CONFIG} from "@/src/components/entities/functionalBlock/Config";
 import Image from "next/image";
 import imageDev from "./pictures/Group.svg";
 
-import styles from "./styles/AboutSettingsChatbot.module.css";
+import styles from "./styles/FunctionalBlock.module.css";
 
 const FunctionalBlock = () => {
      return (

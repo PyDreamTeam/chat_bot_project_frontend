@@ -1,19 +1,19 @@
 import React, {FC} from "react";
 import TabCheck from "@/src/components/shared/tabs/tabCheck/TabCheck";
 
-import styles from "./styles/ListSettingChatbotSettings.module.css";
+import styles from "./styles/ListWithCheck.module.css";
 
-export interface SettingsItem {
+export interface ListItem {
     id: number;
     icon: React.ReactNode;
     title: string;
 }
 
-export interface IListSettingChatbotSettings {
-    titleConfig: Array<SettingsItem>;
+export interface IListWithCheck{
+    titleConfig: Array<ListItem>;
 }
 
-const ListSettingChatbotSettings: FC<IListSettingChatbotSettings> = ({titleConfig}) => {
+const ListWithCheck: FC<IListWithCheck> = ({titleConfig}) => {
      return (
           <div className={styles.listItem}>
                {titleConfig.map((item) => (
@@ -28,4 +28,4 @@ const ListSettingChatbotSettings: FC<IListSettingChatbotSettings> = ({titleConfi
      );
 };
 
-export default ListSettingChatbotSettings;
+export default ListWithCheck;
