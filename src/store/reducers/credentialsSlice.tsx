@@ -1,17 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { getObjectEmailNameId } from "@/src/shared/heplers/my-account";
+import { ICredentials } from "@/src/shared/types/credentials";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-enum CredentialsTypes {
-     name = "name",
-     email = "email",
-     password = "password",
-     token = "token",
-     id = "id",
-     picture = "picture",
-}
-
-type Credentials = Record<keyof typeof CredentialsTypes, string>;
-
-const initialState: { credentials: Credentials } = {
+const initialState: { credentials: ICredentials } = {
      credentials: {
           name: "",
           email: "",
@@ -26,8 +17,9 @@ const credentialsSlice = createSlice({
      name: "credentials",
      initialState,
      reducers: {
-          setCredentials(state, action) {
+          setCredentials(state, action: PayloadAction<ICredentials>) {
                state.credentials = action.payload;
+               localStorage.setItem("credentials", JSON.stringify(getObjectEmailNameId(action.payload)));
           },
           removeCredentials(state) {
                state.credentials = {

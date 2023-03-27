@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import styles from "./AuthRightBlock.module.css";
-import { WithChildren } from "@/src/types/withChildren";
+import { WithChildren } from "@/src/shared/types/withChildren";
 import AuthTitle from "@/src/components/shared/textfields/AuthTitle";
 import { useRouter } from "next/router";
 import Link from "next/link";

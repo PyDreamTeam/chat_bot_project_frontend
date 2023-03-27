@@ -8,7 +8,7 @@ const index = () => {
 
      const router = useRouter();
 
-     return <AccountPageWrapper />;
+     return <AccountPageWrapper page="startPage" />;
 };
 
 export default index;

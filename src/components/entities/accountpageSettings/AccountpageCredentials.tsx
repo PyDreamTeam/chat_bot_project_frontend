@@ -4,6 +4,8 @@ import styles from "./AccountpageCredential.module.css";
 import UserAvatar from "@/src/components/shared/Avatar/Avatar";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import VerifiedEmail from "@/src/components/shared/verifiedEmail/verifiedEmail";
+import { AccountPageTypes } from "@/src/shared/enums/my-account";
+import { useAppSelector } from "@/src/hooks/types";
 
 interface IAccountPageCredential {
      email: string;
@@ -11,9 +13,12 @@ interface IAccountPageCredential {
      name: string;
      avatarUrl?: string;
      mobileNumber?: string;
+     page: keyof typeof AccountPageTypes;
 }
 
-const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, email, avatarUrl, mobileNumber, name }) => {
+const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, email, avatarUrl, mobileNumber, name, page }) => {
+     const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
+
      return (
           <div className={styles.credentialsWrapper}>
                <UserAvatar type={"forSettings"} username={name} />
@@ -24,7 +29,13 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
                          {<p className={styles.credentialsInfo}>{email}</p>}
                          {isEmailVerified && <VerifiedEmail />}
                     </div>
-                    <ButtonAuthHeader className={ButtonAuthClasses.credentials} href={"/home"} text={"Редактировать"} />
+                    {page === "profile_templates" && (
+                         <ButtonAuthHeader
+                              className={ButtonAuthClasses.credentials}
+                              href={`/my-account/profile/${id}`}
+                              text={"Редактировать"}
+                         />
+                    )}
                </div>
           </div>
      );

@@ -6,24 +6,32 @@ import TemplateSelections from "@/src/components/entities/templateselections/Tem
 import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
 import { useAppSelector } from "@/src/hooks/types";
 import SelectInAccount from "@/src/components/entities/selectInAccount/selectInAccount";
+import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import FunctionalBlock from "@/src/components/entities/functionalBlock/FunctionalBlock";
 
+interface IAccountPageMain {
+     page: keyof typeof AccountPageTypes;
+}
 
-const AccountPageMain = () => {
+const AccountPageMain: React.FC<IAccountPageMain> = ({ page }) => {
      const { name } = useAppSelector((state) => state.credentialsSlice.credentials);
-
-     // useEffect(() => {
-     //      console.log(name);
-     // }, [name]);
 
      return (
           <main>
-               <InputSearchField />
-               <SelectInAccount />
-               <Solutions />
-               <FunctionalBlock/>
-               <TemplateSelections />
-               <SearchHistory title={"История поиска"} />
+               {page === "startPage" && (
+                    <>
+                         <InputSearchField />
+                         <SelectInAccount />
+                         <Solutions />
+                         <TemplateSelections />
+                         <SearchHistory title={"История поиска"} />
+                    </>
+               )}
+               {page === "templates" && (
+                    <>
+                         <FunctionalBlock />
+                    </>
+               )}
           </main>
      );
 };
