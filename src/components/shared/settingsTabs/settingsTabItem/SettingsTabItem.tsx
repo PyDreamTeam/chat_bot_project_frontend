@@ -1,23 +1,23 @@
-import React, {FC, MouseEventHandler} from "react";
+import React, { FC, MouseEventHandler } from "react";
 
 import styles from "./SettingsTabItem.module.css";
 import Link from "next/link";
 
 export interface ISettingsTabItem {
-  id: number,
-  title: string,
-  href: object,
+     id: number;
+     title: string;
+     href: object;
 }
 
 export interface ISettingsTabItemProps {
-  activeTabItem: number,
-  tabProps: ISettingsTabItem
+     activeTabItem: number;
+     tabProps: ISettingsTabItem;
 }
 
-const SettingsTabItem:FC <ISettingsTabItemProps> = ({tabProps, activeTabItem}) => {
-
+const SettingsTabItem: FC<ISettingsTabItemProps> = ({ tabProps, activeTabItem }) => {
      return (
-          <Link href={tabProps.href}
+          <Link
+               href={tabProps.href}
                className={`${styles.tabItem} 
             ${activeTabItem === tabProps.id ? styles.active : ""}`}
           >

@@ -1,4 +1,4 @@
-import React, {FC, ReactNode} from "react";
+import React, { FC, ReactNode } from "react";
 import styles from "./styles/TextField.module.css";
 
 export enum TextFieldTypes {
@@ -10,22 +10,20 @@ export enum TextFieldTypes {
 }
 
 export enum TextColor {
-     black= "black",
+     black = "black",
      grey = "grey",
      telegray = "telegray",
      red = "red",
-     green = "green"
+     green = "green",
 }
 
-interface ITextFieldProps{
+interface ITextFieldProps {
      children: ReactNode;
      type: keyof typeof TextFieldTypes;
      color: keyof typeof TextColor;
 }
 
-const TextField: FC<ITextFieldProps> = ({type, children, color}) => {
-     return (
-          <p className={`${styles[type]} ${styles[color]}`}>{children}</p>
-     );
+const TextField: FC<ITextFieldProps> = ({ type, children, color }) => {
+     return <p className={`${styles[type]} ${styles[color]}`}>{children}</p>;
 };
 export default TextField;

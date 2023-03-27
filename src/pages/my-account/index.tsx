@@ -8,7 +8,7 @@ import AccountPageMain from "@/src/components/features/AccountPage/AccountPageMa
 
 const index = () => {
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
-
+     console.log(credentials);
      const router = useRouter();
 
      return (

@@ -18,8 +18,7 @@ const firstTab = 1;
 const secondTab = 2;
 const thirdTab = 3;
 
-const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children}) => {
-
+const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ title, children }) => {
      const credentials = useAppSelector((state) => state.credentialsSlice.credentials);
 
      const router = useRouter();
@@ -28,23 +27,17 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children
           {
                id: 1,
                title: "Персональные данные",
-               href: {pathname: "/my-account/[slug]/settings",
-                    query: { slug: credentials.id}
-               },
+               href: { pathname: "/my-account/[slug]/settings", query: { slug: credentials.id } },
           },
           {
                id: 2,
                title: "Пароль",
-               href: {pathname: "/my-account/[slug]/changepassword",
-                    query: { slug: credentials.id}
-               },
+               href: { pathname: "/my-account/[slug]/changepassword", query: { slug: credentials.id } },
           },
           {
                id: 3,
                title: "Способ оплаты",
-               href: {pathname: "/my-account/[slug]",
-                    query: { slug: credentials.id}
-               },
+               href: { pathname: "/my-account/[slug]", query: { slug: credentials.id } },
           },
      ];
 
@@ -52,13 +45,14 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children
 
      useEffect(() => {
           switch (router.route) {
-               case settingsRoute :
+               case settingsRoute:
                     return setActiveTabItem(firstTab);
-               case changePasswordRoute :
+               case changePasswordRoute:
                     return setActiveTabItem(secondTab);
-               case paymentRoute :
+               case paymentRoute:
                     return setActiveTabItem(thirdTab);
-               default : setActiveTabItem(firstTab);
+               default:
+                    setActiveTabItem(firstTab);
           }
      }, [router]);
 
@@ -67,9 +61,9 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({title, children
                <Sidebar />
                <div className={styles.accountContentBlock}>
                     <AccountPageHeader title={title} id={credentials?.id} name={credentials?.name} />
-                    {router.route !== "/my-account" && router.route !== "/my-account/[slug]"
-                      ?
-                      <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem}/> : null}
+                    {router.route !== "/my-account" && router.route !== "/my-account/[slug]" ? (
+                         <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
+                    ) : null}
                     {children}
                </div>
           </div>

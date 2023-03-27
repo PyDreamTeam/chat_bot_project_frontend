@@ -15,8 +15,7 @@ interface IAccountPageCredential {
      id?: string;
 }
 
-const AccountPageCredential: FC<IAccountPageCredential> = ({id, isEmailVerified, email, avatarUrl, mobileNumber, name }) => {
-
+const AccountPageCredential: FC<IAccountPageCredential> = ({ id, isEmailVerified, email, avatarUrl, mobileNumber, name }) => {
      const route = useRouter();
 
      return (
@@ -29,8 +28,13 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({id, isEmailVerified,
                          {<p className={styles.credentialsInfo}>{email}</p>}
                          {isEmailVerified && <VerifiedEmail />}
                     </div>
-                    {route.pathname === "/my-account/[slug]" && <ButtonAuthHeader className={ButtonAuthClasses.credentials} href={{pathname: "/my-account/[slug]/settings",
-                         query: { slug: id}}} text={"Редактировать"} />}
+                    {route.pathname === "/my-account/[slug]" && (
+                         <ButtonAuthHeader
+                              className={ButtonAuthClasses.credentials}
+                              href={{ pathname: "/my-account/[slug]/settings", query: { slug: id } }}
+                              text={"Редактировать"}
+                         />
+                    )}
                </div>
           </div>
      );

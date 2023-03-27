@@ -15,7 +15,9 @@ const TemplateSelections = () => {
                     <div className={styles.textBlock}>
                          <p>Подберите шаблон и внедрите комплексный мессенджер-маркетинг в свой бизнес</p>
                          <Link href={"/home"}>Подобрать шаблон {<Image src={arrowTemplate} alt={"arrow"} />}</Link>
-                         <TextField type={"p"} color={"grey"}>База из 100 шаблонов от наших специалистов</TextField>
+                         <TextField type={"p"} color={"grey"}>
+                              База из 100 шаблонов от наших специалистов
+                         </TextField>
                     </div>
                </div>
           </div>

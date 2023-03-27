@@ -15,7 +15,7 @@ interface AvatarProps {
      username?: string;
 }
 
-const Avatar: FC<AvatarProps> = ({ url, type, username="" }) => {
+const Avatar: FC<AvatarProps> = ({ url, type, username = "" }) => {
      return type === "forHeader" ? (
           url ? (
                <Image src={url} alt={"avatar"} />

@@ -10,7 +10,7 @@ interface IUserAvatar {
 
 const UserAvatar: FC<IUserAvatar> = ({ url, username }) => {
      const transformUserNameToAvatar = () => {
-          return username ?  username?.split("")[0].toUpperCase() : "I";
+          return username ? username?.split("")[0].toUpperCase() : "I";
      };
      return (
           <div className={styles.avatar}>
