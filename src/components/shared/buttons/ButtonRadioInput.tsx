@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import styles from "./styles/styles.module.css";
 
 export enum BtnVariants {
@@ -17,9 +17,9 @@ const ButtonRadioInput: FC<IButtonRadioInput> = ({ text, isDisabled, variant }) 
           <button
                type="submit"
                disabled={isDisabled}
-               className={`${
-                    variant === "cancel" ? styles.canselRadioInput : styles.applyRadioInput
-               } ${styles.btnForRadio} ${isDisabled ? styles.submitDisabled : null}`}
+               className={`${variant === "cancel" ? styles.canselRadioInput : styles.applyRadioInput} ${styles.btnForRadio} ${
+                    isDisabled ? styles.submitDisabled : null
+               }`}
           >
                {text}
           </button>

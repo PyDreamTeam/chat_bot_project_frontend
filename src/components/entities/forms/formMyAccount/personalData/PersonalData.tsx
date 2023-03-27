@@ -1,5 +1,5 @@
 import React from "react";
-import {initialValuesPersonData, inputPersonData, validationSchemaPersonData} from "@/src/pagesData/personal-data";
+import { initialValuesPersonData, inputPersonData, validationSchemaPersonData } from "@/src/pagesData/personal-data";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 
 const PersonalData = () => {

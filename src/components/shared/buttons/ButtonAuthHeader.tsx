@@ -10,7 +10,7 @@ export enum ButtonAuthClasses {
 
 interface ButtonAuthProps {
      text: string;
-     href: string;
+     href: object;
      className: ButtonAuthClasses.signIn | ButtonAuthClasses.signUp | ButtonAuthClasses.credentials;
 }
 

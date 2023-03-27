@@ -1,4 +1,4 @@
-import {NameRegExp, PhoneRegExp} from "./../utils/regExps";
+import { NameRegExp, PhoneRegExp } from "./../utils/regExps";
 import { IInputField } from "../components/entities/forms/FormUniversal";
 import * as Yup from "yup";
 
@@ -47,5 +47,5 @@ export const validationSchemaPersonData = Yup.object({
           .required("Введите номер телефона")
           .matches(PhoneRegExp, "Номер телефона не правильный")
           .max(12, "Не корректный номер")
-          .min(12, "Не корректный номер")
+          .min(12, "Не корректный номер"),
 });

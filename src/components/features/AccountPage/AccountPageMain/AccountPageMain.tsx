@@ -6,8 +6,7 @@ import TemplateSelections from "@/src/components/entities/templateselections/Tem
 import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
 import { useAppSelector } from "@/src/hooks/types";
 import SelectInAccount from "@/src/components/entities/selectInAccount/selectInAccount";
-import FunctionalBlock from "@/src/components/entities/functionalBlock/FunctionalBlock";
-
+import Rates from "@/src/components/entities/rates/Rates";
 
 const AccountPageMain = () => {
      const { name } = useAppSelector((state) => state.credentialsSlice.credentials);
@@ -16,12 +15,30 @@ const AccountPageMain = () => {
      //      console.log(name);
      // }, [name]);
 
+     const RatesConfig = [
+          {
+               title: "Basic",
+               price: 19000,
+               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"]
+          },
+          {
+               title: "Basic",
+               price: 19000,
+               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"]
+          },
+          {
+               title: "Basic",
+               price: 19000,
+               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"]
+          }
+     ];
+
      return (
           <main>
                <InputSearchField />
+               <Rates cards={RatesConfig}/>
                <SelectInAccount />
                <Solutions />
-               <FunctionalBlock/>
                <TemplateSelections />
                <SearchHistory title={"История поиска"} />
           </main>
