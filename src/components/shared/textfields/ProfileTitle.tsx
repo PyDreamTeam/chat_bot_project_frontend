@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styles from "./styles/styles.module.css";
 
 export interface IProfileTitle {
-    text: string;
+     text: string;
 }
 
 const ProfileTitle: FC<IProfileTitle> = ({ text }) => {
