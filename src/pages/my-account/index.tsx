@@ -12,8 +12,8 @@ const index = () => {
      const router = useRouter();
 
      return (
-          <AccountPageWrapper title={credentials.name}>
-               <AccountPageMain />
+          <AccountPageWrapper page="startPage" >
+               <AccountPageMain page={"startPage"} />
           </AccountPageWrapper>
      );
 };

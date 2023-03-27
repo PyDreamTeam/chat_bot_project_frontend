@@ -17,7 +17,7 @@ const ButtonFacebookLogin = () => {
           email,
           accessToken,
      }: any) => {
-          dispatch(setCredentials({ name, url, email, accessToken }));
+          dispatch(setCredentials({ name, picture: url, email, token: accessToken }));
      };
 
      React.useEffect(() => {
