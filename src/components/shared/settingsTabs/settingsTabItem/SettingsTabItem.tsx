@@ -6,7 +6,7 @@ import Link from "next/link";
 export interface ISettingsTabItem {
      id: number;
      title: string;
-     href: object;
+     href: string;
 }
 
 export interface ISettingsTabItemProps {

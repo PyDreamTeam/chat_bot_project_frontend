@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { initialValuesUpdate, inputFieldDataChange, validationSchemaUpdate } from "@/src/pagesData/update-password";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
+import styles from "../styles/FormMyAccount.module.css"
+import TextField from "@/src/components/shared/textfields/TextField";
 
 const ChangePassword = () => {
      const [activeEye, setActiveEye] = useState({ password: false, repeatPassword: false });
@@ -14,7 +16,8 @@ const ChangePassword = () => {
      };
 
      return (
-          <>
+          <div className={styles.changePasswordBlock}>
+               <TextField color={"black"} type={"h4"}>Изменить пароль</TextField>
                <FormUniversal
                     validationSchema={validationSchemaUpdate}
                     classNameForm="changePassword"
@@ -27,7 +30,7 @@ const ChangePassword = () => {
                          throw new Error("Function not implemented.");
                     }}
                />
-          </>
+          </div>
      );
 };
 

@@ -30,15 +30,10 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
                          {<p className={styles.credentialsInfo}>{email}</p>}
                          {isEmailVerified && <VerifiedEmail />}
                     </div>
-                    {/*{route.pathname === "/my-account/[slug]" && (*/}
-                    {/*     <ButtonAuthHeader*/}
-                    {/*          className={ButtonAuthClasses.credentials}*/}
-                    {/*          href={{ pathname: "/my-account/[slug]/settings", query: { slug: id } }}*/}
-
                     {page === "profile_templates" && (
                          <ButtonAuthHeader
                               className={ButtonAuthClasses.credentials}
-                              href={`/my-account/profile/${id}`}
+                              href={`/my-account/profile/personaldata`}
                               text={"Редактировать"}
                          />
                     )}
