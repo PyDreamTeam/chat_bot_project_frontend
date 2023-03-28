@@ -10,6 +10,7 @@ const initialState: { credentials: ICredentials } = {
           token: "",
           id: "",
           picture: "",
+          jti: ""
      },
 };
 
@@ -29,6 +30,7 @@ const credentialsSlice = createSlice({
                     token: "",
                     id: "",
                     picture: "",
+                    jti: ""
                };
           },
      },

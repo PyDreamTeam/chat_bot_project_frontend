@@ -37,7 +37,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
           {
                id: 1,
                title: "Персональные данные",
-               href: `/my-account/profile/personaldata`,
+               href: "/my-account/profile/personaldata",
           },
           {
                id: 2,
