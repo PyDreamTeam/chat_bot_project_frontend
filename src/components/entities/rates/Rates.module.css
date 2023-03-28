@@ -1,0 +1,12 @@
+.ratesBlock {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cardsBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 52px;
+}
