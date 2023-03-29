@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
 import styles from "./PasswordError.module.css";
-import TextField from "@/src/components/shared/text/TextField";
 import { errorPasswordConfig } from "@/src/components/shared/passwordError/images/PasswordErrorSvg";
+import TextField from "../textfields/TextField";
 
 export interface IPasswordError {
      errorText: string;

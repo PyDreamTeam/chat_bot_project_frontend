@@ -5,10 +5,9 @@ import TabItem, { ITabItem, TabItemProps } from "../../../shared/tabs/tabitem/Ta
 
 interface IListSidebar {
      config: ITabItem[];
-     onClick?: (id: number) => void;
 }
 
-const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], onClick, activeTabItem }) => {
+const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], activeTabItem }) => {
      return (
           <nav className={styles.list}>
                {config.map((tab) => (
@@ -18,7 +17,6 @@ const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], onClick, ac
                          key={tab.id}
                          id={tab.id}
                          title={tab.title}
-                         onClick={() => onClick(tab.id)}
                          icon={tab.icon}
                     />
                ))}

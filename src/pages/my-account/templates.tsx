@@ -1,8 +1,32 @@
+import Rates from "@/src/components/entities/rates/Rates";
 import AccountPageWrapper from "@/src/components/widgets/AccountpageWrapper";
 import React from "react";
 
 const Templates = () => {
-     return <AccountPageWrapper page="templates"></AccountPageWrapper>;
+
+     const RatesConfig = [
+          {
+               title: "Basic",
+               price: 19000,
+               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"]
+          },
+          {
+               title: "Basic",
+               price: 19000,
+               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"]
+          },
+          {
+               title: "Basic",
+               price: 19000,
+               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"]
+          }];
+
+
+     return (
+          <AccountPageWrapper page="templates">
+               <Rates cards={RatesConfig}/>
+          </AccountPageWrapper>
+     );
 };
 
 export default Templates;

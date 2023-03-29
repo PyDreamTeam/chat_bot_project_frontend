@@ -6,6 +6,7 @@
 }
 
 .cardsBlock {
+    padding-top: 32px;
     display: flex;
     flex-direction: row;
     gap: 52px;

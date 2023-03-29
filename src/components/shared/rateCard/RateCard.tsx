@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 
 import styles from "./RateCard.module.css";
-import TextField from "@/src/components/shared/text/TextField";
+
 import uuid from "uuid-random";
+import TextField from "../textfields/TextField";
+import ButtonSubmit from "../buttons/ButtonSubmit";
+import ButtonAuthHeader from "../buttons/ButtonAuthHeader";
 
 export interface IRateCard {
      title: string,
@@ -25,6 +28,7 @@ const RateCard: FC <IRateCard> = ({title,price, descriptions}) => {
                          {descriptions.map((description) => <TextField key={uuid()} type={"p"} color={"black"}>{description}</TextField>)}
                     </div>
                </div>
+               <ButtonSubmit text={"Выбрать"} isDisabled={true} />
           </div>
      );
 };

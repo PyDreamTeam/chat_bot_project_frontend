@@ -4,9 +4,9 @@ import React from "react";
 
 const ChangePasswordPage = () => {
      return (
-       <AccountPageWrapper page={"profile_settings_password"}>
-            <ChangePassword/>
-       </AccountPageWrapper>
+          <AccountPageWrapper page={"profile_settings_password"}>
+               <ChangePassword/>
+          </AccountPageWrapper>
      );
 };
 
