@@ -5,7 +5,7 @@ import imageAccor from "@/src/components/entities/accordionBlock/pictures/OBJECT
 import TextField from "@/src/components/shared/textfields/TextField";
 import {CONFIG_ACCORDION} from "@/src/components/entities/accordionBlock/ConfigAccordion";
 
-import TabAccordion from "@/src/components/shared/tabs/tabAccordion/TabAccordion";
+import ListWithAccordion from "@/src/components/entities/lists/listWithAccordion/ListWithAccordion";
 
 
 const AccordionBlock = () => {
@@ -15,7 +15,7 @@ const AccordionBlock = () => {
                     <TextField type={"h3"} color={"black"}>
                         Что умеет чат-бот?
                     </TextField>
-                    <TabAccordion data={CONFIG_ACCORDION}/>
+                    <ListWithAccordion data={CONFIG_ACCORDION}/>
                </div>
                <div className={styles.rightBlock}>
                     <Image src={imageAccor} alt="Image"/>
