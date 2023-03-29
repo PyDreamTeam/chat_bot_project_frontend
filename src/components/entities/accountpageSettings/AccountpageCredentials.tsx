@@ -5,6 +5,8 @@ import UserAvatar from "@/src/components/shared/Avatar/Avatar";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import VerifiedEmail from "@/src/components/shared/verifiedEmail/verifiedEmail";
 import { useRouter } from "next/router";
+import { AccountPageTypes } from "@/src/shared/enums/my-account";
+import { useAppSelector } from "@/src/hooks/types";
 
 interface IAccountPageCredential {
      email: string;
@@ -12,11 +14,11 @@ interface IAccountPageCredential {
      name: string;
      avatarUrl?: string;
      mobileNumber?: string;
-     id?: string;
+     page: keyof typeof AccountPageTypes;
 }
 
-const AccountPageCredential: FC<IAccountPageCredential> = ({ id, isEmailVerified, email, avatarUrl, mobileNumber, name }) => {
-     const route = useRouter();
+const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, email, avatarUrl, mobileNumber, name, page }) => {
+     const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
 
      return (
           <div className={styles.credentialsWrapper}>
@@ -28,10 +30,10 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ id, isEmailVerified
                          {<p className={styles.credentialsInfo}>{email}</p>}
                          {isEmailVerified && <VerifiedEmail />}
                     </div>
-                    {route.pathname === "/my-account/[slug]" && (
+                    {page === "profile_templates" && (
                          <ButtonAuthHeader
                               className={ButtonAuthClasses.credentials}
-                              href={{ pathname: "/my-account/[slug]/settings", query: { slug: id } }}
+                              href={"/my-account/profile/personaldata"}
                               text={"Редактировать"}
                          />
                     )}
