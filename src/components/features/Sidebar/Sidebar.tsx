@@ -48,7 +48,7 @@ const Sidebar: FC = () => {
      return (
           <aside className={styles.asideWrapper}>
                <Logo variant={LogoVariantProps.header} />
-               <ListSidebar config={SIDEBAR_CONFIG} onClick={handleSetActiveTabItem} activeTabItem={activeTabItem} />
+               <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />
           </aside>
      );
 };
