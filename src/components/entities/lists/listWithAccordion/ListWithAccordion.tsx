@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 
-import styles from "./styles/TabAccordijn.module.css";
+import styles from "./styles/ListWithAccordion.module.css";
 
 import TabAccordion from "@/src/components/shared/tabs/tabAccordion/TabAccordion";
 
@@ -16,27 +16,18 @@ interface AccordionProps {
 
 const ListWithAccordion: FC<AccordionProps> = ({data=[]}) => {
      const [selected, setSelected] = useState<number | null>(null);
-
-     const toggle = (index: number | null) => {
-          if (selected === index) {
-               return setSelected(null);
-          }
-          setSelected(index);
-     };
-
      return (
           <div className={styles.accordion}>
                {data.length &&
                   data.map((item, index) => (
-                       // const isSelected = selected === index;
-                       <TabAccordion  
+                       <TabAccordion
                             id={item.id}
                             key={item.id}
                             title={item.title}
                             content={item.content}
-                            onClick={() => toggle(index)}
+                            setSelected={setSelected}
+                            isSelected={selected === index}
                        />
-
                   ))}
           </div>
      );
