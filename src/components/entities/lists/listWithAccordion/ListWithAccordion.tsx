@@ -17,13 +17,6 @@ interface AccordionProps {
 const ListWithAccordion: FC<AccordionProps> = ({data=[]}) => {
      const [selected, setSelected] = useState<number | null>(null);
 
-     const toggle = (index: number | null) => {
-          if (selected === index) {
-               return setSelected(null);
-          }
-          setSelected(index);
-     };
-
      return (
           <div className={styles.accordion}>
                {data.length &&
@@ -34,7 +27,8 @@ const ListWithAccordion: FC<AccordionProps> = ({data=[]}) => {
                             key={item.id}
                             title={item.title}
                             content={item.content}
-                            onClick={() => toggle(index)}
+                            setSelected={setSelected}
+                            isSelected={selected === index}
                        />
 
                   ))}

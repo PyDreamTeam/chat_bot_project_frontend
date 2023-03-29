@@ -11,13 +11,14 @@ export interface ITabAccordion {
 }
 
 export interface AccordionProps {
-     onClick: () => void;
+     isSelected: boolean;
+     setSelected: (id: number) => void;
 }
 
-const TabAccordion: FC<ITabAccordion & AccordionProps> = ({id, title, content }) => {
+const TabAccordion: FC<ITabAccordion & AccordionProps> = ({id, title, content, isSelected, setSelected}) => {
      return (
           <div key={id}>
-               <div className={styles.header}>
+               <div className={styles.header} onClick={() => setSelected(id)}>
                     <TextField color={"black"} type={"h5"} >{title}</TextField>
                     <span>{isSelected ? <Image src={minus} alt="Close"/> : <Image src={plus} alt="Open"/>}</span>
                </div>
