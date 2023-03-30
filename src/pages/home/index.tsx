@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import HomepageWrapper from "@/src/components/widgets/HomepageWrapper";
+import HomepageWrapper from "@/src/components/wrappers/HomepageWrapper";
 
 export default function Home() {
      return (

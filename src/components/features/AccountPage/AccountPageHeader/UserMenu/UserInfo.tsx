@@ -6,6 +6,8 @@ import styles from "./UserInfo.module.css";
 
 import UserMenuHeader from "../../../../shared/UserMenuHeader/UserMenuHeader";
 import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/pictures/SvgConfig";
+import { useRouter } from "next/router";
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 
 interface IUserInfoProps {
      profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
@@ -16,10 +18,21 @@ interface IUserInfoProps {
      isOpen?: boolean;
 }
 
-const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, className = "", isOpen = false, profileOnClick }) => {
+const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, className = "", isOpen = false }) => {
+     const router = useRouter();
      const navElements = [
-          { text: "Профиль", onClick: profileOnClick },
-          { text: "Настройки аккаунта" },
+          {
+               text: "Профиль",
+               onClick() {
+                    router.replace(clientEndpoints.myAccount.profile.get);
+               },
+          },
+          {
+               text: "Настройки аккаунта",
+               onClick() {
+                    router.replace(clientEndpoints.myAccount.profile.settings);
+               },
+          },
           {
                text: "Выйти",
                onClick: () => {

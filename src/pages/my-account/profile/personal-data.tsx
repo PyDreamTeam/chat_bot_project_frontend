@@ -1,5 +1,5 @@
 import React from "react";
-import AccountPageWrapper from "@/src/components/widgets/AccountpageWrapper";
+import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@/src/hooks/types";
 import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
@@ -22,7 +22,7 @@ const ProfilePage = () => {
                     isEmailVerified={true}
                     name={name}
                />
-               <PersonalData/>
+               <PersonalData />
           </AccountPageWrapper>
      );
 };

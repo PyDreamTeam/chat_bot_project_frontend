@@ -1,4 +1,4 @@
-import AccountPageWrapper from "@/src/components/widgets/AccountpageWrapper";
+import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import React from "react";
 
 const Templates = () => {

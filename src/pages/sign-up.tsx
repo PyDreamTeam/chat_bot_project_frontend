@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import AuthWrapper from "@/src/components/widgets/AuthWrapper";
+import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import FormUniversal, { IInputField } from "../components/entities/forms/FormUniversal";
 import { inputFieldDataSignUp, initialValuesSignUp, validationSchemaSignUp } from "../pagesData/sign-up";
 import { useCreateUserMutation } from "../store/services/authApi";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "../hooks/types";
 import { setCredentials } from "../store/reducers/credentialsSlice";
+import { clientEndpoints } from "../shared/routes/client-endpoints";
 
 export const SignUp = () => {
      const [createUser, { data, isSuccess }]: any = useCreateUserMutation();
@@ -20,7 +21,7 @@ export const SignUp = () => {
      React.useEffect(() => {
           if (isSuccess) {
                dispatch(setCredentials(data));
-               router.push("/my-account");
+               router.push(clientEndpoints.myAccount.get);
           }
      }, [isSuccess]);
      return (

@@ -1,6 +1,6 @@
 import React, { FC, FormEvent, useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/src/hooks/types";
-import styles from "@/src/components/widgets/styles/styles.module.css";
+import styles from "@/src/components/wrappers/styles/styles.module.css";
 import Sidebar from "@/src/components/features/Sidebar/Sidebar";
 import AccountPageHeader from "@/src/components/features/AccountPage/AccountPageHeader/AccountPageHeader";
 import { WithChildren } from "@/src/shared/types/withChildren";
@@ -9,15 +9,12 @@ import SettingsTabs from "@/src/components/shared/settingsTabs/SettingsTabs";
 import AccountPageMain from "../features/AccountPage/AccountPageMain/AccountPageMain";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { setCredentials } from "@/src/store/reducers/credentialsSlice";
-
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 
 interface IAccountWrapper {
      page: keyof typeof AccountPageTypes;
 }
 
-const settingsRoute = "/my-account/profile/settings";
-const changePasswordRoute = "/my-account/profile/changepassword";
-const paymentRoute = "/my-account/profile/payment";
 const firstTab = 1;
 const secondTab = 2;
 const thirdTab = 3;
@@ -37,17 +34,17 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
           {
                id: 1,
                title: "Персональные данные",
-               href: "/my-account/profile/personaldata",
+               href: clientEndpoints.myAccount.profile.personalData,
           },
           {
                id: 2,
                title: "Пароль",
-               href: "/my-account/profile/changepassword",
+               href: clientEndpoints.myAccount.profile.changePassword,
           },
           {
                id: 3,
                title: "Способ оплаты",
-               href: "/my-account/profile/payment",
+               href: clientEndpoints.myAccount.profile.payment,
           },
      ];
 
@@ -55,11 +52,11 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
 
      useEffect(() => {
           switch (router.route) {
-               case settingsRoute:
+               case clientEndpoints.myAccount.profile.settings:
                     return setActiveTabItem(firstTab);
-               case changePasswordRoute:
+               case clientEndpoints.myAccount.profile.changePassword:
                     return setActiveTabItem(secondTab);
-               case paymentRoute:
+               case clientEndpoints.myAccount.profile.payment:
                     return setActiveTabItem(thirdTab);
                default:
                     setActiveTabItem(firstTab);
@@ -71,8 +68,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
                <Sidebar />
                <div className={styles.accountContentBlock}>
                     <AccountPageHeader page={page} id={id} name={name} />
-                    {page === "profile_settings_password" || page ===
-                    "profile_settings_personalData" ? (
+                    {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
                          <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                     ) : null}
                     {children}

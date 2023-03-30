@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import AuthWrapper from "@/src/components/widgets/AuthWrapper";
+import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesSignIn, inputFieldDataSignIn, validationSchemaSignIn } from "../pagesData/sign-in";
 import { useLazyValidateUserQuery, User } from "../store/services/authApi";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "../hooks/types";
 import { setCredentials } from "../store/reducers/credentialsSlice";
+import { clientEndpoints } from "../shared/routes/client-endpoints";
 
 export const SignIn = () => {
      const [validateUser]: any = useLazyValidateUserQuery();
@@ -30,7 +31,7 @@ export const SignIn = () => {
      };
 
      React.useEffect(() => {
-          credentials.name && router.push("/my-account");
+          credentials.name && router.push(clientEndpoints.myAccount.get);
      }, [credentials]);
      return (
           <AuthWrapper titleText={"Вход"}>
