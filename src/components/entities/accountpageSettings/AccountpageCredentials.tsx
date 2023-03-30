@@ -4,6 +4,7 @@ import styles from "./AccountpageCredential.module.css";
 import UserAvatar from "@/src/components/shared/Avatar/Avatar";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import VerifiedEmail from "@/src/components/shared/verifiedEmail/verifiedEmail";
+import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { useAppSelector } from "@/src/hooks/types";
 
@@ -21,7 +22,7 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
 
      return (
           <div className={styles.credentialsWrapper}>
-               <UserAvatar type={"forSettings"} username={name} />
+               <UserAvatar url={avatarUrl} type={"forSettings"} username={name} />
                <div className={styles.credentialsRightBlock}>
                     <h4>{name}</h4>
                     {mobileNumber && <p className={styles.credentialsInfo}>{mobileNumber}</p>}
@@ -32,7 +33,7 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
                     {page === "profile_templates" && (
                          <ButtonAuthHeader
                               className={ButtonAuthClasses.credentials}
-                              href={`/my-account/profile/${id}`}
+                              href={"/my-account/profile/personaldata"}
                               text={"Редактировать"}
                          />
                     )}

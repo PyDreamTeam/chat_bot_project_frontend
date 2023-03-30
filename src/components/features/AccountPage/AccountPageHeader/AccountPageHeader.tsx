@@ -21,6 +21,13 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
 
      const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
+          // console.log(router.pathname);
+          // router.pathname === "/my-account/[slug]"
+          //      ? null
+          //      : router.replace({
+          //           pathname: "/my-account/[slug]",
+          //           query: { slug: id },
+          //      });
           router.replace({
                pathname: "/my-account/profile",
                // query: { id: id },

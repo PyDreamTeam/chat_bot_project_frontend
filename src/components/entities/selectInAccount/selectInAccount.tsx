@@ -5,9 +5,7 @@ import styles from "./styles/selectInAccount.module.css";
 import SelectTitle from "@/src/components/entities/selectTitle/SelectTitle";
 import { SELECT_TITLE_CONFIG } from "@/src/components/entities/selectTitle/SelectTitleConfig";
 
-
 const SelectInAccount = () => {
-
      return (
           <div className={styles.selectBlock}>
                <SelectTitle config={SELECT_TITLE_CONFIG} />

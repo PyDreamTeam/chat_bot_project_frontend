@@ -10,7 +10,7 @@ const index = () => {
      const { id, name, email } = useAppSelector((state) => state.credentialsSlice.credentials);
      const mobileNumber = "+375297177707";
      return (
-          <AccountPageWrapper page="profile_templates" title={"Профиль"}>
+          <AccountPageWrapper page="profile_templates">
                <AccountPageCredential
                     page="profile_templates"
                     mobileNumber={mobileNumber}
