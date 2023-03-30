@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 
 interface IUserInfoProps {
-     profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
      onClick?: () => void;
      userName?: string | undefined;
      avatarUrl?: string;
