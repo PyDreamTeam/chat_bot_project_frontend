@@ -21,7 +21,7 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                <div className={styles.headerLeftBlock}>
                     {page === "startPage" && <h4>{title ? title : `Добро пожаловать, ${name}!`}</h4>}
                     {page === "templates" && <h4>TEMPLATES</h4>}
-                    {(page === "profile_changeData" || page === "profile_templates") && <h4>Профиль</h4>}
+                    {page === "profile_templates" && <h4>Профиль</h4>}
                     {(page === "profile_settings_password" || page === "profile_settings_personalData") && <h4>Настройки</h4>}
                </div>
                <div className={styles.headerRightBlock}>

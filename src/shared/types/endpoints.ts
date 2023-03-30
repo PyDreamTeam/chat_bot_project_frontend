@@ -4,13 +4,10 @@ export interface ClientEndpoints {
           profile: {
                get: string;
                personalData: string;
-          };
-          templates: string;
-          settings: {
-               personalData: string;
                changePassword: string;
                payment: string;
           };
+          templates: string;
      };
      home: {
           get: string;
