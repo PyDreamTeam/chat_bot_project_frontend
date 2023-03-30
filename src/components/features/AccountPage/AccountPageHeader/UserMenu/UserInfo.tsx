@@ -29,7 +29,7 @@ const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, class
           {
                text: "Настройки аккаунта",
                onClick() {
-                    router.replace(clientEndpoints.myAccount.profile.settings);
+                    router.replace(clientEndpoints.myAccount.settings.personalData);
                },
           },
           {

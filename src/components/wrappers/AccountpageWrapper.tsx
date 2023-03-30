@@ -34,17 +34,17 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
           {
                id: 1,
                title: "Персональные данные",
-               href: clientEndpoints.myAccount.profile.personalData,
+               href: clientEndpoints.myAccount.settings.personalData,
           },
           {
                id: 2,
                title: "Пароль",
-               href: clientEndpoints.myAccount.profile.changePassword,
+               href: clientEndpoints.myAccount.settings.changePassword,
           },
           {
                id: 3,
                title: "Способ оплаты",
-               href: clientEndpoints.myAccount.profile.payment,
+               href: clientEndpoints.myAccount.settings.payment,
           },
      ];
 
@@ -52,11 +52,11 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
 
      useEffect(() => {
           switch (router.route) {
-               case clientEndpoints.myAccount.profile.settings:
+               case clientEndpoints.myAccount.settings.personalData:
                     return setActiveTabItem(firstTab);
-               case clientEndpoints.myAccount.profile.changePassword:
+               case clientEndpoints.myAccount.settings.changePassword:
                     return setActiveTabItem(secondTab);
-               case clientEndpoints.myAccount.profile.payment:
+               case clientEndpoints.myAccount.settings.payment:
                     return setActiveTabItem(thirdTab);
                default:
                     setActiveTabItem(firstTab);
