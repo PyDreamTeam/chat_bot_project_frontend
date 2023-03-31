@@ -1,28 +1,27 @@
 import React, {FC, useState} from "react";
 
-import styles from "./styles/ListWithAccordion.module.css";
+import styles from "./styles/AccordionList.module.css";
 
-import TabAccordion from "@/src/components/shared/tabs/tabAccordion/TabAccordion";
+import TabAccordion from "@/src/components/shared/tabs/accordionItem/AccordionItem";
 
-export interface ITabAccordion {
-     id: number;
+export interface IAccordionList {
      title: string;
      content: string;
 }
 
-interface AccordionProps {
-     data: ITabAccordion[];
+interface IAccordionProps {
+     data: IAccordionList[];
 }
 
-const ListWithAccordion: FC<AccordionProps> = ({data=[]}) => {
+const AccordionList: FC<IAccordionProps> = ({data=[]}) => {
      const [selected, setSelected] = useState<number | null>(null);
      return (
           <div className={styles.accordion}>
                {data.length &&
                   data.map((item, index) => (
                        <TabAccordion
-                            id={item.id}
-                            key={item.id}
+                            id={index}
+                            key={index}
                             title={item.title}
                             content={item.content}
                             setSelected={setSelected}
@@ -33,4 +32,4 @@ const ListWithAccordion: FC<AccordionProps> = ({data=[]}) => {
      );
 };
 
-export default ListWithAccordion;
+export default AccordionList;

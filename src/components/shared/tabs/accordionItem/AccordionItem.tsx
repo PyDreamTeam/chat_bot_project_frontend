@@ -3,23 +3,24 @@ import Image from "next/image";
 import minus from "@/src/components/entities/accordionBlock/pictures/Minus.svg";
 import plus from "@/src/components/entities/accordionBlock/pictures/Plus.svg";
 
-import styles from "./styles/TabAccordion.module.css";
+import styles from "./styles/AccordionItem.module.css";
 
-export interface ITabAccordion {
+export interface IAccordionItem {
     id: number;
     title: string;
     content: string;
 }
 
-export interface AccordionProps {
+export interface IAccordionItemProps {
     isSelected: boolean;
     setSelected: (id: null | number) => void;
 }
 
-const TabAccordion: FC<ITabAccordion & AccordionProps> = ({id, title, content, isSelected, setSelected}) => {
+const AccordionItem: FC<IAccordionItem & IAccordionItemProps> = ({id, title, content, isSelected, setSelected}) => {
+     const openClick = () => setSelected(isSelected ? null : id);
      return (
           <div key={id} className={`${styles.wrapper} ${isSelected && styles.active}`}>
-               <div className={`${styles.header} ${isSelected && styles.open}`} onClick={() => setSelected(isSelected ? null : id)}>
+               <div className={`${styles.header} ${isSelected && styles.open}`} onClick={openClick}>
                     {title}
                     {isSelected ? <Image src={minus} alt="Close"/> : <Image src={plus} alt="Open"/>}
                </div>
@@ -30,4 +31,4 @@ const TabAccordion: FC<ITabAccordion & AccordionProps> = ({id, title, content, i
      );
 };
 
-export default TabAccordion;
+export default AccordionItem;
