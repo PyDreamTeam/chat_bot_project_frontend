@@ -54,10 +54,6 @@ const getFieldType = (type: string, isHidePassword: boolean) => {
      return "text";
 };
 
-function CustomInput({ field, form: { errors } }: any) {
-     return <ErrorList errors={errors} />;
-}
-
 const FormUniversal: FC<FormUniversalProps> = ({
      validationSchema,
      inputFieldData,
@@ -88,9 +84,6 @@ const FormUniversal: FC<FormUniversalProps> = ({
                                    {typeField === "password" && (
                                         <ButtonEye isOpenEye={!activeEye?.[name]} id={htmlFor} onClick={() => onClick(htmlFor)} />
                                    )}
-                                   <div className={styles.errorMessage}>
-                                        <ErrorMessage name={name} component={CustomInput} />
-                                   </div>
                               </div>
                          ))}
                          {/* -----Чекбокс с уведомлениями только для формы регистрации-----*/}
