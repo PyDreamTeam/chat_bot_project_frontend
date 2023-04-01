@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import Image from "next/image";
-import minus from "@/src/components/entities/accordionBlock/pictures/Minus.svg";
-import plus from "@/src/components/entities/accordionBlock/pictures/Plus.svg";
+import minus from "@/src/components/entities/accordionBlock/img/Minus.svg";
+import plus from "@/src/components/entities/accordionBlock/img/Plus.svg";
 
 import styles from "./styles/AccordionItem.module.css";
 

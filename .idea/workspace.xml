@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f8e43636-c804-45e7-9155-85b0d84ac95d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/iconTelegramm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/iconVK.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/iconWhatsapp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/SearchHistory/SearchHistory.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/searchHistory/styles/SearchHistory.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/SearchHistory/SearchHistory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/searchHistory/SearchHistory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/SearchHistory/SearchHistoryConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/searchHistory/SearchHistoryConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/accordionBlock/AccordionBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/accordionBlock/AccordionBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/accordionBlock/pictures/Minus.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/accordionBlock/img/Minus.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/accordionBlock/pictures/OBJECTS.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/accordionBlock/img/OBJECTS.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/accordionBlock/pictures/Plus.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/accordionBlock/img/Plus.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/accountpageSettings/AccountpageCredential.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/accountpageSettings/styles/AccountpageCredential.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/accountpageSettings/AccountpageCredentials.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/accountpageSettings/AccountpageCredentials.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/functionalBlock/FunctionalBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/functionalBlock/FunctionalBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/functionalBlock/pictures/Group.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/functionalBlock/img/Group.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/iconbars/pictures/svgConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/iconbars/img/svgConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/lists/listsidebar/ListSidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/lists/listsidebar/styles/ListSidebar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/lists/listsidebar/ListSidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/lists/listsidebar/ListSidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/selectInAccount/selectInAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/selectInAccount/SelectInAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/selectInAccount/styles/selectInAccount.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/selectInAccount/styles/SelectInAccount.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/solutions/Solutions.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/solutions/styles/Solutions.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/solutions/Solutions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/solutions/Solutions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/templateselections/TemplateSelections.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/templateselections/styles/TemplateSelections.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/templateselections/TemplateSelections.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entities/templateselections/TemplateSelections.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entities/templateselections/images/arrow-template.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/AccountPageHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/AccountPageHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/UserMenu/styles/UserInfo.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/pictures/SvgConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageHeader/img/SvgConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageMain/AccountPageMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/AccountPage/AccountPageMain/AccountPageMain.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/Auth/AuthLeftBlock/AuthLeftBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/Auth/AuthLeftBlock/AuthLeftBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/Auth/AuthRightBlock/AuthRightBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/Auth/AuthRightBlock/AuthRightBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/HomePage/Footer/components/FooterLeftBlock/FooterLeftBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/HomePage/Footer/components/FooterLeftBlock/FooterLeftBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/HomePage/Footer/pictures/SvgConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/HomePage/Footer/img/SvgConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/HomePage/Main/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/HomePage/Main/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/Sidebar/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/Sidebar/pictures/SidebarConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/Sidebar/img/SidebarConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/Avatar/Avatar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/Avatar/styles/Avatar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/Avatar/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/Avatar/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/Avatar/UserAvatar/UserAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/Avatar/UserAvatar/UserAvatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/SearchHistoryItem/SearchHistoryItem.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/searchHistoryItem/styles/SearchHistoryItem.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/SearchHistoryItem/SearchHistoryItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/searchHistoryItem/SearchHistoryItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/SearchHistoryItem/SearchHistorySvgConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/searchHistoryItem/SearchHistorySvgConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/UserMenuHeader/UserMenuHeader.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/userMenuHeader/styles/UserMenuHeader.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/UserMenuHeader/UserMenuHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/userMenuHeader/UserMenuHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/buttons/ButtonEye.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/buttons/ButtonEye.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/images/ImageErrorForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/images/ImageErrorForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/images/pictures/png/ImageErrorForm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/images/pictures/png/Mail-template.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/images/pictures/png/aimylogic-online-service-logo-2-1200x900 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/images/pictures/png/hidePassword.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/images/pictures/png/showPassword.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/inputs/InputAuthField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/inputs/InputAuthField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/inputs/InputSearchField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/inputs/InputSearchField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/inputs/images/SearchInput.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/labels/Label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/labels/Label.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/labels/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/labels/styles/Label.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/settingsTabs/SettingsTabs.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/settingsTabs/styles/SettingsTabs.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/settingsTabs/SettingsTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/settingsTabs/SettingsTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/settingsTabs/settingsTabItem/SettingsTabItem.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/settingsTabs/settingsTabItem/styles/SettingsTabItem.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/settingsTabs/settingsTabItem/SettingsTabItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/settingsTabs/settingsTabItem/SettingsTabItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/SolutionItem.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/styles/SolutionItem.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/SolutionItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/SolutionItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/SelectedOptions.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/styles/SelectedOptions.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/SelectedOptions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/SelectedOptions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/selectedOptionItem/SelectedOptionItem.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/selectedOptionItem/styles/SelectedOptionItem.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/selectedOptionItem/SelectedOptionItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedOptions/selectedOptionItem/SelectedOptionItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedPlatforms/SelectedPlatforms.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedPlatforms/styles/SelectedPlatforms.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedPlatforms/SelectedPlatforms.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedPlatforms/SelectedPlatforms.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedPlatforms/images/PlatformsSvgConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/solutionItem/selectedPlatforms/img/PlatformsSvgConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/tabs/accordionItem/AccordionItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/tabs/accordionItem/AccordionItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/verifiedEmail/verifiedEmail.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/verifiedEmail/styles/verifiedEmail.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/verifiedEmail/verifiedEmail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/verifiedEmail/verifiedEmail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/my-account/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/my-account/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/my-account/profile/personaldata.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/my-account/profile/personaldata.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/png/CloseEye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/png/OpenEye.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NUipLO8iHH4150ZcxN2qjblKck" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/1 RS 2022/PyDreamTeam/chat_bot_project_frontend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;E:\\1 RS 2022\\PyDreamTeam\\chat_bot_project_frontend\\node_modules\\prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\1 RS 2022\\PyDreamTeam\\chat_bot_project_frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\1 RS 2022\PyDreamTeam\chat_bot_project_frontend\src\components\shared\verifiedEmail\styles" />
+      <recent name="E:\1 RS 2022\PyDreamTeam\chat_bot_project_frontend\src\components\shared\userMenuHeader\styles" />
+      <recent name="E:\1 RS 2022\PyDreamTeam\chat_bot_project_frontend\src\components\shared\solutionItem\styles" />
+      <recent name="E:\1 RS 2022\PyDreamTeam\chat_bot_project_frontend\src\components\shared\solutionItem\selectedPlatforms\styles" />
+      <recent name="E:\1 RS 2022\PyDreamTeam\chat_bot_project_frontend\src\components\shared\solutionItem\selectedOptions\selectedOptionItem\styles" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f8e43636-c804-45e7-9155-85b0d84ac95d" name="Changes" comment="" />
+      <created>1679725242646</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679725242646</updated>
+      <workItem from="1679725243873" duration="720000" />
+      <workItem from="1679749927568" duration="16000" />
+      <workItem from="1679749969576" duration="370000" />
+      <workItem from="1679751416759" duration="15000" />
+      <workItem from="1679809172439" duration="358000" />
+      <workItem from="1679845255886" duration="3000" />
+      <workItem from="1679896274585" duration="17000" />
+      <workItem from="1679993555615" duration="10738000" />
+      <workItem from="1680009148248" duration="963000" />
+      <workItem from="1680016650302" duration="1710000" />
+      <workItem from="1680018366602" duration="1444000" />
+      <workItem from="1680076051565" duration="3471000" />
+      <workItem from="1680079891868" duration="3599000" />
+      <workItem from="1680085321695" duration="3038000" />
+      <workItem from="1680088377884" duration="6865000" />
+      <workItem from="1680162591019" duration="24000" />
+      <workItem from="1680240770306" duration="2406000" />
+      <workItem from="1680247049619" duration="5398000" />
+      <workItem from="1680252569714" duration="11000" />
+      <workItem from="1680358249699" duration="561000" />
+      <workItem from="1680358884739" duration="17000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

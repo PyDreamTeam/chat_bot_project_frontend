@@ -1,9 +1,9 @@
 import React from "react";
 
-import styles from "./TemplateSelections.module.css";
+import styles from "./styles/TemplateSelections.module.css";
 import Link from "next/link";
-import mailTemplate from "../../shared/images/pictures/png/Mail-template.png";
-import arrowTemplate from "./images/arrow-template.png";
+import mailTemplate from "../../shared/images/img/Mail-template.svg";
+import arrowTemplate from "./img/arrow_template.svg";
 import Image from "next/image";
 import TextField from "@/src/components/shared/textfields/TextField";
 

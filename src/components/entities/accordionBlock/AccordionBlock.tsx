@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "@/src/components/entities/accordionBlock/styles/AccordionBlock.module.css";
 import Image from "next/image";
-import imageAccor from "@/src/components/entities/accordionBlock/pictures/OBJECTS.svg";
+import imageAccor from "@/src/components/entities/accordionBlock/img/OBJECTS.svg";
 import TextField from "@/src/components/shared/textfields/TextField";
 import {CONFIG_ACCORDION} from "@/src/components/entities/accordionBlock/ConfigAccordion";
 

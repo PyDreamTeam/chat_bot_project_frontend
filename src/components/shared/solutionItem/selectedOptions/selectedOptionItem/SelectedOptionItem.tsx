@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "./SelectedOptionItem.module.css";
+import styles from "./styles/SelectedOptionItem.module.css";
 
 interface ISelectOption {
      title: string;

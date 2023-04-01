@@ -2,7 +2,7 @@ import React from "react";
 import AccountPageWrapper from "@/src/components/widgets/AccountpageWrapper";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@/src/hooks/types";
-import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
+import SearchHistory from "@/src/components/entities/searchHistory/SearchHistory";
 import AccountPageCredential from "@/src/components/entities/accountpageSettings/AccountpageCredentials";
 import SelectTitle from "@/src/components/entities/selectTitle/SelectTitle";
 import { SELECT_TITLE_CONFIG } from "@/src/components/entities/selectTitle/SelectTitleConfig";
