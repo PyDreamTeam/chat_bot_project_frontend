@@ -1,6 +1,6 @@
 import React, { FC, MouseEventHandler } from "react";
 
-import styles from "./SettingsTabItem.module.css";
+import styles from "./styles/SettingsTabItem.module.css";
 import Link from "next/link";
 
 export interface ISettingsTabItem {

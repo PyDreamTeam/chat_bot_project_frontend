@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "./SolutionItem.module.css";
+import styles from "./styles/SolutionItem.module.css";
 import SelectedOptions from "@/src/components/shared/solutionItem/selectedOptions/SelectedOptions";
 import SelectedPlatforms from "@/src/components/shared/solutionItem/selectedPlatforms/SelectedPlatforms";
 

@@ -6,6 +6,7 @@ export enum TextFieldTypes {
      h2 = "h2",
      h3 = "h3",
      h4 = "h4",
+     h5 = "h4",
      p = "p",
 }
 
