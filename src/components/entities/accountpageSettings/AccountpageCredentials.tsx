@@ -33,7 +33,7 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
                     {page === "profile_templates" && (
                          <ButtonAuthHeader
                               className={ButtonAuthClasses.credentials}
-                              href={`/my-account/profile/personaldata`}
+                              href={"/my-account/profile/personaldata"}
                               text={"Редактировать"}
                          />
                     )}

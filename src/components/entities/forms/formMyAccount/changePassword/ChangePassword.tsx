@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { initialValuesUpdate, inputFieldDataChange, validationSchemaUpdate } from "@/src/pagesData/update-password";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
-import styles from "../styles/FormMyAccount.module.css"
+import styles from "../styles/FormMyAccount.module.css";
 import TextField from "@/src/components/shared/textfields/TextField";
 
 const ChangePassword = () => {
