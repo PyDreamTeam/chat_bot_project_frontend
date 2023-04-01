@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import styles from "./styles/styles.module.css";
-import OpenEye from "../images/pictures/png/showPassword.png";
-import CloseEye from "../images/pictures/png/hidePassword.png";
+import OpenEye from "../images/img/showPassword.svg";
+import CloseEye from "../images/img/hidePassword.svg";
 import Image from "next/image";
 import { IShowEye } from "@/src/pages/update-password";
 

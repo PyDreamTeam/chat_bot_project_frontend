@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./ListSidebar.module.css";
+import styles from "./styles/ListSidebar.module.css";
 
 import TabItem, { ITabItem, TabItemProps } from "../../../shared/tabs/tabitem/TabItem";
 

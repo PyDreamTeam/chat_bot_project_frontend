@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import InputSearchField from "@/src/components/shared/inputs/InputSearchField";
 import Solutions from "@/src/components/entities/solutions/Solutions";
 import TemplateSelections from "@/src/components/entities/templateselections/TemplateSelections";
-import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
+import SearchHistory from "@/src/components/entities/searchHistory/SearchHistory";
 import { useAppSelector } from "@/src/hooks/types";
-import SelectInAccount from "@/src/components/entities/selectInAccount/selectInAccount";
+import SelectInAccount from "@/src/components/entities/selectInAccount/SelectInAccount";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import FunctionalBlock from "@/src/components/entities/functionalBlock/FunctionalBlock";
 

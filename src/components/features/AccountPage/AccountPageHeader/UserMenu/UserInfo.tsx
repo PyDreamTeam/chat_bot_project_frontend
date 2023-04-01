@@ -2,10 +2,10 @@ import React, { FC, FormEvent, MouseEventHandler } from "react";
 
 import Avatar from "../../../../shared/Avatar/Avatar";
 
-import styles from "./UserInfo.module.css";
+import styles from "./styles/UserInfo.module.css";
 
-import UserMenuHeader from "../../../../shared/UserMenuHeader/UserMenuHeader";
-import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/pictures/SvgConfig";
+import UserMenuHeader from "../../../../shared/userMenuHeader/UserMenuHeader";
+import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/img/SvgConfig";
 
 interface IUserInfoProps {
      profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
