@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./styles/Solutions.module.css";
 import SolutionItem from "@/src/components/shared/solutionItem/SolutionItem";
-import { PropsConfig } from "../../shared/solutionItem/PropsConfig";
+import { PropsConfig } from "../../../shared/solutionItem/PropsConfig";
 import uuid from "uuid-random";
 
 const Solutions = () => {

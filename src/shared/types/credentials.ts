@@ -5,5 +5,5 @@ export interface ICredentials {
      token?: string;
      id?: string | number;
      picture?: string;
-     jti?: string
+     jti?: string;
 }

@@ -1,27 +1,28 @@
 .wrapper {
-    border-bottom: 2px solid #909090;
+     border-bottom: 2px solid #909090;
 }
 .wrapper.active {
-    border: none;
+     border: none;
 }
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 28px;
-    padding: 35px 0 10px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     font-family: "Inter", sans-serif;
+     font-style: normal;
+     font-weight: 500;
+     font-size: 24px;
+     line-height: 28px;
+     padding: 35px 0 10px;
+     cursor: pointer;
 }
 .header.open {
-    color: #4466F5;
-    transition: 0.5s;
+     color: #4466f5;
+     transition: 0.5s;
 }
 
- .content {
-     font-family: 'Inter', sans-serif;
+.content {
+     font-family: "Inter", sans-serif;
      font-style: normal;
      font-weight: 300;
      font-size: 18px;
@@ -29,9 +30,9 @@
      color: #000000;
      max-height: 0;
      overflow: hidden;
- }
+}
 
 .content.show {
-    height: auto;
-    max-height: 99999px;
+     height: auto;
+     max-height: 99999px;
 }

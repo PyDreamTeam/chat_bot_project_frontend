@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styles from "./styles/TabCheck.module.css";
 
@@ -8,13 +8,12 @@ export interface ITabCheck {
      title: string;
 }
 
-const TabCheck: FC<ITabCheck> = ({id, icon, title}) => {
+const TabCheck: FC<ITabCheck> = ({ id, icon, title }) => {
      return (
-          <div key={id}  className={styles.setting}>
+          <div key={id} className={styles.setting}>
                {icon}
                {title}
           </div>
-
      );
 };
 

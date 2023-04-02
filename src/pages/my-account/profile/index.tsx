@@ -1,5 +1,5 @@
 import AccountPageCredential from "@/src/components/entities/accountpageSettings/AccountpageCredentials";
-import SearchHistory from "@/src/components/entities/searchHistory/SearchHistory";
+import SearchHistory from "@/src/components/entities/MyAccountPageComponents/searchHistory/SearchHistory";
 import AccountPageWrapper from "@/src/components/widgets/AccountpageWrapper";
 import { useAppSelector } from "@/src/hooks/types";
 import { useRouter } from "next/router";

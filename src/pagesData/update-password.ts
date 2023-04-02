@@ -2,7 +2,6 @@ import { IInputField } from "../components/entities/forms/FormUniversal";
 import * as Yup from "yup";
 import { PasswordRegExp } from "../shared/contsants/regExps";
 
-
 export const initialValuesUpdate = {
      repeatPassword: "",
      password: "",

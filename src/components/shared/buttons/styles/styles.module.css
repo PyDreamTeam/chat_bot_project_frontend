@@ -101,3 +101,17 @@
      background: transparent;
      cursor: pointer;
 }
+
+.templatesFooterButton {
+     cursor: pointer;
+     color: #595f6c;
+     border: none;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 500;
+     font-size: 20px;
+     padding: 16px 23px;
+     background: #e2ecff;
+     border-radius: 20px;
+     width: 100%;
+}

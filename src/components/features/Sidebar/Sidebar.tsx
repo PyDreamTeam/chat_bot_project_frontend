@@ -20,7 +20,6 @@ const Sidebar: FC = () => {
      const [activeTabItem, setActiveTabItem] = useState<number>(1);
      const router = useRouter();
 
-
      useEffect(() => {
           switch (router.route) {
                case myAccountRoute:

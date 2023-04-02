@@ -4,7 +4,7 @@ import CheckMark from "@/src/components/shared/checkMark/CheckMark";
 const ListIcon = () => {
      return (
           <div>
-               <CheckMark/>
+               <CheckMark />
           </div>
      );
 };

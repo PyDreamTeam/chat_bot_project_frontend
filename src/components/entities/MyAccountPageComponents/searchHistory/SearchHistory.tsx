@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import styles from "./styles/SearchHistory.module.css";
-import { SearchHistoryConfig } from "@/src/components/entities/searchHistory/SearchHistoryConfig";
+import { SearchHistoryConfig } from "@/src/components/entities/MyAccountPageComponents/searchHistory/SearchHistoryConfig";
 import SearchHistoryItem from "@/src/components/shared/searchHistoryItem/SearchHistoryItem";
 import uuid from "uuid-random";
 
