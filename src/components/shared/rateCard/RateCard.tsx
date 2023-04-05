@@ -24,7 +24,7 @@ const RateCard: FC<IRateCard> = ({ title, price, descriptions }) => {
                     <TextField type={"h4"} color={"black"}>
                          {title}
                     </TextField>
-                    <p className={styles.price}>{transformedPrice()}</p>
+                    <TextField type={"h3"} color={"blue"} >{transformedPrice()}</TextField>
                     <div className={styles.descriptionsBlock}>
                          {descriptions.map((description) => (
                               <TextField key={uuid()} type={"p"} color={"black"}>
