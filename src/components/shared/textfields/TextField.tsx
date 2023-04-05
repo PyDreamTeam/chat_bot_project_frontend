@@ -16,6 +16,7 @@ export enum TextColor {
      telegray = "telegray",
      red = "red",
      green = "green",
+     blue = "blue",
 }
 
 interface ITextFieldProps {

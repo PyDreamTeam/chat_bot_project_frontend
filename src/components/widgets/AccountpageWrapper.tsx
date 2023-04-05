@@ -6,10 +6,9 @@ import AccountPageHeader from "@/src/components/features/AccountPage/AccountPage
 import { WithChildren } from "@/src/shared/types/withChildren";
 import { useRouter } from "next/router";
 import SettingsTabs from "@/src/components/shared/settingsTabs/SettingsTabs";
-import AccountPageMain from "../features/AccountPage/AccountPageMain/AccountPageMain";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { setCredentials } from "@/src/store/reducers/credentialsSlice";
-
+import ButtonTemplates from "../shared/buttons/ButtonTemplates";
 
 interface IAccountWrapper {
      page: keyof typeof AccountPageTypes;
@@ -71,11 +70,15 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
                <Sidebar />
                <div className={styles.accountContentBlock}>
                     <AccountPageHeader page={page} id={id} name={name} />
-                    {page === "profile_settings_password" || page ===
-                    "profile_settings_personalData" ? (
+                    {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
                          <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                     ) : null}
                     {children}
+                    {page === "templates" && 
+                         <div className={styles.templatesButtonBlock}>
+                              <ButtonTemplates />
+                         </div>
+                    }
                </div>
           </div>
      );

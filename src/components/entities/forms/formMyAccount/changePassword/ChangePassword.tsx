@@ -17,7 +17,9 @@ const ChangePassword = () => {
 
      return (
           <div className={styles.changePasswordBlock}>
-               <TextField color={"black"} type={"h4"}>Изменить пароль</TextField>
+               <TextField color={"black"} type={"h4"}>
+                    Изменить пароль
+               </TextField>
                <FormUniversal
                     validationSchema={validationSchemaUpdate}
                     classNameForm="changePassword"

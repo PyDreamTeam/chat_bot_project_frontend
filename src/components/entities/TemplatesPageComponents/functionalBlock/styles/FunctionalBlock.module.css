@@ -1,0 +1,18 @@
+.wrapper {
+     display: flex;
+     justify-content: space-around;
+     gap: 124px;
+     padding: 80px 0;
+     border-bottom: 1px solid #e1e2e6;
+}
+.blockImg {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+.blockAbout {
+     max-width: 583px;
+}
+.title {
+     max-width: 500px;
+}
