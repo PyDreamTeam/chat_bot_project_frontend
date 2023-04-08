@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import SettingsTabItem, { ISettingsTabItem } from "./settingsTabItem/SettingsTabItem";
-import styles from "./SettingsTabs.module.css";
+import styles from "./styles/SettingsTabs.module.css";
 
 interface ISettingsTabs {
      config: ISettingsTabItem[];

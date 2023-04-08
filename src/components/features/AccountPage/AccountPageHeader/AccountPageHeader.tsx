@@ -1,8 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import styles from "./AccountPageHeader.module.css";
 import UserInfo from "@/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo";
 import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
+import Link from "next/link";
+import { useAppSelector } from "@/src/hooks/types";
 
 interface IHomePageHeader {
      name?: string;
@@ -16,17 +18,28 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
      const [open, setOpen] = useState<boolean>(false);
      const handleToggleBurgerMenu = () => setOpen((prevState) => !prevState);
 
+     const { id } = useAppSelector((state) => state.credentialsSlice.credentials);
+
+     const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          router.replace({
+               pathname: "/my-account/profile",
+          });
+     };
+
      return (
           <header className={styles.headerWrapper}>
-               <div className={styles.headerLeftBlock}>
+               <>
                     {page === "startPage" && <h4>{title ? title : `Добро пожаловать, ${name}!`}</h4>}
-                    {page === "templates" && <h4>TEMPLATES</h4>}
-                    {page === "profile_templates" && <h4>Профиль</h4>}
+                    {page === "templates" && (
+                         <Link className={styles.templatesHeaderLink} href={"/my-account"}>
+                              {"< TEMPLATES"}
+                         </Link>
+                    )}
+                    {(page === "profile_changeData" || page === "profile_templates") && <h4>Профиль</h4>}
                     {(page === "profile_settings_password" || page === "profile_settings_personalData") && <h4>Настройки</h4>}
-               </div>
-               <div className={styles.headerRightBlock}>
-                    <UserInfo isOpen={open} onClick={handleToggleBurgerMenu} userName={name} />
-               </div>
+               </>
+               <UserInfo profileOnClick={handleOpenProfile} isOpen={open} onClick={handleToggleBurgerMenu} userName={name} />
           </header>
      );
 };

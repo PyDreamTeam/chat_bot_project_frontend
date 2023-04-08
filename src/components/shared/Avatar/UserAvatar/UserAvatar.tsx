@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "../Avatar.module.css";
+import styles from "../styles/Avatar.module.css";
 import Image from "next/image";
 
 interface IUserAvatar {

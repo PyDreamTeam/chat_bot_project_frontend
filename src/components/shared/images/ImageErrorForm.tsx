@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import ImageError from "./pictures/png/ImageErrorForm.png";
+import ImageError from "./img/ImageErrorForm.svg";
 import styles from "./styles/styles.module.css";
 
 const ImageErrorForm = () => {

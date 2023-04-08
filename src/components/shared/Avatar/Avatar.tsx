@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { userDefaultAvatar } from "../../features/AccountPage/AccountPageHeader/pictures/SvgConfig";
+import { userDefaultAvatar } from "../../features/AccountPage/AccountPageHeader/img/SvgConfig";
 import Image from "next/image";
 import UserAvatar from "@/src/components/shared/Avatar/UserAvatar/UserAvatar";
 

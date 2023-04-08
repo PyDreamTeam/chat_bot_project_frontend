@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "./AccountpageCredential.module.css";
+import styles from "./styles/AccountpageCredential.module.css";
 import UserAvatar from "@/src/components/shared/Avatar/Avatar";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import VerifiedEmail from "@/src/components/shared/verifiedEmail/verifiedEmail";

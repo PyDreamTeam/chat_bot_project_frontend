@@ -11,12 +11,11 @@ export interface ITabItem {
 
 export interface TabItemProps {
      activeTabItem: number | null;
-     onClick: any;
 }
 
-const TabItem: FC<ITabItem & TabItemProps> = ({ id, title = "", onClick, icon, activeTabItem, href }) => {
+const TabItem: FC<ITabItem & TabItemProps> = ({ id, title = "", icon, activeTabItem, href }) => {
      return (
-          <Link href={href} onClick={onClick} className={`${styles.tabItem} ${activeTabItem === id ? styles.active : null}`}>
+          <Link href={href} className={`${styles.tabItem} ${activeTabItem === id ? styles.active : null}`}>
                {icon}
                {title}
           </Link>

@@ -1,0 +1,58 @@
+.descriptionWrapper {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 30px;
+     padding: 80px 0 111px;
+     border-bottom: 1px solid #e1e2e6;
+     border-top: 1px solid #e1e2e6;
+}
+
+.solutionItemLeftBlock {
+     display: flex;
+     flex-direction: column;
+     gap: 32px;
+}
+
+.logoWithText {
+     display: flex;
+     align-items: center;
+     gap: 62px;
+}
+
+.solutionItemTextBlock {
+     display: flex;
+     width: 100%;
+     flex-direction: column;
+     gap: 8px;
+}
+
+.solutionItemTextBlock > p:nth-child(1) {
+     font-weight: 600;
+     font-size: 20px;
+     line-height: 28px;
+}
+
+.solutionItemTextBlock > p:nth-child(2) {
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 150%;
+}
+
+.solutionItemLeftBlock button {
+     max-width: 250px;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 500;
+     font-size: 18px;
+     line-height: 28px;
+}
+
+.solutionItemImg {
+     width: 100%;
+     background: #ffffff;
+     box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
+     border-radius: 20px;
+     max-width: 436px;
+     max-height: 290px;
+}

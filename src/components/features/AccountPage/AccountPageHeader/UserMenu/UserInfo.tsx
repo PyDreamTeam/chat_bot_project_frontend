@@ -2,12 +2,12 @@ import React, { FC, FormEvent, MouseEventHandler } from "react";
 
 import Avatar from "../../../../shared/Avatar/Avatar";
 
-import styles from "./UserInfo.module.css";
+import styles from "./styles/UserInfo.module.css";
 
-import UserMenuHeader from "../../../../shared/UserMenuHeader/UserMenuHeader";
-import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/pictures/SvgConfig";
 import { useRouter } from "next/router";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import { headerArrow } from "../img/SvgConfig";
+import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
 
 interface IUserInfoProps {
      onClick?: () => void;
@@ -15,6 +15,7 @@ interface IUserInfoProps {
      avatarUrl?: string;
      className?: string;
      isOpen?: boolean;
+     profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
 }
 
 const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, className = "", isOpen = false }) => {

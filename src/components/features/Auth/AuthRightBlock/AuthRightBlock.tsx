@@ -6,8 +6,8 @@ import AuthTitle from "@/src/components/shared/textfields/AuthTitle";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import IconsAuthBar from "@/src/components/entities/iconbars/IconsAuthBar";
-import { svgArray } from "@/src/components/entities/iconbars/pictures/svgConfig";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import { svgArray } from "@/src/components/entities/iconbars/img/svgConfig";
 export interface IAuthRightBlock {
      titleText: string;
 }

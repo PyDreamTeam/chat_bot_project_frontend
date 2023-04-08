@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 
 import InputSearchField from "@/src/components/shared/inputs/InputSearchField";
-import Solutions from "@/src/components/entities/solutions/Solutions";
-import TemplateSelections from "@/src/components/entities/templateselections/TemplateSelections";
-import SearchHistory from "@/src/components/entities/SearchHistory/SearchHistory";
+import Solutions from "@/src/components/entities/MyAccountPageComponents/solutions/Solutions";
+import TemplateSelections from "@/src/components/entities/MyAccountPageComponents/templateselections/TemplateSelections";
+import SearchHistory from "@/src/components/entities/MyAccountPageComponents/searchHistory/SearchHistory";
 import { useAppSelector } from "@/src/hooks/types";
-import SelectInAccount from "@/src/components/entities/selectInAccount/selectInAccount";
+import SelectInAccount from "@/src/components/entities/MyAccountPageComponents/selectInAccount/SelectInAccount";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
-import FunctionalBlock from "@/src/components/entities/functionalBlock/FunctionalBlock";
+import Rates from "@/src/components/entities/TemplatesPageComponents/rates/Rates";
 
 interface IAccountPageMain {
      page: keyof typeof AccountPageTypes;
@@ -25,11 +25,6 @@ const AccountPageMain: React.FC<IAccountPageMain> = ({ page }) => {
                          <Solutions />
                          <TemplateSelections />
                          <SearchHistory title={"История поиска"} />
-                    </>
-               )}
-               {page === "templates" && (
-                    <>
-                         <FunctionalBlock />
                     </>
                )}
           </main>

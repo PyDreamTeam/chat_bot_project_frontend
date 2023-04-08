@@ -8,3 +8,8 @@
      flex-direction: column;
      padding: 40px 88px 48px 88px;
 }
+
+.templatesButtonBlock {
+     margin: 0 auto;
+     padding: 81px 0 79px;
+}

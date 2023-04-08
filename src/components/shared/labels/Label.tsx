@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import styles from "./styles/styles.module.css";
+import styles from "./styles/Label.module.css";
 
 export enum LabelTypes {
      checkbox = "checkbox",

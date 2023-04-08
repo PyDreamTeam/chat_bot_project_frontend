@@ -4,7 +4,7 @@ import styles from "./styles/styles.module.css";
 import { Field, Form, Formik } from "formik";
 import { IInitialValues } from "@/src/components/entities/forms/FormUniversal";
 import Image from "next/image";
-import InputSearch from "./images/SearchInput.png";
+import InputSearch from "./img/SearchInput.svg";
 
 const InputSearchField = () => {
      return (

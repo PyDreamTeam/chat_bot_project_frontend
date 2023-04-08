@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./verifiedEmail.module.css";
+import styles from "./styles/verifiedEmail.module.css";
 
 const VerifiedEmail = () => {
      return (

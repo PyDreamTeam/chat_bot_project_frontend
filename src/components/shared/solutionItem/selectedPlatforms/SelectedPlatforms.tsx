@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
-import styles from "./SelectedPlatforms.module.css";
+import styles from "./styles/SelectedPlatforms.module.css";
 import uuid from "uuid-random";
-import { PlatformsSvgConfig } from "@/src/components/shared/solutionItem/selectedPlatforms/images/PlatformsSvgConfig";
+import { PlatformsSvgConfig } from "@/src/components/shared/solutionItem/selectedPlatforms/img/PlatformsSvgConfig";
 
 interface ISelectedPlatforms {
      platforms: string[];

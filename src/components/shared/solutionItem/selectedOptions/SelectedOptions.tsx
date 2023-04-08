@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "./SelectedOptions.module.css";
+import styles from "./styles/SelectedOptions.module.css";
 import uuid from "uuid-random";
 import SelectedOptionItem from "@/src/components/shared/solutionItem/selectedOptions/selectedOptionItem/SelectedOptionItem";
 

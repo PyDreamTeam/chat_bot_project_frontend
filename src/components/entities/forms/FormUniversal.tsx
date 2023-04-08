@@ -7,6 +7,7 @@ import Label, { HtmlForVariants } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
 import ImageErrorForm from "../../shared/images/ImageErrorForm";
 import ButtonEye from "@/src/components/shared/buttons/ButtonEye";
+import ErrorList from "@/src/components/entities/errorList/ErrorList";
 
 export interface IInputField {
      htmlFor: keyof typeof HtmlForVariants;
@@ -79,12 +80,10 @@ const FormUniversal: FC<FormUniversalProps> = ({
                                         name={name}
                                         placeholder={placeholder}
                                    />
+                                   {htmlFor === "password" && <ErrorList errorsValue={errors[name]} errors={!!errors} />}
                                    {typeField === "password" && (
                                         <ButtonEye isOpenEye={!activeEye?.[name]} id={htmlFor} onClick={() => onClick(htmlFor)} />
                                    )}
-                                   <div className={styles.errorMessage}>
-                                        <ErrorMessage name={name} />
-                                   </div>
                               </div>
                          ))}
                          {/* -----Чекбокс с уведомлениями только для формы регистрации-----*/}
