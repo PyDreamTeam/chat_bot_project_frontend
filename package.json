@@ -8,7 +8,8 @@
           "start": "next start",
           "lint": "next lint",
           "format": "npx prettier --write .",
-          "server": "json-server --watch ./server/db.json --port 5000"
+          "server": "json-server --watch ./server/db.json --port 5000",
+          "type-check": "tsc --noEmit"
      },
      "dependencies": {
           "@next/font": "13.1.6",
