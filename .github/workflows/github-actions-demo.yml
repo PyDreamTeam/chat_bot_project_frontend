@@ -7,7 +7,7 @@ jobs:
           steps:
                - uses: actions/checkout@v2
                - name: Install dependencies
-                 run: npm install
+                 run: npm install --legacy-peer-deps
                - name: Run ESLint
                  run: eslint . --ext .js,.jsx,.ts,.tsx,.json
                - name: Check types
