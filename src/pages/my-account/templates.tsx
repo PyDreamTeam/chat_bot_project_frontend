@@ -6,7 +6,7 @@ import { PropsConfig } from "@/src/components/shared/solutionItem/PropsConfig";
 import SolutionItem from "@/src/components/shared/solutionItem/SolutionItem";
 import React from "react";
 import uuid from "uuid-random";
-import image from "@/src/components/entities/TemplatesPageComponents/descriptionBlock/img/Aimylogic_ 1.png";
+import image from "@/src/components/entities/TemplatesPageComponents/descriptionBlock/img/Aimylogic_1.png";
 import ButtonSubmit from "@/src/components/shared/buttons/ButtonSubmit";
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 
