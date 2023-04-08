@@ -24,7 +24,7 @@ const UpdatePassword = () => {
           <AuthWrapper titleText={"Обновите пароль"}>
                <FormUniversal
                     validationSchema={validationSchemaUpdate}
-                    onSubmit={() => console.log(1)}
+                    onSubmit={() => fetch("")}
                     classNameForm="changePassword"
                     buttonSubmitText="Обновить пароль"
                     initialValues={initialValuesUpdate}
