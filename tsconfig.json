@@ -20,6 +20,6 @@
           }
      },
      "types": ["react-redux"],
-     "include": ["index.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+     "include": ["src/**/*.ts", "src/**/*.tsx", "index.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
      "exclude": ["node_modules"]
 }
