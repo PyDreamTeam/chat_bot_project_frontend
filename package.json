@@ -4,7 +4,7 @@
      "private": true,
      "scripts": {
           "dev": "concurrently \"npm run server\" \"next dev\"",
-          "build": "sudo next build",
+          "build": "next build && next export",
           "start": "next start",
           "lint": "next lint",
           "format": "npx prettier --write .",
