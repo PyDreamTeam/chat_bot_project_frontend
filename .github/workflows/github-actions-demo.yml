@@ -2,7 +2,7 @@ name: CI
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-     Explore-GitHub-Actions:
+     Use actions:
           runs-on: ubuntu-latest
           steps:
                - uses: actions/checkout@v2
@@ -12,3 +12,5 @@ jobs:
                  run: npm run lint
                - name: Check types
                  run: npm run type-check
+               - name: Build project
+                 run: next build
