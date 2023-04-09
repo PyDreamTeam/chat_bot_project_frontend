@@ -11,4 +11,5 @@ jobs:
                - name: Run ESLint
                  run: npm run lint
                - name: Check types
-                 run: npm run type-check
+                 run: |
+                      npm run type-check
