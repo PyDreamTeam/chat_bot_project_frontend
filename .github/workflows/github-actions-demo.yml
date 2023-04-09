@@ -2,7 +2,7 @@ name: CI
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-     Use actions:
+     Actions:
           runs-on: ubuntu-latest
           steps:
                - uses: actions/checkout@v2
