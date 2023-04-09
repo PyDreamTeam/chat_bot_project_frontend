@@ -13,4 +13,4 @@ jobs:
                - name: Check types
                  run: npm run type-check
                - name: Build project
-                 run: next build
+                 run: npm run build
