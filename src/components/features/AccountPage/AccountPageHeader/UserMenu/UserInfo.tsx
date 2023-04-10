@@ -4,22 +4,35 @@ import Avatar from "../../../../shared/Avatar/Avatar";
 
 import styles from "./styles/UserInfo.module.css";
 
-import UserMenuHeader from "../../../../shared/userMenuHeader/UserMenuHeader";
-import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/img/SvgConfig";
+import { useRouter } from "next/router";
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import { headerArrow } from "../img/SvgConfig";
+import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
 
 interface IUserInfoProps {
-     profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
      onClick?: () => void;
      userName?: string | undefined;
      avatarUrl?: string;
      className?: string;
      isOpen?: boolean;
+     profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, className = "", isOpen = false, profileOnClick }) => {
+const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, className = "", isOpen = false }) => {
+     const router = useRouter();
      const navElements = [
-          { text: "Профиль", onClick: profileOnClick },
-          { text: "Настройки аккаунта" },
+          {
+               text: "Профиль",
+               onClick() {
+                    router.replace(clientEndpoints.myAccount.profile.get);
+               },
+          },
+          {
+               text: "Настройки аккаунта",
+               onClick() {
+                    router.replace(clientEndpoints.myAccount.profile.personalData);
+               },
+          },
           {
                text: "Выйти",
                onClick: () => {

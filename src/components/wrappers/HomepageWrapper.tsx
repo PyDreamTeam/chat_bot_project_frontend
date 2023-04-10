@@ -6,7 +6,6 @@ import { useAppSelector } from "@/src/hooks/types";
 
 const HomepageWrapper = () => {
      const { id } = useAppSelector((state) => state.credentialsSlice.credentials);
-     console.log(id);
 
      return (
           <>

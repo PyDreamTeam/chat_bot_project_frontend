@@ -7,6 +7,7 @@ import VerifiedEmail from "@/src/components/shared/verifiedEmail/verifiedEmail";
 import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { useAppSelector } from "@/src/hooks/types";
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 
 interface IAccountPageCredential {
      email: string;
@@ -33,7 +34,7 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
                     {page === "profile_templates" && (
                          <ButtonAuthHeader
                               className={ButtonAuthClasses.credentials}
-                              href={"/my-account/profile/personaldata"}
+                              href={clientEndpoints.myAccount.profile.personalData}
                               text={"Редактировать"}
                          />
                     )}

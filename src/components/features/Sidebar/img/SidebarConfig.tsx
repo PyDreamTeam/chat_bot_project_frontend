@@ -1,7 +1,9 @@
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+
 export const SIDEBAR_CONFIG = [
      {
           id: 1,
-          href: "/my-account",
+          href: clientEndpoints.myAccount.get,
           title: "Главная страница",
           icon: (
                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +16,7 @@ export const SIDEBAR_CONFIG = [
      },
      {
           id: 2,
-          href: "/my-account/templates",
+          href: clientEndpoints.myAccount.templates,
           title: "Шаблоны",
           icon: (
                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

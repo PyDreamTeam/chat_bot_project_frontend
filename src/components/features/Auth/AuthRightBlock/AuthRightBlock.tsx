@@ -6,16 +6,17 @@ import AuthTitle from "@/src/components/shared/textfields/AuthTitle";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import IconsAuthBar from "@/src/components/entities/iconbars/IconsAuthBar";
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { svgArray } from "@/src/components/entities/iconbars/img/svgConfig";
 export interface IAuthRightBlock {
      titleText: string;
 }
 
 const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleText }) => {
-     const isSignIn = useRouter().pathname === "/sign-in";
-     const isSignUp = useRouter().pathname === "/sign-up";
-     const isRestorePassword = useRouter().pathname === "/restore-password";
-     const isChangePassword = useRouter().pathname === "/change-password";
+     const isSignIn = useRouter().pathname === clientEndpoints.signIn.get;
+     const isSignUp = useRouter().pathname === clientEndpoints.signUp.get;
+     const isRestorePassword = useRouter().pathname === clientEndpoints.restorePassword.get;
+     const isUpdatePassword = useRouter().pathname === clientEndpoints.updatePassword.get;
 
      return (
           <div className={styles.authRightBlock}>
@@ -26,7 +27,7 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                          <>
                               <h4 className={`${styles.h4} ${styles.questionRoute}`}>
                                    Ещё нет аккаунта?
-                                   <Link href={"/sign-up"}> Регистрация </Link>
+                                   <Link href={clientEndpoints.signUp.get}> Регистрация </Link>
                               </h4>
                               <h3 className={`${styles.h3} ${styles.questionSocials}`}>Войдите через соцсеть</h3>
                               <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
@@ -36,13 +37,13 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                     {isSignUp && (
                          <h4 className={`${styles.h4} ${styles.questionSignIn}`}>
                               Уже есть аккаунт?
-                              <Link href={"/sign-in"}> Войдите </Link>
+                              <Link href={clientEndpoints.signIn.get}> Войдите </Link>
                          </h4>
                     )}
                     {isRestorePassword && (
                          <h2 className={`${styles.h2} ${styles.addEmail}`}>Укажите Email, на который вы создавали личный кабинет</h2>
                     )}
-                    {isChangePassword && (
+                    {isUpdatePassword && (
                          <>
                               <div className={styles.updateName}>
                                    <h2 className={styles.h2}>Иван Иванов</h2>
@@ -53,13 +54,13 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                     <div className={styles.formCenter}>{children}</div>
                     {isSignIn && (
                          <h4 className={styles.h4}>
-                              Забыли пароль? <Link href={"/restore-password"}>Восстановите здесь</Link>
+                              Забыли пароль? <Link href={clientEndpoints.restorePassword.get}>Восстановите здесь</Link>
                          </h4>
                     )}
                     {isSignUp && (
                          <h4 className={`${styles.h4} ${styles.agreement}`}>
                               Нажимая кнопку «Зарегистрироваться», вы принимаете условия
-                              <Link href={"/home"}> пользовательского соглашения</Link>
+                              <Link href={clientEndpoints.home.get}> пользовательского соглашения</Link>
                          </h4>
                     )}
                </div>

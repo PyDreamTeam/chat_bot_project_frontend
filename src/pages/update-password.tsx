@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import AuthWrapper from "@/src/components/widgets/AuthWrapper";
+import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesUpdate, inputFieldDataUpdate, validationSchemaUpdate } from "../pagesData/update-password";
 
@@ -24,7 +24,7 @@ const UpdatePassword = () => {
           <AuthWrapper titleText={"Обновите пароль"}>
                <FormUniversal
                     validationSchema={validationSchemaUpdate}
-                    onSubmit={() => console.log(1)}
+                    onSubmit={() => fetch("")}
                     classNameForm="changePassword"
                     buttonSubmitText="Обновить пароль"
                     initialValues={initialValuesUpdate}

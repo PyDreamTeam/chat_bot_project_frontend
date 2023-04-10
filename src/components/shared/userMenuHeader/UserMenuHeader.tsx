@@ -6,7 +6,7 @@ import uuid from "uuid-random";
 
 interface IUserMenuButton {
      text: string;
-     onClick?: any;
+     onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 interface IUserMenu {

@@ -2,9 +2,9 @@ import React, { FC, FormEvent, useState } from "react";
 import styles from "./AccountPageHeader.module.css";
 import UserInfo from "@/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo";
 import { useRouter } from "next/router";
-import { useAppSelector } from "@/src/hooks/types";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import Link from "next/link";
+import { useAppSelector } from "@/src/hooks/types";
 
 interface IHomePageHeader {
      name?: string;

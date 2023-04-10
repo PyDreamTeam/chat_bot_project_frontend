@@ -4,7 +4,7 @@ import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 import styles from "../styles/FormMyAccount.module.css";
 import TextField from "@/src/components/shared/textfields/TextField";
 
-const PersonalData = () => {
+const PersonalDataForm = () => {
      return (
           <div className={styles.personalDataBlock}>
                <TextField color={"black"} type={"h4"}>
@@ -22,4 +22,4 @@ const PersonalData = () => {
      );
 };
 
-export default PersonalData;
+export default PersonalDataForm;
