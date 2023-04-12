@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styles from "./RateCard.module.css";
 
 import uuid from "uuid-random";
-import TextField from "../textfields/TextField";
+import Text from "../textfields/Text";
 import ButtonSubmit from "../buttons/ButtonSubmit";
 import ButtonAuthHeader from "../buttons/ButtonAuthHeader";
 
@@ -21,15 +21,15 @@ const RateCard: FC<IRateCard> = ({ title, price, descriptions }) => {
      return (
           <div className={styles.cardBlock}>
                <div className={styles.cardTextBlock}>
-                    <TextField type={"h4"} color={"black"}>
+                    <Text type={"h4"} color={"black"}>
                          {title}
-                    </TextField>
-                    <TextField type={"h3"} color={"blue"} >{transformedPrice()}</TextField>
+                    </Text>
+                    <Text type={"h3"} color={"blue"} >{transformedPrice()}</Text>
                     <div className={styles.descriptionsBlock}>
                          {descriptions.map((description) => (
-                              <TextField key={uuid()} type={"p"} color={"black"}>
+                              <Text key={uuid()} type={"p"} color={"black"}>
                                    {description}
-                              </TextField>
+                              </Text>
                          ))}
                     </div>
                </div>

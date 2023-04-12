@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styles from "./Rates.module.css";
 import RateCard, { IRateCard } from "@/src/components/shared/rateCard/RateCard";
 import uuid from "uuid-random";
-import TextField from "../../../shared/textfields/TextField";
+import Text from "../../../shared/textfields/Text";
 
 interface IRates {
      cards: IRateCard[];
@@ -12,9 +12,9 @@ interface IRates {
 const Rates: FC<IRates> = ({ cards }) => {
      return (
           <div className={styles.ratesBlock}>
-               <TextField type={"h3"} color={"black"}>
+               <Text type={"h3"} color={"black"}>
                     {"Тарифы"}
-               </TextField>
+               </Text>
                <div className={styles.cardsBlock}>
                     {cards.map((card) => (
                          <RateCard title={card.title} key={uuid()} descriptions={card.descriptions} price={card.price} />

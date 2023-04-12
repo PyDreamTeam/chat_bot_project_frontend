@@ -1,5 +1,5 @@
 import React from "react";
-import TextField from "@/src/components/shared/textfields/TextField";
+import Text from "@/src/components/shared/textfields/Text";
 import ListWithCheck from "@/src/components/entities/lists/listWithCheck/ListWithCheck";
 import { CONFIG } from "@/src/components/entities/TemplatesPageComponents/functionalBlock/Config";
 import Image from "next/image";
@@ -14,9 +14,9 @@ const FunctionalBlock = () => {
                     <Image src={imageDev} alt="Developers" />
                </div>
                <div className={styles.rightBlock}>
-                    <TextField type={"h3"} color={"black"}>
+                    <Text type={"h3"} color={"black"}>
                          Функционал для настроек чат-ботов
-                    </TextField>
+                    </Text>
                     <ListWithCheck titleConfig={CONFIG} />
                </div>
           </div>
