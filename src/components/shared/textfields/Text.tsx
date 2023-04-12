@@ -5,6 +5,7 @@ export enum TextProps {
      subtitleH2 = "subtitleH2",
      subtitleH3 = "subtitleH3",
      subtitleH4 = "subtitleH4",
+     subtitleH5 = "subtitleH5",
      paragraph = "paragraph",
      inline = "inline",
 }
@@ -20,15 +21,17 @@ export enum TextColor {
 
 interface ITextProps {
      tag: ElementType;
+     type: keyof typeof TextProps;
+     color: string;
      children: JSX.Element | string;
      className?: string;
-     color: string;
-     type: keyof typeof TextProps
+
+
 }
 
-const Text: FC<ITextProps> = ({children, tag: CustomTag, ...props}) => {
+const Text: FC<ITextProps> = ({children, tag: Tag, color, ...props}) => {
      return (
-          <CustomTag {...props}>{children}</CustomTag>
+          <Tag style={{color}} {...props}>{children}</Tag>
      );
 };
 export default Text;

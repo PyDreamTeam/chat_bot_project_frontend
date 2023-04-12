@@ -7,7 +7,7 @@ import Text from "@/src/components/shared/textfields/Text";
 const PersonalDataForm = () => {
      return (
           <div className={styles.personalDataBlock}>
-               <Text color={"black"} type={"subtitleH4"}>
+               <Text color={"black"} type={"subtitleH4"} tag={"h4"}>
                     Персональные данные
                </Text>
                <FormUniversal
