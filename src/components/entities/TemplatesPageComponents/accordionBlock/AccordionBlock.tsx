@@ -11,7 +11,7 @@ const AccordionBlock = () => {
      return (
           <div className={styles.wrapper}>
                <div className={styles.leftBlock}>
-                    <Text type={"h3"} color={"black"}>
+                    <Text type={"subtitleH3"} color={"black"}>
                          Что умеет чат-бот?
                     </Text>
                     <AccordionList data={CONFIG_ACCORDION} />
