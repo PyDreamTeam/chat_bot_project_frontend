@@ -1,13 +1,14 @@
-.h1 {
+h1 {
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 56px;
     line-height: 62px;
     letter-spacing: -0.01em;
+
 }
 
-.h2 {
+h2 {
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -15,14 +16,14 @@
     line-height: 82px;
 }
 
-.h3 {
+h3 {
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 40px;
 }
 
-.h4 {
+h4 {
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -30,7 +31,7 @@
     line-height: 39px;
 }
 
-.h5 {
+h5 {
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -38,7 +39,7 @@
     line-height: 28px;
 }
 
-.p {
+p {
     font-family: "Inter", sans-serif;
     font-style: normal;
 }

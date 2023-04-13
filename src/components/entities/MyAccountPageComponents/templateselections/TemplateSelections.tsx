@@ -16,7 +16,7 @@ const TemplateSelections = () => {
                     <div className={styles.textBlock}>
                          <p>Подберите шаблон и внедрите комплексный мессенджер-маркетинг в свой бизнес</p>
                          <Link href={clientEndpoints.home.get}>Подобрать шаблон {<Image src={arrowTemplate} alt={"arrow"} />}</Link>
-                         <Text  tag={"h2"} color={"grey"} type={"paragraph"}>
+                         <Text color={"grey"} type={"title"}>
                               База из 100 шаблонов от наших специалистов
                          </Text>
                     </div>
