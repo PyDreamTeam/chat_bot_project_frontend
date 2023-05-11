@@ -20,33 +20,19 @@
      margin-bottom: 10px;
 }
 
-.textBlock p:first-child {
-     max-width: 543px;
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 400;
-     font-size: 24px;
-     line-height: 28px;
-     color: #17181a;
-     padding-bottom: 26px;
+.textBlock p {
+     max-width: 560px;
 }
 
 .textBlock p:last-child {
-     font-weight: 400;
-     font-size: 14px;
-     line-height: 20px;
      padding-top: 8px;
 }
 
 .textBlock a {
      display: flex;
-     text-decoration: none;
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 500;
-     font-size: 20px;
-     line-height: 28px;
-     color: #4466f5;
-     align-items: center;
-     gap: 21px;
+     gap: 20px;
+     padding-top: 26px;
+}
+.arrow {
+     margin-top: 6px;
 }

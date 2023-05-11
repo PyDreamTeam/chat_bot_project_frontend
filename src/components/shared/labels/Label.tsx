@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import styles from "./styles/Label.module.css";
+import Text from "@/src/components/shared/textfields/Text";
 
 export enum LabelTypes {
      checkbox = "checkbox",
@@ -27,8 +28,8 @@ export interface LabelProps {
 
 const Label = ({ htmlFor, textLabel, typeLabel, children }: LabelProps) => {
      return (
-          <label className={`${styles.label} ${styles[typeLabel]}`} htmlFor={htmlFor}>
-               <p className={styles.nameInput}>{textLabel}</p>
+          <label className={`${styles[typeLabel]}`} htmlFor={htmlFor}>
+               <Text type={"reg18"} color={"black"} className={styles.nameInput}>{textLabel}</Text>
                {children}
           </label>
      );

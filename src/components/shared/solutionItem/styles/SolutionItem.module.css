@@ -11,20 +11,7 @@
 }
 
 .solutionItemBlock h4 {
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 600;
-     font-size: 30px;
-     line-height: 130%;
      padding-top: 11px;
-}
-
-.solutionItemBlock p {
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 400;
-     font-size: 18px;
-     line-height: 150%;
 }
 
 .solutionItemImg {

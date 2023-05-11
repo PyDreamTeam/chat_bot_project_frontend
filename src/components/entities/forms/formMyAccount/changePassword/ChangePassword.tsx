@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { initialValuesUpdate, inputFieldDataChange, validationSchemaUpdate } from "@/src/pagesData/update-password";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 import styles from "../styles/FormMyAccount.module.css";
-import Text from "@/src/components/shared/textfields/Text";
+import Title from "@/src/components/shared/textfields/Title";
 
 const ChangePassword = () => {
      const [activeEye, setActiveEye] = useState({ password: false, repeatPassword: false });
@@ -17,9 +17,9 @@ const ChangePassword = () => {
 
      return (
           <div className={styles.changePasswordBlock}>
-               <Text tag={"h4"} color={"black"} type={"subtitleH4"}>
+               <Title color={"black"} type={"h4"}>
                     Изменить пароль
-               </Text>
+               </Title>
                <FormUniversal
                     validationSchema={validationSchemaUpdate}
                     classNameForm="changePassword"

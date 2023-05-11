@@ -2,15 +2,9 @@
      width: 100%;
      border: none;
      background: none;
-     outline: 0px solid transparent;
+     outline: 0 solid transparent;
      display: flex;
      gap: 12px;
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 500;
-     font-size: 20px;
-     line-height: 28px;
-     color: #17181a;
      transition: 0.3s;
      cursor: pointer;
      align-items: center;

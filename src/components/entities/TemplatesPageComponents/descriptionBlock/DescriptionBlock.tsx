@@ -21,8 +21,8 @@ const DescriptionBlock: FC<IDescriptionBlock> = ({ title, description, image, se
                     <div className={styles.logoWithText}>
                          {logo && <Image src={logo} alt={"Logo Error"} />}
                          <div className={styles.solutionItemTextBlock}>
-                              <Text type={"p"} color={"black"}>{title}</Text>
-                              <Text type={"p"} color={"black"}>{description}</Text>
+                              <Text type={"reg20"} color={"black"}>{title}</Text>
+                              <Text type={"reg18"} color={"black"}>{description}</Text>
                          </div>
                     </div>
                     <SelectedPlatforms platforms={selectedPlatforms} />

@@ -1,48 +1,65 @@
-.h1 {
+.reg24 {
     font-family: "Inter", sans-serif;
     font-style: normal;
-    font-weight: 600;
-    font-size: 56px;
-    line-height: 62px;
-    letter-spacing: -0.01em;
-}
-
-.h2 {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 82px;
-}
-
-.h3 {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
-}
-
-.h4 {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 30px;
-    line-height: 39px;
-}
-
-.h5 {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 24px;
     line-height: 28px;
 }
 
-.p {
+.reg20 {
     font-family: "Inter", sans-serif;
     font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
 }
 
+.med20 {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.reg18 {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.reg16 {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.sem16 {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+.reg14 {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+.sem24Link {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    text-decoration: none;
+}
 
 .black {
     color: #17181a;

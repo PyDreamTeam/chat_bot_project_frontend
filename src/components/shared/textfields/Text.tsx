@@ -2,47 +2,60 @@ import React, {FC} from "react";
 import styles from "./styles/Text.module.css";
 
 type CommonProps = React.PropsWithChildren<Record<string, unknown>>;
+type TextColor = "black" | "grey" | "telegray" | "red" | "green" | "blue";
+type TextType = "reg24" | "reg20" | "med20" | "reg18" | "reg16" | "sem16" |"reg14" | "sem24Link" | "inline"
 type TextProps = CommonProps & {
-     type: "title" | "subtitleH2" | "subtitleH3" | "subtitleH4" | "subtitleH5" | "paragraph" | "inline";
-     color?: "black" | "grey" | "telegray" | "red" | "green" | "blue";
+     type: TextType;
+     color: TextColor
      className?: string;
 };
+type TagProps = CommonProps & {
+     color: TextColor
+};
 
-const Title:FC <CommonProps> = ({ children }) => (
-     <h1 className={styles}>{children}</h1>
+const Regular24:FC <TagProps> = ({ children, color}) => (
+     <p className={`${styles.reg24} ${styles[color]}`}>{children}</p>
 );
 
-const SubtitleH2:FC <CommonProps> = ({ children }) => (
-     <h2 className={styles}>{children}</h2>
+const Regular20:FC <TagProps> = ({ children,color }) => (
+     <p className={`${styles.reg20} ${styles[color]}`}>{children}</p>
 );
 
-const SubtitleH3:FC <CommonProps> = ({ children }) => (
-     <h3 className={styles}>{children}</h3>
+const Medium20:FC <TagProps> = ({ children, color }) => (
+     <p className={`${styles.med20} ${styles[color]}`}>{children}</p>
 );
 
-const SubtitleH4:FC <CommonProps> = ({ children }) => (
-     <h4 className={styles}>{children}</h4>
+const Regular18:FC <TagProps> = ({ children, color }) => (
+     <p className={`${styles.reg18} ${styles[color]}`}>{children}</p>
 );
 
-const SubtitleH5:FC <CommonProps> = ({ children }) => (
-     <h5 className={styles}>{children}</h5>
+const Regular16:FC <TagProps> = ({ children , color}) => (
+     <p className={`${styles.reg16} ${styles[color]}`}>{children}</p>
 );
 
-const Paragraph:FC <CommonProps> = ({ children}) => (
-     <p className={styles}>{children}</p>
+const Semibold16:FC <TagProps> = ({ children, color}) => (
+     <p className={`${styles.sem16} ${styles[color]}`}>{children}</p>
+);
+const Regular14:FC <TagProps> = ({ children, color}) => (
+     <p className={`${styles.reg14} ${styles[color]}`}>{children}</p>
+);
+const Sem24Link:FC <TagProps> = ({ children, color}) => (
+     <p className={`${styles.sem24Link} ${styles[color]}`}>{children}</p>
 );
 
-const Inline:FC <CommonProps> = ({ children}) => (
-     <span className={styles}>{children}</span>
+const Inline:FC <TagProps> = ({ children, color}) => (
+     <span className={`${styles.inline} ${styles[color]}`}>{children}</span>
 );
 
 const componentsDisplay = {
-     title: Title,
-     subtitleH2: SubtitleH2,
-     subtitleH3: SubtitleH3,
-     subtitleH4: SubtitleH4,
-     subtitleH5: SubtitleH5,
-     paragraph: Paragraph,
+     reg24: Regular24,
+     reg20: Regular20,
+     med20: Medium20,
+     reg18: Regular18,
+     reg16: Regular16,
+     sem16: Semibold16,
+     reg14: Regular14,
+     sem24Link: Sem24Link,
      inline: Inline,
 } as const;
 
@@ -50,7 +63,7 @@ const Text:FC <TextProps> = ({ children, type, color }) => {
      const Tag = componentsDisplay[type];
 
      return (
-          <Tag style={{color}}>
+          <Tag color={color}>
                {children}
           </Tag>
      );

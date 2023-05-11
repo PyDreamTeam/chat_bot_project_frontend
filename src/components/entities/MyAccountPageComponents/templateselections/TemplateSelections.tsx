@@ -14,9 +14,16 @@ const TemplateSelections = () => {
                <div className={styles.templateSelectionsBlock}>
                     <Image className={styles.templateMailImage} alt={"mail-template"} src={mailTemplate} />
                     <div className={styles.textBlock}>
-                         <p>Подберите шаблон и внедрите комплексный мессенджер-маркетинг в свой бизнес</p>
-                         <Link href={clientEndpoints.home.get}>Подобрать шаблон {<Image src={arrowTemplate} alt={"arrow"} />}</Link>
-                         <Text color={"red"} type={"paragraph"}>
+                         <Text type={"reg24"} color={"black"}>
+                              Подберите шаблон и внедрите комплексный мессенджер-маркетинг в свой бизнес
+                         </Text>
+                         <Link href={clientEndpoints.home.get}>
+                              <Text type={"med20"} color={"blue"}>
+                                   Подобрать шаблон
+                              </Text>
+                              {<Image src={arrowTemplate} className={styles.arrow} alt={"arrow"} />}
+                         </Link>
+                         <Text color={"grey"} type={"reg14"}>
                               База из 100 шаблонов от наших специалистов
                          </Text>
                     </div>

@@ -4,6 +4,7 @@ import styles from "./styles/SearchHistory.module.css";
 import { SearchHistoryConfig } from "@/src/components/entities/MyAccountPageComponents/searchHistory/SearchHistoryConfig";
 import SearchHistoryItem from "@/src/components/shared/searchHistoryItem/SearchHistoryItem";
 import uuid from "uuid-random";
+import Title from "@/src/components/shared/textfields/Title";
 
 interface ISearchHistory {
      title: string;
@@ -12,7 +13,7 @@ interface ISearchHistory {
 const SearchHistory: FC<ISearchHistory> = ({ title }) => {
      return (
           <div className={styles.searchHistoryWrapper}>
-               <h4>{title}</h4>
+               <Title type={"h4"} color={"black"}>{title}</Title>
                <div className={styles.searchHistoryCards}>
                     {(title === "Сохраненные шаблоны" &&
                          SearchHistoryConfig.map(

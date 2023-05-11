@@ -4,12 +4,3 @@
      justify-content: center;
      gap: 12px;
 }
-
-.verifiedEmailBlock p {
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 600;
-     font-size: 16px;
-     line-height: 150%;
-     color: #4f8325;
-}

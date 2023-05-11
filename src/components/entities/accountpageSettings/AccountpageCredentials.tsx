@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { useAppSelector } from "@/src/hooks/types";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import Text from "@/src/components/shared/textfields/Text";
+import Title from "@/src/components/shared/textfields/Title";
 
 interface IAccountPageCredential {
      email: string;
@@ -25,10 +27,10 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, em
           <div className={styles.credentialsWrapper}>
                <UserAvatar url={avatarUrl} type={"forSettings"} username={name} />
                <div className={styles.credentialsRightBlock}>
-                    <h4>{name}</h4>
+                    <Title type={"h4"} color={"black"}>{name}</Title>
                     {mobileNumber && <p className={styles.credentialsInfo}>{mobileNumber}</p>}
                     <div className={styles.emailBlock}>
-                         {<p className={styles.credentialsInfo}>{email}</p>}
+                         {<Text type={"reg18"} color={"black"}>{email}</Text>}
                          {isEmailVerified && <VerifiedEmail />}
                     </div>
                     {page === "profile_templates" && (

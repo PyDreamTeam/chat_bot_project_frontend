@@ -2,6 +2,7 @@ import React, { FC, MouseEventHandler } from "react";
 
 import styles from "./styles/SettingsTabItem.module.css";
 import Link from "next/link";
+import Text from "@/src/components/shared/textfields/Text";
 
 export interface ISettingsTabItem {
      id: number;
@@ -21,7 +22,9 @@ const SettingsTabItem: FC<ISettingsTabItemProps> = ({ tabProps, activeTabItem })
                className={`${styles.tabItem} 
             ${activeTabItem === tabProps.id ? styles.active : ""}`}
           >
-               {tabProps.title}
+               <Text type={"med20"} color={"black"}>
+                    {tabProps.title}
+               </Text>
           </Link>
      );
 };

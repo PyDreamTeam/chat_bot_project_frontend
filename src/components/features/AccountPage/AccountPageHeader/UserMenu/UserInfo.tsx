@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { headerArrow } from "../img/SvgConfig";
 import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
+import Text from "@/src/components/shared/textfields/Text";
 
 interface IUserInfoProps {
      onClick?: () => void;
@@ -46,7 +47,7 @@ const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, class
                <div className={styles.avatarCircle}>
                     <Avatar type={"forHeader"} url={avatarUrl} />
                </div>
-               {userName && <span className={styles.userName}>{userName}</span>}
+               {userName && <Text type={"reg18"} color={"black"}>{userName}</Text>}
                <div>{headerArrow}</div>
                {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
           </div>

@@ -6,6 +6,7 @@ import uuid from "uuid-random";
 import Text from "../textfields/Text";
 import ButtonSubmit from "../buttons/ButtonSubmit";
 import ButtonAuthHeader from "../buttons/ButtonAuthHeader";
+import Title from "../textfields/Title";
 
 export interface IRateCard {
      title: string;
@@ -21,13 +22,13 @@ const RateCard: FC<IRateCard> = ({ title, price, descriptions }) => {
      return (
           <div className={styles.cardBlock}>
                <div className={styles.cardTextBlock}>
-                    <Text type={"h4"} color={"black"}>
+                    <Title type={"h4"} color={"black"}>
                          {title}
-                    </Text>
-                    <Text type={"h3"} color={"blue"} >{transformedPrice()}</Text>
+                    </Title>
+                    <Title type={"h3"} color={"blue"} >{transformedPrice()}</Title>
                     <div className={styles.descriptionsBlock}>
                          {descriptions.map((description) => (
-                              <Text key={uuid()} type={"p"} color={"black"}>
+                              <Text key={uuid()} type={"reg20"} color={"black"}>
                                    {description}
                               </Text>
                          ))}
