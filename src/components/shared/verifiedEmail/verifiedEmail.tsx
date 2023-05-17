@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./styles/verifiedEmail.module.css";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 
 const VerifiedEmail = () => {

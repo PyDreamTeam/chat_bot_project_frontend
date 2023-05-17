@@ -4,7 +4,8 @@ import SelectedPlatforms from "@/src/components/shared/solutionItem/selectedPlat
 import Image, { StaticImageData } from "next/image";
 import ButtonAuthHeader from "@/src/components/shared/buttons/ButtonAuthHeader";
 import ButtonSubmit from "@/src/components/shared/buttons/ButtonSubmit";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
+import Title from "@/src/components/shared/text/Title";
 
 interface IDescriptionBlock {
      title: string;
@@ -21,7 +22,7 @@ const DescriptionBlock: FC<IDescriptionBlock> = ({ title, description, image, se
                     <div className={styles.logoWithText}>
                          {logo && <Image src={logo} alt={"Logo Error"} />}
                          <div className={styles.solutionItemTextBlock}>
-                              <Text type={"reg20"} color={"black"}>{title}</Text>
+                              <Title type={"h4"} color={"black"}>{title}</Title>
                               <Text type={"reg18"} color={"black"}>{description}</Text>
                          </div>
                     </div>

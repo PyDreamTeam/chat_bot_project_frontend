@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import styles from "./styles/Label.module.css";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 export enum LabelTypes {
      checkbox = "checkbox",

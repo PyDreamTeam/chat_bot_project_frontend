@@ -8,8 +8,8 @@ import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { useAppSelector } from "@/src/hooks/types";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
-import Text from "@/src/components/shared/textfields/Text";
-import Title from "@/src/components/shared/textfields/Title";
+import Text from "@/src/components/shared/text/Text";
+import Title from "@/src/components/shared/text/Title";
 
 interface IAccountPageCredential {
      email: string;

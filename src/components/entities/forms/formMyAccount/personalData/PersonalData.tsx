@@ -2,7 +2,7 @@ import React from "react";
 import { initialValuesPersonData, inputPersonData, validationSchemaPersonData } from "@/src/pagesData/personal-data";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 import styles from "../styles/FormMyAccount.module.css";
-import Title from "@/src/components/shared/textfields/Title";
+import Title from "@/src/components/shared/text/Title";
 
 const PersonalDataForm = () => {
      return (

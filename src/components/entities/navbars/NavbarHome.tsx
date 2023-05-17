@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import uuid from "uuid-random";
 import styles from "./styles/styles.module.css";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 interface NavElement {
      text: string;

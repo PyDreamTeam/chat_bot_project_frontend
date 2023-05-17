@@ -5,7 +5,6 @@
     font-size: 24px;
     line-height: 28px;
 }
-
 .reg20 {
     font-family: "Inter", sans-serif;
     font-style: normal;
@@ -13,7 +12,6 @@
     font-size: 20px;
     line-height: 28px;
 }
-
 .med20 {
     font-family: "Inter", sans-serif;
     font-style: normal;
@@ -21,7 +19,6 @@
     font-size: 20px;
     line-height: 28px;
 }
-
 .reg18 {
     font-family: "Inter", sans-serif;
     font-style: normal;
@@ -29,7 +26,6 @@
     font-size: 18px;
     line-height: 27px;
 }
-
 .reg16 {
     font-family: "Inter", sans-serif;
     font-style: normal;
@@ -37,7 +33,6 @@
     font-size: 16px;
     line-height: 24px;
 }
-
 .sem16 {
     font-family: "Inter", sans-serif;
     font-style: normal;
@@ -83,4 +78,7 @@
 
 .blue {
     color: #4466f5;
+}
+.white {
+    color: #E1E2E6;
 }

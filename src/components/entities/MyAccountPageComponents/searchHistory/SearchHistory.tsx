@@ -4,7 +4,7 @@ import styles from "./styles/SearchHistory.module.css";
 import { SearchHistoryConfig } from "@/src/components/entities/MyAccountPageComponents/searchHistory/SearchHistoryConfig";
 import SearchHistoryItem from "@/src/components/shared/searchHistoryItem/SearchHistoryItem";
 import uuid from "uuid-random";
-import Title from "@/src/components/shared/textfields/Title";
+import Title from "@/src/components/shared/text/Title";
 
 interface ISearchHistory {
      title: string;

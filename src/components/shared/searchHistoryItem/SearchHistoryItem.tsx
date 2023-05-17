@@ -5,7 +5,7 @@ import { SearchHistorySvgConfig } from "./SearchHistorySvgConfig";
 import Mail from "../images/img/Mail-template.svg";
 import Aimilogic from "../images/img/aimylogic-online-service-logo-2-1200x900 1.svg";
 import Image from "next/image";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 interface ISearchHistoryItem {
      title: string;

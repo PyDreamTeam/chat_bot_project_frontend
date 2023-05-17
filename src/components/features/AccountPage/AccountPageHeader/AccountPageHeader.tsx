@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import Link from "next/link";
 import { useAppSelector } from "@/src/hooks/types";
-import Title from "@/src/components/shared/textfields/Title";
+import Title from "@/src/components/shared/text/Title";
 
 interface IHomePageHeader {
      name?: string;
@@ -38,7 +38,7 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                     {page === "templates" && (
                          <Link href={"/my-account"}>
                               <Title type={"h4"} color={"black"}>
-                                   {"< TEMPLATES"}
+                                   {"< Aimilogic"}
                               </Title>
                          </Link>
                     )}

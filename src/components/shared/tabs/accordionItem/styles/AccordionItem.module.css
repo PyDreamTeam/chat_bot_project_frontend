@@ -13,7 +13,6 @@
 }
 .header.open {
      color: #4466f5;
-     transition: 0.5s;
 }
 
 .content {
@@ -24,4 +23,5 @@
 .content.show {
      height: auto;
      max-height: 99999px;
+     padding-top: 16px;
 }

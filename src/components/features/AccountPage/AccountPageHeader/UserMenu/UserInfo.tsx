@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { headerArrow } from "../img/SvgConfig";
 import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 interface IUserInfoProps {
      onClick?: () => void;

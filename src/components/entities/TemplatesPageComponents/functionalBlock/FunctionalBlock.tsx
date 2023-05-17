@@ -5,7 +5,7 @@ import Image from "next/image";
 import imageDev from "./img/Group.svg";
 
 import styles from "./styles/FunctionalBlock.module.css";
-import Title from "@/src/components/shared/textfields/Title";
+import Title from "@/src/components/shared/text/Title";
 
 const FunctionalBlock = () => {
      return (

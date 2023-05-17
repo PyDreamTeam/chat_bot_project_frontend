@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import styles from "./styles/Text.module.css";
 
 type CommonProps = React.PropsWithChildren<Record<string, unknown>>;
-type TextColor = "black" | "grey" | "telegray" | "red" | "green" | "blue";
+type TextColor = "black" | "grey" | "telegray" | "red" | "green" | "blue" | "white";
 type TextType = "reg24" | "reg20" | "med20" | "reg18" | "reg16" | "sem16" |"reg14" | "sem24Link" | "inline"
 type TextProps = CommonProps & {
      type: TextType;

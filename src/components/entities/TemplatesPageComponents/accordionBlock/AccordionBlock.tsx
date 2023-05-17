@@ -5,7 +5,7 @@ import imageAccor from "@/src/components/entities/TemplatesPageComponents/accord
 import { CONFIG_ACCORDION } from "@/src/components/entities/TemplatesPageComponents/accordionBlock/ConfigAccordion";
 
 import AccordionList from "@/src/components/entities/lists/accordionList/AccordionList";
-import Title from "@/src/components/shared/textfields/Title";
+import Title from "@/src/components/shared/text/Title";
 
 const AccordionBlock = () => {
      return (

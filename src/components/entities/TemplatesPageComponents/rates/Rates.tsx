@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styles from "./Rates.module.css";
 import RateCard, { IRateCard } from "@/src/components/shared/rateCard/RateCard";
 import uuid from "uuid-random";
-import Title from "../../../shared/textfields/Title";
+import Title from "../../../shared/text/Title";
 
 interface IRates {
      cards: IRateCard[];

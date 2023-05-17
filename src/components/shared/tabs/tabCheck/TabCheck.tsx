@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import styles from "./styles/TabCheck.module.css";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 export interface ITabCheck {
      id: number;

@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import styles from "./styles/tabSelect.module.css";
 import DropDownSelect from "@/src/components/entities/dropDownSelect/DropDownSelect";
 import { DROPDOWN_SELECT_CONFIG } from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 export interface ITabSelect {
      id?: number;

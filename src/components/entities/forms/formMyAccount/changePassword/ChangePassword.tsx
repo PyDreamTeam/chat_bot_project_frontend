@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { initialValuesUpdate, inputFieldDataChange, validationSchemaUpdate } from "@/src/pagesData/update-password";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 import styles from "../styles/FormMyAccount.module.css";
-import Title from "@/src/components/shared/textfields/Title";
+import Title from "@/src/components/shared/text/Title";
 
 const ChangePassword = () => {
      const [activeEye, setActiveEye] = useState({ password: false, repeatPassword: false });

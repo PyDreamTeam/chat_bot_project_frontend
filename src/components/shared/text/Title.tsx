@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import styles from "./styles/Title.module.css";
 
 type CommonProps = React.PropsWithChildren<Record<string, unknown>>;
-type TitleColor = "black" | "grey" | "telegray" | "red" | "green" | "blue";
+type TitleColor = "black" | "grey" | "telegray" | "red" | "green" | "blue" | "white";
 type TitleType = "h1" | "h2" | "h3" | "h4"
 type TitleProps = CommonProps & {
      type: TitleType;

@@ -1,7 +1,7 @@
 import React, { FC, MouseEventHandler } from "react";
 import styles from "././styles/TabItem.module.css";
 import Link from "next/link";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 export interface ITabItem {
      id: number;

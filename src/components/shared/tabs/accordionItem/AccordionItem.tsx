@@ -4,7 +4,7 @@ import minus from "@/src/components/entities/TemplatesPageComponents/accordionBl
 import plus from "@/src/components/entities/TemplatesPageComponents/accordionBlock/img/Plus.svg";
 
 import styles from "./styles/AccordionItem.module.css";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 
 export interface IAccordionItem {
      id: number;
@@ -22,10 +22,10 @@ const AccordionItem: FC<IAccordionItem & IAccordionItemProps> = ({ id, title, co
      return (
           <div key={id} className={`${styles.wrapper} ${isSelected && styles.active}`}>
                <div className={`${styles.header} ${isSelected && styles.open}`} onClick={openClick}>
-                    <Text type={"reg24"} color={"black"}>
+                    <Text type={"reg24"} color={"black"} >
                          {title}
-                         {isSelected ? <Image src={minus} alt="Close" /> : <Image src={plus} alt="Open" />}
                     </Text>
+                    {isSelected ? <Image src={minus} alt="Close" /> : <Image src={plus} alt="Open" />}
                </div>
                <div className={`${styles.content} ${isSelected && styles.show}`}>
                     <Text type={"reg18"} color={"black"}>

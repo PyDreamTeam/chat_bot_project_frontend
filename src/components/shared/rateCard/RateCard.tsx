@@ -3,10 +3,9 @@ import React, { FC } from "react";
 import styles from "./RateCard.module.css";
 
 import uuid from "uuid-random";
-import Text from "../textfields/Text";
+import Text from "../text/Text";
 import ButtonSubmit from "../buttons/ButtonSubmit";
-import ButtonAuthHeader from "../buttons/ButtonAuthHeader";
-import Title from "../textfields/Title";
+import Title from "../text/Title";
 
 export interface IRateCard {
      title: string;
@@ -16,13 +15,13 @@ export interface IRateCard {
 
 const RateCard: FC<IRateCard> = ({ title, price, descriptions }) => {
      const transformedPrice = () => {
-          return `От ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
+          return `от ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
      };
 
      return (
           <div className={styles.cardBlock}>
                <div className={styles.cardTextBlock}>
-                    <Title type={"h4"} color={"black"}>
+                    <Title type={"h3"} color={"black"}>
                          {title}
                     </Title>
                     <Title type={"h3"} color={"blue"} >{transformedPrice()}</Title>

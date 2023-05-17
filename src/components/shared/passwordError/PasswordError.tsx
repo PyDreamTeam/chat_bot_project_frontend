@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import styles from "./PasswordError.module.css";
 import { errorPasswordConfig } from "@/src/components/shared/passwordError/images/PasswordErrorSvg";
-import Text from "../textfields/Text";
+import Text from "../text/Text";
 
 export interface IPasswordError {
      errorText: string;

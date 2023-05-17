@@ -5,7 +5,7 @@ import Link from "next/link";
 import mailTemplate from "../../../shared/images/img/Mail-template.svg";
 import arrowTemplate from "./img/arrow_template.svg";
 import Image from "next/image";
-import Text from "@/src/components/shared/textfields/Text";
+import Text from "@/src/components/shared/text/Text";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 
 const TemplateSelections = () => {
