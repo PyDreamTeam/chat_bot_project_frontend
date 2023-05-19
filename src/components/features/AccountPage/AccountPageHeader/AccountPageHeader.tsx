@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import Link from "next/link";
 import { useAppSelector } from "@/src/hooks/types";
+import Title from "@/src/components/shared/text/Title";
 
 interface IHomePageHeader {
      name?: string;
@@ -30,14 +31,25 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
      return (
           <header className={styles.headerWrapper}>
                <>
-                    {page === "startPage" && <h4>{title ? title : `Добро пожаловать, ${name}!`}</h4>}
+                    {page === "startPage" &&
+                        <Title type={"h4"} color={"black"}>
+                             {title ? title : `Добро пожаловать, ${name}!`}
+                        </Title>}
                     {page === "templates" && (
-                         <Link className={styles.templatesHeaderLink} href={"/my-account"}>
-                              {"< TEMPLATES"}
+                         <Link href={"/my-account"}>
+                              <Title type={"h4"} color={"black"}>
+                                   {"< Aimilogic"}
+                              </Title>
                          </Link>
                     )}
-                    {(page === "profile_changeData" || page === "profile_templates") && <h4>Профиль</h4>}
-                    {(page === "profile_settings_password" || page === "profile_settings_personalData") && <h4>Настройки</h4>}
+                    {(page === "profile_changeData" || page === "profile_templates") &&
+                        <Title type={"h4"} color={"black"}>
+                             Профиль
+                        </Title>}
+                    {(page === "profile_settings_password" || page === "profile_settings_personalData") &&
+                        <Title type={"h4"} color={"black"}>
+                             Настройки
+                        </Title>}
                </>
                <UserInfo profileOnClick={handleOpenProfile} isOpen={open} onClick={handleToggleBurgerMenu} userName={name} />
           </header>

@@ -2,12 +2,13 @@ import React, { FC } from "react";
 
 import styles from "./AuthRightBlock.module.css";
 import { WithChildren } from "@/src/shared/types/withChildren";
-import AuthTitle from "@/src/components/shared/textfields/AuthTitle";
+import AuthTitle from "@/src/components/shared/text/AuthTitle";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import IconsAuthBar from "@/src/components/entities/iconbars/IconsAuthBar";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { svgArray } from "@/src/components/entities/iconbars/img/svgConfig";
+import Text from "@/src/components/shared/text/Text";
 export interface IAuthRightBlock {
      titleText: string;
 }
@@ -24,44 +25,53 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                     <AuthTitle text={titleText} />
 
                     {isSignIn && (
-                         <>
-                              <h4 className={`${styles.h4} ${styles.questionRoute}`}>
-                                   Ещё нет аккаунта?
+                         <div className={styles.questionRoute}>
+                              <Text type={"reg16"} color={"grey"} >
+                                        Ещё нет аккаунта?
                                    <Link href={clientEndpoints.signUp.get}> Регистрация </Link>
-                              </h4>
-                              <h3 className={`${styles.h3} ${styles.questionSocials}`}>Войдите через соцсеть</h3>
+                              </Text>
+                              <Text type={"reg18"} color={"black"} className={styles.centerText}>Войдите через соцсеть</Text>
                               <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
-                              <h3 className={`${styles.h3} ${styles.signIn}`}>Или с помощью почты и пароля</h3>
-                         </>
+                              <Text type={"reg18"} color={"black"} className={styles.signIn}>Или с помощью почты и пароля</Text>
+                         </div>
                     )}
                     {isSignUp && (
-                         <h4 className={`${styles.h4} ${styles.questionSignIn}`}>
-                              Уже есть аккаунт?
-                              <Link href={clientEndpoints.signIn.get}> Войдите </Link>
-                         </h4>
+                         <div className={styles.questionSignIn}>
+                              <Text type={"reg16"} color={"grey"}>
+                                  Уже есть аккаунт?
+                                   <Link href={clientEndpoints.signIn.get}> Войдите </Link>
+                              </Text>
+                         </div>
                     )}
                     {isRestorePassword && (
-                         <h2 className={`${styles.h2} ${styles.addEmail}`}>Укажите Email, на который вы создавали личный кабинет</h2>
+                         <div className={styles.addEmail}>
+                              <Text type={"reg20"} color={"grey"}>
+                                  Укажите Email, на который вы создавали личный кабинет
+                              </Text> 
+                         </div>
                     )}
                     {isUpdatePassword && (
-                         <>
-                              <div className={styles.updateName}>
-                                   <h2 className={styles.h2}>Иван Иванов</h2>
-                                   <h2 className={styles.h2}>example@mail.com</h2>
-                              </div>
-                         </>
+                         <div className={styles.updateName}>
+                              <Text type={"reg20"} color={"black"}>Иван Иванов</Text>
+                              <Text type={"reg20"} color={"black"}>example@mail.com</Text>
+                         </div>
                     )}
                     <div className={styles.formCenter}>{children}</div>
                     {isSignIn && (
-                         <h4 className={styles.h4}>
-                              Забыли пароль? <Link href={clientEndpoints.restorePassword.get}>Восстановите здесь</Link>
-                         </h4>
+                         <div className={styles.centerText}>
+                              <Text type={"reg16"} color={"grey"} >
+                                  Забыли пароль?
+                                   <Link href={clientEndpoints.restorePassword.get}>Восстановите здесь</Link>
+                              </Text>  
+                         </div>
                     )}
                     {isSignUp && (
-                         <h4 className={`${styles.h4} ${styles.agreement}`}>
-                              Нажимая кнопку «Зарегистрироваться», вы принимаете условия
-                              <Link href={clientEndpoints.home.get}> пользовательского соглашения</Link>
-                         </h4>
+                         <div className={styles.agreement}>
+                              <Text type={"reg16"} color={"grey"}>
+                                  Нажимая кнопку «Зарегистрироваться», вы принимаете условия
+                                   <Link href={clientEndpoints.home.get}> пользовательского соглашения</Link>
+                              </Text>   
+                         </div>
                     )}
                </div>
           </div>

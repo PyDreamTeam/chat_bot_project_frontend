@@ -1,6 +1,7 @@
 import React, { FC, MouseEventHandler } from "react";
 import styles from "././styles/TabItem.module.css";
 import Link from "next/link";
+import Text from "@/src/components/shared/text/Text";
 
 export interface ITabItem {
      id: number;
@@ -17,7 +18,9 @@ const TabItem: FC<ITabItem & TabItemProps> = ({ id, title = "", icon, activeTabI
      return (
           <Link href={href} className={`${styles.tabItem} ${activeTabItem === id ? styles.active : null}`}>
                {icon}
-               {title}
+               <Text type={"med20"} color={"black"}>
+                    {title}
+               </Text>
           </Link>
      );
 };

@@ -1,10 +1,4 @@
 .tabItem {
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 500;
-     font-size: 20px;
-     line-height: 28px;
-     color: #000000;
      padding: 10px;
      cursor: pointer;
 }

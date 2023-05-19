@@ -2,14 +2,9 @@
      list-style-type: none;
      background: #f4f5f6;
      border-radius: 20px;
+
 }
 
-.selectedOptionBlock li {
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 400;
-     font-size: 18px;
-     line-height: 150%;
-     color: #595f6c;
-     padding: 10px;
+.selectedOptionBlock p {
+     padding: 5px 10px;
 }

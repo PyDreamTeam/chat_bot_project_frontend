@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import styles from "./styles/SelectedOptionItem.module.css";
+import Text from "@/src/components/shared/text/Text";
 
 interface ISelectOption {
      title: string;
@@ -9,7 +10,9 @@ interface ISelectOption {
 const SelectedOptionItem: FC<ISelectOption> = ({ title }) => {
      return (
           <div className={styles.selectedOptionBlock}>
-               <li>{title}</li>
+               <Text type={"reg18"} color={"grey"}>
+                    {title}
+               </Text>
           </div>
      );
 };

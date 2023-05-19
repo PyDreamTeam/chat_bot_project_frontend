@@ -7,20 +7,3 @@
      height: 100%;
      margin-bottom: 39px;
 }
-
-.templatesHeaderLink {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 600;
-     font-size: 30px;
-     line-height: 130%;
-     color: #000000;
-}
-
-.headerWrapper h4 {
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 600;
-     font-size: 30px;
-     line-height: 130%;
-}

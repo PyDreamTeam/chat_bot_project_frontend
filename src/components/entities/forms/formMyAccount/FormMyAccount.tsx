@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import ProfileTitle from "@/src/components/shared/textfields/ProfileTitle";
+import ProfileTitle from "@/src/components/shared/text/ProfileTitle";
 import styles from "./styles/FormMyAccount.module.css";
 import PersonalData from "./personalData/PersonalData";
 import ChangePassword from "./changePassword/ChangePassword";
