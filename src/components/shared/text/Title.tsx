@@ -3,7 +3,7 @@ import styles from "./styles/Title.module.css";
 
 type CommonProps = React.PropsWithChildren<Record<string, unknown>>;
 type TitleColor = "black" | "grey" | "telegray" | "red" | "green" | "blue" | "white";
-type TitleType = "h1" | "h2" | "h3" | "h4"
+type TitleType = "h1" | "h2" | "h3" | "h4" | "h5"
 type TitleProps = CommonProps & {
      type: TitleType;
      color: TitleColor
@@ -28,12 +28,16 @@ const SubtitleH3:FC <TagProps> = ({ children, color }) => (
 const SubtitleH4:FC <TagProps> = ({ children, color }) => (
      <h4 className={`${styles.h4} ${styles[color]}`}>{children}</h4>
 );
+const SubtitleH5:FC <TagProps> = ({ children, color }) => (
+     <h5 className={`${styles.h5} ${styles[color]}`}>{children}</h5>
+);
 
 const componentsDisplay = {
      h1: SubtitleH1,
      h2: SubtitleH2,
      h3: SubtitleH3,
      h4: SubtitleH4,
+     h5: SubtitleH5,
 } as const;
 
 const Title:FC <TitleProps> = ({ children, type, color }) => {
