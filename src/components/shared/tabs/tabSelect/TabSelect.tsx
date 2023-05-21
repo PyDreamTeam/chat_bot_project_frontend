@@ -19,7 +19,7 @@ const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onCl
      const [toggle, setToggle] = useState(false);
      const handleOpenClose = () => setToggle(!toggle);
 
-     const [selectedInput, setSelectedInput] = useState<any>(false);
+     const [selectedInput, setSelectedInput] = useState<boolean>(false);
 
      const handleChange = (inputValue: any) => {
           setSelectedInput(inputValue);

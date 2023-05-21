@@ -14,7 +14,6 @@ interface IAccountPageMain {
 }
 
 const AccountPageMain: React.FC<IAccountPageMain> = ({ page }) => {
-     const { name } = useAppSelector((state) => state.credentialsSlice.credentials);
 
      return (
           <main>

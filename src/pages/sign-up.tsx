@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import AuthWrapper from "@/src/components/widgets/AuthWrapper";
 import FormUniversal, { IInputField } from "../components/entities/forms/FormUniversal";
 import { inputFieldDataSignUp, initialValuesSignUp, validationSchemaSignUp } from "../pagesData/sign-up";
-import { useCreateUserMutation } from "../store/services/authApi";
+import { authApi, useCreateUserMutation } from "../store/services/authApi";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "../hooks/types";
 import { setCredentials } from "../store/reducers/credentialsSlice";
 
 export const SignUp = () => {
-     const [createUser, { data, isSuccess }]: any = useCreateUserMutation();
+     // const [createUser, { data, isSuccess }]: any = useCreateUserMutation();
+
+     const [createUserQuery, { isError, isLoading, data, isSuccess }] = authApi.useCreateUserMutation();
+
+     console.log(data, isSuccess);
+
      const router = useRouter();
      const dispatch = useAppDispatch();
 
@@ -18,7 +23,7 @@ export const SignUp = () => {
      };
 
      React.useEffect(() => {
-          if (isSuccess) {
+          if (data) {
                dispatch(setCredentials(data));
                router.push("/my-account");
           }
@@ -26,7 +31,7 @@ export const SignUp = () => {
      return (
           <AuthWrapper titleText={"Регистрация"}>
                <FormUniversal
-                    onSubmit={createUser}
+                    onSubmit={createUserQuery}
                     validationSchema={validationSchemaSignUp}
                     classNameForm="signUp"
                     buttonSubmitText="Зарегистрироваться"

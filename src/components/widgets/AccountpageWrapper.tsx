@@ -23,14 +23,9 @@ const thirdTab = 3;
 
 const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children }) => {
      const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
-     const name = useAppSelector((state) => state.credentialsSlice.credentials.name);
+     const name = useAppSelector((state) => state.credentialsSlice.credentials.first_name);
      const dispatch = useAppDispatch();
      const router = useRouter();
-
-     React.useEffect(() => {
-          const storageData = JSON.parse(localStorage.getItem("credentials") ?? "");
-          storageData && dispatch(setCredentials(storageData));
-     }, []);
 
      const TABS_CONFIG = [
           {
@@ -74,11 +69,11 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
                          <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                     ) : null}
                     {children}
-                    {page === "templates" && 
+                    {page === "templates" && (
                          <div className={styles.templatesButtonBlock}>
                               <ButtonTemplates />
                          </div>
-                    }
+                    )}
                </div>
           </div>
      );

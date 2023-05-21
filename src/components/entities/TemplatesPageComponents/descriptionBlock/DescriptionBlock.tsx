@@ -21,8 +21,12 @@ const DescriptionBlock: FC<IDescriptionBlock> = ({ title, description, image, se
                     <div className={styles.logoWithText}>
                          {logo && <Image src={logo} alt={"Logo Error"} />}
                          <div className={styles.solutionItemTextBlock}>
-                              <TextField type={"p"} color={"black"}>{title}</TextField>
-                              <TextField type={"p"} color={"black"}>{description}</TextField>
+                              <TextField type={"p"} color={"black"}>
+                                   {title}
+                              </TextField>
+                              <TextField type={"p"} color={"black"}>
+                                   {description}
+                              </TextField>
                          </div>
                     </div>
                     <SelectedPlatforms platforms={selectedPlatforms} />
