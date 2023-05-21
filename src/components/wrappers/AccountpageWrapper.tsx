@@ -21,7 +21,7 @@ const thirdTab = 3;
 
 const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children }) => {
      const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
-     const name = useAppSelector((state) => state.credentialsSlice.credentials.name);
+     const name = useAppSelector((state) => state.credentialsSlice.credentials.first_name);
      const dispatch = useAppDispatch();
      const router = useRouter();
 
