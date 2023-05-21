@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import styles from "./styles/TabCheck.module.css";
+import Text from "@/src/components/shared/text/Text";
 
 export interface ITabCheck {
      id: number;
@@ -12,7 +13,10 @@ const TabCheck: FC<ITabCheck> = ({ id, icon, title }) => {
      return (
           <div key={id} className={styles.setting}>
                {icon}
-               {title}
+               <Text type={"reg24"} color={"black"}>
+                    {title} 
+               </Text>
+               
           </div>
      );
 };

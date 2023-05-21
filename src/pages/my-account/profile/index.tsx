@@ -1,11 +1,11 @@
 import AccountPageCredential from "@/src/components/entities/accountpageSettings/AccountpageCredentials";
 import SearchHistory from "@/src/components/entities/MyAccountPageComponents/searchHistory/SearchHistory";
-import AccountPageWrapper from "@/src/components/widgets/AccountpageWrapper";
+import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import { useAppSelector } from "@/src/hooks/types";
 import { useRouter } from "next/router";
 import React from "react";
 
-const index = () => {
+const Profile = () => {
      const router = useRouter();
      const { first_name, email, emailNotification } = useAppSelector((state) => state.credentialsSlice.credentials);
      const mobileNumber = "+375297177707";
@@ -23,4 +23,4 @@ const index = () => {
      );
 };
 
-export default index;
+export default Profile;

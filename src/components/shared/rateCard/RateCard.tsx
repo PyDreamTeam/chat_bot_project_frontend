@@ -3,9 +3,9 @@ import React, { FC } from "react";
 import styles from "./RateCard.module.css";
 
 import uuid from "uuid-random";
-import TextField from "../textfields/TextField";
+import Text from "../text/Text";
 import ButtonSubmit from "../buttons/ButtonSubmit";
-import ButtonAuthHeader from "../buttons/ButtonAuthHeader";
+import Title from "../text/Title";
 
 export interface IRateCard {
      title: string;
@@ -15,23 +15,21 @@ export interface IRateCard {
 
 const RateCard: FC<IRateCard> = ({ title, price, descriptions }) => {
      const transformedPrice = () => {
-          return `От ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
+          return `от ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`;
      };
 
      return (
           <div className={styles.cardBlock}>
                <div className={styles.cardTextBlock}>
-                    <TextField type={"h4"} color={"black"}>
+                    <Title type={"h3"} color={"black"}>
                          {title}
-                    </TextField>
-                    <TextField type={"h3"} color={"blue"}>
-                         {transformedPrice()}
-                    </TextField>
+                    </Title>
+                    <Title type={"h3"} color={"blue"} >{transformedPrice()}</Title>
                     <div className={styles.descriptionsBlock}>
                          {descriptions.map((description) => (
-                              <TextField key={uuid()} type={"p"} color={"black"}>
+                              <Text key={uuid()} type={"reg20"} color={"black"}>
                                    {description}
-                              </TextField>
+                              </Text>
                          ))}
                     </div>
                </div>

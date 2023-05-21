@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import styles from "./styles/tabSelect.module.css";
 import DropDownSelect from "@/src/components/entities/dropDownSelect/DropDownSelect";
 import { DROPDOWN_SELECT_CONFIG } from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
+import Text from "@/src/components/shared/text/Text";
 
 export interface ITabSelect {
      id?: number;
@@ -32,7 +33,9 @@ const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onCl
      return (
           <div className={styles.blockSelect}>
                <div onClick={handleOpenClose} className={`${styles.selectTitle} ${activeTabSelect === id ? styles.active : null}`}>
-                    {title}
+                    <Text type={"reg18"} color={"black"}>
+                         {title}
+                    </Text>
                     {icon}
                </div>
                <div className={styles.radioButton}>

@@ -3,11 +3,12 @@ import * as Yup from "yup";
 import styles from "./FooterRightBlock.module.css";
 import InputField, { InputVariantProps } from "@/src/components/shared/inputs/InputAuthField";
 import { LabelTypes } from "@/src/components/shared/labels/Label";
+import Title from "@/src/components/shared/text/Title";
 
 const FooterLeftBlock = () => {
      return (
           <div className={styles.footerRightContainer}>
-               <h2>Портал о мессенджер-маркетинге и чат-ботах</h2>
+               <Title type={"h4"} color={"white"}>Портал о мессенджер-маркетинге и чат-ботах</Title>
                <Formik
                     initialValues={{ email: "" }}
                     onSubmit={() => console.log(1)}

@@ -8,26 +8,14 @@
      display: flex;
      justify-content: space-between;
      align-items: center;
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 500;
-     font-size: 24px;
-     line-height: 28px;
      padding: 35px 0 10px;
      cursor: pointer;
 }
 .header.open {
      color: #4466f5;
-     transition: 0.5s;
 }
 
 .content {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 300;
-     font-size: 18px;
-     line-height: 22px;
-     color: #000000;
      max-height: 0;
      overflow: hidden;
 }
@@ -35,4 +23,5 @@
 .content.show {
      height: auto;
      max-height: 99999px;
+     padding-top: 16px;
 }

@@ -2,14 +2,14 @@ import React from "react";
 import { initialValuesPersonData, inputPersonData, validationSchemaPersonData } from "@/src/pagesData/personal-data";
 import FormUniversal from "@/src/components/entities/forms/FormUniversal";
 import styles from "../styles/FormMyAccount.module.css";
-import TextField from "@/src/components/shared/textfields/TextField";
+import Title from "@/src/components/shared/text/Title";
 
-const PersonalData = () => {
+const PersonalDataForm = () => {
      return (
           <div className={styles.personalDataBlock}>
-               <TextField color={"black"} type={"h4"}>
+               <Title color={"black"} type={"h4"}>
                     Персональные данные
-               </TextField>
+               </Title>
                <FormUniversal
                     onSubmit={() => console.log(1)}
                     validationSchema={validationSchemaPersonData}
@@ -22,4 +22,4 @@ const PersonalData = () => {
      );
 };
 
-export default PersonalData;
+export default PersonalDataForm;

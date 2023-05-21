@@ -46,6 +46,6 @@ export const validationSchemaPersonData = Yup.object({
      tel: Yup.string()
           .required("Введите номер телефона")
           .matches(PhoneRegExp, "Номер телефона не правильный")
-          .max(12, "Не корректный номер")
-          .min(12, "Не корректный номер"),
+          .max(13, "Не корректный номер")
+          .min(13, "Не корректный номер"),
 });

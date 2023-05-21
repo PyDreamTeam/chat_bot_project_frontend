@@ -4,11 +4,11 @@ import Avatar from "../../../../shared/Avatar/Avatar";
 
 import styles from "./styles/UserInfo.module.css";
 
-import UserMenuHeader from "../../../../shared/userMenuHeader/UserMenuHeader";
-import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/img/SvgConfig";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { useRouter } from "next/router";
-import { authApi, useUserLogOutQuery } from "@/src/store/services/authApi";
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import { headerArrow } from "../img/SvgConfig";
+import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
+import Text from "@/src/components/shared/text/Text";
 
 interface IUserInfoProps {
      profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
@@ -20,6 +20,7 @@ interface IUserInfoProps {
      isOpen?: boolean;
 }
 
+
 const UserInfo: FC<IUserInfoProps> = ({
      handleLogOut,
      onClick,
@@ -29,9 +30,22 @@ const UserInfo: FC<IUserInfoProps> = ({
      isOpen = false,
      profileOnClick,
 }) => {
+
+     const router = useRouter();
+
      const navElements = [
-          { text: "Профиль", onClick: profileOnClick },
-          { text: "Настройки аккаунта" },
+          {
+               text: "Профиль",
+               onClick() {
+                    router.replace(clientEndpoints.myAccount.profile.get);
+               },
+          },
+          {
+               text: "Настройки аккаунта",
+               onClick() {
+                    router.replace(clientEndpoints.myAccount.profile.personalData);
+               },
+          },
           {
                text: "Выйти",
                onClick: handleLogOut,
@@ -43,9 +57,9 @@ const UserInfo: FC<IUserInfoProps> = ({
                <div className={styles.avatarCircle}>
                     <Avatar type={"forHeader"} url={avatarUrl} />
                </div>
-               {userName && <span className={styles.userName}>{userName}</span>}
+               {userName && <Text type={"reg18"} color={"black"}>{userName}</Text>}
                <div>{headerArrow}</div>
-               {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
+               {isOpen && <UserMenuHeader profileOnClick={profileOnClick} activeMenu={isOpen} navButtons={navElements} />}
           </div>
      );
 };

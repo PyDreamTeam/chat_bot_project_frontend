@@ -1,8 +1,8 @@
 .solutionsContainer {
-     padding: 40px 0 48px;
      border-bottom: 1px solid #e1e2e6;
      display: flex;
      flex-direction: column;
-     gap: 40px;
+     gap: 65px;
      width: 100%;
+     padding-bottom: 63px;
 }

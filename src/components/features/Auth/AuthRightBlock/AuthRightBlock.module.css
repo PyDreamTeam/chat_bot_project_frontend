@@ -15,11 +15,13 @@
 }
 .questionRoute {
      padding: 16px 0 34px;
+     text-align: center;
 }
 .questionSignIn {
      padding: 18px 0 34px;
+     text-align: center;
 }
-.questionSocials {
+.centerText {
      text-align: center;
 }
 .signIn {
@@ -33,31 +35,6 @@
 }
 .agreement {
      padding: 16px 20px;
-}
-.h3,
-.h2,
-.h4 {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 400;
-}
-
-.h3 {
-     font-size: 18px;
-     line-height: 150%;
-     color: #17181a;
-}
-
-.h2 {
-     color: #595f6c;
-     font-size: 20px;
-     line-height: 28px;
-}
-
-.h4 {
-     color: #595f6c;
-     font-size: 16px;
-     line-height: 150%;
      text-align: center;
 }
 
