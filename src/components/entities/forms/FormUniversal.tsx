@@ -29,10 +29,12 @@ export interface IInitialValues {
      name?: string;
      email?: string;
      password?: string;
-     get_email_notifications?: string | Array<string>;
+     get_email_notifications?: boolean;
      repeatPassword?: string;
      surname?: string;
      tel?: string;
+     first_name?: string;
+     last_name?: string;
 }
 interface FormUniversalProps {
      inputFieldData: Array<IInputField>;
@@ -65,6 +67,11 @@ const FormUniversal: FC<FormUniversalProps> = ({
      onClick,
      activeEye,
 }) => {
+     function CustomInput(errors: any) {
+          console.log(errors);
+          return errors && <div>{errors}</div>;
+          // return <ErrorList errors={errors} />;
+     }
      return (
           <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={(values: IInitialValues) => onSubmit(values)}>
                {({ errors, touched }) => (
@@ -80,12 +87,18 @@ const FormUniversal: FC<FormUniversalProps> = ({
                                         name={name}
                                         placeholder={placeholder}
                                    />
-                                   {htmlFor === "password" && <ErrorList errorsValue={errors[name]} errors={!!errors} />}
+                                   {/* {htmlFor === "password" && <ErrorList errorsValue={errors[name]} errors={!!errors} />} */}
                                    {typeField === "password" && (
                                         <ButtonEye isOpenEye={!activeEye?.[name]} id={htmlFor} onClick={() => onClick(htmlFor)} />
                                    )}
+                                   {/*{*/}
+                                   {/*     typeField === "password" && <div className={styles.errorMessage}>*/}
+                                   {/*          <ErrorMessage name={"password"} children={<CustomInput errors={errors}/>}/>*/}
+                                   {/*     </div>*/}
+                                   {/*}*/}
                               </div>
                          ))}
+
                          {/* -----Чекбокс с уведомлениями только для формы регистрации-----*/}
                          {classNameForm === "signUp" && (
                               <div className={styles.notificationsBlock}>

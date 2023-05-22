@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesSignIn, inputFieldDataSignIn, validationSchemaSignIn } from "../pagesData/sign-in";
-import { useLazyValidateUserQuery, User } from "../store/services/authApi";
+import { authApi, User, useUserAuthMutation } from "../store/services/authApi";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "../hooks/types";
 import { setCredentials } from "../store/reducers/credentialsSlice";
-import { clientEndpoints } from "../shared/routes/client-endpoints";
 
 export const SignIn = () => {
-     const [validateUser]: any = useLazyValidateUserQuery();
+     const [validateUser, { data, isError, isLoading, isSuccess }] = authApi.useUserAuthMutation();
+
+     console.log(data, isError, isLoading);
+
      const router = useRouter();
      const dispatch = useAppDispatch();
      const [show, setShow] = useState<boolean>(false);
@@ -20,23 +22,28 @@ export const SignIn = () => {
           setShow(!show);
      };
 
-     const loginUser = async (values: any) => {
-          const response = await validateUser();
-          if (response.data.find((user: User) => user.email === values.email && user.password === values.password)) {
-               const userData = response.data.find((user: User) => user.email === values.email);
-               dispatch(setCredentials(userData));
-          } else {
-               alert("Invalid email. Input correct data.");
-          }
-     };
+     // const [validateUser]: any = useLazyValidateUserQuery();
+
+     // const loginUser = async (values: any) => {
+     //      const response = await validateUser(values);
+     //      if (response.data.find((user: User) => user.email === values.email && user.password === values.password)) {
+     //           const userData = response.data.find((user: User) => user.email === values.email);
+     //           dispatch(setCredentials(userData));
+     //      } else {
+     //           alert("Invalid email. Input correct data.");
+     //      }
+     // };
 
      React.useEffect(() => {
-          credentials.name && router.push(clientEndpoints.myAccount.get);
-     }, [credentials]);
+          if (data) {
+               dispatch(setCredentials(data));
+               router.push("/my-account");
+          }
+     }, [isSuccess]);
      return (
           <AuthWrapper titleText={"Вход"}>
                <FormUniversal
-                    onSubmit={loginUser}
+                    onSubmit={validateUser}
                     validationSchema={validationSchemaSignIn}
                     classNameForm="signIn"
                     buttonSubmitText="Войти"

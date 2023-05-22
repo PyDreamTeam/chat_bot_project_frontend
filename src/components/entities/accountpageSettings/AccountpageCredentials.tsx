@@ -12,17 +12,15 @@ import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 
 interface IAccountPageCredential {
-     email: string;
-     isEmailVerified: boolean;
-     name: string;
+     email?: string;
+     isEmailVerified?: boolean;
+     name?: string;
      avatarUrl?: string;
      mobileNumber?: string;
      page: keyof typeof AccountPageTypes;
 }
 
 const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, email, avatarUrl, mobileNumber, name, page }) => {
-     const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
-
      return (
           <div className={styles.credentialsWrapper}>
                <UserAvatar url={avatarUrl} type={"forSettings"} username={name} />

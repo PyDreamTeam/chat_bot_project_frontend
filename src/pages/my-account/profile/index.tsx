@@ -7,7 +7,7 @@ import React from "react";
 
 const Profile = () => {
      const router = useRouter();
-     const { id, name, email } = useAppSelector((state) => state.credentialsSlice.credentials);
+     const { first_name, email, emailNotification } = useAppSelector((state) => state.credentialsSlice.credentials);
      const mobileNumber = "+375297177707";
      return (
           <AccountPageWrapper page="profile_templates">
@@ -15,8 +15,8 @@ const Profile = () => {
                     page="profile_templates"
                     mobileNumber={mobileNumber}
                     email={email}
-                    isEmailVerified={true}
-                    name={name}
+                    isEmailVerified={emailNotification}
+                    name={first_name}
                />
                <SearchHistory title={"Сохраненные шаблоны"} />
           </AccountPageWrapper>

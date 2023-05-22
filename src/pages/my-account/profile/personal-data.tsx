@@ -9,7 +9,7 @@ import PersonalDataForm from "@/src/components/entities/forms/formMyAccount/pers
 
 const PersonalData = () => {
      const router = useRouter();
-     const { name, email } = useAppSelector((state) => state.credentialsSlice.credentials);
+     const { first_name, email, emailNotification } = useAppSelector((state) => state.credentialsSlice.credentials);
      const mobileNumber = "+375297177707";
 
      return (
@@ -18,8 +18,8 @@ const PersonalData = () => {
                     page="profile_settings_personalData"
                     mobileNumber={mobileNumber}
                     email={email}
-                    isEmailVerified={true}
-                    name={name}
+                    isEmailVerified={emailNotification}
+                    name={first_name}
                />
                <PersonalDataForm />
           </AccountPageWrapper>

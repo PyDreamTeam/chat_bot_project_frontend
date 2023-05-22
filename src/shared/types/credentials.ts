@@ -1,9 +1,11 @@
 export interface ICredentials {
-     name: string;
-     email: string;
-     password?: string;
-     token?: string;
+     first_name?: string;
+     last_name?: string;
+     email?: string;
+     auth_token?: string;
      id?: string | number;
-     picture?: string;
+     avatar?: string;
      jti?: string;
+     emailNotification?: boolean;
+     user_role?: string;
 }

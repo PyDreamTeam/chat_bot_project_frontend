@@ -2,9 +2,10 @@ import React, { FC, FormEvent, useState } from "react";
 import styles from "./AccountPageHeader.module.css";
 import UserInfo from "@/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo";
 import { useRouter } from "next/router";
+import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import Link from "next/link";
-import { useAppSelector } from "@/src/hooks/types";
+import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import Title from "@/src/components/shared/text/Title";
 
 interface IHomePageHeader {
@@ -18,14 +19,32 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
      const router = useRouter();
      const [open, setOpen] = useState<boolean>(false);
      const handleToggleBurgerMenu = () => setOpen((prevState) => !prevState);
+     const dispatch = useAppDispatch();
 
-     const { id } = useAppSelector((state) => state.credentialsSlice.credentials);
+     const { auth_token } = useAppSelector((state) => state.credentialsSlice.credentials);
 
      const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           router.replace({
                pathname: "/my-account/profile",
           });
+     };
+
+     const handleUserLogOut = async () => {
+          localStorage.removeItem("credentials");
+          await fetch("http://34.88.253.142:8000/auth/token/destroy/", {
+               method: "POST",
+               headers: {
+                    Authorization: `Token ${auth_token}`,
+               },
+          })
+               .then((response) => {
+                    if (response.status === 204) {
+                         router.push("/home");
+                         dispatch(removeCredentials());
+                    }
+               })
+               .catch((e) => console.log(e));
      };
 
      return (
@@ -51,7 +70,13 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                              Настройки
                         </Title>}
                </>
-               <UserInfo profileOnClick={handleOpenProfile} isOpen={open} onClick={handleToggleBurgerMenu} userName={name} />
+               <UserInfo
+                    handleLogOut={handleUserLogOut}
+                    profileOnClick={handleOpenProfile}
+                    isOpen={open}
+                    onClick={handleToggleBurgerMenu}
+                    userName={name}
+               />
           </header>
      );
 };

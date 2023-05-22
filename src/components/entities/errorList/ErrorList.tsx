@@ -33,8 +33,6 @@ interface IErrorList {
 const ErrorList: FC<IErrorList> = ({ errors, errorsValue }) => {
      const [passwordErrorList, setPasswordErrorList] = useState<IPasswordErrorList>(initialPasswordErrorList);
 
-     console.log(errorsValue);
-
      return (
           <div className={`${styles.errorBlock} ${!errors && styles.hiddenBlock}`}>
                {passwordErrorList.map((error) => (

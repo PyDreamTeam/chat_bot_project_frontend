@@ -17,6 +17,8 @@ export enum HtmlForVariants {
      checkboxForm = "checkboxForm",
      repeatPassword = "repeatPassword",
      text = "textInput",
+     first_name = "first_name",
+     last_name = "last_name",
 }
 
 export interface LabelProps {

@@ -4,13 +4,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: { credentials: ICredentials } = {
      credentials: {
-          name: "",
+          first_name: "",
+          last_name: "",
           email: "",
-          password: "",
-          token: "",
+          auth_token: "",
           id: "",
-          picture: "",
+          avatar: "",
           jti: "",
+          emailNotification: false,
      },
 };
 
@@ -24,12 +25,12 @@ const credentialsSlice = createSlice({
           },
           removeCredentials(state) {
                state.credentials = {
-                    name: "",
+                    first_name: "",
+                    last_name: "",
                     email: "",
-                    password: "",
-                    token: "",
+                    auth_token: "",
                     id: "",
-                    picture: "",
+                    avatar: "",
                     jti: "",
                };
           },

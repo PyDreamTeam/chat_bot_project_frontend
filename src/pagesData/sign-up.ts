@@ -4,11 +4,11 @@ import * as Yup from "yup";
 
 export const inputFieldDataSignUp: Array<IInputField> = [
      {
-          htmlFor: "name",
-          name: "name",
+          htmlFor: "first_name",
+          name: "first_name",
           placeholder: "Иван",
           textLabel: "Имя",
-          typeField: "name",
+          typeField: "first_name",
      },
      {
           htmlFor: "email",
@@ -27,14 +27,14 @@ export const inputFieldDataSignUp: Array<IInputField> = [
 ];
 
 export const initialValuesSignUp = {
-     name: "",
+     first_name: "",
      email: "",
      password: "",
-     get_email_notifications: "",
+     get_email_notifications: false,
 };
 
 export const validationSchemaSignUp = Yup.object({
-     name: Yup.string()
+     first_name: Yup.string()
           .matches(NameRegExp, "Допустимы только английские символы и цифры")
           .max(15, "Максимум 15 символов")
           .min(4, "Минимум 4 символа")

@@ -11,16 +11,28 @@ import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeade
 import Text from "@/src/components/shared/text/Text";
 
 interface IUserInfoProps {
+     profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
+     handleLogOut: any;
      onClick?: () => void;
      userName?: string | undefined;
      avatarUrl?: string;
      className?: string;
      isOpen?: boolean;
-     profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, className = "", isOpen = false }) => {
+
+const UserInfo: FC<IUserInfoProps> = ({
+     handleLogOut,
+     onClick,
+     userName = "",
+     avatarUrl,
+     className = "",
+     isOpen = false,
+     profileOnClick,
+}) => {
+
      const router = useRouter();
+
      const navElements = [
           {
                text: "Профиль",
@@ -36,9 +48,7 @@ const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, class
           },
           {
                text: "Выйти",
-               onClick: () => {
-                    console.log(1);
-               },
+               onClick: handleLogOut,
           },
      ];
 
@@ -49,7 +59,7 @@ const UserInfo: FC<IUserInfoProps> = ({ onClick, userName = "", avatarUrl, class
                </div>
                {userName && <Text type={"reg18"} color={"black"}>{userName}</Text>}
                <div>{headerArrow}</div>
-               {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
+               {isOpen && <UserMenuHeader profileOnClick={profileOnClick} activeMenu={isOpen} navButtons={navElements} />}
           </div>
      );
 };

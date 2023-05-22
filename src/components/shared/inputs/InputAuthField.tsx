@@ -17,6 +17,8 @@ export enum InputFieldNameVariants {
      repeatPassword = "repeatPassword",
      surname = "surname",
      tel = "tel",
+     first_name = "first_name",
+     last_name = "last_name",
 }
 export interface IInputField extends LabelProps {
      variant?: keyof typeof InputVariantProps;
