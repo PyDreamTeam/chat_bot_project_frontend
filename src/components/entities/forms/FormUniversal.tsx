@@ -104,6 +104,7 @@ const FormUniversal: FC<FormUniversalProps> = ({
                               <div className={styles.notificationsBlock}>
                                    <CheckboxForm />
                                    <Label
+                                        isChecked={true}
                                         typeLabel="checkbox"
                                         htmlFor="checkboxForm"
                                         textLabel="Я хочу получать уведомления и новости на почту"

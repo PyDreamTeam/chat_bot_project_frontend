@@ -7,7 +7,7 @@ import Title from "@/src/components/shared/text/Title";
 const PersonalDataForm = () => {
      return (
           <div className={styles.personalDataBlock}>
-               <Title color={"black"} type={"h4"}>
+               <Title color={"black"} type={"h5"}>
                     Персональные данные
                </Title>
                <FormUniversal

@@ -13,7 +13,7 @@ const PasswordError: FC<IPasswordError> = ({ errorText, isError }) => {
      return (
           <div className={styles.passwordErrorBlock}>
                {isError ? errorPasswordConfig.errorTrue : errorPasswordConfig.errorFalse}
-               <Text color={`${isError ? "red" : "green"}`} type={"reg16"}>
+               <Text color={`${isError ? "red" : "green"}`} type={"reg14"}>
                     {errorText}
                </Text>
           </div>

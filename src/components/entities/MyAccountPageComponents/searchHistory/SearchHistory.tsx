@@ -13,7 +13,7 @@ interface ISearchHistory {
 const SearchHistory: FC<ISearchHistory> = ({ title }) => {
      return (
           <div className={styles.searchHistoryWrapper}>
-               <Title type={"h4"} color={"black"}>{title}</Title>
+               <Title type={"h5"} color={"black"}>{title}</Title>
                <div className={styles.searchHistoryCards}>
                     {(title === "Сохраненные шаблоны" &&
                          SearchHistoryConfig.map(
@@ -21,6 +21,7 @@ const SearchHistory: FC<ISearchHistory> = ({ title }) => {
                                    card.favorite && (
                                         <SearchHistoryItem
                                              key={uuid()}
+                                             profile={true}
                                              title={card.title}
                                              description={card.description}
                                              favorite={card.favorite}
@@ -31,6 +32,7 @@ const SearchHistory: FC<ISearchHistory> = ({ title }) => {
                               (card) =>
                                    !card.favorite && (
                                         <SearchHistoryItem
+                                             profile={false}
                                              key={uuid()}
                                              title={card.title}
                                              description={card.description}

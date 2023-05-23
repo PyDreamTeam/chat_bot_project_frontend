@@ -17,7 +17,7 @@ const ChangePassword = () => {
 
      return (
           <div className={styles.changePasswordBlock}>
-               <Title color={"black"} type={"h4"}>
+               <Title color={"black"} type={"h5"}>
                     Изменить пароль
                </Title>
                <FormUniversal
