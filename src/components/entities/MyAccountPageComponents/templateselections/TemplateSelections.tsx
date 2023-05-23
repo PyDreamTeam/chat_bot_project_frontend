@@ -7,6 +7,7 @@ import arrowTemplate from "./img/arrow_template.svg";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import Title from "@/src/components/shared/text/Title";
 
 const TemplateSelections = () => {
      return (
@@ -14,18 +15,18 @@ const TemplateSelections = () => {
                <div className={styles.templateSelectionsBlock}>
                     <Image className={styles.templateMailImage} alt={"mail-template"} src={mailTemplate} />
                     <div className={styles.textBlock}>
-                         <Text type={"reg24"} color={"black"}>
+                         <Title type={"h5"} color={"black"}>
                               Подберите шаблон и внедрите комплексный мессенджер-маркетинг в свой бизнес
+                         </Title>
+                         <Text color={"grey"} type={"reg14"}>
+                              База из 100 шаблонов от наших специалистов
                          </Text>
                          <Link href={clientEndpoints.home.get}>
-                              <Text type={"med20"} color={"blue"}>
+                              <Text type={"sem16"} color={"blue"}>
                                    Подобрать шаблон
                               </Text>
                               {<Image src={arrowTemplate} className={styles.arrow} alt={"arrow"} />}
                          </Link>
-                         <Text color={"grey"} type={"reg14"}>
-                              База из 100 шаблонов от наших специалистов
-                         </Text>
                     </div>
                </div>
           </div>

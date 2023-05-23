@@ -22,7 +22,7 @@ const AccordionItem: FC<IAccordionItem & IAccordionItemProps> = ({ id, title, co
      return (
           <div key={id} className={`${styles.wrapper} ${isSelected && styles.active}`}>
                <div className={`${styles.header} ${isSelected && styles.open}`} onClick={openClick}>
-                    <Text type={"reg24"} color={"black"} >
+                    <Text type={"med24btn"} color={"black"} >
                          {title}
                     </Text>
                     {isSelected ? <Image src={minus} alt="Close" /> : <Image src={plus} alt="Open" />}

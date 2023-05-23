@@ -24,12 +24,13 @@ export interface LabelProps {
      textLabel?: string;
      typeLabel: keyof typeof LabelTypes;
      children?: ReactNode;
+     isChecked?: boolean
 }
 
-const Label = ({ htmlFor, textLabel, typeLabel, children }: LabelProps) => {
+const Label = ({ htmlFor, textLabel, typeLabel, children, isChecked }: LabelProps) => {
      return (
           <label className={`${styles[typeLabel]}`} htmlFor={htmlFor}>
-               <Text type={"reg18"} color={"black"} className={styles.nameInput}>{textLabel}</Text>
+               <Text type={isChecked === true ? "reg16" : "reg18"} color={"black"} className={`${styles[typeLabel]} ${styles.nameInput}`}>{textLabel}</Text>
                {children}
           </label>
      );
