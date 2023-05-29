@@ -4,6 +4,7 @@ import styles from "./styles/tabSelect.module.css";
 import DropDownSelect from "@/src/components/entities/dropDownSelect/DropDownSelect";
 import { DROPDOWN_SELECT_CONFIG } from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
 import Text from "@/src/components/shared/text/Text";
+import {array, boolean, number, string} from "yup";
 
 export interface ITabSelect {
      id?: number;
@@ -22,7 +23,7 @@ const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onCl
 
      const [selectedInput, setSelectedInput] = useState<boolean>(false);
 
-     const handleChange = (inputValue: any) => {
+     const handleChange = (inputValue: boolean) => {
           setSelectedInput(inputValue);
      };
 

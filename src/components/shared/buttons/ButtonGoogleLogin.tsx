@@ -4,6 +4,8 @@ import jwtDecode from "jwt-decode";
 import { useAppDispatch } from "@/src/hooks/types";
 import { setCredentials } from "@/src/store/reducers/credentialsSlice";
 import styles from "./styles/styles.module.css";
+import {ICredentials} from "@/src/shared/types/credentials";
+
 
 const ButtonGoogleLogin = () => {
      const dispatch = useAppDispatch();
@@ -16,11 +18,11 @@ const ButtonGoogleLogin = () => {
                containerProps={{ className: styles.googleLoginButton }}
                onSuccess={(credentialResponse: any) => {
                     console.log(jwtDecode(credentialResponse.credential));
-                    const { jti, name, email, picture }: any = jwtDecode(credentialResponse.credential);
+                    const { jti, first_name, email, picture }: ICredentials = jwtDecode(credentialResponse.credential);
                     dispatch(
                          setCredentials({
                               jti,
-                              name,
+                              first_name,
                               email,
                               picture,
                          })

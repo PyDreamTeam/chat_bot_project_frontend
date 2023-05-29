@@ -8,6 +8,7 @@ import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
 import ImageErrorForm from "../../shared/images/ImageErrorForm";
 import ButtonEye from "@/src/components/shared/buttons/ButtonEye";
 import ErrorList from "@/src/components/entities/errorList/ErrorList";
+import {array, string} from "yup";
 
 export interface IInputField {
      htmlFor: keyof typeof HtmlForVariants;
