@@ -2,7 +2,9 @@
      display: flex;
      align-items: center;
      width: 100%;
-     justify-content: space-around;
+     justify-content: center;
+     padding-top: 35px;
+     gap: 57px;
 }
 .socialsButton {
      background: transparent;

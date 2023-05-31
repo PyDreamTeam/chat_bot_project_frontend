@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import styles from "./AuthRightBlock.module.css";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import FormUniversal from "../components/entities/forms/FormUniversal";
 import { initialValuesUpdate, inputFieldDataUpdate, validationSchemaUpdate } from "../pagesData/update-password";
@@ -21,8 +21,10 @@ const UpdatePassword = () => {
      };
 
      return (
-          <AuthWrapper titleText={"Обновите пароль"}>
+
+          <AuthWrapper  titleText={"Обновите пароль"}>
                <FormUniversal
+
                     validationSchema={validationSchemaUpdate}
                     onSubmit={() => fetch("")}
                     classNameForm="changePassword"
@@ -33,6 +35,7 @@ const UpdatePassword = () => {
                     activeEye={activeEye}
                />
           </AuthWrapper>
+
      );
 };
 

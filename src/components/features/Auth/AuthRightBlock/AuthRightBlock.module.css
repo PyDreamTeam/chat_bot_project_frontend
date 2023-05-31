@@ -1,34 +1,40 @@
 .authRightBlock {
      display: flex;
-     align-items: center;
+     padding-top: 40px;
      justify-content: center;
      margin: 0 auto;
+     max-width: 488px;
 }
 .formCenter {
      display: flex;
      justify-content: center;
+     padding-left: 24px;
 }
 .authContentBlock {
      display: flex;
      flex-direction: column;
-     max-width: 480px;
+     min-width: 477px;
+     padding-top: 124px;
 }
 .questionRoute {
-     padding: 16px 0 34px;
+     padding: 16px 0 28px;
      text-align: center;
 }
 .questionSignIn {
-     padding: 18px 0 34px;
+     padding: 18px 0 33px;
      text-align: center;
 }
 .centerText {
      text-align: center;
+     margin-top: 33px;
 }
 .signIn {
-     padding-bottom: 24px;
+     padding: 46px 0 0 20px;
+     text-align: left;
 }
+
 .addEmail {
-     padding: 12px 0 35px 20px;
+     padding:  12px 0 35px ;
 }
 .updateName {
      padding: 25px 0 34px 20px;
@@ -40,4 +46,13 @@
 
 .authContentBlock a {
      color: #4466f5;
+}
+
+.signChoice{
+     text-align: left;
+
+}
+
+.titleUp{
+     padding-top: 230px;
 }
