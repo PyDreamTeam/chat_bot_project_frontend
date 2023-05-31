@@ -11,7 +11,7 @@
      border-radius: 20px;
      border: none;
      padding: 18px;
-     width: 100%;
+     width: 97%;
      cursor: pointer;
 }
 .submitDisabled {
@@ -44,8 +44,8 @@
 .buttonEye {
      cursor: pointer;
      position: absolute;
-     top: 47px;
-     right: 20px;
+     top: 53px;
+     right: 33px;
 }
 
 /* ---------------------------------  CREDENTIALS BUTTON------------------------------------------------*/

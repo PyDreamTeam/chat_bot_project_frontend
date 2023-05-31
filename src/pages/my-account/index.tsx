@@ -10,11 +10,11 @@ const MyAccount = () => {
      console.log(credentials);
      const router = useRouter();
 
-     React.useEffect(() => {
-          if (credentials.auth_token === "") {
-               router.push("/home");
-          }
-     }, [credentials]);
+     // React.useEffect(() => {
+     //      if (credentials.auth_token === "") {
+     //           router.push("/home");
+     //      }
+     // }, [credentials]);
 
      return (
           <AccountPageWrapper page="startPage">

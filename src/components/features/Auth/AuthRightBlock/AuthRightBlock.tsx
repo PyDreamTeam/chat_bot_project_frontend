@@ -30,9 +30,13 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                                         Ещё нет аккаунта?
                                    <Link href={clientEndpoints.signUp.get}> Регистрация </Link>
                               </Text>
-                              <Text type={"reg18"} color={"black"} className={styles.centerText}>Войдите через соцсеть</Text>
-                              <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
-                              <Text type={"reg18"} color={"black"} className={styles.signIn}>Или с помощью почты и пароля</Text>
+                              <div className={styles.centerText}>
+                              <Text type={"reg18"} color={"black"} >Войдите через соцсеть</Text>
+                              </div>
+                                   <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
+                              <div  className={styles.signIn}>
+                              <Text type={"reg18"} color={"black"}>Или с помощью почты и пароля</Text>
+                              </div>
                          </div>
                     )}
                     {isSignUp && (

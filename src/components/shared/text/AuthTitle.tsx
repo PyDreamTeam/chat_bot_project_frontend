@@ -7,7 +7,7 @@ export interface IAuthTitle {
 }
 
 const AuthTitle: FC<IAuthTitle> = ({ text }) => {
-     return <title className={`${styles.authTitle} ${text === "Восстановление пароля" && styles.textAlignLeft}`}>{text}</title>;
+     return <title className={`${styles.authTitle} ${text === "Восстановление пароля"   && styles.textAlignLeft} ${text === "Обновите пароль"   && styles.textAlignLeftRestore}`}>{text}</title>;
 };
 
 export default AuthTitle;
