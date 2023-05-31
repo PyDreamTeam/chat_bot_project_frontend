@@ -28,4 +28,7 @@ export const clientEndpoints: ClientEndpoints = {
      updatePassword: {
           get: "/update-password",
      },
+     platformsFilters: {
+          get: "/platforms-filters",
+     },
 };

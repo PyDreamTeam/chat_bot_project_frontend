@@ -11,9 +11,9 @@ const MyAccount = () => {
      const router = useRouter();
 
      React.useEffect(() => {
-          if (credentials.auth_token === "") {
-               router.push("/home");
-          }
+          // if (credentials.auth_token === "") {
+          //      router.push("/home");
+          // }
      }, [credentials]);
 
      return (

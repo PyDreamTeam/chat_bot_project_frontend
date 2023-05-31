@@ -9,7 +9,7 @@ const HomepageWrapper = () => {
 
      return (
           <>
-               <Header />
+               <Header type="start"/>
                <Main />
                <Footer />
           </>
