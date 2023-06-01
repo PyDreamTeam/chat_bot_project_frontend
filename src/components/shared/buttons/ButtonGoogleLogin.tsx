@@ -16,17 +16,19 @@ const ButtonGoogleLogin = () => {
                size="large"
                shape="square"
                containerProps={{ className: styles.googleLoginButton }}
-               onSuccess={(credentialResponse: any) => {
-                    console.log(jwtDecode(credentialResponse.credential));
-                    const { jti, first_name, email, picture }: ICredentials = jwtDecode(credentialResponse.credential);
-                    dispatch(
-                         setCredentials({
-                              jti,
-                              first_name,
-                              email,
-                              picture,
-                         })
-                    );
+               onSuccess={(credentialResponse) => {
+                    if(credentialResponse.credential){
+                         console.log(jwtDecode(credentialResponse.credential));
+                         const { jti, first_name, email, picture }: ICredentials = jwtDecode(credentialResponse.credential);
+                         dispatch(
+                              setCredentials({
+                                   jti, 
+                                   first_name,
+                                   email,
+                                   picture,
+                              })
+                         );
+                    }
                }}
           />
      );

@@ -4,7 +4,6 @@ import styles from "./styles/tabSelect.module.css";
 import DropDownSelect from "@/src/components/entities/dropDownSelect/DropDownSelect";
 import { DROPDOWN_SELECT_CONFIG } from "@/src/components/entities/dropDownSelect/DropDownSelectConfig";
 import Text from "@/src/components/shared/text/Text";
-import {array, boolean, number, string} from "yup";
 
 export interface ITabSelect {
      id?: number;
@@ -21,16 +20,8 @@ const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onCl
      const [toggle, setToggle] = useState(false);
      const handleOpenClose = () => setToggle(!toggle);
 
-     const [selectedInput, setSelectedInput] = useState<boolean>(false);
+     const [selectedInput] = useState<boolean>(false);
 
-     const handleChange = (inputValue: boolean) => {
-          setSelectedInput(inputValue);
-     };
-
-     const handleRadioChange = (event: any) => {
-          const { id } = event.currentTarget;
-          handleChange(id);
-     };
      return (
           <div className={styles.blockSelect}>
                <div onClick={handleOpenClose} className={`${styles.selectTitle} ${activeTabSelect === id ? styles.active : null}`}>
@@ -41,7 +32,7 @@ const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onCl
                </div>
                <div className={styles.radioButton}>
                     {toggle && (
-                         <DropDownSelect config={DROPDOWN_SELECT_CONFIG} key={id} onChange={handleRadioChange} isChecked={selectedInput} />
+                         <DropDownSelect config={DROPDOWN_SELECT_CONFIG} key={id} isChecked={selectedInput} />
                     )}
                </div>
           </div>
