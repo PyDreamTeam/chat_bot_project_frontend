@@ -3,9 +3,9 @@ import React from "react";
 import styles from "./styles/styles.module.css";
 
 const ButtonVkLogin = () => {
-     const onAuth = async (data: any) => {
-          console.log("VK DATA", data);
-     };
+     // const onAuth = async (data: any) => {
+     //      console.log("VK DATA", data);
+     // };
 
      return (
           // <VkAuth className={styles.vkLogin} apiId={"51572250"} callback={onAuth}>

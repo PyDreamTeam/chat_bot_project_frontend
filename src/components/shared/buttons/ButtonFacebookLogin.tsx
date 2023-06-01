@@ -4,20 +4,22 @@ import { setCredentials } from "@/src/store/reducers/credentialsSlice";
 import React from "react";
 import FacebookLogin from "react-facebook-login";
 import styles from "./styles/styles.module.css";
+import {boolean, string} from "yup";
+import {ResponseParams} from "@/src/shared/types/credentials";
 // import { AsyncScript } from "react-async-script";
 
 const ButtonFacebookLogin = () => {
      const [loaded, setLoaded] = React.useState<boolean>(false);
      const dispatch = useAppDispatch();
      const responseFacebook = ({
-          name,
+          first_name,
           picture: {
                data: { url },
           },
           email,
           accessToken,
-     }: any) => {
-          dispatch(setCredentials({ name, picture: url, email, token: accessToken }));
+     }: ResponseParams) => {
+          dispatch(setCredentials({ first_name, picture: url, email, auth_token: accessToken }));
      };
 
      React.useEffect(() => {
