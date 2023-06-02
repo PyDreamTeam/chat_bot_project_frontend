@@ -16,13 +16,13 @@ const ButtonGoogleLogin = () => {
                containerProps={{ className: styles.googleLoginButton }}
                onSuccess={(credentialResponse: any) => {
                     console.log(jwtDecode(credentialResponse.credential));
-                    const { jti, name, email, picture }: any = jwtDecode(credentialResponse.credential);
+                    const { jti, first_name, email, avatar }: any = jwtDecode(credentialResponse.credential);
                     dispatch(
                          setCredentials({
                               jti,
-                              name,
+                              first_name,
                               email,
-                              picture,
+                              avatar,
                          })
                     );
                }}

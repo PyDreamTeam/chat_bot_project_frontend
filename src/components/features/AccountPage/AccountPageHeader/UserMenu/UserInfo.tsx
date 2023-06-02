@@ -59,9 +59,11 @@ const UserInfo: FC<IUserInfoProps> = ({
                </div>
                {userName && <Text type={"reg18"} color={"black"}>{userName}</Text>}
                <div>{headerArrow}</div>
-               {isOpen && <UserMenuHeader profileOnClick={profileOnClick} activeMenu={isOpen} navButtons={navElements} />}
+               {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
           </div>
      );
 };
 
 export default UserInfo;
+
+//profileOnClick={profileOnClick}
