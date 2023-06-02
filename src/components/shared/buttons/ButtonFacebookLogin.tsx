@@ -20,7 +20,7 @@ const ButtonFacebookLogin = () => {
           accessToken,
 
      }: ResponseParams) => {
-          dispatch(setCredentials({ first_name, picture: url, email, auth_token: accessToken }));
+          dispatch(setCredentials({ first_name, avatar: url, email, auth_token: accessToken }));
      };
 
      React.useEffect(() => {
