@@ -25,7 +25,7 @@ interface PropsFilter {
      name: string;
      items: PropsGroupOption[]
 }
-const Filter: FC<PropsFilter> = ({ name, items }) => {
+const Filter: FC<PropsFilter> = ({ name, items = [] }) => {
 
      const [isOpen, setIsOpen] = useState(false);
      const toogleMenu = () => {

@@ -16,7 +16,7 @@ interface PropsGroupOption {
      name: string;
      items: PropsOption[];
 }
-const GroupOption: FC<PropsGroupOption> = ({ name, items, info, price }) => {
+const GroupOption: FC<PropsGroupOption> = ({ name, items = [], info, price }) => {
 
      const [minPrice, setMinPrice] = useState("");
      const [maxPrice, setMaxPrice] = useState("");

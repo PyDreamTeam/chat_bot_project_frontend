@@ -20,7 +20,7 @@ interface PropsGroupOption {
 interface PropsGroupsOptions {
      items: PropsGroupOption[]
 }
-const GroupsOptions: FC<PropsGroupsOptions> = ({ items }) => {
+const GroupsOptions: FC<PropsGroupsOptions> = ({ items = [] }) => {
      return (
           <div>
                <ul className={style.list}>
