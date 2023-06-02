@@ -1,5 +1,5 @@
 
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import style from "./optionFilter.module.css";
 import { Checkbox } from "../CheckboxFilter/CheckboxFilter";
 import Text from "@/src/components/shared/text/Text";

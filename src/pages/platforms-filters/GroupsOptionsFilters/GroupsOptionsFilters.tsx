@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import style from "./groupOptionsFilters.module.css";
 import { GroupOption } from "../GroupOptionFilters/GroupOptionFilters";
 

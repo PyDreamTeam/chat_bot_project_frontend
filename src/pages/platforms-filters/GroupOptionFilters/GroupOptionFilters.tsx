@@ -1,5 +1,5 @@
 import Text from "@/src/components/shared/text/Text";
-import { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Option } from "../OptionFilter/OptionFilter";
 import style from "./groupOptionFilters.module.css";
 import { InputPrice } from "../InputPrice/InputPrice";

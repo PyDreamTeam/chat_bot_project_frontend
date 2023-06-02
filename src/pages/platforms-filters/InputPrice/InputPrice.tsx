@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from "react";
+import React, { FC, ChangeEvent } from "react";
 import style from "./inputPrice.module.css";
 
 interface PropsInputPrice {

@@ -1,3 +1,4 @@
+import React from "react";
 import { Filter } from "../Filter/Filter";
 import style from "./filters.module.css";
 

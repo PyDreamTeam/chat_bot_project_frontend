@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from "react";
+import React, { FC, ChangeEvent } from "react";
 import style from "./inputSearch.module.css";
 
 interface PropsInputSearch {

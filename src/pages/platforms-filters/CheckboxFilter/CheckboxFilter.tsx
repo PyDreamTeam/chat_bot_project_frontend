@@ -1,4 +1,4 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import style from "./checkboxFilter.module.css"; 
 
 interface PropsInput {

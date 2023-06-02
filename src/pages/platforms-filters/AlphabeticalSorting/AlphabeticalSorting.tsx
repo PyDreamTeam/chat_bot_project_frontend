@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Text from "@/src/components/shared/text/Text";
 import { Option } from "../OptionFilter/OptionFilter";
 import style from "./alphabeticalSorting.module.css";

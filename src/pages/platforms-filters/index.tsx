@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Title from "@/src/components/shared/text/Title";
 import style from "./platformFilters.module.css";
 import { Filters } from "./filters/Filters";
