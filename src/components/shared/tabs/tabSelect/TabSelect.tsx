@@ -20,16 +20,8 @@ const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onCl
      const [toggle, setToggle] = useState(false);
      const handleOpenClose = () => setToggle(!toggle);
 
-     const [selectedInput, setSelectedInput] = useState<boolean>(false);
+     const [selectedInput] = useState<boolean>(false);
 
-     const handleChange = (inputValue: any) => {
-          setSelectedInput(inputValue);
-     };
-
-     const handleRadioChange = (event: any) => {
-          const { id } = event.currentTarget;
-          handleChange(id);
-     };
      return (
           <div className={styles.blockSelect}>
                <div onClick={handleOpenClose} className={`${styles.selectTitle} ${activeTabSelect === id ? styles.active : null}`}>
@@ -40,7 +32,7 @@ const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onCl
                </div>
                <div className={styles.radioButton}>
                     {toggle && (
-                         <DropDownSelect config={DROPDOWN_SELECT_CONFIG} key={id} onChange={handleRadioChange} isChecked={selectedInput} />
+                         <DropDownSelect config={DROPDOWN_SELECT_CONFIG} key={id} isChecked={selectedInput} />
                     )}
                </div>
           </div>

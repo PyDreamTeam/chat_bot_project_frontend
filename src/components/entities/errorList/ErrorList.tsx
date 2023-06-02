@@ -27,7 +27,7 @@ const initialPasswordErrorList: IPasswordErrorList = [
 
 interface IErrorList {
      errors: boolean;
-     errorsValue?: any;
+     errorsValue?: string;
 }
 
 const ErrorList: FC<IErrorList> = ({ errors, errorsValue }) => {

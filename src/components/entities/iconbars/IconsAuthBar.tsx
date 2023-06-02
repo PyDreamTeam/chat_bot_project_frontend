@@ -6,7 +6,7 @@ import Link from "next/link";
 interface Icon {
      src: React.ReactNode;
      id: number;
-     onClick?: () => any;
+     // onClick?: () => any;
 }
 
 interface IconsAuthBarProps {
