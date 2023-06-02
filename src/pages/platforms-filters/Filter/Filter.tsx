@@ -1,6 +1,6 @@
 import Title from "@/src/components/shared/text/Title";
 import React, { FC, useState } from "react";
-import { GroupsOptions } from "../GroupsOptionsFilters/GroupsOptionsFilters";
+import GroupsOptions from "../GroupsOptionsFilters/GroupsOptionsFilters";
 import style from "./filter.module.css";
 
 interface PropsOption {
@@ -25,7 +25,7 @@ interface PropsFilter {
      name: string;
      items: PropsGroupOption[]
 }
-export const Filter: FC<PropsFilter> = ({ name, items }) => {
+const Filter: FC<PropsFilter> = ({ name, items }) => {
 
      const [isOpen, setIsOpen] = useState(false);
      const toogleMenu = () => {
@@ -42,3 +42,5 @@ export const Filter: FC<PropsFilter> = ({ name, items }) => {
           </div>
      );
 };
+
+export default Filter;

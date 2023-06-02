@@ -1,5 +1,5 @@
 import React from "react";
-import { Filter } from "../Filter/Filter";
+import Filter from "../Filter/Filter";
 import style from "./filters.module.css";
 
 
@@ -56,7 +56,7 @@ const support = [supportFilter];
 const levelOfDifficultyFilter = getFilter("", ["Для новичка", "Для опытного пользователя", "Для профессионала"]);
 const levelOfDifficulty = [levelOfDifficultyFilter];
 
-export const Filters = () => {
+const Filters = () => {
      return (
           <div className={style.wrapper}>
                <div>
@@ -77,3 +77,5 @@ export const Filters = () => {
 
      );
 };
+
+export default Filters;

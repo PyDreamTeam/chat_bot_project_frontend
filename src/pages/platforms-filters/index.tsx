@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Title from "@/src/components/shared/text/Title";
 import style from "./platformFilters.module.css";
-import { Filters } from "./filters/Filters";
-import { Platforms } from "./platforms/Platforms";
+import Filters from "./filters/Filters";
+import Platforms from "./platforms/Platforms";
 import { AlphabeticalSorting } from "./AlphabeticalSorting/AlphabeticalSorting";
-import { InputSearch } from "./InputSearch/InputSearch";
+import InputSearch from "./InputSearch/InputSearch";
 import Header from "@/src/components/features/HomePage/Header/Header";
 
 
@@ -14,7 +14,7 @@ const PlatformFilters = () => {
 
      return (
           <div>
-               <Header type="other"/>
+               <Header type="other" />
                <div className={style.lineTop}>
                     <div className={style.wraperPage}>
                          <div className={style.wrapperTitle}>

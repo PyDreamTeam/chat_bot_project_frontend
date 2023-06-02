@@ -1,8 +1,8 @@
 import Text from "@/src/components/shared/text/Text";
 import React, { FC, useState, useEffect } from "react";
-import { Option } from "../OptionFilter/OptionFilter";
+import Option from "../OptionFilter/OptionFilter";
 import style from "./groupOptionFilters.module.css";
-import { InputPrice } from "../InputPrice/InputPrice";
+import InputPrice from "../InputPrice/InputPrice";
 
 interface PropsOption {
      name: string;
@@ -16,7 +16,7 @@ interface PropsGroupOption {
      name: string;
      items: PropsOption[];
 }
-export const GroupOption: FC<PropsGroupOption> = ({ name, items, info, price }) => {
+const GroupOption: FC<PropsGroupOption> = ({ name, items, info, price }) => {
 
      const [minPrice, setMinPrice] = useState("");
      const [maxPrice, setMaxPrice] = useState("");
@@ -94,3 +94,5 @@ export const GroupOption: FC<PropsGroupOption> = ({ name, items, info, price }) 
           </div>
      );
 };
+
+export default GroupOption;

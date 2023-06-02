@@ -78,7 +78,9 @@ const ChatBotPlatform: FC<PropsChatBotPlatform> = ({ id, title, description, tag
      );
 };
 
-export const Platforms = () => {
+
+
+const Platforms = () => {
      return (
           <div className={style.wrapperComponent}>
                {chatBotPlatforms.map((item) =>
@@ -95,5 +97,7 @@ export const Platforms = () => {
 
           </div>
      );
-     
+
 };
+
+export default Platforms;

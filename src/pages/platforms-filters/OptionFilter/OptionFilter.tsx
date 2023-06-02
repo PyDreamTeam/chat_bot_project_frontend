@@ -1,15 +1,15 @@
 
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import style from "./optionFilter.module.css";
-import { Checkbox } from "../CheckboxFilter/CheckboxFilter";
+import Checkbox from "../CheckboxFilter/CheckboxFilter";
 import Text from "@/src/components/shared/text/Text";
 
 interface PropsOption {
-    name: string;
-    checked: boolean;
-    onChange?: () => void;
+     name: string;
+     checked: boolean;
+     onChange?: () => void;
 }
-export const Option: FC<PropsOption> = ({ name, checked, onChange }) => {
+const Option: FC<PropsOption> = ({ name, checked, onChange }) => {
 
      return (
           <div className={style.wrapper}>
@@ -18,3 +18,5 @@ export const Option: FC<PropsOption> = ({ name, checked, onChange }) => {
           </div>
      );
 };
+
+export default Option;

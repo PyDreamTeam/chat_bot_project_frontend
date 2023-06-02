@@ -7,4 +7,6 @@ interface PropsInputPrice {
     variant: number
 }
 
-export const InputPrice: FC<PropsInputPrice> = ({ value, onChange, variant }) => <input placeholder={variant === 1 ? "от" : "до"} value={value} onChange={onChange} className={style.inputPrice} />;
+const InputPrice: FC<PropsInputPrice> = ({ value, onChange, variant }) => <input placeholder={variant === 1 ? "от" : "до"} value={value} onChange={onChange} className={style.inputPrice} />;
+
+export default InputPrice;

@@ -5,4 +5,6 @@ interface PropsInput {
     onChange?: () => void;
     checked: boolean;
 }
-export const Checkbox: FC<PropsInput> = ({ onChange, checked }) => <input type="checkbox" checked={checked} onChange={onChange} className={style.checkbox}/>;
+const Checkbox: FC<PropsInput> = ({ onChange, checked }) => <input type="checkbox" checked={checked} onChange={onChange} className={style.checkbox}/>;
+
+export default Checkbox;
