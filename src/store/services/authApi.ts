@@ -33,7 +33,7 @@ interface IQuerySignUp {
 export const authApi = createApi({
      reducerPath: "authApi",
      baseQuery: fetchBaseQuery({
-          baseUrl: "http://34.88.253.142:8000",
+          baseUrl: "http://python.twnsnd.online:31080",
      }),
      endpoints: (build) => ({
           createUser: build.mutation<ICredentials, typeof validationSchemaSignUp>({

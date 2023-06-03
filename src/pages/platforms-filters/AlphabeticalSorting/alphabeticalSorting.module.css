@@ -1,0 +1,22 @@
+.sorting {
+     margin-top: 32px;
+     display: flex;
+     align-items: center;
+     justify-content: flex-end;
+     width: 147px;
+     column-gap: 12px;
+     cursor: pointer;
+}
+.groupSoting {
+     position: absolute;
+     width: 205px;
+     padding: 8px 16px 20px 16px;
+     top: 60px;
+     right: 0;
+     background-color: #ffffff;
+     border: 1px solid #e1e2e6;
+     box-shadow: 3px 5px 10px #e1e2e6;
+     border-radius: 10px;
+     z-index: 999;
+     list-style: none;
+}

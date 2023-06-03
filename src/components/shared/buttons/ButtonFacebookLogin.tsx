@@ -13,13 +13,14 @@ const ButtonFacebookLogin = () => {
      const dispatch = useAppDispatch();
      const responseFacebook = ({
           first_name,
-          picture: {
+          avatar: {
                data: { url },
           },
           email,
           accessToken,
+
      }: ResponseParams) => {
-          dispatch(setCredentials({ first_name, picture: url, email, auth_token: accessToken }));
+          dispatch(setCredentials({ first_name, avatar: url, email, auth_token: accessToken }));
      };
 
      React.useEffect(() => {

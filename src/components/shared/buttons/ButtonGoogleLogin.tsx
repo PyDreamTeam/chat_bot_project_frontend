@@ -19,13 +19,13 @@ const ButtonGoogleLogin = () => {
                onSuccess={(credentialResponse) => {
                     if(credentialResponse.credential){
                          console.log(jwtDecode(credentialResponse.credential));
-                         const { jti, first_name, email, picture }: ICredentials = jwtDecode(credentialResponse.credential);
+                         const { jti, first_name, email, avatar }: ICredentials = jwtDecode(credentialResponse.credential);
                          dispatch(
                               setCredentials({
                                    jti, 
                                    first_name,
                                    email,
-                                   picture,
+                                   avatar,
                               })
                          );
                     }

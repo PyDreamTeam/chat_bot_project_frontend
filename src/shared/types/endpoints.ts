@@ -24,4 +24,7 @@ export interface ClientEndpoints {
      updatePassword: {
           get: string;
      };
+     platformsFilters: {
+          get: string
+     }
 }

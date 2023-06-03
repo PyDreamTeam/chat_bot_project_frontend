@@ -27,22 +27,22 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                     {isSignIn && (
                          <div className={styles.questionRoute}>
                               <Text type={"reg16"} color={"grey"} >
-                                        Ещё нет аккаунта?
+                                   Ещё нет аккаунта?
                                    <Link href={clientEndpoints.signUp.get}> Регистрация </Link>
                               </Text>
                               <div className={styles.centerText}>
-                              <Text type={"reg18"} color={"black"} >Войдите через соцсеть</Text>
+                                   <Text type={"reg18"} color={"black"} >Войдите через соцсеть</Text>
                               </div>
-                                   <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
-                              <div  className={styles.signIn}>
-                              <Text type={"reg18"} color={"black"}>Или с помощью почты и пароля</Text>
+                              <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
+                              <div className={styles.signIn}>
+                                   <Text type={"reg18"} color={"black"}>Или с помощью почты и пароля</Text>
                               </div>
                          </div>
                     )}
                     {isSignUp && (
                          <div className={styles.questionSignIn}>
                               <Text type={"reg16"} color={"grey"}>
-                                  Уже есть аккаунт?
+                                   Уже есть аккаунт?
                                    <Link href={clientEndpoints.signIn.get}> Войдите </Link>
                               </Text>
                          </div>
@@ -50,8 +50,8 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                     {isRestorePassword && (
                          <div className={styles.addEmail}>
                               <Text type={"reg20"} color={"grey"}>
-                                  Укажите Email, на который вы создавали личный кабинет
-                              </Text> 
+                                   Укажите Email, на который вы создавали личный кабинет
+                              </Text>
                          </div>
                     )}
                     {isUpdatePassword && (
@@ -64,17 +64,17 @@ const AuthRightBlock: FC<WithChildren & IAuthRightBlock> = ({ children, titleTex
                     {isSignIn && (
                          <div className={styles.centerText}>
                               <Text type={"reg16"} color={"grey"} >
-                                  Забыли пароль?
+                                   Забыли пароль?
                                    <Link href={clientEndpoints.restorePassword.get}>Восстановите здесь</Link>
-                              </Text>  
+                              </Text>
                          </div>
                     )}
                     {isSignUp && (
                          <div className={styles.agreement}>
                               <Text type={"reg16"} color={"grey"}>
-                                  Нажимая кнопку «Зарегистрироваться», вы принимаете условия
+                                   Нажимая кнопку «Зарегистрироваться», вы принимаете условия
                                    <Link href={clientEndpoints.home.get}> пользовательского соглашения</Link>
-                              </Text>   
+                              </Text>
                          </div>
                     )}
                </div>

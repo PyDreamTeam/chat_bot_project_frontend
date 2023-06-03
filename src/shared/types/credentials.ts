@@ -16,7 +16,7 @@ export interface ICredentials {
 }
 export type ResponseParams = {
      first_name: string;
-     picture: {
+     avatar: {
           data: {
                url: string
           }

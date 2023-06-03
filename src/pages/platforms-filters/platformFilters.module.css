@@ -1,0 +1,44 @@
+.lineTop {
+    position: relative;
+    padding-top: 60px;
+}
+
+.lineTop::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    width: 100%;
+    border: 1px solid #989898;
+}
+
+.wraperPage {
+    max-width: 1440px;
+    margin: 0 auto;
+    margin: 0 88px;
+}
+
+.wrapperTitle {
+    position: relative;
+    padding-bottom: 32px;
+}
+
+.wrapperTitle::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    width: 100%;
+    border: 1px solid #E1E2E6;
+    background-color: #E1E2E6;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 8px;
+}

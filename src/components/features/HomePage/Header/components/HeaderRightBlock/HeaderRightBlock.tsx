@@ -6,8 +6,9 @@ import styles from "./HeaderRightBlock.module.css";
 
 const navElements = [
      { href: "/home", text: "О сервисе" },
-     { href: "/home", text: "Тарифы" },
      { href: "/home", text: "Статьи" },
+     { href: "/home", text: "Решения" },
+     { href: "/platforms-filters", text: "Платформы" },
 ];
 
 const HeaderRightBlock = () => {

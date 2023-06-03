@@ -1,0 +1,11 @@
+.wrapper {
+    margin-top: 32px;
+}
+
+.titleOpen {
+    width: 316px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
