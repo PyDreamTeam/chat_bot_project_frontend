@@ -1,7 +1,7 @@
 import Title from "@/src/components/shared/text/Title";
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import GroupsOptions from "../GroupsOptionsFilters/GroupsOptionsFilters";
-import style from "./filter.module.css";
+import style from "./Filter.module.css";
 
 interface PropsOption {
      name: string;
@@ -16,10 +16,6 @@ interface PropsGroupOption {
      items: PropsOption[]
      onChange?: () => void;
 }
-
-// interface PropsGroupsOptions {
-//      items: PropsGroupOption[]
-// }
 
 interface PropsFilter {
      name: string;
@@ -38,7 +34,9 @@ const Filter: FC<PropsFilter> = ({ name, items = [] }) => {
                     <Title type="h5" color="black">{name}</Title>
                     {isOpen ? <img src="/img/chevron-up.svg" /> : <img src="/img/chevron-down.svg" />}
                </div>
-               {isOpen && <GroupsOptions items={items} />}
+               {<div className={!isOpen && style.list}>
+                    <GroupsOptions items={items} />
+               </div>}
           </div>
      );
 };

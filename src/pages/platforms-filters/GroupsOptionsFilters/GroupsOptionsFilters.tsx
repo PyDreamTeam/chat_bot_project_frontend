@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import style from "./groupOptionsFilters.module.css";
+import style from "./GroupOptionsFilters.module.css";
 import GroupOption from "../GroupOptionFilters/GroupOptionFilters";
 
 interface PropsOption {
@@ -15,11 +15,10 @@ interface PropsGroupOption {
      items: PropsOption[]
 }
 
-
-
 interface PropsGroupsOptions {
      items: PropsGroupOption[]
 }
+
 const GroupsOptions: FC<PropsGroupsOptions> = ({ items = [] }) => {
      return (
           <div>

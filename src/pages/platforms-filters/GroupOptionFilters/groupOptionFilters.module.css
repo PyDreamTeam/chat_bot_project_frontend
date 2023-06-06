@@ -55,6 +55,10 @@
      cursor: pointer;
 }
 
+.groupInfo {
+     position: relative;
+}
+
 .info {
      position: absolute;
      top: -15px;

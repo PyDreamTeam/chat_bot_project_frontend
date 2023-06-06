@@ -1,8 +1,8 @@
 import Text from "@/src/components/shared/text/Text";
-import React, { FC, useState, useEffect } from "react";
-import Option from "../OptionFilter/OptionFilter";
-import style from "./groupOptionFilters.module.css";
+import { FC, useEffect, useState } from "react";
 import InputPrice from "../InputPrice/InputPrice";
+import Option from "../OptionFilter/OptionFilter";
+import style from "./GroupOptionFilters.module.css";
 
 interface PropsOption {
      name: string;
@@ -31,10 +31,12 @@ const GroupOption: FC<PropsGroupOption> = ({ name, items = [], info, price }) =>
      const changeCheckboxHandler = (name: string) => {
           setOptions((prevState) => prevState.map((option) => option.name === name ? { ...option, checked: !option.checked } : option));
      };
+
      const [isOpen, setIsOpen] = useState(false);
      const toogleOpenOptions = () => {
           setIsOpen(!isOpen);
      };
+
      const [isInfo, setIsInfo] = useState(false);
      const toggleInfo = () => {
           setIsInfo(!isInfo);
@@ -52,7 +54,7 @@ const GroupOption: FC<PropsGroupOption> = ({ name, items = [], info, price }) =>
                               <Text type="reg20" color="black">{name}</Text>
                               {isInfo ? <img src="/img/clarity_help-lineActive.svg" alt="item" /> : <img src="/img/clarity_help-line.svg" alt="item" />}
                               {isInfo &&
-                                   <div style={{ position: "relative" }}>
+                                   <div className={style.groupInfo}>
                                         <div className={style.info}>
                                              <Text type="sem16" color="black">{name} <span className={style.infoText}>- {info}</span></Text>
                                         </div>
@@ -60,7 +62,6 @@ const GroupOption: FC<PropsGroupOption> = ({ name, items = [], info, price }) =>
                               }
                          </div>}
                </div>
-
                <ul className={style.list}>
                     {options
                          .slice(0, lengthArray)

@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent } from "react";
-import style from "./inputPrice.module.css";
+import style from "./InputPrice.module.css";
 
 interface PropsInputPrice {
     value: string;
