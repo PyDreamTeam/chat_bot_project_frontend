@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
-import style from "./Platforms.module.css";
+import style from "./platforms.module.css";
 import uuid from "uuid-random";
 
 interface PropsChatBotPlatform {

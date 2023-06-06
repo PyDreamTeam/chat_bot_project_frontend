@@ -1,6 +1,6 @@
 
 import React, { FC } from "react";
-import style from "./OptionFilter.module.css";
+import style from "./optionFilter.module.css";
 import Checkbox from "../CheckboxFilter/CheckboxFilter";
 import Text from "@/src/components/shared/text/Text";
 

@@ -1,7 +1,7 @@
 import Title from "@/src/components/shared/text/Title";
 import { FC, useState } from "react";
 import GroupsOptions from "../GroupsOptionsFilters/GroupsOptionsFilters";
-import style from "./Filter.module.css";
+import style from "./filter.module.css";
 
 interface PropsOption {
      name: string;

@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import style from "./CheckboxFilter.module.css"; 
+import style from "./checkboxFilter.module.css"; 
 
 interface PropsInput {
     onChange?: () => void;

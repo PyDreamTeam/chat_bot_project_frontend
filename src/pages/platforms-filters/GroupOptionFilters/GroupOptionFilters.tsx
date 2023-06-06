@@ -2,7 +2,7 @@ import Text from "@/src/components/shared/text/Text";
 import { FC, useEffect, useState } from "react";
 import InputPrice from "../InputPrice/InputPrice";
 import Option from "../OptionFilter/OptionFilter";
-import style from "./GroupOptionFilters.module.css";
+import style from "./groupOptionFilters.module.css";
 
 interface PropsOption {
      name: string;

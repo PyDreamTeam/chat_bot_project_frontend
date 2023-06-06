@@ -1,7 +1,7 @@
 import Text from "@/src/components/shared/text/Text";
 import { useState } from "react";
 import Option from "../OptionFilter/OptionFilter";
-import style from "./AlphabeticalSorting.module.css";
+import style from "./alphabeticalSorting.module.css";
 
 const alpSorting = [
      { name: "названию от А до Я", checked: false },

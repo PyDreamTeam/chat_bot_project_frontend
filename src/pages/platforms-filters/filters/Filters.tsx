@@ -1,6 +1,6 @@
 import React from "react";
 import Filter from "../Filter/Filter";
-import style from "./Filters.module.css";
+import style from "./filters.module.css";
 
 
 const getItemList = (itemsNames: string[]) => itemsNames.map(name => ({ name, checked: false }));

@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent } from "react";
-import style from "./InputSearch.module.css";
+import style from "./inputSearch.module.css";
 
 interface PropsInputSearch {
     value: string;

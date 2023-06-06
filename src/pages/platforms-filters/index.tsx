@@ -3,7 +3,7 @@ import Title from "@/src/components/shared/text/Title";
 import { useState } from "react";
 import { AlphabeticalSorting } from "./AlphabeticalSorting/AlphabeticalSorting";
 import InputSearch from "./InputSearch/InputSearch";
-import style from "./PlatformFilters.module.css";
+import style from "./platformFilters.module.css";
 import Filters from "./filters/Filters";
 import Platforms from "./platforms/Platforms";
 
