@@ -93,8 +93,6 @@ const Platforms = () => {
                          href={item.href}
                          icons={item.icons} />
                )}
-
-
           </div>
      );
 

@@ -1,3 +1,7 @@
+.wrapper {
+     display: flex;
+     justify-content: end;
+}
 .sorting {
      margin-top: 32px;
      display: flex;
@@ -7,7 +11,10 @@
      column-gap: 12px;
      cursor: pointer;
 }
-.groupSoting {
+.wrapperOptions {
+     position: relative;
+}
+.groupSorting {
      position: absolute;
      width: 205px;
      padding: 8px 16px 20px 16px;

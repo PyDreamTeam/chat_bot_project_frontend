@@ -15,11 +15,10 @@ interface PropsGroupOption {
      items: PropsOption[]
 }
 
-
-
 interface PropsGroupsOptions {
      items: PropsGroupOption[]
 }
+
 const GroupsOptions: FC<PropsGroupsOptions> = ({ items = [] }) => {
      return (
           <div>
