@@ -54,6 +54,10 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                         <Title type={"h4"} color={"black"}>
                              {title ? title : `Добро пожаловать, ${name}!`}
                         </Title>}
+                    {page === "adminPage" &&
+                        <Title type={"h4"} color={"black"}>
+                             {title ? title : `Добро пожаловать, ${name}!`}
+                        </Title>}
                     {page === "templates" && (
                          <Link href={"/my-account"}>
                               <Title type={"h4"} color={"black"}>

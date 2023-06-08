@@ -1,5 +1,6 @@
 export const AccountPageTypes = {
      startPage: "startPage",
+     adminPage: "adminPage",
      templates: "templates",
      adminStartPage: "adminStartPage",
      profile_templates: "profile_templates",
