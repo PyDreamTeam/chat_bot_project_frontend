@@ -31,4 +31,7 @@ export const clientEndpoints: ClientEndpoints = {
      platformsFilters: {
           get: "/platforms-filters",
      },
+     adminPage: {
+          get: "/admin-page",
+     },
 };

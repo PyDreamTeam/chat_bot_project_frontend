@@ -5,10 +5,10 @@ import { InputFieldNameVariants } from "../../shared/inputs/InputAuthField";
 import styles from "./styles/styles.module.css";
 import Label, { HtmlForVariants } from "../../shared/labels/Label";
 import CheckboxForm from "../../shared/checkboxes/CheckboxForm";
-import ImageErrorForm from "../../shared/images/img/hidePassword.svg";
 import ButtonEye from "@/src/components/shared/buttons/ButtonEye";
 import ErrorList from "@/src/components/entities/errorList/ErrorList";
 import {array, string} from "yup";
+import ImageErrorForm from "@/src/components/shared/images/ImageErrorForm";
 
 export interface IInputField {
      htmlFor: keyof typeof HtmlForVariants;
@@ -80,7 +80,7 @@ const FormUniversal: FC<FormUniversalProps> = ({
                          {inputFieldData.map(({ htmlFor, name, placeholder, textLabel, typeField }, index) => (
                               <div className={styles.inputLabelErrorWrapper} key={htmlFor}>
                                    <Label htmlFor={htmlFor} typeLabel="inputField" textLabel={textLabel} />
-                                   {errors[name] && touched[name] && <ImageErrorForm />}
+                                   {errors[name] && touched[name] && <ImageErrorForm/>}
                                    <Field
                                         className={`${styles.inputField} ${errors[name] && touched[name] ? styles.inputError : null}`}
                                         type={getFieldType(typeField, activeEye ? Boolean(activeEye[name]) : !!showEye)}
