@@ -1,4 +1,4 @@
-import { ComponentSignIn } from "./componentSignIn/ComponentSignIn";
+import ComponentSignIn from "./componentSignIn/ComponentSignIn";
 
 const schema = [
      {

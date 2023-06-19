@@ -16,7 +16,7 @@ interface PropsSignIn {
     }[]
 }
 
-export const ComponentSignIn: FC<PropsSignIn> = ({ schema }) => {
+const ComponentSignIn: FC<PropsSignIn> = ({ schema }) => {
      const dispatch = useAppDispatch();
 
      return (
@@ -64,3 +64,5 @@ export const ComponentSignIn: FC<PropsSignIn> = ({ schema }) => {
           </div >
      );
 };
+
+export default ComponentSignIn;
