@@ -94,8 +94,8 @@ export const TemplateSignUp: FC<PropsSignUp> = ({ schema, open, close }) => {
                                                   <div className={css.groupStateEye}>
                                                        <Field type={type} name={name} placeholder={placeholder} className={errors[name] && touched[name] ? `${css.inputError}` : `${css.input}`} />
                                                        <div className={css.stateEye}>
-                                                            {name === "password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close} />}
-                                                            {name === "password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open} />}
+                                                            {name === "password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
+                                                            {name === "password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
                                                        </div>
                                                   </div>
                                                   <div className={css.error}>
