@@ -16,7 +16,7 @@ interface PropsSignIn {
     }[]
 }
 
-const ComponentSignIn: FC<PropsSignIn> = ({ schema }) => {
+const ComponentSignIn: FC<PropsSignIn> = ({ schema = [] }) => {
      const dispatch = useAppDispatch();
 
      return (
