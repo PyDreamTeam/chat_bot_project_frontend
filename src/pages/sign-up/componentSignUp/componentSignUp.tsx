@@ -30,7 +30,7 @@ const err = {
      req: "Введите пароль",
 };
 
-export const TemplateSignUp: FC<PropsSignUp> = ({ schema, open, close }) => {
+const TemplateSignUp: FC<PropsSignUp> = ({ schema, open, close }) => {
 
 
      const route = useRouter();
@@ -131,3 +131,5 @@ export const TemplateSignUp: FC<PropsSignUp> = ({ schema, open, close }) => {
           </div>
      );
 };
+
+export default TemplateSignUp;
