@@ -1,4 +1,4 @@
-import { TemplateSignUp } from "./componentSignUp/componentSignUp";
+import TemplateSignUp from "./componentSignUp/componentSignUp";
 import {useState} from "react";
 
 interface UserInfo {
