@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import AdminPageWrapper from "@/src/components/wrappers/AdminPageWrapper";
+import AdminDashboard from "@/src/components/entities/adminDashboard/AdminDashboard";
 
 
 const AdminPage = () => {
@@ -18,7 +19,7 @@ const AdminPage = () => {
 
      return (
           <AdminPageWrapper page={"adminPage"}>
-
+               <AdminDashboard/>
           </AdminPageWrapper>
      );
 };

@@ -8,13 +8,13 @@ import { useAppDispatch } from "@/src/hooks/types";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import { useRouter } from "next/router";
 
-const myAccountRoute = "/my-account";
-const workAdminAndModeratorRoute = "/my-account/workAdminAndModerator";
-const workPlatformsRoute = "/my-account/workPlatforms";
-const workSolutionsRoute = "/my-account/workSolutions";
-const workMainPageRoute = "/my-account/workMainRage";
-const workPersonalAccountUsersRoute = "/my-account/workPersonalAccountUsers";
-const settingsRoute = "/my-account/settings";
+const myProfileRoute = "/my-profile";
+const adminAndModeratorRoute = "/my-profile/adminAndModerator";
+const platformsRoute = "/my-profile/platforms";
+const solutionsRoute = "/my-profile/solutions";
+const mainPageRoute = "/my-profile/mainPage";
+const personalAccountRoute = "/my-profile/personalAccount";
+const settingsRoute = "/my-profile/settings";
 
 const SidebarOfficeAdmin: FC = () => {
      const dispatch = useAppDispatch();
@@ -23,17 +23,17 @@ const SidebarOfficeAdmin: FC = () => {
 
      useEffect(() => {
           switch (router.route) {
-               case myAccountRoute:
+               case myProfileRoute:
                     return setActiveTabItem(1);
-               case workAdminAndModeratorRoute:
+               case adminAndModeratorRoute:
                     return setActiveTabItem(2);
-               case workPlatformsRoute:
+               case platformsRoute:
                     return setActiveTabItem(3);
-               case workSolutionsRoute:
+               case solutionsRoute:
                     return setActiveTabItem(4);
-               case workMainPageRoute:
+               case mainPageRoute:
                     return setActiveTabItem(5);
-               case workPersonalAccountUsersRoute:
+               case personalAccountRoute:
                     return setActiveTabItem(6);
                case settingsRoute:
                     return setActiveTabItem(7);
