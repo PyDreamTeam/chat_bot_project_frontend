@@ -9,6 +9,7 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
 .checkbox:checked {
     background-color: red;
 }

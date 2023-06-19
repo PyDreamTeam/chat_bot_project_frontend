@@ -1,18 +1,20 @@
-import React, { FC, FormEvent, MouseEventHandler } from "react";
+import { FC, FormEvent } from "react";
 
 import Avatar from "../../../../shared/Avatar/Avatar";
 
 import styles from "./styles/UserInfo.module.css";
 
-import { useRouter } from "next/router";
-import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
-import { headerArrow } from "../img/SvgConfig";
-import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
 import Text from "@/src/components/shared/text/Text";
+import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
+import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
+import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import { actions } from "@/src/store/userAuth/sliceUser";
+import { useRouter } from "next/router";
+import { headerArrow } from "../img/SvgConfig";
 
 interface IUserInfoProps {
      profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
-     handleLogOut: any;
+     handleLogOut: () => void;
      onClick?: () => void;
      userName?: string | undefined;
      avatarUrl?: string;
@@ -32,6 +34,21 @@ const UserInfo: FC<IUserInfoProps> = ({
 }) => {
 
      const router = useRouter();
+     const dispatch = useAppDispatch();
+     const loadStatus = useAppSelector(state => state.userAuthReducer.loadStatus);
+     console.log("loadStatus", loadStatus);
+
+     async function qwe() {
+          let storedData;
+          try {
+               storedData = await JSON.parse(localStorage.getItem("userData") || "[]");
+               console.log("storedData",storedData.auth_token);
+               dispatch(actions.fetchLogoutUser(storedData.auth_token));
+          }
+          catch (error) {
+               console.error(error);
+          }
+     }
 
      const navElements = [
           {
@@ -48,7 +65,7 @@ const UserInfo: FC<IUserInfoProps> = ({
           },
           {
                text: "Выйти",
-               onClick: handleLogOut,
+               onClick: qwe,
           },
      ];
 
