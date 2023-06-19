@@ -15,7 +15,7 @@ interface PropsSignUp {
           htmlFor: string
           label: string
           type: string
-          name: string
+          name: "first_name" | "email" | "password" | "get_email_notifications";
           placeholder: string
      }[],
      open?: () => void;
@@ -82,25 +82,25 @@ export const TemplateSignUp: FC<PropsSignUp> = ({ schema, open, close }) => {
 
                               return (
                                    <Form className={css.form}>
-                                        {schema.map((item) => (
-                                             <div key={item.name} className={css.blockInput}>
-                                                  <label htmlFor={item.htmlFor}>
-                                                       <Text type="reg18" color="black">{item.label}</Text>
+                                        {schema.map(({htmlFor, label, type, name, placeholder}) => (
+                                             <div key={name} className={css.blockInput}>
+                                                  <label htmlFor={htmlFor}>
+                                                       <Text type="reg18" color="black">{label}</Text>
                                                   </label>
                                                   <div className={css.errorIcon}>
-                                                       {errors[item.name] && touched[item.name] && <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />}
+                                                       {errors[name] && touched[name] && <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />}
                                                   </div>
 
                                                   <div className={css.groupStateEye}>
-                                                       <Field type={item.type} name={item.name} placeholder={item.placeholder} className={errors[item.name] && touched[item.name] ? `${css.inputError}` : `${css.input}`} />
+                                                       <Field type={type} name={name} placeholder={placeholder} className={errors[name] && touched[name] ? `${css.inputError}` : `${css.input}`} />
                                                        <div className={css.stateEye}>
-                                                            {item.name === "password" && item.type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
-                                                            {item.name === "password" && item.type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
+                                                            {name === "password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close} />}
+                                                            {name === "password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open} />}
                                                        </div>
                                                   </div>
                                                   <div className={css.error}>
                                                        <Text type="reg16" color="red">
-                                                            <ErrorMessage name={item.name} />
+                                                            <ErrorMessage name={name} />
                                                        </Text>
                                                   </div>
 
