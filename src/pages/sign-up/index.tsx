@@ -1,6 +1,14 @@
 import { TemplateSignUp } from "./componentSignUp/componentSignUp";
 import {useState} from "react";
 
+interface UserInfo {
+     htmlFor: string
+     label: string
+     type: string
+     name: "first_name" | "email" | "password" | "get_email_notifications";
+     placeholder: string
+}
+
 const SignUp = () => {
 
      const [typePassword, setTypePassword] = useState<string>("password");
@@ -8,7 +16,9 @@ const SignUp = () => {
      const open = () => setTypePassword("text");
      const close = () => setTypePassword("password");
 
-     const singUpUser = [
+     
+
+     const singUpUser: Array<UserInfo> = [
           {
                htmlFor: "first_name",
                label: "Имя",
