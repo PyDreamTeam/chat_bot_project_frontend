@@ -145,25 +145,13 @@
       "id": "Pjh0imL"
     },
     {
-      "name": "Alexa",
+      "name": "Alexander",
       "email": "sgen28@gmail.com",
       "password": "GENIUSE18S",
-      "get_email_notifications": "",
-      "id": "Vep4LKl"
-    },
-    {
-      "name": "Alexa",
-      "email": "sgen28@gmail.com",
-      "password": "GENIUSE18S",
-      "get_email_notifications": "",
-      "id": "3bEf7xn"
-    },
-    {
-      "name": "Alexa",
-      "email": "sgen28@gmail.com",
-      "password": "GENIUSE18S",
-      "get_email_notifications": "",
-      "id": "DAyDsyS"
+      "get_email_notifications": [
+        "Я хочу получать уведомления и новости на почту"
+      ],
+      "id": "z0VZnZn"
     }
   ]
 }

@@ -27,7 +27,7 @@ const ComponentSignIn: FC<PropsSignIn> = ({ schema = [], open, close }) => {
      return (
           <div className={css.container}>
                <div className={css.backGround}></div>
-               <div  className={css.wrapper}>
+               <div className={css.wrapper}>
                     <Title type="h1" color="black">Вход</Title>
                     <div className={css.account}>
                          <Text type="reg16" color="grey">Ещё нет аккаунта?
@@ -89,7 +89,7 @@ const ComponentSignIn: FC<PropsSignIn> = ({ schema = [], open, close }) => {
                                         <div className={css.blockInfo}>
                                              <Text type={"reg16"} color={"grey"}>
                                              Забыли пароль?
-                                                  <Link href={"/"} className={css.link}> Восстановите здесь</Link>
+                                                  <Link href={"/recovery-password"} className={css.link}> Восстановите здесь</Link>
                                              </Text>
                                         </div>
                                    </Form>
