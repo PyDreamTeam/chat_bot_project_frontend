@@ -16,7 +16,6 @@ const TabCheck: FC<ITabCheck> = ({ id, icon, title }) => {
                <Text type={"reg24"} color={"black"}>
                     {title} 
                </Text>
-               
           </div>
      );
 };
