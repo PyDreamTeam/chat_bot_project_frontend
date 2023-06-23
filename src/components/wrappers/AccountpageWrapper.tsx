@@ -10,6 +10,7 @@ import AccountPageMain from "../features/AccountPage/AccountPageMain/AccountPage
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { setCredentials } from "@/src/store/reducers/credentialsSlice";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
+import { CreateUserResponse } from "@/src/types/user";
 
 interface IAccountWrapper {
      page: keyof typeof AccountPageTypes;
@@ -20,15 +21,32 @@ const secondTab = 2;
 const thirdTab = 3;
 
 const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children }) => {
-     const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
-     const name = useAppSelector((state) => state.credentialsSlice.credentials.first_name);
+
+     const [userData, setUserData] = useState<CreateUserResponse>({
+          auth_token: "",
+          email: "",
+          emailNotification: false,
+          first_name: "",
+          last_name: "",
+          id: "",
+          user_role: ""
+     });
+     useEffect(() => {
+          setUserData(JSON.parse(localStorage.getItem("userData") || "[]"));
+          
+     }, []);
+
+     // const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
+
+     // const name = useAppSelector((state) => state.credentialsSlice.credentials.first_name);
+
      const dispatch = useAppDispatch();
      const router = useRouter();
 
-     React.useEffect(() => {
-          const storageData = JSON.parse(localStorage.getItem("credentials") ?? "");
-          storageData && dispatch(setCredentials(storageData));
-     }, []);
+     // React.useEffect(() => {
+     //      const storageData = JSON.parse(localStorage.getItem("credentials") ?? "");
+     //      storageData && dispatch(setCredentials(storageData));
+     // }, []);
 
      const TABS_CONFIG = [
           {
@@ -67,7 +85,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
           <div className={styles.accountWrapper}>
                <Sidebar />
                <div className={styles.accountContentBlock}>
-                    <AccountPageHeader page={page} id={id} name={name} />
+                    <AccountPageHeader page={page} id={userData.id} name={userData.first_name} />
                     {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
                          <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                     ) : null}
