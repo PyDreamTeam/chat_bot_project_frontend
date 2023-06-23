@@ -11,7 +11,14 @@ const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], activeTabIt
      return (
           <nav className={styles.list}>
                {config.map((tab) => (
-                    <TabItem href={tab.href} activeTabItem={activeTabItem} key={tab.id} id={tab.id} title={tab.title} icon={tab.icon} />
+                    <TabItem 
+                         href={tab.href} 
+                         activeTabItem={activeTabItem}
+                         key={tab.id}
+                         id={tab.id}
+                         title={tab.title}
+                         icon={tab.icon}
+                    />
                ))}
           </nav>
      );
