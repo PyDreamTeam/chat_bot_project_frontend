@@ -3,12 +3,14 @@ import * as Yup from "yup";
 import styles from "./FooterRightBlock.module.css";
 import InputField, { InputVariantProps } from "@/src/components/shared/inputs/InputAuthField";
 import { LabelTypes } from "@/src/components/shared/labels/Label";
-import Title from "@/src/components/shared/text/Title";
+import Text from "@/src/components/shared/text/Text";
 
-const FooterLeftBlock = () => {
+const FooterRightBlock = () => {
      return (
           <div className={styles.footerRightContainer}>
-               <Title type={"h4"} color={"white"}>Портал о мессенджер-маркетинге и чат-ботах</Title>
+               <Text type={"reg16"} color={"white"} className={styles.footerInfo}>
+                    Подписаться на портал о мессенджер-<br></br>маркетинге и чат-ботах
+               </Text>
                <Formik
                     initialValues={{ email: "" }}
                     onSubmit={() => console.log(1)}
@@ -21,7 +23,7 @@ const FooterLeftBlock = () => {
                               <InputField
                                    variant={InputVariantProps.forFooter}
                                    name={"email"}
-                                   placeholder={"E-mail"}
+                                   placeholder={"Введите E-mail"}
                                    valid={Boolean(touched.email && !errors.email)}
                                    error={Boolean(touched.email && errors.email)}
                                    htmlFor={"email"}
@@ -34,4 +36,4 @@ const FooterLeftBlock = () => {
      );
 };
 
-export default FooterLeftBlock;
+export default FooterRightBlock;

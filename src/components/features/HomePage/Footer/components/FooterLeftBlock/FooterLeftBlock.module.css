@@ -1,14 +1,23 @@
 .footerLeftContainer {
-     display: flex;
-     flex-direction: column;
-     gap: 12px;
+    width: 394px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .footerLogoBlock {
-     display: flex;
-     gap: 48px;
-     padding-top: 36px;
-     align-items: center;
+    display: flex;
+    height: 36px;
+    gap: 42px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.footerCopyright {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* margin-top: 40px; */
 }
 
 .footerInfo {
