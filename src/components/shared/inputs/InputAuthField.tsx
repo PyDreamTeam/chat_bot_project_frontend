@@ -59,9 +59,6 @@ const InputAuthField: FC<IInputField> = ({
                               error={error}
                               type={type}
                          />
-                         <button className={styles.footerArrowButton} onClick={onClick}>
-                              {Arrow}
-                         </button>
                     </Label>
                </div>
                <ErrorMessage name={htmlFor}>{(message) => <div className={styles.inputError}>{message}</div>}</ErrorMessage>
