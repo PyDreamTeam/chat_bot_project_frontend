@@ -9,23 +9,23 @@ const MyAccount = () => {
 
      const router = useRouter();
 
-     async function userVerification() {
-          let storedData;
-          try {
-               storedData = await JSON.parse(localStorage.getItem("userData") || "[]");
-               
-               if (storedData.auth_token === undefined) {
-                    router.push("/home");
-               }
-          }
-          catch (error) {
-               console.error("error",error);
-          }
-     }
+     // async function userVerification() {
+     //      let storedData;
+     //      try {
+     //           storedData = await JSON.parse(localStorage.getItem("userData") || "[]");
+     //
+     //           if (storedData.auth_token === undefined) {
+     //                router.push("/home");
+     //           }
+     //      }
+     //      catch (error) {
+     //           console.error("error",error);
+     //      }
+     // }
 
-     useEffect(() => {
-          userVerification();
-     }, []);
+     // useEffect(() => {
+     //      userVerification();
+     // }, []);
 
      return (
           <AccountPageWrapper page="startPage">
