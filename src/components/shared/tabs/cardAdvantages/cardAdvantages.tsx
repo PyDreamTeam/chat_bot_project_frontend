@@ -1,20 +1,22 @@
 import React, {FC} from "react";
 
-import Text from "@/src/components/shared/text/Text";
+import styles from "./styles/CardAdvantages.module.css";
+import { TsConfigJson } from "type-fest";
+import JSX = TsConfigJson.CompilerOptions.JSX;
 
 export interface ICard {
     id?: number;
     icon: React.ReactNode;
-    text: string;
+    text: JSX.Element;
 }
 
 const CardAdvantages: FC<ICard> = ({icon, text = ""}) => {
      return (
-          <div>
-               {icon}
-               <Text type={"med20"} color={"black"}>
-                    {text}
-               </Text>
+          <div className={styles.card}>
+               <div className={styles.icon}>
+                    {icon}
+               </div>
+               {text}
           </div>
      );
 };

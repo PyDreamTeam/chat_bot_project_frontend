@@ -1,0 +1,15 @@
+.wrapper {
+    max-width: 1440px;
+    padding: 80px 88px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 91px;
+}
+
+.blockText {
+    max-width: 533px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
