@@ -1,9 +1,12 @@
 import React from "react";
-
-import SelectInAccount from "@/src/components/entities/MyAccountPageComponents/selectInAccount/SelectInAccount";
+import BlockOurAdvantages from "@/src/components/entities/blockOurAdvantages/BlockOurAdvantages";
 
 const Main = () => {
-     return <section>{/* <SelectInAccount /> */}</section>;
+     return (
+          <div>
+               <BlockOurAdvantages/>
+          </div>
+     );
 };
 
 export default Main;
