@@ -3,11 +3,10 @@ import styles from "./styles/styles.module.css";
 import OpenEye from "../images/img/showPassword.svg";
 import CloseEye from "../images/img/hidePassword.svg";
 import Image from "next/image";
-import { IShowEye } from "@/src/pages/update-password";
 import {number, string} from "yup";
 
 interface IButtonEye {
-     show?: boolean | IShowEye;
+     show?: boolean;
      onClick?: () => void;
      id?: string;
      isOpenEye?: boolean;
