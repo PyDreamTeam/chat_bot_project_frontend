@@ -1,4 +1,3 @@
-import Globe from "public/img/globe-alt.svg"
 import React, { useState } from 'react';
 import Image from "next/image";
 import styles from "@/src/components/features/HomePage/Header/components/HeaderRightBlock/HeaderRightBlock.module.css";
