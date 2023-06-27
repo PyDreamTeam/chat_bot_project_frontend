@@ -6,13 +6,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import css from "./changePassword.module.css";
+import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
 
 const ChangePassword = () => {
 
      const [openPassword, setOpenPassword] = useState<string>("password");
      const [openConfirmPassword, setOpenConfirmPassword] = useState<string>("password");
 
-     const password = () => {
+     const viewPassword = () => {
           if (openPassword === "text") {
                setOpenPassword("password");
           }
@@ -63,11 +64,18 @@ const ChangePassword = () => {
                                    .required("Подтвердите пароль")
                                    .oneOf([Yup.ref("password")], "Указанные пароли должны быть идентичными")
                          })}
-                         onSubmit={(values) => {
+                         onSubmit={(values, {setSubmitting}) => {
+                              setTimeout(() => {
+                                   setSubmitting(false);
+                              }, 1000);
                               console.log(values);
                          }}
                     >
-                         {({ isSubmitting, errors, touched, isValid }) => {
+                         {({ isSubmitting, errors, touched, isValid, getFieldProps }) => {
+
+                              const dataPassword = getFieldProps("password");
+                              const password = dataPassword.value;
+
                               return (
                                    <Form className={css.form}>
                                         <div className={css.account}>
@@ -86,16 +94,16 @@ const ChangePassword = () => {
                                              <div className={css.groupStateEye}>
                                                   <Field type={openPassword} name="password" placeholder="Введите новый пароль" className={errors.password && touched.password ? `${css.inputError}` : isValid && touched.password ? `${css.valid}` : `${css.input}`} />
                                                   <div className={css.stateEye}>
-                                                       {openPassword === "password" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={password} />}
-                                                       {openPassword === "text" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={password} />}
+                                                       {openPassword === "password" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={viewPassword} />}
+                                                       {openPassword === "text" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={viewPassword} />}
                                                   </div>
                                              </div>
 
-                                             <div className={css.error}>
-                                                  <Text type="reg16" color="red">
-                                                       <ErrorMessage name="password" />
-                                                  </Text>
-                                             </div>
+                                             {touched.password && 
+                                             <div className={css.errorsBlock}>
+                                                  <ErrorsPassword password={password}/>
+                                             </div>}
+
                                         </div>
 
                                         <div className={css.blockInput}>
@@ -122,7 +130,7 @@ const ChangePassword = () => {
                                              </div>
                                         </div>
 
-                                        <button type="submit" disabled={isSubmitting} className={css.button}>
+                                        <button type="submit" disabled={isSubmitting} className={isValid ? `${css.button}` : `${css.buttonDisabled}`}>
                                     Обновить пароль
                                         </button>
                                    </Form>

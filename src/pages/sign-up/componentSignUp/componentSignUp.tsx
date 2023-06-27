@@ -5,10 +5,11 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { actions } from "../../../store/userAuth/sliceUser";
 import css from "./componentSignUp.module.css";
+import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
 
 interface PropsSignUp {
      schema: {
@@ -73,12 +74,15 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    .required(err.req)
                          })}
                          onSubmit={(values) => {
-                              dispatch(actions.fetchCreateUser(values));
+                              // dispatch(actions.fetchCreateUser(values));
                               console.log(values);
 
                          }}
                     >
-                         {({ isSubmitting, errors, touched }) => {
+                         {({ isSubmitting, errors, touched, getFieldProps }) => {
+
+                              const dataPassword = getFieldProps("password");
+                              const password = dataPassword.value;
 
                               return (
                                    <Form className={css.form}>
@@ -100,18 +104,24 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                                   </div>
                                                   <div className={css.error}>
                                                        <Text type="reg16" color="red">
-                                                            <ErrorMessage name={name} />
+                                                            <ErrorMessage name={name === "password" ? "get_email_notifications" : name} />
                                                        </Text>
                                                   </div>
 
                                              </div>
 
                                         ))}
+                                        {touched.password && 
+                                        <div className={css.errorsBlock}>
+                                             <ErrorsPassword password={password}/>
+                                        </div>}
 
                                         <div className={css.notifications}>
                                              <Field type="checkbox" name="get_email_notifications" className={css.checkbox} />
                                              <span><Text type="reg16" color="black">Я хочу получать уведомления и новости на почту</Text></span>
                                         </div>
+
+                                        
 
                                         <button type="submit" disabled={isSubmitting} className={css.button}>
                                              Зарегистрироваться
