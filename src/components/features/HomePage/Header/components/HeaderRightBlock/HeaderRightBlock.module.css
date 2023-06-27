@@ -1,13 +1,25 @@
 .rightBlock {
      display: flex;
      justify-content: right;
-     width: 70%;
 }
 
 .rightBlock .buttonsAuthWrapper {
      display: flex;
-     justify-content: space-between;
-     width: 100%;
-     max-width: 306px;
-     margin-left: 60px;
+     gap: 16px;
+}
+.selectLang{
+     display: flex;
+     align-items: center;
+}
+
+.selectLanguage{
+     background: #EEF4FD;
+     border: none;
+     font-size: 18px;
+     font-weight: 500;
+     line-height: 28px;
+     display: inline-flex;
+     align-items: center;
+     gap: 4px;
+     flex-shrink: 0;
 }
