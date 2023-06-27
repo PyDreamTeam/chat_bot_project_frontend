@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import css from "./changePassword.module.css";
 import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
+import { useRouter } from "next/router";
 
 const ChangePassword = () => {
 
@@ -41,6 +42,7 @@ const ChangePassword = () => {
           setUserData(JSON.parse(localStorage.getItem("userData") || "[]"));
      }, []);
      
+     const router = useRouter();
 
      return (
           <div className={css.container}>
@@ -69,6 +71,7 @@ const ChangePassword = () => {
                                    setSubmitting(false);
                               }, 1000);
                               console.log(values);
+                              router.push("/change-password/sign-in_new-password");
                          }}
                     >
                          {({ isSubmitting, errors, touched, isValid, getFieldProps }) => {
