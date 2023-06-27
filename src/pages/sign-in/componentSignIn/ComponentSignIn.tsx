@@ -46,12 +46,15 @@ const ComponentSignIn: FC<PropsSignIn> = ({ schema = [], open, close }) => {
                               email: Yup.string().email("Неккоректный email").required("Введите e-mail"),
                               password: Yup.string().required("Введите пароль")
                          })}
-                         onSubmit={(values) => {
-                              alert(JSON.stringify(values));
-                              dispatch(actions.fetchLoginUser(values));
+                         onSubmit={(values, {setSubmitting}) => {
+                              setTimeout(() => {
+                                   setSubmitting(false);
+                              }, 2000);
+                              console.log(values);
+                              // dispatch(actions.fetchLoginUser(values));
                          }}
                     >
-                         {({ isSubmitting, errors, touched }) => {
+                         {({ isSubmitting, errors, touched, isValid }) => {
 
                               return (
                                    <Form className={css.form}>
@@ -82,7 +85,7 @@ const ComponentSignIn: FC<PropsSignIn> = ({ schema = [], open, close }) => {
 
                                         ))}
 
-                                        <button type="submit" disabled={isSubmitting} className={css.button}>
+                                        <button type="submit" disabled={isSubmitting} className={isValid ? `${css.button}` : `${css.buttonDisabled}`}>
                                              Войти
                                         </button>
 

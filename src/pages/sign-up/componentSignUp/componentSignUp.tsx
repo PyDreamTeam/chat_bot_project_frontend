@@ -73,13 +73,16 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    .matches(/^(?=.*[@$!%*?&])/, err.special)
                                    .required(err.req)
                          })}
-                         onSubmit={(values) => {
+                         onSubmit={(values, {setSubmitting}) => {
+                              setTimeout(() => {
+                                   setSubmitting(false);
+                              }, 2000);
                               // dispatch(actions.fetchCreateUser(values));
                               console.log(values);
 
                          }}
                     >
-                         {({ isSubmitting, errors, touched, getFieldProps }) => {
+                         {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
 
                               const dataPassword = getFieldProps("password");
                               const password = dataPassword.value;
@@ -123,7 +126,7 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
 
                                         
 
-                                        <button type="submit" disabled={isSubmitting} className={css.button}>
+                                        <button type="submit" disabled={isSubmitting} className={isValid ? `${css.button}` : `${css.buttonDisabled}`}>
                                              Зарегистрироваться
                                         </button>
 
