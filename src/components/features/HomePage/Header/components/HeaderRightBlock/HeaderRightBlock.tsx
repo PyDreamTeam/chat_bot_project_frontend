@@ -17,7 +17,7 @@ const HeaderRightBlock = () => {
           <div className={styles.rightBlock}>
                <NavbarHome navElements={navElements} className={NavBarClasses.navBarHome} />
                <div className={styles.buttonsAuthWrapper}>
-                   <SelectLanguage/>
+                    <SelectLanguage/>
                     <ButtonAuthHeader text="Войти" className={ButtonAuthClasses.signIn} href={clientEndpoints.signIn.get} />
                     <ButtonAuthHeader text="Регистрация" className={ButtonAuthClasses.signUp} href={clientEndpoints.signUp.get} />
                </div>

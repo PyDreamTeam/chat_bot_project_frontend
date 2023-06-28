@@ -4,10 +4,10 @@ import {SelectionBot} from "@/src/components/features/HomePage/Main/SelectionBot
 
 const Main = () => {
      return (
-         <>
-             <SelectionBot/>
-         </>
-     )
+          <>
+               <SelectionBot/>
+          </>
+     );
 };
 
 export default Main;
