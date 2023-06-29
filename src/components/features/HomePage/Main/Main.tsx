@@ -1,9 +1,9 @@
 import React from "react";
-
-import BlockOurAdvantages from "@/src/components/entities/blockOurAdvantages/BlockOurAdvantages";
 import {SelectionBot} from "@/src/components/features/HomePage/Main/SelectionBot/SelectionBot";
 import styles from "@/src/components/features/HomePage/Main/Main.module.css";
-import BlockConfidence from "@/src/components/entities/blockConfidence/BlockConfidence";
+import BlockOurAdvantages from "@/src/components/features/HomePage/Main/blockOurAdvantages/BlockOurAdvantages";
+import BlockConfidence from "@/src/components/features/HomePage/Main/blockConfidence/BlockConfidence";
+
 
 const Main = () => {
      return (
