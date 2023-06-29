@@ -1,5 +1,9 @@
 import { useState } from "react";
 import ComponentSignIn from "./componentSignIn/ComponentSignIn";
+import Text from "@/src/components/shared/text/Text";
+import Link from "next/link";
+import Title from "@/src/components/shared/text/Title";
+import css from "./componentSignIn/componentSignIn.module.css";
 
 interface UserInfo {
      htmlFor: string
@@ -37,8 +41,20 @@ function SignIn() {
      ];
 
      return (
-          <div>
-               <ComponentSignIn schema={schema} open={open} close={close}/>
+          <div className={css.container}>
+               <div className={css.backGround}></div>
+               <div className={css.wrapper}>
+                    <Title type="h1" color="black">Вход</Title>
+                    <div className={css.account}>
+                         <Text type="reg16" color="grey">Ещё нет аккаунта?
+                              <Link href={"/sign-up"} className={css.link}> Регистрация</Link>
+                         </Text>
+                    </div>
+                    <div className={css.text}>
+                         <Text type="reg16" color="grey">Или с помощью почты и пароля</Text>
+                    </div>
+                    <ComponentSignIn schema={schema} open={open} close={close}/>
+               </div>
           </div>
      );
 }

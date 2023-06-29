@@ -1,10 +1,11 @@
 .footerRightContainer {
-     display: flex;
-     flex-direction: column;
-     gap: 35px;
+    width: 394px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .footerRightContainer h4 {
-     max-width: 552px;
-     height: 84px;
+    max-width: 552px;
+    height: 84px;
 }

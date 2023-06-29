@@ -10,12 +10,22 @@ const FooterLeftBlock = () => {
           <div className={styles.footerLeftContainer}>
                <Logo variant={LogoVariantProps.footer} />
                <Link href={"/"}>
-                    <Text type={"reg24"} color={"white"} className={styles.footerInfo}>info@townsend.pro</Text>
+                    <Text type={"reg16"} color={"white"} className={styles.footerInfo}>
+                         info@townsend.pro
+                    </Text>
                </Link>
                <div className={styles.footerLogoBlock}>
                     <Link href={"/"}>{WhatsAppLogo}</Link>
                     <Link href={"/"}>{VkLogo}</Link>
                     <Link href={"/"}>{TelegramLogo}</Link>
+               </div>
+               <div className={styles.footerCopyright}>
+                    <Text type={"reg24"} color={"white"} className={styles.footerInfo}>
+                         ©
+                    </Text>
+                    <Text type={"reg14"} color={"white"} className={styles.footerInfo}>
+                         Все права защищены
+                    </Text>
                </div>
           </div>
      );

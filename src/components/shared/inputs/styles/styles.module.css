@@ -1,18 +1,23 @@
 .inputFieldFooter {
+     width: 100%;
      background: none;
-     border: none;
+     border: 1px solid #595F6C;
+     border-radius: 20px;
      font-family: "Inter", sans-serif;
      font-style: normal;
-     font-weight: 700;
-     font-size: 16px;
-     line-height: 19px;
-     color: #e1e2e6;
+     font-size: 14px;
+     line-height: 18px;
+     padding: 16px;
+     color: #E1E2E6;
+}
+
+.inputFieldFooter::placeholder {
+     color: #E1E2E6;
 }
 
 .footerInputBlock {
      color: #e1e2e6;
      max-width: 424px;
-     border-bottom: 1px solid #e1e2e6;
      padding: 10px 0;
      display: flex;
      flex-direction: column;
@@ -51,7 +56,7 @@
 
 .inputFieldFooter:focus,
 .inputFieldFooter:active {
-     border: none;
+     border: 1px solid #4466F5;
      outline: none;
 }
 
