@@ -1,18 +1,17 @@
 .container {
      display: flex;
      height: 100%;
-
      text-align: center;
 }
 
 .backGround {
      width: 27%;
-     min-height: 1024px;
+     min-height: 100vh;
      background: linear-gradient(rgba(80, 112, 245, 0.7), rgba(156, 229, 98, 1));
 }
 
 .wrapper {
-     padding: 159px 304px;
+     margin: auto;
 }
 
 .account {
