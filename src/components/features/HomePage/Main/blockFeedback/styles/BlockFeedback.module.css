@@ -14,17 +14,3 @@
     flex-direction: column;
     gap: 24px;
 }
-
-.link {
-     color: #4466f5;
-     display: flex;
-     gap: 8px;
-}
-
-.arrow {
-    transition: transform 0.3s ease-in-out;
-}
-
-.link:hover .arrow {
-    transform: translateX(20px);
-}
