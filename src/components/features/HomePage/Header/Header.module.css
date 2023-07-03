@@ -1,5 +1,6 @@
 .headerWrapper {
-     background: linear-gradient(282.1deg, rgba(0, 89, 233, 0.3) -24.44%, rgba(68, 102, 245, 0.1) 106.99%);
+     border-bottom: 0.5px solid  #595F6C;
+     background: #EEF4FD;
 }
 
 .headerWrapperOther {
@@ -8,8 +9,7 @@
 
 .header {
      max-width: 1440px;
-     padding: 46px 88px;
+     padding: 40px 88px;
      display: flex;
-     justify-content: space-between;
      margin: auto;
 }

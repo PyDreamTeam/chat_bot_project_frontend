@@ -1,9 +1,22 @@
 import React from "react";
+import {SelectionBot} from "@/src/components/features/HomePage/Main/SelectionBot/SelectionBot";
+import styles from "@/src/components/features/HomePage/Main/Main.module.css";
+import BlockOurAdvantages from "@/src/components/features/HomePage/Main/blockOurAdvantages/BlockOurAdvantages";
+import BlockConfidence from "@/src/components/features/HomePage/Main/blockConfidence/BlockConfidence";
+import BlockVideo from "@/src/components/features/HomePage/Main/blockVideo/BlockVideo";
+import { BlockSelectionBot } from "./blockSelectionBot/BlockSelectionBot";
 
-import SelectInAccount from "@/src/components/entities/MyAccountPageComponents/selectInAccount/SelectInAccount";
 
 const Main = () => {
-     return <section>{/* <SelectInAccount /> */}</section>;
+     return (
+          <div className={styles.main}>
+               {/* <SelectionBot/> */}
+               <BlockSelectionBot/>
+               <BlockOurAdvantages/>
+               <BlockVideo/>
+               <BlockConfidence/>
+          </div>
+     );
 };
 
 export default Main;
