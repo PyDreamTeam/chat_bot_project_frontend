@@ -1,16 +1,11 @@
 import Text from "@/src/components/shared/text/Text";
 import React from "react";
 import Image from "next/image";
-import profilePic_1 from "@/src/components/shared/images/img/feedback_1.png";
-import profilePic_2 from "@/src/components/shared/images/img/feedback_2.png";
-import profilePic_3 from "@/src/components/shared/images/img/feedback_3.png";
-import profilePic_4 from "@/src/components/shared/images/img/feedback_4.png";
-import Title from "@/src/components/shared/text/Title";
 
 export const CARDS_FEEDBACK = [
      {
           id: 1,
-          img: <Image src={profilePic_1} alt="feedback-image" width={64} height={64} />,
+          img: <Image src={"img/feedback_1.png"} alt="feedback-image" width={64} height={64} />,
           name: (
                <Text type={"reg20"} color={"black"}>
                     Сергей Жураков
@@ -31,7 +26,7 @@ export const CARDS_FEEDBACK = [
      },
      {
           id: 2,
-          img: <Image src={profilePic_2} alt="feedback-image" width={64} height={64} />,
+          img: <Image src={"img/feedback_2.png"} alt="feedback-image" width={64} height={64} />,
           name: (
                <Text type={"reg20"} color={"black"}>
                     Петр Емельянов
@@ -51,7 +46,7 @@ export const CARDS_FEEDBACK = [
      },
      {
           id: 3,
-          img: <Image src={profilePic_3} alt="feedback-image" width={64} height={64} />,
+          img: <Image src={"img/feedback_3.png"} alt="feedback-image" width={64} height={64} />,
           name: (
                <Text type={"reg20"} color={"black"}>
                     Мария Шишкина
@@ -74,7 +69,7 @@ export const CARDS_FEEDBACK = [
      },
      {
           id: 4,
-          img: <Image src={profilePic_4} alt="feedback-image" width={64} height={64} />,
+          img: <Image src={"img/feedback_4.png"} alt="feedback-image" width={64} height={64} />,
           name: (
                <Text type={"reg20"} color={"black"}>
                     Федор Евсеев
