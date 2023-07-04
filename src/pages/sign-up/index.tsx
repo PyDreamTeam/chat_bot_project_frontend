@@ -5,7 +5,7 @@ interface UserInfo {
      htmlFor: string
      label: string
      type: string
-     name: "first_name" | "email" | "password" | "get_email_notifications";
+     name: "first_name" | "last_name" | "email" | "password" | "confirm_password" | "get_email_notifications";
      placeholder: string
 }
 
@@ -27,6 +27,13 @@ const SignUp = () => {
                placeholder: "Иван"
           },
           {
+               htmlFor: "last_name",
+               label: "Фамилия",
+               type: "text",
+               name: "last_name",
+               placeholder: "Иванов"
+          },
+          {
                htmlFor: "email",
                label: "E-mail",
                type: "email",
@@ -39,6 +46,13 @@ const SignUp = () => {
                type: typePassword,
                name: "password",
                placeholder: "Придумайте пароль"
+          },
+          {
+               htmlFor: "confirm_password",
+               label: "Подтверждение пароля",
+               type: typePassword,
+               name: "confirm_password",
+               placeholder: "Повторите пароль"
           }
      ];
 

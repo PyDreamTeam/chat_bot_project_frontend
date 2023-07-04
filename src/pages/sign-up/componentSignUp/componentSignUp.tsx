@@ -16,7 +16,7 @@ interface PropsSignUp {
           htmlFor: string
           label: string
           type: string
-          name: "first_name" | "email" | "password" | "get_email_notifications";
+          name: "first_name" | "last_name" | "email" | "password" | "confirm_password" | "get_email_notifications";
           placeholder: string
      }[],
      open?: () => void;
@@ -24,9 +24,9 @@ interface PropsSignUp {
 }
 
 const err = {
-     min: "содержит не менее 8 символов",
-     string: "содержит как строчные (a–z), так и прописные буквы (A–Z)",
-     number: "содержит по крайней мере одну цифру (0–9)",
+     min: "Содержит не менее 8 символов",
+     string: "Содержит как строчные (a–z), так и прописные буквы (A–Z)",
+     number: "Содержит по крайней мере одну цифру (0–9)",
      special: "содержит по крайней мере один спецсимвол",
      req: "Введите пароль",
 };
@@ -59,19 +59,24 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                     <Formik
                          initialValues={{
                               first_name: "",
+                              last_name: "",
                               email: "",
                               password: "",
+                              confirm_password: "",
                               get_email_notifications: false
                          }}
                          validationSchema={Yup.object().shape({
-                              first_name: Yup.string().required("Введите имя"),
+                              first_name: Yup.string().required("Введите имя").min(2, "Содержит две или более букв").matches(/^\D*$/, "Не должно содержать цифр"),
+                              last_name: Yup.string().min(2, "Содержит две или более букв").matches(/^\D*$/, "Не должно содержать цифр"),
                               email: Yup.string().email("Неккоректный email").required("Введите email"),
                               password: Yup.string()
                                    .min(8, err.min)
                                    .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
                                    .matches(/^(?=.*[0-9])/, err.number)
                                    .matches(/^(?=.*[@$!%*?&])/, err.special)
-                                   .required(err.req)
+                                   .required(err.req),
+                              confirm_password: Yup.string().required("Подтвердите пароль")
+                                   .oneOf([Yup.ref("password")], "Указанные пароли должны быть идентичными")
                          })}
                          onSubmit={(values, {setSubmitting}) => {
                               setTimeout(() => {
@@ -103,6 +108,9 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                                        <div className={css.stateEye}>
                                                             {name === "password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
                                                             {name === "password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
+
+                                                            {name === "confirm_password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
+                                                            {name === "confirm_password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
                                                        </div>
                                                   </div>
                                                   <div className={css.error}>
@@ -110,14 +118,14 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                                             <ErrorMessage name={name === "password" ? "get_email_notifications" : name} />
                                                        </Text>
                                                   </div>
-
+                                                  {touched.password && name === "password" && 
+                                                       <div className={css.errorsBlock}>
+                                                            <ErrorsPassword password={password}/>
+                                                       </div>}
                                              </div>
 
                                         ))}
-                                        {touched.password && 
-                                        <div className={css.errorsBlock}>
-                                             <ErrorsPassword password={password}/>
-                                        </div>}
+                                        
 
                                         <div className={css.notifications}>
                                              <Field type="checkbox" name="get_email_notifications" className={css.checkbox} />
