@@ -23,7 +23,6 @@
 }
 
 .form {
-     padding-top: 8px;
      width: 440px;
 
      text-align: left;
@@ -31,7 +30,7 @@
 
 .blockInput {
      position: relative;
-     margin-top: 24px;
+     margin-top: 22px;
 }
 
 .errorIcon {
@@ -42,7 +41,7 @@
 
 .input {
      padding: 16px;
-     margin-top: 8px;
+     margin-top: 6px;
      width: 100%;
 
      font-family: "Inter";
@@ -97,7 +96,7 @@
 }
 
 .notifications {
-     margin-top: 24px;
+     margin-top: 13px;
      display: flex;
      align-items: center;
 }
@@ -105,8 +104,8 @@
 .checkbox {
      appearance: none;
 
-     width: 24px;
-     height: 24px;
+     width: 20px;
+     height: 20px;
      margin-right: 8px;
 
      border: 3px solid #9ce562;

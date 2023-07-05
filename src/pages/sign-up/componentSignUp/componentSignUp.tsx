@@ -76,7 +76,7 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    .matches(/^(?=.*[@$!%*?&])/, err.special)
                                    .required(err.req),
                               confirm_password: Yup.string().required("Подтвердите пароль")
-                                   .oneOf([Yup.ref("password")], "Указанные пароли должны быть идентичными")
+                                   .oneOf([Yup.ref("password")], "Пароли не совпадают")
                          })}
                          onSubmit={(values, {setSubmitting}) => {
                               setTimeout(() => {
