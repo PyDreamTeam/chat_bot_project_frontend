@@ -7,6 +7,7 @@ import BlockFeedback from "@/src/components/features/HomePage/Main/blockFeedback
 import BlockVideo from "@/src/components/features/HomePage/Main/blockVideo/BlockVideo";
 import BlockAboutUs from "@/src/components/features/HomePage/Main/blockAboutUs/BlockAboutUs";
 import { BlockSelectionBot } from "./blockSelectionBot/BlockSelectionBot";
+import { BlockTariffPlan } from "./blockTariffPlan/BlockTariffPlan";
 
 const Main = () => {
      return (
@@ -18,6 +19,7 @@ const Main = () => {
                <BlockAboutUs/>
                <BlockConfidence/>
                <BlockFeedback />
+               <BlockTariffPlan />
           </div>
      );
 };
