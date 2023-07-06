@@ -16,7 +16,7 @@ const post = (url: string, body: Record<string, unknown>) => {
      });
 };
 
-export const createUser = (body: Record<string, unknown>): Promise<CreateUserResponse> => post("/user/", body);
+export const createUser = (body: Record<string, unknown>): Promise<CreateUserResponse> => post("/api/auth/users/", body);
 export const loginUser = (body: Record<string, unknown>): Promise<CreateUserResponse> => post("/auth/token/create/", body);
 
 const postToken = (url: string, token: string) => {

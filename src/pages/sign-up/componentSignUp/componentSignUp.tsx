@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import { actions } from "../../../store/userAuth/sliceUser";
 import css from "./componentSignUp.module.css";
 import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
+import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
 
 interface PropsSignUp {
      schema: {
@@ -132,11 +133,7 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                              <span><Text type="reg16" color="black">Я хочу получать уведомления и новости на почту</Text></span>
                                         </div>
 
-                                        
-
-                                        <button type="submit" disabled={isSubmitting} className={isValid ? `${css.button}` : `${css.buttonDisabled}`}>
-                                             Зарегистрироваться
-                                        </button>
+                                        <ButtonLogin disabled={isSubmitting} active={isValid} type="submit">Зарегистрироваться</ButtonLogin>
 
                                         <div className={css.blockInfo}>
                                              <Text type={"reg16"} color={"grey"}>

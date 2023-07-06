@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import css from "./componentSignIn.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
 
 interface PropsSignIn {
      schema: {
@@ -73,9 +74,7 @@ const ComponentSignIn: FC<PropsSignIn> = ({ schema = [], open, close }) => {
 
                                    ))}
 
-                                   <button type="submit" disabled={isSubmitting} className={isValid ? `${css.button}` : `${css.buttonDisabled}`}>
-                                             Войти
-                                   </button>
+                                   <ButtonLogin disabled={isSubmitting} active={isValid} type="submit">Войти</ButtonLogin>
 
                                    <div className={css.blockInfo}>
                                         <Text type={"reg16"} color={"grey"}>

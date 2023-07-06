@@ -133,46 +133,6 @@
      background-color: #9ce562;
 }
 
-.button {
-     width: 100%;
-     padding: 18px;
-     margin-top: 24px;
-
-     text-align: center;
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 500;
-     font-size: 24px;
-     line-height: 28px;
-     
-     background-color: #4466f5;
-     color: #FFFFFF;
-     border: 1px solid #4466f5;
-     border-radius: 20px;
-
-     cursor: pointer;
-}
-
-.buttonDisabled {
-     width: 100%;
-     padding: 18px;
-     margin-top: 24px;
- 
-     text-align: center;
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 500;
-     font-size: 24px;
-     line-height: 28px;
-     
-     background-color: #CDD4F2;
-     color: #FFFFFF;
-     border: 1px solid #CDD4F2;
-     border-radius: 20px;
- 
-     cursor: pointer;
- }
-
 .blockInfo {
     margin-top: 16px;
     text-align: center;
