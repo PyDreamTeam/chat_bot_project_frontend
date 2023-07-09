@@ -1,5 +1,4 @@
 import React from "react";
-import { SelectionBot } from "@/src/components/features/HomePage/Main/SelectionBot/SelectionBot";
 import styles from "@/src/components/features/HomePage/Main/Main.module.css";
 import BlockOurAdvantages from "@/src/components/features/HomePage/Main/blockOurAdvantages/BlockOurAdvantages";
 import BlockConfidence from "@/src/components/features/HomePage/Main/blockConfidence/BlockConfidence";
@@ -7,17 +6,18 @@ import BlockFeedback from "@/src/components/features/HomePage/Main/blockFeedback
 import BlockVideo from "@/src/components/features/HomePage/Main/blockVideo/BlockVideo";
 import BlockAboutUs from "@/src/components/features/HomePage/Main/blockAboutUs/BlockAboutUs";
 import { BlockSelectionBot } from "./blockSelectionBot/BlockSelectionBot";
+import BlockFAQ from "@/src/components/features/HomePage/Main/blockFAQ/BlockFAQ";
 
 const Main = () => {
      return (
           <div className={styles.main}>
-               {/* <SelectionBot/> */}
                <BlockSelectionBot/>
                <BlockOurAdvantages/>
                <BlockVideo/>
                <BlockAboutUs/>
                <BlockConfidence/>
                <BlockFeedback />
+               <BlockFAQ/>
           </div>
      );
 };
