@@ -17,7 +17,7 @@ interface PropsSignUp {
           htmlFor: string
           label: string
           type: string
-          name: "first_name" | "last_name" | "email" | "password" | "confirm_password" | "get_email_notifications";
+          name: "first_name" | "last_name" | "email" | "password" | "re_password" | "get_email_notifications";
           placeholder: string
      }[],
      open?: () => void;
@@ -38,14 +38,13 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
      const route = useRouter();
      const dispatch = useAppDispatch();
      const loadStatus = useAppSelector(state => state.userAuthReducer.loadStatus);
-     const userToken = useAppSelector(state => state.userAuthReducer.userCreate.auth_token);
 
 
      useEffect(() => {
-          if (userToken) {
-               route.push("/my-account");
+          if (loadStatus === "LOADED") {
+               route.push("/sign-in");
           }
-     }, [userToken]);
+     }, [loadStatus]);
 
      return (
           <div className={css.container}>
@@ -63,7 +62,7 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                               last_name: "",
                               email: "",
                               password: "",
-                              confirm_password: "",
+                              re_password: "",
                               get_email_notifications: false
                          }}
                          validationSchema={Yup.object().shape({
@@ -76,16 +75,14 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    .matches(/^(?=.*[0-9])/, err.number)
                                    .matches(/^(?=.*[@$!%*?&])/, err.special)
                                    .required(err.req),
-                              confirm_password: Yup.string().required("Подтвердите пароль")
+                              re_password: Yup.string().required("Подтвердите пароль")
                                    .oneOf([Yup.ref("password")], "Пароли не совпадают")
                          })}
                          onSubmit={(values, {setSubmitting}) => {
                               setTimeout(() => {
                                    setSubmitting(false);
                               }, 2000);
-                              // dispatch(actions.fetchCreateUser(values));
-                              console.log(values);
-
+                              dispatch(actions.fetchCreateUser(values));
                          }}
                     >
                          {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
@@ -110,8 +107,8 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                                             {name === "password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
                                                             {name === "password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
 
-                                                            {name === "confirm_password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
-                                                            {name === "confirm_password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
+                                                            {name === "re_password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
+                                                            {name === "re_password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
                                                        </div>
                                                   </div>
                                                   <div className={css.error}>

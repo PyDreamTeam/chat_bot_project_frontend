@@ -17,14 +17,19 @@ const post = (url: string, body: Record<string, unknown>) => {
 };
 
 export const createUser = (body: Record<string, unknown>): Promise<CreateUserResponse> => post("/api/auth/users/", body);
-export const loginUser = (body: Record<string, unknown>): Promise<CreateUserResponse> => post("/auth/token/create/", body);
 
-const postToken = (url: string, token: string) => {
+
+
+export const loginUser = (body: Record<string, unknown>) => post("/api/auth/jwt/create/", body);
+// export const logoutUser = (body: Record<string, unknown>) => post("/api/auth/logout/", body);
+
+const postToken = (url: string, access: string, body: Record<string, unknown>) => {
      const fullUrl = new URL(url, BASE_URL);
      return fetch(fullUrl, {
           method: "POST",
+          body: JSON.stringify(body),
           headers: {
-               Authorization: `Token ${token}`,
+               Authorization: `JWT ${access}`,
                "Content-Type": "application/json",
           },
      }).then((data) => {
@@ -35,4 +40,4 @@ const postToken = (url: string, token: string) => {
      });
 };
 
-export const logoutUser = (token: string) => postToken("/auth/token/destroy/", token);
+export const logoutUser = (access: string, body: Record<string, unknown>) => postToken("/api/auth/logout/", access, body);

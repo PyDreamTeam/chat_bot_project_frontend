@@ -35,15 +35,13 @@ const UserInfo: FC<IUserInfoProps> = ({
 
      const router = useRouter();
      const dispatch = useAppDispatch();
-     const loadStatus = useAppSelector(state => state.userAuthReducer.loadStatus);
-     console.log("loadStatus", loadStatus);
 
      async function qwe() {
-          let storedData;
+          let loginUser;
           try {
-               storedData = await JSON.parse(localStorage.getItem("userData") || "[]");
-               console.log("storedData",storedData.auth_token);
-               dispatch(actions.fetchLogoutUser(storedData.auth_token));
+               loginUser = await JSON.parse(localStorage.getItem("loginUser") || "[]");
+               // console.log("loginUser", loginUser.refresh);
+               dispatch(actions.fetchLogoutUser(loginUser.access));
           }
           catch (error) {
                console.error(error);
