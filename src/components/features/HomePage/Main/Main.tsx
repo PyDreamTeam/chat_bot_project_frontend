@@ -7,6 +7,7 @@ import BlockVideo from "@/src/components/features/HomePage/Main/blockVideo/Block
 import BlockAboutUs from "@/src/components/features/HomePage/Main/blockAboutUs/BlockAboutUs";
 import { BlockSelectionBot } from "./blockSelectionBot/BlockSelectionBot";
 import BlockFAQ from "@/src/components/features/HomePage/Main/blockFAQ/BlockFAQ";
+import BlockSolution from "@/src/components/features/HomePage/Main/blockSolution/BlockSolution";
 
 const Main = () => {
      return (
@@ -14,6 +15,7 @@ const Main = () => {
                <BlockSelectionBot/>
                <BlockOurAdvantages/>
                <BlockVideo/>
+               <BlockSolution/>
                <BlockAboutUs/>
                <BlockConfidence/>
                <BlockFeedback />
