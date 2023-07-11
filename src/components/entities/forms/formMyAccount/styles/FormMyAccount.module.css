@@ -11,6 +11,7 @@
      gap: 32px;
      padding-top: 48px;
      flex-direction: column;
+     max-width: 440px;
 }
 
 .changePasswordBlock {
@@ -18,4 +19,5 @@
      gap: 32px;
      padding-top: 40px;
      flex-direction: column;
+     max-width: 440px;
 }
