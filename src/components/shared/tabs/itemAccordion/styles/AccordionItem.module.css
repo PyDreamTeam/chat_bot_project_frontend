@@ -1,0 +1,30 @@
+.wrapper {
+     border-bottom: 1px solid #909090;
+}
+.wrapper.active {
+     border: none;
+}
+.header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 16px 0 0;
+     cursor: pointer;
+     transition: 0.3s;
+}
+.header.open {
+     color: #4466f5;
+}
+
+.content {
+     max-height: 0;
+     overflow: hidden;
+     transition: 0.3s;
+}
+
+.content.show {
+     height: auto;
+     max-height: 99999px;
+     padding-top: 8px;
+     transition: 0.3s;
+}
