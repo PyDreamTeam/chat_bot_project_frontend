@@ -1,0 +1,21 @@
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(53, 53, 53, 0.66);
+    backdrop-filter: blur(5px);
+    z-index: 500;
+}
+
+.modal {
+    max-width: 1200px;
+    background-color: white;
+    position: relative;
+    margin: auto;
+    border-radius: 30px;
+}
