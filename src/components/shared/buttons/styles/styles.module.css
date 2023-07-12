@@ -27,7 +27,7 @@
      font-size: 24px;
      line-height: 28px;
      border-radius: 20px;
-     padding: 10px 24px;
+     padding: 10px 10px;
      align-self: center;
 }
 .signIn {
@@ -45,7 +45,7 @@
 .buttonEye {
      cursor: pointer;
      position: absolute;
-     top: 53px;
+     top: 48px;
      right: 33px;
 }
 

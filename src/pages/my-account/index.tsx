@@ -1,31 +1,20 @@
 import AccountPageMain from "@/src/components/features/AccountPage/AccountPageMain/AccountPageMain";
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
-import { CreateUserResponse } from "@/src/types/user";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 
 const MyAccount = () => {
 
-     const router = useRouter();
+     const route = useRouter();
 
-     // async function userVerification() {
-     //      let storedData;
-     //      try {
-     //           storedData = await JSON.parse(localStorage.getItem("userData") || "[]");
-     //
-     //           if (storedData.auth_token === undefined) {
-     //                router.push("/home");
-     //           }
-     //      }
-     //      catch (error) {
-     //           console.error("error",error);
-     //      }
-     // }
-
-     // useEffect(() => {
-     //      userVerification();
-     // }, []);
+     useEffect(() => {
+          const token = JSON.parse(Cookies.get("loginUser") || "[]");
+          if (token.access === undefined) {
+               route.push("/sign-in");
+          }
+     }, []);
 
      return (
           <AccountPageWrapper page="startPage">

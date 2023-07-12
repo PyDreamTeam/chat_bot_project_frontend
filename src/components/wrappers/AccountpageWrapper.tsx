@@ -23,12 +23,10 @@ const thirdTab = 3;
 const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children }) => {
 
      const [userData, setUserData] = useState<CreateUserResponse>({
-          auth_token: "",
           email: "",
           emailNotification: false,
           first_name: "",
           last_name: "",
-          id: "",
           user_role: ""
      });
      useEffect(() => {
@@ -85,7 +83,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
           <div className={styles.accountWrapper}>
                <Sidebar />
                <div className={styles.accountContentBlock}>
-                    <AccountPageHeader page={page} id={userData.id} name={userData.first_name} />
+                    <AccountPageHeader page={page} id={userData.email} name={userData.first_name} />
                     {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
                          <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                     ) : null}

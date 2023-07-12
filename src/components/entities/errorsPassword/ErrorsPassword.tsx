@@ -13,11 +13,11 @@ const err = {
 };
 
 const errPas = [
-     {condition: err.req, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"},
+     // {condition: err.req, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"},
+     {condition: err.min, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"},
      {condition: err.string, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"},
      {condition: err.number, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"},
      {condition: err.special, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"},
-     {condition: err.min, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"}
 ];
 
 interface PropsErrorsPassword {

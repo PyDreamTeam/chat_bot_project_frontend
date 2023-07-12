@@ -19,11 +19,9 @@ export interface State {
 const initialState: State = {
      loadStatus: LOAD_STATUS.UNKNOWN,
      userCreate: {
-          auth_token: "",
           email: "",
           emailNotification: false,
           first_name: "",
-          id: "",
           last_name: "",
           user_role: "",
      },

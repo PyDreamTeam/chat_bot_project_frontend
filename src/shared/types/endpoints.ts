@@ -30,4 +30,7 @@ export interface ClientEndpoints {
      adminPage: {
           get: string;
      };
+     feedbackPage: {
+          get: string,
+     },
 }

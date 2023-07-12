@@ -1,0 +1,14 @@
+.wrapper {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0 88px 80px 88px;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px 0 56px;
+}
