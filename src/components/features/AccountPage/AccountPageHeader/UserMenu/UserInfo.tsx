@@ -1,4 +1,4 @@
-import { FC, FormEvent } from "react";
+import { FC, FormEvent, useEffect } from "react";
 
 import Avatar from "../../../../shared/Avatar/Avatar";
 
@@ -8,9 +8,10 @@ import Text from "@/src/components/shared/text/Text";
 import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
-import { actions } from "@/src/store/userAuth/sliceUser";
 import { useRouter } from "next/router";
 import { headerArrow } from "../img/SvgConfig";
+import Cookies from "js-cookie";
+import { useLogoutUserMutation, useVerifyUserMutation } from "@/src/store/services/userAuth";
 
 interface IUserInfoProps {
      profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
@@ -34,19 +35,37 @@ const UserInfo: FC<IUserInfoProps> = ({
 }) => {
 
      const router = useRouter();
-     const dispatch = useAppDispatch();
+     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
+     const [logoutUser, {status}] = useLogoutUserMutation();
+     const [verifyUser, {isSuccess}] = useVerifyUserMutation();
+
+     console.log("isSuccess", isSuccess,);
+     console.log("status", status);
 
      async function qwe() {
-          let loginUser;
-          try {
-               loginUser = await JSON.parse(localStorage.getItem("loginUser") || "[]");
-               // console.log("loginUser", loginUser.refresh);
-               dispatch(actions.fetchLogoutUser(loginUser.access));
-          }
-          catch (error) {
-               console.error(error);
+          let completed;
+          const access = await token;
+          verifyUser(access.refresh);
+          
+          if(!completed) {
+               Cookies.remove("loginUser");
           }
      }
+
+     useEffect(() => {
+          qwe();
+     }, []);
+
+     const logout = () => {
+          if (isSuccess) {
+               logoutUser(token);
+               if (status === "fulfilled") {
+                    Cookies.remove("loginUser");
+               }
+          }
+     };
+     
 
      const navElements = [
           {
@@ -63,7 +82,7 @@ const UserInfo: FC<IUserInfoProps> = ({
           },
           {
                text: "Выйти",
-               onClick: qwe,
+               onClick: logout,
           },
      ];
 

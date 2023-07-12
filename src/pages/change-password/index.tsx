@@ -35,7 +35,7 @@ const ChangePassword = () => {
      };
 
      const [userData, setUserData] = useState<CreateUserResponse>({
-          auth_token: "", email: "", id: "", first_name: "", last_name: "", user_role: "", emailNotification: false
+          email: "", first_name: "", last_name: "", user_role: "", emailNotification: false
      });
      
      useEffect(() => {
