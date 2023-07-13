@@ -11,6 +11,8 @@ import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { setCredentials } from "@/src/store/reducers/credentialsSlice";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { CreateUserResponse } from "@/src/types/user";
+import { useDataUserMutation } from "@/src/store/services/userAuth";
+import Cookies from "js-cookie";
 
 interface IAccountWrapper {
      page: keyof typeof AccountPageTypes;
@@ -22,6 +24,9 @@ const thirdTab = 3;
 
 const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children }) => {
 
+     const [dataUser, {data}] = useDataUserMutation();
+
+
      const [userData, setUserData] = useState<CreateUserResponse>({
           email: "",
           emailNotification: false,
@@ -29,10 +34,12 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
           last_name: "",
           user_role: ""
      });
+     
      useEffect(() => {
-          setUserData(JSON.parse(localStorage.getItem("userData") || "[]"));
-          
+          const token = JSON.parse(Cookies.get("loginUser") || "[]");
+          dataUser(token);
      }, []);
+
 
      // const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
 
@@ -83,7 +90,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
           <div className={styles.accountWrapper}>
                <Sidebar />
                <div className={styles.accountContentBlock}>
-                    <AccountPageHeader page={page} id={userData.email} name={userData.first_name} />
+                    <AccountPageHeader page={page} id={data?.email} name={data?.first_name} />
                     {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
                          <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                     ) : null}

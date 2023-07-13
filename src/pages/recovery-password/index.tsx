@@ -1,22 +1,20 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import * as Yup from "yup";
 import css from "./recovoryPassword.module.css";
+import { useDataUserMutation, useRecoveryPasswordMutation } from "@/src/store/services/userAuth";
+import Cookies from "js-cookie";
 
 const RecoveryPassword = () => {
 
-     const [letterSent, setLetterSent] = useState<boolean>(true);
-
-     const isLetterSent = () => {
-          setLetterSent(false);
-     };
+     const [recoveryPassword, {isSuccess}] = useRecoveryPasswordMutation();
 
      return (
           <div>
-               {letterSent ? <div className={css.container}>
+               {!isSuccess ? <div className={css.container}>
                     <div className={css.backGround}></div>
                     <div className={css.wrapper}>
                          <Title type="h1" color="black">Восстановление пароля</Title>
@@ -30,9 +28,12 @@ const RecoveryPassword = () => {
                               validationSchema={Yup.object({
                                    email: Yup.string().required("Введите email").email("Неккоректный email")
                               })}
-                              onSubmit={(values) => {
-                                   console.log(values);
-                                   isLetterSent();
+                              onSubmit={(values, {setSubmitting}) => {
+                                   setTimeout(() => {
+                                        setSubmitting(false);
+                                   }, 2000);
+                                   // isLetterSent();
+                                   recoveryPassword(values);
                               }}
                          >
                               {({ isSubmitting, errors, touched }) => {

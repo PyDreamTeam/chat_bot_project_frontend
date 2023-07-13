@@ -40,7 +40,6 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
 
      useEffect(() => {
           if(isSuccess) {
-               localStorage.setItem("userData", JSON.stringify(data));
                route.push("/sign-in");
           }
      }, [isSuccess]);
