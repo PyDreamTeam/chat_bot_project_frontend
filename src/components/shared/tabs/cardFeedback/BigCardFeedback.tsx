@@ -12,9 +12,9 @@ export interface ICard {
      text: JSX.Element;
 }
 
-const CardFeedback: FC<ICard> = ({ img, name, jobTitle, text }) => {
+const BigCardFeedback: FC<ICard> = ({ img, name, jobTitle, text }) => {
      return (
-          <div className={`${styles.card} ${styles.smallCard}`}>
+          <div className={`${styles.card} ${styles.bigCard}`}>
                <div className={styles.top}>
                     {img}
                     <div className={styles.title}>
@@ -27,4 +27,4 @@ const CardFeedback: FC<ICard> = ({ img, name, jobTitle, text }) => {
      );
 };
 
-export default CardFeedback;
+export default BigCardFeedback;
