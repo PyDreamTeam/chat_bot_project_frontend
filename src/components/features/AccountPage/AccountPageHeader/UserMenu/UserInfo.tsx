@@ -1,4 +1,4 @@
-import { FC, FormEvent, useEffect } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 
 import Avatar from "../../../../shared/Avatar/Avatar";
 
@@ -6,7 +6,6 @@ import styles from "./styles/UserInfo.module.css";
 
 import Text from "@/src/components/shared/text/Text";
 import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { useRouter } from "next/router";
 import { headerArrow } from "../img/SvgConfig";
@@ -35,37 +34,40 @@ const UserInfo: FC<IUserInfoProps> = ({
 }) => {
 
      const router = useRouter();
-     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+     
 
-     const [logoutUser, {status}] = useLogoutUserMutation();
-     const [verifyUser, {isSuccess}] = useVerifyUserMutation();
+     const [logoutUser, {isSuccess: isSuccessLogout}] = useLogoutUserMutation();
+     const [verifyUser, {isSuccess: isSuccessVerify, isError: isErrorVerify, isLoading}] = useVerifyUserMutation();
 
-     console.log("isSuccess", isSuccess,);
-     console.log("status", status);
-
-     async function qwe() {
-          let completed;
-          const access = await token;
-          verifyUser(access.refresh);
-          
-          if(!completed) {
-               Cookies.remove("loginUser");
-          }
-     }
+     const [isVerified, setIsVerified] = useState(false);
 
      useEffect(() => {
-          qwe();
+          const token = JSON.parse(Cookies.get("loginUser") || "[]");
+          verifyUser(token.access);
      }, []);
+     
+     useEffect(() => {
+          if (isSuccessVerify) {
+               setIsVerified(true);
+          }
+          if (isErrorVerify) {
+               router.push("/sign-in");
+          }
+     }, [isSuccessVerify, isErrorVerify]);
+
 
      const logout = () => {
-          if (isSuccess) {
-               logoutUser(token);
-               if (status === "fulfilled") {
-                    Cookies.remove("loginUser");
-               }
-          }
+          const token = JSON.parse(Cookies.get("loginUser") || "[]");
+          logoutUser(token);
      };
-     
+
+     useEffect(() => {
+          const token = JSON.parse(Cookies.get("loginUser") || "[]");
+          if(isSuccessLogout) {
+               Cookies.remove("loginUser");
+               verifyUser(token.refresh);
+          }
+     }, [isSuccessLogout]);
 
      const navElements = [
           {
