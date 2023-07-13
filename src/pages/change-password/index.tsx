@@ -36,7 +36,9 @@ const ChangePassword = () => {
           }
      };
 
-     const [changePassword] = useChangePasswordMutation();
+     const router = useRouter();
+     const { uid, token } = router.query;
+     const [changePassword, {isSuccess}] = useChangePasswordMutation();
      const [dataUser, {data}] = useDataUserMutation();
      
 
@@ -45,30 +47,7 @@ const ChangePassword = () => {
           dataUser(tn);
           
      }, []);
-
-     interface PropsValue {
-          new_password: string,
-          re_new_password: string,
-          uid: string | string[], 
-          token: string | string[],
-     }
      
-     const router = useRouter();
-
-     const [initialValues, setInitialValues] = useState<PropsValue>({
-          new_password: "",
-          re_new_password: "",
-          uid: "", 
-          token: "",
-     });
-
-     useEffect(() => {
-          const { uid, token } = router.query;
-          if (uid && token) {
-               setInitialValues((prevState) => ({...prevState, uid: uid, token: token}));
-          }
-     }, [router.query]);
-
      return (
           <div className={css.container}>
                <div className={css.backGround}></div>
@@ -76,7 +55,10 @@ const ChangePassword = () => {
                     <Title type="h1" color="black">Обновите пароль</Title>
                     
                     <Formik
-                         initialValues={initialValues}
+                         initialValues={{
+                              new_password: "",
+                              re_new_password: ""
+                         }}
                          validationSchema={Yup.object().shape({
                               new_password: Yup.string()
                                    .min(8, "содержит не менее 8 символов")
@@ -94,9 +76,10 @@ const ChangePassword = () => {
                               setTimeout(() => {
                                    setSubmitting(false);
                               }, 1000);
-                              changePassword(values);
-                              console.log(values);
-                              // router.push("/change-password/sign-in_new-password");
+                              changePassword({...values, uid, token});
+                              if(isSuccess) {
+                                   router.push("/change-password/sign-in_new-password");
+                              }
                          }}
                     >
                          {({ isSubmitting, errors, touched, isValid, getFieldProps }) => {
