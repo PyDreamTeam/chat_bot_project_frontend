@@ -34,4 +34,7 @@ export const clientEndpoints: ClientEndpoints = {
      adminPage: {
           get: "/admin-page",
      },
+     feedbackPage: {
+          get: "/feedback-page",
+     },
 };

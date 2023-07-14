@@ -4,6 +4,7 @@ import Text from "@/src/components/shared/text/Text";
 import styles from "./styles/BlockSolution.module.css";
 import LinkShowAllCards from "@/src/components/shared/links/LinkShowAllCards";
 import { Button } from "@/src/components/shared/buttons/Button";
+import Slider from "@/src/components/shared/slider/Slider";
 
 const BlockFSolution = () => {
      return (
@@ -13,18 +14,19 @@ const BlockFSolution = () => {
                          Решения
                     </Title>
                     <Text type={"reg16"} color={"grey"}>
-                      Подберите конструктор чат-ботов и воспользуйтесь одним из наших шаблонов, разработанных под конкретную бизнес-задачу
+                         Подберите конструктор чат-ботов и воспользуйтесь одним из наших шаблонов, разработанных под конкретную
+                         бизнес-задачу
                     </Text>
                     <div className={styles.buttons}>
                          <div className={styles.btn}>
-                              <Button type="submit" style="button">Подобрать решение</Button>
+                              <Button type="submit" style="button">
+                                   Подобрать решение
+                              </Button>
                          </div>
                          <LinkShowAllCards href="/" />
                     </div>
                </div>
-               <div>
-                  Здесь будет слайдер)
-               </div>
+               <Slider></Slider>
           </div>
      );
 };

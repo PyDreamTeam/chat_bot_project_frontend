@@ -1,0 +1,35 @@
+.wrapper {
+    max-width: 838px;
+    display: flex;
+    flex-direction: column;
+}
+
+.window {
+    width: 640px;
+    height: 464px;
+    padding: 8px;
+    overflow: hidden;
+}
+
+.itemsContainer {
+    display: flex;
+
+    transition: translate;
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+}
+
+.arrows {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.arrow {
+    cursor: pointer;
+}
+
+.arrow:hover svg {
+    scale: 1.1;
+}

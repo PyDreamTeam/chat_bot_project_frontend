@@ -1,9 +1,9 @@
 .card {
-    height: 256px;
-    padding: 46px 32px;
+    width: 440px;
+    padding: 28px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
     border-radius: 20px;
     box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
     position: relative;
@@ -11,38 +11,37 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-.smallCard {
-    max-width: 411px;
-}
-.bigCard {
-    max-width: 616px;
-}
 
-.card:hover {
+/* .card:hover {
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
   background-color: #F4F5F6;
   transform: translateY(-4px);
-}
+} */
 
-.top+p {
-    height: 78px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.top {
-    display: flex;
-    gap: 24px;
-}
-
-.title {
+.bottom {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 8px;
-    gap: 8px;
-    flex: 1 0 0;
+    gap: 16px;
+}
+
+.features {
+    display: flex;
+    gap: 16px;
+}
+
+.tag {
+     padding: 10px;
+     background: #f4f5f6;
+     border-radius: 20px;
+}
+
+
+.iconBlock {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
 }

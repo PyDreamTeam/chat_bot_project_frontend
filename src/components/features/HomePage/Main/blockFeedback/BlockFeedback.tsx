@@ -15,7 +15,7 @@ const BlockFeedback = () => {
                     <Text type={"reg16"} color={"grey"}>
                          Нам доверяют тысячи предпринимателей и клиентов со всего мира
                     </Text>
-                    <LinkShowAllCards href="/" />
+                    <LinkShowAllCards href="/feedback-page" />
                </div>
                <CardsFeedback />
           </div>
