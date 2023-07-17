@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from "react";
 import styles from "./Sidebar.module.css";
 import Logo, { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
 import ListSidebar from "@/src/components/entities/lists/listsidebar/ListSidebar";
-import { SIDEBAR_CONFIG } from "@/src/components/features/Sidebar/img/SidebarConfig";
+import { SIDEBAR_CONFIG } from "@/src/components/features/Sidebar/SidebarConfig";
 import { useAppDispatch } from "@/src/hooks/types";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import { useRouter } from "next/router";
@@ -40,7 +40,7 @@ const Sidebar: FC = () => {
      }, [router]);
 
      const handleSetActiveTabItem = (id: number) => {
-          id === 7 && dispatch(removeCredentials());
+          id === 6 && dispatch(removeCredentials());
           setActiveTabItem(id);
      };
 

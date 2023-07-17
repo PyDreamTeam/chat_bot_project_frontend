@@ -6,6 +6,7 @@ import styles from "./styles/AuthWrapper.module.css";
 
 export interface IAuthWrapper {
      titleText: string;
+     children: JSX.Element | string;
 }
 
 const AuthWrapper: FC<WithChildren & IAuthWrapper> = ({ children, titleText }) => {

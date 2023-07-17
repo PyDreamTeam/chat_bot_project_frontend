@@ -9,6 +9,7 @@ import IconsAuthBar from "@/src/components/entities/iconbars/IconsAuthBar";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { svgArray } from "@/src/components/entities/iconbars/img/svgConfig";
 import Text from "@/src/components/shared/text/Text";
+
 export interface IAuthRightBlock {
      titleText: string;
 }
