@@ -1,20 +1,22 @@
 .authRightBlock {
      display: flex;
-     padding-top: 40px;
      justify-content: center;
      margin: 0 auto;
      max-width: 488px;
+
 }
 .formCenter {
      display: flex;
      justify-content: center;
      padding-left: 24px;
+
 }
 .authContentBlock {
      display: flex;
      flex-direction: column;
+     justify-content: center;
      min-width: 477px;
-     padding-top: 124px;
+     min-height: 100vh;
 }
 .questionRoute {
      padding: 16px 0 28px;

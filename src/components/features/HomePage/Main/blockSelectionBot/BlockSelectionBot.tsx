@@ -6,6 +6,7 @@ import { Modal } from "@/src/components/shared/modal/Modal";
 import { useModal } from "@/src/hooks/useModal";
 import Image from "next/image";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
+import ElemChooseChatBot, { ElemVariantProps } from "@/src/components/shared/elemChooseChatBot/ElemChooseChatBot";
 
 interface IUserRequest {
      htmlFor: string;
@@ -56,13 +57,7 @@ export const BlockSelectionBot = () => {
                          <div className={css.textInfo}>
                               <Title type="h1" color="black">
                                    Подбери{" "}
-                                   <span className={css.bot}>
-                                        конструктор чат-ботов
-                                        <div className={`${css.dot} ${css.left}`}></div>
-                                        <div className={`${css.dot} ${css.top}`}></div>
-                                        <div className={`${css.dot} ${css.right}`}></div>
-                                        <div className={`${css.dot} ${css.bottom}`}></div>
-                                   </span>
+                                   <ElemChooseChatBot variant={ElemVariantProps.home}/>
                                    и автоматизируй свои продажи
                               </Title>
 
