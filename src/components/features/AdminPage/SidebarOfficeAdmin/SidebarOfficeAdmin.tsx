@@ -43,7 +43,7 @@ const SidebarOfficeAdmin: FC = () => {
      }, [router]);
 
      const handleSetActiveTabItem = (id: number) => {
-          id === 8 && dispatch(removeCredentials());
+          id === 7 && dispatch(removeCredentials());
           setActiveTabItem(id);
      };
 

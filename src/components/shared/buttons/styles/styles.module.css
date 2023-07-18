@@ -107,7 +107,7 @@
      cursor: pointer;
      color: #595f6c;
      border: none;
-     font-family: "Inter";
+     font-family: "Inter", sans-serif;
      font-style: normal;
      font-weight: 500;
      font-size: 20px;
@@ -115,4 +115,25 @@
      background: #e2ecff;
      border-radius: 20px;
      width: 100%;
+}
+
+/*---------------------------------------Button Exit---------------------------------*/
+.buttonExit {
+     display: flex;
+     width: 292px;
+     padding: 14px 0 14px 30px;
+     align-items: center;
+     gap: 12px;
+     font-family: Inter, sans-serif;
+     font-size: 20px;
+     font-style: normal;
+     font-weight: 500;
+     line-height: 28px;
+     background: transparent;
+     border: 1px solid #E2ECFF;
+     cursor: pointer;
+}
+.buttonExit:hover {
+     border-top: 1px solid white;
+     border-bottom: 1px solid white;
 }

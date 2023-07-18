@@ -4,12 +4,6 @@
     text-align: center;
 }
 
-.backGround {
-    width: 27%;
-    min-height: 100vh;
-    background: linear-gradient(rgba(80, 112, 245, 0.7), rgba(156, 229, 98, 1));
-}
-
 .wrapper {
     margin: auto;
 }

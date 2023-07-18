@@ -4,12 +4,6 @@
      text-align: center;
 }
 
-.backGround {
-     width: 27%;
-     min-height: 100vh;
-     background: linear-gradient(rgba(80, 112, 245, 0.7), rgba(156, 229, 98, 1));
-}
-
 .wrapper {
      margin: auto;
 }
@@ -43,13 +37,11 @@
      padding: 16px;
      margin-top: 6px;
      width: 100%;
-
-     font-family: "Inter";
+     font-family: "Inter",sans-serif;
      font-style: normal;
      font-weight: 400;
      font-size: 18px;
      line-height: 27px;
-
      border-radius: 20px;
      background-color: #f4f5f6;
      border: 1px solid #f4f5f6;
@@ -63,13 +55,11 @@
      padding: 16px;
      margin-top: 8px;
      width: 100%;
-
-     font-family: "Inter";
+     font-family: "Inter",sans-serif;
      font-style: normal;
      font-weight: 400;
      font-size: 18px;
      line-height: 27px;
-
      border-radius: 20px;
      background-color: #f4f5f6;
      border: 2px solid #f53527;
@@ -103,11 +93,9 @@
 
 .checkbox {
      appearance: none;
-
      width: 20px;
      height: 20px;
      margin-right: 8px;
-
      border: 3px solid #9ce562;
      border-radius: 6px;
      outline: none;

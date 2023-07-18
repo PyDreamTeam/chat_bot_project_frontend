@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styles from "./styles/ListSidebar.module.css";
 
 import TabItem, { ITabItem, TabItemProps } from "../../../shared/tabs/tabitem/TabItem";
+import ButtonExit from "@/src/components/shared/buttons/ButtonExit";
 
 interface IListSidebar {
      config: ITabItem[];
@@ -20,6 +21,7 @@ const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], activeTabIt
                          icon={tab.icon}
                     />
                ))}
+               <ButtonExit onClick={() => console.log("Пользователь вышел из регистрации")}/>
           </nav>
      );
 };
