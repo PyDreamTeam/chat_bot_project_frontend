@@ -85,7 +85,7 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    createUser(values).then((error) => {
                                         if(error) {
                                              console.log(error);
-                                             if(error?.data?.email[0] === "Enter a valid email address.") {
+                                             if(errorData?.data?.email[0] === "Enter a valid email address.") {
                                                   setFieldError("email", "хрень какая-то");
                                              }
                                         }
