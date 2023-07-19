@@ -1,17 +1,26 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
 export const userAuth = createApi({
      reducerPath: "userAuth",
      baseQuery: fetchBaseQuery({baseUrl: "http://python.twnsnd.online:31080"}),
      endpoints: (builder) => ({
-          dataUser: builder.mutation({
+          dataUser: builder.query({
                query: (token: {access: string, refresh: string}) => ({
                     url: "/api/auth/users/me/",
                     method: "GET",
                     headers: {
                          Authorization: `JWT ${token.access}`,
                     }
+               })
+          }),
+          changeDataUser: builder.mutation({
+               query: (arg: {values: any, token: string}) => ({
+                    url: "/api/auth/users/me/",
+                    method: "PUT",
+                    headers: {
+                         Authorization: `JWT ${arg.token}`
+                    },
+                    body: arg.values,
                })
           }),
           createUser: builder.mutation({
@@ -58,8 +67,16 @@ export const userAuth = createApi({
                     method: "POST",
                     body: {token: token}
                })
-          }),
+          })
      })
 });
 
-export const { useCreateUserMutation, useLoginUserMutation, useLogoutUserMutation, useVerifyUserMutation, useDataUserMutation, useRecoveryPasswordMutation, useChangePasswordMutation } = userAuth;
+export const { useCreateUserMutation,
+     useLoginUserMutation,
+     useLogoutUserMutation,
+     useDataUserQuery,
+     useChangeDataUserMutation,
+     useRecoveryPasswordMutation,
+     useChangePasswordMutation,
+     useVerifyUserMutation,
+} = userAuth;

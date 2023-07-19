@@ -6,20 +6,25 @@ import AccountPageCredential from "@/src/components/entities/accountpageSettings
 import SelectTitle from "@/src/components/entities/selectTitle/SelectTitle";
 import { SELECT_TITLE_CONFIG } from "@/src/components/entities/selectTitle/SelectTitleConfig";
 import PersonalDataForm from "@/src/components/entities/forms/formMyAccount/personalData/PersonalData";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
+import Cookies from "js-cookie";
 
 const PersonalData = () => {
      const router = useRouter();
-     const { first_name, email, emailNotification } = useAppSelector((state) => state.credentialsSlice.credentials);
+
      const mobileNumber = "+375297177707";
+     const token = JSON.parse(Cookies.get("loginUser") || "[]"); 
+
+     const {data} = useDataUserQuery(token);
 
      return (
           <AccountPageWrapper page="profile_settings_personalData">
                <AccountPageCredential
                     page="profile_settings_personalData"
                     mobileNumber={mobileNumber}
-                    email={email}
-                    isEmailVerified={emailNotification}
-                    name={first_name}
+                    email={data?.email}
+                    isEmailVerified={true}
+                    first_name={data?.first_name}
                />
                <PersonalDataForm />
           </AccountPageWrapper>

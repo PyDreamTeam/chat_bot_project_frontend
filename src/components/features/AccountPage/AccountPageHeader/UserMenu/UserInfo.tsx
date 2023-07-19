@@ -34,16 +34,15 @@ const UserInfo: FC<IUserInfoProps> = ({
 }) => {
 
      const router = useRouter();
-     
+     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
      const [logoutUser, {isSuccess: isSuccessLogout}] = useLogoutUserMutation();
-     const [verifyUser, {isSuccess: isSuccessVerify, isError: isErrorVerify, isLoading}] = useVerifyUserMutation();
+     const [verifyUser, {isSuccess: isSuccessVerify, isError: isErrorVerify}] = useVerifyUserMutation();
 
      const [isVerified, setIsVerified] = useState(false);
 
      useEffect(() => {
-          const token = JSON.parse(Cookies.get("loginUser") || "[]");
-          verifyUser(token.access);
+          verifyUser(token.refresh);
      }, []);
      
      useEffect(() => {
@@ -57,12 +56,10 @@ const UserInfo: FC<IUserInfoProps> = ({
 
 
      const logout = () => {
-          const token = JSON.parse(Cookies.get("loginUser") || "[]");
           logoutUser(token);
      };
 
      useEffect(() => {
-          const token = JSON.parse(Cookies.get("loginUser") || "[]");
           if(isSuccessLogout) {
                Cookies.remove("loginUser");
                verifyUser(token.refresh);

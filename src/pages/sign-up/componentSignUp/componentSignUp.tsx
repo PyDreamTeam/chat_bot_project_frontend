@@ -4,7 +4,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import * as Yup from "yup";
 import css from "./componentSignUp.module.css";
 import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
@@ -34,16 +34,43 @@ const err = {
 
 const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
 
-     const [createUser, {data, isSuccess}] = useCreateUserMutation();
+     const [createUser, {isSuccess, error}] = useCreateUserMutation();
+     // const [errors, setErr] = useState<string>(""); 
 
      const route = useRouter();
-
 
      useEffect(() => {
           if(isSuccess) {
                route.push("/sign-in");
           }
      }, [isSuccess]);
+
+     // useEffect(() => {
+     //      if(error) {
+     //           setErr(error.data.email[0]);
+     //      }
+     // }, [error]);
+
+     // useEffect(() => {
+     //      if(error) {
+     //           setErr(error.data.email[0]);
+     //      }
+     // }, [error]);
+
+     // async function errorForm(values: Record<unknown, string>, setFieldError: (field: string, message: string | undefined) => void) {
+     //      try {
+     //           createUser(values).then((error) =>{
+     //                if(error) {
+     //                     if (errors === "Enter a valid email address.") {
+     //                          setFieldError("email", "Некорректный email");
+     //                     }   
+     //                }
+     //           });
+     //      }
+     //      catch (error) {
+     //           console.log("er", error);
+     //      }
+     // }
 
      return (
           <div className={css.container}>
@@ -80,7 +107,15 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    setTimeout(() => {
                                         setSubmitting(false);
                                    }, 2000);
+
+                                   // errorForm(values, setFieldError);
                                    createUser(values);
+
+                                   // .then((res) => {
+                              //      if(res === {status: 400, data: {email: ["Enter a valid email address."]}}) {
+                              //           setFieldError("email", "[thyz rfrfz-nj");
+                              //      }
+                              // })
                               }}
                          >
                               {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {

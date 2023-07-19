@@ -6,13 +6,9 @@ interface ButtonExitProps {
 }
 
 const ButtonExit: FC<ButtonExitProps> = ({ onClick }) => {
-     const handleLogout = () => {
-          localStorage.removeItem("token");
-          onClick();
-     };
-
+     
      return (
-          <button onClick={handleLogout} className={styles.buttonExit}>
+          <button onClick={onClick} className={styles.buttonExit}>
                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.22222 4.22222H11.8889C12.5 4.22222 13 3.72222 13 3.11111C13 2.5 12.5 2 11.8889 2H5.22222C4 2 3 3 3 4.22222V19.7778C3 21 4 22 5.22222 22H11.8889C12.5 22 13 21.5 13 20.8889C13 20.2778 12.5 19.7778 11.8889 19.7778H5.22222V4.22222Z"
                          fill="#4466F5"/>
