@@ -25,6 +25,7 @@ const PersonalData = () => {
                     email={data?.email}
                     isEmailVerified={true}
                     first_name={data?.first_name}
+                    last_name={data?.last_name}
                />
                <PersonalDataForm />
           </AccountPageWrapper>

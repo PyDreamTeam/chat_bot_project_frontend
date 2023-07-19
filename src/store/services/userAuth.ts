@@ -13,14 +13,14 @@ export const userAuth = createApi({
                     }
                })
           }),
-          changeDataUser: builder.mutation({
-               query: (arg: {values: any, token: string}) => ({
+          changeDataUser: builder.mutation<void, {requestValues: Record<string, unknown>, token: string}>({
+               query: ({requestValues, token}) => ({
                     url: "/api/auth/users/me/",
                     method: "PUT",
                     headers: {
-                         Authorization: `JWT ${arg.token}`
+                         Authorization: `JWT ${token}`
                     },
-                    body: arg.values,
+                    body: requestValues,
                })
           }),
           createUser: builder.mutation({

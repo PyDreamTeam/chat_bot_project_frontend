@@ -50,7 +50,14 @@ export const DataForm: FC<PropsDataForm> = ({schema = []}) => {
                          setTimeout(() => {
                               setSubmitting(false);
                          }, 2000);
-                         changeDataUser({values, token});
+
+                         const requestValues = {
+                              first_name: values.first_name || undefined,
+                              last_name: values.last_name || undefined,
+                              number: values.number || undefined
+                         };
+
+                         changeDataUser({requestValues, token});
                     }}
                >
                     {({ isSubmitting, errors, touched, isValid }) => {

@@ -14,9 +14,9 @@ import { useLogoutUserMutation, useVerifyUserMutation } from "@/src/store/servic
 
 interface IUserInfoProps {
      profileOnClick?: (e: FormEvent<HTMLFormElement>) => void;
-     handleLogOut: () => void;
      onClick?: () => void;
-     userName?: string | undefined;
+     first_name?: string | undefined;
+     last_name?: string | undefined;
      avatarUrl?: string;
      className?: string;
      isOpen?: boolean;
@@ -24,9 +24,9 @@ interface IUserInfoProps {
 
 
 const UserInfo: FC<IUserInfoProps> = ({
-     handleLogOut,
      onClick,
-     userName = "",
+     first_name = "",
+     last_name = "",
      avatarUrl,
      className = "",
      isOpen = false,
@@ -39,16 +39,11 @@ const UserInfo: FC<IUserInfoProps> = ({
      const [logoutUser, {isSuccess: isSuccessLogout}] = useLogoutUserMutation();
      const [verifyUser, {isSuccess: isSuccessVerify, isError: isErrorVerify}] = useVerifyUserMutation();
 
-     const [isVerified, setIsVerified] = useState(false);
-
      useEffect(() => {
           verifyUser(token.refresh);
      }, []);
      
      useEffect(() => {
-          if (isSuccessVerify) {
-               setIsVerified(true);
-          }
           if (isErrorVerify) {
                router.push("/sign-in");
           }
@@ -90,7 +85,10 @@ const UserInfo: FC<IUserInfoProps> = ({
                <div className={styles.avatarCircle}>
                     <Avatar type={"forHeader"} url={avatarUrl} />
                </div>
-               {userName && <Text type={"reg18"} color={"black"}>{userName}</Text>}
+               {first_name && <div className={styles.blockName}>
+                    <Text type={"reg18"} color={"black"}>{first_name}</Text>
+                    <Text type={"reg18"} color={"black"}>{last_name}</Text>
+               </div>}
                <div>{headerArrow}</div>
                {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
           </div>
@@ -98,5 +96,3 @@ const UserInfo: FC<IUserInfoProps> = ({
 };
 
 export default UserInfo;
-
-//profileOnClick={profileOnClick}

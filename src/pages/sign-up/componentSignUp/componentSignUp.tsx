@@ -34,8 +34,7 @@ const err = {
 
 const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
 
-     const [createUser, {isSuccess, error}] = useCreateUserMutation();
-     // const [errors, setErr] = useState<string>(""); 
+     const [createUser, {isSuccess, error: errorData}] = useCreateUserMutation(); 
 
      const route = useRouter();
 
@@ -45,32 +44,7 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
           }
      }, [isSuccess]);
 
-     // useEffect(() => {
-     //      if(error) {
-     //           setErr(error.data.email[0]);
-     //      }
-     // }, [error]);
-
-     // useEffect(() => {
-     //      if(error) {
-     //           setErr(error.data.email[0]);
-     //      }
-     // }, [error]);
-
-     // async function errorForm(values: Record<unknown, string>, setFieldError: (field: string, message: string | undefined) => void) {
-     //      try {
-     //           createUser(values).then((error) =>{
-     //                if(error) {
-     //                     if (errors === "Enter a valid email address.") {
-     //                          setFieldError("email", "Некорректный email");
-     //                     }   
-     //                }
-     //           });
-     //      }
-     //      catch (error) {
-     //           console.log("er", error);
-     //      }
-     // }
+     
 
      return (
           <div className={css.container}>
@@ -103,19 +77,19 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    re_password: Yup.string().required("Подтвердите пароль")
                                         .oneOf([Yup.ref("password")], "Пароли не совпадают")
                               })}
-                              onSubmit={(values, {setSubmitting}) => {
+                              onSubmit={(values, {setSubmitting, setFieldError}) => {
                                    setTimeout(() => {
                                         setSubmitting(false);
                                    }, 2000);
 
-                                   // errorForm(values, setFieldError);
-                                   createUser(values);
-
-                                   // .then((res) => {
-                              //      if(res === {status: 400, data: {email: ["Enter a valid email address."]}}) {
-                              //           setFieldError("email", "[thyz rfrfz-nj");
-                              //      }
-                              // })
+                                   createUser(values).then((error) => {
+                                        if(error) {
+                                             console.log(error);
+                                             if(error?.data?.email[0] === "Enter a valid email address.") {
+                                                  setFieldError("email", "хрень какая-то");
+                                             }
+                                        }
+                                   });
                               }}
                          >
                               {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
