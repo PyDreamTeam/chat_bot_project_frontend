@@ -8,10 +8,12 @@ import styles from "./AuthLeftBlock.module.css";
 const AuthLeftBlock = () => {
      return (
           <div className={styles.authLeftBlock}>
-               <Logo variant={LogoVariantProps.header} />
-               <div className={styles.blockBlue}>
-                    <ElemChooseChatBot variant={ElemVariantProps.auth}/>
-               </div>
+               <a href="/home">
+                    <Logo variant={LogoVariantProps.header} />
+                    <div className={styles.blockBlue}>
+                         <ElemChooseChatBot variant={ElemVariantProps.auth}/>
+                    </div>
+               </a>
           </div>
      );
 };

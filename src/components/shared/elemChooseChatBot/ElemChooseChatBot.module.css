@@ -13,32 +13,58 @@
     line-height: 130%;
 }
 .authWrapper {
-    padding: 3px 2px;
+    padding: 3px 3px;
     font-size: 16px;
     line-height: 150%;
+    width: 197px;
 }
 
-.dot {
+.dotHome {
     position: absolute;
     content: "";
-    width: 10px;
-    height: 10px;
     border-radius: 10px;
     background-color: #4466F5;
+    width: 10px;
+    height: 10px;
 }
-.left {
+.dotWrap {
+    position: absolute;
+    content: "";
+    border-radius: 10px;
+    background-color: #4466F5;
+    width: 5px;
+    height: 5px;
+}
+
+.leftHome {
     top: -6px;
     left: -6px;
 }
-.top {
+.topHome {
     top: -6px;
     right: -6px;
 }
-.right {
+.rightHome {
     right: -6px;
     bottom: -6px;
 }
-.bottom {
+.bottomHome {
     bottom: -6px;
     left: -6px;
+}
+.leftWrap {
+    top: -4px;
+    left: -4px;
+}
+.topWrap {
+    top: -4px;
+    right: -4px;
+}
+.rightWrap {
+    right: -4px;
+    bottom: -4px;
+}
+.bottomWrap {
+    bottom: -4px;
+    left: -4px;
 }
