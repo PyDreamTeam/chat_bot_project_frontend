@@ -1,9 +1,7 @@
 import Text from "@/src/components/shared/text/Text";
-import Title from "@/src/components/shared/text/Title";
-import { ErrorMessage, Field, Form, Formik, FormikErrors, FormikTouched } from "formik";
+import { ErrorMessage, Field, FormikErrors, FormikTouched } from "formik";
 import Image from "next/image";
-import { FC, useEffect, useState } from "react";
-import * as Yup from "yup";
+import { FC } from "react";
 import css from "../css/login.module.css";
 
 interface PropsFirstNameInput {

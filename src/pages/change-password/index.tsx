@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import css from "./changePassword.module.css";
 import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
 import { useRouter } from "next/router";
-import { useChangePasswordMutation, useDataUserMutation } from "@/src/store/services/userAuth";
+import { useChangePasswordMutation, useDataUserQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 
@@ -40,14 +40,9 @@ const ChangePassword = () => {
      const router = useRouter();
      const { uid, token } = router.query;
      const [changePassword, {isSuccess}] = useChangePasswordMutation();
-     const [dataUser, {data}] = useDataUserMutation();
+     const tn = JSON.parse(Cookies.get("loginUser") || "[]");
+     const {data} = useDataUserQuery(tn);
      
-
-     useEffect(() => {
-          const tn = JSON.parse(Cookies.get("loginUser") || "[]");
-          dataUser(tn);
-          
-     }, []);
 
      return (
           <div className={css.container}>
@@ -140,10 +135,6 @@ const ChangePassword = () => {
                                                        </Text>
                                                   </div>
                                              </div>
-                                             {/* <div>
-                                             <Field type={"text"} name="uid" value={uid}/>
-                                             <Field type={"text"} name="token" value={token}/>
-                                        </div> */}
 
                                              <button type="submit" disabled={isSubmitting} className={isValid ? `${css.button}` : `${css.buttonDisabled}`}>
                                                Обновить пароль

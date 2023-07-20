@@ -1,27 +1,3 @@
-.container {
-    display: flex;
-    height: 100%;
-    text-align: center;
-}
-
-.wrapper {
-    margin: auto;
-}
-
-.account {
-    margin-top: 16px;
-}
-
-.link {
-    color: #4466f5;
-}
-
-.form {
-    width: 440px;
-
-    text-align: left;
-}
-
 .blockInput {
     position: relative;
     margin-top: 22px;
@@ -51,6 +27,10 @@
     outline: none;
 }
 
+.error {
+    margin-top: 8px;
+}
+
 .inputError {
     padding: 16px;
     margin-top: 8px;
@@ -67,10 +47,6 @@
 }
 .inputError:focus {
     outline: none;
-}
-
-.error {
-    margin-top: 8px;
 }
 
 .groupStateEye {
@@ -120,6 +96,46 @@
     border-radius: 6px;
     background-color: #9ce562;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    display: flex;
+    height: 100%;
+    text-align: center;
+}
+
+.wrapper {
+    margin: auto;
+}
+
+.account {
+    margin-top: 16px;
+}
+
+.link {
+    color: #4466f5;
+}
+
+.form {
+    width: 440px;
+
+    text-align: left;
+}
+
+
 
 .blockInfo {
    margin-top: 16px;

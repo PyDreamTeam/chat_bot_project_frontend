@@ -21,20 +21,21 @@ type DefaultEmailError = FetchBaseQueryError & {
 type EmailErrors = FetchBaseQueryError | SerializedError
 
 function isDefaultEmailError(error?: EmailErrors): error is DefaultEmailError {
-     return (error as DefaultEmailError).data?.email !== undefined;
+     return (error as DefaultEmailError)?.data?.email !== undefined;
 }
 
-interface PropsFirstNameInput {
+interface PropsEmailNameInput {
      errors: FormikErrors<{email: string}>;
      touched: FormikTouched<{email: string}>;
      error?: FetchBaseQueryError | SerializedError
 }
 
 const emailErrorMap: Record<string, string> = {
-     "Incorrect email": "Неправильный email"
+     "Enter a valid email address.": "Неккоректный email",
+     "user with this email already exists.": "Пользователь с таким email уже существует",
 };
 
-export const EmailInput: FC<PropsFirstNameInput> = ({errors, touched, error}) => {
+export const EmailInput: FC<PropsEmailNameInput> = ({errors, touched, error}) => {
 
      const {setFieldError} = useFormikContext<typeof initialValues>();
 
@@ -44,7 +45,7 @@ export const EmailInput: FC<PropsFirstNameInput> = ({errors, touched, error}) =>
                const errorMessage = emailErrorMap[errorKey] || "Произошла ошбика";
                setFieldError("email", errorMessage);
           }
-     }, []);
+     }, [error]);
 
      return(
           <div className={css.blockInput}>
