@@ -1,6 +1,5 @@
 .userInfoWrapper {
-     width: 100%;
-     max-width: 251px;
+     max-width: 500px;
      padding: 10px 20px;
      background: #ffffff;
      box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
@@ -22,4 +21,9 @@
      justify-content: center;
      text-align: center;
      align-items: center;
+}
+
+.blockName {
+     display: flex;
+     gap: 6px;
 }

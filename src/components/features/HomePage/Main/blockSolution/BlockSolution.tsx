@@ -19,7 +19,7 @@ const BlockFSolution = () => {
                     </Text>
                     <div className={styles.buttons}>
                          <div className={styles.btn}>
-                              <Button type="submit" style="button">
+                              <Button type="submit" active={true}>
                                    Подобрать решение
                               </Button>
                          </div>

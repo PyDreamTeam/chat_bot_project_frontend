@@ -1,28 +1,19 @@
 import Text from "@/src/components/shared/text/Text";
-import Title from "@/src/components/shared/text/Title";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import Image from "next/image";
+import { Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC, useEffect} from "react";
 import * as Yup from "yup";
 import css from "./componentSignUp.module.css";
-import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
 import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
 import { useCreateUserMutation } from "@/src/store/services/userAuth";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
-
-interface PropsSignUp {
-     schema: {
-          htmlFor: string
-          label: string
-          type: string
-          name: "first_name" | "last_name" | "email" | "password" | "re_password" | "get_email_notifications";
-          placeholder: string
-     }[],
-     open?: () => void;
-     close?: () => void;
-}
+import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
+import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
+import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
+import { PasswordInput } from "@/src/components/shared/login/PasswordInput/PasswordInput";
+import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/RePasswordInput";
+import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
 
 const err = {
      min: "Содержит не менее 8 символов",
@@ -32,18 +23,19 @@ const err = {
      req: "Введите пароль",
 };
 
-const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
+const TemplateSignUp = () => {
 
-     const [createUser, {data, isSuccess}] = useCreateUserMutation();
+     const [createUser, {isSuccess, error: errorData, isLoading}] = useCreateUserMutation(); 
 
      const route = useRouter();
-
 
      useEffect(() => {
           if(isSuccess) {
                route.push("/sign-in");
           }
      }, [isSuccess]);
+
+     
 
      return (
           <div className={css.container}>
@@ -64,11 +56,12 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    get_email_notifications: false
                               }}
                               validationSchema={Yup.object().shape({
-                                   first_name: Yup.string().required("Введите имя").min(2, "Содержит две или более букв").matches(/^\D*$/, "Не должно содержать цифр"),
-                                   last_name: Yup.string().min(2, "Содержит две или более букв").matches(/^\D*$/, "Не должно содержать цифр"),
-                                   email: Yup.string().email("Неккоректный email").required("Введите email"),
+                                   first_name: Yup.string().required("Введите имя").min(2, "Содержит две или более букв").max(30, "Не более 30 букв").matches(/^\D*$/, "Не должно содержать цифр"),
+                                   last_name: Yup.string().min(2, "Содержит две или более букв").max(100, "Не более 30 букв").matches(/^\D*$/, "Не должно содержать цифр"),
+                                   email: Yup.string().email("Неккоректный email").max(50, "Не более 50 символов").required("Введите email"),
                                    password: Yup.string()
                                         .min(8, err.min)
+                                        .max(50, "Не более 50 символов")
                                         .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
                                         .matches(/^(?=.*[0-9])/, err.number)
                                         .matches(/^(?=.*[@$!%*?&])/, err.special)
@@ -76,54 +69,24 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    re_password: Yup.string().required("Подтвердите пароль")
                                         .oneOf([Yup.ref("password")], "Пароли не совпадают")
                               })}
-                              onSubmit={(values, {setSubmitting}) => {
-                                   setTimeout(() => {
-                                        setSubmitting(false);
-                                   }, 2000);
+                              onSubmit={(values) => {
                                    createUser(values);
                               }}
                          >
-                              {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
+                              {({ errors, touched, getFieldProps, isValid }) => {
 
                                    const dataPassword = getFieldProps("password");
                                    const password = dataPassword.value;
                                    return (
                                         <Form className={css.form}>
-                                             {schema.map(({htmlFor, label, type, name, placeholder}) => (
-                                                  <div key={name} className={css.blockInput}>
-                                                       <label htmlFor={htmlFor}>
-                                                            <Text type="reg18" color="black">{label}</Text>
-                                                       </label>
-                                                       <div className={css.errorIcon}>
-                                                            {errors[name] && touched[name] && <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />}
-                                                       </div>
-                                                       <div className={css.groupStateEye}>
-                                                            <Field type={type} name={name} placeholder={placeholder} className={errors[name] && touched[name] ? `${css.inputError}` : `${css.input}`} />
-                                                            <div className={css.stateEye}>
-                                                                 {name === "password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
-                                                                 {name === "password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
+                                             <FirstNameInput errors={errors} touched={touched}/>
+                                             <LastNameInput errors={errors} touched={touched}/>
+                                             <EmailInput errors={errors} touched={touched} error={errorData}/>
+                                             <PasswordInput errors={errors} touched={touched} error={errorData} password={password}/>
+                                             <RePasswordInput errors={errors} touched={touched}/>
+                                             <GetEmailNotification/>
 
-                                                                 {name === "re_password" && type === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={close}/>}
-                                                                 {name === "re_password" && type === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={open}/>}
-                                                            </div>
-                                                       </div>
-                                                       <div className={css.error}>
-                                                            <Text type="reg16" color="red">
-                                                                 <ErrorMessage name={name === "password" ? "get_email_notifications" : name} />
-                                                            </Text>
-                                                       </div>
-                                                       {touched.password && name === "password" && 
-                                                       <div className={css.errorsBlock}>
-                                                            <ErrorsPassword password={password}/>
-                                                       </div>}
-                                                  </div>
-                                             ))}
-                                        
-                                             <div className={css.notifications}>
-                                                  <Field type="checkbox" name="get_email_notifications" className={css.checkbox} />
-                                                  <span><Text type="reg16" color="black">Я хочу получать уведомления и новости на почту</Text></span>
-                                             </div>
-                                             <ButtonLogin disabled={isSubmitting} active={isValid} type="submit">Зарегистрироваться</ButtonLogin>
+                                             <ButtonLogin disabled={isLoading} active={isValid} type="submit">Зарегистрироваться</ButtonLogin>
                                              <div className={css.blockInfo}>
                                                   <Text type={"reg16"} color={"grey"}>
                                                   Нажимая кнопку «Зарегистрироваться», вы принимаете условия

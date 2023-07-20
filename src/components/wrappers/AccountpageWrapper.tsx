@@ -11,7 +11,7 @@ import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { setCredentials } from "@/src/store/reducers/credentialsSlice";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import { CreateUserResponse } from "@/src/types/user";
-import { useDataUserMutation } from "@/src/store/services/userAuth";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 
 interface IAccountWrapper {
@@ -24,21 +24,14 @@ const thirdTab = 3;
 
 const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children }) => {
 
-     const [dataUser, {data}] = useDataUserMutation();
+     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
+     const {data} = useDataUserQuery(token);
 
 
-     const [userData, setUserData] = useState<CreateUserResponse>({
-          email: "",
-          emailNotification: false,
-          first_name: "",
-          last_name: "",
-          user_role: ""
-     });
      
-     useEffect(() => {
-          const token = JSON.parse(Cookies.get("loginUser") || "[]");
-          dataUser(token);
-     }, []);
+     
+     
 
 
      // const id = useAppSelector((state) => state.credentialsSlice.credentials.id);
