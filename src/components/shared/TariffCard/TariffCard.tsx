@@ -32,7 +32,7 @@ export const TariffCard: FC<TariffPlanCard> = ({title, price, icon, advantage, b
                     ))}
                </ul>
 
-               <Button style="button" type="submit">{btn}</Button>
+               <Button active={true} type="submit">{btn}</Button>
                
           </div>
      );

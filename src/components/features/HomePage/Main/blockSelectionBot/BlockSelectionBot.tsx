@@ -67,7 +67,7 @@ export const BlockSelectionBot = () => {
                          </div>
 
                          <div className={css.button}>
-                              <Button type="button" style="button" onClick={toggle}>
+                              <Button type="button" active={true}  onClick={toggle}>
                                    Подобрать решение
                               </Button>
                          </div>

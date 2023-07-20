@@ -3,8 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import * as Yup from "yup";
 import css from "./recovoryPassword.module.css";
-import { useDataUserMutation, useRecoveryPasswordMutation } from "@/src/store/services/userAuth";
-import Cookies from "js-cookie";
+import { useRecoveryPasswordMutation } from "@/src/store/services/userAuth";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 
 const RecoveryPassword = () => {
@@ -30,7 +29,6 @@ const RecoveryPassword = () => {
                                         setTimeout(() => {
                                              setSubmitting(false);
                                         }, 2000);
-                                        // isLetterSent();
                                         recoveryPassword(values);
                                    }}
                               >

@@ -6,7 +6,7 @@ type TypeButton = "submit" | "button" | "reset";
 interface PropsButton {
      type: TypeButton;
      disabled?: boolean;
-     active: boolean;
+     active?: boolean;
      onClick?: () => void;
 }
 
