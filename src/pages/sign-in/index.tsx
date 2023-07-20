@@ -4,6 +4,9 @@ import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import css from "./componentSignIn/componentSignIn.module.css";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
+import IconsAuthBar from "@/src/components/entities/iconbars/IconsAuthBar";
+import { svgArray } from "@/src/components/entities/iconbars/img/svgConfig";
+
 
 interface UserInfo {
      htmlFor: string
@@ -48,6 +51,8 @@ function SignIn() {
                               <Text type="reg16" color="grey">Ещё нет аккаунта?
                                    <Link href={"/sign-up"} className={css.link}> Регистрация</Link>
                               </Text>
+                              <Text type={"reg18"} color={"black"} className={css.centerText}>Войдите через соцсеть</Text>
+                              <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
                          </div>
                          <div className={css.text}>
                               <Text type="reg16" color="grey">Или с помощью почты и пароля</Text>

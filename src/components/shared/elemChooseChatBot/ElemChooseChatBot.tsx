@@ -14,10 +14,10 @@ const ElemChooseChatBot: FC<IElem> = ({ variant }) => {
      return (
           <>
                <span className={`${css.elem} ${variant === ElemVariantProps.home ? css.homePage : css.authWrapper} `}>конструктор чат-ботов
-                    <div className={`${css.dot} ${css.left}`}></div>
-                    <div className={`${css.dot} ${css.top}`}></div>
-                    <div className={`${css.dot} ${css.right}`}></div>
-                    <div className={`${css.dot} ${css.bottom}`}></div>
+                    <div className={`${variant === ElemVariantProps.home ? css.dotHome : css.dotWrap} ${variant === ElemVariantProps.home ? css.leftHome : css.leftWrap}`}></div>
+                    <div className={`${variant === ElemVariantProps.home ? css.dotHome : css.dotWrap} ${variant === ElemVariantProps.home ? css.topHome : css.topWrap}`}></div>
+                    <div className={`${variant === ElemVariantProps.home ? css.dotHome : css.dotWrap} ${variant === ElemVariantProps.home ? css.rightHome : css.rightWrap}`}></div>
+                    <div className={`${variant === ElemVariantProps.home ? css.dotHome : css.dotWrap} ${variant === ElemVariantProps.home ? css.bottomHome : css.bottomWrap}`}></div>
                </span>
           </>
      );
