@@ -1,21 +1,29 @@
-import React, { useState } from "react";
-import { CARDS_FEEDBACK } from "@/src/components/entities/cards/cardsFeedback/CardsFeedbackConfig";
-
+import React, { FC, ReactElement, useState } from "react";
 import styles from "./styles/Slider.module.css";
-import ListCardsSolutions from "../../entities/lists/listCardsSolutions/ListCardsSolutions";
-import { CARDS_SOLUTIONS } from "./CardsSolutionsConfig";
 import ArrowSlideRight from "../arrowSlideRight/ArrowSlideRight";
 import ArrowSlideLeft from "../arrowSlideLeft/ArrowSlideLeft";
+import { IListCardsSolutions } from "../../entities/lists/listCardsSolutions/ListCardsSolutions";
 
-const Slider = () => {
+interface ISliderProps {
+     children?: ReactElement<IListCardsSolutions>;
+}
+
+const Slider: FC<ISliderProps> = ({ children }) => {
      const CARD_WIDTH = 468;
+     let childrenCount: number;
+     const [offset, setOffset] = useState(0);
+     const [isEnableRight, setIsEnableRight] = useState(true);
+     const [isEnableLeft, setIsEnableLeft] = useState(false);
+
+     children ? (childrenCount = children?.props.config.length) : (childrenCount = 1);
 
      const handleRightClick = () => {
           setOffset((currentOffset) => {
                const newOffset = currentOffset - CARD_WIDTH;
-               const maxOffset = -CARD_WIDTH * (CARDS_SOLUTIONS.length - 1);
+               const maxOffset = -CARD_WIDTH * (childrenCount - 1);
 
-               console.log(newOffset);
+               newOffset <= maxOffset ? setIsEnableRight(false) : setIsEnableLeft(true);
+
                return Math.max(newOffset, maxOffset);
           });
      };
@@ -23,23 +31,22 @@ const Slider = () => {
           setOffset((currentOffset) => {
                const newOffset = currentOffset + CARD_WIDTH;
 
-               console.log(newOffset);
+               newOffset >= 0 ? setIsEnableLeft(false) : setIsEnableRight(true);
+
                return Math.min(newOffset, 0);
           });
      };
-
-     const [offset, setOffset] = useState(0);
 
      return (
           <div className={styles.wrapper}>
                <div className={styles.window}>
                     <div className={styles.itemsContainer} style={{ transform: `translateX(${offset}px)` }}>
-                         <ListCardsSolutions config={CARDS_SOLUTIONS} />
+                         {children}
                     </div>
                </div>
                <div className={styles.arrows}>
-                    <ArrowSlideLeft className={styles.arrow} onClick={handleLeftClick} />
-                    <ArrowSlideRight className={styles.arrow} onClick={handleRightClick} />
+                    <ArrowSlideLeft className={isEnableLeft ? `${styles.arrow}` : `${styles.arrowDisabled}`} onClick={handleLeftClick} />
+                    <ArrowSlideRight className={isEnableRight ? `${styles.arrow}` : `${styles.arrowDisabled}`} onClick={handleRightClick} />
                </div>
           </div>
      );

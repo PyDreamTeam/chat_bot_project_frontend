@@ -4,7 +4,7 @@ import CardFeedback, { ICard } from "@/src/components/shared/tabs/cardFeedback/C
 import styles from "./styles/ListCardsSolutions.module.css";
 import CardSolution, { ICardSolution } from "@/src/components/shared/tabs/cardSolution/CardSolution";
 
-interface IListCardsSolutions {
+export interface IListCardsSolutions {
      config: ICardSolution[];
 }
 

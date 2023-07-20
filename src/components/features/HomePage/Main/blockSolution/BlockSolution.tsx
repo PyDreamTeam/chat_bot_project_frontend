@@ -5,8 +5,10 @@ import styles from "./styles/BlockSolution.module.css";
 import LinkShowAllCards from "@/src/components/shared/links/LinkShowAllCards";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Slider from "@/src/components/shared/slider/Slider";
+import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
+import { CARDS_SOLUTIONS } from "@/src/components/shared/slider/CardsSolutionsConfig";
 
-const BlockFSolution = () => {
+const BlockSolution = () => {
      return (
           <div className={styles.wrapper}>
                <div className={styles.blockText}>
@@ -26,9 +28,11 @@ const BlockFSolution = () => {
                          <LinkShowAllCards href="/" />
                     </div>
                </div>
-               <Slider></Slider>
+               <Slider>
+                    <ListCardsSolutions config={CARDS_SOLUTIONS} />
+               </Slider>
           </div>
      );
 };
 
-export default BlockFSolution;
+export default BlockSolution;

@@ -13,7 +13,6 @@
 
 .itemsContainer {
     display: flex;
-
     transition: translate;
     transition-property: transform;
     transition-duration: 300ms;
@@ -32,4 +31,8 @@
 
 .arrow:hover svg {
     scale: 1.1;
+}
+
+.arrowDisabled {
+    opacity: 0.5;
 }
