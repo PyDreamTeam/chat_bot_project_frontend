@@ -11,6 +11,8 @@ import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsP
 import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
 import { useCreateUserMutation } from "@/src/store/services/userAuth";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
+import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
+import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 
 interface PropsSignUp {
      schema: {
@@ -77,19 +79,12 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    re_password: Yup.string().required("Подтвердите пароль")
                                         .oneOf([Yup.ref("password")], "Пароли не совпадают")
                               })}
-                              onSubmit={(values, {setSubmitting, setFieldError}) => {
+                              onSubmit={(values, {setSubmitting}) => {
                                    setTimeout(() => {
                                         setSubmitting(false);
                                    }, 2000);
 
-                                   createUser(values).then((error) => {
-                                        if(error) {
-                                             console.log(error);
-                                             if(errorData?.data?.email[0] === "Enter a valid email address.") {
-                                                  setFieldError("email", "хрень какая-то");
-                                             }
-                                        }
-                                   });
+                                   createUser(values);
                               }}
                          >
                               {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
@@ -98,6 +93,8 @@ const TemplateSignUp: FC<PropsSignUp> = ({ schema = [], open, close }) => {
                                    const password = dataPassword.value;
                                    return (
                                         <Form className={css.form}>
+                                             test
+                                             <EmailInput errors={errors} touched={touched} error={errorData}/>
                                              {schema.map(({htmlFor, label, type, name, placeholder}) => (
                                                   <div key={name} className={css.blockInput}>
                                                        <label htmlFor={htmlFor}>
