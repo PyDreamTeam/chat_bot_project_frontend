@@ -29,7 +29,7 @@ interface PropsPasswordInput {
 }
 
 const passwordErrorMap: Record<string, string> = {
-     "No active account found with the given credentials": "Почтовый адрес и пароль не верны",
+     "No active account found with the given credentials": "Почтовый адрес или пароль не верны",
 };
 
 export const PasswordInput: FC<PropsPasswordInput> = ({errors, touched, error }) => {
