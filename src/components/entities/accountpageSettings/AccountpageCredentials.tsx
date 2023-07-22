@@ -14,18 +14,23 @@ import Title from "@/src/components/shared/text/Title";
 interface IAccountPageCredential {
      email?: string;
      isEmailVerified?: boolean;
-     name?: string;
+     first_name?: string;
+     last_name?: string;
      avatarUrl?: string;
      mobileNumber?: string;
      page: keyof typeof AccountPageTypes;
 }
 
-const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, email, avatarUrl, mobileNumber, name, page }) => {
+const AccountPageCredential: FC<IAccountPageCredential> = ({ isEmailVerified, email, avatarUrl, mobileNumber, first_name, last_name, page }) => {
      return (
           <div className={styles.credentialsWrapper}>
-               <UserAvatar url={avatarUrl} type={"forSettings"} username={name} />
+               <UserAvatar url={avatarUrl} type={"forSettings"} username={first_name} />
                <div className={styles.credentialsRightBlock}>
-                    <Title type={"h4"} color={"black"}>{name}</Title>
+                    <div className={styles.blockName}>
+                         <Title type={"h4"} color={"black"}>{first_name}</Title>
+                         <Title type={"h4"} color={"black"}>{last_name}</Title>
+                    </div>
+                    
                     {mobileNumber && <p className={styles.credentialsInfo}>{mobileNumber}</p>}
                     <div className={styles.emailBlock}>
                          {<Text type={"reg18"} color={"black"}>{email}</Text>}

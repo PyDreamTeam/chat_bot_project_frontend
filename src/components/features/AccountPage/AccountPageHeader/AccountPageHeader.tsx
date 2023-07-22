@@ -7,6 +7,8 @@ import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import Link from "next/link";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import Title from "@/src/components/shared/text/Title";
+import Cookies from "js-cookie";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
 
 interface IHomePageHeader {
      name?: string;
@@ -21,6 +23,9 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
      const handleToggleBurgerMenu = () => setOpen((prevState) => !prevState);
      const dispatch = useAppDispatch();
 
+     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+     const {data} = useDataUserQuery(token);
+
      const { auth_token } = useAppSelector((state) => state.credentialsSlice.credentials);
 
      const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
@@ -30,22 +35,6 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
           });
      };
 
-     const handleUserLogOut = async () => {
-          localStorage.removeItem("credentials");
-          await fetch("http://34.88.253.142:8000/auth/token/destroy/", {
-               method: "POST",
-               headers: {
-                    Authorization: `Token ${auth_token}`,
-               },
-          })
-               .then((response) => {
-                    if (response.status === 204) {
-                         router.push("/home");
-                         dispatch(removeCredentials());
-                    }
-               })
-               .catch((e) => console.log(e));
-     };
 
      return (
           <header className={styles.headerWrapper}>
@@ -75,11 +64,11 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                         </Title>}
                </>
                <UserInfo
-                    handleLogOut={handleUserLogOut}
                     profileOnClick={handleOpenProfile}
                     isOpen={open}
                     onClick={handleToggleBurgerMenu}
-                    userName={name}
+                    first_name={data?.first_name}
+                    last_name={data?.last_name}
                />
           </header>
      );

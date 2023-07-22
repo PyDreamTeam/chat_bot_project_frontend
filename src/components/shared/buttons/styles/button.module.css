@@ -1,12 +1,12 @@
-.button {
+.buttonActive {
     width: 100%;
-    padding: 10px 24px;
+    padding: 16px;
 
     border-radius: 20px;
     border: none;
     background-color: #4466F5;
 
-    font-size: 18px;
+    font-size: 24px;
     font-family: Inter;
     font-style: normal;
     font-weight: 500;

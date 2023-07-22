@@ -1,11 +1,9 @@
 import { FC, PropsWithChildren } from "react";
 import css from "./styles/button.module.css";
 
-type StyleButton = "button";
 type TypeButton = "submit" | "button" | "reset";
 
 interface PropsButton {
-     style: StyleButton;
      type: TypeButton;
      disabled?: boolean;
      width?: number | `${number}px` | undefined;

@@ -1,0 +1,70 @@
+.elem {
+    display: inline-block;
+    position: relative;
+    border: 2px solid #4466F5;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: #4466F5;
+}
+.homePage {
+    padding: 9px 5px;
+    font-size: 30px;
+    line-height: 130%;
+}
+.authWrapper {
+    padding: 3px 3px;
+    font-size: 16px;
+    line-height: 150%;
+    width: 197px;
+}
+
+.dotHome {
+    position: absolute;
+    content: "";
+    border-radius: 10px;
+    background-color: #4466F5;
+    width: 10px;
+    height: 10px;
+}
+.dotWrap {
+    position: absolute;
+    content: "";
+    border-radius: 10px;
+    background-color: #4466F5;
+    width: 5px;
+    height: 5px;
+}
+
+.leftHome {
+    top: -6px;
+    left: -6px;
+}
+.topHome {
+    top: -6px;
+    right: -6px;
+}
+.rightHome {
+    right: -6px;
+    bottom: -6px;
+}
+.bottomHome {
+    bottom: -6px;
+    left: -6px;
+}
+.leftWrap {
+    top: -4px;
+    left: -4px;
+}
+.topWrap {
+    top: -4px;
+    right: -4px;
+}
+.rightWrap {
+    right: -4px;
+    bottom: -4px;
+}
+.bottomWrap {
+    bottom: -4px;
+    left: -4px;
+}
