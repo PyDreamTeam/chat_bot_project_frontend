@@ -3,6 +3,7 @@ import AuthLeftBlock from "@/src/components/features/Auth/AuthLeftBlock/AuthLeft
 import AuthRightBlock from "@/src/components/features/Auth/AuthRightBlock/AuthRightBlock";
 import { WithChildren } from "@/src/shared/types/withChildren";
 import styles from "./styles/AuthWrapper.module.css";
+import Image from "next/image";
 
 export interface IAuthWrapper {
      titleText: string;
@@ -13,7 +14,9 @@ const AuthWrapper: FC<WithChildren & IAuthWrapper> = ({ children, titleText }) =
      return (
           <div className={styles.authWrapper}>
                <AuthLeftBlock />
-               <AuthRightBlock titleText={titleText}>{children}</AuthRightBlock>
+               <AuthRightBlock titleText={titleText}>
+                    {children}
+               </AuthRightBlock>
           </div>
      );
 };

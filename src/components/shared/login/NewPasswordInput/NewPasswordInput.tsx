@@ -5,34 +5,36 @@ import { FC, useEffect, useState } from "react";
 import css from "../css/login.module.css";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
 
 const initialValues = {
      password: ""
 };
 
-type DefaultPasswordError = FetchBaseQueryError & {
+type DefaultNewPasswordError = FetchBaseQueryError & {
     data?: {
-        detail?: string[]
+        password?: string[]
     }
 }
 
-type PasswordErrors = FetchBaseQueryError | SerializedError
+type NewPasswordErrors = FetchBaseQueryError | SerializedError
 
-function isDefaultPasswordError(error?: PasswordErrors): error is DefaultPasswordError {
-     return (error as DefaultPasswordError)?.data?.detail !== undefined;
+function isDefaultNewPasswordError(error?: NewPasswordErrors): error is DefaultNewPasswordError {
+     return (error as DefaultNewPasswordError)?.data?.password !== undefined;
 }
 
-interface PropsPasswordInput {
+interface PropsNewPasswordInput {
      errors: FormikErrors<{password: string}>;
      touched: FormikTouched<{password: string}>;
      error?: FetchBaseQueryError | SerializedError;
+     password: string
 }
 
-const passwordErrorMap: Record<string, string> = {
-     "No active account found with the given credentials": "Почтовый адрес или пароль не верны",
+const newPasswordErrorMap: Record<string, string> = {
+     "The password is too similar to the email.": "Email и пароль совпадают",
 };
 
-export const PasswordInput: FC<PropsPasswordInput> = ({errors, touched, error }) => {
+export const NewPasswordInput: FC<PropsNewPasswordInput> = ({errors, touched, error, password}) => {
 
      const [openEye, setEye] = useState<string>("password");
      const openAndClose = () => {
@@ -47,9 +49,9 @@ export const PasswordInput: FC<PropsPasswordInput> = ({errors, touched, error })
      const {setFieldError} = useFormikContext<typeof initialValues>();
 
      useEffect(() => {
-          if(isDefaultPasswordError(error)) {
-               const errorKey = String(error?.data?.detail);
-               const errorMessage = passwordErrorMap[errorKey] || "Произошла ошбика";
+          if(isDefaultNewPasswordError(error)) {
+               const errorKey = String(error?.data?.password?.[0]);
+               const errorMessage = newPasswordErrorMap[errorKey] || "Произошла ошбика";
                setFieldError("password", errorMessage);
           }
      }, [error]);
@@ -75,6 +77,11 @@ export const PasswordInput: FC<PropsPasswordInput> = ({errors, touched, error })
                          <ErrorMessage name="password"/>
                     </Text>
                </div>
+               {touched.password && 
+               <div className={css.errorsBlock}>
+                    <ErrorsPassword password={password}/>
+               </div>}
+              
           </div>
      );
 };

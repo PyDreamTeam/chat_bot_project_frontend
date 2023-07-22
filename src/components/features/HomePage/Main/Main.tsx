@@ -9,19 +9,21 @@ import { BlockSelectionBot } from "./blockSelectionBot/BlockSelectionBot";
 import { BlockTariffPlan } from "./blockTariffPlan/BlockTariffPlan";
 import BlockFAQ from "@/src/components/features/HomePage/Main/blockFAQ/BlockFAQ";
 import BlockSolution from "@/src/components/features/HomePage/Main/blockSolution/BlockSolution";
+import BlockPlatform from "./blockPlatform/BlockPlatform";
 
 const Main = () => {
      return (
           <div className={styles.main}>
-               <BlockSelectionBot/>
-               <BlockOurAdvantages/>
-               <BlockVideo/>
-               <BlockSolution/>
-               <BlockAboutUs/>
-               <BlockConfidence/>
+               <BlockSelectionBot />
+               <BlockOurAdvantages />
+               <BlockVideo />
+               <BlockSolution />
+               <BlockPlatform />
+               <BlockAboutUs />
+               <BlockConfidence />
                <BlockFeedback />
                <BlockTariffPlan />
-               <BlockFAQ/>
+               <BlockFAQ />
           </div>
      );
 };

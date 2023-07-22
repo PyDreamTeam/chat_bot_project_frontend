@@ -11,7 +11,7 @@ import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
-import { PasswordInput } from "@/src/components/shared/login/PasswordInput/PasswordInput";
+import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
 import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/RePasswordInput";
 import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
 
@@ -82,7 +82,7 @@ const TemplateSignUp = () => {
                                              <FirstNameInput errors={errors} touched={touched}/>
                                              <LastNameInput errors={errors} touched={touched}/>
                                              <EmailInput errors={errors} touched={touched} error={errorData}/>
-                                             <PasswordInput errors={errors} touched={touched} error={errorData} password={password}/>
+                                             <NewPasswordInput errors={errors} touched={touched} error={errorData} password={password}/>
                                              <RePasswordInput errors={errors} touched={touched}/>
                                              <GetEmailNotification/>
 
