@@ -6,13 +6,6 @@ import Image from "next/image";
 
 import css from "./signInNewPassword.module.css";
 
-interface UserInfo {
-     htmlFor: string
-     label: string
-     type: string
-     name: "email" | "password";
-     placeholder: string
-}
 
 const SignInNewPassword = () => {
 
@@ -42,7 +35,7 @@ const SignInNewPassword = () => {
                                    <Text type="reg16" color="grey">Для продолжения войдите, пожалуйста, в аккаунт с новым паролем</Text>
                               </div>
                          </div>}
-                         <ComponentSignIn schema={schema} open={open} close={close}/>
+                         <ComponentSignIn/>
                     </div>
                </AuthWrapper> 
           </div>
