@@ -14,7 +14,7 @@ type ILogo = {
 const Logo: FC<ILogo> = ({ variant }) => {
      return (
           <div className={`${styles.logo} ${variant === LogoVariantProps.header ? styles.logoHeader : styles.logoFooter} `}>
-               <Link href="/home" className={styles.linkStyle}>TOWNSEND</Link>
+               <div className={styles.linkStyle}>TOWNSEND</div>
           </div>
      );
 };
