@@ -1,12 +1,12 @@
 .buttonActive {
     width: 100%;
-    padding: 16px;
+    padding: 10px 24px;
 
     border-radius: 20px;
-    border: 1px solid #4466F5;
+    border: none;
     background-color: #4466F5;
 
-    font-size: 24px;
+    font-size: 18px;
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
@@ -16,14 +16,18 @@
     cursor: pointer;
 }
 
+.buttonActive:hover {
+    opacity: 0.8;
+}
+
 .buttonDisabled {
     width: 100%;
-    padding: 16px; 
+    padding: 10px 24px;
     border-radius: 20px;
     background: #E1E2E6;
-    border: 1px solid #E1E2E6;
+    border: none;
 
-    font-size: 24px;
+    font-size: 18px;
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
@@ -41,7 +45,7 @@
     padding: 10px 24px; 
     border-radius: 16px;
     background: #4466F5;
-    border: 1px solid #4466F5;
+    border: none;
 
     font-family: Inter;
     font-size: 18px;
@@ -59,7 +63,7 @@
     padding: 10px 24px; 
     border-radius: 16px;
     background: #E1E2E6;
-    border: 1px solid #E1E2E6;
+    border: none;
 
     font-family: Inter;
     font-size: 18px;

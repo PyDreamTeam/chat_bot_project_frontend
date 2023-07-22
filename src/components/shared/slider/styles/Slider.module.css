@@ -5,25 +5,28 @@
 }
 
 .window {
-    width: 640px;
-    height: 464px;
-    padding: 8px;
+    width: 736px;
+    height: 503px;
     overflow: hidden;
 }
 
 .itemsContainer {
+    height: 503px;
     display: flex;
-
+    align-items: flex-end;
     transition: translate;
     transition-property: transform;
     transition-duration: 300ms;
     transition-timing-function: ease-in-out;
+    padding-bottom: 8px;
+    padding-left: 8px;
+
 }
 
 .arrows {
     display: flex;
-    gap: 16px;
-    margin-top: 24px;
+    gap: 8px;
+    margin-top: 10px;
 }
 
 .arrow {
@@ -32,4 +35,8 @@
 
 .arrow:hover svg {
     scale: 1.1;
+}
+
+.arrowDisabled {
+    opacity: 0.5;
 }

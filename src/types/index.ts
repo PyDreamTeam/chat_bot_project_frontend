@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 export enum LOAD_STATUS {
     LOADING = "LOADING",
@@ -15,4 +15,8 @@ export interface TariffPlanCard {
     icon: React.ReactNode
     hotPlan?: boolean
     bestPlan?: string
+}
+
+export interface IListSliderCards {
+    config: ReactNode[];
 }

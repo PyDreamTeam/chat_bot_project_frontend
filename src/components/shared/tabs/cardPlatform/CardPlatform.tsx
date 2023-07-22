@@ -1,14 +1,11 @@
 import React, { FC } from "react";
-import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
-import styles from "./styles/CardSolution.module.css";
+import styles from "./styles/CardPlatform.module.css";
 import uuid from "uuid-random";
-import { TsConfigJson } from "type-fest";
-import JSX = TsConfigJson.CompilerOptions.JSX;
-import HeartSVG from "../../images/HeartSVG";
+import HeartSVG from "@/src/components/shared/images/HeartSVG";
 
-export interface ICardSolution {
+export interface ICardPlatform {
      id?: number;
      logo: React.ReactNode;
      title: JSX.Element;
@@ -19,7 +16,7 @@ export interface ICardSolution {
      messengers: string[];
 }
 
-const CardSolution: FC<ICardSolution> = ({ id, logo, title, favorite, price, description, features, messengers }) => {
+const CardPlatform: FC<ICardPlatform> = ({ id, logo, title, favorite, price, description, features, messengers }) => {
      return (
           <div className={styles.card}>
                <div className={styles.top}>
@@ -28,7 +25,7 @@ const CardSolution: FC<ICardSolution> = ({ id, logo, title, favorite, price, des
                          {title}
                          <div
                               className={favorite ? styles.likeButtonActive : styles.likeButton}
-                              //   onClick={() => dispatch(likeSolution(solution.id))}
+                              //   onClick={() => dispatch(likePlatform(platform.id))}
                          >
                               <HeartSVG></HeartSVG>
                          </div>
@@ -58,4 +55,4 @@ const CardSolution: FC<ICardSolution> = ({ id, logo, title, favorite, price, des
      );
 };
 
-export default CardSolution;
+export default CardPlatform;

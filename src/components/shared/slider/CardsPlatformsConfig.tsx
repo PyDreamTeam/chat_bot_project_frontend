@@ -6,13 +6,13 @@ import Title from "../text/Title";
 
 const logoIcons = [
      "/img/logos_facebook.svg",
-     "/img/logos_VK.svg",
      "/img/logos_whatsapp-icon.svg",
+     "/img/logos_VK.svg",
      "/img/logos_viber.svg",
      "/img/logos_telegram.svg",
 ];
 
-export const CARDS_SOLUTIONS = [
+export const CARDS_PLATFORMS = [
      {
           id: 1,
           logo: <Image src={"img/aimylogic-online-service-logo.png"} alt="logo-image" width={100} height={100} />,
