@@ -16,26 +16,6 @@ const ChangePassword = () => {
      const [openPassword, setOpenPassword] = useState<string>("password");
      const [openConfirmPassword, setOpenConfirmPassword] = useState<string>("password");
 
-     const viewPassword = () => {
-          if (openPassword === "text") {
-               setOpenPassword("password");
-          }
-
-          if (openPassword === "password") {
-               setOpenPassword("text");
-          }
-     };
-
-     const confirmPassword = () => {
-          if (openConfirmPassword === "text") {
-               setOpenConfirmPassword("password");
-          }
-
-          if (openConfirmPassword === "password") {
-               setOpenConfirmPassword("text");
-          }
-     };
-
      const router = useRouter();
      const { uid, token } = router.query;
      const [changePassword, {isSuccess, isLoading, error}] = useChangePasswordMutation();
