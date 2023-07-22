@@ -20,7 +20,7 @@ const BlockPlatform = () => {
                          бизнес-задачу
                     </Text>
                     <div className={styles.buttons}>
-                         <Button type="button" style="button" width={250}>
+                         <Button type="button" active={true} width={250}>
                               Подобрать платформу
                          </Button>
                          <LinkShowAllCards href="/" />

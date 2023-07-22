@@ -20,7 +20,7 @@ const BlockSolution = () => {
                          бизнес-задачу
                     </Text>
                     <div className={styles.buttons}>
-                         <Button type="button" style="button" width={230}>
+                         <Button type="button" active={true} width={230}>
                               Подобрать решение
                          </Button>
                          <LinkShowAllCards href="/" />

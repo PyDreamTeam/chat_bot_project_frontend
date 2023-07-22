@@ -1,12 +1,12 @@
 .buttonActive {
     width: 100%;
-    padding: 16px;
+    padding: 10px 24px;
 
     border-radius: 20px;
     border: none;
     background-color: #4466F5;
 
-    font-size: 24px;
+    font-size: 18px;
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
@@ -16,8 +16,25 @@
     cursor: pointer;
 }
 
-.button:hover {
+.buttonActive:hover {
     opacity: 0.8;
+}
+
+.buttonDisabled {
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 20px;
+    background: #E1E2E6;
+    border: none;
+
+    font-size: 18px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px; 
+    color: #FFFFFF;
+
+    cursor: pointer;
 }
 
 /* Стили для ButtonLogin */
