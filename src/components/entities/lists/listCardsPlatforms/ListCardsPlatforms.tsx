@@ -1,16 +1,17 @@
 import React, { FC } from "react";
-import styles from "./styles/ListCardsSolutions.module.css";
+import styles from "./styles/ListCardsPlatforms.module.css";
 import CardSolution, { ICardSolution } from "@/src/components/shared/tabs/cardSolution/CardSolution";
+import CardPlatform, { ICardPlatform } from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
 
-export interface IListCardsSolutions {
-     config: ICardSolution[];
+export interface IListCardsPlatforms {
+     config: ICardPlatform[];
 }
 
-const ListCardsSolutions: FC<IListCardsSolutions> = ({ config = [] }) => {
+const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ config = [] }) => {
      return (
           <div className={styles.cards}>
                {config.map((tab) => (
-                    <CardSolution
+                    <CardPlatform
                          id={tab.id}
                          key={tab.id}
                          logo={tab.logo}
@@ -26,4 +27,4 @@ const ListCardsSolutions: FC<IListCardsSolutions> = ({ config = [] }) => {
      );
 };
 
-export default ListCardsSolutions;
+export default ListCardsPlatforms;

@@ -2,10 +2,10 @@ import React, { FC, ReactElement, useState } from "react";
 import styles from "./styles/Slider.module.css";
 import ArrowSlideRight from "../arrowSlideRight/ArrowSlideRight";
 import ArrowSlideLeft from "../arrowSlideLeft/ArrowSlideLeft";
-import { IListCardsSolutions } from "../../entities/lists/listCardsSolutions/ListCardsSolutions";
+import { IListSliderCards } from "@/src/types/index";
 
 interface ISliderProps {
-     children?: ReactElement<IListCardsSolutions>;
+     children?: ReactElement<IListSliderCards>;
 }
 
 const Slider: FC<ISliderProps> = ({ children }) => {

@@ -8,11 +8,12 @@ interface PropsButton {
      style: StyleButton;
      type: TypeButton;
      disabled?: boolean;
+     width?: number | `${number}px` | undefined;
      onClick?: () => void;
 }
 
-export const Button: FC<PropsWithChildren<PropsButton>> = ({ disabled, children, style, type, onClick }) => (
-     <button disabled={disabled} className={css[style]} type={type} onClick={onClick}>
+export const Button: FC<PropsWithChildren<PropsButton>> = ({ disabled, children, style, type, width, onClick }) => (
+     <button disabled={disabled} className={css[style]} type={type} onClick={onClick} style={width ? { width: `${width}px` } : undefined}>
           {children}
      </button>
 );
