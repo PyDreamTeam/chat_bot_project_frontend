@@ -17,10 +17,10 @@ const ArrowSlideLeft: FC<IArrowProps> = ({ className = "", onClick }) => {
                          <path
                               d="M23.327 28.0002L20.0096 24.9799L23.3516 22.0112"
                               stroke="#17181A"
-                              stroke-width="1.5"
-                              stroke-linecap="round"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
                          />
-                         <path d="M30 25.0366L21.1208 24.9962" stroke="#17181A" stroke-width="1.5" stroke-linecap="round" />
+                         <path d="M30 25.0366L21.1208 24.9962" stroke="#17181A" strokeWidth="1.5" strokeLinecap="round" />
                     </g>
                     <defs>
                          <filter
@@ -32,7 +32,7 @@ const ArrowSlideLeft: FC<IArrowProps> = ({ className = "", onClick }) => {
                               filterUnits="userSpaceOnUse"
                               color-interpolation-filters="sRGB"
                          >
-                              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                              <feFlood floodOpacity="0" result="BackgroundImageFix" />
                               <feColorMatrix
                                    in="SourceAlpha"
                                    type="matrix"
