@@ -6,7 +6,7 @@
      line-height: 44px;
 }
 
-.logoHeader {
+.logoHeader .linkStyle{
      color: #17181a;
      font-family: "Inter", sans-serif;
      font-style: normal;
@@ -15,7 +15,7 @@
      line-height: 48px;
 }
 
-.logoFooter {
+.logoFooter .linkStyle{
      color: #ffffff;
      font-family: "Inter", sans-serif;
      font-style: normal;
