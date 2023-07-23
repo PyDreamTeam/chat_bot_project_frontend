@@ -20,7 +20,7 @@ const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], activeTabIt
      useEffect(() => {
           if(isSuccessLogout) {
                Cookies.remove("loginUser");
-               verifyUser(token.refresh);
+               verifyUser(token.access);
           }
      }, [isSuccessLogout]);
 

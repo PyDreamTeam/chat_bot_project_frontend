@@ -63,7 +63,7 @@ export const PasswordInput: FC<PropsPasswordInput> = ({errors, touched, error })
                     {errors.password && touched.password && <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />}
                </div>
                <div className={css.groupStateEye}>
-                    <Field type={openEye} name="password" placeholder="Придумайте пароль" className={errors.password && touched.password ? `${css.inputError}` : `${css.input}`}/>
+                    <Field type={openEye} name="password" placeholder="Введите пароль" className={errors.password && touched.password ? `${css.inputError}` : `${css.input}`}/>
                     <div className={css.stateEye}>
                          {openEye === "text" && <Image src="/sign/closePassword.svg" width={24} height={24} alt="stateEye" onClick={openAndClose}/>}
                          {openEye === "password" && <Image src="/sign/openPassword.svg" width={24} height={24} alt="stateEye" onClick={openAndClose}/>}

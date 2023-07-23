@@ -67,6 +67,13 @@ export const userAuth = createApi({
                     method: "POST",
                     body: {token: token}
                })
+          }),
+          refreshToken: builder.mutation({
+               query: (token: {access: string, refresh: string}) => ({
+                    url: "/api/auth/jwt/refresh/",
+                    method: "POST",
+                    body: {refresh: token.refresh}
+               })
           })
      })
 });
@@ -79,4 +86,5 @@ export const { useCreateUserMutation,
      useRecoveryPasswordMutation,
      useChangePasswordMutation,
      useVerifyUserMutation,
+     useRefreshTokenMutation,
 } = userAuth;
