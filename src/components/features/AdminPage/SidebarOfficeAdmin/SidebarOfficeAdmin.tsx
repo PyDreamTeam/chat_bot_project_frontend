@@ -7,6 +7,7 @@ import { SIDEBAR_CONFIG } from "@/src/components/features/AdminPage/SidebarOffic
 import { useAppDispatch } from "@/src/hooks/types";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const myProfileRoute = "/my-profile";
 const adminAndModeratorRoute = "/my-profile/adminAndModerator";
@@ -49,7 +50,10 @@ const SidebarOfficeAdmin: FC = () => {
 
      return (
           <aside className={styles.asideWrapper}>
-               <Logo variant={LogoVariantProps.header} />
+               <Link href="/home">
+                    <Logo variant={LogoVariantProps.header} />
+               </Link>
+               
                <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />
           </aside>
      );

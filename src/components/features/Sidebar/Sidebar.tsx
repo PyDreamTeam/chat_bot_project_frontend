@@ -7,6 +7,7 @@ import { SIDEBAR_CONFIG } from "@/src/components/features/Sidebar/SidebarConfig"
 import { useAppDispatch } from "@/src/hooks/types";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const myAccountRoute = "/my-account";
 const templatesRoute = "/my-account/templates";
@@ -46,7 +47,10 @@ const Sidebar: FC = () => {
 
      return (
           <aside className={styles.asideWrapper}>
-               <Logo variant={LogoVariantProps.header} />
+               <Link href="/home">
+                    <Logo variant={LogoVariantProps.header} />
+               </Link>
+               
                <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />
           </aside>
      );
