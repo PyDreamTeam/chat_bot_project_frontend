@@ -17,9 +17,9 @@ const Main = () => {
                <BlockSelectionBot />
                <BlockOurAdvantages />
                <BlockVideo />
+               <BlockAboutUs />
                <BlockSolution />
                <BlockPlatform />
-               <BlockAboutUs />
                <BlockConfidence />
                <BlockFeedback />
                <BlockTariffPlan />

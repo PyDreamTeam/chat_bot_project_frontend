@@ -8,9 +8,8 @@
 }
 
 .header {
-     max-width: 1440px;
-     padding: 40px 88px;
      display: flex;
      justify-content: space-between;
-     margin: auto;
+     max-width: 1440px;
+     padding: 40px 88px;
 }

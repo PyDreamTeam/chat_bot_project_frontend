@@ -6,7 +6,6 @@ import Image from "next/image";
 
 import css from "./signInNewPassword.module.css";
 
-
 const SignInNewPassword = () => {
 
      const [isOpen, setIsOpen] = useState<boolean>(true);
@@ -20,7 +19,6 @@ const SignInNewPassword = () => {
           }, 10000);
      }, []);
 
-
      return (
           <div className={css.container}>
                <AuthWrapper titleText={"Вход"}>
@@ -30,7 +28,6 @@ const SignInNewPassword = () => {
                                    <Text type="reg20" color="dark">Ваш пароль успешно изменен</Text>
                                    <Image src="/sign/close.svg" alt="close" width={24} height={24} onClick={changeIsOpen} className={css.img}/>
                               </div>
-
                               <div className={css.textInfo}>
                                    <Text type="reg16" color="grey">Для продолжения войдите, пожалуйста, в аккаунт с новым паролем</Text>
                               </div>

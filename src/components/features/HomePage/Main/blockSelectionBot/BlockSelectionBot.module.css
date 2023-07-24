@@ -5,30 +5,32 @@
 
 .container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 80px 88px;
+    padding: 80px 88px 122px;
 }
 
 .blockLeft {
-    width: 100%;
-    padding-right: 107px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 41px;
+    max-width: 631px;
+    gap: 63px;
 }
 
 .textInfo {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-}
-
-.button {
-    margin-top: 64px;
-    width: 284px;
+    gap: 31px;
 }
 
 .blockRight {
     position: relative;
+}
+.button {
+    width: 230px;
 }
 
 .message {
@@ -41,18 +43,19 @@
 }
 
 .one {   
-    top: 80px;
-    left: -16px;
+    top: 79px;
+    left: -14px;
 }
 
 .two {
-    top: 168px;
-    left: -16px;
+    top: 167px;
+    left: -14px;
+    width: 187px;
 }
 
 .three {
-    right: 24px;
-    bottom: -48px;
+    right: 22px;
+    bottom: -43px;
     width: 280px;
     border-radius: 16px 16px 0 16px;
     background: rgba(174, 247, 252, 0.60);

@@ -9,8 +9,12 @@
 }
 
 .blockText {
-    width: 411px;
+    width: 410px;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    margin-top: -16px;
+}
+.blockText p {
+    max-width: 340px;
 }

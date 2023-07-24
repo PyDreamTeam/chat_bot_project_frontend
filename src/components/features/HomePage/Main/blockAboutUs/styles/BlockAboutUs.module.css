@@ -2,7 +2,7 @@
     max-width: 1440px;
     display: flex;
     align-items: center;
-    padding: 80px 88px;
+    padding: 74px 88px 80px;
     margin: 0 auto;
     gap: 91px;
 }
@@ -12,7 +12,12 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
 }
+.blockText h5 {
+    padding-top: 6px;
+}
+
 .statistics {
     position: relative;
     display: flex;

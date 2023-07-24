@@ -1,17 +1,14 @@
 .buttonActive {
     width: 100%;
     padding: 10px 24px;
-
-    border-radius: 20px;
+    border-radius: 16px;
     border: none;
     background-color: #4466F5;
-
     font-size: 18px;
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
-    
     color: #FFFFFF;
     cursor: pointer;
 }
@@ -21,56 +18,47 @@
 }
 
 .buttonDisabled {
-    width: 100%;
     padding: 10px 24px;
-    border-radius: 20px;
+    border-radius: 16px;
     background: #E1E2E6;
     border: none;
-
     font-size: 18px;
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 28px; 
     color: #FFFFFF;
-
     cursor: pointer;
 }
 
 /* Стили для ButtonLogin */
 
 .active {
-    width: 100%;
     margin-top: 24px;
     padding: 10px 24px; 
     border-radius: 16px;
     background: #4466F5;
     border: none;
-
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 28px; 
     color: #FFFFFF;
-
     cursor: pointer;
 }
 
 .disabled {
-    width: 100%;
     margin-top: 24px;
     padding: 10px 24px; 
     border-radius: 16px;
     background: #E1E2E6;
     border: none;
-
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 28px; 
     color: #FFFFFF;
-
     cursor: pointer;
 }

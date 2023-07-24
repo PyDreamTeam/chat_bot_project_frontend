@@ -23,7 +23,7 @@ const NavbarHome = ({ navElements, className }: NavbarHomeProps) => {
           <nav className={styles[className]}>
                {navElements.map(({ href, text }) => (
                     <Link key={uuid()} href={href}>
-                         <Text type={"med20"} color={"black"}>
+                         <Text type={"reg16"} color={"black"}>
                               {text}
                          </Text>
                     </Link>

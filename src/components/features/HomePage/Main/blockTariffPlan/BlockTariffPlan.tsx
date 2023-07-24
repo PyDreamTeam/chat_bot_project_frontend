@@ -40,7 +40,16 @@ export const BlockTariffPlan = () => {
                </div>
                <ul className={css.container}>
                     {tariffPlansCards.map((item, index) => (
-                         <TariffCard key={index} title={item.title} price={item.price} icon={item.icon} advantage={item.advantage} btn={item.btn} hotPlan={item.hotPlan} bestPlan={item.bestPlan}/>
+                         <TariffCard 
+                              key={index} 
+                              title={item.title}
+                              price={item.price}
+                              icon={item.icon}
+                              advantage={item.advantage}
+                              btn={item.btn}
+                              hotPlan={item.hotPlan}
+                              bestPlan={item.bestPlan}
+                         />
                     ))}
                </ul>
           </div>

@@ -1,7 +1,6 @@
 .card {
     width: 440px;
-    height: 479px;
-    padding: 28px;
+    padding: 28px 28px 53px 28px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -56,7 +55,6 @@
     background: #f4f5f6;
     border-radius: 20px;
 }
-
 
 .iconBlock {
     display: flex;
