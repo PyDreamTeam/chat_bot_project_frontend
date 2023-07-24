@@ -1,6 +1,5 @@
 import Text from "@/src/components/shared/text/Text";
 import { Form, Formik } from "formik";
-import Image from "next/image";
 import * as Yup from "yup";
 import css from "./recovoryPassword.module.css";
 import { useRecoveryPasswordMutation } from "@/src/store/services/userAuth";

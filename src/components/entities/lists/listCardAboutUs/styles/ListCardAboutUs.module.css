@@ -3,3 +3,6 @@
     flex-wrap: wrap;
     gap: 16px;
 }
+.cards p {
+    margin-top: 6px;
+}

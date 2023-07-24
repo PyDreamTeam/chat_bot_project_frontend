@@ -8,9 +8,11 @@
     color: #4466F5;
 }
 .homePage {
-    padding: 9px 5px;
+    padding: 7px 10px;
     font-size: 30px;
-    line-height: 130%;
+    line-height: 39px;
+    margin-bottom: -20px;
+    margin-left: 10px;
 }
 .authWrapper {
     padding: 3px 3px;
