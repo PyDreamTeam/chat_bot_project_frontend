@@ -40,7 +40,7 @@ const UserInfo: FC<IUserInfoProps> = ({
      const [verifyUser, {isSuccess: isSuccessVerify, isError: isErrorVerify}] = useVerifyUserMutation();
 
      useEffect(() => {
-          verifyUser(token.access);
+          verifyUser(token.refresh);
      }, []);
      
      useEffect(() => {
@@ -57,7 +57,7 @@ const UserInfo: FC<IUserInfoProps> = ({
      useEffect(() => {
           if(isSuccessLogout) {
                Cookies.remove("loginUser");
-               verifyUser(token.access);
+               verifyUser(token.refresh);
           }
      }, [isSuccessLogout]);
 
