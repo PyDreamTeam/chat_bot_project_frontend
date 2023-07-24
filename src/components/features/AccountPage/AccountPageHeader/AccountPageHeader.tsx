@@ -26,8 +26,6 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
      const token = JSON.parse(Cookies.get("loginUser") || "[]");
      const {data} = useDataUserQuery(token);
 
-     const { auth_token } = useAppSelector((state) => state.credentialsSlice.credentials);
-
      const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           router.replace({
