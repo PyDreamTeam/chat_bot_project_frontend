@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import styles from "./styles/Logo.module.css";
-import Link from "next/link";
 
 export enum LogoVariantProps {
      header = "header",
