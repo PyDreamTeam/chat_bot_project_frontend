@@ -6,8 +6,8 @@ import Title from "../text/Title";
 
 const logoIcons = [
      "/img/logos_facebook.svg",
-     "/img/logos_VK.svg",
      "/img/logos_whatsapp-icon.svg",
+     "/img/logos_VK.svg",
      "/img/logos_viber.svg",
      "/img/logos_telegram.svg",
 ];

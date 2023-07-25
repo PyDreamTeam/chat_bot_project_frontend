@@ -6,6 +6,7 @@ import { useRecoveryPasswordMutation } from "@/src/store/services/userAuth";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
+import Image from "next/image";
 
 const RecoveryPassword = () => {
 
@@ -46,6 +47,7 @@ const RecoveryPassword = () => {
                     </AuthWrapper>
                </div> : 
                <div className={css.container}>
+                    <Image src={"/sign/success-filled.svg"} alt={"Success"}/>
                     <AuthWrapper titleText={"Письмо отправлено"}>
                          <div className={css.wrapperLetterSent}>
                               <div className={css.account}>
