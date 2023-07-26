@@ -6,10 +6,12 @@ import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import { PhoneRegExp } from "@/src/shared/contsants/regExps";
+import Logo, { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
+import ElemChooseChatBot, { ElemVariantProps } from "@/src/components/shared/elemChooseChatBot/ElemChooseChatBot";
 import styles from "./styles/SelectionRequest.module.css";
 
 interface IPropsRequest {
-     schema: {
+     schema?: {
           htmlFor: string;
           label: string;
           type: string;
@@ -20,7 +22,46 @@ interface IPropsRequest {
      close?: () => void;
 }
 
-const SelectionRequest: FC<IPropsRequest> = ({ schema = [], close, open }) => {
+interface IUserRequest {
+     htmlFor: string;
+     label: string;
+     type: string;
+     name: "first_name" | "email" | "tel" | "comment";
+     placeholder: string;
+}
+
+const selectionRequest: Array<IUserRequest> = [
+     {
+          htmlFor: "first_name",
+          label: "Имя",
+          type: "text",
+          name: "first_name",
+          placeholder: "Имя",
+     },
+     {
+          htmlFor: "email",
+          label: "E-mail",
+          type: "email",
+          name: "email",
+          placeholder: "example@mail.com",
+     },
+     {
+          htmlFor: "telephone",
+          label: "Телефон",
+          type: "tel",
+          name: "tel",
+          placeholder: "+7",
+     },
+     {
+          htmlFor: "comment",
+          label: "Комментарий",
+          type: "text",
+          name: "comment",
+          placeholder: "Текст (200 символов)",
+     },
+];
+
+const SelectionRequest: FC<IPropsRequest> = ({ schema = selectionRequest, close, open }) => {
      const [requestSent, setRequestSent] = useState<boolean>(false);
      const isRequestSent = () => {
           setRequestSent(true);
@@ -42,17 +83,9 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = [], close, open }) => {
                {!requestSent ? (
                     <div className={styles.container}>
                          <div className={styles.backGround}>
-                              <Title type="h3" color="black">
-                                   TOWNSEND
-                              </Title>
-                              <div className={styles.logoBlue}>
-                                   <span className={styles.bot}>
-                                        конструктор чат-ботов
-                                        <div className={`${styles.dot} ${styles.left}`}></div>
-                                        <div className={`${styles.dot} ${styles.top}`}></div>
-                                        <div className={`${styles.dot} ${styles.right}`}></div>
-                                        <div className={`${styles.dot} ${styles.bottom}`}></div>
-                                   </span>
+                              <Logo variant={LogoVariantProps.header} />
+                              <div className={styles.blockBlue}>
+                                   <ElemChooseChatBot variant={ElemVariantProps.auth} />
                               </div>
                          </div>
                          <div className={styles.wrapper}>
