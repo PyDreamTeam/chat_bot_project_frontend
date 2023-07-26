@@ -5,11 +5,12 @@
 
 .rightBlock {
      display: flex;
-     gap: 130px;
+     gap: 132px;
 }
 .buttonsAuthWrapper {
      display: flex;
      gap: 16px;
+     margin-right: 2px;
 }
 
 .selectLang{

@@ -45,7 +45,6 @@ const ComponentSignIn = () => {
                                    <EmailInput errors={errors} touched={touched} error={error}/>
                                    <PasswordInput errors={errors} touched={touched} error={error}/>
 
-                                   
                                    <ButtonLogin disabled={isLoading} active={isValid} type="submit">Войти</ButtonLogin>
                                    <div className={css.blockInfo}>
                                         <Text type={"reg16"} color={"grey"}>

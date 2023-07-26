@@ -5,13 +5,12 @@
 }
 
 .window {
-    width: 736px;
-    height: 503px;
+    max-width: 736px;
     overflow: hidden;
+    padding-top: 5px;
 }
 
 .itemsContainer {
-    height: 503px;
     display: flex;
     align-items: flex-end;
     transition: translate;
