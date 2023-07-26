@@ -20,7 +20,7 @@ function SignIn() {
                               <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
                          </div>
                          <div className={css.text}>
-                              <Text type="reg16" color="grey">Или с помощью почты и пароля</Text>
+                              <Text type="reg18" color="grey">Или с помощью почты и пароля</Text>
                          </div>
                          <ComponentSignIn/>
                     </div>

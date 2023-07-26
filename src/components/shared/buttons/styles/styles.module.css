@@ -27,7 +27,7 @@
      font-size: 18px;
      line-height: 28px;
      border-radius: 16px;
-     padding: 9px 23px;
+     padding: 10px 24px;
      align-self: start;
 }
 .signIn {
@@ -54,7 +54,7 @@
 .credentials {
      max-width: 157px;
      margin-top: 8px;
-     font-family: "Inter";
+     font-family: "Inter", sans-serif;
      font-style: normal;
      font-weight: 500;
      font-size: 18px;
