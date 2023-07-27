@@ -26,7 +26,7 @@ export const RePasswordInput: FC<PropsRePasswordInput> = ({errors, touched}) => 
      return(
           <div className={css.blockInput}>
                <label htmlFor="re_password">
-                    <Text type="reg18" color="black">Повторите пароль</Text>
+                    <Text type="reg18" color="black">Подтверждение пароля</Text>
                </label>
                <div className={css.errorIcon}>
                     {errors.re_password && touched.re_password && <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />}

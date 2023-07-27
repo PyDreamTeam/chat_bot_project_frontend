@@ -11,16 +11,19 @@
 .account {
     margin-top: 16px;
 }
-.account p{
-    margin-bottom: 24px;
+
+.centerText {
+    margin: 24px 0 16px;
 }
+
+
 .link {
     color: #4466f5;
 }
 
 .text {
     text-align: start;
-    margin-top: 24px;
+    margin-top: 20px;
 }
 
 .form {
@@ -43,13 +46,11 @@
     padding: 16px;
     margin-top: 8px;
     width: 100%;
-
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
-
     border-radius: 20px;
     background-color: #f4f5f6;
     border: 1px solid #f4f5f6;
@@ -63,13 +64,11 @@
     padding: 16px;
     margin-top: 8px;
     width: 100%;
-
     font-family: "Inter", sans-serif;;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
-
     border-radius: 20px;
     background-color: #f4f5f6;
     border: 2px solid #f53527;
@@ -96,6 +95,6 @@
 }
 
 .blockInfo {
-   margin-top: 24px;
+   margin-top: 16px;
    text-align: center;
 }
