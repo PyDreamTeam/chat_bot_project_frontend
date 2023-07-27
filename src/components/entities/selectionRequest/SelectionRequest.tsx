@@ -9,13 +9,17 @@ import { PhoneRegExp } from "@/src/shared/contsants/regExps";
 import Logo, { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
 import ElemChooseChatBot, { ElemVariantProps } from "@/src/components/shared/elemChooseChatBot/ElemChooseChatBot";
 import styles from "./styles/SelectionRequest.module.css";
+import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput";
+import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
+import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
+import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 
 interface IPropsRequest {
      schema?: {
           htmlFor: string;
           label: string;
           type: string;
-          name: "first_name" | "email" | "tel" | "comment";
+          name: "first_name" | "email" | "phone_number" | "comment";
           placeholder: string;
      }[];
      open?: () => void;
@@ -26,42 +30,11 @@ interface IUserRequest {
      htmlFor: string;
      label: string;
      type: string;
-     name: "first_name" | "email" | "tel" | "comment";
+     name: "first_name" | "email" | "phone_number" | "comment";
      placeholder: string;
 }
 
-const selectionRequest: Array<IUserRequest> = [
-     {
-          htmlFor: "first_name",
-          label: "Имя",
-          type: "text",
-          name: "first_name",
-          placeholder: "Имя",
-     },
-     {
-          htmlFor: "email",
-          label: "E-mail",
-          type: "email",
-          name: "email",
-          placeholder: "example@mail.com",
-     },
-     {
-          htmlFor: "telephone",
-          label: "Телефон",
-          type: "tel",
-          name: "tel",
-          placeholder: "+7",
-     },
-     {
-          htmlFor: "comment",
-          label: "Комментарий",
-          type: "text",
-          name: "comment",
-          placeholder: "Текст (200 символов)",
-     },
-];
-
-const SelectionRequest: FC<IPropsRequest> = ({ schema = selectionRequest, close, open }) => {
+const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
      const [requestSent, setRequestSent] = useState<boolean>(false);
      const isRequestSent = () => {
           setRequestSent(true);
@@ -97,7 +70,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = selectionRequest, close,
                                    initialValues={{
                                         first_name: "",
                                         email: "",
-                                        tel: "",
+                                        phone_number: "",
                                         comment: "",
                                    }}
                                    validationSchema={Yup.object().shape({
@@ -109,7 +82,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = selectionRequest, close,
                                              .email("Некорректный email")
                                              .required("Поле обязательное для заполнения. Введите email"),
                                         //TODO валидация телефона из файла констант
-                                        tel: Yup.string()
+                                        phone_number: Yup.string()
                                              .matches(
                                                   /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
                                                   "Некорректный номер телефона"
@@ -130,44 +103,10 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = selectionRequest, close,
                                    {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
                                         return (
                                              <Form className={styles.form}>
-                                                  {schema.map(({ htmlFor, label, type, name, placeholder }) => (
-                                                       <div key={name} className={styles.blockInput}>
-                                                            <label htmlFor={htmlFor}>
-                                                                 <Text type="reg18" color="black">
-                                                                      {label}
-                                                                 </Text>
-                                                            </label>
-                                                            <div className={styles.errorIcon}>
-                                                                 {errors[name] && touched[name] && (
-                                                                      <Image
-                                                                           src="/sign/errorIcon.svg"
-                                                                           width={24}
-                                                                           height={24}
-                                                                           alt="errorIcon"
-                                                                      />
-                                                                 )}
-                                                            </div>
-
-                                                            <div className={styles.groupStateEye}>
-                                                                 <Field
-                                                                      as={name === "comment" ? "textarea" : ""}
-                                                                      type={type}
-                                                                      name={name}
-                                                                      placeholder={placeholder}
-                                                                      className={
-                                                                           errors[name] && touched[name]
-                                                                                ? `${styles.inputError}`
-                                                                                : `${styles.input}`
-                                                                      }
-                                                                 />
-                                                            </div>
-                                                            <div className={styles.error}>
-                                                                 <Text type="reg16" color="red">
-                                                                      <ErrorMessage name={name} />
-                                                                 </Text>
-                                                            </div>
-                                                       </div>
-                                                  ))}
+                                                  <FirstNameInput errors={errors} touched={touched} />
+                                                  <EmailInput errors={errors} touched={touched} />
+                                                  <PhoneNumberInput errors={errors} touched={touched} />
+                                                  <CommentInput errors={errors} touched={touched} />
                                                   <button
                                                        type="submit"
                                                        disabled={isSubmitting}

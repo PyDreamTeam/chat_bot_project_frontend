@@ -102,12 +102,6 @@
      outline: none;
 }
 
-.input[name="comment"] {
-    height: 194px;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-}
-
 .inputError {
      padding: 16px;
      margin-top: 8px;
