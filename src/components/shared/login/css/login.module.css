@@ -27,6 +27,13 @@
     outline: none;
 }
 
+.input[name="comment"] {
+    height: 194px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    resize: none;
+}
+
 .error {
     margin-top: 8px;
 }

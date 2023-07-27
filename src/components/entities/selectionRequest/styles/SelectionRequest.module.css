@@ -36,8 +36,8 @@
      justify-content: center;
 }
 
-.logoBlue {
-    margin-left: 100px;
+.blockBlue {
+     margin-left: 25%;
 }
 
 .wrapper {
@@ -47,56 +47,6 @@
     align-items: center;
      padding-top: 48px;
      padding-bottom: 48px;
-}
-
-.logo {
-    margin-top: 60px;
-    font-family: Inter;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 130%;
-}
-
-.bot {
-    display: inline-block;
-    position: relative;
-    padding: 4px 5px;
-
-    border: 1px solid #4466F5;
-
-    font-size: 16px;
-    font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 130%;
-    color: #4466F5;
-}
-.dot {
-    position: absolute;
-    content: "";
-    width: 5px;
-    height: 5px;
-
-    border-radius: 5px;
-    background-color: #4466F5;
-}
-
-.left {
-    top: -3px;
-    left: -3px;
-}
-.top {
-    top: -3px;
-    right: -3px;
-}
-.right {
-    right: -3px;
-    bottom: -3px;
-}
-.bottom {
-    bottom: -3px;
-    left: -3px;
 }
 
 .account {
@@ -150,12 +100,6 @@
 }
 .input:focus {
      outline: none;
-}
-
-.input[name="comment"] {
-    height: 194px;
-    word-wrap: break-word;
-    white-space: pre-wrap;
 }
 
 .inputError {

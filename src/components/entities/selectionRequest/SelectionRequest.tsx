@@ -6,21 +6,35 @@ import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import { PhoneRegExp } from "@/src/shared/contsants/regExps";
+import Logo, { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
+import ElemChooseChatBot, { ElemVariantProps } from "@/src/components/shared/elemChooseChatBot/ElemChooseChatBot";
 import styles from "./styles/SelectionRequest.module.css";
+import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput";
+import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
+import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
+import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 
 interface IPropsRequest {
-     schema: {
+     schema?: {
           htmlFor: string;
           label: string;
           type: string;
-          name: "first_name" | "email" | "tel" | "comment";
+          name: "first_name" | "email" | "phone_number" | "comment";
           placeholder: string;
      }[];
      open?: () => void;
      close?: () => void;
 }
 
-const SelectionRequest: FC<IPropsRequest> = ({ schema = [], close, open }) => {
+interface IUserRequest {
+     htmlFor: string;
+     label: string;
+     type: string;
+     name: "first_name" | "email" | "phone_number" | "comment";
+     placeholder: string;
+}
+
+const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
      const [requestSent, setRequestSent] = useState<boolean>(false);
      const isRequestSent = () => {
           setRequestSent(true);
@@ -42,17 +56,9 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = [], close, open }) => {
                {!requestSent ? (
                     <div className={styles.container}>
                          <div className={styles.backGround}>
-                              <Title type="h3" color="black">
-                                   TOWNSEND
-                              </Title>
-                              <div className={styles.logoBlue}>
-                                   <span className={styles.bot}>
-                                        конструктор чат-ботов
-                                        <div className={`${styles.dot} ${styles.left}`}></div>
-                                        <div className={`${styles.dot} ${styles.top}`}></div>
-                                        <div className={`${styles.dot} ${styles.right}`}></div>
-                                        <div className={`${styles.dot} ${styles.bottom}`}></div>
-                                   </span>
+                              <Logo variant={LogoVariantProps.header} />
+                              <div className={styles.blockBlue}>
+                                   <ElemChooseChatBot variant={ElemVariantProps.auth} />
                               </div>
                          </div>
                          <div className={styles.wrapper}>
@@ -64,7 +70,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = [], close, open }) => {
                                    initialValues={{
                                         first_name: "",
                                         email: "",
-                                        tel: "",
+                                        phone_number: "",
                                         comment: "",
                                    }}
                                    validationSchema={Yup.object().shape({
@@ -76,7 +82,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = [], close, open }) => {
                                              .email("Некорректный email")
                                              .required("Поле обязательное для заполнения. Введите email"),
                                         //TODO валидация телефона из файла констант
-                                        tel: Yup.string()
+                                        phone_number: Yup.string()
                                              .matches(
                                                   /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
                                                   "Некорректный номер телефона"
@@ -97,44 +103,10 @@ const SelectionRequest: FC<IPropsRequest> = ({ schema = [], close, open }) => {
                                    {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
                                         return (
                                              <Form className={styles.form}>
-                                                  {schema.map(({ htmlFor, label, type, name, placeholder }) => (
-                                                       <div key={name} className={styles.blockInput}>
-                                                            <label htmlFor={htmlFor}>
-                                                                 <Text type="reg18" color="black">
-                                                                      {label}
-                                                                 </Text>
-                                                            </label>
-                                                            <div className={styles.errorIcon}>
-                                                                 {errors[name] && touched[name] && (
-                                                                      <Image
-                                                                           src="/sign/errorIcon.svg"
-                                                                           width={24}
-                                                                           height={24}
-                                                                           alt="errorIcon"
-                                                                      />
-                                                                 )}
-                                                            </div>
-
-                                                            <div className={styles.groupStateEye}>
-                                                                 <Field
-                                                                      as={name === "comment" ? "textarea" : ""}
-                                                                      type={type}
-                                                                      name={name}
-                                                                      placeholder={placeholder}
-                                                                      className={
-                                                                           errors[name] && touched[name]
-                                                                                ? `${styles.inputError}`
-                                                                                : `${styles.input}`
-                                                                      }
-                                                                 />
-                                                            </div>
-                                                            <div className={styles.error}>
-                                                                 <Text type="reg16" color="red">
-                                                                      <ErrorMessage name={name} />
-                                                                 </Text>
-                                                            </div>
-                                                       </div>
-                                                  ))}
+                                                  <FirstNameInput errors={errors} touched={touched} />
+                                                  <EmailInput errors={errors} touched={touched} />
+                                                  <PhoneNumberInput errors={errors} touched={touched} />
+                                                  <CommentInput errors={errors} touched={touched} />
                                                   <button
                                                        type="submit"
                                                        disabled={isSubmitting}
