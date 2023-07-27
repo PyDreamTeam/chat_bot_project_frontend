@@ -1,8 +1,8 @@
 .wrapper {
     max-width: 1440px;
     padding-left: 88px;
-    padding-top: 88px;
-    padding-bottom: 80px;
+    padding-top: 74px;
+    padding-bottom: 64px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -11,11 +11,11 @@
 }
 
 .blockText {
-    width: 533px;
+    max-width: 533px;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    margin-top: -20px;
+    margin-top: -5px;
 }
 .buttons {
     display: flex;

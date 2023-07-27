@@ -11,17 +11,20 @@
 .account {
     margin-top: 16px;
 }
-
+.account p{
+    margin-bottom: 24px;
+}
 .link {
     color: #4466f5;
 }
 
 .text {
-    margin-top: 32px;
+    text-align: start;
+    margin-top: 24px;
 }
 
 .form {
-    width: 440px;
+    width: 480px;
     text-align: left;
 }
 
