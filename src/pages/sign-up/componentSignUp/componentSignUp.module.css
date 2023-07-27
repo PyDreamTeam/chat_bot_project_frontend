@@ -9,7 +9,7 @@
 }
 
 .account {
-     margin-top: 16px;
+     margin: 16px 0 24px;
 }
 
 .link {
@@ -17,8 +17,7 @@
 }
 
 .form {
-     width: 440px;
-
+     width: 480px;
      text-align: left;
 }
 

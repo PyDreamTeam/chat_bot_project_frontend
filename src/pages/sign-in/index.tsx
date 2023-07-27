@@ -16,7 +16,9 @@ function SignIn() {
                               <Text type="reg16" color="grey">Ещё нет аккаунта?
                                    <Link href={"/sign-up"} className={css.link}> Регистрация</Link>
                               </Text>
-                              <Text type={"reg18"} color={"black"} className={css.centerText}>Войдите через соцсеть</Text>
+                              <div className={css.centerText}>
+                                   <Text type={"reg18"} color={"black"}>Войдите через соцсеть</Text>
+                              </div>
                               <IconsAuthBar className="iconsSignIn" svgConfig={svgArray} />
                          </div>
                          <div className={css.text}>

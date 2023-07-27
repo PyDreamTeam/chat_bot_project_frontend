@@ -31,7 +31,7 @@ const ComponentSignIn = () => {
                          password: "",
                     }}
                     validationSchema={Yup.object().shape({
-                         email: Yup.string().email("Неккоректный email").required("Введите e-mail"),
+                         email: Yup.string().email("Некорректный email").required("Введите e-mail"),
                          password: Yup.string().required("Введите пароль")
                     })}
                     onSubmit={(values) => {
