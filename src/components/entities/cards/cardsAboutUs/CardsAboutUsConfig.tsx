@@ -14,7 +14,7 @@ export const CARDS_ABOUT_US = [
      },
      {
           id: 2,
-          img: <Image src={"img/PhotoCard1.png"} alt={"Card"} width={312} height={253} />,
+          img: <Image src={"img/Frame 1707478880.jpg"} alt={"Card"} width={312} height={253} />,
      },
      {
           id: 3,
