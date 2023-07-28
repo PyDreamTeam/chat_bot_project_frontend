@@ -15,13 +15,6 @@ import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumbe
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 
 interface IPropsRequest {
-     schema?: {
-          htmlFor: string;
-          label: string;
-          type: string;
-          name: "first_name" | "email" | "phone_number" | "comment";
-          placeholder: string;
-     }[];
      open?: () => void;
      close?: () => void;
 }
