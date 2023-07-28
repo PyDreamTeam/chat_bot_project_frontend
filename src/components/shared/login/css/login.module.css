@@ -1,6 +1,10 @@
 .blockInput {
     position: relative;
-    margin-top: 22px;
+    margin-top: 16px;
+}
+.blockInputError {
+    position: relative;
+    margin-top: 14px;
 }
 
 .errorIcon {
@@ -10,8 +14,8 @@
 }
 
 .input {
-    padding: 16px;
-    margin-top: 6px;
+    padding: 17px;
+    margin-top: 9px;
     width: 100%;
     font-family: "Inter",sans-serif;
     font-style: normal;
@@ -37,10 +41,13 @@
 .error {
     margin-top: 8px;
 }
+.error p{
+    margin-bottom: 4px;
+}
 
 .inputError {
-    padding: 16px;
-    margin-top: 8px;
+    padding: 18px 15px 19px;
+    margin-top: 6px;
     width: 100%;
     font-family: "Inter",sans-serif;
     font-style: normal;
@@ -69,7 +76,7 @@
 }
 
 .notifications {
-    margin-top: 13px;
+    margin: 14px 0 9px;
     display: flex;
     align-items: center;
 }
@@ -78,9 +85,9 @@
     appearance: none;
     width: 20px;
     height: 20px;
-    margin-right: 8px;
-    border: 3px solid #9ce562;
-    border-radius: 6px;
+    margin-right: 10px;
+    border: 2px solid #9ce562;
+    border-radius: 8px;
     outline: none;
     cursor: pointer;
 }

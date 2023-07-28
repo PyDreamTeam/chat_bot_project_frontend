@@ -42,7 +42,7 @@ const TemplateSignUp = () => {
                <AuthWrapper titleText={"Регистрация"}>
                     <div className={css.wrapper}>
                          <div className={css.account}>
-                              <Text type="reg16" color="grey">Уже есть аккаунт?
+                              <Text type="reg16" color="grey" className={css.centerText}>Уже есть аккаунт?
                                    <Link href={"/sign-in"} className={css.link}> Войдите</Link>
                               </Text>
                          </div>

@@ -56,7 +56,7 @@ export const EmailInput: FC<PropsEmailNameInput> = ({errors, touched, error}) =>
                     {errors.email && touched.email && <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />}
                </div>
                <div>
-                    <Field type="email" name="email" placeholder="example@gmail.com" className={errors.email && touched.email ? `${css.inputError}` : `${css.input}`}/>
+                    <Field type="email" name="email" placeholder="example@mail.com" className={errors.email && touched.email ? `${css.inputError}` : `${css.input}`}/>
                </div>
                <div className={css.error}>
                     <Text type="reg16" color="red">

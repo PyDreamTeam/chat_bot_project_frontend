@@ -17,7 +17,7 @@ const tariffPlansCards: TariffPlanCard[] = [
           title: "Готовое решение",
           price: "от 17 000 ₽",
           icon: <CheckMark/>,
-          advantage: ["5 plan", "Transfers and payments", "Transfers and payments", "Transfers and payments", "Premium analytics"],
+          advantage: ["5 plans", "Transfers and payments", "Transfers and payments", "Transfers and payments", "Premium analytics"],
           btn: "Выбрать План",
           hotPlan: true,
           bestPlan: "/img/hotPlan.svg"
@@ -26,7 +26,7 @@ const tariffPlansCards: TariffPlanCard[] = [
           title: "Решение с нуля",
           price: "от 29 000 ₽",
           icon: <CheckMark/>,
-          advantage: ["8 plan", "Transfers and payments", "Transfers and payments", "Transfers and payments", "Premium analytics"],
+          advantage: ["8 plans", "Transfers and payments", "Transfers and payments", "Transfers and payments", "Premium analytics"],
           btn: "Выбрать План",
           hotPlan: false
      }
