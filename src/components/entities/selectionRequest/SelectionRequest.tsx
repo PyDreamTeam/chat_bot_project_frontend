@@ -13,6 +13,7 @@ import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput
 import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
 import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
+import { Button } from "../../shared/buttons/Button";
 
 interface IPropsRequest {
      open?: () => void;
@@ -49,9 +50,11 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                {!requestSent ? (
                     <div className={styles.container}>
                          <div className={styles.backGround}>
-                              <Logo variant={LogoVariantProps.header} />
-                              <div className={styles.blockBlue}>
-                                   <ElemChooseChatBot variant={ElemVariantProps.auth} />
+                              <div className={styles.logoWrapper}>
+                                   <Logo variant={LogoVariantProps.header} />
+                                   <div className={styles.blockBlue}>
+                                        <ElemChooseChatBot variant={ElemVariantProps.auth} />
+                                   </div>
                               </div>
                          </div>
                          <div className={styles.wrapper}>
@@ -100,13 +103,9 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                                   <EmailInput errors={errors} touched={touched} />
                                                   <PhoneNumberInput errors={errors} touched={touched} />
                                                   <CommentInput errors={errors} touched={touched} />
-                                                  <button
-                                                       type="submit"
-                                                       disabled={isSubmitting}
-                                                       className={isValid ? `${styles.button}` : `${styles.buttonDisabled}`}
-                                                  >
+                                                  <Button disabled={isSubmitting} active={isValid} type={"submit"}>
                                                        Отправить
-                                                  </button>
+                                                  </Button>
                                              </Form>
                                         );
                                    }}
