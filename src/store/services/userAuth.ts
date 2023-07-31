@@ -67,6 +67,13 @@ export const userAuth = createApi({
                     method: "POST",
                     body: {token: token}
                })
+          }),
+          createOrder: builder.mutation({
+               query: (arg) => ({
+                    url: "/api/ordercreate/",
+                    method: "POST",
+                    body: arg
+               })
           })
      })
 });
@@ -79,4 +86,5 @@ export const { useCreateUserMutation,
      useRecoveryPasswordMutation,
      useChangePasswordMutation,
      useVerifyUserMutation,
+     useCreateOrderMutation,
 } = userAuth;

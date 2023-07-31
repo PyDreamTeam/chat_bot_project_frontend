@@ -14,6 +14,7 @@ import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
 import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 import { Button } from "../../shared/buttons/Button";
+import { useCreateOrderMutation } from "@/src/store/services/userAuth";
 
 interface IPropsRequest {
      open?: () => void;
@@ -29,6 +30,7 @@ interface IUserRequest {
 }
 
 const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
+     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
      const [requestSent, setRequestSent] = useState<boolean>(false);
      const isRequestSent = () => {
           setRequestSent(true);
@@ -90,7 +92,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                         setTimeout(() => {
                                              formikBag.setSubmitting(false);
                                         }, 5000);
-                                        // dispatch(actions.sendUserRequest(values));
+                                        createOrder(values);
                                         console.log(values);
                                         isRequestSent();
                                         startCloseTimer();
