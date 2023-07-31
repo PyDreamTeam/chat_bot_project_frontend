@@ -6,11 +6,17 @@ import InputSearch from "./InputSearch/InputSearch";
 import style from "./platformFilters.module.css";
 import Filters from "./filters/Filters";
 import Platforms from "./platforms/Platforms";
+import { useGetPlatformsFiltersQuery } from "@/src/store/services/platforms";
+import Cookies from "js-cookie";
 
 
 const PlatformFilters = () => {
 
      const [search, setSearch] = useState("");
+
+     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+     const {data} = useGetPlatformsFiltersQuery(token);
+     console.log("data", data);
 
      return (
           <div>
