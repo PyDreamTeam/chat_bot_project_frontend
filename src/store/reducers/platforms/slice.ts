@@ -14,11 +14,14 @@ const filtersSlice = createSlice({
      initialState,
      reducers: {
           addFilters: (state, action: PayloadAction<{id: number, tag: string }>) => {
-               state.filters = [...state.filters, state.filters.includes(action.payload) ? action.payload : action.payload];
-               //    state.filters = [...state.filters, action.payload];
+               const isFilterInStore = state.filters.find((item) => item.id === action.payload.id);
+
+               if (!isFilterInStore) {
+                    state.filters = [...state.filters, action.payload];
+               }
           },
           deleteFilters: (state, action: PayloadAction<number>) => {
-               state.filters = [...state.filters.filter((item) => item.id !== action.payload)];
+               state.filters = state.filters.filter((item) => item.id !== action.payload);
           }
      }
 });
