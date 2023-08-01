@@ -13,15 +13,10 @@ import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput
 import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
 import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
+import { Button } from "../../shared/buttons/Button";
+import { useCreateOrderMutation } from "@/src/store/services/userAuth";
 
 interface IPropsRequest {
-     schema?: {
-          htmlFor: string;
-          label: string;
-          type: string;
-          name: "first_name" | "email" | "phone_number" | "comment";
-          placeholder: string;
-     }[];
      open?: () => void;
      close?: () => void;
 }
@@ -35,6 +30,7 @@ interface IUserRequest {
 }
 
 const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
+     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
      const [requestSent, setRequestSent] = useState<boolean>(false);
      const isRequestSent = () => {
           setRequestSent(true);
@@ -56,9 +52,11 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                {!requestSent ? (
                     <div className={styles.container}>
                          <div className={styles.backGround}>
-                              <Logo variant={LogoVariantProps.header} />
-                              <div className={styles.blockBlue}>
-                                   <ElemChooseChatBot variant={ElemVariantProps.auth} />
+                              <div className={styles.logoWrapper}>
+                                   <Logo variant={LogoVariantProps.header} />
+                                   <div className={styles.blockBlue}>
+                                        <ElemChooseChatBot variant={ElemVariantProps.auth} />
+                                   </div>
                               </div>
                          </div>
                          <div className={styles.wrapper}>
@@ -94,7 +92,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                         setTimeout(() => {
                                              formikBag.setSubmitting(false);
                                         }, 5000);
-                                        // dispatch(actions.sendUserRequest(values));
+                                        createOrder(values);
                                         console.log(values);
                                         isRequestSent();
                                         startCloseTimer();
@@ -107,13 +105,9 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                                   <EmailInput errors={errors} touched={touched} />
                                                   <PhoneNumberInput errors={errors} touched={touched} />
                                                   <CommentInput errors={errors} touched={touched} />
-                                                  <button
-                                                       type="submit"
-                                                       disabled={isSubmitting}
-                                                       className={isValid ? `${styles.button}` : `${styles.buttonDisabled}`}
-                                                  >
+                                                  <Button disabled={isSubmitting} active={isValid} type={"submit"}>
                                                        Отправить
-                                                  </button>
+                                                  </Button>
                                              </Form>
                                         );
                                    }}
