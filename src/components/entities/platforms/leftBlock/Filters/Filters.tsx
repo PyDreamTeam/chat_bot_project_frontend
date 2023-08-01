@@ -3,7 +3,8 @@ import css from "./filters.module.css";
 import { PropsFilters } from "../../types";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
-import { GroupTags } from "../GroupTags/GroupTags";
+import { GroupTagsSingle } from "../GroupTagsSingle/GroupTagsSingle";
+import { GroupTagsMultiple } from "../GroupTagsMultiple/GroupTagsMultiple";
 
 export const Filters: FC<PropsFilters> = ({filters = []}) => {
 
@@ -39,7 +40,8 @@ export const Filters: FC<PropsFilters> = ({filters = []}) => {
 
                                    </div>
                               </div>
-                              <GroupTags tags={item.tags}/>
+                              {item.multiple ? <GroupTagsMultiple tags={item.tags}/> : <GroupTagsSingle tags={item.tags}/>}
+                              
                          </li>
                     ))}
                </ul>

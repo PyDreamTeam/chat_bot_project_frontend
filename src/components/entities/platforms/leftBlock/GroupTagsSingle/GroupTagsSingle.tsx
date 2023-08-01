@@ -1,43 +1,18 @@
 import { FC, useEffect, useState } from "react";
-import css from "./groupTags.module.css";
+import css from "./groupTagsSingle.module.css";
 import { PropsGroupTags } from "../../types";
 import { Checkbox } from "../Checkbox/Checkbox";
 import Text from "@/src/components/shared/text/Text";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { addFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
+import { CheckboxSingleItem } from "../CheckboxSingleItem/CheckboxSingleItem";
 
-
-const CheckboxMultipleItem = ({id, tag, isChecked}: {id: number, tag: string, isChecked: boolean}) => {
-     const dispatch = useAppDispatch();
-
-     const handleCheckboxClick = ({id, tag}: {id: number, tag: string}) => {
-          if (!isChecked) {
-               dispatch(addFilters({id: id, tag: tag}));
-          } else {
-               dispatch(deleteFilters(id));
-          }
-     };
-
-     return ( <li key={id} className={css.tag}>
-          <Checkbox onChange={() => handleCheckboxClick(({id, tag}))} checked={isChecked}/>
-          <Text type="reg14" color="dark">{tag}</Text>
-     </li>);
-};
-
-const CheckboxSingleItem = ({id, tag, isChecked, setChecked}: {id: number, tag: string, isChecked: boolean, setChecked: (id: number, tag: string) => void}) => {
-
-     return ( <li key={id} className={css.tag}>
-          <Checkbox onChange={() => setChecked(id, tag)} checked={isChecked}/>
-          <Text type="reg14" color="dark">{tag}</Text>
-     </li>);
-};
-
-export const GroupTags: FC<PropsGroupTags> = ({tags = []}) => {
+export const GroupTagsSingle: FC<PropsGroupTags> = ({tags = []}) => {
      const dispatch = useAppDispatch();
 
      const [selectedFilter, setSelectedFilter] = useState<number | null>(null);
 
-     const handleSigngleCheckbox = (id: number, tag: string) => {
+     const handleSingleCheckbox = (id: number, tag: string) => {
           if (selectedFilter !== id) {
                if (selectedFilter) {
                     dispatch(deleteFilters(selectedFilter));
@@ -72,8 +47,7 @@ export const GroupTags: FC<PropsGroupTags> = ({tags = []}) => {
                     {tags
                          .slice(0, lengthArray)
                          .map(({id, tag}) => (
-                              <CheckboxSingleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSigngleCheckbox}/>
-                              // <CheckboxMultipleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))}/>
+                              <CheckboxSingleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSingleCheckbox}/>
                          ))}
                     {tags.length > 4 && tags.length > 5 &&
                     <div onClick={toggleOpenOptions} className={open ? css.btnOpen : css.btnClose}>
@@ -84,9 +58,7 @@ export const GroupTags: FC<PropsGroupTags> = ({tags = []}) => {
                          <div className={css.wrapperList}>
                               <ul className={`${css.list} ${css.listOpen}`}>
                                    {tags.map(({id, tag}) => (
-                                        <CheckboxSingleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSigngleCheckbox}/>
-
-                                        // <CheckboxMultipleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))}/>
+                                        <CheckboxSingleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSingleCheckbox}/>
                                    ))}
                               </ul>
                          </div>}
