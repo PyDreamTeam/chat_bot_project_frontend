@@ -3,7 +3,7 @@
      justify-content: end;
 }
 .sorting {
-     margin-top: 32px;
+     margin-top: 25px;
      display: flex;
      align-items: center;
      justify-content: flex-end;
@@ -16,8 +16,8 @@
 }
 .groupSorting {
      position: absolute;
-     width: 205px;
-     padding: 8px 16px 20px 16px;
+     width: 174px;
+     padding: 20px 16px;
      top: 60px;
      right: 0;
      background-color: #ffffff;
@@ -26,4 +26,12 @@
      border-radius: 10px;
      z-index: 999;
      list-style: none;
+}
+
+.sort {
+     display: flex;
+}
+
+.sort:nth-child(2) {
+     margin-top: 12px;
 }

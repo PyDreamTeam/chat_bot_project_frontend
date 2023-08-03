@@ -7,17 +7,17 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { addFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
 import { CheckboxSingleItem } from "../CheckboxSingleItem/CheckboxSingleItem";
 
-export const GroupTagsSingle: FC<PropsGroupTags> = ({tags = []}) => {
+export const GroupTagsSingle: FC<PropsGroupTags> = ({tags = [], filter}) => {
      const dispatch = useAppDispatch();
 
      const [selectedFilter, setSelectedFilter] = useState<number | null>(null);
 
-     const handleSingleCheckbox = (id: number, tag: string) => {
+     const handleSingleCheckbox = (id: number, tag: string, filter?: string) => {
           if (selectedFilter !== id) {
                if (selectedFilter) {
                     dispatch(deleteFilters(selectedFilter));
                }
-               dispatch(addFilters({id: id, tag: tag}));
+               dispatch(addFilters({id: id, tag: tag, filter: filter}));
                setSelectedFilter(id);
           }
      };
@@ -47,7 +47,7 @@ export const GroupTagsSingle: FC<PropsGroupTags> = ({tags = []}) => {
                     {tags
                          .slice(0, lengthArray)
                          .map(({id, tag}) => (
-                              <CheckboxSingleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSingleCheckbox}/>
+                              <CheckboxSingleItem filter={filter} id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSingleCheckbox}/>
                          ))}
                     {tags.length > 4 && tags.length > 5 &&
                     <div onClick={toggleOpenOptions} className={open ? css.btnOpen : css.btnClose}>
@@ -58,7 +58,7 @@ export const GroupTagsSingle: FC<PropsGroupTags> = ({tags = []}) => {
                          <div className={css.wrapperList}>
                               <ul className={`${css.list} ${css.listOpen}`}>
                                    {tags.map(({id, tag}) => (
-                                        <CheckboxSingleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSingleCheckbox}/>
+                                        <CheckboxSingleItem filter={filter} id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))} setChecked={handleSingleCheckbox}/>
                                    ))}
                               </ul>
                          </div>}

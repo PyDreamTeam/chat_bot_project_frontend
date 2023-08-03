@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface State {
+export interface State {
     id: number
     tag: string
+    filter?: string
 }
 
 const initialState: {filters: State[]} = {
@@ -13,7 +14,7 @@ const filtersSlice = createSlice({
      name: "filters",
      initialState,
      reducers: {
-          addFilters: (state, action: PayloadAction<{id: number, tag: string }>) => {
+          addFilters: (state, action: PayloadAction<{id: number, tag: string, filter?: string }>) => {
                const isFilterInStore = state.filters.find((item) => item.id === action.payload.id);
 
                if (!isFilterInStore) {
@@ -22,9 +23,12 @@ const filtersSlice = createSlice({
           },
           deleteFilters: (state, action: PayloadAction<number>) => {
                state.filters = state.filters.filter((item) => item.id !== action.payload);
+          },
+          deleteAllFilters: (state) => {
+               state.filters = [];
           }
      }
 });
 
-export const {addFilters, deleteFilters} = filtersSlice.actions;
+export const {addFilters, deleteFilters, deleteAllFilters} = filtersSlice.actions;
 export const reducerFilters = filtersSlice.reducer;

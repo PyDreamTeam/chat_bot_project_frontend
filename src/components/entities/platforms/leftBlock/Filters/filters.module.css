@@ -46,3 +46,16 @@
     line-height: 20px;
 }
 
+.price {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    padding-left: 36px;
+    gap: 10px;
+}
+
+.line {
+    width: 24px;
+    border: 1px solid #909090;
+}
+

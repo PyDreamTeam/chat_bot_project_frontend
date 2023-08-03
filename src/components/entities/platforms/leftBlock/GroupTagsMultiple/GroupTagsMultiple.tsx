@@ -7,25 +7,10 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { addFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
 import { CheckboxMultipleItem } from "../CheckboxMultipleItem/CheckboxMultipleItem";
 
-export const GroupTagsMultiple: FC<PropsGroupTags> = ({tags = []}) => {
-     const dispatch = useAppDispatch();
-
-     const [selectedFilter, setSelectedFilter] = useState<number | null>(null);
-
-     const handleSingleCheckbox = (id: number, tag: string) => {
-          if (selectedFilter !== id) {
-               if (selectedFilter) {
-                    dispatch(deleteFilters(selectedFilter));
-               }
-               dispatch(addFilters({id: id, tag: tag}));
-               setSelectedFilter(id);
-          }
-     };
-
+export const GroupTagsMultiple: FC<PropsGroupTags> = ({tags = [], filter}) => {
 
      const filters = useAppSelector((state) => state.reducerFilters.filters);
-
-
+     
      const [lengthArray, setLengthArray] = useState<number>(4);
      const changeLengthArray = () => {
           if (tags.length === 5) {
@@ -47,7 +32,7 @@ export const GroupTagsMultiple: FC<PropsGroupTags> = ({tags = []}) => {
                     {tags
                          .slice(0, lengthArray)
                          .map(({id, tag}) => (
-                              <CheckboxMultipleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))}/>
+                              <CheckboxMultipleItem filter={filter} id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))}/>
                          ))}
                     {tags.length > 4 && tags.length > 5 &&
                     <div onClick={toggleOpenOptions} className={open ? css.btnOpen : css.btnClose}>
@@ -58,7 +43,7 @@ export const GroupTagsMultiple: FC<PropsGroupTags> = ({tags = []}) => {
                          <div className={css.wrapperList}>
                               <ul className={`${css.list} ${css.listOpen}`}>
                                    {tags.map(({id, tag}) => (
-                                        <CheckboxMultipleItem id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))}/>
+                                        <CheckboxMultipleItem filter={filter} id={id} tag={tag} key={id} isChecked={Boolean(filters.find(item => item.id === id))}/>
                                    ))}
                               </ul>
                          </div>}

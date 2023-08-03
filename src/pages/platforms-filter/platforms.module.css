@@ -34,3 +34,27 @@
 .leftBlock {
     padding-left: 89px;
 }
+
+.main {
+    display: flex;
+}
+
+.rightBlock {
+    margin-left: 40px;
+}
+
+.groupSearch {
+    position: relative;
+    margin-top: 30px;
+}
+
+.search {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 8px;
+}
+
+.listPlatforms {
+    list-style: none;
+}

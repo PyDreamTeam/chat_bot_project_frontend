@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const userAuth = createApi({
      reducerPath: "userAuth",
-     baseQuery: fetchBaseQuery({baseUrl: "http://python.twnsnd.online:31080"}),
+     baseQuery: fetchBaseQuery({baseUrl: "http://python.twnsnd.online"}),
      endpoints: (builder) => ({
           dataUser: builder.query({
                query: (token: {access: string, refresh: string}) => ({
