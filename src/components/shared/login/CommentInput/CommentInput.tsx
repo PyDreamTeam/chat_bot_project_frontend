@@ -25,7 +25,7 @@ export const CommentInput: FC<PropsCommentInput> = ({ errors, touched }) => {
                          as="textarea"
                          type="text"
                          name="comment"
-                         placeholder="Текст (200 символов)"
+                         placeholder="Текст (от 5 до 200 символов)"
                          className={errors.comment && touched.comment ? `${css.inputError}` : `${css.input}`}
                     />
                </div>

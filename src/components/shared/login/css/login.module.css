@@ -36,6 +36,8 @@
     word-wrap: break-word;
     white-space: pre-wrap;
     resize: none;
+    overflow: hidden;
+    vertical-align:top;
 }
 
 .error {
