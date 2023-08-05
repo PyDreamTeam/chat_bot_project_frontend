@@ -1,13 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface State {
+interface Filters {
     id: number
     tag: string
     filter?: string
 }
 
-const initialState: {filters: State[]} = {
-     filters: []
+interface State {
+     filters: Filters[]
+     min_price: number
+     max_price: number
+}
+
+const initialState: State = {
+     filters: [],
+     min_price: 0,
+     max_price: 0
 };
 
 const filtersSlice = createSlice({
@@ -26,9 +34,15 @@ const filtersSlice = createSlice({
           },
           deleteAllFilters: (state) => {
                state.filters = [];
+          },
+          minimalPrice: (state, action) => {
+               state.min_price = action.payload;
+          },
+          maximalPrice: (state, action) => {
+               state.max_price = action.payload;
           }
      }
 });
 
-export const {addFilters, deleteFilters, deleteAllFilters} = filtersSlice.actions;
+export const {addFilters, deleteFilters, deleteAllFilters, minimalPrice, maximalPrice} = filtersSlice.actions;
 export const reducerFilters = filtersSlice.reducer;

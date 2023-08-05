@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import css from "./filters.module.css";
 import { PropsFilters } from "../../types";
 import Image from "next/image";
@@ -6,11 +6,18 @@ import Text from "@/src/components/shared/text/Text";
 import { GroupTagsSingle } from "../GroupTagsSingle/GroupTagsSingle";
 import { GroupTagsMultiple } from "../GroupTagsMultiple/GroupTagsMultiple";
 import { InputPrice } from "../InputPrice/InputPrice";
-import { useAppSelector } from "@/src/hooks/types";
+import { useAppDispatch } from "@/src/hooks/types";
+import { maximalPrice, minimalPrice } from "@/src/store/reducers/platforms/slice";
 
 export const Filters: FC<PropsFilters> = ({filters = []}) => {
 
+     const dispatch = useAppDispatch();
+
      const [openItems, setOpenItems] = useState<boolean[]>(filters.map(() => false));
+     const [minPrice, setMinPrice] = useState<string>("");
+     const [maxPrice, setMaxPrice] = useState<string>("");
+
+     
    
      const toggleItem = (id: number) => {
           setOpenItems(prevState => {
@@ -19,6 +26,11 @@ export const Filters: FC<PropsFilters> = ({filters = []}) => {
                return newState;
           });
      };
+
+     useEffect(() => {
+          dispatch(minimalPrice(Number(minPrice)));
+          dispatch(maximalPrice(Number(maxPrice)));
+     }, [minPrice, maxPrice]);
 
      return (
           <div>
@@ -46,9 +58,9 @@ export const Filters: FC<PropsFilters> = ({filters = []}) => {
                               {item.filter === "Стоимость" && 
                               <div>
                                    <div className={css.price}>
-                                        <InputPrice placeholder="0 RUB"/>
+                                        <InputPrice placeholder="0 RUB" value={minPrice} onChange={(e) => setMinPrice(e.target.value)}/>
                                         <span className={css.line}></span>
-                                        <InputPrice placeholder="600 RUB"/>     
+                                        <InputPrice placeholder="600 RUB" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)}/>     
                                    </div>
                               </div>}
                               {item.multiple ? <GroupTagsMultiple filter={item.filter} tags={item.tags}/> : <GroupTagsSingle filter={item.filter} tags={item.tags}/>}
