@@ -13,6 +13,7 @@ import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
 import { useAppSelector } from "@/src/hooks/types";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
+import { Loader } from "@/src/components/shared/Loader/Loader";
 
 const PlatformsFilters = () => {
 
@@ -23,11 +24,9 @@ const PlatformsFilters = () => {
 
      const [search, setSearch] = useState("");
 
-     const { data: dataFilters } = useGetPlatformsFiltersQuery({});
+     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
 
-     const { data: dataPlatforms } = useGetPlatformsQuery({id_tags: ids, price_min: minPrice, price_max: maxPrice, title: search});
-
-     console.log(dataPlatforms); 
+     const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({id_tags: ids, price_min: minPrice, price_max: maxPrice, title: search});
 
      return(
           <div className={css.container}>
@@ -45,7 +44,11 @@ const PlatformsFilters = () => {
 
                <div className={css.main}>
                     <div className={css.leftBlock}>
-                         <GroupFilters results={dataFilters?.results}/>
+                         {isLoadingFilters ? 
+                         <div className={css.loaderFilter}>
+                              <Loader isLoading={isLoadingFilters}/>
+                         </div> : 
+                         <GroupFilters results={dataFilters?.results}/>}
                     </div>
 
                     <div className={css.rightBlock}>
@@ -57,6 +60,10 @@ const PlatformsFilters = () => {
                               <FieldOptions/>
                          </div>
                          <AlphabeticalSorting/>
+                         {isLoadingPlatforms ? 
+                         <div className={css.loaderPlatforms}>
+                              <Loader isLoading={isLoadingPlatforms}/>
+                         </div> :
                          <ul className={css.listPlatforms}>
                               {dataPlatforms?.results.map((item: PropsPlatformCard) => (
                                    <li key={item.id}>
@@ -64,6 +71,7 @@ const PlatformsFilters = () => {
                                    </li>
                               ))}
                          </ul>
+                         }
                     </div>
                </div>
                
