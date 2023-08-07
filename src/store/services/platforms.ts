@@ -9,8 +9,15 @@ export const platforms = createApi({
                     url: "/api/platform/tags/",
                     method: "GET",
                })
+          }),
+          getPlatforms: builder.query({
+               query: (arg: {id_tags: Array<number>, price_min: number, price_max: number, title: string, sort_abc: string}) => ({
+                    url: "/api/platform/filtration/",
+                    method: "POST",
+                    body: arg
+               })
           })
      })
 });
 
-export const {useGetPlatformsFiltersQuery} = platforms;
+export const {useGetPlatformsFiltersQuery, useGetPlatformsQuery} = platforms;
