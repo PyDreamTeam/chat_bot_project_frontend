@@ -11,7 +11,7 @@ export const platforms = createApi({
                })
           }),
           getPlatforms: builder.query({
-               query: (arg: {id_tags: Array<number>, price_min: number, price_max: number, title: string}) => ({
+               query: (arg: {id_tags: Array<number>, price_min: number, price_max: number, title: string, sort_abc: string}) => ({
                     url: "/api/platform/filtration/",
                     method: "POST",
                     body: arg

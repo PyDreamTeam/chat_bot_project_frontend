@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import css from "./platforms.module.css";
 import Link from "next/link";
@@ -18,15 +18,25 @@ import { Loader } from "@/src/components/shared/Loader/Loader";
 const PlatformsFilters = () => {
 
      const filter = useAppSelector(state => state.reducerFilters.filters);
-     const ids = filter.map((item) => item.id);
+     const ids = filter.filter((item) => item.id >= 1).map(item => item.id);
      const minPrice = useAppSelector(state => state.reducerFilters.min_price);
      const maxPrice = useAppSelector(state => state.reducerFilters.max_price);
 
      const [search, setSearch] = useState("");
+     const [sortAbc, setSortAbc] = useState("");
+
+     useEffect(() => {
+          if(filter.find(item => item.tag === "A до Z (А до Я)")) {
+               setSortAbc("a");
+          } else if(filter.find(item => item.tag === "Z до А (Я до А)")) {
+               setSortAbc("z");
+          } else setSortAbc("");
+          
+     }, [filter]);
 
      const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
 
-     const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({id_tags: ids, price_min: minPrice, price_max: maxPrice, title: search});
+     const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({id_tags: ids, price_min: minPrice, price_max: maxPrice, title: search, sort_abc: sortAbc});
 
      return(
           <div className={css.container}>
