@@ -1,0 +1,35 @@
+.list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #909090;
+    background-color: #F4F5F6;
+}
+
+.img {
+    cursor: pointer;
+}
+
+.btn {
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid #F53527;
+    background-color: #FFF; 
+    cursor: pointer;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    color: #F53527;
+}

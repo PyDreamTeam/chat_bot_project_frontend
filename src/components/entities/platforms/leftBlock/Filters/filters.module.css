@@ -1,0 +1,61 @@
+.listTags {
+    list-style: none;
+}
+
+.listTags:first-child {
+    margin-top: 24px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: 20px;
+}
+
+.blockInfo {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    cursor: pointer;
+}
+
+.groupInfo {
+    position: relative;
+}
+
+.info {
+    position: absolute;
+    top: -15px;
+    display: flex;
+    padding: 20px 16px;
+    width: 480px;
+    text-align: left;
+    z-index: 999;
+    background-color: #ffffff;
+    border: 1px solid #e1e2e6;
+    box-shadow: 3px 5px 10px #e1e2e6;
+    border-radius: 10px;
+}
+
+.infoText {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    padding-left: 36px;
+    gap: 10px;
+}
+
+.line {
+    width: 24px;
+    border: 1px solid #909090;
+}
+

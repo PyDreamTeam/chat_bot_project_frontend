@@ -13,7 +13,7 @@ const navElements = [
      { href: "/home", text: "О сервисе" },
      { href: "/home", text: "Статьи" },
      { href: "/home", text: "Решения" },
-     { href: "/platforms-filters", text: "Платформы" },
+     { href: "/platforms-filter", text: "Платформы" },
 ];
 
 const HeaderRightBlock = () => {

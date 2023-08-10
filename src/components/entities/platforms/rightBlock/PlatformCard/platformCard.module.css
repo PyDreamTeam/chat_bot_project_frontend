@@ -1,0 +1,52 @@
+.platform {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 864px;
+    margin-top: 40px;
+}
+
+.infoCard {
+    margin: 20px 0 16px 0;
+}
+
+.listTags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+}
+
+.tag {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #F4F5F6; 
+}
+
+.listMessages {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+}
+
+.logo {
+    position: relative;
+    border-radius: 20px;
+    background-color: #FFF;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05); 
+}
+
+.img {
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+.heart {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+}
