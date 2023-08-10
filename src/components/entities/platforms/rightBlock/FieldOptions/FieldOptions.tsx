@@ -1,6 +1,6 @@
 import Text from "@/src/components/shared/text/Text";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import { State, deleteAllFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
+import { deleteAllFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
 import css from "./fieldOptions.module.css";
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ import Image from "next/image";
 export const FieldOptions = () => {
 
      const dispatch = useAppDispatch();
-     const filters: State[] = useAppSelector((state) => state.reducerFilters.filters);
+     const filters = useAppSelector((state) => state.reducerFilters.filters);
 
      return (
           <div>
