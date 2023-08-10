@@ -24,6 +24,11 @@ const PlatformsFilters = () => {
 
      const [search, setSearch] = useState("");
      const [sortAbc, setSortAbc] = useState("");
+     const [pageNumber, setPageNumber] = useState(1);
+     
+     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
+
+     const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({id_tags: ids, price_min: minPrice, price_max: maxPrice, title: search, sort_abc: sortAbc, page_number: pageNumber, items_per_page: 40});
 
      useEffect(() => {
           if(filter.find(item => item.tag === "A до Z (А до Я)")) {
@@ -34,9 +39,23 @@ const PlatformsFilters = () => {
           
      }, [filter]);
 
-     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
+     const handleScroll = () => {
+          const scrollHeight = document.documentElement.scrollHeight;
+          const scrollTop = document.documentElement.scrollTop;
+          const windowHeight = window.innerHeight;
 
-     const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({id_tags: ids, price_min: minPrice, price_max: maxPrice, title: search, sort_abc: sortAbc});
+          if (scrollTop + windowHeight >= scrollHeight) {
+               setPageNumber(prevState => prevState + 1);
+          }
+     };
+
+     useEffect(() => {
+          window.addEventListener("scroll", handleScroll);
+
+          return () => {
+               window.removeEventListener("scroll", handleScroll);
+          };
+     }, []);
 
      return(
           <div className={css.container}>

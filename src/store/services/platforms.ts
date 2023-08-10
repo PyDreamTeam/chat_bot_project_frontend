@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const platforms = createApi({
      reducerPath: "platforms",
-     baseQuery: fetchBaseQuery({baseUrl: "http://python.twnsnd.online"}),
+     baseQuery: fetchBaseQuery({baseUrl: "https://python.twnsnd.online"}),
      endpoints: (builder) => ({
           getPlatformsFilters: builder.query({
                query: () => ({
@@ -11,7 +11,7 @@ export const platforms = createApi({
                })
           }),
           getPlatforms: builder.query({
-               query: (arg: {id_tags: Array<number>, price_min: number, price_max: number, title: string, sort_abc: string}) => ({
+               query: (arg: {id_tags?: Array<number>, price_min?: number, price_max?: number, title?: string, sort_abc?: string, page_number?: number, items_per_page?: number}) => ({
                     url: "/api/platform/filtration/",
                     method: "POST",
                     body: arg
