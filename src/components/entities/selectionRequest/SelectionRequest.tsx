@@ -14,7 +14,8 @@ import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
 import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 import { Button } from "../../shared/buttons/Button";
-import { useCreateOrderMutation } from "@/src/store/services/userAuth";
+import { useCreateOrderMutation, useDataUserQuery } from "@/src/store/services/userAuth";
+import Cookies from "js-cookie";
 
 interface IPropsRequest {
      open?: () => void;
@@ -31,10 +32,9 @@ interface IUserRequest {
 
 const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
      const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
-     const [requestSent, setRequestSent] = useState<boolean>(false);
-     const isRequestSent = () => {
-          setRequestSent(true);
-     };
+     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+     const { data } = useDataUserQuery(token);
+
      const timerRef = useRef<NodeJS.Timeout | null>(null);
 
      const startCloseTimer = () => {
@@ -49,7 +49,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
 
      return (
           <div>
-               {!requestSent ? (
+               {!isSuccess ? (
                     <div className={styles.container}>
                          <div className={styles.backGround}>
                               <div className={styles.logoWrapper}>
@@ -92,16 +92,20 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                         setTimeout(() => {
                                              formikBag.setSubmitting(false);
                                         }, 5000);
-                                        createOrder(values);
-                                        console.log(values);
-                                        isRequestSent();
-                                        startCloseTimer();
+                                        const requestValues = {
+                                             username: values.first_name || undefined,
+                                             email: values.email || undefined,
+                                             phone: values.phone_number || undefined,
+                                             text: values.comment || undefined,
+                                        };
+                                        createOrder({ requestValues, token });
+                                        isSuccess ? startCloseTimer() : null;
                                    }}
                               >
-                                   {({ isSubmitting, errors, touched, getFieldProps, isValid }) => {
+                                   {({ isSubmitting, errors, touched, getFieldProps, isValid, setFieldTouched }) => {
                                         return (
                                              <Form className={styles.form}>
-                                                  <FirstNameInput errors={errors} touched={touched} />
+                                                  <FirstNameInput errors={errors} touched={touched} value={data?.first_name} />
                                                   <EmailInput errors={errors} touched={touched} />
                                                   <PhoneNumberInput errors={errors} touched={touched} />
                                                   <CommentInput errors={errors} touched={touched} />
