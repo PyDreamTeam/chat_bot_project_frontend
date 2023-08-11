@@ -1,0 +1,15 @@
+.inputSearch {
+     width: 864px;
+     padding: 8px 0px 6px 32px;
+     border: none;
+     border-bottom: 1px solid #e1e2e6;
+     font-family: "Inter";
+     font-style: normal;
+     font-weight: 400;
+     font-size: 20px;
+     line-height: 28px;
+}
+
+.inputSearch:focus {
+    outline: none;
+}

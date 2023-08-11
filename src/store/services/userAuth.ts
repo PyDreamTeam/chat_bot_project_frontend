@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const userAuth = createApi({
      reducerPath: "userAuth",
-     baseQuery: fetchBaseQuery({baseUrl: "http://python.twnsnd.online:31080"}),
+     baseQuery: fetchBaseQuery({baseUrl: "https://python.twnsnd.online"}),
      endpoints: (builder) => ({
           dataUser: builder.query({
                query: (token: {access: string, refresh: string}) => ({
@@ -67,6 +67,13 @@ export const userAuth = createApi({
                     method: "POST",
                     body: {token: token}
                })
+          }),
+          createOrder: builder.mutation({
+               query: (arg) => ({
+                    url: "/api/ordercreate/",
+                    method: "POST",
+                    body: arg
+               })
           })
      })
 });
@@ -79,4 +86,5 @@ export const { useCreateUserMutation,
      useRecoveryPasswordMutation,
      useChangePasswordMutation,
      useVerifyUserMutation,
+     useCreateOrderMutation,
 } = userAuth;

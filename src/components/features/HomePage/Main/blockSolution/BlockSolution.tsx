@@ -7,8 +7,13 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import Slider from "@/src/components/shared/slider/Slider";
 import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
 import { CARDS_SOLUTIONS } from "@/src/components/shared/slider/CardsSolutionsConfig";
+import { useModal } from "@/src/hooks/useModal";
+import Modal from "@/src/components/shared/modal/Modal";
+import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 
 const BlockSolution = () => {
+     const { isShown, toggle } = useModal();
+
      return (
           <div className={styles.wrapper}>
                <div className={styles.blockText}>
@@ -20,7 +25,7 @@ const BlockSolution = () => {
                          бизнес-задачу
                     </Text>
                     <div className={styles.buttons}>
-                         <Button type="button" active={true} width={230}>
+                         <Button type="button" active={true} width={230} onClick={toggle}>
                               Подобрать решение
                          </Button>
                          <LinkShowAllCards href="/" />
@@ -29,6 +34,9 @@ const BlockSolution = () => {
                <Slider>
                     <ListCardsSolutions config={CARDS_SOLUTIONS} />
                </Slider>
+               <Modal isShown={isShown} hide={toggle}>
+                    <SelectionRequest close={toggle} />
+               </Modal>
           </div>
      );
 };

@@ -19,37 +19,6 @@ interface IUserRequest {
 export const BlockSelectionBot = () => {
      const { isShown, toggle } = useModal();
 
-     const selectionRequest: Array<IUserRequest> = [
-          {
-               htmlFor: "first_name",
-               label: "Имя",
-               type: "text",
-               name: "first_name",
-               placeholder: "Имя",
-          },
-          {
-               htmlFor: "email",
-               label: "E-mail",
-               type: "email",
-               name: "email",
-               placeholder: "example@mail.com",
-          },
-          {
-               htmlFor: "telephone",
-               label: "Телефон",
-               type: "tel",
-               name: "tel",
-               placeholder: "+7",
-          },
-          {
-               htmlFor: "comment",
-               label: "Комментарий",
-               type: "text",
-               name: "comment",
-               placeholder: "Текст (200 символов)",
-          },
-     ];
-
      return (
           <div className={css.wrapper}>
                <div className={css.container}>
@@ -67,7 +36,7 @@ export const BlockSelectionBot = () => {
                          </div>
 
                          <div className={css.button}>
-                              <Button type="button" active={true}  onClick={toggle}>
+                              <Button type="button" active={true} onClick={toggle}>
                                    Подобрать решение
                               </Button>
                          </div>
@@ -93,7 +62,7 @@ export const BlockSelectionBot = () => {
                     </div>
                </div>
                <Modal isShown={isShown} hide={toggle}>
-                    <SelectionRequest schema={selectionRequest} close={toggle} />
+                    <SelectionRequest close={toggle} />
                </Modal>
           </div>
      );
