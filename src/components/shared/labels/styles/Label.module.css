@@ -10,3 +10,11 @@
 .nameInput {
      padding-bottom: 8px;
 }
+.wrapper {
+     display: flex;
+     gap: 8px;
+     padding: 5px 12px;
+     border: 1px solid #909090;
+     border-radius: 20px;
+     background: #F4F5F6;
+}

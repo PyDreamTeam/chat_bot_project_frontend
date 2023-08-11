@@ -57,7 +57,7 @@ export const BlockSelectionBot = () => {
                          <div className={css.textInfo}>
                               <Title type="h1" color="black">
                                    Подбери{" "}
-                                   <ElemChooseChatBot variant={ElemVariantProps.home}/>
+                                   <ElemChooseChatBot variant={ElemVariantProps.home} text={"конструктор чат-ботов"}/>
                                    и автоматизируй свои продажи
                               </Title>
 

@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 742px;
+    border-radius: 20px;
+    border: 1px solid #E1E2E6;
+    padding: 8px 13px 8px 31px;
+    margin: 24px 0;
+}
+
+.wrapper.active {
+    border: 1px solid #4466F5;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.19);
+}
+.openTitle {
+    display: flex;
+    flex-direction: column;
+    padding-top: 21px;
+    max-width: 598px;
+}
+.header.open {
+    color: #4466f5;
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.content.show {
+    height: auto;
+    max-height: 99999px;
+    padding: 4px 0 15px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}

@@ -137,3 +137,36 @@
      border-top: 1px solid white;
      border-bottom: 1px solid white;
 }
+
+/*----------------------------------Button Favorites--------------------------------*/
+.btnFavorites {
+     font-family: Inter, sans-serif;
+     font-size: 14px;
+     font-style: normal;
+     font-weight: 400;
+     line-height: 140%;
+     padding: 7px 19px;
+     border-radius: 12px;
+     border: 1px solid #4466F5;
+     color: blue;
+     background: #FFF;
+     cursor: pointer;
+}
+
+/*----------------------------------Button Show More--------------------------------*/
+.showMore {
+     color: #4466f5;
+     display: flex;
+     gap: 8px;
+     padding-top: 24px;
+     cursor: pointer;
+}
+
+.arrow {
+     display: flex;
+     transition: transform 0.3s ease-in-out;
+}
+
+.showMore:hover .arrow {
+     transform: translateX(20px);
+}

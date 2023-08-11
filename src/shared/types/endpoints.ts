@@ -33,4 +33,7 @@ export interface ClientEndpoints {
      feedbackPage: {
           get: string,
      },
+     solutionDescriptionPage: {
+          get: string,
+     }
 }

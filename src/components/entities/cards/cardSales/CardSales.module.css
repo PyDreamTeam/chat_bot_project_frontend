@@ -1,0 +1,37 @@
+.wrapper {
+    margin: 0 64px;
+}
+
+.blueBlock {
+    background: #E2ECFF;
+    padding: 48px 85px 245px 85px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.price {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+.price p {
+    padding-top:20px;
+}
+
+.advantages {
+    position: absolute;
+    max-width: 282px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    left: 40px;
+    margin-top: 31px;
+}
+.btnWrapper{
+    margin: 78px 0 0 84px;
+}

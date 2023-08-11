@@ -10,7 +10,7 @@ export const TariffCard: FC<TariffPlanCard> = ({title, price, icon, advantage, b
      return (
           <div className={hotPlan ? `${css.hotPlan}` : `${css.container}`}>
                <div>
-                    {!hotPlan ? <div className={css.title}><Text type="reg18" color="grey">{title}</Text></div> : 
+                    {!hotPlan ? <div className={css.title}><Text type="reg18" color="grey">{title}</Text></div> :
                     <div className={css.titleBlock}>
                          <div className={css.title}>
                               <Text type="reg18" color="grey">{title}</Text>
@@ -20,7 +20,7 @@ export const TariffCard: FC<TariffPlanCard> = ({title, price, icon, advantage, b
                     }
                </div>
                <div className={css.priceBlock}>
-                    <Title type="h4" color="black">{price}<span className={css.price}>/месяц</span></Title>
+                    <Title type="h4" color="black">{price}<span className={css.price}>/month</span></Title>
                </div>
 
                <ul className={css.advantageBlock}>
