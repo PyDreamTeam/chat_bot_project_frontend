@@ -16,7 +16,28 @@ export interface TariffPlanCard {
     hotPlan?: boolean
     bestPlan?: string
 }
+export interface Labels{
+    name: React.ReactNode
+    label: React.ReactNode
+}
 
 export interface IListSliderCards {
     config: ReactNode[];
+}
+
+export interface Advantages{
+    icon: React.ReactNode
+    text: React.ReactNode
+}
+
+export interface StatisticsCards{
+    icon: React.ReactNode
+    title: React.ReactNode
+    text: React.ReactNode
+}
+
+export interface CardsFunnel{
+    icon: React.ReactNode
+    title: React.ReactNode
+    text: React.ReactNode
 }

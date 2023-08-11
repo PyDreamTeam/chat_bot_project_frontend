@@ -25,7 +25,9 @@ export const BlockSelectionBot = () => {
                     <div className={css.blockLeft}>
                          <div className={css.textInfo}>
                               <Title type="h1" color="black">
-                                   Подбери <ElemChooseChatBot variant={ElemVariantProps.home} />и автоматизируй свои продажи
+                                   Подбери{" "}
+                                   <ElemChooseChatBot variant={ElemVariantProps.home} text={"конструктор чат-ботов"}/>
+                                   и автоматизируй свои продажи
                               </Title>
 
                               <Text type="reg24" color="grey">

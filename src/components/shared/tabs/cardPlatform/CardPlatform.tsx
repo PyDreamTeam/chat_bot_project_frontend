@@ -10,7 +10,7 @@ export interface ICardPlatform {
      logo: React.ReactNode;
      title: JSX.Element;
      favorite: boolean;
-     price: JSX.Element;
+     price?: JSX.Element;
      description: JSX.Element;
      features: string[];
      messengers: string[];

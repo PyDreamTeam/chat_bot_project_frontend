@@ -12,7 +12,7 @@ const AuthLeftBlock = () => {
                <Link href="/home">
                     <Logo variant={LogoVariantProps.header} />
                     <div className={styles.blockBlue}>
-                         <ElemChooseChatBot variant={ElemVariantProps.auth}/>
+                         <ElemChooseChatBot variant={ElemVariantProps.auth} text={"конструктор чат-ботов"}/>
                     </div>
                </Link>
           </div>

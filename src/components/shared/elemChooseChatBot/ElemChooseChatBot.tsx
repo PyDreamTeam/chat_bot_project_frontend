@@ -10,10 +10,15 @@ type IElem = {
   variant: ElemVariantProps.home | ElemVariantProps.auth;
 };
 
-const ElemChooseChatBot: FC<IElem> = ({ variant }) => {
+interface TextProps {
+  text: string;
+}
+
+const ElemChooseChatBot: FC<IElem & TextProps> = ({ variant, text }) => {
      return (
           <>
-               <span className={`${css.elem} ${variant === ElemVariantProps.home ? css.homePage : css.authWrapper} `}>конструктор чат-ботов
+               <span className={`${css.elem} ${variant === ElemVariantProps.home ? css.homePage : css.authWrapper} `}>
+                    {text}
                     <div className={`${variant === ElemVariantProps.home ? css.dotHome : css.dotWrap} ${variant === ElemVariantProps.home ? css.leftHome : css.leftWrap}`}></div>
                     <div className={`${variant === ElemVariantProps.home ? css.dotHome : css.dotWrap} ${variant === ElemVariantProps.home ? css.topHome : css.topWrap}`}></div>
                     <div className={`${variant === ElemVariantProps.home ? css.dotHome : css.dotWrap} ${variant === ElemVariantProps.home ? css.rightHome : css.rightWrap}`}></div>
