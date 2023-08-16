@@ -14,8 +14,14 @@ import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/Pla
 import { useAppSelector } from "@/src/hooks/types";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { useRouter } from "next/router";
 
 const PlatformsFilters = () => {
+
+     const router = useRouter();
+     const handleClick = (idp: number) => {
+          router.push(`/platforms/platform/${idp}`);
+     };
 
      const filter = useAppSelector(state => state.reducerFilters.filters);
      const ids = filter.filter((item) => item.id >= 1).map(item => item.id);
@@ -58,52 +64,52 @@ const PlatformsFilters = () => {
      }, []);
 
      return(
-          <div className={css.container}>
-               <div className={css.border}>
-                    <Header type={"other"}/>
-               </div>
-               <div className={css.blockInfo}>
-                    <div className={css.groupLink}>
-                         <Text type="reg14" color="telegray"><Link href={"/home"} className={css.link}>Главная</Link>/ <Link href={"/home"} className={css.link}>Подобрать платформу</Link></Text>
+          <div>
+               <Header type={"other"}/>
+               <div className={css.container}>
+                    <div className={css.blockInfo}>
+                         <div>
+                              <Text type="reg14" color="telegray"><Link href={"/home"} className={css.link}>Главная</Link>/ <span className={css.link}>Подобрать платформу</span></Text>
+                         </div>
+                         <div className={css.title}>
+                              <Title type="h4" color="dark">Платформы</Title>
+                         </div>
                     </div>
-                    <div className={css.title}>
-                         <Title type="h4" color="dark">Платформы</Title>
-                    </div>
-               </div>
 
-               <div className={css.main}>
-                    <div className={css.leftBlock}>
-                         {isLoadingFilters ? 
+                    <div className={css.main}>
+                         <div className={css.leftBlock}>
+                              {isLoadingFilters ? 
                          <div className={css.loaderFilter}>
                               <Loader isLoading={isLoadingFilters}/>
                          </div> : 
                          <GroupFilters results={dataFilters?.results}/>}
-                    </div>
+                         </div>
 
-                    <div className={css.rightBlock}>
-                         <div className={css.groupSearch}>
-                              <Image src="/img/Icon_найти_платформу.svg" alt="search" width={24} height={24} className={css.search} />
-                              <InputSearch value={search} onChange={(e) => setSearch(e.target.value)}/>
-                         </div>
-                         <div>
-                              <FieldOptions/>
-                         </div>
-                         <AlphabeticalSorting/>
-                         {isLoadingPlatforms ? 
+                         <div className={css.rightBlock}>
+                              <div className={css.groupSearch}>
+                                   <Image src="/img/Icon_найти_платформу.svg" alt="search" width={24} height={24} className={css.search} />
+                                   <InputSearch value={search} onChange={(e) => setSearch(e.target.value)}/>
+                              </div>
+                              <div>
+                                   <FieldOptions/>
+                              </div>
+                              <AlphabeticalSorting/>
+                              {isLoadingPlatforms ? 
                          <div className={css.loaderPlatforms}>
                               <Loader isLoading={isLoadingPlatforms}/>
                          </div> :
                          <ul className={css.listPlatforms}>
                               {dataPlatforms?.results.map((item: PropsPlatformCard) => (
-                                   <li key={item.id}>
-                                        <PlatformCard id={item.id} title={item.title} short_description={item.short_description} tags={item.tags} image={item.image}/>
+                                   <li key={item.id} onClick={() => handleClick(item.id)}>
+                                        <PlatformCard id={item.id} title={item.title} short_description={item.short_description} tags={item.tags} image={item.image} type="filter"/>
                                    </li>
                               ))}
                          </ul>
-                         }
+                              }
+                         </div>
                     </div>
-               </div>
                
+               </div>
           </div>
      );
 };

@@ -42,6 +42,8 @@ export interface PropsGroupFilters {
     }[]
 }
 
+type Card = "filter" | "platform";
+
 export interface PropsPlatformCard {
     id: number
     title: string
@@ -52,6 +54,7 @@ export interface PropsPlatformCard {
     is_active?: boolean
     created_at?: string
     image: string
+    type?: Card
     tags: {
           id: number,
           tag: string,

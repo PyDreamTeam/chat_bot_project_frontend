@@ -16,8 +16,14 @@ export const platforms = createApi({
                     method: "POST",
                     body: arg
                })
+          }),
+          getPlatform: builder.query({
+               query: (id) => ({
+                    url: `/api/platform/platforms/${id}/`,
+                    method: "GET",
+               })
           })
      })
 });
 
-export const {useGetPlatformsFiltersQuery, useGetPlatformsQuery} = platforms;
+export const {useGetPlatformsFiltersQuery, useGetPlatformsQuery, useGetPlatformQuery} = platforms;

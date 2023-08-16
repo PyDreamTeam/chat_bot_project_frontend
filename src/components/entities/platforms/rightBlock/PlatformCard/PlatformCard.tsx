@@ -5,7 +5,7 @@ import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 
-export const PlatformCard: FC<PropsPlatformCard> = ({id, title, short_description, image, tags}) => {
+export const PlatformCard: FC<PropsPlatformCard> = ({id, title, short_description, image, tags = [], type, price}) => {
 
      const [isFavorite, setIsFavorite] = useState(false);
 
@@ -14,9 +14,10 @@ export const PlatformCard: FC<PropsPlatformCard> = ({id, title, short_descriptio
      };
 
      return(
-          <div className={css.platform}>
+          <div className={type === "filter" ? `${css.platform}` : `${css.onePlatform}`}>
                <div>
-                    <Title type="h5" color="dark">{title}</Title>
+                    <Title type="h4" color="dark">{title}</Title>
+                    {type === "platform" && <div className={css.price}><Title type="h3" color="dark">{price} ₽</Title></div>}
                     <div className={css.infoCard}>
                          <Text type="reg18" color="grey">{short_description}</Text>
                     </div>
