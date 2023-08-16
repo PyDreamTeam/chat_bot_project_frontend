@@ -17,6 +17,8 @@ import { Button } from "../../shared/buttons/Button";
 import { useCreateOrderMutation, useCreateOrderUnregisteredMutation, useDataUserQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import { error } from "console";
+import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
+import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 interface IPropsRequest {
      open?: () => void;
@@ -74,13 +76,17 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                         email: Yup.string()
                                              .email("Некорректный email")
                                              .required("Поле обязательное для заполнения. Введите email"),
-                                        //TODO: change phone input with react-phone-number-input
                                         phone_number: Yup.string()
-                                             .matches(
-                                                  /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
-                                                  "Некорректный номер телефона"
-                                             )
-                                             .required("Поле обязательное для заполнения. Введите номер телефона"),
+                                             .test({
+                                                  name: "phone_number",
+                                                  message: "Некорректный номер телефона",
+                                                  test: (value) => {
+                                                       if (value !== undefined) {
+                                                            return isPossiblePhoneNumber(value);
+                                                       }
+                                                  },
+                                             })
+                                             .required("Поле обязательное для заполнения"),
                                         comment: Yup.string()
                                              .min(5, "Введено 0/5 символов")
                                              .max(200, "Текст (от 5 до 200 символов)")
@@ -94,15 +100,23 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                              comment: values.comment || undefined,
                                         };
                                         if (data) {
-                                             createOrder({ requestValues, token }).then((response) => {
-                                                  response ? startCloseTimer() : null;
-                                                  formikBag.setSubmitting(false);
-                                             });
+                                             createOrder({ requestValues, token })
+                                                  .then((response) => {
+                                                       response ? startCloseTimer() : null;
+                                                       formikBag.setSubmitting(false);
+                                                  })
+                                                  .catch((error) => {
+                                                       console.error(error);
+                                                  });
                                         } else {
-                                             createOrderUnregistered(requestValues).then((response) => {
-                                                  response ? startCloseTimer() : null;
-                                                  formikBag.setSubmitting(false);
-                                             });
+                                             createOrderUnregistered(requestValues)
+                                                  .then((response) => {
+                                                       response ? startCloseTimer() : null;
+                                                       formikBag.setSubmitting(false);
+                                                  })
+                                                  .catch((error) => {
+                                                       console.error(error);
+                                                  });
                                         }
                                    }}
                               >
@@ -111,7 +125,8 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                              <Form className={styles.form}>
                                                   <FirstNameInput errors={errors} touched={touched} />
                                                   <EmailInput errors={errors} touched={touched} />
-                                                  <PhoneNumberInput errors={errors} touched={touched} />
+                                                  {/* <PhoneNumberInput errors={errors} touched={touched} /> */}
+                                                  <PhoneInput errors={errors} touched={touched} />
                                                   <CommentInput errors={errors} touched={touched} />
                                                   <Button disabled={isSubmitting} active={isValid} type={"submit"}>
                                                        Отправить
