@@ -25,6 +25,7 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
 
      const token = JSON.parse(Cookies.get("loginUser") || "[]");
      const {data} = useDataUserQuery(token);
+     const firstname = name || data?.first_name;
 
      const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
@@ -37,14 +38,21 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
      return (
           <header className={styles.headerWrapper}>
                <>
-                    {page === "startPage" &&
-                        <Title type={"h4"} color={"black"}>
-                             {title ? title : `Добро пожаловать, ${name}!`}
-                        </Title>}
-                    {page === "adminPage" &&
-                        <Title type={"h4"} color={"black"}>
-                             {title ? title : `Добро пожаловать, ${name}!`}
-                        </Title>}
+                    {page === "startPage" && (
+                         <Title type={"h4"} color={"black"}>
+                              {title ? title : `Добро пожаловать, ${firstname}!`}
+                         </Title>
+                    )}
+                    {page === "adminPage" && (
+                         <Title type={"h4"} color={"black"}>
+                              {title ? title : `Добро пожаловать, ${firstname}!`}
+                         </Title>
+                    )}
+                    {page === "superadminPage" && (
+                         <Title type={"h4"} color={"black"}>
+                              {title ? title : `Добро пожаловать, ${firstname}!`}
+                         </Title>
+                    )}
                     {page === "templates" && (
                          <Link href={"/my-account"}>
                               <Title type={"h4"} color={"black"}>
@@ -52,14 +60,16 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                               </Title>
                          </Link>
                     )}
-                    {(page === "profile_changeData" || page === "profile_templates") &&
-                        <Title type={"h4"} color={"black"}>
-                             Профиль
-                        </Title>}
-                    {(page === "profile_settings_password" || page === "profile_settings_personalData") &&
-                        <Title type={"h4"} color={"black"}>
-                             Настройки
-                        </Title>}
+                    {(page === "profile_changeData" || page === "profile_templates") && (
+                         <Title type={"h4"} color={"black"}>
+                              Профиль
+                         </Title>
+                    )}
+                    {(page === "profile_settings_password" || page === "profile_settings_personalData") && (
+                         <Title type={"h4"} color={"black"}>
+                              Настройки
+                         </Title>
+                    )}
                </>
                <UserInfo
                     profileOnClick={handleOpenProfile}

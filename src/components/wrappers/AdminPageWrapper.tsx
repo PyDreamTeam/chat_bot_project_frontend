@@ -16,14 +16,16 @@ interface IAccountWrapper {
 
 const AdminPageWrapper: FC<IAccountWrapper & WithChildren> = ({page,children }) => {
 
-     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-     const {data} = useDataUserQuery(token);
+     // const token = JSON.parse(Cookies.get("loginUser") || "[]");
+     // const {data} = useDataUserQuery(token);
      
      return (
           <div className={styles.accountWrapper}>
                <SidebarOfficeAdmin />
                <div className={styles.accountContentBlock}>
-                    <AccountPageHeader page={page} name={data?.first_name} />
+                    <AccountPageHeader page={page}
+                    // name={data?.first_name}
+                    />
                     {children}
                </div>
           </div>
