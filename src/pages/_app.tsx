@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
+import "../styles/react-phone-number-input.css";
 import React from "react";
 import { Provider } from "react-redux";
 import { store } from "../store/store";

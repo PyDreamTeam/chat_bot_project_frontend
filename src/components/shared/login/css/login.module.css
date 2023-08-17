@@ -65,6 +65,10 @@
     outline: none;
 }
 
+.inputError[name="comment"] {
+    height: 194px;
+}
+
 .groupStateEye {
     position: relative;
 }
