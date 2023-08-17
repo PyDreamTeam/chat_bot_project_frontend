@@ -69,12 +69,22 @@ export const userAuth = createApi({
                })
           }),
           createOrder: builder.mutation({
-               query: (arg) => ({
+               query: ({requestValues, token}) => ({
                     url: "/api/ordercreate/",
                     method: "POST",
-                    body: arg
+                    headers: {
+                         Authorization: `JWT ${token?.access}`
+                    },
+                    body: requestValues
                })
-          })
+          }),
+          createOrderUnregistered: builder.mutation({
+               query: (requestValues) => ({
+                    url: "/api/ordercreate/",
+                    method: "POST",
+                    body: requestValues
+               })
+          }),
      })
 });
 
@@ -87,4 +97,5 @@ export const { useCreateUserMutation,
      useChangePasswordMutation,
      useVerifyUserMutation,
      useCreateOrderMutation,
+     useCreateOrderUnregisteredMutation,
 } = userAuth;

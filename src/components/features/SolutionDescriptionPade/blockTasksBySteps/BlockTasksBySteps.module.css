@@ -1,0 +1,32 @@
+.wrapper {
+    padding: 80px 0 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    position: relative;
+}
+
+.blockText p {
+    max-width: 645px;
+}
+.blockText h3 {
+    padding-bottom: 24px;
+}
+.blockScroll {
+    padding-top: 24px;
+}
+.blockAccordion {
+    height: 675px;
+    overflow: auto;
+    cursor: s-resize;
+}
+
+.scroll {
+    position: absolute;
+    height: 685px;
+    width: 17px;
+    background: white;
+    top: 25%;
+    left: 742px;
+}

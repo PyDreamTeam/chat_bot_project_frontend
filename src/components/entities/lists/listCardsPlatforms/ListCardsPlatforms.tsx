@@ -17,7 +17,6 @@ const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ config = [] }) => {
                          logo={tab.logo}
                          title={tab.title}
                          favorite={tab.favorite}
-                         price={tab.price}
                          description={tab.description}
                          features={tab.features}
                          messengers={tab.messengers}

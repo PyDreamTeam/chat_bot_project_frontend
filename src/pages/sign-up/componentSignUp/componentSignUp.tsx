@@ -6,7 +6,7 @@ import { FC, useEffect} from "react";
 import * as Yup from "yup";
 import css from "./componentSignUp.module.css";
 import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
-import { useCreateUserMutation } from "@/src/store/services/userAuth";
+import { useCreateUserMutation, useLoginUserMutation } from "@/src/store/services/userAuth";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
@@ -14,6 +14,7 @@ import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
 import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/RePasswordInput";
 import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
+import Cookies from "js-cookie";
 
 const err = {
      min: "Содержит не менее 8 символов",
@@ -26,17 +27,10 @@ const err = {
 const TemplateSignUp = () => {
 
      const [createUser, {isSuccess, error: errorData, isLoading}] = useCreateUserMutation(); 
+     const [loginUser, {isSuccess: isSuccessLogin, data}] = useLoginUserMutation();
 
      const route = useRouter();
-
-     useEffect(() => {
-          if(isSuccess) {
-               route.push("/sign-in");
-          }
-     }, [isSuccess]);
-
      
-
      return (
           <div className={css.container}>
                <AuthWrapper titleText={"Регистрация"}>
@@ -75,8 +69,25 @@ const TemplateSignUp = () => {
                          >
                               {({ errors, touched, getFieldProps, isValid }) => {
 
+                                   const dataEmail = getFieldProps("email");
+                                   const email = dataEmail.value;
+
                                    const dataPassword = getFieldProps("password");
                                    const password = dataPassword.value;
+
+                                   useEffect(() => {
+                                        if(isSuccess) {
+                                             loginUser({email, password});
+                                        }
+                                   }, [isSuccess]);
+
+                                   useEffect(() => {
+                                        if(isSuccessLogin) {
+                                             Cookies.set("loginUser", JSON.stringify(data));
+                                             route.push("/my-account");
+                                        }
+                                   }, [isSuccessLogin]);
+
                                    return (
                                         <Form className={css.form}>
                                              <FirstNameInput errors={errors} touched={touched}/>

@@ -8,4 +8,5 @@ export const AccountPageTypes = {
      profile_settings_personalData: "profile_settings_personalData",
      profile_settings_password: "profile_settings_password",
      profile_changeData: "profile_changeData",
+     solution_description_page: "solution_description_page",
 } as const;

@@ -22,11 +22,6 @@ export const CARDS_PLATFORMS = [
                </Title>
           ),
           favorite: false,
-          price: (
-               <Title type={"h4"} color={"black"}>
-                    40 BYN
-               </Title>
-          ),
           description: (
                <Text type={"reg18"} color={"telegray"}>
                     Мультиканальная платформа для создания чат-ботов с "искусственным интеллектом" и голосовых ботов
@@ -44,11 +39,6 @@ export const CARDS_PLATFORMS = [
                </Title>
           ),
           favorite: true,
-          price: (
-               <Title type={"h4"} color={"black"}>
-                    40 BYN
-               </Title>
-          ),
           description: (
                <Text type={"reg18"} color={"telegray"}>
                     Мультиканальная платформа для создания чат-ботов с "искусственным интеллектом" и голосовых ботов
@@ -66,11 +56,6 @@ export const CARDS_PLATFORMS = [
                </Title>
           ),
           favorite: false,
-          price: (
-               <Title type={"h4"} color={"black"}>
-                    40 BYN
-               </Title>
-          ),
           description: (
                <Text type={"reg18"} color={"telegray"}>
                     Мультиканальная платформа для создания чат-ботов с "искусственным интеллектом" и голосовых ботов
@@ -88,11 +73,6 @@ export const CARDS_PLATFORMS = [
                </Title>
           ),
           favorite: false,
-          price: (
-               <Title type={"h4"} color={"black"}>
-                    40 BYN
-               </Title>
-          ),
           description: (
                <Text type={"reg18"} color={"telegray"}>
                     Мультиканальная платформа для создания чат-ботов с "искусственным интеллектом" и голосовых ботов
@@ -110,11 +90,6 @@ export const CARDS_PLATFORMS = [
                </Title>
           ),
           favorite: false,
-          price: (
-               <Title type={"h4"} color={"black"}>
-                    40 BYN
-               </Title>
-          ),
           description: (
                <Text type={"reg18"} color={"telegray"}>
                     Мультиканальная платформа для создания чат-ботов с "искусственным интеллектом" и голосовых ботов

@@ -37,4 +37,7 @@ export const clientEndpoints: ClientEndpoints = {
      feedbackPage: {
           get: "/feedback-page",
      },
+     solutionDescriptionPage: {
+          get: "/solution-description-page",
+     },
 };
