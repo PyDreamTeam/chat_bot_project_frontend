@@ -43,7 +43,11 @@
 }
 
 .blockBlue {
-     align-self: flex-end;
+    align-self: flex-end;
+    padding: 3px 3px;
+    font-size: 16px;
+    line-height: 150%;
+    width: 197px;
 }
 
 .wrapper {
