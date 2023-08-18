@@ -45,7 +45,7 @@ const PlatformsFilters = () => {
                </div>
                <div className={css.blockInfo}>
                     <div className={css.groupLink}>
-                         <Text type="reg14" color="telegray"><Link href={"/home"} className={css.link}>Главная</Link>/ <Link href={"/home"} className={css.link}>Подобрать платформу</Link></Text>
+                         <Text type="reg14" color="telegray"><Link href={"/home"} className={css.link}>Главная</Link>/<Link href={"/home"} className={css.link}>Подобрать платформу</Link></Text>
                     </div>
                     <div className={css.title}>
                          <Title type="h4" color="dark">Платформы</Title>
