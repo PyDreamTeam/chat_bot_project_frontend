@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 import css from "./platformCard.module.css";
 import { PropsPlatformCard } from "../../types";
 import Title from "@/src/components/shared/text/Title";
@@ -7,16 +7,37 @@ import Image from "next/image";
 
 export const PlatformCard: FC<PropsPlatformCard> = ({id, title, short_description, image, tags = [], type, price}) => {
 
-     const [isFavorite, setIsFavorite] = useState(false);
+     const [imageHeart, setImageHeart] = useState("dislike");
 
-     const handleIsFavorite = () => {
-          setIsFavorite(!isFavorite);
+     const handleClickHeart = (e: MouseEvent) => {
+          e.stopPropagation();
+          if (imageHeart === "like") {
+               setImageHeart("dislike");
+          }
+          if (imageHeart === "dislike") {
+               setImageHeart("like");
+          }
+          if (imageHeart === "hoverHeart") {
+               setImageHeart("like");
+          }
+     };
+     const handleMouseEnter = () => {
+          if(imageHeart === "dislike")
+               setImageHeart("hoverHeart");
+     };
+     const handleMouseLeave = () => {
+          if(imageHeart === "hoverHeart") {
+               setImageHeart("dislike");
+          }
      };
 
      return(
-          <div className={type === "filter" ? `${css.platform}` : `${css.onePlatform}`}>
+          <div className={type === "filter" ? `${css.platforms}` : `${css.onePlatform}`}>
                <div>
-                    <Title type="h4" color="dark">{title}</Title>
+                    <div className={css.title}>
+                         <h4 className={type === "filter" ? `${css.platform}` : `${css.platformOne}`}>{title}</h4>
+                         <Image src={`/platforms/${imageHeart}.svg`} alt="heart" width={24} height={24} onClick={handleClickHeart} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} className={css.heart}/>
+                    </div>
                     {type === "platform" && <div className={css.price}><Title type="h3" color="dark">{price} ₽</Title></div>}
                     <div className={css.infoCard}>
                          <Text type="reg18" color="grey">{short_description}</Text>
@@ -30,7 +51,6 @@ export const PlatformCard: FC<PropsPlatformCard> = ({id, title, short_descriptio
                                         <Text type="reg18" color="grey">
                                              {item.tag}
                                         </Text>
-                                        
                                    </li>
                               ))}
                     </ul>
@@ -47,13 +67,8 @@ export const PlatformCard: FC<PropsPlatformCard> = ({id, title, short_descriptio
 
 
                <div className={css.logo}>
-                    <Image src={image} width={250} height={250} alt="logo"className={css.img}/>
-                    <div className={css.heart}>
-                         {isFavorite ? 
-                         <Image src={"/platforms/like.svg"} width={24} height={24} alt="heart" onClick={handleIsFavorite}/> : 
-                         <Image src={"/platforms/dislike.svg"} width={24} height={24} alt="heart" onClick={handleIsFavorite}/>
-                         }
-                    </div>
+                    <Image src={image ? `${image}` : ""} width={250} height={250} alt="logo"className={css.img}/>
+                    
                </div>
           </div>
      );

@@ -6,14 +6,15 @@ import css from "./platform.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Title from "@/src/components/shared/text/Title";
-import { TagFilter } from "@/src/components/entities/filters/Tag/Tag";
+import { GroupFilters } from "@/src/components/entities/filters/GropFilters/GroupFilters";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
 
 const Platform = () => {
 
      const router = useRouter();
      const { idp } = router.query;
 
-     const { data } = useGetPlatformQuery(idp);
+     const { data } = useGetPlatformQuery(Number(idp));
      const { data: dataFilters } = useGetPlatformsFiltersQuery({});
 
      console.log("data", dataFilters);
@@ -28,9 +29,12 @@ const Platform = () => {
                     <div className={css.platform}>
                          <PlatformCard id={data?.id} title={data?.title} short_description={data?.short_description} tags={data?.tags} image={data?.image} type="platform" price={data?.price}/>
                     </div>
-                    <Title type="h4" color="dark">Характеристики</Title>
-                    <TagFilter tag="hello" is={false}/>
+                    <div className={css.settings}>
+                         <Title type="h4" color="dark">Характеристики</Title>
+                    </div>
+                    <GroupFilters results={dataFilters?.results}/>
                </div>
+               <Footer/>
           </div>
      );
 };

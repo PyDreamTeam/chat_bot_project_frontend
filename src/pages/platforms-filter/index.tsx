@@ -100,7 +100,11 @@ const PlatformsFilters = () => {
                          </div> :
                          <ul className={css.listPlatforms}>
                               {dataPlatforms?.results.map((item: PropsPlatformCard) => (
-                                   <li key={item.id} onClick={() => handleClick(item.id)}>
+                                   <li key={item.id} onClick={() => {
+                                        if (item.id) {
+                                             handleClick(item.id);
+                                        }
+                                   }}>
                                         <PlatformCard id={item.id} title={item.title} short_description={item.short_description} tags={item.tags} image={item.image} type="filter"/>
                                    </li>
                               ))}

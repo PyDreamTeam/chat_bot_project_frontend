@@ -1,3 +1,4 @@
+import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const platforms = createApi({
@@ -17,7 +18,7 @@ export const platforms = createApi({
                     body: arg
                })
           }),
-          getPlatform: builder.query({
+          getPlatform: builder.query<PropsPlatformCard, number>({
                query: (id) => ({
                     url: `/api/platform/platforms/${id}/`,
                     method: "GET",
