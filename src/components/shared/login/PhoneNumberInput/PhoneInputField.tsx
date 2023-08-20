@@ -11,7 +11,7 @@ const PhoneInputField = ({ ...props }) => {
                value={field.value}
                international
                countryCallingCodeEditable={true}
-               defaultCountry="RU"
+               defaultCountry="BY"
                onChange={(value) => {
                     helpers.setValue(value);
                }}

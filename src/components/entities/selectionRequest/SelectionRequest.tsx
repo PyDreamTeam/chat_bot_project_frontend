@@ -25,11 +25,19 @@ interface IPropsRequest {
      close?: () => void;
 }
 
+interface IInitialTouched {
+     first_name?: boolean;
+     email?: boolean;
+     phone_number?: boolean;
+     comment?: boolean;
+}
+
 // TODO: unhandled server errors?
 
 const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
      const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
      const [createOrderUnregistered, { isSuccess: isSuccessAnonym }] = useCreateOrderUnregisteredMutation();
+     const [state, setState] = useState<IInitialTouched>();
      const token = JSON.parse(Cookies.get("loginUser") || "[]");
      const { data } = useDataUserQuery(token);
      const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -39,6 +47,27 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                close?.();
           }, 5000);
      };
+     //  TODO: delete comments
+
+     //  const initialTouched: IInitialTouched = {
+     //       first_name: false,
+     //       email: false,
+     //       phone_number: false,
+     //       comment: false,
+     //  };
+
+     //  TODO: delete setState ?
+     useEffect(() => {
+          if (data) {
+               console.log("setState start");
+               setState({
+                    first_name: true,
+                    email: true,
+                    phone_number: false,
+                    comment: false,
+               });
+          }
+     }, []);
 
      useEffect(() => {
           return () => clearTimeout(timerRef.current as NodeJS.Timeout);
@@ -52,7 +81,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                               <div className={styles.logoWrapper}>
                                    <Logo variant={LogoVariantProps.header} />
                                    <div className={styles.blockBlue}>
-                                        <ElemChooseChatBot variant={ElemVariantProps.auth} text="конструктор чат-ботов" />
+                                        <ElemChooseChatBot variant={ElemVariantProps.auth} text="Конструктор чат-ботов" />
                                    </div>
                               </div>
                          </div>
@@ -67,6 +96,13 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                         email: data?.email || "",
                                         phone_number: "",
                                         comment: "",
+                                   }}
+                                   // TODO:   initialTouched={state}
+                                   initialTouched={{
+                                        first_name: Boolean(data?.first_name),
+                                        email: Boolean(data?.email),
+                                        phone_number: Boolean(data?.phone_number),
+                                        comment: Boolean(data?.comment),
                                    }}
                                    validationSchema={Yup.object().shape({
                                         first_name: Yup.string()
@@ -119,13 +155,14 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                                   });
                                         }
                                    }}
+                                   //    enableReinitialize
+                                   //    validateOnMount
                               >
                                    {({ isSubmitting, errors, touched, getFieldProps, isValid, setFieldTouched }) => {
                                         return (
                                              <Form className={styles.form}>
-                                                  <FirstNameInput errors={errors} touched={touched} />
+                                                  <FirstNameInput errors={errors} touched={touched} isValid={isValid} />
                                                   <EmailInput errors={errors} touched={touched} />
-                                                  {/* <PhoneNumberInput errors={errors} touched={touched} /> */}
                                                   <PhoneInput errors={errors} touched={touched} />
                                                   <CommentInput errors={errors} touched={touched} />
                                                   <Button disabled={isSubmitting} active={isValid} type={"submit"}>

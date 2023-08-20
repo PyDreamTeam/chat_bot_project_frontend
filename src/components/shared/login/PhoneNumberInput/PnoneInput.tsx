@@ -28,7 +28,15 @@ export const PhoneInput: FC<PropsPhoneInput> = ({ errors, touched }) => {
                          name="phone_number"
                          type="text"
                          placeholder="Write your phone number here"
-                         className={errors.phone_number && touched.phone_number ? `${css.inputError}` : `${css.input}`}
+                         className={
+                              errors.phone_number
+                                   ? touched.phone_number
+                                        ? `${css.inputError}`
+                                        : `${css.input}`
+                                   : touched.phone_number
+                                   ? `${css.inputValid}`
+                                   : `${css.input}`
+                         }
                     />
                </div>
                <div className={css.error}>
