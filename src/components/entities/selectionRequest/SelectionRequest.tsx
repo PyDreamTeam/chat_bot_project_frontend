@@ -52,7 +52,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                               <div className={styles.logoWrapper}>
                                    <Logo variant={LogoVariantProps.header} />
                                    <div className={styles.blockBlue}>
-                                        <ElemChooseChatBot variant={ElemVariantProps.auth} text="Конструктор чат-ботов" />
+                                        <ElemChooseChatBot variant={ElemVariantProps.auth} text="конструктор чат-ботов" />
                                    </div>
                               </div>
                          </div>

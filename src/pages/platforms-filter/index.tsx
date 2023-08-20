@@ -74,8 +74,6 @@ const PlatformsFilters = () => {
                          <div className={css.title}>
                               <Title type="h4" color="dark">Платформы</Title>
                          </div>
-                    </div>
-
                     <div className={css.main}>
                          <div className={css.leftBlock}>
                               {isLoadingFilters ? 
