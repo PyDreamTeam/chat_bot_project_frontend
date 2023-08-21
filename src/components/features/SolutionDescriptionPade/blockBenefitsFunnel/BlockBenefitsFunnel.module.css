@@ -11,10 +11,10 @@
     display: flex;
     gap: 168px;
 }
-.blockText h3{
+.blockText h3 {
     line-height: 1;
 }
-.blockText p{
+.blockText p {
     margin-right: 70px;
     max-width: 570px;
 }

@@ -11,38 +11,50 @@ import ButtonSubmit from "@/src/components/shared/buttons/ButtonSubmit";
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 
 const Templates = () => {
-     const RatesConfig = [
-          {
-               title: "Basic",
-               price: 19000,
-               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"],
-          },
-          {
-               title: "Basic",
-               price: 19000,
-               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"],
-          },
-          {
-               title: "Basic",
-               price: 19000,
-               descriptions: ["Описание тарифа, его особенности", "Описание тарифа, его особенности", "Описание тарифа, его особенности"],
-          },
-     ];
+    const RatesConfig = [
+        {
+            title: "Basic",
+            price: 19000,
+            descriptions: [
+                "Описание тарифа, его особенности",
+                "Описание тарифа, его особенности",
+                "Описание тарифа, его особенности",
+            ],
+        },
+        {
+            title: "Basic",
+            price: 19000,
+            descriptions: [
+                "Описание тарифа, его особенности",
+                "Описание тарифа, его особенности",
+                "Описание тарифа, его особенности",
+            ],
+        },
+        {
+            title: "Basic",
+            price: 19000,
+            descriptions: [
+                "Описание тарифа, его особенности",
+                "Описание тарифа, его особенности",
+                "Описание тарифа, его особенности",
+            ],
+        },
+    ];
 
-     return (
-          <AccountPageWrapper page="templates">
-               <DescriptionBlock
-                    logo={PropsConfig[0].logo}
-                    title={PropsConfig[0].title}
-                    description={PropsConfig[0].description}
-                    image={image}
-                    selectedPlatforms={PropsConfig[0].selectedPlatforms}
-               />
-               <AccordionBlock />
-               <FunctionalBlock />
-               <Rates cards={RatesConfig} />
-          </AccountPageWrapper>
-     );
+    return (
+        <AccountPageWrapper page="templates">
+            <DescriptionBlock
+                logo={PropsConfig[0].logo}
+                title={PropsConfig[0].title}
+                description={PropsConfig[0].description}
+                image={image}
+                selectedPlatforms={PropsConfig[0].selectedPlatforms}
+            />
+            <AccordionBlock />
+            <FunctionalBlock />
+            <Rates cards={RatesConfig} />
+        </AccountPageWrapper>
+    );
 };
 
 export default Templates;

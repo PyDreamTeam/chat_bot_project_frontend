@@ -1,120 +1,120 @@
 .inputFieldFooter {
-     width: 100%;
-     background: none;
-     border: 1px solid #595F6C;
-     border-radius: 20px;
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-size: 14px;
-     line-height: 18px;
-     padding: 16px;
-     color: #E1E2E6;
+    width: 100%;
+    background: none;
+    border: 1px solid #595f6c;
+    border-radius: 20px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 16px;
+    color: #e1e2e6;
 }
 
 .inputFieldFooter::placeholder {
-     color: #E1E2E6;
+    color: #e1e2e6;
 }
 
 .footerInputBlock {
-     color: #e1e2e6;
-     max-width: 424px;
-     padding: 10px 0;
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     position: relative;
+    color: #e1e2e6;
+    max-width: 424px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
 }
 
 .inputSearchBlock {
-     width: 100%;
-     padding-top: 9px;
+    width: 100%;
+    padding-top: 9px;
 }
 
 .inputSearchForm {
-     position: relative;
+    position: relative;
 }
 
 .inputSearchField {
-     cursor: pointer;
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 400;
-     font-size: 20px;
-     line-height: 28px;
-     width: 100%;
-     padding-bottom: 8px;
-     padding-left: 35px;
-     border: none;
-     border-bottom: 1px solid #e1e2e6;
+    cursor: pointer;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    width: 100%;
+    padding-bottom: 8px;
+    padding-left: 35px;
+    border: none;
+    border-bottom: 1px solid #e1e2e6;
 }
 
 .inputSearchImg {
-     position: absolute;
-     top: 9%;
-     left: 2px;
+    position: absolute;
+    top: 9%;
+    left: 2px;
 }
 
 .inputFieldFooter:focus,
 .inputFieldFooter:active {
-     border: 1px solid #4466F5;
-     outline: none;
+    border: 1px solid #4466f5;
+    outline: none;
 }
 
 .inputSearchField:active,
 .inputSearchField:focus {
-     border: none;
-     outline: none;
-     border-bottom: 1px solid #e1e2e6;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #e1e2e6;
 }
 
 .inputError {
-     color: #f53527;
-     display: block;
-     white-space: pre-line;
+    color: #f53527;
+    display: block;
+    white-space: pre-line;
 }
 
 .inputImage {
-     width: 20px;
-     height: 20px;
-     margin: 0 -40px;
-     cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin: 0 -40px;
+    cursor: pointer;
 }
 
 .footerArrowButton {
-     position: absolute;
-     top: 44%;
-     right: 0;
-     border: none;
-     background: none;
-     outline: none;
-     cursor: pointer;
+    position: absolute;
+    top: 44%;
+    right: 0;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .inputField:focus,
 .inputField:active {
-     background: #f4f5f6;
-     border: none;
-     outline: none;
+    background: #f4f5f6;
+    border: none;
+    outline: none;
 }
 
 .inputField:-webkit-autofill,
 .inputField:-webkit-autofill:hover,
 .inputField:-webkit-autofill:focus {
-     background: #f4f5f6;
-     border: none;
-     box-shadow: 0 0 0 1000px #f4f5f6 inset;
-     -webkit-box-shadow: 0 0 0 1000px #f4f5f6 inset;
-     transition: background-color 5000s ease-in-out 0s;
-     -webkit-text-fill-color: black;
+    background: #f4f5f6;
+    border: none;
+    box-shadow: 0 0 0 1000px #f4f5f6 inset;
+    -webkit-box-shadow: 0 0 0 1000px #f4f5f6 inset;
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: black;
 }
 
 .inputFieldValid {
-     border: 1px solid rgb(0, 156, 38);
+    border: 1px solid rgb(0, 156, 38);
 }
 
 .inputField:focus,
 .inputField:active {
-     border: 1px solid rgb(0, 156, 38);
-     box-shadow: rgb(106, 237, 97) 0 0 2px 1px, rgb(177, 247, 160) 0 0 0 3px;
-     outline: none;
+    border: 1px solid rgb(0, 156, 38);
+    box-shadow: rgb(106, 237, 97) 0 0 2px 1px, rgb(177, 247, 160) 0 0 0 3px;
+    outline: none;
 }

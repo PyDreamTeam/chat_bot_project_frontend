@@ -1,6 +1,6 @@
 .wrapper {
     width: 100%;
-    background-color: #EEF4FD;
+    background-color: #eef4fd;
 }
 
 .container {
@@ -38,11 +38,11 @@
     width: 229px;
     padding: 16px;
     border-radius: 16px 16px 16px 0;
-    background: rgba(255, 150, 232, 0.60);
+    background: rgba(255, 150, 232, 0.6);
     backdrop-filter: blur(7px);
 }
 
-.one {   
+.one {
     top: 79px;
     left: -14px;
 }
@@ -58,5 +58,5 @@
     bottom: -43px;
     width: 280px;
     border-radius: 16px 16px 0 16px;
-    background: rgba(174, 247, 252, 0.60);
+    background: rgba(174, 247, 252, 0.6);
 }

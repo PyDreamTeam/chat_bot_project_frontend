@@ -5,26 +5,26 @@ import { TsConfigJson } from "type-fest";
 import JSX = TsConfigJson.CompilerOptions.JSX;
 
 export interface ICard {
-     id?: number;
-     img: React.ReactNode;
-     name: JSX.Element;
-     jobTitle: JSX.Element;
-     text: JSX.Element;
+    id?: number;
+    img: React.ReactNode;
+    name: JSX.Element;
+    jobTitle: JSX.Element;
+    text: JSX.Element;
 }
 
 const BigCardFeedback: FC<ICard> = ({ img, name, jobTitle, text }) => {
-     return (
-          <div className={`${styles.card} ${styles.bigCard}`}>
-               <div className={styles.top}>
-                    {img}
-                    <div className={styles.title}>
-                         {name}
-                         {jobTitle}
-                    </div>
-               </div>
-               {text}
-          </div>
-     );
+    return (
+        <div className={`${styles.card} ${styles.bigCard}`}>
+            <div className={styles.top}>
+                {img}
+                <div className={styles.title}>
+                    {name}
+                    {jobTitle}
+                </div>
+            </div>
+            {text}
+        </div>
+    );
 };
 
 export default BigCardFeedback;

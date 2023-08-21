@@ -8,19 +8,19 @@ import AccordionList from "@/src/components/entities/lists/accordionList/Accordi
 import Title from "@/src/components/shared/text/Title";
 
 const AccordionBlock = () => {
-     return (
-          <div className={styles.wrapper}>
-               <div className={styles.leftBlock}>
-                    <Title type={"h3"} color={"black"}>
-                         Что умеет чат-бот?
-                    </Title>
-                    <AccordionList data={CONFIG_ACCORDION} />
-               </div>
-               <div className={styles.rightBlock}>
-                    <Image src={imageAccor} alt="Image" />
-               </div>
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.leftBlock}>
+                <Title type={"h3"} color={"black"}>
+                    Что умеет чат-бот?
+                </Title>
+                <AccordionList data={CONFIG_ACCORDION} />
+            </div>
+            <div className={styles.rightBlock}>
+                <Image src={imageAccor} alt="Image" />
+            </div>
+        </div>
+    );
 };
 
 export default AccordionBlock;

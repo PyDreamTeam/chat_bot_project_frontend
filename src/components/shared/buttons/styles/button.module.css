@@ -3,13 +3,13 @@
     padding: 10px 24px;
     border-radius: 16px;
     border: none;
-    background-color: #4466F5;
+    background-color: #4466f5;
     font-size: 18px;
     font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
-    color: #FFFFFF;
+    color: #ffffff;
     cursor: pointer;
 }
 
@@ -21,14 +21,14 @@
     width: 100%;
     padding: 10px 24px;
     border-radius: 16px;
-    background: #E1E2E6;
+    background: #e1e2e6;
     border: none;
     font-size: 18px;
     font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 500;
-    line-height: 28px; 
-    color: #FFFFFF;
+    line-height: 28px;
+    color: #ffffff;
     cursor: pointer;
 }
 
@@ -37,31 +37,31 @@
 .active {
     width: 100%;
     margin-top: 16px;
-    padding: 10px 24px; 
+    padding: 10px 24px;
     border-radius: 16px;
-    background: #4466F5;
+    background: #4466f5;
     border: none;
     font-family: Inter, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: 28px; 
-    color: #FFFFFF;
+    line-height: 28px;
+    color: #ffffff;
     cursor: pointer;
 }
 
 .disabled {
     width: 100%;
     margin-top: 16px;
-    padding: 10px 24px; 
+    padding: 10px 24px;
     border-radius: 16px;
-    background: #E1E2E6;
+    background: #e1e2e6;
     border: none;
     font-family: Inter, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: 28px; 
-    color: #FFFFFF;
+    line-height: 28px;
+    color: #ffffff;
     cursor: pointer;
 }

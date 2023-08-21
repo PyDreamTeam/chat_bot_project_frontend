@@ -7,44 +7,43 @@ import { useLogoutUserMutation, useVerifyUserMutation } from "@/src/store/servic
 import { useRouter } from "next/router";
 
 interface IListSidebar {
-     config: ITabItem[];
+    config: ITabItem[];
 }
 
 const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], activeTabItem }) => {
+    const [logoutUser, { isSuccess: isSuccessLogout }] = useLogoutUserMutation();
+    const [verifyUser, { isError }] = useVerifyUserMutation();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const route = useRouter();
 
-     const [logoutUser, {isSuccess: isSuccessLogout}] = useLogoutUserMutation();
-     const [verifyUser, {isError}] = useVerifyUserMutation();
-     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-     const route = useRouter();
+    useEffect(() => {
+        if (isSuccessLogout) {
+            Cookies.remove("loginUser");
+            verifyUser(token.refresh);
+        }
+    }, [isSuccessLogout]);
 
-     useEffect(() => {
-          if(isSuccessLogout) {
-               Cookies.remove("loginUser");
-               verifyUser(token.refresh);
-          }
-     }, [isSuccessLogout]);
+    useEffect(() => {
+        if (isError) {
+            route.push("/sign-in");
+        }
+    }, [isError]);
 
-     useEffect(() => {
-          if(isError) {
-               route.push("/sign-in");
-          }
-     }, [isError]);
-
-     return (
-          <nav className={styles.list}>
-               {config.map((tab) => (
-                    <TabItem 
-                         href={tab.href} 
-                         activeTabItem={activeTabItem}
-                         key={tab.id}
-                         id={tab.id}
-                         title={tab.title}
-                         icon={tab.icon}
-                    />
-               ))}
-               <ButtonExit onClick={() => logoutUser(token)}/>
-          </nav>
-     );
+    return (
+        <nav className={styles.list}>
+            {config.map((tab) => (
+                <TabItem
+                    href={tab.href}
+                    activeTabItem={activeTabItem}
+                    key={tab.id}
+                    id={tab.id}
+                    title={tab.title}
+                    icon={tab.icon}
+                />
+            ))}
+            <ButtonExit onClick={() => logoutUser(token)} />
+        </nav>
+    );
 };
 
 export default ListSidebar;

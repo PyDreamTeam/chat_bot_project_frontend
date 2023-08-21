@@ -6,6 +6,8 @@ interface PropsInputSearch {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputSearch: FC<PropsInputSearch> = ({ value, onChange }) => <input value={value} onChange={onChange} className={style.inputSearch} placeholder="Найти платформу" />;
+const InputSearch: FC<PropsInputSearch> = ({ value, onChange }) => (
+    <input value={value} onChange={onChange} className={style.inputSearch} placeholder="Найти платформу" />
+);
 
 export default InputSearch;

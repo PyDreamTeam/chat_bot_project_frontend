@@ -1,172 +1,172 @@
 /*    --------------------   SUBMIT BUTTON   -------------------------        */
 
 .submit {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 500;
-     font-size: 24px;
-     line-height: 28px;
-     color: #ffffff;
-     background: #4466f5;
-     border-radius: 20px;
-     border: none;
-     padding: 18px;
-     width: 97%;
-     cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #ffffff;
+    background: #4466f5;
+    border-radius: 20px;
+    border: none;
+    padding: 18px;
+    width: 97%;
+    cursor: pointer;
 }
 .submitDisabled {
-     background: #4466f5;
+    background: #4466f5;
 }
 
 /*   ---------------------------- SIGN IN/ SIGN UP BUTTONS  ------------------------          */
 
 .buttonAuth {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 500;
-     font-size: 18px;
-     line-height: 28px;
-     border-radius: 16px;
-     padding: 10px 24px;
-     align-self: start;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    border-radius: 16px;
+    padding: 10px 24px;
+    align-self: start;
 }
 .signIn {
-     color: #4466f5;
-     border: 1px solid #4466f5;
-     background: white;
+    color: #4466f5;
+    border: 1px solid #4466f5;
+    background: white;
 }
 .signUp {
-     background: #4466f5;
-     color: #ffffff;
+    background: #4466f5;
+    color: #ffffff;
 }
 
 /* --------------------------------- EYE BUTTON------------------------------------------------*/
 
 .buttonEye {
-     cursor: pointer;
-     position: absolute;
-     top: 48px;
-     right: 33px;
+    cursor: pointer;
+    position: absolute;
+    top: 48px;
+    right: 33px;
 }
 
 /* ---------------------------------  CREDENTIALS BUTTON------------------------------------------------*/
 
 .credentials {
-     max-width: 157px;
-     margin-top: 8px;
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 500;
-     font-size: 18px;
-     line-height: 28px;
-     color: #4466f5;
-     border: 1px solid #4466f5;
-     background: transparent;
-     box-sizing: border-box;
+    max-width: 157px;
+    margin-top: 8px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: #4466f5;
+    border: 1px solid #4466f5;
+    background: transparent;
+    box-sizing: border-box;
 }
 
 .googleLoginButton svg {
-     width: 100px !important;
-     height: 100px !important;
+    width: 100px !important;
+    height: 100px !important;
 }
 .facebookLogin {
-     background: transparent;
-     border: none;
-     cursor: pointer;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 /* --------------------------------- For RadioInput SUBMIT BUTTON----------------------------------*/
 .btnForRadio {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 400;
-     font-size: 18px;
-     line-height: 150%;
-     border-radius: 20px;
-     border: 1px solid #4466f5;
-     padding: 5px 10px;
-     cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    border-radius: 20px;
+    border: 1px solid #4466f5;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .canselRadioInput {
-     color: #595f6c;
-     background: transparent;
+    color: #595f6c;
+    background: transparent;
 }
 
 .applyRadioInput {
-     color: #ffffff;
-     background: #4466f5;
+    color: #ffffff;
+    background: #4466f5;
 }
 .vkLogin {
-     border: none;
-     background: transparent;
-     cursor: pointer;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .templatesFooterButton {
-     cursor: pointer;
-     color: #595f6c;
-     border: none;
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 500;
-     font-size: 20px;
-     padding: 16px 23px;
-     background: #e2ecff;
-     border-radius: 20px;
-     width: 100%;
+    cursor: pointer;
+    color: #595f6c;
+    border: none;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 16px 23px;
+    background: #e2ecff;
+    border-radius: 20px;
+    width: 100%;
 }
 
 /*---------------------------------------Button Exit---------------------------------*/
 .buttonExit {
-     display: flex;
-     width: 292px;
-     padding: 14px 0 14px 30px;
-     align-items: center;
-     gap: 12px;
-     font-family: Inter, sans-serif;
-     font-size: 20px;
-     font-style: normal;
-     font-weight: 500;
-     line-height: 28px;
-     background: transparent;
-     border: 1px solid #E2ECFF;
-     cursor: pointer;
+    display: flex;
+    width: 292px;
+    padding: 14px 0 14px 30px;
+    align-items: center;
+    gap: 12px;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    background: transparent;
+    border: 1px solid #e2ecff;
+    cursor: pointer;
 }
 .buttonExit:hover {
-     border-top: 1px solid white;
-     border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
 }
 
 /*----------------------------------Button Favorites--------------------------------*/
 .btnFavorites {
-     font-family: Inter, sans-serif;
-     font-size: 14px;
-     font-style: normal;
-     font-weight: 400;
-     line-height: 140%;
-     padding: 7px 19px;
-     border-radius: 12px;
-     border: 1px solid #4466F5;
-     color: blue;
-     background: #FFF;
-     cursor: pointer;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    padding: 7px 19px;
+    border-radius: 12px;
+    border: 1px solid #4466f5;
+    color: blue;
+    background: #fff;
+    cursor: pointer;
 }
 
 /*----------------------------------Button Show More--------------------------------*/
 .showMore {
-     color: #4466f5;
-     display: flex;
-     gap: 8px;
-     padding-top: 24px;
-     cursor: pointer;
+    color: #4466f5;
+    display: flex;
+    gap: 8px;
+    padding-top: 24px;
+    cursor: pointer;
 }
 
 .arrow {
-     display: flex;
-     transition: transform 0.3s ease-in-out;
+    display: flex;
+    transition: transform 0.3s ease-in-out;
 }
 
 .showMore:hover .arrow {
-     transform: translateX(20px);
+    transform: translateX(20px);
 }

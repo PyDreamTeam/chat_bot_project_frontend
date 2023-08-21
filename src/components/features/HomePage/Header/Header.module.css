@@ -1,17 +1,17 @@
 .headerWrapper {
-     border-bottom: 0.5px solid  #595F6C;
-     background: #EEF4FD;
+    border-bottom: 0.5px solid #595f6c;
+    background: #eef4fd;
 }
 
 .headerWrapperOther {
-     background-color: white;
-     border-bottom: 0.5px solid  #595F6C;
+    background-color: white;
+    border-bottom: 0.5px solid #595f6c;
 }
 
 .header {
-     display: flex;
-     justify-content: space-between;
-     max-width: 1440px;
-     padding: 39px 88px;
-     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;
+    padding: 39px 88px;
+    margin: 0 auto;
 }

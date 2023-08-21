@@ -1,18 +1,18 @@
 .solutionItemBlock {
-     display: flex;
-     justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 .solutionItemLeftBlock {
-     display: flex;
-     flex-direction: column;
-     gap: 23px;
-     max-width: 527px;
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    max-width: 527px;
 }
 .solutionItemImg {
-     width: 100%;
-     background: #ffffff;
-     box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
-     border-radius: 20px;
-     max-width: 300px;
-     max-height: 265px;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
+    border-radius: 20px;
+    max-width: 300px;
+    max-height: 265px;
 }

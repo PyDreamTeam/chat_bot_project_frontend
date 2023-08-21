@@ -1,59 +1,56 @@
 .authRightBlock {
-     display: flex;
-     justify-content: center;
-     margin: 0 auto;
-     max-width: 488px;
-
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 488px;
 }
 .formCenter {
-     display: flex;
-     justify-content: center;
-
+    display: flex;
+    justify-content: center;
 }
 .authContentBlock {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     min-width: 477px;
-     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 477px;
+    min-height: 100vh;
 }
 .questionRoute {
-     padding: 16px 0 28px;
-     text-align: center;
+    padding: 16px 0 28px;
+    text-align: center;
 }
 .questionSignIn {
-     padding: 18px 0 33px;
-     text-align: center;
+    padding: 18px 0 33px;
+    text-align: center;
 }
 .centerText {
-     text-align: center;
-     margin-top: 33px;
+    text-align: center;
+    margin-top: 33px;
 }
 .signIn {
-     padding: 46px 0 0 20px;
-     text-align: left;
+    padding: 46px 0 0 20px;
+    text-align: left;
 }
 
 .addEmail {
-     padding:  12px 0 35px ;
+    padding: 12px 0 35px;
 }
 .updateName {
-     padding: 25px 0 34px 20px;
+    padding: 25px 0 34px 20px;
 }
 .agreement {
-     padding: 16px 20px;
-     text-align: center;
+    padding: 16px 20px;
+    text-align: center;
 }
 
 .authContentBlock a {
-     color: #4466f5;
+    color: #4466f5;
 }
 
-.signChoice{
-     text-align: left;
-
+.signChoice {
+    text-align: left;
 }
 
-.titleUp{
-     padding-top: 230px;
+.titleUp {
+    padding-top: 230px;
 }
