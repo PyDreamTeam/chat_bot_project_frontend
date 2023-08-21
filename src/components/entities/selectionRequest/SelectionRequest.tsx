@@ -49,13 +49,6 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
      };
      //  TODO: delete comments
 
-     //  const initialTouched: IInitialTouched = {
-     //       first_name: false,
-     //       email: false,
-     //       phone_number: false,
-     //       comment: false,
-     //  };
-
      //  TODO: delete setState ?
      useEffect(() => {
           if (data) {
@@ -161,7 +154,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                    {({ isSubmitting, errors, touched, getFieldProps, isValid, setFieldTouched }) => {
                                         return (
                                              <Form className={styles.form}>
-                                                  <FirstNameInput errors={errors} touched={touched} isValid={isValid} />
+                                                  <FirstNameInput errors={errors} touched={touched} />
                                                   <EmailInput errors={errors} touched={touched} />
                                                   <PhoneInput errors={errors} touched={touched} />
                                                   <CommentInput errors={errors} touched={touched} />

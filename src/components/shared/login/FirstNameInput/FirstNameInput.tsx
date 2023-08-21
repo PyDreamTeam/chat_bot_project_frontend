@@ -7,10 +7,9 @@ import css from "../css/login.module.css";
 interface PropsFirstNameInput {
      errors: FormikErrors<{ first_name: string }>;
      touched: FormikTouched<{ first_name: string }>;
-     isValid: boolean;
 }
 
-export const FirstNameInput: FC<PropsFirstNameInput> = ({ errors, touched, isValid }) => {
+export const FirstNameInput: FC<PropsFirstNameInput> = ({ errors, touched }) => {
      return (
           <div className={css.blockInput}>
                <label htmlFor="first_name">
