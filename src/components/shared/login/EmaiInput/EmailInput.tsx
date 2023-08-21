@@ -9,61 +9,68 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { SerializedError } from "@reduxjs/toolkit";
 
 const initialValues = {
-     email: ""
+    email: "",
 };
 
 type DefaultEmailError = FetchBaseQueryError & {
     data?: {
-         email?: string[]
-    }
-}
+        email?: string[];
+    };
+};
 
-type EmailErrors = FetchBaseQueryError | SerializedError
+type EmailErrors = FetchBaseQueryError | SerializedError;
 
 function isDefaultEmailError(error?: EmailErrors): error is DefaultEmailError {
-     return (error as DefaultEmailError)?.data?.email !== undefined;
+    return (error as DefaultEmailError)?.data?.email !== undefined;
 }
 
 interface PropsEmailNameInput {
-     errors: FormikErrors<{email: string}>;
-     touched: FormikTouched<{email: string}>;
-     error?: FetchBaseQueryError | SerializedError
+    errors: FormikErrors<{ email: string }>;
+    touched: FormikTouched<{ email: string }>;
+    error?: FetchBaseQueryError | SerializedError;
 }
 
 const emailErrorMap: Record<string, string> = {
-     "Enter a valid email address.": "Неккоректный email",
-     "user with this email already exists.": "Пользователь с таким email уже существует",
+    "Enter a valid email address.": "Неккоректный email",
+    "user with this email already exists.": "Пользователь с таким email уже существует",
 };
 
-export const EmailInput: FC<PropsEmailNameInput> = ({errors, touched, error}) => {
+export const EmailInput: FC<PropsEmailNameInput> = ({ errors, touched, error }) => {
+    const { setFieldError } = useFormikContext<typeof initialValues>();
 
-     const {setFieldError} = useFormikContext<typeof initialValues>();
+    useEffect(() => {
+        if (isDefaultEmailError(error)) {
+            const errorKey = String(error?.data?.email?.[0]);
+            const errorMessage = emailErrorMap[errorKey] || "Произошла ошбика";
+            setFieldError("email", errorMessage);
+        }
+    }, [error]);
 
-     useEffect(() => {
-          if(isDefaultEmailError(error)) {
-               const errorKey = String(error?.data?.email?.[0]);
-               const errorMessage = emailErrorMap[errorKey] || "Произошла ошбика";
-               setFieldError("email", errorMessage);
-          }
-     }, [error]);
-
-     return(
-          <div className={css.blockInput}>
-               <label htmlFor="email">
-                    <Text type="reg18" color="black">E-mail</Text>
-               </label>
-               <div className={css.errorIcon}>
-                    {errors.email && touched.email && <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />}
-               </div>
-               <div>
-                    <Field type="email" name="email" placeholder="example@mail.com" className={errors.email && touched.email ? `${css.inputError}` : `${css.input}`}/>
-               </div>
-               <div className={css.error}>
-                    <Text type="reg16" color="red">
-                         <ErrorMessage name="email"/>
-                    </Text>
-               </div>
-              
-          </div>
-     );
+    return (
+        <div className={css.blockInput}>
+            <label htmlFor="email">
+                <Text type="reg18" color="black">
+                    E-mail
+                </Text>
+            </label>
+            <div className={css.errorIcon}>
+                {errors.email && touched.email && (
+                    <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />
+                )}
+            </div>
+            <div>
+                <Field
+                    type="email"
+                    name="email"
+                    placeholder="example@mail.com"
+                    className={errors.email && touched.email ? `${css.inputError}` : `${css.input}`}
+                />
+            </div>
+            <div className={css.error}>
+                <Text type="reg16" color="red">
+                    <ErrorMessage name="email" />
+                </Text>
+            </div>
+        </div>
+    );
 };

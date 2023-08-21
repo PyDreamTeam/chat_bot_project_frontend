@@ -1,21 +1,21 @@
 .footerWrapper {
-     background: #17181A;
+    background: #17181a;
 }
 
 .footer {
-     max-width: 1440px;
-     max-height: 385px;
-     display: flex;
-     justify-content: space-between;
-     padding: 80px 88px 80px 88px;
-     margin: auto;
+    max-width: 1440px;
+    max-height: 385px;
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 88px 80px 88px;
+    margin: auto;
 }
 
 .logoSvg {
-     fill: #ffffff;
-     transition: 0.3s;
+    fill: #ffffff;
+    transition: 0.3s;
 }
 
 .logoSvg:hover {
-     fill: powderblue;
+    fill: powderblue;
 }

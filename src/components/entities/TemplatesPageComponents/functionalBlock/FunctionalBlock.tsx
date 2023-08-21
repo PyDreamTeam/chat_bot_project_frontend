@@ -8,19 +8,19 @@ import styles from "./styles/FunctionalBlock.module.css";
 import Title from "@/src/components/shared/text/Title";
 
 const FunctionalBlock = () => {
-     return (
-          <div className={styles.wrapper}>
-               <div className={styles.leftBlock}>
-                    <Image src={imageDev} alt="Developers" />
-               </div>
-               <div className={styles.rightBlock}>
-                    <Title type={"h3"} color={"black"}>
-                         Функционал для настроек чат-ботов
-                    </Title>
-                    <ListWithCheck titleConfig={CONFIG} />
-               </div>
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.leftBlock}>
+                <Image src={imageDev} alt="Developers" />
+            </div>
+            <div className={styles.rightBlock}>
+                <Title type={"h3"} color={"black"}>
+                    Функционал для настроек чат-ботов
+                </Title>
+                <ListWithCheck titleConfig={CONFIG} />
+            </div>
+        </div>
+    );
 };
 
 export default FunctionalBlock;

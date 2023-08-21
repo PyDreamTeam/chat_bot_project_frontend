@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styles from "./styles/CardAdvantages.module.css";
 import { TsConfigJson } from "type-fest";
@@ -10,15 +10,13 @@ export interface ICard {
     text: JSX.Element;
 }
 
-const CardAdvantages: FC<ICard> = ({icon, text = ""}) => {
-     return (
-          <div className={styles.card}>
-               <div className={styles.icon}>
-                    {icon}
-               </div>
-               {text}
-          </div>
-     );
+const CardAdvantages: FC<ICard> = ({ icon, text = "" }) => {
+    return (
+        <div className={styles.card}>
+            <div className={styles.icon}>{icon}</div>
+            {text}
+        </div>
+    );
 };
 
 export default CardAdvantages;

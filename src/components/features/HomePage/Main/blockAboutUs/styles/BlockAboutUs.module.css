@@ -12,7 +12,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-
 }
 .blockText h5 {
     padding-top: 6px;
@@ -22,12 +21,16 @@
     position: relative;
     display: flex;
     gap: 51px;
-    padding: 28px 0 0  12px;
+    padding: 28px 0 0 12px;
 }
-.circleYellow, .circleBlue, .circleBrown {
+.circleYellow,
+.circleBlue,
+.circleBrown {
     position: absolute;
 }
-.circleYellow::before, .circleBlue::before, .circleBrown::before {
+.circleYellow::before,
+.circleBlue::before,
+.circleBrown::before {
     content: "";
     position: absolute;
     top: -4px;
@@ -38,14 +41,14 @@
 }
 .circleYellow::before {
     left: -13px;
-    background-color: #FFF6C8;
+    background-color: #fff6c8;
 }
 
 .circleBlue::before {
     left: -10px;
-    background-color: #95B9EC;
+    background-color: #95b9ec;
 }
 .circleBrown::before {
     right: -32px;
-    background-color: #C1B2A3;
+    background-color: #c1b2a3;
 }

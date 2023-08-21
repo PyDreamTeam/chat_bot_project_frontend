@@ -12,52 +12,55 @@ import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { PasswordInput } from "@/src/components/shared/login/PasswordInput/PasswordInput";
 
 const ComponentSignIn = () => {
+    const route = useRouter();
+    const [loginUser, { data, isSuccess, isLoading, error }] = useLoginUserMutation();
 
-     const route = useRouter();
-     const [loginUser, {data, isSuccess, isLoading, error}] = useLoginUserMutation();
-     
-     useEffect(() => {
-          if(isSuccess) {
-               Cookies.set("loginUser", JSON.stringify(data));
-               route.push("/my-account");
-          }
-     }, [isSuccess]);
+    useEffect(() => {
+        if (isSuccess) {
+            Cookies.set("loginUser", JSON.stringify(data));
+            route.push("/my-account");
+        }
+    }, [isSuccess]);
 
-     return (
-          <div>
-               <Formik
-                    initialValues={{
-                         email: "",
-                         password: "",
-                    }}
-                    validationSchema={Yup.object().shape({
-                         email: Yup.string().email("Некорректный email").required("Введите e-mail"),
-                         password: Yup.string().required("Введите пароль")
-                    })}
-                    onSubmit={(values) => {
-                         loginUser(values);
-                    }}
-               >
-                    {({ errors, touched, isValid }) => {
+    return (
+        <div>
+            <Formik
+                initialValues={{
+                    email: "",
+                    password: "",
+                }}
+                validationSchema={Yup.object().shape({
+                    email: Yup.string().email("Некорректный email").required("Введите e-mail"),
+                    password: Yup.string().required("Введите пароль"),
+                })}
+                onSubmit={(values) => {
+                    loginUser(values);
+                }}
+            >
+                {({ errors, touched, isValid }) => {
+                    return (
+                        <Form className={css.form}>
+                            <EmailInput errors={errors} touched={touched} error={error} />
+                            <PasswordInput errors={errors} touched={touched} error={error} />
 
-                         return (
-                              <Form className={css.form}>
-                                   <EmailInput errors={errors} touched={touched} error={error}/>
-                                   <PasswordInput errors={errors} touched={touched} error={error}/>
-
-                                   <ButtonLogin disabled={isLoading} active={isValid} type="submit">Войти</ButtonLogin>
-                                   <div className={css.blockInfo}>
-                                        <Text type={"reg16"} color={"grey"}>
-                                             Забыли пароль?
-                                             <Link href={"/recovery-password"} className={css.link}> Восстановите здесь</Link>
-                                        </Text>
-                                   </div>
-                              </Form>
-                         );
-                    }}
-               </Formik>
-          </div >
-     );
+                            <ButtonLogin disabled={isLoading} active={isValid} type="submit">
+                                Войти
+                            </ButtonLogin>
+                            <div className={css.blockInfo}>
+                                <Text type={"reg16"} color={"grey"}>
+                                    Забыли пароль?
+                                    <Link href={"/recovery-password"} className={css.link}>
+                                        {" "}
+                                        Восстановите здесь
+                                    </Link>
+                                </Text>
+                            </div>
+                        </Form>
+                    );
+                }}
+            </Formik>
+        </div>
+    );
 };
 
 export default ComponentSignIn;

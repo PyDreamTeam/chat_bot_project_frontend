@@ -1,27 +1,27 @@
 .authTitle {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 600;
-     font-size: 56px;
-     line-height: 110%;
-     display: block;
-     color: #17181a;
-     text-align: center;
-     letter-spacing: -0.01em;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 110%;
+    display: block;
+    color: #17181a;
+    text-align: center;
+    letter-spacing: -0.01em;
 }
 .profileTitle {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 600;
-     font-size: 24px;
-     line-height: 29px;
-     color: #000000;
-     display: block;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    display: block;
 }
 .textAlignLeft {
-     text-align: left;
+    text-align: left;
 }
 
-.textAlignLeftRestore{
-     padding-top: 107px;
+.textAlignLeftRestore {
+    padding-top: 107px;
 }

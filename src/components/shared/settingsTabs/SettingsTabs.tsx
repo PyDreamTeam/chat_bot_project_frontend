@@ -3,18 +3,18 @@ import SettingsTabItem, { ISettingsTabItem } from "./settingsTabItem/SettingsTab
 import styles from "./styles/SettingsTabs.module.css";
 
 interface ISettingsTabs {
-     config: ISettingsTabItem[];
-     activeTabItem: number;
+    config: ISettingsTabItem[];
+    activeTabItem: number;
 }
 
 const SettingsTabs: FC<ISettingsTabs> = ({ config, activeTabItem }) => {
-     return (
-          <nav className={styles.tabs}>
-               {config.map((tab) => (
-                    <SettingsTabItem tabProps={tab} key={tab.id} activeTabItem={activeTabItem} />
-               ))}
-          </nav>
-     );
+    return (
+        <nav className={styles.tabs}>
+            {config.map((tab) => (
+                <SettingsTabItem tabProps={tab} key={tab.id} activeTabItem={activeTabItem} />
+            ))}
+        </nav>
+    );
 };
 
 export default SettingsTabs;

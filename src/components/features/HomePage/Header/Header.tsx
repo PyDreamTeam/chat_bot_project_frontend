@@ -4,18 +4,18 @@ import HeaderRightBlock from "./components/HeaderRightBlock/HeaderRightBlock";
 import { FC } from "react";
 
 interface PropsHeader {
-     type?: "start" | "other"
+    type?: "start" | "other";
 }
 
-const Header: FC<PropsHeader> = ({type}) => {
-     return (
-          <header className={type === "start" ? `${styles.headerWrapper}` : `${styles.headerWrapperOther}`}>
-               <div className={styles.header}>
-                    <HeaderLeftBlock />
-                    <HeaderRightBlock />
-               </div>
-          </header>
-     );
+const Header: FC<PropsHeader> = ({ type }) => {
+    return (
+        <header className={type === "start" ? `${styles.headerWrapper}` : `${styles.headerWrapperOther}`}>
+            <div className={styles.header}>
+                <HeaderLeftBlock />
+                <HeaderRightBlock />
+            </div>
+        </header>
+    );
 };
 
 export default Header;

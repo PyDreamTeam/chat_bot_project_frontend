@@ -1,16 +1,16 @@
 .accountWrapper {
-     display: flex;
+    display: flex;
 }
 
 .accountContentBlock {
-     width: 100%;
-     display: flex;
-     flex-direction: column;
-     padding: 40px 72px 48px 72px;
-     max-width: 1440px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 72px 48px 72px;
+    max-width: 1440px;
 }
 
 .templatesButtonBlock {
-     margin: 0 auto;
-     padding: 81px 0 79px;
+    margin: 0 auto;
+    padding: 81px 0 79px;
 }

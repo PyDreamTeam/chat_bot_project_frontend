@@ -7,24 +7,24 @@ import Image from "next/image";
 import InputSearch from "./img/SearchInput.svg";
 
 const InputSearchField = () => {
-     return (
-          <Formik initialValues={{ searchValue: "" }} onSubmit={() => console.log(1)}>
-               {({ touched }) => (
-                    <div className={styles.inputSearchBlock}>
-                         <Form className={styles.inputSearchForm}>
-                              <Image className={styles.inputSearchImg} alt={"magnifier"} src={InputSearch} />
-                              <Field
-                                   className={styles.inputSearchField}
-                                   type={"text"}
-                                   id={"searchField"}
-                                   name={"search"}
-                                   placeholder={"Найти платформу"}
-                              />
-                         </Form>
-                    </div>
-               )}
-          </Formik>
-     );
+    return (
+        <Formik initialValues={{ searchValue: "" }} onSubmit={() => console.log(1)}>
+            {({ touched }) => (
+                <div className={styles.inputSearchBlock}>
+                    <Form className={styles.inputSearchForm}>
+                        <Image className={styles.inputSearchImg} alt={"magnifier"} src={InputSearch} />
+                        <Field
+                            className={styles.inputSearchField}
+                            type={"text"}
+                            id={"searchField"}
+                            name={"search"}
+                            placeholder={"Найти платформу"}
+                        />
+                    </Form>
+                </div>
+            )}
+        </Formik>
+    );
 };
 
 export default InputSearchField;

@@ -5,51 +5,57 @@ import ArrowSlideLeft from "../arrowSlideLeft/ArrowSlideLeft";
 import { IListSliderCards } from "@/src/types/index";
 
 interface ISliderProps {
-     children?: ReactElement<IListSliderCards>;
+    children?: ReactElement<IListSliderCards>;
 }
 
 const Slider: FC<ISliderProps> = ({ children }) => {
-     const CARD_WIDTH = 468;
-     let childrenCount: number;
-     const [offset, setOffset] = useState(0);
-     const [isEnableRight, setIsEnableRight] = useState(true);
-     const [isEnableLeft, setIsEnableLeft] = useState(false);
+    const CARD_WIDTH = 468;
+    let childrenCount: number;
+    const [offset, setOffset] = useState(0);
+    const [isEnableRight, setIsEnableRight] = useState(true);
+    const [isEnableLeft, setIsEnableLeft] = useState(false);
 
-     children ? (childrenCount = children?.props.config.length) : (childrenCount = 1);
+    children ? (childrenCount = children?.props.config.length) : (childrenCount = 1);
 
-     const handleRightClick = () => {
-          setOffset((currentOffset) => {
-               const newOffset = currentOffset - CARD_WIDTH;
-               const maxOffset = -CARD_WIDTH * (childrenCount - 1);
+    const handleRightClick = () => {
+        setOffset((currentOffset) => {
+            const newOffset = currentOffset - CARD_WIDTH;
+            const maxOffset = -CARD_WIDTH * (childrenCount - 1);
 
-               newOffset <= maxOffset ? setIsEnableRight(false) : setIsEnableLeft(true);
+            newOffset <= maxOffset ? setIsEnableRight(false) : setIsEnableLeft(true);
 
-               return Math.max(newOffset, maxOffset);
-          });
-     };
-     const handleLeftClick = () => {
-          setOffset((currentOffset) => {
-               const newOffset = currentOffset + CARD_WIDTH;
+            return Math.max(newOffset, maxOffset);
+        });
+    };
+    const handleLeftClick = () => {
+        setOffset((currentOffset) => {
+            const newOffset = currentOffset + CARD_WIDTH;
 
-               newOffset >= 0 ? setIsEnableLeft(false) : setIsEnableRight(true);
+            newOffset >= 0 ? setIsEnableLeft(false) : setIsEnableRight(true);
 
-               return Math.min(newOffset, 0);
-          });
-     };
+            return Math.min(newOffset, 0);
+        });
+    };
 
-     return (
-          <div className={styles.wrapper}>
-               <div className={styles.window}>
-                    <div className={styles.itemsContainer} style={{ transform: `translateX(${offset}px)` }}>
-                         {children}
-                    </div>
-               </div>
-               <div className={styles.arrows}>
-                    <ArrowSlideLeft className={isEnableLeft ? `${styles.arrow}` : `${styles.arrowDisabled}`} onClick={handleLeftClick} />
-                    <ArrowSlideRight className={isEnableRight ? `${styles.arrow}` : `${styles.arrowDisabled}`} onClick={handleRightClick} />
-               </div>
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.window}>
+                <div className={styles.itemsContainer} style={{ transform: `translateX(${offset}px)` }}>
+                    {children}
+                </div>
+            </div>
+            <div className={styles.arrows}>
+                <ArrowSlideLeft
+                    className={isEnableLeft ? `${styles.arrow}` : `${styles.arrowDisabled}`}
+                    onClick={handleLeftClick}
+                />
+                <ArrowSlideRight
+                    className={isEnableRight ? `${styles.arrow}` : `${styles.arrowDisabled}`}
+                    onClick={handleRightClick}
+                />
+            </div>
+        </div>
+    );
 };
 
 export default Slider;

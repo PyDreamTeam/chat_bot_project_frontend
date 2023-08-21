@@ -6,19 +6,17 @@ import styles from "./styles/AuthWrapper.module.css";
 import Image from "next/image";
 
 export interface IAuthWrapper {
-     titleText: string;
-     children: JSX.Element | string;
+    titleText: string;
+    children: JSX.Element | string;
 }
 
 const AuthWrapper: FC<WithChildren & IAuthWrapper> = ({ children, titleText }) => {
-     return (
-          <div className={styles.authWrapper}>
-               <AuthLeftBlock />
-               <AuthRightBlock titleText={titleText}>
-                    {children}
-               </AuthRightBlock>
-          </div>
-     );
+    return (
+        <div className={styles.authWrapper}>
+            <AuthLeftBlock />
+            <AuthRightBlock titleText={titleText}>{children}</AuthRightBlock>
+        </div>
+    );
 };
 
 export default AuthWrapper;

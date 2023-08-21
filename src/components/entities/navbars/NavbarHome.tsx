@@ -5,31 +5,31 @@ import styles from "./styles/styles.module.css";
 import Text from "@/src/components/shared/text/Text";
 
 interface NavElement {
-     text: string;
-     href: string;
+    text: string;
+    href: string;
 }
 
 export enum NavBarClasses {
-     navBarHome = "navBarHome",
+    navBarHome = "navBarHome",
 }
 
 interface NavbarHomeProps {
-     navElements: Array<NavElement>;
-     className: NavBarClasses.navBarHome;
+    navElements: Array<NavElement>;
+    className: NavBarClasses.navBarHome;
 }
 
 const NavbarHome = ({ navElements, className }: NavbarHomeProps) => {
-     return (
-          <nav className={styles[className]}>
-               {navElements.map(({ href, text }) => (
-                    <Link key={uuid()} href={href}>
-                         <Text type={"reg16"} color={"black"}>
-                              {text}
-                         </Text>
-                    </Link>
-               ))}
-          </nav>
-     );
+    return (
+        <nav className={styles[className]}>
+            {navElements.map(({ href, text }) => (
+                <Link key={uuid()} href={href}>
+                    <Text type={"reg16"} color={"black"}>
+                        {text}
+                    </Text>
+                </Link>
+            ))}
+        </nav>
+    );
 };
 
 export default NavbarHome;

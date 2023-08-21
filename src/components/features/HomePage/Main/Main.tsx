@@ -12,20 +12,20 @@ import BlockSolution from "@/src/components/features/HomePage/Main/blockSolution
 import BlockPlatform from "./blockPlatform/BlockPlatform";
 
 const Main = () => {
-     return (
-          <div className={styles.main}>
-               <BlockSelectionBot />
-               <BlockOurAdvantages />
-               <BlockVideo />
-               <BlockAboutUs />
-               <BlockSolution />
-               <BlockPlatform />
-               <BlockConfidence />
-               <BlockFeedback />
-               <BlockTariffPlan />
-               <BlockFAQ />
-          </div>
-     );
+    return (
+        <div className={styles.main}>
+            <BlockSelectionBot />
+            <BlockOurAdvantages />
+            <BlockVideo />
+            <BlockAboutUs />
+            <BlockSolution />
+            <BlockPlatform />
+            <BlockConfidence />
+            <BlockFeedback />
+            <BlockTariffPlan />
+            <BlockFAQ />
+        </div>
+    );
 };
 
 export default Main;
