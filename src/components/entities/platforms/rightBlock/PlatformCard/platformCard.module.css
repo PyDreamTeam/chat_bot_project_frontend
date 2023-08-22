@@ -1,9 +1,56 @@
-.platform {
+.platforms {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 864px;
-    margin-top: 40px;
+    margin: 40px auto 0;
+}
+
+.onePlatform {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1264px;
+    margin: 40px auto 0;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.platform {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 39px;
+    color: #17181a;
+    cursor: pointer;
+}
+
+.platformOne {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 39px;
+    color: #17181a;
+}
+
+.platformOne:hover {
+    cursor: pointer;
+    color: #4466f5;
+    border-bottom: 1px solid #4466f5;
+}
+
+.heart {
+    cursor: pointer;
+}
+
+.price {
+    margin-top: 21px;
 }
 
 .infoCard {
@@ -19,7 +66,7 @@
 }
 
 .tag {
-    padding: 10px;
+    padding: 4px 16px;
     border-radius: 20px;
     background-color: #f4f5f6;
 }
@@ -42,11 +89,4 @@
 .img {
     object-fit: contain;
     border-radius: 20px;
-}
-
-.heart {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    cursor: pointer;
 }
