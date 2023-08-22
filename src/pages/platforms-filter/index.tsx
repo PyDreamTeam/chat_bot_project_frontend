@@ -15,8 +15,11 @@ import { useAppSelector } from "@/src/hooks/types";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { useRouter } from "next/router";
+import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
+import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 
 const PlatformsFilters = () => {
+
     const router = useRouter();
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
@@ -29,19 +32,32 @@ const PlatformsFilters = () => {
 
     const [search, setSearch] = useState("");
     const [sortAbc, setSortAbc] = useState("");
-    const [pageNumber, setPageNumber] = useState(1);
+    const [pageNumber, setPageNumber] = useState(2);
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
+    
+    // const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({
+    //     id_tags: ids,
+    //     price_min: minPrice,
+    //     price_max: maxPrice,
+    //     title: search,
+    //     sort_abc: sortAbc,
+    //     page_number: pageNumber,
+    //     items_per_page: 4,
+    // });
 
-    const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({
+    const {combinedData, isLoading, readMore, refresh, isFetching, localPage} = useInfiniteScroll(useGetPlatformsQuery, {
         id_tags: ids,
         price_min: minPrice,
         price_max: maxPrice,
         title: search,
         sort_abc: sortAbc,
-        page_number: pageNumber,
-        items_per_page: 40,
+        // page_number: pageNumber,
+        // items_per_page: 4,
     });
+
+    console.log("da", combinedData);
+    console.log("page", localPage);
 
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
@@ -50,6 +66,11 @@ const PlatformsFilters = () => {
             setSortAbc("z");
         } else setSortAbc("");
     }, [filter]);
+
+    const handleScroll = () => {
+        readMore();
+        console.log("request");
+    };
 
     return (
         <div>
@@ -95,20 +116,20 @@ const PlatformsFilters = () => {
                                 <FieldOptions />
                             </div>
                             <AlphabeticalSorting />
-                            {isLoadingPlatforms ? (
+                            {isLoading ? (
                                 <div className={css.loaderPlatforms}>
-                                    <Loader isLoading={isLoadingPlatforms} />
+                                    <Loader isLoading={isLoading} />
                                 </div>
                             ) : (
                                 <ul className={css.listPlatforms}>
-                                    {dataPlatforms?.results.map((item: PropsPlatformCard) => (
+                                    {combinedData.map((item: PropsPlatformCard) => (
                                         <li
                                             key={item.id}
                                             onClick={() => {
                                                 if (item.id) {
                                                     handleClick(item.id);
                                                 }
-                                            }}
+                                            } }
                                         >
                                             <PlatformCard
                                                 id={item.id}
@@ -116,10 +137,11 @@ const PlatformsFilters = () => {
                                                 short_description={item.short_description}
                                                 tags={item.tags}
                                                 image={item.image}
-                                                type="filter"
-                                            />
+                                                type="filter" />
                                         </li>
                                     ))}
+                                    <Loader isLoading={isFetching} />
+                                    {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll}/>}
                                 </ul>
                             )}
                         </div>

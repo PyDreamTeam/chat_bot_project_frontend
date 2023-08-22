@@ -54,6 +54,7 @@ export interface PropsPlatformCard {
     is_active?: boolean;
     created_at?: string;
     image?: string;
+    link?: string;
     type?: Card;
     tags?: {
         id?: number;
