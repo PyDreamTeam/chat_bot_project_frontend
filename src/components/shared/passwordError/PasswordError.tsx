@@ -5,19 +5,19 @@ import { errorPasswordConfig } from "@/src/components/shared/passwordError/image
 import Text from "../text/Text";
 
 export interface IPasswordError {
-     errorText: string;
-     isError: boolean;
+    errorText: string;
+    isError: boolean;
 }
 
 const PasswordError: FC<IPasswordError> = ({ errorText, isError }) => {
-     return (
-          <div className={styles.passwordErrorBlock}>
-               {isError ? errorPasswordConfig.errorTrue : errorPasswordConfig.errorFalse}
-               <Text color={`${isError ? "red" : "green"}`} type={"reg14"}>
-                    {errorText}
-               </Text>
-          </div>
-     );
+    return (
+        <div className={styles.passwordErrorBlock}>
+            {isError ? errorPasswordConfig.errorTrue : errorPasswordConfig.errorFalse}
+            <Text color={`${isError ? "red" : "green"}`} type={"reg14"}>
+                {errorText}
+            </Text>
+        </div>
+    );
 };
 
 export default PasswordError;

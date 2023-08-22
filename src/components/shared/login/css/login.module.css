@@ -17,7 +17,7 @@
     padding: 17px;
     margin-top: 9px;
     width: 100%;
-    font-family: "Inter",sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -28,24 +28,24 @@
     color: var(--text-color-1);
 }
 .input:focus,
-.inputValid:focus{
+.inputValid:focus {
     outline: none;
 }
 
 .input[name="comment"],
-.inputValid[name="comment"]{
+.inputValid[name="comment"] {
     height: 194px;
     word-wrap: break-word;
     white-space: pre-wrap;
     resize: none;
     overflow: hidden;
-    vertical-align:top;
+    vertical-align: top;
 }
 
 .error {
     margin-top: 8px;
 }
-.error p{
+.error p {
     margin-bottom: 4px;
 }
 
@@ -53,7 +53,7 @@
     padding: 18px 15px 19px;
     margin-top: 6px;
     width: 100%;
-    font-family: "Inter",sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -75,7 +75,7 @@
     padding: 17px;
     margin-top: 9px;
     width: 100%;
-    font-family: "Inter",sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -134,20 +134,6 @@
     background-color: var(--accent-color-2);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .container {
     display: flex;
     height: 100%;
@@ -172,11 +158,9 @@
     text-align: left;
 }
 
-
-
 .blockInfo {
-   margin-top: 16px;
-   text-align: center;
+    margin-top: 16px;
+    text-align: center;
 }
 
 .errorsBlock {

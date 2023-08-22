@@ -5,11 +5,11 @@ import { CARDS_FEEDBACK } from "@/src/components/entities/cards/cardsFeedback/Ca
 import styles from "./styles/CardsFeedback.module.css";
 
 const CardsFeedback = () => {
-     return (
-          <div className={styles.wrapper}>
-               <ListCardsFeedback config={CARDS_FEEDBACK} />
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <ListCardsFeedback config={CARDS_FEEDBACK} />
+        </div>
+    );
 };
 
 export default CardsFeedback;

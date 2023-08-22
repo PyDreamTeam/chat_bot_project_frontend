@@ -5,28 +5,28 @@ import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
 
 export interface ISettingsTabItem {
-     id: number;
-     title: string;
-     href: string;
+    id: number;
+    title: string;
+    href: string;
 }
 
 export interface ISettingsTabItemProps {
-     activeTabItem: number;
-     tabProps: ISettingsTabItem;
+    activeTabItem: number;
+    tabProps: ISettingsTabItem;
 }
 
 const SettingsTabItem: FC<ISettingsTabItemProps> = ({ tabProps, activeTabItem }) => {
-     return (
-          <Link
-               href={tabProps.href}
-               className={`${styles.tabItem} 
+    return (
+        <Link
+            href={tabProps.href}
+            className={`${styles.tabItem} 
             ${activeTabItem === tabProps.id ? styles.active : ""}`}
-          >
-               <Text type={"med20"} color={"black"}>
-                    {tabProps.title}
-               </Text>
-          </Link>
-     );
+        >
+            <Text type={"med20"} color={"black"}>
+                {tabProps.title}
+            </Text>
+        </Link>
+    );
 };
 
 export default SettingsTabItem;

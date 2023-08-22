@@ -1,19 +1,19 @@
 .wrapper {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     max-width: 1440px;
-     padding: 70px 0 80px;
-     border-bottom: 1px solid #e1e2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    padding: 70px 0 80px;
+    border-bottom: 1px solid #e1e2e6;
 }
 .blockImg {
-     display: flex;
-     justify-content: center;
-     align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .blockAbout {
-     max-width: 583px;
+    max-width: 583px;
 }
 .title {
-     max-width: 500px;
+    max-width: 500px;
 }

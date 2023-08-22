@@ -1,20 +1,20 @@
 .checkbox {
-     font-size: 16px;
-     color: #595f6c;
+    font-size: 16px;
+    color: #595f6c;
 }
 
 .inputField {
-     color: #17181a;
-     font-size: 18px;
+    color: #17181a;
+    font-size: 18px;
 }
 .nameInput {
-     padding-bottom: 8px;
+    padding-bottom: 8px;
 }
 .wrapper {
-     display: flex;
-     gap: 8px;
-     padding: 8px 16px;
-     border: 1px solid #909090;
-     border-radius: 20px;
-     background: #F4F5F6;
+    display: flex;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #909090;
+    border-radius: 20px;
+    background: #f4f5f6;
 }

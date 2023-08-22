@@ -6,19 +6,19 @@ import styles from "./styles/blockVideo.module.css";
 import ButtonPlay from "@/src/components/shared/buttons/ButtonPlay";
 
 const BlockVideo = () => {
-     return (
-          <div className={styles.wrapper}>
-               <Title type={"h3"} color={"black"}>
-                    Как работает платформа
-               </Title>
-               <div className={styles.videoBlock}>
-                    <Image src={"img/imageVideo.png"} alt={"video"} width={1264} height={725} />
-                    <div className={styles.btn}>
-                         <ButtonPlay/>
-                    </div>
-               </div>
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <Title type={"h3"} color={"black"}>
+                Как работает платформа
+            </Title>
+            <div className={styles.videoBlock}>
+                <Image src={"img/imageVideo.png"} alt={"video"} width={1264} height={725} />
+                <div className={styles.btn}>
+                    <ButtonPlay />
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default BlockVideo;

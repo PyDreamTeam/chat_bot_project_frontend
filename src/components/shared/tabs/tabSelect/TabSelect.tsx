@@ -6,37 +6,38 @@ import { DROPDOWN_SELECT_CONFIG } from "@/src/components/entities/dropDownSelect
 import Text from "@/src/components/shared/text/Text";
 
 export interface ITabSelect {
-     id?: number;
-     title?: string;
-     icon?: React.ReactNode;
+    id?: number;
+    title?: string;
+    icon?: React.ReactNode;
 }
 
 export interface TabSelectProps {
-     activeTabSelect?: number;
-     onClick?: void;
+    activeTabSelect?: number;
+    onClick?: void;
 }
 
 const TabSelect: FC<ITabSelect & TabSelectProps> = ({ id, title = "", icon, onClick, activeTabSelect }) => {
-     const [toggle, setToggle] = useState(false);
-     const handleOpenClose = () => setToggle(!toggle);
+    const [toggle, setToggle] = useState(false);
+    const handleOpenClose = () => setToggle(!toggle);
 
-     const [selectedInput] = useState<boolean>(false);
+    const [selectedInput] = useState<boolean>(false);
 
-     return (
-          <div className={styles.blockSelect}>
-               <div onClick={handleOpenClose} className={`${styles.selectTitle} ${activeTabSelect === id ? styles.active : null}`}>
-                    <Text type={"reg18"} color={"black"}>
-                         {title}
-                    </Text>
-                    {icon}
-               </div>
-               <div className={styles.radioButton}>
-                    {toggle && (
-                         <DropDownSelect config={DROPDOWN_SELECT_CONFIG} key={id} isChecked={selectedInput} />
-                    )}
-               </div>
-          </div>
-     );
+    return (
+        <div className={styles.blockSelect}>
+            <div
+                onClick={handleOpenClose}
+                className={`${styles.selectTitle} ${activeTabSelect === id ? styles.active : null}`}
+            >
+                <Text type={"reg18"} color={"black"}>
+                    {title}
+                </Text>
+                {icon}
+            </div>
+            <div className={styles.radioButton}>
+                {toggle && <DropDownSelect config={DROPDOWN_SELECT_CONFIG} key={id} isChecked={selectedInput} />}
+            </div>
+        </div>
+    );
 };
 
 export default TabSelect;

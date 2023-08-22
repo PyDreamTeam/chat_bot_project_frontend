@@ -16,7 +16,6 @@
     margin: 24px 0 16px;
 }
 
-
 .link {
     color: #4466f5;
 }
@@ -64,7 +63,7 @@
     padding: 16px;
     margin-top: 8px;
     width: 100%;
-    font-family: "Inter", sans-serif;;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -95,6 +94,6 @@
 }
 
 .blockInfo {
-   margin-top: 16px;
-   text-align: center;
+    margin-top: 16px;
+    text-align: center;
 }

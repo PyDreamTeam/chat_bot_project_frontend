@@ -32,13 +32,13 @@
 }
 
 .likeButton:hover {
-    color: #4466F5;
+    color: #4466f5;
 }
-.likeButtonActive > *{
+.likeButtonActive > * {
     display: flex;
     align-items: center;
-    color: #4466F5;
-    fill: #4466F5;
+    color: #4466f5;
+    fill: #4466f5;
 }
 
 .features {

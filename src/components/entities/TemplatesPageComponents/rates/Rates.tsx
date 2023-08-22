@@ -6,22 +6,22 @@ import uuid from "uuid-random";
 import Title from "../../../shared/text/Title";
 
 interface IRates {
-     cards: IRateCard[];
+    cards: IRateCard[];
 }
 
 const Rates: FC<IRates> = ({ cards }) => {
-     return (
-          <div className={styles.ratesBlock}>
-               <Title type={"h3"} color={"black"}>
-                    Тарифы
-               </Title>
-               <div className={styles.cardsBlock}>
-                    {cards.map((card) => (
-                         <RateCard title={card.title} key={uuid()} descriptions={card.descriptions} price={card.price} />
-                    ))}
-               </div>
-          </div>
-     );
+    return (
+        <div className={styles.ratesBlock}>
+            <Title type={"h3"} color={"black"}>
+                Тарифы
+            </Title>
+            <div className={styles.cardsBlock}>
+                {cards.map((card) => (
+                    <RateCard title={card.title} key={uuid()} descriptions={card.descriptions} price={card.price} />
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default Rates;

@@ -4,7 +4,7 @@
 }
 
 .border {
-    border-bottom: 1px solid #595F6C;
+    border-bottom: 1px solid #595f6c;
 }
 
 .link {
@@ -23,7 +23,7 @@
     width: 1264px;
     bottom: 0;
     left: 50%;
-    border: 1px solid #E1E2E6;
+    border: 1px solid #e1e2e6;
     transform: translate(-50%, -50%);
 }
 

@@ -4,11 +4,11 @@ import ListIconCompany from "@/src/components/entities/lists/listIconCompany/Lis
 import { ICON_COMPANY } from "@/src/components/entities/iconCompany/IconCompanyConfig";
 
 const IconCompany = () => {
-     return (
-          <div>
-               <ListIconCompany config={ICON_COMPANY}/>
-          </div>
-     );
+    return (
+        <div>
+            <ListIconCompany config={ICON_COMPANY} />
+        </div>
+    );
 };
 
 export default IconCompany;

@@ -10,22 +10,26 @@ import { CONFIG_BLOCK_STEPS } from "@/src/components/features/SolutionDescriptio
 import ListStepAccordion from "@/src/components/entities/lists/accordionList/ListStepAccordion";
 
 const BlockTasksBySteps = () => {
-
-     return (
-          <div className={styles.wrapper}>
-               <div className={styles.blockText}>
-                    <Title type={"h3"} color={"dark"}>Выполнение задач по шагам</Title>
-                    <Text type={"reg18"} color={"grey"}>Благодаря пошаговой автоматизированной автоворонке клиенту удастся сократить свои затраты, а также избавиться от части рутинных процессов в структуре управления продуктом </Text>
-                    <div className={styles.blockScroll}>
-                         <div className={styles.blockAccordion}>
-                              <ListStepAccordion data={CONFIG_BLOCK_STEPS}/>
-                         </div>
-                         <div className={styles.scroll}></div>
-                    </div>   
-               </div>
-               <Image src={img} alt={"Step"}/>
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.blockText}>
+                <Title type={"h3"} color={"dark"}>
+                    Выполнение задач по шагам
+                </Title>
+                <Text type={"reg18"} color={"grey"}>
+                    Благодаря пошаговой автоматизированной автоворонке клиенту удастся сократить свои затраты, а также
+                    избавиться от части рутинных процессов в структуре управления продуктом{" "}
+                </Text>
+                <div className={styles.blockScroll}>
+                    <div className={styles.blockAccordion}>
+                        <ListStepAccordion data={CONFIG_BLOCK_STEPS} />
+                    </div>
+                    <div className={styles.scroll}></div>
+                </div>
+            </div>
+            <Image src={img} alt={"Step"} />
+        </div>
+    );
 };
 
 export default BlockTasksBySteps;

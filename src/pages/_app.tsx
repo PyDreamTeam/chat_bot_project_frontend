@@ -8,15 +8,15 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { googleId } from "../pagesData/sign-in";
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-     require("../../mocks");
+    require("../../mocks");
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-     return (
-          <Provider store={store}>
-               <GoogleOAuthProvider clientId={googleId}>
-                    <Component {...pageProps} />
-               </GoogleOAuthProvider>
-          </Provider>
-     );
+    return (
+        <Provider store={store}>
+            <GoogleOAuthProvider clientId={googleId}>
+                <Component {...pageProps} />
+            </GoogleOAuthProvider>
+        </Provider>
+    );
 }

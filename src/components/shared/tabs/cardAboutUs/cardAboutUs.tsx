@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styles from "./styles/CardAboutUs.module.css";
 import { TsConfigJson } from "type-fest";
@@ -12,15 +12,15 @@ export interface ICard {
     img?: JSX.Element;
 }
 
-const CardAboutUs: FC<ICard> = ({statistic,title,text, img}) => {
-     return (
-          <div className={styles.card}>
-               {statistic}
-               {title}
-               {text}
-               {img}
-          </div>
-     );
+const CardAboutUs: FC<ICard> = ({ statistic, title, text, img }) => {
+    return (
+        <div className={styles.card}>
+            {statistic}
+            {title}
+            {text}
+            {img}
+        </div>
+    );
 };
 
 export default CardAboutUs;
