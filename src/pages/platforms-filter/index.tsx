@@ -57,8 +57,6 @@ const PlatformsFilters = () => {
         }
     );
 
-    console.log("da", combinedData);
-    console.log("page", localPage);
 
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
@@ -70,7 +68,6 @@ const PlatformsFilters = () => {
 
     const handleScroll = () => {
         readMore();
-        console.log("request");
     };
 
     return (

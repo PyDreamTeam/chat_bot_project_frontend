@@ -16,7 +16,6 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     link,
 }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
-    console.log("link", link);
 
     const handleClickHeart = (e: MouseEvent) => {
         e.stopPropagation();
