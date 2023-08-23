@@ -66,13 +66,25 @@ export const Filters: FC<PropsFilters> = ({ filters = [], onClick }) => {
                                     <InputPrice
                                         placeholder="0 RUB"
                                         value={minPrice}
-                                        onChange={(e) => setMinPrice(e.target.value)}
+                                        onChange={(e) => {
+                                            setMinPrice(e.target.value);
+                                            onClick();
+                                            if(e.target.value.trim() === "") {
+                                                onClick();
+                                            }
+                                        }}
                                     />
                                     <span className={css.line}></span>
                                     <InputPrice
                                         placeholder="600 RUB"
                                         value={maxPrice}
-                                        onChange={(e) => setMaxPrice(e.target.value)}
+                                        onChange={(e) => {
+                                            setMaxPrice(e.target.value);
+                                            onClick();
+                                            if(e.target.value.trim() === "") {
+                                                onClick();
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>

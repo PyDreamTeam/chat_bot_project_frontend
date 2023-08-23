@@ -44,7 +44,7 @@ const PlatformsFilters = () => {
     //     items_per_page: 4,
     // });
 
-    const { combinedData, isLoading, readMore, refresh, isFetching, localPage } = useInfiniteScroll(
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
         useGetPlatformsQuery,
         {
             id_tags: ids,
@@ -52,8 +52,6 @@ const PlatformsFilters = () => {
             price_max: maxPrice,
             title: search,
             sort_abc: sortAbc,
-            // page_number: pageNumber,
-            // items_per_page: 4,
         }
     );
 
@@ -108,7 +106,13 @@ const PlatformsFilters = () => {
                                     height={24}
                                     className={css.search}
                                 />
-                                <InputSearch value={search} onChange={(e) => setSearch(e.target.value)} />
+                                <InputSearch value={search} onChange={(e) => {
+                                    refresh();
+                                    setSearch(e.target.value);
+                                    if(e.target.value.trim() === "") {
+                                        refresh();
+                                    }
+                                }} />
                             </div>
                             <div>
                                 <FieldOptions />
