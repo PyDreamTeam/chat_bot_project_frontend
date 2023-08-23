@@ -10,7 +10,7 @@ const alpSorting = [
     { id: Math.random(), tag: "Z до А (Я до А)" },
 ];
 
-export const AlphabeticalSorting = () => {
+export const AlphabeticalSorting = ({onClick} : {onClick: () => void}) => {
     const dispatch = useAppDispatch();
     const filters = useAppSelector((state) => state.reducerFilters.filters);
     const [selectedFilter, setSelectedFilter] = useState<number | null>(null);
@@ -57,6 +57,7 @@ export const AlphabeticalSorting = () => {
                                 <Checkbox
                                     checked={Boolean(filters.find((item) => item.id === id))}
                                     onChange={() => handleSingleCheckbox(id, tag)}
+                                    onClick={onClick}
                                 />
                                 <Text type="reg14" color="black">
                                     {tag}

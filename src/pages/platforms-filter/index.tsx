@@ -113,7 +113,7 @@ const PlatformsFilters = () => {
                             <div>
                                 <FieldOptions />
                             </div>
-                            <AlphabeticalSorting />
+                            <AlphabeticalSorting onClick={() => refresh()}/>
                             {isLoading ? (
                                 <div className={css.loaderPlatforms}>
                                     <Loader isLoading={isLoading} />
