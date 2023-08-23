@@ -19,7 +19,6 @@ import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/I
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 
 const PlatformsFilters = () => {
-
     const router = useRouter();
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
@@ -32,10 +31,9 @@ const PlatformsFilters = () => {
 
     const [search, setSearch] = useState("");
     const [sortAbc, setSortAbc] = useState("");
-    const [pageNumber, setPageNumber] = useState(2);
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
-    
+
     // const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({
     //     id_tags: ids,
     //     price_min: minPrice,
@@ -46,15 +44,18 @@ const PlatformsFilters = () => {
     //     items_per_page: 4,
     // });
 
-    const {combinedData, isLoading, readMore, refresh, isFetching, localPage} = useInfiniteScroll(useGetPlatformsQuery, {
-        id_tags: ids,
-        price_min: minPrice,
-        price_max: maxPrice,
-        title: search,
-        sort_abc: sortAbc,
-        // page_number: pageNumber,
-        // items_per_page: 4,
-    });
+    const { combinedData, isLoading, readMore, refresh, isFetching, localPage } = useInfiniteScroll(
+        useGetPlatformsQuery,
+        {
+            id_tags: ids,
+            price_min: minPrice,
+            price_max: maxPrice,
+            title: search,
+            sort_abc: sortAbc,
+            // page_number: pageNumber,
+            // items_per_page: 4,
+        }
+    );
 
     console.log("da", combinedData);
     console.log("page", localPage);
@@ -97,7 +98,7 @@ const PlatformsFilters = () => {
                                     <Loader isLoading={isLoadingFilters} />
                                 </div>
                             ) : (
-                                <GroupFilters results={dataFilters?.results} />
+                                <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />
                             )}
                         </div>
 
@@ -129,7 +130,7 @@ const PlatformsFilters = () => {
                                                 if (item.id) {
                                                     handleClick(item.id);
                                                 }
-                                            } }
+                                            }}
                                         >
                                             <PlatformCard
                                                 id={item.id}
@@ -137,11 +138,14 @@ const PlatformsFilters = () => {
                                                 short_description={item.short_description}
                                                 tags={item.tags}
                                                 image={item.image}
-                                                type="filter" />
+                                                type="filter"
+                                            />
                                         </li>
                                     ))}
-                                    <Loader isLoading={isFetching} />
-                                    {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll}/>}
+                                    <div className={css.loaderPlatforms}>
+                                        <Loader isLoading={isFetching} />
+                                    </div>
+                                    {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                                 </ul>
                             )}
                         </div>

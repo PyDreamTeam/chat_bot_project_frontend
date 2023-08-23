@@ -13,7 +13,7 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     tags = [],
     type,
     price,
-    link
+    link,
 }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
     console.log("link", link);
@@ -39,13 +39,16 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
         }
     };
 
-
     return (
         <div className={type === "filter" ? `${css.platforms}` : `${css.onePlatform}`}>
             <div>
                 <div className={css.title}>
                     {type === "filter" && <h4 className={css.platform}>{title}</h4>}
-                    {type === "platform" && <a href={link}><h4 className={css.platformOne}>{title}</h4></a>}
+                    {type === "platform" && (
+                        <a href={link}>
+                            <h4 className={css.platformOne}>{title}</h4>
+                        </a>
+                    )}
                     <Image
                         src={`/platforms/${imageHeart}.svg`}
                         alt="heart"

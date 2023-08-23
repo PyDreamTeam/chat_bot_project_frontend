@@ -9,7 +9,7 @@ import { InputPrice } from "../InputPrice/InputPrice";
 import { useAppDispatch } from "@/src/hooks/types";
 import { maximalPrice, minimalPrice } from "@/src/store/reducers/platforms/slice";
 
-export const Filters: FC<PropsFilters> = ({ filters = [] }) => {
+export const Filters: FC<PropsFilters> = ({ filters = [], onClick }) => {
     const dispatch = useAppDispatch();
 
     const [openItems, setOpenItems] = useState<boolean[]>(filters.map(() => false));
@@ -78,9 +78,9 @@ export const Filters: FC<PropsFilters> = ({ filters = [] }) => {
                             </div>
                         )}
                         {item.multiple ? (
-                            <GroupTagsMultiple filter={item.filter} tags={item.tags} />
+                            <GroupTagsMultiple filter={item.filter} tags={item.tags} onClick={onClick} />
                         ) : (
-                            <GroupTagsSingle filter={item.filter} tags={item.tags} />
+                            <GroupTagsSingle filter={item.filter} tags={item.tags} onClick={onClick} />
                         )}
                     </li>
                 ))}

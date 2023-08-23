@@ -1,6 +1,6 @@
 import { useEffect, useRef, RefObject } from "react";
 
-export const InfiniteScroll = ({ onLoadMore }: {onLoadMore: () => void;}) => {
+export const InfiniteScroll = ({ onLoadMore }: { onLoadMore: () => void }) => {
     const observerRef: RefObject<HTMLDivElement | null | undefined> = useRef();
 
     useEffect(() => {

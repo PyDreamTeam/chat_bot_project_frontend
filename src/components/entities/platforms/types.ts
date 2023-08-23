@@ -1,4 +1,5 @@
 export interface PropsGroupTags {
+    onClick: () => void;
     filter?: string;
     tags: {
         id: number;
@@ -7,6 +8,7 @@ export interface PropsGroupTags {
 }
 
 export interface PropsFilters {
+    onClick: () => void;
     filters: {
         filter: string;
         id: number;
@@ -23,6 +25,7 @@ export interface PropsFilters {
 }
 
 export interface PropsGroupFilters {
+    onClick: () => void;
     results: {
         group: string;
         id: number;
