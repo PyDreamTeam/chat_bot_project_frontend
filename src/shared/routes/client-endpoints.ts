@@ -12,6 +12,7 @@ export const clientEndpoints: ClientEndpoints = {
             payment: `${profile}/payment`,
         },
         templates: `${myAccount}/templates`,
+        orders: `${myAccount}/orders`,
     },
     home: {
         get: "/home",

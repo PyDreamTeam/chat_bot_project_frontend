@@ -46,6 +46,11 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                         {title ? title : `Добро пожаловать, ${name}!`}
                     </Title>
                 )}
+                {page === "orders" && (
+                    <Title type={"h4"} color={"black"}>
+                        Заказы
+                    </Title>
+                )}
                 {page === "templates" && (
                     <Link href={"/my-account"}>
                         <Title type={"h4"} color={"black"}>
