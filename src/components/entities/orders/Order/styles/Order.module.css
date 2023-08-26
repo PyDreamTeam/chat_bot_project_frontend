@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    gap: 30px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E1E2E6;
+}
+
+.orderNumber {
+    width: 60px;
+}
+
+.orderName {
+    width: 169px;
+}
+
+.orderEmail {
+    width: 169px;
+}
+
+.orderPhone {
+    width: 150px;
+}
+
+.orderComment {
+    width: 250px;
+}
+
+.orderIconEdit,
+.orderIconDelete {
+    cursor: pointer;
+    transition: scale .4s;
+}
+
+.orderIconEdit:hover,
+.orderIconDelete:hover {
+    scale: 1.1;
+}

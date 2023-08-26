@@ -85,6 +85,15 @@ export const userAuth = createApi({
                 body: requestValues,
             }),
         }),
+        getOrdersList: builder.query({
+            query: (token: { access: string; refresh: string }) => ({
+                url: "/api/orderlist/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -99,4 +108,5 @@ export const {
     useVerifyUserMutation,
     useCreateOrderMutation,
     useCreateOrderUnregisteredMutation,
+    useGetOrdersListQuery,
 } = userAuth;
