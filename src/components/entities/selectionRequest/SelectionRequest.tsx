@@ -5,13 +5,11 @@ import * as Yup from "yup";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import { PhoneRegExp } from "@/src/shared/contsants/regExps";
 import Logo, { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
 import ElemChooseChatBot, { ElemVariantProps } from "@/src/components/shared/elemChooseChatBot/ElemChooseChatBot";
 import styles from "./styles/SelectionRequest.module.css";
 import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput";
 import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
-import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 import { Button } from "../../shared/buttons/Button";
 import {
@@ -51,20 +49,6 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
             close?.();
         }, 5000);
     };
-    //  TODO: delete comments
-
-    //  TODO: delete setState ?
-    useEffect(() => {
-        if (data) {
-            console.log("setState start");
-            setState({
-                first_name: true,
-                email: true,
-                phone_number: false,
-                comment: false,
-            });
-        }
-    }, []);
 
     useEffect(() => {
         return () => clearTimeout(timerRef.current as NodeJS.Timeout);
@@ -100,13 +84,6 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                 email: data?.email || "",
                                 phone_number: "",
                                 comment: "",
-                            }}
-                            // TODO:   initialTouched={state}
-                            initialTouched={{
-                                first_name: Boolean(data?.first_name),
-                                email: Boolean(data?.email),
-                                phone_number: Boolean(data?.phone_number),
-                                comment: Boolean(data?.comment),
                             }}
                             validationSchema={Yup.object().shape({
                                 first_name: Yup.string()
@@ -159,10 +136,15 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                         });
                                 }
                             }}
-                            //    enableReinitialize
-                            //    validateOnMount
                         >
                             {({ isSubmitting, errors, touched, getFieldProps, isValid, setFieldTouched }) => {
+                                useEffect(() => {
+                                    if (data) {
+                                        setFieldTouched("first_name");
+                                        setFieldTouched("email");
+                                    }
+                                }, [data]);
+
                                 return (
                                     <Form className={styles.form}>
                                         <FirstNameInput errors={errors} touched={touched} />
