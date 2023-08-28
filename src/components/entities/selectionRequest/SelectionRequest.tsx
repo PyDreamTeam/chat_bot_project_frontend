@@ -5,13 +5,11 @@ import * as Yup from "yup";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import { PhoneRegExp } from "@/src/shared/contsants/regExps";
 import Logo, { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
 import ElemChooseChatBot, { ElemVariantProps } from "@/src/components/shared/elemChooseChatBot/ElemChooseChatBot";
 import styles from "./styles/SelectionRequest.module.css";
 import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput";
 import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
-import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 import { Button } from "../../shared/buttons/Button";
 import {
@@ -29,11 +27,19 @@ interface IPropsRequest {
     close?: () => void;
 }
 
+interface IInitialTouched {
+    first_name?: boolean;
+    email?: boolean;
+    phone_number?: boolean;
+    comment?: boolean;
+}
+
 // TODO: unhandled server errors?
 
 const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
     const [createOrderUnregistered, { isSuccess: isSuccessAnonym }] = useCreateOrderUnregisteredMutation();
+    const [state, setState] = useState<IInitialTouched>();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -56,7 +62,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                         <div className={styles.logoWrapper}>
                             <Logo variant={LogoVariantProps.header} />
                             <div className={styles.blockBlue}>
-                                <ElemChooseChatBot variant={ElemVariantProps.auth} text="конструктор чат-ботов" />
+                                <ElemChooseChatBot variant={ElemVariantProps.auth} text="Конструктор чат-ботов" />
                             </div>
                         </div>
                     </div>
@@ -132,11 +138,17 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                             }}
                         >
                             {({ isSubmitting, errors, touched, getFieldProps, isValid, setFieldTouched }) => {
+                                useEffect(() => {
+                                    if (data) {
+                                        setFieldTouched("first_name");
+                                        setFieldTouched("email");
+                                    }
+                                }, [data]);
+
                                 return (
                                     <Form className={styles.form}>
                                         <FirstNameInput errors={errors} touched={touched} />
                                         <EmailInput errors={errors} touched={touched} />
-                                        {/* <PhoneNumberInput errors={errors} touched={touched} /> */}
                                         <PhoneInput errors={errors} touched={touched} />
                                         <CommentInput errors={errors} touched={touched} />
                                         <Button disabled={isSubmitting} active={isValid} type={"submit"}>
