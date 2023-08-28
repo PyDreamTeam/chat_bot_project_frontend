@@ -31,7 +31,9 @@ export const FieldOptions = () => {
                     </li>
                 ))}
                 {filters.length !== 0 && (
-                    <button onClick={() => dispatch(deleteAllFilters())} className={css.btn}>
+                    <button onClick={() => {
+                        dispatch(deleteAllFilters());
+                    }} className={css.btn}>
                         Очистить все
                     </button>
                 )}

@@ -5,7 +5,7 @@ import Title from "@/src/components/shared/text/Title";
 import { Filters } from "../Filters/Filters";
 import Image from "next/image";
 
-export const GroupFilters: FC<PropsGroupFilters> = ({ results = [] }) => {
+export const GroupFilters: FC<PropsGroupFilters> = ({ results = [], onClick }) => {
     const [openItems, setOpenItems] = useState<boolean[]>(results.map(() => false));
 
     const toggleItem = (id: number) => {
@@ -32,7 +32,7 @@ export const GroupFilters: FC<PropsGroupFilters> = ({ results = [] }) => {
                             )}
                         </div>
                         <div className={openItems[item.id] ? css.open : css.close}>
-                            <Filters filters={item.filters} />
+                            <Filters filters={item.filters} onClick={onClick} />
                         </div>
                     </li>
                 ))}
