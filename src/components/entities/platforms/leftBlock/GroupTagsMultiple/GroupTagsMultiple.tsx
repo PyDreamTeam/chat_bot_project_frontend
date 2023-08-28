@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { addFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
 import { CheckboxMultipleItem } from "../CheckboxMultipleItem/CheckboxMultipleItem";
 
-export const GroupTagsMultiple: FC<PropsGroupTags> = ({ tags = [], filter }) => {
+export const GroupTagsMultiple: FC<PropsGroupTags> = ({ tags = [], filter, onClick }) => {
     const filters = useAppSelector((state) => state.reducerFilters.filters);
 
     const [lengthArray, setLengthArray] = useState<number>(4);
@@ -35,6 +35,7 @@ export const GroupTagsMultiple: FC<PropsGroupTags> = ({ tags = [], filter }) => 
                         tag={tag}
                         key={id}
                         isChecked={Boolean(filters.find((item) => item.id === id))}
+                        onClick={onClick}
                     />
                 ))}
                 {tags.length > 4 && tags.length > 5 && (
@@ -54,6 +55,7 @@ export const GroupTagsMultiple: FC<PropsGroupTags> = ({ tags = [], filter }) => 
                         <ul className={`${css.list} ${css.listOpen}`}>
                             {tags.map(({ id, tag }) => (
                                 <CheckboxMultipleItem
+                                    onClick={onClick}
                                     filter={filter}
                                     id={id}
                                     tag={tag}

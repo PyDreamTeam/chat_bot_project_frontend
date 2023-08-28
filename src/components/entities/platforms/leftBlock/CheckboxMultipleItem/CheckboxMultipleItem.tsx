@@ -9,11 +9,13 @@ export const CheckboxMultipleItem = ({
     tag,
     isChecked,
     filter,
+    onClick,
 }: {
     id: number;
     tag: string;
     isChecked: boolean;
     filter?: string;
+    onClick: () => void;
 }) => {
     const dispatch = useAppDispatch();
 
@@ -27,7 +29,7 @@ export const CheckboxMultipleItem = ({
 
     return (
         <li key={id} className={css.tag}>
-            <Checkbox onChange={() => handleCheckboxClick({ id, tag, filter })} checked={isChecked} />
+            <Checkbox onChange={() => handleCheckboxClick({ id, tag, filter })} checked={isChecked} onClick={onClick} />
             <Text type="reg14" color="dark">
                 {tag}
             </Text>

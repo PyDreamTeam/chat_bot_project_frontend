@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { addFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
 import { CheckboxSingleItem } from "../CheckboxSingleItem/CheckboxSingleItem";
 
-export const GroupTagsSingle: FC<PropsGroupTags> = ({ tags = [], filter }) => {
+export const GroupTagsSingle: FC<PropsGroupTags> = ({ tags = [], filter, onClick }) => {
     const dispatch = useAppDispatch();
 
     const [selectedFilter, setSelectedFilter] = useState<number | null>(null);
@@ -50,6 +50,7 @@ export const GroupTagsSingle: FC<PropsGroupTags> = ({ tags = [], filter }) => {
                         key={id}
                         isChecked={Boolean(filters.find((item) => item.id === id))}
                         setChecked={handleSingleCheckbox}
+                        onClick={onClick}
                     />
                 ))}
                 {tags.length > 4 && tags.length > 5 && (
@@ -75,6 +76,7 @@ export const GroupTagsSingle: FC<PropsGroupTags> = ({ tags = [], filter }) => {
                                     key={id}
                                     isChecked={Boolean(filters.find((item) => item.id === id))}
                                     setChecked={handleSingleCheckbox}
+                                    onClick={onClick}
                                 />
                             ))}
                         </ul>

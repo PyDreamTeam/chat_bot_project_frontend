@@ -15,6 +15,8 @@ import { useAppSelector } from "@/src/hooks/types";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { useRouter } from "next/router";
+import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
+import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 
 const PlatformsFilters = () => {
     const router = useRouter();
@@ -29,19 +31,30 @@ const PlatformsFilters = () => {
 
     const [search, setSearch] = useState("");
     const [sortAbc, setSortAbc] = useState("");
-    const [pageNumber, setPageNumber] = useState(1);
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
 
-    const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({
-        id_tags: ids,
-        price_min: minPrice,
-        price_max: maxPrice,
-        title: search,
-        sort_abc: sortAbc,
-        page_number: pageNumber,
-        items_per_page: 40,
-    });
+    // const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({
+    //     id_tags: ids,
+    //     price_min: minPrice,
+    //     price_max: maxPrice,
+    //     title: search,
+    //     sort_abc: sortAbc,
+    //     page_number: pageNumber,
+    //     items_per_page: 4,
+    // });
+
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
+        useGetPlatformsQuery,
+        {
+            id_tags: ids,
+            price_min: minPrice,
+            price_max: maxPrice,
+            title: search,
+            sort_abc: sortAbc,
+        }
+    );
+
 
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
@@ -50,6 +63,10 @@ const PlatformsFilters = () => {
             setSortAbc("z");
         } else setSortAbc("");
     }, [filter]);
+
+    const handleScroll = () => {
+        readMore();
+    };
 
     return (
         <div>
@@ -76,7 +93,7 @@ const PlatformsFilters = () => {
                                     <Loader isLoading={isLoadingFilters} />
                                 </div>
                             ) : (
-                                <GroupFilters results={dataFilters?.results} />
+                                <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />
                             )}
                         </div>
 
@@ -89,19 +106,25 @@ const PlatformsFilters = () => {
                                     height={24}
                                     className={css.search}
                                 />
-                                <InputSearch value={search} onChange={(e) => setSearch(e.target.value)} />
+                                <InputSearch value={search} onChange={(e) => {
+                                    refresh();
+                                    setSearch(e.target.value);
+                                    if(e.target.value.trim() === "") {
+                                        refresh();
+                                    }
+                                }} />
                             </div>
                             <div>
                                 <FieldOptions />
                             </div>
-                            <AlphabeticalSorting />
-                            {isLoadingPlatforms ? (
+                            <AlphabeticalSorting onClick={() => refresh()}/>
+                            {isLoading ? (
                                 <div className={css.loaderPlatforms}>
-                                    <Loader isLoading={isLoadingPlatforms} />
+                                    <Loader isLoading={isLoading} />
                                 </div>
                             ) : (
                                 <ul className={css.listPlatforms}>
-                                    {dataPlatforms?.results.map((item: PropsPlatformCard) => (
+                                    {combinedData.map((item: PropsPlatformCard) => (
                                         <li
                                             key={item.id}
                                             onClick={() => {
@@ -120,6 +143,10 @@ const PlatformsFilters = () => {
                                             />
                                         </li>
                                     ))}
+                                    <div className={css.loaderPlatforms}>
+                                        <Loader isLoading={isFetching} />
+                                    </div>
+                                    {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                                 </ul>
                             )}
                         </div>

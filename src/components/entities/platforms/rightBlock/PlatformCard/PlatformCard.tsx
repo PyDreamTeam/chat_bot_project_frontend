@@ -13,6 +13,7 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     tags = [],
     type,
     price,
+    link,
 }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
@@ -41,7 +42,12 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
         <div className={type === "filter" ? `${css.platforms}` : `${css.onePlatform}`}>
             <div>
                 <div className={css.title}>
-                    <h4 className={type === "filter" ? `${css.platform}` : `${css.platformOne}`}>{title}</h4>
+                    {type === "filter" && <h4 className={css.platform}>{title}</h4>}
+                    {type === "platform" && (
+                        <a href={link}>
+                            <h4 className={css.platformOne}>{title}</h4>
+                        </a>
+                    )}
                     <Image
                         src={`/platforms/${imageHeart}.svg`}
                         alt="heart"
