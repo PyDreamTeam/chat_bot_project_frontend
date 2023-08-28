@@ -94,6 +94,43 @@ export const userAuth = createApi({
                 },
             }),
         }),
+        getOrder: builder.query({
+            query: ({ token, id }) => ({
+                url: `/api/orderdetail/${id}/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
+        putOrder: builder.mutation({
+            query: ({ token, id }) => ({
+                url: `/api/orderdetail/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
+        patchOrder: builder.mutation({
+            query: ({ token, id }) => ({
+                url: `/api/orderdetail/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
+        // TODO: add ${id}
+        deleteOrder: builder.mutation({
+            query: (token: { access: string; refresh: string }) => ({
+                url: "/api/orderdetail/8/",
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -109,4 +146,8 @@ export const {
     useCreateOrderMutation,
     useCreateOrderUnregisteredMutation,
     useGetOrdersListQuery,
+    useGetOrderQuery,
+    usePutOrderMutation,
+    usePatchOrderMutation,
+    useDeleteOrderMutation,
 } = userAuth;
