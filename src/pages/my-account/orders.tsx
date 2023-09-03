@@ -52,13 +52,13 @@ const Orders = () => {
                             <li
                                 key={uuid()}
                                 onClick={() => {
-                                    if (item.id) {
-                                        console.log(item.id);
+                                    if (item) {
+                                        console.log(dataOrders?.results.indexOf(item));
                                     }
                                 }}
                             >
                                 <Order
-                                    id={item.id}
+                                    id={dataOrders?.results.indexOf(item)}
                                     first_name={item.first_name}
                                     email={item.email}
                                     phone_number={item.phone_number}

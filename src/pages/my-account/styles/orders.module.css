@@ -15,6 +15,11 @@
     width: 60px;
 }
 
+.orderNumber>p {
+    width: 100%;
+}
+
+
 .orderName {
     width: 169px;
 }
@@ -25,6 +30,10 @@
 
 .orderPhone {
     width: 150px;
+}
+
+.orderPhone>p {
+    width: 100%;
 }
 
 .orderComment {

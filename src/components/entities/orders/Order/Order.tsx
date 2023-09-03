@@ -9,13 +9,13 @@ import Cookies from "js-cookie";
 export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, comment }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const [deleteOrder, { isSuccess, error: errorData, isLoading }] = useDeleteOrderMutation();
-    const orderId = "2";
+
     return (
         // TODO: add id, phone, comment
         <div className={styles.container}>
             <div className={styles.orderNumber}>
                 <Text type="reg16" color="grey">
-                    1
+                    {id + 1}
                 </Text>
             </div>
             <div className={styles.orderName}>
@@ -30,12 +30,12 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
             </div>
             <div className={styles.orderPhone}>
                 <Text type="reg16" color="grey">
-                    +74231234567
+                    {phone_number}
                 </Text>
             </div>
-            <div className={styles.orderComment}>
+            <div className={styles.orderComment} data-tooltip={comment}>
                 <Text type="reg16" color="grey">
-                    Мультиканальная платформа для создания чат-ботов
+                    {comment}
                 </Text>
             </div>
             <div className={styles.orderIconEdit}>
@@ -44,7 +44,7 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     alt="edit"
                     width={20}
                     height={20}
-                    onClick={() => console.log("edit")}
+                    onClick={() => console.log(`edit order #${id}`)}
                     className={styles.imgClose}
                 />
             </div>
@@ -54,12 +54,10 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     alt="edit"
                     width={18.5}
                     height={20}
-                    // onClick={() => console.log("delete")}
                     // TODO: add order id to onClick
                     onClick={() => {
-                        const orderId = "2";
-                        // const userToken = token;
-                        deleteOrder(token);
+                        console.log(`delete order #${id}`);
+                        // deleteOrder(token);
                     }}
                     className={styles.imgClose}
                 />
