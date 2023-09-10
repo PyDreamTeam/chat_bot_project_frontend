@@ -1,21 +1,22 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./styles/Order.module.css";
 import { PropsOrder } from "../types";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
-import { useDeleteOrderMutation } from "@/src/store/services/userAuth";
+import { useDeleteOrderMutation, useGetOrdersListQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
-export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, comment }) => {
+export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, comment, forceUpdate }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const [deleteOrder, { isSuccess, error: errorData, isLoading }] = useDeleteOrderMutation();
+    const router = useRouter();
 
     return (
-        // TODO: add id, phone, comment
         <div className={styles.container}>
             <div className={styles.orderNumber}>
                 <Text type="reg16" color="grey">
-                    {id + 1}
+                    {id}
                 </Text>
             </div>
             <div className={styles.orderName}>
@@ -23,7 +24,7 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     {first_name}
                 </Text>
             </div>
-            <div className={styles.orderEmail}>
+            <div className={styles.orderEmail} data-tooltip={email}>
                 <Text type="reg16" color="grey">
                     {email}
                 </Text>
@@ -44,7 +45,9 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     alt="edit"
                     width={20}
                     height={20}
-                    onClick={() => console.log(`edit order #${id}`)}
+                    onClick={() => {
+                        router.push(`/my-account/orders/${id}`);
+                    }}
                     className={styles.imgClose}
                 />
             </div>
@@ -54,10 +57,8 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     alt="edit"
                     width={18.5}
                     height={20}
-                    // TODO: add order id to onClick
                     onClick={() => {
-                        console.log(`delete order #${id}`);
-                        // deleteOrder(token);
+                        deleteOrder({ token, id }).then(forceUpdate);
                     }}
                     className={styles.imgClose}
                 />

@@ -5,4 +5,10 @@ export interface PropsOrder
     email: string;
     phone_number?: string;
     comment?: string;
+    forceUpdate: () => void;
+}
+
+export interface PropsOrders
+ {
+    forceUpdate: () => void;
 }

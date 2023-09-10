@@ -1,6 +1,7 @@
 import { ClientEndpoints } from "./../types/endpoints";
 const myAccount = "/my-account";
 const profile = `${myAccount}/profile`;
+const orders = `${myAccount}/orders`;
 
 export const clientEndpoints: ClientEndpoints = {
     myAccount: {
@@ -12,7 +13,10 @@ export const clientEndpoints: ClientEndpoints = {
             payment: `${profile}/payment`,
         },
         templates: `${myAccount}/templates`,
-        orders: `${myAccount}/orders`,
+        orders: {
+            get: `${orders}`,
+            order: `${orders}/order`,
+        },
     },
     home: {
         get: "/home",

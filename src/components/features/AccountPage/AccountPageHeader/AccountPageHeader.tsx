@@ -1,4 +1,5 @@
-import React, { FC, FormEvent, useState } from "react";
+import React, { FC, FormEvent, Fragment, useState } from "react";
+import Image from "next/image";
 import styles from "./AccountPageHeader.module.css";
 import UserInfo from "@/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo";
 import { useRouter } from "next/router";
@@ -15,9 +16,10 @@ interface IHomePageHeader {
     title?: string;
     id?: string | number;
     page: keyof typeof AccountPageTypes;
+    orderNumber?: string;
 }
 
-const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
+const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber }) => {
     const router = useRouter();
     const [open, setOpen] = useState<boolean>(false);
     const handleToggleBurgerMenu = () => setOpen((prevState) => !prevState);
@@ -50,6 +52,22 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page }) => {
                     <Title type={"h4"} color={"black"}>
                         Заказы
                     </Title>
+                )}
+                {page === "orderEdit" && (
+                    <div className={styles.orderTitle}>
+                        <div className={styles.orderIconEdit}>
+                            <Image
+                                src="/img/Edit_bold.svg"
+                                alt="edit"
+                                width={20}
+                                height={20}
+                                className={styles.imgEdit}
+                            />
+                        </div>
+                        <Title type={"h4"} color={"black"}>
+                            {`Заказ ${orderNumber}`}
+                        </Title>
+                    </div>
                 )}
                 {page === "templates" && (
                     <Link href={"/my-account"}>

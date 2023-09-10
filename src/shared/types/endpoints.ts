@@ -8,7 +8,10 @@ export interface ClientEndpoints {
             payment: string;
         };
         templates: string;
-        orders: string;
+        orders: {
+            get: string;
+            order: string;
+        };
     };
     home: {
         get: string;

@@ -96,7 +96,7 @@ export const userAuth = createApi({
         }),
         getOrder: builder.query({
             query: ({ token, id }) => ({
-                url: `/api/orderdetail/${id}/`,
+                url: `/api/orderlist/${id}/`,
                 method: "GET",
                 headers: {
                     Authorization: `JWT ${token?.access}`,
@@ -104,12 +104,13 @@ export const userAuth = createApi({
             }),
         }),
         putOrder: builder.mutation({
-            query: ({ token, id }) => ({
+            query: ({ requestValues, token, id }) => ({
                 url: `/api/orderdetail/${id}/`,
                 method: "PUT",
                 headers: {
                     Authorization: `JWT ${token?.access}`,
                 },
+                body: requestValues,
             }),
         }),
         patchOrder: builder.mutation({
@@ -121,10 +122,9 @@ export const userAuth = createApi({
                 },
             }),
         }),
-        // TODO: add ${id}
         deleteOrder: builder.mutation({
-            query: (token: { access: string; refresh: string }) => ({
-                url: "/api/orderdetail/8/",
+            query: ({ token, id }) => ({
+                url: `/api/orderdetail/${id}/`,
                 method: "DELETE",
                 headers: {
                     Authorization: `JWT ${token?.access}`,

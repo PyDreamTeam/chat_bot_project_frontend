@@ -43,3 +43,8 @@
 .listOrders li {
     list-style-type: none;
 }
+
+.loaderOrders {
+    align-self: center;
+    margin-top: 60px;
+}

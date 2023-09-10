@@ -16,13 +16,14 @@ import Cookies from "js-cookie";
 
 interface IAccountWrapper {
     page: keyof typeof AccountPageTypes;
+    orderNumber?: string;
 }
 
 const firstTab = 1;
 const secondTab = 2;
 const thirdTab = 3;
 
-const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children }) => {
+const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children, orderNumber }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
     const { data } = useDataUserQuery(token);
@@ -76,7 +77,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
         <div className={styles.accountWrapper}>
             <Sidebar />
             <div className={styles.accountContentBlock}>
-                <AccountPageHeader page={page} id={data?.email} name={data?.first_name} />
+                <AccountPageHeader page={page} id={data?.email} name={data?.first_name} orderNumber={orderNumber} />
                 {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
                     <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                 ) : null}
