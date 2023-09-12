@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from "@/src/hooks/types";
 import styles from "@/src/components/wrappers/styles/styles.module.css";
 import Sidebar from "@/src/components/features/Sidebar/Sidebar";
 import AccountPageHeader from "@/src/components/features/AccountPage/AccountPageHeader/AccountPageHeader";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import { WithChildren } from "@/src/shared/types/withChildren";
 import { useRouter } from "next/router";
 import SettingsTabs from "@/src/components/shared/settingsTabs/SettingsTabs";
@@ -74,16 +75,19 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
     }, [router]);
 
     return (
-        <div className={styles.accountWrapper}>
-            <Sidebar />
-            <div className={styles.accountContentBlock}>
-                <AccountPageHeader page={page} id={data?.email} name={data?.first_name} orderNumber={orderNumber} />
-                {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
-                    <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
-                ) : null}
-                {children}
+        <>
+            <div className={styles.accountWrapper}>
+                <Sidebar />
+                <div className={styles.accountContentBlock}>
+                    <AccountPageHeader page={page} id={data?.email} name={data?.first_name} orderNumber={orderNumber} />
+                    {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
+                        <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
+                    ) : null}
+                    {children}
+                </div>
             </div>
-        </div>
+            <Footer />
+        </>
     );
 };
 
