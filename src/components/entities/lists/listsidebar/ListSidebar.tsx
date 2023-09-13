@@ -41,7 +41,6 @@ const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], activeTabIt
                     icon={tab.icon}
                 />
             ))}
-            {/* <ButtonExit onClick={() => logoutUser(token)} /> */}
         </nav>
     );
 };
