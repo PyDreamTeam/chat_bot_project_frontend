@@ -16,8 +16,6 @@ const Platform = () => {
     const { data } = useGetPlatformQuery(Number(idp));
     const { data: dataFilters } = useGetPlatformsFiltersQuery({});
 
-    console.log("data", dataFilters);
-
     return (
         <div>
             <Header type="other" />
@@ -43,6 +41,7 @@ const Platform = () => {
                         image={data?.image}
                         type="platform"
                         price={data?.price}
+                        link={data?.link}
                     />
                 </div>
                 <div className={css.settings}>

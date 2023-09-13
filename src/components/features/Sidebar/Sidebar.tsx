@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const myAccountRoute = "/my-account";
+const ordersRoute = "/my-account/orders";
 const templatesRoute = "/my-account/templates";
 const favoritetRoute = "/my-account/favorites";
 const faqRoute = "/my-account/faq";
@@ -25,16 +26,18 @@ const Sidebar: FC = () => {
         switch (router.route) {
             case myAccountRoute:
                 return setActiveTabItem(1);
-            case templatesRoute:
+            case ordersRoute:
                 return setActiveTabItem(2);
-            case favoritetRoute:
+            case templatesRoute:
                 return setActiveTabItem(3);
-            case faqRoute:
+            case favoritetRoute:
                 return setActiveTabItem(4);
-            case articlesRoute:
+            case faqRoute:
                 return setActiveTabItem(5);
-            case ratesRoute:
+            case articlesRoute:
                 return setActiveTabItem(6);
+            case ratesRoute:
+                return setActiveTabItem(7);
             default:
                 setActiveTabItem(1);
         }

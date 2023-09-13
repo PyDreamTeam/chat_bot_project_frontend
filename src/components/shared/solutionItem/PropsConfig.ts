@@ -5,7 +5,7 @@ export const PropsConfig = [
         logo: logo,
         title: "Aimilogic",
         description:
-            "Мультиканальная платформа для создания чат-ботов с \"искусственным интеллектом\" и голосовых ботов.",
+            "Мультиканальная платформа для создания чат-ботов с /\"искусственным интеллектом\"/ и голосовых ботов.",
         img: "",
         typesOfSolution: ["Битрикс24", "Визуальный редактор"],
         selectedPlatforms: ["WhatsApp", "Telegram", "Viber", "VK", "Facebook"],

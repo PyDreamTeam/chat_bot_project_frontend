@@ -63,7 +63,15 @@ export const EmailInput: FC<PropsEmailNameInput> = ({ errors, touched, error }) 
                     type="email"
                     name="email"
                     placeholder="example@mail.com"
-                    className={errors.email && touched.email ? `${css.inputError}` : `${css.input}`}
+                    className={
+                        errors.email
+                            ? touched.email
+                                ? `${css.inputError}`
+                                : `${css.input}`
+                            : touched.email
+                            ? `${css.inputValid}`
+                            : `${css.input}`
+                    }
                 />
             </div>
             <div className={css.error}>

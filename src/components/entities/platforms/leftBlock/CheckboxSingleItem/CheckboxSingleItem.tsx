@@ -8,16 +8,18 @@ export const CheckboxSingleItem = ({
     isChecked,
     setChecked,
     filter,
+    onClick,
 }: {
     id: number;
     tag: string;
     isChecked: boolean;
     setChecked: (id: number, tag: string, filter?: string) => void;
     filter?: string;
+    onClick: () => void;
 }) => {
     return (
         <li key={id} className={css.tag}>
-            <Checkbox onChange={() => setChecked(id, tag, filter)} checked={isChecked} />
+            <Checkbox onChange={() => setChecked(id, tag, filter)} checked={isChecked} onClick={onClick} />
             <Text type="reg14" color="dark">
                 {tag}
             </Text>

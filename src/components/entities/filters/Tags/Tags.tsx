@@ -23,8 +23,6 @@ export const TagsFilter: FC<PropsTagsFilter> = ({ id, filter, image, tags = [] }
 
     const { data } = useGetPlatformQuery(Number(idp));
 
-    console.log("data", data);
-
     return (
         <div className={css.container}>
             {filter !== "" ? (

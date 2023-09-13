@@ -9,7 +9,7 @@ import { InputPrice } from "../InputPrice/InputPrice";
 import { useAppDispatch } from "@/src/hooks/types";
 import { maximalPrice, minimalPrice } from "@/src/store/reducers/platforms/slice";
 
-export const Filters: FC<PropsFilters> = ({ filters = [] }) => {
+export const Filters: FC<PropsFilters> = ({ filters = [], onClick }) => {
     const dispatch = useAppDispatch();
 
     const [openItems, setOpenItems] = useState<boolean[]>(filters.map(() => false));
@@ -66,21 +66,33 @@ export const Filters: FC<PropsFilters> = ({ filters = [] }) => {
                                     <InputPrice
                                         placeholder="0 RUB"
                                         value={minPrice}
-                                        onChange={(e) => setMinPrice(e.target.value)}
+                                        onChange={(e) => {
+                                            setMinPrice(e.target.value);
+                                            onClick();
+                                            if(e.target.value.trim() === "") {
+                                                onClick();
+                                            }
+                                        }}
                                     />
                                     <span className={css.line}></span>
                                     <InputPrice
                                         placeholder="600 RUB"
                                         value={maxPrice}
-                                        onChange={(e) => setMaxPrice(e.target.value)}
+                                        onChange={(e) => {
+                                            setMaxPrice(e.target.value);
+                                            onClick();
+                                            if(e.target.value.trim() === "") {
+                                                onClick();
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>
                         )}
                         {item.multiple ? (
-                            <GroupTagsMultiple filter={item.filter} tags={item.tags} />
+                            <GroupTagsMultiple filter={item.filter} tags={item.tags} onClick={onClick} />
                         ) : (
-                            <GroupTagsSingle filter={item.filter} tags={item.tags} />
+                            <GroupTagsSingle filter={item.filter} tags={item.tags} onClick={onClick} />
                         )}
                     </li>
                 ))}
