@@ -30,6 +30,7 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({
     first_name,
     last_name,
     page,
+    phone_number
 }) => {
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
