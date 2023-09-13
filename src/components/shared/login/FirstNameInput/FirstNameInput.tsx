@@ -3,13 +3,19 @@ import { ErrorMessage, Field, FormikErrors, FormikTouched, FormikValues } from "
 import Image from "next/image";
 import { FC } from "react";
 import css from "../css/login.module.css";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
+import Cookies from "js-cookie";
 
 interface PropsFirstNameInput {
     errors: FormikErrors<{ first_name: string }>;
     touched: FormikTouched<{ first_name: string }>;
 }
 
-export const FirstNameInput: FC<PropsFirstNameInput> = ({ errors, touched }) => {
+export const FirstNameInput: FC<PropsFirstNameInput> = ({ errors, touched}) => {
+
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { data } = useDataUserQuery(token);
+    
     return (
         <div className={css.blockInput}>
             <label htmlFor="first_name">
@@ -26,7 +32,7 @@ export const FirstNameInput: FC<PropsFirstNameInput> = ({ errors, touched }) => 
                 <Field
                     type="text"
                     name="first_name"
-                    placeholder="Иван"
+                    placeholder={data ? data?.first_name : "Иван"}
                     className={errors.first_name && touched.first_name ? `${css.inputError}` : `${css.input}`}
                 />
             </div>

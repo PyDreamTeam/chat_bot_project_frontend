@@ -3,6 +3,8 @@ import { ErrorMessage, Field, FormikErrors, FormikTouched } from "formik";
 import Image from "next/image";
 import { FC } from "react";
 import css from "../css/login.module.css";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
+import Cookies from "js-cookie";
 
 interface PropsPhoneNumberInput {
     errors: FormikErrors<{ phone_number: string }>;
@@ -10,6 +12,10 @@ interface PropsPhoneNumberInput {
 }
 
 export const PhoneNumberInput: FC<PropsPhoneNumberInput> = ({ errors, touched }) => {
+
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { data } = useDataUserQuery(token);
+
     return (
         <div className={css.blockInput}>
             <label htmlFor="phone_number">
@@ -26,7 +32,7 @@ export const PhoneNumberInput: FC<PropsPhoneNumberInput> = ({ errors, touched })
                 <Field
                     type="text"
                     name="phone_number"
-                    placeholder="+375293142411"
+                    placeholder={data?.phone_number ? data?.phone_number  : "Введите номер телефона"}
                     className={errors.phone_number && touched.phone_number ? `${css.inputError}` : `${css.input}`}
                 />
             </div>
