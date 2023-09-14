@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import Cookies from "js-cookie";
 import styles from "./styles/order.module.css";
@@ -28,15 +28,27 @@ interface pageProps {
 
 const page: FC<pageProps> = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    // const { data: dataOrders, isLoading: isLoadingOrders } = useGetOrdersListQuery(token);
     const router = useRouter();
     const orderId: string = router.query.id as string;
     const id = orderId;
     const [putOrder, { isSuccess, error: errorData, isLoading }] = usePutOrderMutation();
     const { data: dataOrder, isLoading: isLoadingOrder } = useGetOrderQuery({ token, id });
+    // TODO: type error in formRef.current.handleSubmit();
+    const formRef: any = useRef(null);
+
+    const handleSubmit = () => {
+        if (formRef.current) {
+            formRef.current.handleSubmit();
+        }
+    };
+    const handleReset = () => {
+        if (formRef.current) {
+            formRef.current.resetForm({ first_name: "", email: "", phone_number: "", comment: "" });
+        }
+    };
 
     return (
-        <AccountPageWrapper page="orderEdit" orderNumber={orderId}>
+        <AccountPageWrapper page="orderEdit" orderNumber={orderId} submitForm={handleSubmit}>
             <div className={styles.orderEditWrapper}>
                 {isLoadingOrder ? (
                     <div className={styles.loaderOrders}>
@@ -45,6 +57,7 @@ const page: FC<pageProps> = () => {
                 ) : (
                     <div className={styles.orderEditWrapper}>
                         <Formik
+                            innerRef={formRef}
                             initialValues={{
                                 first_name: dataOrder?.first_name || "",
                                 email: dataOrder?.email || "",
@@ -107,12 +120,17 @@ const page: FC<pageProps> = () => {
                                 }, [dataOrder]);
 
                                 return (
-                                    <Form className={styles.form}>
+                                    <Form className={styles.form} onSubmit={handleSubmit}>
                                         <FirstNameInput errors={errors} touched={touched} />
                                         <EmailInput errors={errors} touched={touched} />
                                         <PhoneInput errors={errors} touched={touched} />
                                         <CommentInput errors={errors} touched={touched} />
-                                        <Button disabled={isSubmitting} active={isValid} type={"submit"}>
+                                        <Button
+                                            disabled={isSubmitting}
+                                            active={isValid}
+                                            type={"submit"}
+                                            onClick={handleSubmit}
+                                        >
                                             Отправить
                                         </Button>
                                     </Form>
