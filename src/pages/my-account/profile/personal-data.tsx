@@ -10,18 +10,16 @@ import { useDataUserQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 
 const PersonalData = () => {
+    
     const router = useRouter();
-
-    const mobileNumber = "+375297177707";
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-
     const { data } = useDataUserQuery(token);
 
     return (
         <AccountPageWrapper page="profile_settings_personalData">
             <AccountPageCredential
                 page="profile_settings_personalData"
-                mobileNumber={mobileNumber}
+                phone_number={data?.phone_number}
                 email={data?.email}
                 isEmailVerified={true}
                 first_name={data?.first_name}
