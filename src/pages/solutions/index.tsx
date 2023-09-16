@@ -5,25 +5,25 @@ import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "@/src/pages/platforms/platforms.module.css";
-import ListAllPlatforms from "@/src/components/entities/lists/listCardsPlatforms/ListAllPlatforms";
+import styles from "@/src/pages/solutions/solutions.module.css";
+import ListAllSolutions from "@/src/components/entities/lists/listAllSolutions/ListAllSolutions";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
+import { useGetSolutionsQuery } from "@/src/store/services/solutions";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
-import useInfiniteScrollPlatforms from "@/src/hooks/useInfinityScrollPlatforms";
+import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 
-const Platforms = () => {
+const Solutions = () => {
     const { isShown, toggle } = useModal();
 
-    const { data: combinedData, isLoading, isFetching } = useGetListPlatformsQuery({});
+    const { data: combinedData, isLoading, isFetching } = useGetSolutionsQuery({});
 
-    // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScrollPlatforms(useGetListPlatformsQuery, {});
+    // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
 
     // const handleScroll = () => {
     //     readMore();
@@ -36,32 +36,32 @@ const Platforms = () => {
                 <div className={styles.container}>
                     <div className={styles.topWrap}>
                         <Text type="reg14" color="telegray">
-                            <Link href={"/home"} className={styles.path}>
+                            <Link href={"/home"} className={styles.link}>
                                 Главная
                             </Link>
-                            / <span className={styles.path}>Посмотреть все</span>
+                            / <span className={styles.link}>Посмотреть все</span>
                         </Text>
                         <div className={styles.title}>
                             <Title type="h3" color="dark">
-                                Платформы
+                                Примеры решений
                             </Title>
                         </div>
                         <div className={styles.text}>
                             <Text type="reg18" color="grey">
-                                Подберите платформу и воспользуйтесь одним из наших шаблонов, разработанных под
-                                конкретную бизнес-задачу
+                                Подберите конструктор чат-ботов и воспользуйтесь одним из наших шаблонов, разработанных
+                                под конкретную бизнес-задачу
                             </Text>
                         </div>
                     </div>
                     <div className={styles.mainWrap}>
                         {isLoading ? (
-                            <div className={styles.loaderPlatforms}>
+                            <div className={styles.loaderSolutions}>
                                 <Loader isLoading={isLoading} />
                             </div>
                         ) : (
                             <>
-                                <ListAllPlatforms results={combinedData?.results} />
-                                <div className={styles.loaderPlatforms}>
+                                <ListAllSolutions results={combinedData?.results} />
+                                <div className={styles.loaderSolutions}>
                                     <Loader isLoading={isFetching} />
                                 </div>
                                 {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
@@ -81,10 +81,9 @@ const Platforms = () => {
                                     Воспользуйтесь одним из наших шаблонов, разработанных под конкретную бизнес-задачу
                                 </Text>
                             </div>
-                            <Button active={true} width={250} type="button">
-                                <Link className={styles.link} href="/platforms-filter">
-                                    Подобрать платформу
-                                </Link>
+
+                            <Button active={true} width={250} type="button" onClick={toggle}>
+                                Подобрать решение
                             </Button>
                             <Modal isShown={isShown} hide={toggle}>
                                 <SelectionRequest close={toggle} />
@@ -100,4 +99,4 @@ const Platforms = () => {
     );
 };
 
-export default Platforms;
+export default Solutions;

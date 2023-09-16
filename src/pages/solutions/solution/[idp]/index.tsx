@@ -1,9 +1,9 @@
-import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
+import { SolutionCard } from "@/src/components/entities/platforms/rightBlock/SolutionCard/SolutionCard";
 import Header from "@/src/components/features/HomePage/Header/Header";
-import { useGetPlatformQuery, useGetPlatformsFiltersQuery, useGetPlatformsQuery } from "@/src/store/services/platforms";
-import { useGetSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetSolutionQuery, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
+import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
 import { useRouter } from "next/router";
-import css from "./platform.module.css";
+import styles from "@/src/pages/solutions/solution/[idp]/soluiton.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Title from "@/src/components/shared/text/Title";
@@ -11,56 +11,53 @@ import { GroupFilters } from "@/src/components/entities/filters/GropFilters/Grou
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Slider from "@/src/components/shared/slider/Slider";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
-import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
+import ListCardsPlatforms from "@/src/components/entities/lists/listCardsPlatforms/ListCardsPlatforms";
 
-const Platform = () => {
+const Solution = () => {
     const router = useRouter();
     const { idp } = router.query;
 
-    const { data } = useGetPlatformQuery(Number(idp));
-    const { data: dataFilters } = useGetPlatformsFiltersQuery({});
+    const { data } = useGetSolutionQuery(Number(idp));
+    const { data: dataFilters } = useGetSolutionsFiltersQuery({});
 
-    //  const { data: combinedData, isLoading, isFetching } = useGetSolutionsQuery({});
-    //ошибка в slider - config?.results
-    const { combinedData } = useInfiniteScroll(useGetSolutionsQuery, {});
+    // const { data: combinedData, isLoading, isFetching } = useGetListPlatformsQuery({});
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetListPlatformsQuery, {});
 
     return (
         <div>
             <Header type="other" />
-            <div className={css.container}>
+            <div className={styles.container}>
                 <div>
                     <Text type="reg16" color="telegray">
-                        <Link href={"/home"} className={css.link}>
+                        <Link href={"/home"} className={styles.link}>
                             Главная
                         </Link>
                         /
-                        <Link href={"/platforms-filter"} className={css.link}>
-                            Подобрать платформу
+                        <Link href={"/solutions"} className={styles.link}>
+                            Посмотреть все решения
                         </Link>
-                        /<span className={css.link}>{data?.title}</span>
+                        /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                <div className={css.platform}>
-                    <PlatformCard
+                <div className={styles.platform}>
+                    <SolutionCard
                         id={data?.id}
                         title={data?.title}
                         short_description={data?.short_description}
                         tags={data?.tags}
                         image={data?.image}
-                        type="platform"
                         price={data?.price}
-                        link={data?.link}
                     />
                 </div>
-                <div className={css.sliderTitle}>
+                <div className={styles.sliderTitle}>
                     <Title type="h4" color="dark">
-                        15 реализованных решений
+                        15 платформ
                     </Title>
                 </div>
                 <Slider type="pageSlider">
-                    <ListCardsSolutions results={combinedData} />
+                    <ListCardsPlatforms results={combinedData} />
                 </Slider>
-                <div className={css.settings}>
+                <div className={styles.settings}>
                     <Title type="h4" color="dark">
                         Характеристики
                     </Title>
@@ -72,4 +69,4 @@ const Platform = () => {
     );
 };
 
-export default Platform;
+export default Solution;

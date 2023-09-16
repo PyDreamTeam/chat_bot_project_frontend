@@ -6,16 +6,17 @@ import { IListSliderCards } from "@/src/types/index";
 
 interface ISliderProps {
     children?: ReactElement<IListSliderCards>;
+    type?: "homeSlider" | "pageSlider";
 }
 
-const Slider: FC<ISliderProps> = ({ children }) => {
+const Slider: FC<ISliderProps> = ({ children, type }) => {
     const CARD_WIDTH = 468;
     let childrenCount: number;
     const [offset, setOffset] = useState(0);
     const [isEnableRight, setIsEnableRight] = useState(true);
     const [isEnableLeft, setIsEnableLeft] = useState(false);
 
-    children ? (childrenCount = children?.props.config.length) : (childrenCount = 1);
+    children ? (childrenCount = children?.props.results.length) : (childrenCount = 1);
 
     const handleRightClick = () => {
         setOffset((currentOffset) => {
@@ -38,8 +39,8 @@ const Slider: FC<ISliderProps> = ({ children }) => {
     };
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.window}>
+        <div className={type === "homeSlider" ? `${styles.wrapper}` : `${styles.solutionWrapper}`}>
+            <div className={type === "homeSlider" ? `${styles.window}` : `${styles.solutionWindow}`}>
                 <div className={styles.itemsContainer} style={{ transform: `translateX(${offset}px)` }}>
                     {children}
                 </div>

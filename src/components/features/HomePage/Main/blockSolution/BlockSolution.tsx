@@ -6,13 +6,17 @@ import LinkShowAllCards from "@/src/components/shared/links/LinkShowAllCards";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Slider from "@/src/components/shared/slider/Slider";
 import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
-import { CARDS_SOLUTIONS } from "@/src/components/shared/slider/CardsSolutionsConfig";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
+import { useAppSelector } from "@/src/hooks/types";
+import { useGetSolutionsQuery } from "@/src/store/services/solutions";
+import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 
 const BlockSolution = () => {
     const { isShown, toggle } = useModal();
+
+    const { combinedData } = useInfiniteScroll(useGetSolutionsQuery, {});
 
     return (
         <div className={styles.wrapper}>
@@ -28,11 +32,11 @@ const BlockSolution = () => {
                     <Button type="button" active={true} width={230} onClick={toggle}>
                         Подобрать решение
                     </Button>
-                    <LinkShowAllCards href="/" />
+                    <LinkShowAllCards href="/solutions" />
                 </div>
             </div>
-            <Slider>
-                <ListCardsSolutions config={CARDS_SOLUTIONS} />
+            <Slider type="homeSlider">
+                <ListCardsSolutions results={combinedData} />
             </Slider>
             <Modal isShown={isShown} hide={toggle}>
                 <SelectionRequest close={toggle} />

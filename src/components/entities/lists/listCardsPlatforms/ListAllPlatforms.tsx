@@ -4,20 +4,15 @@ import CardPlatform, { ICardPlatform } from "@/src/components/shared/tabs/cardPl
 import { useRouter } from "next/router";
 import { PropsPlatformsList } from "../../platforms/types";
 
-export interface IListCardsPlatforms {
-    results: ICardPlatform[];
-    // type?: "sliderCard" | "platforms";
-}
-
-const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
+const ListAllPlatforms: FC<PropsPlatformsList> = ({ results = [] }) => {
     const router = useRouter();
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
-    // className={type === "sliderCard" ? `${styles.cards}` : `${styles.platforms}`}
+
     return (
-        <div className={styles.cards}>
-            {results.map((item: ICardPlatform) => (
+        <div className={styles.platforms}>
+            {results.map((item) => (
                 <div
                     className={styles.link}
                     key={item.id}
@@ -40,4 +35,10 @@ const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
     );
 };
 
-export default ListCardsPlatforms;
+export default ListAllPlatforms;
+
+// export interface IListCardsPlatforms {
+//     results: ICardPlatform[];
+//     type?: "sliderCard" | "platforms";
+// }
+// className={type === "sliderCard" ? `${styles.cards}` : `${styles.platforms}`}

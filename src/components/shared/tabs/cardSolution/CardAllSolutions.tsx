@@ -1,10 +1,11 @@
-import React, { FC, useState, MouseEvent } from "react";
+import React, { FC, useState, MouseEvent, Dispatch, SetStateAction } from "react";
 import Text from "@/src/components/shared/text/Text";
-import Title from "../../text/Title";
 import Image from "next/image";
 import styles from "./styles/CardSolution.module.css";
+import { TsConfigJson } from "type-fest";
+import JSX = TsConfigJson.CompilerOptions.JSX;
 
-interface ICardSolution {
+export interface ICardSolution {
     id?: number;
     title?: string;
     business_model?: string;
@@ -24,7 +25,7 @@ interface ICardSolution {
     price?: number;
     is_active?: boolean;
     created_at?: string;
-    type?: "slider" | "other";
+    // type?: "start" | "other";
     tags?: {
         id?: number;
         tag?: string;
@@ -32,9 +33,13 @@ interface ICardSolution {
         is_active?: boolean;
         is_message?: boolean;
     }[];
+
+    //   "filter": [
+    //     0
+    //   ]
 }
 
-const CardSolution: FC<ICardSolution> = ({ type, id, image, title, price, short_description, tags = [] }) => {
+const CardAllSolutions: FC<ICardSolution> = ({ id, image, title, price, messengers, short_description, tags = [] }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const handleClickHeart = (e: MouseEvent) => {
@@ -57,17 +62,14 @@ const CardSolution: FC<ICardSolution> = ({ type, id, image, title, price, short_
             setImageHeart("dislike");
         }
     };
-
     return (
-        <div className={type === "slider" ? `${styles.sliderCard}` : `${styles.solution}`}>
+        <div className={styles.solution}>
             <div className={styles.top}>
                 <div className={styles.logo}>
                     <Image src={image ? `${image}` : ""} width={100} height={100} alt="logo" className={styles.img} />
                 </div>
                 <div className={styles.title}>
-                    <Title type="h4" color="dark">
-                        {title}
-                    </Title>
+                    {title}
                     <div>
                         <Image
                             src={`/platforms/${imageHeart}.svg`}
@@ -110,4 +112,4 @@ const CardSolution: FC<ICardSolution> = ({ type, id, image, title, price, short_
     );
 };
 
-export default CardSolution;
+export default CardAllSolutions;

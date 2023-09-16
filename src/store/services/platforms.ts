@@ -1,4 +1,4 @@
-import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
+import { PropsPlatformCard, PropsPlatformsList } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const platforms = createApi({
@@ -32,7 +32,14 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getListPlatforms: builder.query({
+            query: () => ({
+                url: "/api/platform/platforms/",
+                method: "GET",
+            }),
+        }),
     }),
 });
 
-export const { useGetPlatformsFiltersQuery, useGetPlatformsQuery, useGetPlatformQuery } = platforms;
+export const { useGetPlatformsFiltersQuery, useGetPlatformsQuery, useGetPlatformQuery, useGetListPlatformsQuery } =
+    platforms;
