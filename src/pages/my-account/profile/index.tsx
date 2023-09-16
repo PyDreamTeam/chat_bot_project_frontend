@@ -9,7 +9,6 @@ import Cookies from "js-cookie";
 
 const Profile = () => {
     const router = useRouter();
-    const mobileNumber = "+375297177707";
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
     const { data } = useDataUserQuery(token);
@@ -18,7 +17,7 @@ const Profile = () => {
         <AccountPageWrapper page="profile_templates">
             <AccountPageCredential
                 page="profile_templates"
-                mobileNumber={mobileNumber}
+                phone_number={data?.phone_number}
                 email={data?.email}
                 isEmailVerified={true}
                 first_name={data?.first_name}

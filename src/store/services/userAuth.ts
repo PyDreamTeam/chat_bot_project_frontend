@@ -6,7 +6,7 @@ export const userAuth = createApi({
     endpoints: (builder) => ({
         dataUser: builder.query({
             query: (token: { access: string; refresh: string }) => ({
-                url: "/api/auth/users/me/",
+                url: "/api/profile/",
                 method: "GET",
                 headers: {
                     Authorization: `JWT ${token.access}`,
@@ -15,8 +15,8 @@ export const userAuth = createApi({
         }),
         changeDataUser: builder.mutation<void, { requestValues: Record<string, unknown>; token: string }>({
             query: ({ requestValues, token }) => ({
-                url: "/api/auth/users/me/",
-                method: "PUT",
+                url: "/api/profile/",
+                method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token}`,
                 },
@@ -85,6 +85,52 @@ export const userAuth = createApi({
                 body: requestValues,
             }),
         }),
+        getOrdersList: builder.query({
+            query: (token: { access: string; refresh: string }) => ({
+                url: "/api/orderlist/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
+        getOrder: builder.query({
+            query: ({ token, id }) => ({
+                url: `/api/orderlist/${id}/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
+        putOrder: builder.mutation({
+            query: ({ requestValues, token, id }) => ({
+                url: `/api/orderdetail/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+                body: requestValues,
+            }),
+        }),
+        patchOrder: builder.mutation({
+            query: ({ token, id }) => ({
+                url: `/api/orderdetail/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
+        deleteOrder: builder.mutation({
+            query: ({ token, id }) => ({
+                url: `/api/orderdetail/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -99,4 +145,9 @@ export const {
     useVerifyUserMutation,
     useCreateOrderMutation,
     useCreateOrderUnregisteredMutation,
+    useGetOrdersListQuery,
+    useGetOrderQuery,
+    usePutOrderMutation,
+    usePatchOrderMutation,
+    useDeleteOrderMutation,
 } = userAuth;
