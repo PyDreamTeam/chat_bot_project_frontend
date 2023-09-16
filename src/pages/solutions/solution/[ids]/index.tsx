@@ -1,9 +1,9 @@
 import { SolutionCard } from "@/src/components/entities/platforms/rightBlock/SolutionCard/SolutionCard";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import { useGetSolutionQuery, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
-import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
+import { useGetPlatformsQuery } from "@/src/store/services/platforms";
 import { useRouter } from "next/router";
-import styles from "@/src/pages/solutions/solution/[idp]/soluiton.module.css";
+import styles from "@/src/pages/solutions/solution/[ids]/soluiton.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Title from "@/src/components/shared/text/Title";
@@ -15,13 +15,13 @@ import ListCardsPlatforms from "@/src/components/entities/lists/listCardsPlatfor
 
 const Solution = () => {
     const router = useRouter();
-    const { idp } = router.query;
+    const { ids } = router.query;
 
-    const { data } = useGetSolutionQuery(Number(idp));
+    const { data } = useGetSolutionQuery(Number(ids));
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
 
     // const { data: combinedData, isLoading, isFetching } = useGetListPlatformsQuery({});
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetListPlatformsQuery, {});
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
 
     return (
         <div>

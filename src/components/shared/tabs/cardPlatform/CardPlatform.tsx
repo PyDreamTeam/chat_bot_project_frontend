@@ -3,28 +3,9 @@ import Text from "@/src/components/shared/text/Text";
 import Title from "../../text/Title";
 import Image from "next/image";
 import styles from "./styles/CardPlatform.module.css";
+import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 
-export interface ICardPlatform {
-    id?: number;
-    title?: string;
-    short_description?: string;
-    full_description?: string;
-    turnkey_solutions?: number;
-    price?: number;
-    is_active?: boolean;
-    created_at?: string;
-    image?: string;
-    link?: string;
-    tags?: {
-        id?: number;
-        tag?: string;
-        image_tag?: string;
-        is_active?: boolean;
-        is_message?: boolean;
-    }[];
-}
-
-const CardPlatform: FC<ICardPlatform> = ({ id, title, price, short_description, image, tags = [] }) => {
+const CardPlatform: FC<PropsPlatformCard> = ({ id, title, price, short_description, image, tags = [] }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const handleClickHeart = (e: MouseEvent) => {

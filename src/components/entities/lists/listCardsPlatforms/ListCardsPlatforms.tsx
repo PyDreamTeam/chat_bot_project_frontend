@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 import styles from "./styles/ListCardsPlatforms.module.css";
-import CardPlatform, { ICardPlatform } from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
+import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
 import { useRouter } from "next/router";
-import { PropsPlatformsList } from "../../platforms/types";
+import { PropsPlatformCard } from "../../platforms/types";
 
 export interface IListCardsPlatforms {
-    results: ICardPlatform[];
-    // type?: "sliderCard" | "platforms";
+    results: PropsPlatformCard[];
 }
 
 const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
@@ -14,10 +13,10 @@ const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
-    // className={type === "sliderCard" ? `${styles.cards}` : `${styles.platforms}`}
+
     return (
         <div className={styles.cards}>
-            {results.map((item: ICardPlatform) => (
+            {results.map((item) => (
                 <div
                     className={styles.link}
                     key={item.id}

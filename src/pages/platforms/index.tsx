@@ -6,28 +6,32 @@ import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/src/pages/platforms/platforms.module.css";
-import ListAllPlatforms from "@/src/components/entities/lists/listCardsPlatforms/ListAllPlatforms";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
+import { useGetPlatformsQuery } from "@/src/store/services/platforms";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
-import useInfiniteScrollPlatforms from "@/src/hooks/useInfinityScrollPlatforms";
+import { useAppSelector } from "@/src/hooks/types";
+import useInfiniteScroll from "@/src/hooks/useInfinityScrollPlatforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
+import { useRouter } from "next/router";
+import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
 
 const Platforms = () => {
     const { isShown, toggle } = useModal();
+    const router = useRouter();
+    const handleClick = (idp: number) => {
+        router.push(`/platforms/platform/${idp}`);
+    };
 
-    const { data: combinedData, isLoading, isFetching } = useGetListPlatformsQuery({});
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
 
-    // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScrollPlatforms(useGetListPlatformsQuery, {});
-
-    // const handleScroll = () => {
-    //     readMore();
-    // };
+    const handleScroll = () => {
+        readMore();
+    };
 
     return (
         <>
@@ -59,13 +63,32 @@ const Platforms = () => {
                                 <Loader isLoading={isLoading} />
                             </div>
                         ) : (
-                            <>
-                                <ListAllPlatforms results={combinedData?.results} />
+                            <ul className={styles.platforms}>
+                                {combinedData.map((item) => (
+                                    <li
+                                        className={styles.click}
+                                        key={item.id}
+                                        onClick={() => {
+                                            if (item.id) {
+                                                handleClick(item.id);
+                                            }
+                                        }}
+                                    >
+                                        <CardPlatform
+                                            id={item.id}
+                                            title={item.title}
+                                            short_description={item.short_description}
+                                            tags={item.tags}
+                                            image={item.image}
+                                            // type="filter"
+                                        />
+                                    </li>
+                                ))}
                                 <div className={styles.loaderPlatforms}>
                                     <Loader isLoading={isFetching} />
                                 </div>
-                                {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
-                            </>
+                                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                            </ul>
                         )}
                     </div>
                     <div className={styles.bottomWrap}>

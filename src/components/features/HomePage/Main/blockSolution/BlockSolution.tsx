@@ -9,14 +9,13 @@ import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutio
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useAppSelector } from "@/src/hooks/types";
 import { useGetSolutionsQuery } from "@/src/store/services/solutions";
-import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
+import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
 
 const BlockSolution = () => {
     const { isShown, toggle } = useModal();
 
-    const { combinedData } = useInfiniteScroll(useGetSolutionsQuery, {});
+    const { combinedData } = useInfiniteScrollSolutions(useGetSolutionsQuery, {});
 
     return (
         <div className={styles.wrapper}>

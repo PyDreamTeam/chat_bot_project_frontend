@@ -5,7 +5,7 @@ import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 
-export const SolutionCard: FC<PropsSolutionCard> = ({ id, title, short_description, image, tags = [], price }) => {
+export const SolutionCard: FC<PropsSolutionCard> = ({ title, short_description, image, tags = [], price }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const handleClickHeart = (e: MouseEvent) => {

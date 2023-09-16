@@ -67,7 +67,6 @@
     opacity: 0.8;
 }
 .loaderPlatforms {
-    /* margin: 20% 50%; */
     width: 100%;
     height: 100%;
 }
@@ -76,4 +75,14 @@
 }
 .link {
     color: white;
+}
+
+.click {
+    display: grid;
+}
+.platforms {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr;
+    gap: 32px;
+    list-style: none;
 }

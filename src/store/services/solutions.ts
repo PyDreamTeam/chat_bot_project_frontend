@@ -1,4 +1,4 @@
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionsCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const solutions = createApi({
@@ -17,7 +17,7 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
-        getSolution: builder.query<PropsSolutionCard, number>({
+        getSolution: builder.query<PropsSolutionsCard, number>({
             query: (id) => ({
                 url: `/api/solution/solutions/${id}/`,
                 method: "GET",

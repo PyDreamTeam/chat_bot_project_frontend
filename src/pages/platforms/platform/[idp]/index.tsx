@@ -12,6 +12,7 @@ import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Slider from "@/src/components/shared/slider/Slider";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
+import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
 
 const Platform = () => {
     const router = useRouter();
@@ -20,9 +21,7 @@ const Platform = () => {
     const { data } = useGetPlatformQuery(Number(idp));
     const { data: dataFilters } = useGetPlatformsFiltersQuery({});
 
-    //  const { data: combinedData, isLoading, isFetching } = useGetSolutionsQuery({});
-    //ошибка в slider - config?.results
-    const { combinedData } = useInfiniteScroll(useGetSolutionsQuery, {});
+    const { combinedData } = useInfiniteScrollSolutions(useGetSolutionsQuery, {});
 
     return (
         <div>
