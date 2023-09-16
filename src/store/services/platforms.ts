@@ -1,5 +1,7 @@
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
+
 
 export const platforms = createApi({
     reducerPath: "platforms",
@@ -32,7 +34,36 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        addPlatform: builder.mutation({
+            query: ({platform, token}) => ({
+                url: "/api/platform/platforms/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: platform
+            })
+        }),
+        profile: builder.mutation({
+            query: ({platform, token}) => ({
+                url: "/api/profile/",
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: platform
+            })
+        }),
+        qwe: builder.query({
+            query: (token) => ({
+                url: "/api/profile/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                }
+            })
+        })
     }),
 });
 
-export const { useGetPlatformsFiltersQuery, useGetPlatformsQuery, useGetPlatformQuery } = platforms;
+export const { useGetPlatformsFiltersQuery, useGetPlatformsQuery, useGetPlatformQuery, useAddPlatformMutation, useProfileMutation, useQweQuery } = platforms;
