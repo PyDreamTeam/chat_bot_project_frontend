@@ -1,4 +1,4 @@
-import { PropsPlatformCard, PropsPlatformsList } from "@/src/components/entities/platforms/types";
+import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const platforms = createApi({
