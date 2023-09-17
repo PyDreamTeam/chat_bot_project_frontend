@@ -11,7 +11,7 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
-        getSolutions: builder.query({
+        getListSolutions: builder.query({
             query: () => ({
                 url: "/api/solution/solutions/",
                 method: "GET",
@@ -26,4 +26,4 @@ export const solutions = createApi({
     }),
 });
 
-export const { useGetSolutionsQuery, useGetSolutionQuery, useGetSolutionsFiltersQuery } = solutions;
+export const { useGetListSolutionsQuery, useGetSolutionQuery, useGetSolutionsFiltersQuery } = solutions;

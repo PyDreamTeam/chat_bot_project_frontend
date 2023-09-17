@@ -11,7 +11,7 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useGetSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
@@ -21,7 +21,7 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 const Solutions = () => {
     const { isShown, toggle } = useModal();
 
-    const { data: combinedData, isLoading, isFetching } = useGetSolutionsQuery({});
+    const { data: combinedData, isLoading, isFetching } = useGetListSolutionsQuery({});
 
     // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
 

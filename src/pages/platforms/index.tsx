@@ -80,7 +80,6 @@ const Platforms = () => {
                                             short_description={item.short_description}
                                             tags={item.tags}
                                             image={item.image}
-                                            // type="filter"
                                         />
                                     </li>
                                 ))}

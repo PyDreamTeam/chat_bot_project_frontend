@@ -16,8 +16,6 @@ import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 
 const BlockPlatform = () => {
-    // const { isShown, toggle } = useModal();
-
     const { combinedData } = useInfiniteScroll(useGetListPlatformsQuery, {});
 
     return (
@@ -42,9 +40,6 @@ const BlockPlatform = () => {
             <Slider type="homeSlider">
                 <ListCardsPlatforms results={combinedData} />
             </Slider>
-            {/* <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal> */}
         </div>
     );
 };
