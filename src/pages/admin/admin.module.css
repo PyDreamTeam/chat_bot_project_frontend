@@ -1,0 +1,26 @@
+.listNav {
+    padding-top: 25px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 52px;
+    row-gap: 48px;
+}
+
+.nav {
+    width: 440px;
+    height: 219px;
+    padding: 40px 40px 36px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 40px -20px rgba(68, 56, 235, 0.50);
+    cursor: pointer;
+}
+.nav:hover {
+    position: relative;
+    bottom: 10px;
+}
+
+.icon {
+    margin-bottom: 20px;
+}
