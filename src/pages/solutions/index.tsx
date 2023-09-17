@@ -90,8 +90,12 @@ const Solutions = () => {
                             </Modal>
                         </div>
                     </div>
+                    {/* <div className={styles.sticky}> */}
                     <ButtonOrder />
+                    {/* </div> */}
+                    {/* <div className={styles.absolut}> */}
                     <ButtonScrollToUp />
+                    {/* </div> */}
                 </div>
             </div>
             <Footer />

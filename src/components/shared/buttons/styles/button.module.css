@@ -70,9 +70,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed;
-    bottom: 15%;
-    right: 16%;
+    /* position: fixed; */
+    position: sticky;
+    margin: 0 0 0 auto;
+    bottom: 20%;
+    right: 10%;
     padding: 8px;
     width: 80px;
     z-index: 10;
@@ -81,6 +83,7 @@
     cursor: pointer;
     transition: 0.3s;
 }
+
 .buttonToUp:hover {
     background-color: #e1e2e6;
 }
@@ -88,33 +91,32 @@
 /* button to make an application */
 
 .buttonOrder {
-    display: block;
-    position: fixed;
-    bottom: 5%;
-    right: 16%;
+    /* position: fixed; */
+    position: sticky;
+    bottom: 10%;
     z-index: 5;
     border-radius: 50%;
     height: 210px;
     width: 210px;
     border: none;
     background-color: #ffffff;
-    /* background-color: aqua; */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: 0.3s;
-    /* animation: spin 1.5s infinite linear; */
+    margin: 0 0 0 auto;
 }
 
-@keyframes spin {
+/* animation: spin 1.5s infinite linear; */
+/* @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
     100% {
         transform: rotate(360deg);
     }
-}
+} */
 
 .buttonOrder:hover {
     background-color: rgb(244, 245, 246);

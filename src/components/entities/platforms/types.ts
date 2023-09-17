@@ -69,8 +69,13 @@ export interface PropsPlatformCard {
 }
 
 export interface PropsSolutionCard {
-    id: number;
+    id?: number;
     title?: string;
+    business_model?: string;
+    business_area?: string;
+    business_niche?: string;
+    objective?: string;
+    solution_type?: string;
     short_description?: string;
     full_description?: string;
     turnkey_solutions?: number;

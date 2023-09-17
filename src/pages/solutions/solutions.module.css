@@ -74,3 +74,15 @@
 .listSoluyions {
     list-style: none;
 }
+.sticky {
+    position: relative;
+    margin: 0 0 0 auto;
+    bottom: 20%;
+    right: 10%;
+}
+.absolut {
+    position: absolute;
+
+    bottom: 20%;
+    right: 10%;
+}

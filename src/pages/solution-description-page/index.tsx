@@ -7,9 +7,7 @@ import Footer from "@/src/components/features/HomePage/Footer/Footer";
 export default function SolutionDescriptionPage() {
     return (
         <>
-            <Header type="start" />
             <SolutionDescriptionPade />
-            <Footer />
         </>
     );
 }
