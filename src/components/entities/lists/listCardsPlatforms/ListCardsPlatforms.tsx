@@ -1,26 +1,39 @@
 import React, { FC } from "react";
 import styles from "./styles/ListCardsPlatforms.module.css";
-import CardSolution, { ICardSolution } from "@/src/components/shared/tabs/cardSolution/CardSolution";
-import CardPlatform, { ICardPlatform } from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
+import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
+import { useRouter } from "next/router";
+import { PropsPlatformCard } from "../../platforms/types";
 
 export interface IListCardsPlatforms {
-    config: ICardPlatform[];
+    results: PropsPlatformCard[];
 }
 
-const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ config = [] }) => {
+const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
+    const router = useRouter();
+    const handleClick = (idp: number) => {
+        router.push(`/platforms/platform/${idp}`);
+    };
+
     return (
         <div className={styles.cards}>
-            {config.map((tab) => (
-                <CardPlatform
-                    id={tab.id}
-                    key={tab.id}
-                    logo={tab.logo}
-                    title={tab.title}
-                    favorite={tab.favorite}
-                    description={tab.description}
-                    features={tab.features}
-                    messengers={tab.messengers}
-                />
+            {results.map((item) => (
+                <div
+                    className={styles.link}
+                    key={item.id}
+                    onClick={() => {
+                        if (item.id) {
+                            handleClick(item.id);
+                        }
+                    }}
+                >
+                    <CardPlatform
+                        id={item.id}
+                        title={item.title}
+                        short_description={item.short_description}
+                        image={item.image}
+                        tags={item.tags}
+                    />
+                </div>
             ))}
         </div>
     );

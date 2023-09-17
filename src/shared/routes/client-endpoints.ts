@@ -33,6 +33,9 @@ export const clientEndpoints: ClientEndpoints = {
     updatePassword: {
         get: "/update-password",
     },
+    platforms: {
+        get: "/platforms",
+    },
     platformsFilters: {
         get: "/platforms-filters",
     },
@@ -44,5 +47,8 @@ export const clientEndpoints: ClientEndpoints = {
     },
     solutionDescriptionPage: {
         get: "/solution-description-page",
+    },
+    solutions: {
+        get: "/solutions",
     },
 };

@@ -1,0 +1,92 @@
+.platforms {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 864px;
+    margin: 40px auto 0;
+}
+
+.onePlatform {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1264px;
+    margin: 40px auto 0;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.platform {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 39px;
+    color: #17181a;
+    cursor: pointer;
+}
+
+.platformOne {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 39px;
+    color: #17181a;
+}
+
+.platformOne:hover {
+    cursor: pointer;
+    color: #4466f5;
+    border-bottom: 1px solid #4466f5;
+}
+
+.heart {
+    cursor: pointer;
+}
+
+.price {
+    margin-top: 21px;
+}
+
+.infoCard {
+    margin: 20px 0 16px 0;
+}
+
+.listTags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+}
+
+.tag {
+    padding: 4px 16px;
+    border-radius: 20px;
+    background-color: #f4f5f6;
+}
+
+.listMessages {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+}
+
+.logo {
+    position: relative;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.img {
+    object-fit: contain;
+    border-radius: 20px;
+}
