@@ -15,9 +15,8 @@ import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/Fie
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
-import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
+//import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
-
 const SolutionsFilters=()=>{
     const router = useRouter();
     const handleClick = (idp: number) => {
@@ -135,5 +134,5 @@ const SolutionsFilters=()=>{
         </div>
     </div>
     );
-}
+};
 export default SolutionsFilters;
