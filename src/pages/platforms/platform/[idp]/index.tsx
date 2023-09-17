@@ -1,7 +1,7 @@
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import { useGetPlatformQuery, useGetPlatformsFiltersQuery, useGetPlatformsQuery } from "@/src/store/services/platforms";
-import { useGetSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import css from "./platform.module.css";
 import Text from "@/src/components/shared/text/Text";
@@ -21,7 +21,7 @@ const Platform = () => {
     const { data } = useGetPlatformQuery(Number(idp));
     const { data: dataFilters } = useGetPlatformsFiltersQuery({});
 
-    const { combinedData } = useInfiniteScrollSolutions(useGetSolutionsQuery, {});
+    const { combinedData } = useInfiniteScrollSolutions(useGetListSolutionsQuery, {});
 
     return (
         <div>
