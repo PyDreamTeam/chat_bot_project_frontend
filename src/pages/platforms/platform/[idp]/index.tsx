@@ -10,7 +10,6 @@ import Title from "@/src/components/shared/text/Title";
 import { GroupFilters } from "@/src/components/entities/filters/GropFilters/GroupFilters";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Slider from "@/src/components/shared/slider/Slider";
-import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
 import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
 
