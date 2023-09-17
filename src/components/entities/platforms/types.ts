@@ -59,6 +59,7 @@ export interface PropsPlatformCard {
     image?: string;
     link?: string;
     type?: Card;
+    filter?: Array<number>;
     tags?: {
         id?: number;
         tag?: string;
