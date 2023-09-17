@@ -27,7 +27,7 @@ const BlockPlatform = () => {
                     <Button type="button" active={true} width={250} onClick={toggle}>
                         Подобрать платформу
                     </Button>
-                    <LinkShowAllCards href="/" />
+                    <LinkShowAllCards href="/platforms-filter" />
                 </div>
             </div>
             <Slider>

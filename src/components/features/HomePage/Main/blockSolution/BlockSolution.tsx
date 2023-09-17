@@ -28,7 +28,7 @@ const BlockSolution = () => {
                     <Button type="button" active={true} width={230} onClick={toggle}>
                         Подобрать решение
                     </Button>
-                    <LinkShowAllCards href="/" />
+                    <LinkShowAllCards href="/solutions-filter" />
                 </div>
             </div>
             <Slider>
