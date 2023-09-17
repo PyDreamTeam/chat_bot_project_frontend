@@ -28,6 +28,9 @@ export interface ClientEndpoints {
     updatePassword: {
         get: string;
     };
+    platforms: {
+        get: string;
+    };
     platformsFilters: {
         get: string;
     };
@@ -38,6 +41,9 @@ export interface ClientEndpoints {
         get: string;
     };
     solutionDescriptionPage: {
+        get: string;
+    };
+    solutions: {
         get: string;
     };
 }

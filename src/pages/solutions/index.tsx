@@ -5,33 +5,29 @@ import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "@/src/pages/platforms/platforms.module.css";
+import styles from "@/src/pages/solutions/solutions.module.css";
+import ListAllSolutions from "@/src/components/entities/lists/listAllSolutions/ListAllSolutions";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useGetPlatformsQuery } from "@/src/store/services/platforms";
+import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
-import { useAppSelector } from "@/src/hooks/types";
-import useInfiniteScroll from "@/src/hooks/useInfinityScrollPlatforms";
+import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
-import { useRouter } from "next/router";
-import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
 
-const Platforms = () => {
+const Solutions = () => {
     const { isShown, toggle } = useModal();
-    const router = useRouter();
-    const handleClick = (idp: number) => {
-        router.push(`/platforms/platform/${idp}`);
-    };
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
+    const { data: combinedData, isLoading, isFetching } = useGetListSolutionsQuery({});
 
-    const handleScroll = () => {
-        readMore();
-    };
+    // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
+
+    // const handleScroll = () => {
+    //     readMore();
+    // };
 
     return (
         <>
@@ -40,54 +36,36 @@ const Platforms = () => {
                 <div className={styles.container}>
                     <div className={styles.topWrap}>
                         <Text type="reg14" color="telegray">
-                            <Link href={"/home"} className={styles.path}>
+                            <Link href={"/home"} className={styles.link}>
                                 Главная
                             </Link>
-                            / <span className={styles.path}>Посмотреть все</span>
+                            / <span className={styles.link}>Посмотреть все</span>
                         </Text>
                         <div className={styles.title}>
                             <Title type="h3" color="dark">
-                                Платформы
+                                Примеры решений
                             </Title>
                         </div>
                         <div className={styles.text}>
                             <Text type="reg18" color="grey">
-                                Подберите платформу и воспользуйтесь одним из наших шаблонов, разработанных под
-                                конкретную бизнес-задачу
+                                Подберите конструктор чат-ботов и воспользуйтесь одним из наших шаблонов, разработанных
+                                под конкретную бизнес-задачу
                             </Text>
                         </div>
                     </div>
                     <div className={styles.mainWrap}>
                         {isLoading ? (
-                            <div className={styles.loaderPlatforms}>
+                            <div className={styles.loaderSolutions}>
                                 <Loader isLoading={isLoading} />
                             </div>
                         ) : (
-                            <ul className={styles.platforms}>
-                                {combinedData.map((item) => (
-                                    <li
-                                        className={styles.click}
-                                        key={item.id}
-                                        onClick={() => {
-                                            if (item.id) {
-                                                handleClick(item.id);
-                                            }
-                                        }}
-                                    >
-                                        <CardPlatform
-                                            id={item.id}
-                                            title={item.title}
-                                            short_description={item.short_description}
-                                            tags={item.tags}
-                                            image={item.image}
-                                        />
-                                    </li>
-                                ))}
-                                <div className={styles.loaderPlatforms}>
+                            <>
+                                <ListAllSolutions results={combinedData?.results} />
+                                <div className={styles.loaderSolutions}>
                                     <Loader isLoading={isFetching} />
                                 </div>
-                                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
-                            </ul>
+                                {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
+                            </>
                         )}
                     </div>
                     <div className={styles.bottomWrap}>
@@ -103,18 +81,21 @@ const Platforms = () => {
                                     Воспользуйтесь одним из наших шаблонов, разработанных под конкретную бизнес-задачу
                                 </Text>
                             </div>
-                            <Button active={true} width={250} type="button">
-                                <Link className={styles.link} href="/platforms-filter">
-                                    Подобрать платформу
-                                </Link>
+
+                            <Button active={true} width={250} type="button" onClick={toggle}>
+                                Подобрать решение
                             </Button>
                             <Modal isShown={isShown} hide={toggle}>
                                 <SelectionRequest close={toggle} />
                             </Modal>
                         </div>
                     </div>
+                    {/* <div className={styles.sticky}> */}
                     <ButtonOrder />
+                    {/* </div> */}
+                    {/* <div className={styles.absolut}> */}
                     <ButtonScrollToUp />
+                    {/* </div> */}
                 </div>
             </div>
             <Footer />
@@ -122,4 +103,4 @@ const Platforms = () => {
     );
 };
 
-export default Platforms;
+export default Solutions;

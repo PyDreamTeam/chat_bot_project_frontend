@@ -1,11 +1,45 @@
-import React, { FC, useState, MouseEvent } from "react";
+import React, { FC, useState, MouseEvent, Dispatch, SetStateAction } from "react";
 import Text from "@/src/components/shared/text/Text";
-import Title from "../../text/Title";
 import Image from "next/image";
-import styles from "./styles/CardPlatform.module.css";
-import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
+import styles from "./styles/CardSolution.module.css";
+import { TsConfigJson } from "type-fest";
+import JSX = TsConfigJson.CompilerOptions.JSX;
 
-const CardPlatform: FC<PropsPlatformCard> = ({ id, title, price, short_description, image, tags = [] }) => {
+export interface ICardSolution {
+    id?: number;
+    title?: string;
+    business_model?: string;
+    business_area?: string;
+    business_niche?: string;
+    objective?: string;
+    solution_type?: string;
+    short_description?: string;
+    platform?: string;
+    messengers?: string;
+    integration_with_CRM?: string;
+    integration_with_payment_systems?: string;
+    tasks?: string;
+    actions_to_complete_tasks?: string;
+    turnkey_solutions?: number;
+    image?: string;
+    price?: number;
+    is_active?: boolean;
+    created_at?: string;
+    // type?: "start" | "other";
+    tags?: {
+        id?: number;
+        tag?: string;
+        image_tag?: string;
+        is_active?: boolean;
+        is_message?: boolean;
+    }[];
+
+    //   "filter": [
+    //     0
+    //   ]
+}
+
+const CardAllSolutions: FC<ICardSolution> = ({ id, image, title, price, messengers, short_description, tags = [] }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const handleClickHeart = (e: MouseEvent) => {
@@ -29,15 +63,13 @@ const CardPlatform: FC<PropsPlatformCard> = ({ id, title, price, short_descripti
         }
     };
     return (
-        <div className={styles.card}>
+        <div className={styles.solution}>
             <div className={styles.top}>
                 <div className={styles.logo}>
                     <Image src={image ? `${image}` : ""} width={100} height={100} alt="logo" className={styles.img} />
                 </div>
                 <div className={styles.title}>
-                    <Title type="h4" color="dark">
-                        {title}
-                    </Title>
+                    {title}
                     <div>
                         <Image
                             src={`/platforms/${imageHeart}.svg`}
@@ -80,4 +112,4 @@ const CardPlatform: FC<PropsPlatformCard> = ({ id, title, price, short_descripti
     );
 };
 
-export default CardPlatform;
+export default CardAllSolutions;

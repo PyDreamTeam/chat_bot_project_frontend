@@ -22,7 +22,7 @@ export interface Labels {
 }
 
 export interface IListSliderCards {
-    config: ReactNode[];
+    results: ReactNode[];
 }
 
 export interface Advantages {

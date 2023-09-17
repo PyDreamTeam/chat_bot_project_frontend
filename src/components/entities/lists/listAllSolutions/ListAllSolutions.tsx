@@ -1,21 +1,17 @@
 import React, { FC } from "react";
-import styles from "./styles/ListCardsSolutions.module.css";
+import styles from "./styles/ListSolutions.module.css";
+import { IListCardsSolutions } from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
 import CardSolution from "@/src/components/shared/tabs/cardSolution/CardSolution";
 import { useRouter } from "next/router";
-import { PropsSolutionCard } from "../../platforms/types";
 
-export interface IListCardsSolutions {
-    results: PropsSolutionCard[];
-}
-
-const ListCardsSolutions: FC<IListCardsSolutions> = ({ results = [] }) => {
+const ListAllSolutions: FC<IListCardsSolutions> = ({ results = [] }) => {
     const router = useRouter();
     const handleClick = (idp: number) => {
         router.push(`/solutions/solution/${idp}`);
     };
     return (
-        <div className={styles.cards}>
-            {results.map((tab: PropsSolutionCard) => (
+        <div className={styles.solutions}>
+            {results.map((tab) => (
                 <div
                     className={styles.link}
                     key={tab.id}
@@ -26,9 +22,8 @@ const ListCardsSolutions: FC<IListCardsSolutions> = ({ results = [] }) => {
                     }}
                 >
                     <CardSolution
-                        type="slider"
+                        type="other"
                         id={tab.id}
-                        key={tab.id}
                         image={tab.image}
                         title={tab.title}
                         price={tab.price}
@@ -41,4 +36,4 @@ const ListCardsSolutions: FC<IListCardsSolutions> = ({ results = [] }) => {
     );
 };
 
-export default ListCardsSolutions;
+export default ListAllSolutions;
