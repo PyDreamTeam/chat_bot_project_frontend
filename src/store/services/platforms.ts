@@ -1,6 +1,7 @@
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
 export const platforms = createApi({
     reducerPath: "platforms",
     baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
@@ -37,9 +38,19 @@ export const platforms = createApi({
                 url: "/api/platform/platforms/",
                 method: "GET",
             }),
+        addPlatform: builder.mutation({
+            query: ({platform, token}) => ({
+                url: "/api/platform/platforms/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: platform
+            })
         }),
     }),
 });
 
-export const { useGetPlatformsFiltersQuery, useGetPlatformsQuery, useGetPlatformQuery, useGetListPlatformsQuery } =
-    platforms;
+
+export const { useGetPlatformsFiltersQuery, useGetPlatformsQuery, useGetPlatformQuery, useAddPlatformMutation, useGetListPlatformsQuery } = platforms;
+

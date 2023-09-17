@@ -6,7 +6,7 @@ export const userAuth = createApi({
     endpoints: (builder) => ({
         dataUser: builder.query({
             query: (token: { access: string; refresh: string }) => ({
-                url: "/api/auth/users/me/",
+                url: "/api/profile/",
                 method: "GET",
                 headers: {
                     Authorization: `JWT ${token.access}`,
@@ -15,8 +15,8 @@ export const userAuth = createApi({
         }),
         changeDataUser: builder.mutation<void, { requestValues: Record<string, unknown>; token: string }>({
             query: ({ requestValues, token }) => ({
-                url: "/api/auth/users/me/",
-                method: "PUT",
+                url: "/api/profile/",
+                method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token}`,
                 },
