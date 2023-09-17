@@ -2,17 +2,10 @@ import React, { FC, useEffect, useRef } from "react";
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import Cookies from "js-cookie";
 import styles from "./styles/order.module.css";
-import {
-    useDeleteOrderMutation,
-    useGetOrderQuery,
-    useGetOrdersListQuery,
-    usePutOrderMutation,
-} from "@/src/store/services/userAuth";
+import { useDeleteOrderMutation, useGetOrderQuery, usePutOrderMutation } from "@/src/store/services/userAuth";
 import { Loader } from "@/src/components/shared/Loader/Loader";
-import { Order } from "@/src/components/entities/orders/Order/Order";
-import Text from "@/src/components/shared/text/Text";
 import { useRouter } from "next/router";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
@@ -32,18 +25,19 @@ const page: FC<pageProps> = () => {
     const orderId: string = router.query.id as string;
     const id = orderId;
     const [putOrder, { isSuccess, error: errorData, isLoading }] = usePutOrderMutation();
-    const { data: dataOrder, isLoading: isLoadingOrder } = useGetOrderQuery({ token, id });
+    const [deleteOrder, { error: errorDelete }] = useDeleteOrderMutation();
+    const { data: dataOrder, isLoading: isLoadingOrder } = useGetOrderQuery(
+        { token, id },
+        {
+            refetchOnMountOrArgChange: true,
+        }
+    );
     // TODO: type error in formRef.current.handleSubmit();
     const formRef: any = useRef(null);
 
     const handleSubmit = () => {
         if (formRef.current) {
             formRef.current.handleSubmit();
-        }
-    };
-    const handleReset = () => {
-        if (formRef.current) {
-            formRef.current.resetForm({ first_name: "", email: "", phone_number: "", comment: "" });
         }
     };
 
@@ -57,6 +51,7 @@ const page: FC<pageProps> = () => {
                 ) : (
                     <div className={styles.orderEditWrapper}>
                         <Formik
+                            enableReinitialize={true}
                             innerRef={formRef}
                             initialValues={{
                                 first_name: dataOrder?.first_name || "",
@@ -109,7 +104,7 @@ const page: FC<pageProps> = () => {
                                 }
                             }}
                         >
-                            {({ isSubmitting, errors, touched, getFieldProps, isValid, setFieldTouched }) => {
+                            {({ isSubmitting, errors, touched, isValid, setFieldTouched }) => {
                                 useEffect(() => {
                                     if (dataOrder) {
                                         setFieldTouched("first_name");

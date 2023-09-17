@@ -9,7 +9,7 @@ import Link from "next/link";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
-import { useDataUserQuery } from "@/src/store/services/userAuth";
+import { useDataUserQuery, useDeleteOrderMutation } from "@/src/store/services/userAuth";
 import { orderCheckBox, orderDelete } from "./img/SvgConfig";
 
 interface IHomePageHeader {
@@ -25,10 +25,10 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
     const router = useRouter();
     const [open, setOpen] = useState<boolean>(false);
     const handleToggleBurgerMenu = () => setOpen((prevState) => !prevState);
-    const dispatch = useAppDispatch();
-
+    const id = orderNumber;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
+    const [deleteOrder, { error: errorDelete }] = useDeleteOrderMutation();
 
     const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -82,7 +82,9 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                             <div
                                 className={styles.orderIconDelete}
                                 data-tooltip="Удалить заказ"
-                                onClick={() => console.log("удалить заказ")}
+                                onClick={() => {
+                                    deleteOrder({ token, id }).then(() => router.push("/my-account/orders"));
+                                }}
                             >
                                 {orderDelete}
                             </div>
