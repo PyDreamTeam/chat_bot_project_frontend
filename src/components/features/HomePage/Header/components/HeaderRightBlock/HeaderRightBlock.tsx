@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 const navElements = [
     { href: "/home", text: "О сервисе" },
     { href: "/home", text: "Статьи" },
-    { href: "/home", text: "Решения" },
+    { href: "/solutions-filter", text: "Решения" },
     { href: "/platforms-filter", text: "Платформы" },
 ];
 

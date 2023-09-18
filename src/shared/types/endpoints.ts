@@ -34,6 +34,9 @@ export interface ClientEndpoints {
     platformsFilters: {
         get: string;
     };
+    solutionsFilters: {
+        get: string;
+    };
     adminPage: {
         get: string;
     };

@@ -11,7 +11,7 @@ import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
-
+import Link from "next/link";
 const BlockSolution = () => {
     const { isShown, toggle } = useModal();
 
@@ -28,8 +28,10 @@ const BlockSolution = () => {
                     конкретную бизнес-задачу
                 </Text>
                 <div className={styles.buttons}>
-                    <Button type="button" active={true} width={230} onClick={toggle}>
-                        Подобрать решение
+                    <Button type="button" active={true} width={230}>
+                    <Link className={styles.link} href="/solutions-filter">
+                            Подобрать решение
+                        </Link>
                     </Button>
                     <LinkShowAllCards href="/solutions" />
                 </div>
