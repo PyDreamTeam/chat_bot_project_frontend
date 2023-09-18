@@ -10,7 +10,7 @@ import styles from "./BlockGreatSolutions.module.css";
 
 const cards: StatisticsCards[] = [
     {
-        icon: <Image src={"/icon/Клиенты.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Clients.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Title type={"h4"} color={"dark"}>
                 15K
@@ -23,7 +23,7 @@ const cards: StatisticsCards[] = [
         ),
     },
     {
-        icon: <Image src={"/icon/Покупки.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Purchases.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Title type={"h4"} color={"dark"}>
                 30+
@@ -36,7 +36,7 @@ const cards: StatisticsCards[] = [
         ),
     },
     {
-        icon: <Image src={"/icon/Рейтинг.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Rating.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Title type={"h4"} color={"dark"}>
                 4.8
