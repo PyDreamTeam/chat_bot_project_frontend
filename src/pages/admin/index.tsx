@@ -18,14 +18,10 @@ const adminNavigation = [
 ];
 
 const AdminPage = () => {
-
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const {data} = useDataUserQuery(token);
-
+    
     return(
         <WrapperAdminPage>
             <ContainerAdminFunction>
-                <AccountPageHeader page="adminPage" name={`${data?.first_name} ${data?.last_name}`}/>
                 <ul className={css.listNav}>
                     {adminNavigation.map(({title, href, icon}) => (
                         <Link href={href} key={title} className={css.nav}>
