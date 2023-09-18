@@ -19,6 +19,10 @@ const BlockShotDescription: FC<PropsSolutionCard> = ({
     solution_type,
     objective,
     price,
+    messengers,
+    platform,
+    integration_with_CRM,
+    integration_with_payment_systems,
 }) => {
     return (
         <div className={styles.wrapper}>
@@ -57,6 +61,31 @@ const BlockShotDescription: FC<PropsSolutionCard> = ({
                             Ниша бизнеса:
                         </Text>
                         {business_niche}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Платформа:
+                        </Text>
+                        {platform}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Мессенджеры:
+                        </Text>
+
+                        {messengers}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Интеграция с CRM:
+                        </Text>
+                        {integration_with_CRM}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Интеграция с платежными системами:
+                        </Text>
+                        {integration_with_payment_systems}
                     </div>
                 </div>
                 <ReadMore

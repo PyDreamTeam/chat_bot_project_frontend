@@ -79,7 +79,12 @@ export interface PropsSolutionCard {
     solution_type?: string;
     short_description?: string;
     full_description?: string;
-    turnkey_solutions?: number;
+    platform?: string;
+    messengers?: string;
+    integration_with_CRM?: string;
+    integration_with_payment_systems?: string;
+    tasks?: string;
+    actions_to_complete_tasks?: string;
     price?: number;
     is_active?: boolean;
     created_at?: string;

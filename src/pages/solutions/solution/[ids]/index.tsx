@@ -42,10 +42,14 @@ const Solution = () => {
                     business_niche={data?.business_niche}
                     solution_type={data?.solution_type}
                     objective={data?.objective}
+                    price={data?.price}
                     title={data?.title}
                     full_description={data?.full_description}
                     short_description={data?.short_description}
-                    price={data?.price}
+                    messengers={data?.messengers}
+                    platform={data?.platform}
+                    integration_with_CRM={data?.integration_with_CRM}
+                    integration_with_payment_systems={data?.integration_with_payment_systems}
                 />
                 <BlockGreatSolutions />
                 <BlockFunnelBenefits />
