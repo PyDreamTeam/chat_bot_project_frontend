@@ -2,7 +2,7 @@ import React, { FC, ChangeEvent } from "react";
 import style from "./inputSearch.module.css";
 
 interface PropsInputSearch {
-    placeholder: string;
+    placeholder?: string;
     value: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
