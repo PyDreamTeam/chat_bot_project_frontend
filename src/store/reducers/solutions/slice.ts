@@ -1,48 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Filters {
+interface Solutions {
     id: number;
     tag: string;
-    filter?: string;
 }
 
 interface State {
-    filters: Filters[];
-    min_price: number;
-    max_price: number;
+    solutions: Solutions[];
 }
 
 const initialState: State = {
-    filters: [],
-    min_price: 0,
-    max_price: 0,
+    solutions: [],
 };
 
-const filtersSlice = createSlice({
-    name: "filters",
+const solutionsSlice = createSlice({
+    name: "solutions",
     initialState,
-    reducers: {
-        addFilters: (state, action: PayloadAction<{ id: number; tag: string; filter?: string }>) => {
-            const isFilterInStore = state.filters.find((item) => item.id === action.payload.id);
-
-            if (!isFilterInStore) {
-                state.filters = [...state.filters, action.payload];
-            }
-        },
-        deleteFilters: (state, action: PayloadAction<number>) => {
-            state.filters = state.filters.filter((item) => item.id !== action.payload);
-        },
-        deleteAllFilters: (state) => {
-            state.filters = [];
-        },
-        minimalPrice: (state, action) => {
-            state.min_price = action.payload;
-        },
-        maximalPrice: (state, action) => {
-            state.max_price = action.payload;
-        },
-    },
+    reducers: {},
 });
 
-export const { addFilters, deleteFilters, deleteAllFilters, minimalPrice, maximalPrice } = filtersSlice.actions;
-export const reducerFilters = filtersSlice.reducer;
+// eslint-disable-next-line no-empty-pattern
+// export const { } = filtersSlice.actions;
+export const reducerSolutions = solutionsSlice.reducer;

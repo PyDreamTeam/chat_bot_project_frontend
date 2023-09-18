@@ -1,4 +1,4 @@
-import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
+import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const solutions = createApi({
@@ -11,19 +11,10 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
-        getSolutions: builder.query({
-            query: (arg: {
-                id_tags?: Array<number>;
-                price_min?: number;
-                price_max?: number;
-                title?: string;
-                sort_abc?: string;
-                page_number?: number;
-                items_per_page?: number;
-            }) => ({
-                url: "/api/solution/filtration/",
-                method: "POST",
-                body: arg,
+        getListSolutions: builder.query({
+            query: () => ({
+                url: "/api/solution/solutions/",
+                method: "GET",
             }),
         }),
         getSolution: builder.query<PropsSolutionCard, number>({
@@ -35,4 +26,4 @@ export const solutions = createApi({
     }),
 });
 
-export const { useGetSolutionsFiltersQuery, useGetSolutionsQuery, useGetSolutionQuery } = solutions;
+export const { useGetListSolutionsQuery, useGetSolutionQuery, useGetSolutionsFiltersQuery } = solutions;

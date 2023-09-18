@@ -15,7 +15,8 @@ export const store = configureStore({
         [platforms.reducerPath]: platforms.reducer,
         [solutions.reducerPath]: solutions.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userAuth.middleware, platforms.middleware, solutions.middleware),
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(userAuth.middleware, platforms.middleware, solutions.middleware),
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -6,13 +6,17 @@ import LinkShowAllCards from "@/src/components/shared/links/LinkShowAllCards";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Slider from "@/src/components/shared/slider/Slider";
 import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
-import { CARDS_SOLUTIONS } from "@/src/components/shared/slider/CardsSolutionsConfig";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
+import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
+import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
+import Link from "next/link";
 
 const BlockSolution = () => {
     const { isShown, toggle } = useModal();
+
+    const { combinedData } = useInfiniteScrollSolutions(useGetListSolutionsQuery, {});
 
     return (
         <div className={styles.wrapper}>
@@ -25,14 +29,16 @@ const BlockSolution = () => {
                     конкретную бизнес-задачу
                 </Text>
                 <div className={styles.buttons}>
-                    <Button type="button" active={true} width={230} onClick={toggle}>
-                        Подобрать решение
+                    <Button type="button" active={true} width={230}>
+                    <Link className={styles.link} href="/solutions-filter">
+                            Подобрать решение
+                        </Link>
                     </Button>
-                    <LinkShowAllCards href="/solutions-filter" />
+                    <LinkShowAllCards href="/solutions" />
                 </div>
             </div>
-            <Slider>
-                <ListCardsSolutions config={CARDS_SOLUTIONS} />
+            <Slider type="homeSlider">
+                <ListCardsSolutions results={combinedData} />
             </Slider>
             <Modal isShown={isShown} hide={toggle}>
                 <SelectionRequest close={toggle} />

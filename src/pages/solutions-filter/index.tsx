@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import { useGetSolutionsFiltersQuery, useGetSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetSolutionsFiltersQuery, useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { GroupFilters } from "@/src/components/entities/platforms/leftBlock/GroupFilters/GroupFilters";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
@@ -34,7 +34,7 @@ const SolutionsFilters=()=>{
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
     
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
-        useGetSolutionsQuery,
+        useGetListSolutionsQuery,
         {
             id_tags: ids,
             price_min: minPrice,
