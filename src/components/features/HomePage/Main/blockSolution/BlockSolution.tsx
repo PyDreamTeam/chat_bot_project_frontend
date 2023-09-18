@@ -12,7 +12,6 @@ import SelectionRequest from "@/src/components/entities/selectionRequest/Selecti
 import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
 import Link from "next/link";
-
 const BlockSolution = () => {
     const { isShown, toggle } = useModal();
 

@@ -14,3 +14,46 @@
     margin: 0 auto;
     padding: 81px 0 79px;
 }
+
+/* стили для WrapperAdminPage */
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.logo {
+    margin-top: 40px;
+}
+
+.navigationPanel {
+    width: 26%;
+    background-color: #E2ECFF;
+}
+
+.listNav {
+    margin-top: 54px;
+    height: 100vh;
+    list-style: none;
+}
+.link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px 14px 30px;
+}
+.nav:first-child {
+    margin-bottom: 40px;
+}
+.nav:last-child {
+    margin-top: 40px;
+}
+.nav:hover {
+    background-color: white;
+}

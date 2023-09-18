@@ -44,17 +44,13 @@ const PlatformsFilters = () => {
     //     items_per_page: 4,
     // });
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
-        useGetPlatformsQuery,
-        {
-            id_tags: ids,
-            price_min: minPrice,
-            price_max: maxPrice,
-            title: search,
-            sort_abc: sortAbc,
-        }
-    );
-
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {
+        id_tags: ids,
+        price_min: minPrice,
+        price_max: maxPrice,
+        title: search,
+        sort_abc: sortAbc,
+    });
 
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
@@ -106,18 +102,22 @@ const PlatformsFilters = () => {
                                     height={24}
                                     className={css.search}
                                 />
-                                <InputSearch placeholder={"Найти платформу"} value={search} onChange={(e) => {
-                                    refresh();
-                                    setSearch(e.target.value);
-                                    if(e.target.value.trim() === "") {
+                                <InputSearch
+                                    placeholder={"Найти платформу"}
+                                    value={search}
+                                    onChange={(e) => {
                                         refresh();
-                                    }
-                                }} />
+                                        setSearch(e.target.value);
+                                        if (e.target.value.trim() === "") {
+                                            refresh();
+                                        }
+                                    }}
+                                />
                             </div>
                             <div>
                                 <FieldOptions />
                             </div>
-                            <AlphabeticalSorting onClick={() => refresh()}/>
+                            <AlphabeticalSorting onClick={() => refresh()} />
                             {isLoading ? (
                                 <div className={css.loaderPlatforms}>
                                     <Loader isLoading={isLoading} />

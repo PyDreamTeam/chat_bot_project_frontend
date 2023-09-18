@@ -42,7 +42,7 @@ const BlockComplexFunnel = () => {
                         </Button>
                     </div>
                     <Link href={"#video"} className={styles.btnPlay}>
-                        <Image src={"page/Play.svg"} alt={"Play"} width={48} height={48} />
+                        <Image src={"/page/Play.svg"} alt={"Play"} width={48} height={48} />
                         <Text type={"reg16"} color={"grey"}>
                             Посмотреть как это работает
                         </Text>
@@ -50,7 +50,7 @@ const BlockComplexFunnel = () => {
                 </div>
             </div>
             <div className={styles.img}>
-                <Image src={"page/ComplexFunnel.svg"} alt={"ComplexFunnel"} width={493} height={431} />
+                <Image src={"/page/ComplexFunnel.svg"} alt={"ComplexFunnel"} width={493} height={431} />
             </div>
             <Modal isShown={isShown} hide={toggle}>
                 <SelectionRequest close={toggle} />

@@ -5,12 +5,14 @@ import signUpError from "./reducers/signUpError";
 import credentialsSlice from "./reducers/credentialsSlice";
 import { userAuth } from "./services/userAuth";
 import { reducerFilters } from "./reducers/platforms/slice";
+import { reducerSolutions } from "./reducers/solutions/slice";
 
 export const store = configureStore({
     reducer: {
         reducerFilters,
         signUpError,
         credentialsSlice,
+        reducerSolutions,
         [userAuth.reducerPath]: userAuth.reducer,
         [platforms.reducerPath]: platforms.reducer,
         [solutions.reducerPath]: solutions.reducer,
