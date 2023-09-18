@@ -85,7 +85,7 @@ const SolutionsFilters=()=>{
                                     height={24}
                                     className={css.search}
                                 />
-                                <InputSearch value={search} onChange={(e) => {
+                                <InputSearch placeholder={"Найти решение"} value={search} onChange={(e) => {
                                     refresh();
                                     setSearch(e.target.value);
                                     if(e.target.value.trim() === "") {

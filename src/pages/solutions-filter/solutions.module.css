@@ -9,6 +9,10 @@
     margin: 0 auto;
 }
 
+.link {
+    color: #909090;
+}
+
 .title {
     position: relative;
     margin-top: 16px;
