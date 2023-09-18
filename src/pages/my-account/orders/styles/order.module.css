@@ -5,6 +5,11 @@
     gap: 120px;
 }
 
+.form {
+    width: 440px;
+    text-align: left;
+}
+
 .form button {
     margin-top: 16px;
 }

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import React, { FC } from "react";
 
 import styles from "./styles/ArrowSlideRight.module.css";
@@ -31,7 +30,7 @@ const ArrowSlideRight: FC<IArrowProps> = ({ className = "", onClick }) => {
                         width="52"
                         height="52"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
                         <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix

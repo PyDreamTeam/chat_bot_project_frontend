@@ -82,7 +82,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                             initialValues={{
                                 first_name: data?.first_name || "",
                                 email: data?.email || "",
-                                phone_number: "",
+                                phone_number: data?.phone_number || "",
                                 comment: "",
                             }}
                             validationSchema={Yup.object().shape({
@@ -142,6 +142,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                     if (data) {
                                         setFieldTouched("first_name");
                                         setFieldTouched("email");
+                                        setFieldTouched("phone_number");
                                     }
                                 }, [data]);
 
