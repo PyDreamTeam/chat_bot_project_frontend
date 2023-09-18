@@ -38,6 +38,7 @@ const page: FC<pageProps> = () => {
     const handleSubmit = () => {
         if (formRef.current) {
             formRef.current.handleSubmit();
+            Cookies.set("Edited_order", `${id}`);
         }
     };
 

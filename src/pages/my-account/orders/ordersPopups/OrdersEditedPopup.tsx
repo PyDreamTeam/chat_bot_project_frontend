@@ -1,20 +1,18 @@
 import React, { FC, FormEvent, MouseEventHandler } from "react";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
-import styles from "./styles/OrdersPopup.module.css";
-
-import uuid from "uuid-random";
+import styles from "./styles/OrdersEditedPopup.module.css";
 import Title from "@/src/components/shared/text/Title";
 
-interface IOrdersPopup {
+interface IOrdersEditedPopup {
     activePopup?: boolean;
     id: string | undefined;
     close: () => void;
 }
 
-const OrdersPopup: FC<IOrdersPopup> = ({ activePopup, id, close }) => {
+const OrdersEditedPopup: FC<IOrdersEditedPopup> = ({ activePopup, id, close }) => {
     return (
-        <div className={`${styles.ordersPopup} ${activePopup ? styles.active : null}`}>
+        <div className={`${styles.ordersEditedPopup} ${activePopup ? styles.active : null}`}>
             <div className={styles.popupWrapper}>
                 <Image
                     src="/img/ep_success-filled.svg"
@@ -24,24 +22,26 @@ const OrdersPopup: FC<IOrdersPopup> = ({ activePopup, id, close }) => {
                     className={styles.imgSuccess}
                 />
                 <div className={styles.textSuccess}>
-                    <Title type="h5" color="black">
+                    <Title type="h6" color="black">
                         {`Заказ ${id} успешно изменен!`}
                     </Title>
-                    <Text type="reg16" color="grey">
+                    <Text type="reg16" color="telegray">
                         Наши специалисты свяжутся с вами в течение суток
                     </Text>
                 </div>
-                <Image
-                    src="/sign/close.svg"
-                    alt="close"
-                    width={24}
-                    height={24}
-                    onClick={close}
-                    className={styles.imgClose}
-                />
+                <div className={styles.imgCloseContainer}>
+                    <Image
+                        src="/sign/close.svg"
+                        alt="close"
+                        width={24}
+                        height={24}
+                        onClick={close}
+                        className={styles.imgClose}
+                    />
+                </div>
             </div>
         </div>
     );
 };
 
-export default OrdersPopup;
+export default OrdersEditedPopup;
