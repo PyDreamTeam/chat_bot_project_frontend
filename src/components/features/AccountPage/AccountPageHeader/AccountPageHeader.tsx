@@ -83,6 +83,7 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                                 className={styles.orderIconDelete}
                                 data-tooltip="Удалить заказ"
                                 onClick={() => {
+                                    Cookies.set("Deleted_order", `${id}`);
                                     deleteOrder({ token, id }).then(() => router.push("/my-account/orders"));
                                 }}
                             >

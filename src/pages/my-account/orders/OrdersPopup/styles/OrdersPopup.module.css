@@ -1,0 +1,27 @@
+.ordersPopup {
+    max-width: 570px;
+    padding: 20px 32px;
+    font-family: Inter;
+    background: var(--back-color);
+    border-radius: 10px;
+    border: 1px solid var(--sub-color);
+    box-shadow: 4px 8px 32px 0px rgba(43, 53, 116, 0.08);
+    color: var(--text-color-1);
+    margin-top: 6px;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+            
+    transition: all 0.4s ease-in-out;
+}
+
+.popupWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.active {
+    opacity: 1;
+    visibility: visible;
+}
