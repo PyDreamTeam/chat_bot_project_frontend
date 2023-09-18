@@ -9,7 +9,8 @@ import Link from "next/link";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
-import { useDataUserQuery } from "@/src/store/services/userAuth";
+import { useDataUserQuery, useDeleteOrderMutation } from "@/src/store/services/userAuth";
+import { orderCheckBox, orderDelete } from "./img/SvgConfig";
 
 interface IHomePageHeader {
     name?: string;
@@ -17,16 +18,17 @@ interface IHomePageHeader {
     id?: string | number;
     page: keyof typeof AccountPageTypes;
     orderNumber?: string;
+    submitForm?: () => void;
 }
 
-const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber }) => {
+const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber, submitForm }) => {
     const router = useRouter();
     const [open, setOpen] = useState<boolean>(false);
     const handleToggleBurgerMenu = () => setOpen((prevState) => !prevState);
-    const dispatch = useAppDispatch();
-
+    const id = orderNumber;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
+    const [deleteOrder, { error: errorDelete }] = useDeleteOrderMutation();
 
     const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -55,18 +57,39 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                 )}
                 {page === "orderEdit" && (
                     <div className={styles.orderTitle}>
-                        <div className={styles.orderIconEdit}>
-                            <Image
-                                src="/img/Edit_bold.svg"
-                                alt="edit"
-                                width={20}
-                                height={20}
-                                className={styles.imgEdit}
-                            />
+                        <div className={styles.orderTitleLeft}>
+                            <div className={styles.orderIconEdit}>
+                                <Image
+                                    src="/img/Edit_bold.svg"
+                                    alt="edit"
+                                    width={20}
+                                    height={20}
+                                    className={styles.imgEdit}
+                                />
+                            </div>
+                            <Title type={"h4"} color={"black"}>
+                                {`Заказ ${orderNumber}`}
+                            </Title>
                         </div>
-                        <Title type={"h4"} color={"black"}>
-                            {`Заказ ${orderNumber}`}
-                        </Title>
+                        <div className={styles.orderTitleRight}>
+                            <div
+                                className={styles.orderIconCheck}
+                                data-tooltip="Сохранить изменения"
+                                onClick={submitForm}
+                            >
+                                {orderCheckBox}
+                            </div>
+                            <div
+                                className={styles.orderIconDelete}
+                                data-tooltip="Удалить заказ"
+                                onClick={() => {
+                                    Cookies.set("Deleted_order", `${id}`);
+                                    deleteOrder({ token, id }).then(() => router.push("/my-account/orders"));
+                                }}
+                            >
+                                {orderDelete}
+                            </div>
+                        </div>
                     </div>
                 )}
                 {page === "templates" && (

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import uuid from "uuid-random";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import styles from "./styles/OrdersList.module.css";
@@ -8,10 +8,22 @@ import { PropsOrder, PropsOrders } from "@/src/components/entities/orders/types"
 import { Order } from "@/src/components/entities/orders/Order/Order";
 
 const Orders: FC<PropsOrders> = ({ forceUpdate }) => {
+    // const [orders, setOrders] = useState<PropsOrder[]>([]);
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data: dataOrders, isLoading: isLoadingOrders } = useGetOrdersListQuery(token, {
         refetchOnMountOrArgChange: true,
     });
+    const compareItems = (a: PropsOrder, b: PropsOrder) => {
+        return Number(a.id) - Number(b.id);
+    };
+
+    // useEffect(() => {
+    //     if (dataOrders) {
+    //         const sortOrders = [...dataOrders.results];
+    //         sortOrders?.sort(compareItems);
+    //         setOrders(sortOrders);
+    //     }
+    // }, []);
 
     return (
         <div>

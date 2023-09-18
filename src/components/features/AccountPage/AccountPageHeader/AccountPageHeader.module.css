@@ -10,6 +10,97 @@
 
 .orderTitle {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 440px;
+
+}
+
+.orderTitleLeft {
+    display: flex;
     align-items: center;
     gap: 20px;
 }
+
+.orderTitleRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.orderIconCheck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid var(--back-color);
+    border-radius: 15px;
+}
+
+.orderIconDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid var(--back-color);
+    border-radius: 15px;
+
+}
+
+/* .orderIconCheck:hover svg circle {
+    fill: #E2ECFF;
+} */
+
+.orderIconCheck:hover {
+    background-color: #E2ECFF;
+}
+
+.orderIconDelete:hover {
+    background-color: #FEE4E2;
+}
+
+.orderIconCheck::after,
+.orderIconDelete::after {
+    max-width: 330px;
+    padding: 16px 24px;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    background: var(--back-color);
+    border-radius: 10px;
+    border: 1px solid var(--sub-color);
+    box-shadow: 4px 8px 32px 0px rgba(43, 53, 116, 0.08);
+    color: var(--text-color-1);
+    content: attr(data-tooltip); /* содержимое всплывающей подсказки */
+    opacity: 0;
+    position: absolute;
+    top: 110px;
+    visibility: hidden;
+            
+    transition: all 0.4s ease-in-out;
+}
+
+.orderIconCheck::after {
+    top: 110px;
+    transform: translateX(120px);
+}
+
+.orderIconDelete::after {
+    top: 110px;
+    transform: translateX(96px);
+}
+
+
+.orderIconCheck:hover::after,
+.orderIconDelete:hover::after {
+    opacity: 1; /* Показываем его */
+    visibility: visible;
+}
+
+
