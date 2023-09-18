@@ -1,0 +1,8 @@
+.solutions {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr;
+    gap: 32px;
+}
+.link {
+    display: grid;
+}

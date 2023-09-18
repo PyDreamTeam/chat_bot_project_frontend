@@ -10,7 +10,7 @@ import styles from "./BlockGreatSolutions.module.css";
 
 const cards: StatisticsCards[] = [
     {
-        icon: <Image src={"icon/Клиенты.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Клиенты.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Title type={"h4"} color={"dark"}>
                 15K
@@ -23,7 +23,7 @@ const cards: StatisticsCards[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Покупки.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Покупки.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Title type={"h4"} color={"dark"}>
                 30+
@@ -36,7 +36,7 @@ const cards: StatisticsCards[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Рейтинг.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Рейтинг.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Title type={"h4"} color={"dark"}>
                 4.8
@@ -49,7 +49,7 @@ const cards: StatisticsCards[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Heart.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Heart.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Title type={"h4"} color={"dark"}>
                 50+
@@ -67,7 +67,7 @@ const BlockGreatSolutions = () => {
     return (
         <div className={styles.wrapper}>
             <Title type={"h3"} color={"dark"}>
-                Решение, которым довольны клиенты{" "}
+                Решение, которым довольны клиенты
             </Title>
             <div className={styles.blockCards}>
                 {cards.map((item, index) => (

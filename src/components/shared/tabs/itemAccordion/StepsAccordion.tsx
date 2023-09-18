@@ -30,9 +30,9 @@ const StepsAccordion: FC<IAccordionItem & IAccordionItemProps> = ({ id, title, c
             </div>
             <div className={`${styles.header} ${isSelected && styles.open}`} onClick={openClick}>
                 {isSelected ? (
-                    <Image src={"img/StepClose.png"} alt="Close" width={70} height={70} />
+                    <Image src={"/img/StepClose.png"} alt="Close" width={70} height={70} />
                 ) : (
-                    <Image src={"img/StepOpen.png"} alt="Open" width={70} height={70} />
+                    <Image src={"/img/StepOpen.png"} alt="Open" width={70} height={70} />
                 )}
             </div>
         </div>

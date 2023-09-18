@@ -11,7 +11,7 @@ import ElemSaleBot from "@/src/components/shared/elemChooseChatBot/ElemSaleBot";
 
 const cards: CardsFunnel[] = [
     {
-        icon: <Image src={"icon/Взаимодействие.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Взаимодействие.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Text type={"med20"} color={"dark"}>
                 Общение “ученик-учитель”
@@ -24,7 +24,7 @@ const cards: CardsFunnel[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Выдача уроков.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Выдача уроков.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Text type={"med20"} color={"dark"}>
                 Прием домашний заданий
@@ -37,7 +37,7 @@ const cards: CardsFunnel[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Страница ученика.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Страница ученика.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Text type={"med20"} color={"dark"}>
                 Страница ученика
@@ -50,7 +50,7 @@ const cards: CardsFunnel[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Zoom.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Zoom.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Text type={"med20"} color={"dark"}>
                 Экзамен в Zoom
@@ -63,7 +63,7 @@ const cards: CardsFunnel[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Платежи.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Платежи.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Text type={"med20"} color={"dark"}>
                 Прием платежей
@@ -76,7 +76,7 @@ const cards: CardsFunnel[] = [
         ),
     },
     {
-        icon: <Image src={"icon/Сертификат.svg"} alt={"icon"} width={48} height={48} />,
+        icon: <Image src={"/icon/Сертификат.svg"} alt={"icon"} width={48} height={48} />,
         title: (
             <Text type={"med20"} color={"dark"}>
                 Выдача сертификата
