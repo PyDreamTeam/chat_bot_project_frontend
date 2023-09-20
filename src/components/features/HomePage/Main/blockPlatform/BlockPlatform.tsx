@@ -37,7 +37,7 @@ const BlockPlatform = () => {
                     <LinkShowAllCards href="/platforms" />
                 </div>
             </div>
-            <Slider type="homeSlider">
+            <Slider cardType="634" type="homeSlider">
                 <ListCardsPlatforms results={combinedData} />
             </Slider>
         </div>

@@ -34,7 +34,7 @@ const BlockSolution = () => {
                     <LinkShowAllCards href="/solutions" />
                 </div>
             </div>
-            <Slider type="homeSlider">
+            <Slider cardType="468" type="homeSlider">
                 <ListCardsSolutions results={combinedData} />
             </Slider>
             <Modal isShown={isShown} hide={toggle}>

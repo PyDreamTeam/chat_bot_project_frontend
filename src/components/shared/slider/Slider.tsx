@@ -7,10 +7,20 @@ import { IListSliderCards } from "@/src/types/index";
 interface ISliderProps {
     children?: ReactElement<IListSliderCards>;
     type?: "homeSlider" | "pageSlider";
+    cardType?: "634" | "468";
 }
 
-const Slider: FC<ISliderProps> = ({ children, type }) => {
-    const CARD_WIDTH = 468;
+const Slider: FC<ISliderProps> = ({ children, type, cardType }) => {
+    // const CARD_WIDTH = 634;
+    // const CARD_WIDTH = 468;
+    let card_width: number;
+
+    if (cardType == "634") {
+        card_width = 634;
+    } else {
+        card_width = 468;
+    }
+
     let childrenCount: number;
     const [offset, setOffset] = useState(0);
     const [isEnableRight, setIsEnableRight] = useState(true);
@@ -20,8 +30,8 @@ const Slider: FC<ISliderProps> = ({ children, type }) => {
 
     const handleRightClick = () => {
         setOffset((currentOffset) => {
-            const newOffset = currentOffset - CARD_WIDTH;
-            const maxOffset = -CARD_WIDTH * (childrenCount - 1);
+            const newOffset = currentOffset - card_width;
+            const maxOffset = -card_width * (childrenCount - 1);
 
             newOffset <= maxOffset ? setIsEnableRight(false) : setIsEnableLeft(true);
 
@@ -30,7 +40,7 @@ const Slider: FC<ISliderProps> = ({ children, type }) => {
     };
     const handleLeftClick = () => {
         setOffset((currentOffset) => {
-            const newOffset = currentOffset + CARD_WIDTH;
+            const newOffset = currentOffset + card_width;
 
             newOffset >= 0 ? setIsEnableLeft(false) : setIsEnableRight(true);
 
