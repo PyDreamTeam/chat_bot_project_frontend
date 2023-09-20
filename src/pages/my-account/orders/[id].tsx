@@ -1,18 +1,11 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import Cookies from "js-cookie";
 import styles from "./styles/order.module.css";
-import {
-    useDeleteOrderMutation,
-    useGetOrderQuery,
-    useGetOrdersListQuery,
-    usePutOrderMutation,
-} from "@/src/store/services/userAuth";
+import { useDeleteOrderMutation, useGetOrderQuery, usePutOrderMutation } from "@/src/store/services/userAuth";
 import { Loader } from "@/src/components/shared/Loader/Loader";
-import { Order } from "@/src/components/entities/orders/Order/Order";
-import Text from "@/src/components/shared/text/Text";
 import { useRouter } from "next/router";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
@@ -28,15 +21,29 @@ interface pageProps {
 
 const page: FC<pageProps> = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    // const { data: dataOrders, isLoading: isLoadingOrders } = useGetOrdersListQuery(token);
     const router = useRouter();
     const orderId: string = router.query.id as string;
     const id = orderId;
     const [putOrder, { isSuccess, error: errorData, isLoading }] = usePutOrderMutation();
-    const { data: dataOrder, isLoading: isLoadingOrder } = useGetOrderQuery({ token, id });
+    const [deleteOrder, { error: errorDelete }] = useDeleteOrderMutation();
+    const { data: dataOrder, isLoading: isLoadingOrder } = useGetOrderQuery(
+        { token, id },
+        {
+            refetchOnMountOrArgChange: true,
+        }
+    );
+    // TODO: type error in formRef.current.handleSubmit();
+    const formRef: any = useRef(null);
+
+    const handleSubmit = () => {
+        if (formRef.current) {
+            formRef.current.handleSubmit();
+            Cookies.set("Edited_order", `${id}`);
+        }
+    };
 
     return (
-        <AccountPageWrapper page="orderEdit" orderNumber={orderId}>
+        <AccountPageWrapper page="orderEdit" orderNumber={orderId} submitForm={handleSubmit}>
             <div className={styles.orderEditWrapper}>
                 {isLoadingOrder ? (
                     <div className={styles.loaderOrders}>
@@ -45,6 +52,8 @@ const page: FC<pageProps> = () => {
                 ) : (
                     <div className={styles.orderEditWrapper}>
                         <Formik
+                            enableReinitialize={true}
+                            innerRef={formRef}
                             initialValues={{
                                 first_name: dataOrder?.first_name || "",
                                 email: dataOrder?.email || "",
@@ -96,7 +105,7 @@ const page: FC<pageProps> = () => {
                                 }
                             }}
                         >
-                            {({ isSubmitting, errors, touched, getFieldProps, isValid, setFieldTouched }) => {
+                            {({ isSubmitting, errors, touched, isValid, setFieldTouched }) => {
                                 useEffect(() => {
                                     if (dataOrder) {
                                         setFieldTouched("first_name");
@@ -107,12 +116,17 @@ const page: FC<pageProps> = () => {
                                 }, [dataOrder]);
 
                                 return (
-                                    <Form className={styles.form}>
+                                    <Form className={styles.form} onSubmit={handleSubmit}>
                                         <FirstNameInput errors={errors} touched={touched} />
                                         <EmailInput errors={errors} touched={touched} />
                                         <PhoneInput errors={errors} touched={touched} />
                                         <CommentInput errors={errors} touched={touched} />
-                                        <Button disabled={isSubmitting} active={isValid} type={"submit"}>
+                                        <Button
+                                            disabled={isSubmitting}
+                                            active={isValid}
+                                            type={"submit"}
+                                            onClick={handleSubmit}
+                                        >
                                             Отправить
                                         </Button>
                                     </Form>
