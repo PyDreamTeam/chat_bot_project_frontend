@@ -53,13 +53,15 @@ export interface PropsPlatformCard {
     short_description?: string;
     full_description?: string;
     turnkey_solutions?: number;
-    price?: number;
+    price?: number | string;
+    status?: string;
     is_active?: boolean;
     created_at?: string;
     image?: string;
     link?: string;
+    links_to_solution?: string[];
     type?: Card;
-    filter?: Array<number>;
+    filter?: number[];
     tags?: {
         id?: number;
         tag?: string;

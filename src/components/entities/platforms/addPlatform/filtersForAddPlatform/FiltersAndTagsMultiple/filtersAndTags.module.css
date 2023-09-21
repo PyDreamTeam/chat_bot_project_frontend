@@ -1,0 +1,43 @@
+.blockFilter {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btnDelete {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid #F53527;
+    background: #FFF;
+}
+
+.title {
+    margin-top: 16px;
+}
+
+.filter {
+    width: 100%;
+    margin-top: 8px;
+    padding: 16px;
+    border-radius: 20px;
+    background: #F4F5F6;
+}
+
+.listTags {
+    list-style: none;
+}
+
+.subTitle {
+    margin-top: 16px;
+    padding-bottom: 4px;
+}
+
+.tag {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+}

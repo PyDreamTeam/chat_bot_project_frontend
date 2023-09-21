@@ -1,6 +1,7 @@
 /* Стили для инпута заголовка для добавления платформ */
 
 .inputAddPlatform {
+    margin-top: 8px;
     padding: 16px;
     border-radius: 20px;
     border: 1px solid #F4F5F6;
@@ -11,4 +12,102 @@
     font-style: normal;
     font-weight: 400;
     line-height: 27px; 
+}
+
+.inputLink {
+    background-image: linear-gradient(to right, #E1E2E6 50%, #F4F5F6 50%);
+    background-repeat: no-repeat;
+    background-size: 30% 100%;
+}
+
+.input1 {
+    width: 92px;
+    padding: 16px 0 16px 16px;
+    background-color: #E1E2E6;
+    border: 1px solid #E1E2E6;
+    outline: none;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; 
+    border-radius: 20px 0px 0px 20px;
+    color: #595F6C; 
+}
+
+.input2 {
+    width: 548px;
+    padding: 16px;
+    background-color: #F4F5F6;
+    border: 1px solid #F4F5F6;
+    outline: none;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    border-radius: 0 20px 20px 0;  
+}
+
+.blockInput {
+    margin-top: 8px;
+}
+
+.countSolutions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* .blockInfoSolution {
+    position: relative;
+} */
+
+.infoSolution {
+    width: 381px;
+    position: absolute;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #E1E2E6;
+    box-shadow: 4px 8px 32px 0px rgba(43, 53, 116, 0.08);
+    top: 40px;
+}
+
+/* Стили для textarea добавления платформ */
+
+.textareaAddPlatform {
+    width: 640px;
+    height: 194px;
+    margin-top: 8px;
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid #F4F5F6;
+    background: #F4F5F6;
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    resize: none;
+}
+
+/* Стили для множественногo input добавления платформ */
+
+.addLinkSolutionBtn {
+    margin-top: 16px;
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid #4466F5;
+    background: #FFF;
+    cursor: pointer;
+}
+.linksSolution {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
