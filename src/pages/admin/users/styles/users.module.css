@@ -1,0 +1,68 @@
+.links {
+    display: flex;
+    align-items: center;
+}
+.link {
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #909090;
+}
+.work {
+    margin-top: 32px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addBtn {
+    padding: 8px 20px;
+    border-radius: 12px;
+    background: #4466f5;
+    border: 1px solid #4466f5;
+    cursor: pointer;
+}
+
+.groupSearch {
+    position: relative;
+    margin-top: 30px;
+}
+
+.search {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 8px;
+}
+.addImg {
+    margin-top: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ordersListWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e1e2e6;
+}
+
+.listOrders li {
+    list-style-type: none;
+}
+
+.loaderOrders {
+    align-self: center;
+    margin-top: 60px;
+}
