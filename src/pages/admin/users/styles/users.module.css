@@ -1,6 +1,7 @@
 .links {
     display: flex;
     align-items: center;
+    margin-top: -23px;
 }
 .link {
     font-family: Inter, sans-serif;
@@ -44,25 +45,17 @@
     flex-direction: column;
 }
 
-.ordersListWrapper {
-    display: flex;
-    flex-direction: column;
-}
-
 .listHeader {
+    width: 80%;
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #e1e2e6;
+    padding: 10px 0;
 }
-
-.listOrders li {
-    list-style-type: none;
+.userName {
+    min-width: 100px;
 }
-
-.loaderOrders {
-    align-self: center;
-    margin-top: 60px;
+.userEmail {
+    min-width: 170px;
+    text-align: center;
 }

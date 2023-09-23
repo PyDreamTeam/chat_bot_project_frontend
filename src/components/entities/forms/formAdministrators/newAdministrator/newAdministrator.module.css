@@ -1,0 +1,59 @@
+.addUserBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.addUserBlock form,
+.icon {
+    width: 50%;
+}
+.role {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.roleRadio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #595f6c;
+    font-size: 18px;
+    line-height: 24px;
+}
+.roleRadio input {
+    width: 20px;
+    height: 20px;
+}
+
+.roleRadio div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+.buttons {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    font-size: 18px;
+    font-weight: 500;
+}
+.cancel {
+    border: 0;
+    background: transparent;
+    width: 50%;
+    line-height: 28px;
+    margin-top: 16px;
+}
+.create {
+    width: 50%;
+    color: white;
+    background: #e1e2e6; /* #4466f5; */
+    border: 0;
+    border-radius: 16px;
+}
+.icon {
+    display: flex;
+    justify-content: end;
+}

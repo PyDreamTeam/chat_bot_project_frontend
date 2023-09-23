@@ -1,0 +1,19 @@
+.users {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.userStatus {
+    display: flex;
+    gap: 5px;
+}
+.edit button {
+    border: 0;
+    background-color: white;
+    cursor: pointer;
+}
