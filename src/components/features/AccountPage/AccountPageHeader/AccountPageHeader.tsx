@@ -73,13 +73,13 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                             </Title>
                         </div>
                         <div className={styles.orderTitleRight}>
-                            <div
+                            {/* <div
                                 className={styles.orderIconCheck}
                                 data-tooltip="Сохранить изменения"
                                 onClick={submitForm}
                             >
                                 {orderCheckBox}
-                            </div>
+                            </div> */}
                             <div
                                 className={styles.orderIconDelete}
                                 data-tooltip="Удалить заказ"
