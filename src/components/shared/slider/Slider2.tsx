@@ -10,10 +10,11 @@ interface ISliderProps {
     cardType?: "634" | "468";
 }
 
-const Slider: FC<ISliderProps> = ({ children, type, cardType }) => {
+const Slider2: FC<ISliderProps> = ({ children, type, cardType }) => {
     // const CARD_WIDTH = 634;
     // const CARD_WIDTH = 468;
     let card_width: number;
+    // console.log(children);
 
     if (cardType == "634") {
         card_width = 634;
@@ -69,4 +70,4 @@ const Slider: FC<ISliderProps> = ({ children, type, cardType }) => {
     );
 };
 
-export default Slider;
+export default Slider2;

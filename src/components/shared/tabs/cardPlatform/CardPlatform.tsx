@@ -5,7 +5,7 @@ import Image from "next/image";
 import styles from "./styles/CardPlatform.module.css";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 
-const CardPlatform: FC<PropsPlatformCard> = ({ id, title, price, short_description, image, tags = [] }) => {
+const CardPlatform: FC<PropsPlatformCard> = ({ title, price, short_description, image, tags = [] }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const handleClickHeart = (e: MouseEvent) => {

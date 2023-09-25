@@ -11,6 +11,8 @@ import BlockGreatSolutions from "@/src/components/features/SolutionDescriptionPa
 import BlockFunnelBenefits from "@/src/components/features/SolutionDescriptionPade/blockBenefitsFunnel/BlockBenefitsFunnel";
 import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPade/blockHowItWorks/BlockHowItWorks";
 import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPade/blockTasksBySteps/BlockTasksBySteps";
+import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const Solution = () => {
     const router = useRouter();
@@ -34,7 +36,7 @@ const Solution = () => {
                         /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                <BlockComplexFunnel />
+                <BlockComplexFunnel id={data?.id} title={data?.title} advantages={data?.advantages} />
                 <BlockShotDescription
                     id={data?.id}
                     business_model={data?.business_model}
@@ -42,15 +44,22 @@ const Solution = () => {
                     business_niche={data?.business_niche}
                     solution_type={data?.solution_type}
                     objective={data?.objective}
-                    title={data?.title}
+                    price={data?.price}
+                    subtitle={data?.subtitle}
+                    dignity={data?.dignity}
                     full_description={data?.full_description}
                     short_description={data?.short_description}
-                    price={data?.price}
+                    messengers={data?.messengers}
+                    platform={data?.platform}
+                    integration_with_CRM={data?.integration_with_CRM}
+                    integration_with_payment_systems={data?.integration_with_payment_systems}
                 />
                 <BlockGreatSolutions />
                 <BlockFunnelBenefits />
                 <BlockHowItWorks />
-                <BlockTasksBySteps />
+                <BlockTasksBySteps steps_title={data?.steps_title} steps_text={data?.steps_text} />
+                <ButtonOrder />
+                <ButtonScrollToUp />
             </div>
             <Footer />
         </div>

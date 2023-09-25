@@ -17,7 +17,7 @@ import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
 //import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
-const SolutionsFilters=()=>{
+const SolutionsFilters = () => {
     const router = useRouter();
     const handleClick = (idp: number) => {
         router.push(`/solutions/solution/${idp}`);
@@ -32,51 +32,48 @@ const SolutionsFilters=()=>{
     const [sortAbc, setSortAbc] = useState("");
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
-    
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
-        useGetListSolutionsQuery,
-        {
-            id_tags: ids,
-            price_min: minPrice,
-            price_max: maxPrice,
-            title: search,
-            sort_abc: sortAbc,
-        }
-    );
+
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetListSolutionsQuery, {
+        id_tags: ids,
+        price_min: minPrice,
+        price_max: maxPrice,
+        title: search,
+        sort_abc: sortAbc,
+    });
 
     /* const handleScroll = () => {
         readMore();
     }; */
 
     return (
-    <div>
-        <Header type={"other"} />
-        <div className={css.container}>
-            <div className={css.blogInfo}>
-                <div>
-                    <Text type="reg14" color="telegray">
-                        <Link href={"/home"} className={css.link}>
-                            Главная
-                        </Link>
-                        / <span className={css.link}>Подобрать решение</span>
-                    </Text>
-                </div>
-                <div className={css.title}>
+        <div>
+            <Header type={"other"} />
+            <div className={css.container}>
+                <div className={css.blogInfo}>
+                    <div>
+                        <Text type="reg14" color="telegray">
+                            <Link href={"/home"} className={css.link}>
+                                Главная
+                            </Link>
+                            / <span className={css.link}>Подобрать решение</span>
+                        </Text>
+                    </div>
+                    <div className={css.title}>
                         <Title type="h4" color="dark">
                             Решения
                         </Title>
-                </div>
-                <div className={css.main}>
-                    <div className={css.leftBlock}>
-                        {isLoadingFilters ? (
-                            <div className={css.loaderFilter}>
-                                <Loader isLoading={isLoadingFilters} />
-                            </div>
-                        ) : (
-                            <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />
-                        )}
                     </div>
-                    <div className={css.rightBlock}>
+                    <div className={css.main}>
+                        <div className={css.leftBlock}>
+                            {isLoadingFilters ? (
+                                <div className={css.loaderFilter}>
+                                    <Loader isLoading={isLoadingFilters} />
+                                </div>
+                            ) : (
+                                <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />
+                            )}
+                        </div>
+                        <div className={css.rightBlock}>
                             <div className={css.groupSearch}>
                                 <Image
                                     src="/img/Icon_найти_платформу.svg"
@@ -85,18 +82,22 @@ const SolutionsFilters=()=>{
                                     height={24}
                                     className={css.search}
                                 />
-                                <InputSearch placeholder={"Найти решение"} value={search} onChange={(e) => {
-                                    refresh();
-                                    setSearch(e.target.value);
-                                    if(e.target.value.trim() === "") {
+                                <InputSearch
+                                    placeholder={"Найти решение"}
+                                    value={search}
+                                    onChange={(e) => {
                                         refresh();
-                                    }
-                                }} />
+                                        setSearch(e.target.value);
+                                        if (e.target.value.trim() === "") {
+                                            refresh();
+                                        }
+                                    }}
+                                />
                             </div>
                             <div>
                                 <FieldOptions />
                             </div>
-                            <AlphabeticalSorting onClick={() => refresh()}/>
+                            <AlphabeticalSorting onClick={() => refresh()} />
                             {isLoading ? (
                                 <div className={css.loaderSolutions}>
                                     <Loader isLoading={isLoading} />
@@ -129,10 +130,10 @@ const SolutionsFilters=()=>{
                                 </ul>
                             )}
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     );
 };
 export default SolutionsFilters;

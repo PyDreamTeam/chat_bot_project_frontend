@@ -8,89 +8,29 @@ import CardSales from "@/src/components/entities/cards/cardSales/CardSales";
 import ReadMore from "@/src/components/features/SolutionDescriptionPade/blockShotDescription/ReadMore";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import Label from "@/src/components/shared/labels/Label";
-// import { useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
-
-// const labels: Labels[] = [
-//     {
-//         name: (
-//             <Text type={"reg14"} color={"telegray"}>
-//                 Бизнес модель:{" "}
-//             </Text>
-//         ),
-//         label: (
-//             <Text type={"reg14"} color={"dark"}>
-//                 B2C{" "}
-//             </Text>
-//         ),
-//     },
-//     {
-//         name: (
-//             <Text type={"reg14"} color={"telegray"}>
-//                 Сфера бизнеса:{" "}
-//             </Text>
-//         ),
-//         label: (
-//             <Text type={"reg14"} color={"dark"}>
-//                 Онлайн-образование
-//             </Text>
-//         ),
-//     },
-//     {
-//         name: (
-//             <Text type={"reg14"} color={"telegray"}>
-//                 Тип решения:{" "}
-//             </Text>
-//         ),
-//         label: (
-//             <Text type={"reg14"} color={"dark"}>
-//                 Комплексная воронка
-//             </Text>
-//         ),
-//     },
-//     {
-//         name: (
-//             <Text type={"reg14"} color={"telegray"}>
-//                 Цели:{" "}
-//             </Text>
-//         ),
-//         label: (
-//             <Text type={"reg14"} color={"dark"}>
-//                 {" "}
-//                 Автоматизированный курс
-//             </Text>
-//         ),
-//     },
-//     {
-//         name: (
-//             <Text type={"reg14"} color={"telegray"}>
-//                 Ниша бизнеса:{" "}
-//             </Text>
-//         ),
-//         label: (
-//             <Text type={"reg14"} color={"dark"}>
-//                 Иностранные языки
-//             </Text>
-//         ),
-//     },
-// ];
 
 const BlockShotDescription: FC<PropsSolutionCard> = ({
     id,
-    title,
-    // full_description,
+    subtitle,
+    full_description,
     business_model,
     business_area,
     business_niche,
     solution_type,
     objective,
     price,
+    messengers,
+    platform,
+    integration_with_CRM,
+    integration_with_payment_systems,
+    dignity,
 }) => {
     return (
         <div className={styles.wrapper}>
-            <CardSales price={price} />
+            <CardSales price={price} dignity={dignity} />
             <div className={styles.blockText}>
                 <Title type={"h3"} color={"black"}>
-                    {title}
+                    {subtitle}
                 </Title>
                 <div className={styles.blockLabel}>
                     <div className={styles.tagsWrapper}>
@@ -122,6 +62,31 @@ const BlockShotDescription: FC<PropsSolutionCard> = ({
                             Ниша бизнеса:
                         </Text>
                         {business_niche}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Платформа:
+                        </Text>
+                        {platform}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Мессенджеры:
+                        </Text>
+
+                        {messengers}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Интеграция с CRM:
+                        </Text>
+                        {integration_with_CRM}
+                    </div>
+                    <div className={styles.tagsWrapper}>
+                        <Text type={"reg14"} color={"telegray"}>
+                            Интеграция с платежными системами:
+                        </Text>
+                        {integration_with_payment_systems}
                     </div>
                 </div>
                 <ReadMore

@@ -1,24 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 
 import styles from "./BlockTasksBySteps.module.css";
 import img from "/public/img/Step.svg";
 import Image from "next/image";
+import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 
 import { CONFIG_BLOCK_STEPS } from "@/src/components/features/SolutionDescriptionPade/blockTasksBySteps/ConfigBlockSteps";
 import ListStepAccordion from "@/src/components/entities/lists/accordionList/ListStepAccordion";
 
-const BlockTasksBySteps = () => {
+const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_text }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.blockText}>
                 <Title type={"h3"} color={"dark"}>
-                    Выполнение задач по шагам
+                    {steps_title}
                 </Title>
                 <Text type={"reg18"} color={"grey"}>
-                    Благодаря пошаговой автоматизированной автоворонке клиенту удастся сократить свои затраты, а также
-                    избавиться от части рутинных процессов в структуре управления продуктом{" "}
+                    {steps_text}
                 </Text>
                 <div className={styles.blockScroll}>
                     <div className={styles.blockAccordion}>
