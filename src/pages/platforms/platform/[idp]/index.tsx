@@ -57,7 +57,7 @@ const Platform = () => {
                         15 реализованных решений
                     </Title>
                 </div>
-                <Slider cardType="468" type="pageSlider">
+                <Slider cardType="464" type="pageSlider">
                     <ListCardsSolutions results={combinedData} />
                 </Slider>
                 <div className={css.settings}>
