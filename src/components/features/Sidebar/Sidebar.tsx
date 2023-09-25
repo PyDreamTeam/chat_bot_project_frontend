@@ -51,7 +51,7 @@ const Sidebar: FC = () => {
     return (
         <aside className={styles.asideWrapper}>
             <Link href="/home">
-                <Logo variant={LogoVariantProps.header} />
+                <Logo variant={LogoVariantProps.admin} />
             </Link>
 
             <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />

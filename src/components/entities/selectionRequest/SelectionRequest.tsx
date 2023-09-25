@@ -27,19 +27,12 @@ interface IPropsRequest {
     close?: () => void;
 }
 
-interface IInitialTouched {
-    first_name?: boolean;
-    email?: boolean;
-    phone_number?: boolean;
-    comment?: boolean;
-}
-
 // TODO: unhandled server errors?
 
 const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
     const [createOrderUnregistered, { isSuccess: isSuccessAnonym }] = useCreateOrderUnregisteredMutation();
-    const [state, setState] = useState<IInitialTouched>();
+    const [state, setState] = useState();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -47,7 +40,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
     const startCloseTimer = () => {
         timerRef.current = setTimeout(() => {
             close?.();
-        }, 5000);
+        }, 3000);
     };
 
     useEffect(() => {
