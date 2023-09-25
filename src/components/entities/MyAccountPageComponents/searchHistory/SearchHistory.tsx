@@ -13,7 +13,7 @@ interface ISearchHistory {
 const SearchHistory: FC<ISearchHistory> = ({ title }) => {
     return (
         <div className={styles.searchHistoryWrapper}>
-            <Title type={"h5"} color={"black"}>
+            <Title type={"h4"} color={"black"}>
                 {title}
             </Title>
             <div className={styles.searchHistoryCards}>

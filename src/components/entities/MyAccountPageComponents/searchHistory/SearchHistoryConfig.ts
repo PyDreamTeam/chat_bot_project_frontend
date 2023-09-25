@@ -5,6 +5,10 @@ export const SearchHistoryConfig = [
         favorite: true,
     },
     {
+        title: "Aimilogic",
+        description: "Конструктор чат-ботов",
+    },
+    {
         title: "Шаблон",
         description: "Конструктор чат-ботов мессенджера Телеграм",
     },
