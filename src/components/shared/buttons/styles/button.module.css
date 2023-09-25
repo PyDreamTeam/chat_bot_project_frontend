@@ -70,8 +70,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* position: fixed; */
-    position: sticky;
+    position: fixed;
+    /* position: sticky; */
     margin: 0 0 0 auto;
     bottom: 20%;
     right: 10%;
@@ -91,8 +91,10 @@
 /* button to make an application */
 
 .buttonOrder {
-    /* position: fixed; */
-    position: sticky;
+    position: fixed;
+    /* position: sticky; */
+    /* bottom: 10%; */
+    right: 10%;
     bottom: 10%;
     z-index: 5;
     border-radius: 50%;
@@ -107,16 +109,6 @@
     transition: 0.3s;
     margin: 0 0 0 auto;
 }
-
-/* animation: spin 1.5s infinite linear; */
-/* @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-} */
 
 .buttonOrder:hover {
     background-color: rgb(244, 245, 246);
@@ -138,7 +130,7 @@
 }
 
 .orderImg {
-    /* position: relative; */
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,8 +142,33 @@
     font-family: "Inter", sans-serif;
     font-weight: 700;
 }
-.circleText {
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#rotatingText {
+    animation-name: rotate-circle;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     position: absolute;
-    font-size: 16px;
-    color: #595f6c;
+}
+
+@keyframes rotate-circle {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.circleText {
+    letter-spacing: 2px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    fill: #111;
+    color: white;
 }

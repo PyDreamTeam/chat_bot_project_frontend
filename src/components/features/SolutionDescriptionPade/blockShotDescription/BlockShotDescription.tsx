@@ -11,8 +11,8 @@ import Label from "@/src/components/shared/labels/Label";
 
 const BlockShotDescription: FC<PropsSolutionCard> = ({
     id,
-    title,
-    // full_description,
+    subtitle,
+    full_description,
     business_model,
     business_area,
     business_niche,
@@ -23,13 +23,14 @@ const BlockShotDescription: FC<PropsSolutionCard> = ({
     platform,
     integration_with_CRM,
     integration_with_payment_systems,
+    dignity,
 }) => {
     return (
         <div className={styles.wrapper}>
-            <CardSales price={price} />
+            <CardSales price={price} dignity={dignity} />
             <div className={styles.blockText}>
                 <Title type={"h3"} color={"black"}>
-                    {title}
+                    {subtitle}
                 </Title>
                 <div className={styles.blockLabel}>
                     <div className={styles.tagsWrapper}>

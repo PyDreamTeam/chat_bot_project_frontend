@@ -72,6 +72,7 @@ export interface PropsPlatformCard {
 export interface PropsSolutionCard {
     id?: number;
     title?: string;
+    subtitle?: string;
     business_model?: string;
     business_area?: string;
     business_niche?: string;
@@ -84,6 +85,10 @@ export interface PropsSolutionCard {
     integration_with_CRM?: string;
     integration_with_payment_systems?: string;
     tasks?: string;
+    advantages?: string;
+    dignity?: string;
+    steps_title?: string;
+    steps_text?: string;
     actions_to_complete_tasks?: string;
     price?: number;
     is_active?: boolean;

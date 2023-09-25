@@ -1,6 +1,6 @@
 import Text from "@/src/components/shared/text/Text";
 import { useState } from "react";
-import style from "./alphabeticalSorting.module.css";
+import style from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/alphabeticalSorting.module.css";
 import { Checkbox } from "../../leftBlock/Checkbox/Checkbox";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { addFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
@@ -10,7 +10,7 @@ const alpSorting = [
     { id: Math.random(), tag: "Z до А (Я до А)" },
 ];
 
-export const AlphabeticalSorting = ({onClick} : {onClick: () => void}) => {
+export const AlphabeticalSorting = ({ onClick }: { onClick: () => void }) => {
     const dispatch = useAppDispatch();
     const filters = useAppSelector((state) => state.reducerFilters.filters);
     const [selectedFilter, setSelectedFilter] = useState<number | null>(null);

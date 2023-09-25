@@ -7,11 +7,7 @@ import Modal from "../modal/Modal";
 import SelectionRequest from "../../entities/selectionRequest/SelectionRequest";
 
 export const ButtonOrder: FC = () => {
-    // const [textCircle, setTextCircle] = useState([заказать бесплатно заказать бесплатно]);
     const { isShown, toggle } = useModal();
-
-    // const text = document.querySelector(".textCircle");
-    // text.innerHTML = text.innerContent.split("")
 
     return (
         <>
@@ -23,9 +19,26 @@ export const ButtonOrder: FC = () => {
                             <p>Оформить заявку</p>
                         </div>
                     </div>
-                    {/* <div className={css.circleText}>заказать</div> */}
                 </div>
+                <svg id={css.rotatingText} viewBox="0 0 200 200" width="250" height="250">
+                    <defs>
+                        <path
+                            id="circle"
+                            d="M 100, 100
+            m -75, 0
+            a 75, 75 0 1, 0 150, 0
+            a 75, 75 0 1, 0 -150, 0
+            "
+                        ></path>
+                    </defs>
+                    <text width="400">
+                        <textPath xlinkHref="#circle" className={css.circleText}>
+                            . заказать бесплатно . заказать бесплатно
+                        </textPath>
+                    </text>
+                </svg>
             </button>
+
             <Modal isShown={isShown} hide={toggle}>
                 <SelectionRequest close={toggle} />
             </Modal>

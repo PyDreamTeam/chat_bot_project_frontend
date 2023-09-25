@@ -43,7 +43,7 @@ export const config: Advantages[] = [
     },
 ];
 
-const CardSales: FC<PropsSolutionCard> = ({ price }) => {
+const CardSales: FC<PropsSolutionCard> = ({ price, dignity }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.blueBlock}>
