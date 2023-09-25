@@ -105,6 +105,21 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                         {"Избранное"}
                     </Title>
                 )}
+                {page === "faq" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"FAQ"}
+                    </Title>
+                )}
+                {page === "articles" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Статьи"}
+                    </Title>
+                )}
+                {page === "tariff" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Тарифы"}
+                    </Title>
+                )}
                 {(page === "profile_changeData" || page === "profile_templates") && (
                     <Title type={"h4"} color={"black"}>
                         Профиль

@@ -4,6 +4,7 @@ const profile = `${myAccount}/profile`;
 const orders = `${myAccount}/orders`;
 
 
+
 export const clientEndpoints: ClientEndpoints = {
     myAccount: {
         get: myAccount,
