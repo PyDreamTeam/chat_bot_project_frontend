@@ -22,7 +22,7 @@ const SearchHistoryItem: FC<ISearchHistoryItem & IFavoritesItem> = ({ title, des
     return (
         <div className={styles.cardBlock}>
             {/*{SearchHistorySvgConfig[title]}*/}
-            <Image alt={"platform"} src={title === "Aimilogic" ? Aimilogic : Mail} />
+            <Image className={styles.image} alt={"platform"} src={title === "Aimilogic" ? Aimilogic : Mail} />
             {profile === true ? (
                 <Text type={"med20"} color={"black"}>
                     {title}
@@ -32,8 +32,7 @@ const SearchHistoryItem: FC<ISearchHistoryItem & IFavoritesItem> = ({ title, des
                     {title}
                 </Title>
             )}
-
-            <Text type={"reg18"} color={"black"}>
+            <Text className={styles.subtitle} type={"reg18"} color={"black"}>
                 {description}
             </Text>
             {favorite && <div className={styles.mark}>{SearchHistorySvgConfig.Mark}</div>}

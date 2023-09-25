@@ -3,6 +3,7 @@ export const AccountPageTypes = {
     adminPage: "adminPage",
     templates: "templates",
     orders: "orders",
+    favorites: "favorites",
     orderEdit: "orderEdit",
     feedback_page: "feedback_page",
     adminStartPage: "adminStartPage",

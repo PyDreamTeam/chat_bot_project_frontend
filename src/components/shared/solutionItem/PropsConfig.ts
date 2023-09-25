@@ -5,10 +5,10 @@ export const PropsConfig = [
         logo: logo,
         title: "Aimilogic",
         description:
-            "Мультиканальная платформа для создания чат-ботов с /\"искусственным интеллектом\"/ и голосовых ботов.",
+            "Мультиканальная платформа для создания чат-ботов с \"искусственным интеллектом\" и голосовых ботов.",
         img: "",
-        typesOfSolution: ["Битрикс24", "Визуальный редактор"],
-        selectedPlatforms: ["WhatsApp", "Telegram", "Viber", "VK", "Facebook"],
+        typesOfSolution: ["Битрикс24", "визуальный редактор"],
+        selectedPlatforms: ["Facebook", "WhatsApp", "VK", "Viber", "Telegram"],
     },
     {
         logo: logo,
@@ -16,8 +16,8 @@ export const PropsConfig = [
         description:
             "Мультиканальная платформа для создания чат-ботов с \"искусственным интеллектом\" и голосовых ботов.",
         img: "",
-        typesOfSolution: ["Диджитал-агентство", "Увеличить доходность"],
-        selectedPlatforms: ["WhatsApp", "Telegram", "Viber"],
+        typesOfSolution: ["Битрикс24", "визуальный редактор"],
+        selectedPlatforms: ["Facebook", "WhatsApp", "VK", "Viber", "Telegram"],
     },
     {
         logo: logo,
@@ -25,7 +25,7 @@ export const PropsConfig = [
         description:
             "Мультиканальная платформа для создания чат-ботов с \"искусственным интеллектом\" и голосовых ботов.",
         img: "",
-        typesOfSolution: ["Диджитал-агентство", "Увеличить доходность"],
-        selectedPlatforms: ["WhatsApp", "VK", "Facebook"],
+        typesOfSolution: ["Битрикс24", "визуальный редактор"],
+        selectedPlatforms: ["Facebook", "WhatsApp", "VK", "Viber", "Telegram"],
     },
 ];

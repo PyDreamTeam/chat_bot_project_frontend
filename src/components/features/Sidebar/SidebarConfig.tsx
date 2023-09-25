@@ -47,7 +47,7 @@ export const SIDEBAR_CONFIG = [
     },
     {
         id: 4,
-        href: "/home",
+        href: clientEndpoints.myAccount.favorites,
         title: "Избранное",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +60,7 @@ export const SIDEBAR_CONFIG = [
     },
     {
         id: 5,
-        href: "/home",
+        href: clientEndpoints.myAccount.faq,
         title: "FAQ",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
@@ -75,7 +75,7 @@ export const SIDEBAR_CONFIG = [
     },
     {
         id: 6,
-        href: "/home",
+        href: clientEndpoints.myAccount.articles,
         title: "Статьи",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +88,7 @@ export const SIDEBAR_CONFIG = [
     },
     {
         id: 7,
-        href: "/home",
+        href: clientEndpoints.myAccount.tariff,
         title: "Тарифы",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

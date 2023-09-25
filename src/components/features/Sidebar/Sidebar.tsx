@@ -12,7 +12,7 @@ import Link from "next/link";
 const myAccountRoute = "/my-account";
 const ordersRoute = "/my-account/orders";
 const templatesRoute = "/my-account/templates";
-const favoritetRoute = "/my-account/favorites";
+const favoritesRoute = "/my-account/favorites";
 const faqRoute = "/my-account/faq";
 const articlesRoute = "/my-account/articles";
 const ratesRoute = "/my-account/rates";
@@ -30,7 +30,7 @@ const Sidebar: FC = () => {
                 return setActiveTabItem(2);
             case templatesRoute:
                 return setActiveTabItem(3);
-            case favoritetRoute:
+            case favoritesRoute:
                 return setActiveTabItem(4);
             case faqRoute:
                 return setActiveTabItem(5);

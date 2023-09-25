@@ -11,6 +11,7 @@ import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
 import { useDataUserQuery, useDeleteOrderMutation } from "@/src/store/services/userAuth";
 import { orderCheckBox, orderDelete } from "./img/SvgConfig";
+import { SelectLanguage } from "../../HomePage/Header/components/SelectLanguage/SelectLanguage";
 
 interface IHomePageHeader {
     name?: string;
@@ -99,6 +100,11 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                         </Title>
                     </Link>
                 )}
+                {page === "favorites" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Избранное"}
+                    </Title>
+                )}
                 {(page === "profile_changeData" || page === "profile_templates") && (
                     <Title type={"h4"} color={"black"}>
                         Профиль
@@ -110,13 +116,16 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                     </Title>
                 )}
             </>
-            <UserInfo
-                profileOnClick={handleOpenProfile}
-                isOpen={open}
-                onClick={handleToggleBurgerMenu}
-                first_name={data?.first_name}
-                last_name={data?.last_name}
-            />
+            <div className={styles.userWrapper}>
+                <SelectLanguage/>
+                <UserInfo
+                    profileOnClick={handleOpenProfile}
+                    isOpen={open}
+                    onClick={handleToggleBurgerMenu}
+                    first_name={data?.first_name}
+                    last_name={data?.last_name}
+                />
+            </div>
         </header>
     );
 };

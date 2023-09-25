@@ -7,13 +7,18 @@
     height: 100%;
     margin-bottom: 64px;
 }
+.userWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+}
 
 .orderTitle {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 440px;
-
 }
 
 .orderTitleLeft {
