@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./newAdministrator.module.css";
-import { Field, Form, Formik } from "formik";
+import styles from "../newAdministrator/newAdministrator.module.css";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useCreateUserMutation } from "@/src/store/services/userAuth";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
@@ -10,7 +10,6 @@ import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { RadioButtonGroup } from "@/src/components/shared/login/RadioButtonGroup/RadioButtonGroup";
-import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
 
 
 const err = {
@@ -20,7 +19,7 @@ const err = {
     special: "содержит по крайней мере один спецсимвол",
     req: "Введите пароль",
 };
-const NewAdministrator = () => {
+const EditAdministrator = () => {
     const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
 
     return (
@@ -36,13 +35,10 @@ const NewAdministrator = () => {
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
                         .required("Введите имя")
-                        .trim()
                         .min(2, "Содержит две или более букв")
                         .max(30, "Не более 30 букв")
                         .matches(/^\D*$/, "Не должно содержать цифр"),
                     last_name: Yup.string()
-                        .required("Введите фамилию")
-                        .trim()
                         .min(2, "Содержит две или более букв")
                         .max(100, "Не более 30 букв")
                         .matches(/^\D*$/, "Не должно содержать цифр"),
@@ -90,21 +86,21 @@ const NewAdministrator = () => {
                             />
                             <div className={styles.buttons}>
                                 <button className={styles.cancel}><a href="/admin/users/all">Отмена</a></button>
-                                <button className={styles.create} disabled={isValid} type="submit">
-                                    Создать
+                                <button className={styles.create} disabled={isLoading} type="submit">
+                                    Сохранить
                                 </button>
                             </div>
-                        </Form >
+                        </Form>
                     );
                 }}
-            </Formik >
-            <div className={styles.icon}><Image src="/admin/people_plus.svg"
+            </Formik>
+            <div className={styles.icon}><Image src="/admin/people_correct.svg"
                 alt="people plus"
                 width={316}
                 height={316}
             /></div>
-        </div >
+        </div>
     );
 };
 
-export default NewAdministrator;
+export default EditAdministrator;

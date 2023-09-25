@@ -1,3 +1,30 @@
+.usersBlock {
+    display: flex;
+    flex-direction: column;
+}
+.listHeader {
+    width: 100%;
+    display: flex;
+
+    gap: 27px;
+    padding: 10px 0;
+}
+.userName {
+    min-width: 150px;
+}
+.userEmail {
+    width: 300px;
+    text-align: left;
+}
+.userRole {
+    width: 155px;
+}
+.userStatus {
+    width: 170px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
 .users {
     display: flex;
     flex-direction: column;
@@ -6,14 +33,8 @@
 .user {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 27px;
 }
-.userStatus {
-    display: flex;
-    gap: 5px;
-}
-.edit button {
-    border: 0;
-    background-color: white;
+.edit a {
     cursor: pointer;
 }

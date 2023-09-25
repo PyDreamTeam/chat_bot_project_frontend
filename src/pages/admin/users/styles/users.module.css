@@ -44,18 +44,3 @@
     justify-content: center;
     flex-direction: column;
 }
-
-.listHeader {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    padding: 10px 0;
-}
-.userName {
-    min-width: 100px;
-}
-.userEmail {
-    min-width: 170px;
-    text-align: center;
-}

@@ -20,6 +20,7 @@ export interface ClientEndpoints {
             all: string;
             administrators: string;
             moderators: string;
+            edit: string;
         }
     }
     home: {

@@ -28,6 +28,7 @@ export const clientEndpoints: ClientEndpoints = {
             all: `${users}/all`,
             administrators: `${users}/administrators`,
             moderators: `${users}/moderators`,
+            edit: `${users}/edit`,
         }
     },
     home: {
