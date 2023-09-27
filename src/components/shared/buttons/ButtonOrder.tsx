@@ -6,7 +6,11 @@ import { useModal } from "@/src/hooks/useModal";
 import Modal from "../modal/Modal";
 import SelectionRequest from "../../entities/selectionRequest/SelectionRequest";
 
-export const ButtonOrder: FC = () => {
+interface IPropsButtonOrder {
+    dataComment?: string;
+}
+
+export const ButtonOrder: FC<IPropsButtonOrder> = ({ dataComment }) => {
     const { isShown, toggle } = useModal();
 
     return (
@@ -40,7 +44,7 @@ export const ButtonOrder: FC = () => {
             </button>
 
             <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
+                <SelectionRequest close={toggle} dataComment={dataComment} />
             </Modal>
         </>
     );
