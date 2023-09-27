@@ -33,7 +33,6 @@ export const TABS_CONFIG = [
 ];
 const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
 
-
     const router = useRouter();
     const [activeTabItem, setActiveTabItem] = useState<number>(firstTab);
 
@@ -79,7 +78,7 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
                         onChange={(e) => console.log(e.target.value)}
                     />
                 </div>
-                <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
+                <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} page="adminPage" />
                 {children}
             </ContainerAdminFunction>
         </WrapperAdminPage>

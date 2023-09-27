@@ -5,9 +5,9 @@
 .listHeader {
     width: 100%;
     display: flex;
-
+    align-items: center;
     gap: 27px;
-    padding: 10px 0;
+    height: 56px;
 }
 .userName {
     min-width: 150px;
@@ -17,24 +17,87 @@
     text-align: left;
 }
 .userRole {
-    width: 155px;
-}
-.userStatus {
-    width: 170px;
-    display: flex;
-    gap: 5px;
-    align-items: center;
+    width: 180px;
 }
 .users {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    color: #595f6c;
 }
 .user {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 27px;
+    height: 56px;
+}
+.edit {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .edit a {
     cursor: pointer;
+}
+.edit a img {
+    width: 100%;
+}
+.userStatus {
+    width: 170px;
+}
+
+.switch {
+    height: 24px;
+    width: 170px;
+}
+
+.switch input {
+    width: 0;
+    height: 0;
+}
+.switch label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+}
+
+.slider {
+    position: relative;
+    cursor: pointer;
+    width: 36px;
+    height: 20px;
+    background-color: #e1e2e6;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4466f5;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #4466f5;
+}
+
+input:checked + .slider:before {
+    transform: translateX(16px);
 }

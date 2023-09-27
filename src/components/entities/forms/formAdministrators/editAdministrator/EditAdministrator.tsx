@@ -2,14 +2,14 @@ import React from "react";
 import styles from "../newAdministrator/newAdministrator.module.css";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useCreateUserMutation } from "@/src/store/services/userAuth";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
-import { RadioButtonGroup } from "@/src/components/shared/login/RadioButtonGroup/RadioButtonGroup";
+import { RadioButtonGroup } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
+import { useEditAdminMutation } from "@/src/store/services/administrators";
 
 
 const err = {
@@ -20,7 +20,7 @@ const err = {
     req: "Введите пароль",
 };
 const EditAdministrator = () => {
-    const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
+    const [editAdmin, { error: errorData, isLoading }] = useEditAdminMutation();
 
     return (
         <div className={styles.addUserBlock}>
@@ -35,10 +35,13 @@ const EditAdministrator = () => {
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
                         .required("Введите имя")
+                        .trim()
                         .min(2, "Содержит две или более букв")
                         .max(30, "Не более 30 букв")
                         .matches(/^\D*$/, "Не должно содержать цифр"),
                     last_name: Yup.string()
+                        .required("Введите фамилилю")
+                        .trim()
                         .min(2, "Содержит две или более букв")
                         .max(100, "Не более 30 букв")
                         .matches(/^\D*$/, "Не должно содержать цифр"),
@@ -56,7 +59,7 @@ const EditAdministrator = () => {
                     role: Yup.string().required("Требуется выбрать один из вариантов")
                 })}
                 onSubmit={(values) => {
-                    //createAdmin(values);
+                    editAdmin(values);
                 }}
             >
                 {({ errors, touched, getFieldProps, isValid }) => {
@@ -86,7 +89,7 @@ const EditAdministrator = () => {
                             />
                             <div className={styles.buttons}>
                                 <button className={styles.cancel}><a href="/admin/users/all">Отмена</a></button>
-                                <button className={styles.create} disabled={isLoading} type="submit">
+                                <button className={isValid ? styles.active : styles.disabled} disabled={isLoading} type="submit">
                                     Сохранить
                                 </button>
                             </div>

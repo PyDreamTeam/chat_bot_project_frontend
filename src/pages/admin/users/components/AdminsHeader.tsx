@@ -1,5 +1,5 @@
 import Text from "@/src/components/shared/text/Text";
-import css from "./styles/allStyles.module.css";
+import css from "../styles/allStyles.module.css";
 const AdminsHeader = () => {
     return (<div className={css.listHeader}>
         <div className={css.userName}>

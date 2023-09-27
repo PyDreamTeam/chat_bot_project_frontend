@@ -2,15 +2,15 @@ import React from "react";
 import styles from "./newAdministrator.module.css";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useCreateUserMutation } from "@/src/store/services/userAuth";
+import { useCreateAdminMutation } from "@/src/store/services/administrators";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
-import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
-import { RadioButtonGroup } from "@/src/components/shared/login/RadioButtonGroup/RadioButtonGroup";
-import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
+import { RadioButtonGroup } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
+import { AdminPasswordInput } from "@/src/components/shared/createAdmin/AdminPasswordinput/AdminPasswordInput";
+import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
 
 
 const err = {
@@ -21,7 +21,7 @@ const err = {
     req: "Введите пароль",
 };
 const NewAdministrator = () => {
-    const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
+    const [createAdmin, { isLoading, error: errorData }] = useCreateAdminMutation();
 
     return (
         <div className={styles.addUserBlock}>
@@ -35,32 +35,29 @@ const NewAdministrator = () => {
                 }}
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
-                        .required("Введите имя")
+                        .required("Поле обязательное для заполнения")
                         .trim()
                         .min(2, "Содержит две или более букв")
                         .max(30, "Не более 30 букв")
                         .matches(/^\D*$/, "Не должно содержать цифр"),
                     last_name: Yup.string()
-                        .required("Введите фамилию")
+                        .required("Поле обязательное для заполнения")
                         .trim()
                         .min(2, "Содержит две или более букв")
                         .max(100, "Не более 30 букв")
                         .matches(/^\D*$/, "Не должно содержать цифр"),
                     email: Yup.string()
-                        .email("Неккоректный email")
+                        .email("Неверный email")
                         .max(50, "Не более 50 символов")
-                        .required("Введите email"),
+                        .required("Поле обязательное для заполнения"),
                     password: Yup.string()
                         .min(8, err.min)
                         .max(50, "Не более 50 символов")
-                        .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
-                        .matches(/^(?=.*[0-9])/, err.number)
-                        .matches(/^(?=.*[@$!%*?&])/, err.special)
                         .required(err.req),
                     role: Yup.string().required("Требуется выбрать один из вариантов")
                 })}
                 onSubmit={(values) => {
-                    //createAdmin(values);
+                    createAdmin(values);
                 }}
             >
                 {({ errors, touched, getFieldProps, isValid }) => {
@@ -90,7 +87,7 @@ const NewAdministrator = () => {
                             />
                             <div className={styles.buttons}>
                                 <button className={styles.cancel}><a href="/admin/users/all">Отмена</a></button>
-                                <button className={styles.create} disabled={isValid} type="submit">
+                                <button className={isValid ? styles.active : styles.disabled} disabled={isLoading} type="submit">
                                     Создать
                                 </button>
                             </div>

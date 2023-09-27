@@ -1,5 +1,5 @@
 import { FC } from "react";
-import css from "../css/login.module.css";
+import css from "../styles/createAdmin.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { ErrorMessage, Field, FormikErrors, FormikTouched } from "formik";

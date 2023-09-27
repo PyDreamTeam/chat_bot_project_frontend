@@ -2,7 +2,7 @@ import React from "react";
 import { userData } from "../all/allUsers";
 import css from "../styles/allStyles.module.css";
 import Image from "next/image";
-import AdminsHeader from "../components";
+import AdminsHeader from "../components/AdminsHeader";
 
 const Moders = () => {
 
@@ -15,9 +15,12 @@ const Moders = () => {
                     <div className={css.userName}>{person.name}</div>
                     <div className={css.userEmail}>{person.email}</div>
                     <div className={css.userRole}>{person.role}</div>
-                    <div className={css.userStatus}>
-                        <input type="checkbox" checked={person.status} onClick={() => { person.status = !person.status; }} />
-                        <label>{person.status ? "Активен" : "Заблокирован"}</label>
+                    <div className={css.switch}>
+                        <label>
+                            <input type="checkbox" checked={person.status} onClick={() => { person.status = !person.status; console.log(person.status); }} />
+                            <span className={css.slider}></span>
+                            {person.status ? "Активен" : "Заблокирован"}
+                        </label>
                     </div>
                     <div className={css.edit}>
                         <a href={"/admin/users/edit"}>
