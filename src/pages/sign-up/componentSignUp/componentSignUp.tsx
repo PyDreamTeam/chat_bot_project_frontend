@@ -71,7 +71,7 @@ const TemplateSignUp = () => {
                                 .max(50, "Не более 50 символов")
                                 .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
                                 .matches(/^(?=.*[0-9])/, err.number)
-                                .matches(/^(?=.*[!-~])/, err.special)
+                                .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
                                 .required(err.req),
                             re_password: Yup.string()
                                 .required("Подтвердите пароль")

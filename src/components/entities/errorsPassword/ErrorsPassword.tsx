@@ -30,7 +30,7 @@ export const ErrorsPassword: FC<PropsErrorsPassword> = ({ password }) => {
             .min(8, err.min)
             .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
             .matches(/^(?=.*[0-9])/, err.number)
-            .matches(/^(?=.*[!-~])/, err.special)
+            .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
             .required(err.req),
     });
 
