@@ -81,6 +81,10 @@ const componentsDisplay = {
 const Text: FC<TextProps> = ({ children, type, color, className }) => {
     const Tag = componentsDisplay[type];
 
-    return <Tag color={color} className={className}>{children}</Tag>;
+    return (
+        <Tag color={color} className={className}>
+            {children}
+        </Tag>
+    );
 };
 export default Text;

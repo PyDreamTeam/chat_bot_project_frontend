@@ -7,7 +7,12 @@
     padding: 8px 13px 8px 31px;
     margin: 24px 0;
 }
-
+.wrapper:first-child {
+    margin: 0px 0px;
+}
+.wrapper:last-child {
+    margin: 4px 0px;
+}
 .wrapper.active {
     border: 1px solid #4466f5;
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.19);

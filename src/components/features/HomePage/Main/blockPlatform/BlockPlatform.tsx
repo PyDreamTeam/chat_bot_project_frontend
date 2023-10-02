@@ -6,7 +6,7 @@ import LinkShowAllCards from "@/src/components/shared/links/LinkShowAllCards";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Slider from "@/src/components/shared/slider/Slider";
 import ListCardsPlatforms from "@/src/components/entities/lists/listCardsPlatforms/ListCardsPlatforms";
-import { useGetListPlatformsQuery, useGetPlatformsQuery } from "@/src/store/services/platforms";
+import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { useRouter } from "next/router";
 
@@ -33,7 +33,7 @@ const BlockPlatform = () => {
                     <LinkShowAllCards href="/platforms" />
                 </div>
             </div>
-            <Slider cardType="634" type="homeSlider">
+            <Slider cardType="644" type="homeSlider">
                 <ListCardsPlatforms results={combinedData} />
             </Slider>
         </div>

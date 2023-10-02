@@ -17,14 +17,13 @@ const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_text }) =
                 <Title type={"h3"} color={"dark"}>
                     {steps_title}
                 </Title>
-                <Text type={"reg18"} color={"grey"}>
+                <Text className={styles.text} type={"reg18"} color={"grey"}>
                     {steps_text}
                 </Text>
                 <div className={styles.blockScroll}>
                     <div className={styles.blockAccordion}>
                         <ListStepAccordion data={CONFIG_BLOCK_STEPS} />
                     </div>
-                    <div className={styles.scroll}></div>
                 </div>
             </div>
             <Image src={img} alt={"Step"} />
