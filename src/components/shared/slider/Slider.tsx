@@ -7,7 +7,7 @@ import { IListSliderCards } from "@/src/types/index";
 interface ISliderProps {
     children?: ReactElement<IListSliderCards>;
     type?: "homeSlider" | "pageSlider";
-    cardType?: "643" | "464";
+    cardType?: "644" | "464";
 }
 
 const Slider: FC<ISliderProps> = ({ children, type, cardType }) => {
@@ -15,8 +15,8 @@ const Slider: FC<ISliderProps> = ({ children, type, cardType }) => {
     // const CARD_WIDTH = 468;
     let card_width: number;
 
-    if (cardType == "643") {
-        card_width = 643;
+    if (cardType == "644") {
+        card_width = 644;
     } else {
         card_width = 464;
     }

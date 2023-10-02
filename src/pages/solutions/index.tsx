@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Title from "@/src/components/shared/text/Title";
@@ -12,7 +12,6 @@ import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
-import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";

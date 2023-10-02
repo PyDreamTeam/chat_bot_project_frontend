@@ -5,7 +5,7 @@
 .container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 24px 88px 202px;
+    padding: 24px 88px 0px;
 }
 
 .title {
