@@ -78,7 +78,7 @@ const BlockComplexFunnel: FC<PropsSolutionCard> = ({ id, title, advantages }) =>
                 <Image src={"/page/ComplexFunnel.svg"} alt={"ComplexFunnel"} width={493} height={431} />
             </div>
             <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
+                <SelectionRequest close={toggle} dataComment={`Выбранное решение: ${title}`} />
             </Modal>
         </div>
     );

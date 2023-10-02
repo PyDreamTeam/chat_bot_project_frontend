@@ -14,7 +14,8 @@
     transition: 0.2s;
 }
 
-.buttonActive:hover {
+.buttonActive:hover,
+.buttonNegativeActive:hover {
     opacity: 0.8;
 }
 
@@ -169,4 +170,40 @@
     font-size: 18px;
     fill: #111;
     color: white;
+}
+
+.buttonNegativeActive {
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 16px;
+    border: none;
+    background-color: var(--status-color-error-color);
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonCancelActive {
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 16px;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: var(--text-color-2);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonCancelActive:hover {
+    background-color: var(--sub-color);
 }

@@ -3,9 +3,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-height: 56px;
+    max-height: 52px;
     height: 100%;
-    margin-bottom: 39px;
+    margin-bottom: 64px;
 }
 
 .orderTitle {
@@ -13,7 +13,6 @@
     justify-content: space-between;
     align-items: center;
     width: 440px;
-
 }
 
 .orderTitleLeft {
@@ -22,10 +21,15 @@
     gap: 20px;
 }
 
+.orderIconEdit {
+    display: flex;
+}
+
 .orderTitleRight {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    margin-right: 24px;
 }
 
 .orderIconCheck {
@@ -101,6 +105,11 @@
 .orderIconDelete:hover::after {
     opacity: 1; /* Показываем его */
     visibility: visible;
+}
+
+.headerRightBlock {
+    display: flex;
+    gap: 16px;
 }
 
 
