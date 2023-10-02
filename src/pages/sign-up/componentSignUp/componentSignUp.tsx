@@ -69,10 +69,10 @@ const TemplateSignUp = () => {
                             password: Yup.string()
                                 .min(8, err.min)
                                 .max(50, "Не более 50 символов")
-                                .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
+                                .matches(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])/, err.string)
                                 .matches(/^(?=.*[0-9])/, err.number)
                                 .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
-                                .required(err.req),
+                                .required(err.req),     
                             re_password: Yup.string()
                                 .required("Подтвердите пароль")
                                 .oneOf([Yup.ref("password")], "Пароли не совпадают"),
