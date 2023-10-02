@@ -33,14 +33,20 @@ interface IPropsRequest {
 const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
     const [createOrderUnregistered, { isSuccess: isSuccessAnonym }] = useCreateOrderUnregisteredMutation();
-    const [state, setState] = useState();
+    const [openPhoneSaver, setOpenPhoneSaver] = useState(false);
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     const startCloseTimer = () => {
         timerRef.current = setTimeout(() => {
-            close?.();
+            if (data?.phone_number) {
+                close?.();
+            } else {
+                setOpenPhoneSaver(true);
+                //TODO: open next popup by state openPhoneSaver
+                setTimeout(() => close?.(), 4000);
+            }
         }, 3000);
     };
 
