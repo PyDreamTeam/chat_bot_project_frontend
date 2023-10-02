@@ -9,7 +9,7 @@ import { InputAddPlatform } from "@/src/components/entities/platforms/addPlatfor
 import { TextAreaAddPlatform } from "@/src/components/entities/platforms/addPlatform/TextAreaAddPlatform";
 import { useEffect, useState } from "react";
 import { MultipleInput } from "@/src/components/entities/platforms/addPlatform/MultipleInput";
-import { useAddPlatformMutation, useGetPlatformsFiltersQuery } from "@/src/store/services/platforms";
+import { useAddPlatformMutation, useGetPlatformQuery, useGetPlatformsFiltersQuery } from "@/src/store/services/platforms";
 import { GroupsFilters, PropsGroupsFilters } from "@/src/components/entities/platforms/addPlatform/filtersForAddPlatform/GroupsFiltrs/GroupsFilters";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
@@ -18,13 +18,15 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
-const AddPlatform = () => {
+const ChangePlatform = () => {
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
     const dispatch = useAppDispatch();
     const router = useRouter();
+    const {changeId} = router.query;
+    const {data} = useGetPlatformQuery(Number(changeId));
     const token = JSON.parse(Cookies.get("loginUser") || "[]"); 
-    const [addPlatform, {data, isSuccess: isSuccessAddPlatform}] = useAddPlatformMutation();
+    const [addPlatform, {isSuccess: isSuccessAddPlatform}] = useAddPlatformMutation();
 
     const [platform, setPlatform] = useState<PropsPlatformCard>({
         title: "",
@@ -37,6 +39,20 @@ const AddPlatform = () => {
         links_to_solution: [],
         filter: []
     });
+
+    useEffect(() => {
+        setPlatform((prev) => ({...prev,
+            title: data?.title,
+            short_description: data?.short_description,
+            full_description: data?.full_description,
+            turnkey_solutions: data?.turnkey_solutions,
+            price: data?.price,
+            image: data?.image,
+            link: data?.link,
+            links_to_solution: data?.links_to_solution,
+            filter: data?.filter
+        }));
+    }, [data]);
 
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
@@ -207,4 +223,4 @@ const AddPlatform = () => {
     );
 };
 
-export default AddPlatform;
+export default ChangePlatform;

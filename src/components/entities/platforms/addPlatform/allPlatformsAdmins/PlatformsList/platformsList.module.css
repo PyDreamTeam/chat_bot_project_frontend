@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    margin-top: 16px;
+    padding: 16px 8px;
+    gap: 148px;
+    border-bottom: 1px solid #E1E2E6;
+}
+
+.platformTitle {
+    width: 142px;
+}
+
+.platformSubTittle {
+    width: 123px;
+}

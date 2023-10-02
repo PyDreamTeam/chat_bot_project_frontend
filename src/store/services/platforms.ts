@@ -48,6 +48,15 @@ export const platforms = createApi({
                 body: platform,
             }),
         }),
+        deletePlatform: builder.mutation({
+            query: ({id, token}) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                }
+            })
+        })
     }),
 });
 
@@ -57,4 +66,5 @@ export const {
     useGetPlatformQuery,
     useAddPlatformMutation,
     useGetListPlatformsQuery,
+    useDeletePlatformMutation
 } = platforms;

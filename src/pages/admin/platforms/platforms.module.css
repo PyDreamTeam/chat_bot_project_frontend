@@ -52,3 +52,45 @@
     margin-top: 16px;
 }
 
+.sortListPlatform {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.sortPlatform {
+    border-bottom: 2px solid #E1E2E6;
+    cursor: pointer; 
+}
+
+.sortPlatformActive {
+    border-bottom: 2px solid #4466F5;
+    color: #4466F5;
+    cursor: pointer; 
+}
+
+.sortPlatform:hover {
+    color: #4466F5;
+    border-bottom: 2px solid #4466F5;
+}
+
+.sortText {
+    padding: 8px 24px;
+}
+
+.sortTextActive {
+    padding: 8px 24px;
+    color: #4466F5;
+}
+
+.sortText:hover {
+    color: #4466F5;
+}
+
+.loaderPlatforms {
+    margin: 5% 50%;
+    width: 100%;
+    height: 100%;
+}
+
+
