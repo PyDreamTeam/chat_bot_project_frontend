@@ -45,8 +45,6 @@ const ChangePlatform = () => {
         filter: []
     });
 
-    console.log("platform", platform);
-
     useEffect(() => {
         dispatch(getFilterFromBack(data?.tags));
         dispatch(getLinkToPlatform(data?.link));
