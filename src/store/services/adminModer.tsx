@@ -6,7 +6,7 @@ export const administrators = createApi({
     endpoints: (builder) => ({
         createAdmin: builder.mutation({
             query: (arg) => ({
-                url: "",
+                url: "/api/auth/users/",
                 method: "POST",
                 body: arg,
             }),

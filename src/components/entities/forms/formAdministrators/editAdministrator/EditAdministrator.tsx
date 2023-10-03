@@ -6,31 +6,37 @@ import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/Fir
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
-import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { RadioButtonGroup } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
-import { useEditAdminMutation } from "@/src/store/services/administrators";
-
+import { useEditAdminMutation } from "@/src/store/services/adminModer";
+import { useRouter } from "next/router";
+import { userData } from "@/src/pages/admin/users/all/allUsers";
 
 const err = {
     min: "Содержит не менее 8 символов",
+    max: "Не более 50 символов",
     string: "Содержит как строчные (a–z), так и прописные буквы (A–Z)",
     number: "Содержит по крайней мере одну цифру (0–9)",
     special: "содержит по крайней мере один спецсимвол",
     req: "Введите пароль",
 };
+
 const EditAdministrator = () => {
+    const route = useRouter();
+    const { query } = useRouter();
     const [editAdmin, { error: errorData, isLoading }] = useEditAdminMutation();
+
+    const user = userData.find((person) => (person.id === Number(query.id)));
 
     return (
         <div className={styles.addUserBlock}>
-            <Formik
+            {user && <Formik
                 initialValues={{
-                    first_name: "",
-                    last_name: "",
-                    email: "",
-                    password: "",
-                    role: "",
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    password: user.password,
+                    user_role: user.role,
                 }}
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
@@ -51,15 +57,17 @@ const EditAdministrator = () => {
                         .required("Введите email"),
                     password: Yup.string()
                         .min(8, err.min)
-                        .max(50, "Не более 50 символов")
+                        .max(50, err.max)
                         .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
                         .matches(/^(?=.*[0-9])/, err.number)
                         .matches(/^(?=.*[@$!%*?&])/, err.special)
                         .required(err.req),
-                    role: Yup.string().required("Требуется выбрать один из вариантов")
+                    user_role: Yup.string().required("Требуется выбрать один из вариантов")
                 })}
                 onSubmit={(values) => {
-                    editAdmin(values);
+                    console.log(values);
+                    //editAdmin(values);
+                    route.push("/admin/users/all");
                 }}
             >
                 {({ errors, touched, getFieldProps, isValid }) => {
@@ -81,8 +89,8 @@ const EditAdministrator = () => {
                                 password={password}
                             />
                             <RadioButtonGroup
-                                name="role"
-                                values={["Администратор", "Модератор"]}
+                                name="user_role"
+                                values={["AD", "MN"]}
                                 label="Роль пользователя"
                                 errors={errors}
                                 touched={touched}
@@ -96,9 +104,9 @@ const EditAdministrator = () => {
                         </Form>
                     );
                 }}
-            </Formik>
+            </Formik>}
             <div className={styles.icon}><Image src="/admin/people_correct.svg"
-                alt="people plus"
+                alt="people edit"
                 width={316}
                 height={316}
             /></div>

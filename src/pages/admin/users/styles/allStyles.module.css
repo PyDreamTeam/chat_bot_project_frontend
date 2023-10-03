@@ -1,16 +1,14 @@
-.usersBlock {
-    display: flex;
-    flex-direction: column;
-}
 .listHeader {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 27px;
     height: 56px;
+    border-bottom: 1px solid #e1e2e6;
 }
 .userName {
     min-width: 150px;
+    text-transform: capitalize;
 }
 .userEmail {
     width: 300px;
@@ -24,6 +22,7 @@
     flex-direction: column;
     gap: 10px;
     color: #595f6c;
+    margin-top: 16px;
 }
 .user {
     display: flex;
@@ -39,10 +38,8 @@
     align-items: center;
     justify-content: center;
 }
-.edit a {
+.edit img {
     cursor: pointer;
-}
-.edit a img {
     width: 100%;
 }
 .userStatus {
@@ -100,4 +97,14 @@ input:focus + .slider {
 
 input:checked + .slider:before {
     transform: translateX(16px);
+}
+
+.noUsers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 120px;
+}
+.noUsers p:last-child {
+    margin-top: 16px;
 }

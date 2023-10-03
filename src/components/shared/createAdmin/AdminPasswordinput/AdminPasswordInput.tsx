@@ -23,7 +23,7 @@ function isDefaultNewPasswordError(error?: NewPasswordErrors): error is DefaultN
     return (error as DefaultNewPasswordError)?.data?.password !== undefined;
 }
 
-interface PropsNewPasswordInput {
+interface PropsAdminPasswordInput {
     errors: FormikErrors<{ password: string }>;
     touched: FormikTouched<{ password: string }>;
     error?: FetchBaseQueryError | SerializedError;
@@ -33,7 +33,16 @@ const newPasswordErrorMap: Record<string, string> = {
     "The password is too similar to the email.": "Email и пароль совпадают",
 };
 
-export const AdminPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, error }) => {
+export const AdminPasswordInput: FC<PropsAdminPasswordInput> = ({ errors, touched, error }) => {
+    const [openEye, setEye] = useState<string>("text");
+    const openAndClose = () => {
+        if (openEye === "password") {
+            setEye("text");
+        }
+        if (openEye === "text") {
+            setEye("password");
+        }
+    };
 
     const { setFieldError } = useFormikContext<typeof initialValues>();
 
@@ -57,14 +66,33 @@ export const AdminPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched,
                     <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />
                 )}
             </div>
-            <div>
+            <div className={css.groupStateEye}>
                 <Field
-                    type="text"
+                    type={openEye}
                     name="password"
-                    value="12345678"
                     placeholder="Придумайте пароль"
-                    className={errors.password && touched.password ? `${css.inputError}` : `${css.input}`}
+                    className={`${css.inputDisabled} ${css.inputValid}`}
                 />
+                <div className={css.stateEye}>
+                    {openEye === "text" && (
+                        <Image
+                            src="/sign/openPassword.svg"
+                            width={24}
+                            height={24}
+                            alt="stateEye"
+                            onClick={openAndClose}
+                        />
+                    )}
+                    {openEye === "password" && (
+                        <Image
+                            src="/sign/closePassword.svg"
+                            width={24}
+                            height={24}
+                            alt="stateEye"
+                            onClick={openAndClose}
+                        />
+                    )}
+                </div>
             </div>
             <div className={css.error}>
                 <Text type="reg16" color="red">

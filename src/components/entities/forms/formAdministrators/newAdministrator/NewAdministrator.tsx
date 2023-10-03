@@ -1,26 +1,22 @@
 import React from "react";
 import styles from "./newAdministrator.module.css";
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useCreateAdminMutation } from "@/src/store/services/administrators";
+import { useCreateAdminMutation } from "@/src/store/services/adminModer";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
-import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { RadioButtonGroup } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
 import { AdminPasswordInput } from "@/src/components/shared/createAdmin/AdminPasswordinput/AdminPasswordInput";
-import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
-
+import { useRouter } from "next/router";
 
 const err = {
     min: "Содержит не менее 8 символов",
-    string: "Содержит как строчные (a–z), так и прописные буквы (A–Z)",
-    number: "Содержит по крайней мере одну цифру (0–9)",
-    special: "содержит по крайней мере один спецсимвол",
     req: "Введите пароль",
 };
 const NewAdministrator = () => {
+    const route = useRouter();
     const [createAdmin, { isLoading, error: errorData }] = useCreateAdminMutation();
 
     return (
@@ -30,8 +26,10 @@ const NewAdministrator = () => {
                     first_name: "",
                     last_name: "",
                     email: "",
-                    password: "",
-                    role: "",
+                    password: "Aa12345678@",
+                    user_role: "AD",
+                    re_password: "Aa12345678@",
+
                 }}
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
@@ -54,10 +52,12 @@ const NewAdministrator = () => {
                         .min(8, err.min)
                         .max(50, "Не более 50 символов")
                         .required(err.req),
-                    role: Yup.string().required("Требуется выбрать один из вариантов")
+                    user_role: Yup.string().required("Поле обязательное для заполнения")
                 })}
                 onSubmit={(values) => {
-                    createAdmin(values);
+                    console.log(values);
+                    //createAdmin(values);
+                    route.push("/admin/users/all");
                 }}
             >
                 {({ errors, touched, getFieldProps, isValid }) => {
@@ -72,15 +72,14 @@ const NewAdministrator = () => {
                             <FirstNameInput errors={errors} touched={touched} />
                             <LastNameInput errors={errors} touched={touched} />
                             <EmailInput errors={errors} touched={touched} error={errorData} />
-                            <NewPasswordInput
+                            <AdminPasswordInput
                                 errors={errors}
                                 touched={touched}
                                 error={errorData}
-                                password={password}
                             />
                             <RadioButtonGroup
-                                name="role"
-                                values={["Администратор", "Модератор"]}
+                                name="user_role"
+                                values={["AD", "MN"]}
                                 label="Роль пользователя"
                                 errors={errors}
                                 touched={touched}
