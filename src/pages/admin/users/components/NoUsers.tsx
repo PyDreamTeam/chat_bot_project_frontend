@@ -18,6 +18,6 @@ const NoUsers = () => {
                 Добавьте нового администратора или модератора
             </Text>
         </div>
-    )
-}
+    );
+};
 export default NoUsers;
