@@ -28,9 +28,9 @@ export const ErrorsPassword: FC<PropsErrorsPassword> = ({ password }) => {
     const passwordShema = Yup.object().shape({
         password: Yup.string()
             .min(8, err.min)
-            .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
+            .matches(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])/, err.string)
             .matches(/^(?=.*[0-9])/, err.number)
-            .matches(/^(?=.*[@$!%*?&])/, err.special)
+            .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
             .required(err.req),
     });
 

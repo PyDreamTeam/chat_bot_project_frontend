@@ -4,7 +4,7 @@ import ButtonShowMore from "@/src/components/shared/buttons/ButtonShowMore";
 import styles from "./BlockShotDescription.module.css";
 
 interface Props {
-    text: string;
+    text?: string;
     maxLength: number;
 }
 
@@ -20,7 +20,7 @@ const ReadMore: React.FC<Props> = ({ text, maxLength }) => {
             {isTruncated ? (
                 <>
                     <Text type={"reg18"} color={"grey"}>
-                        {text.slice(0, maxLength)}...
+                        {text?.slice(0, maxLength)}...
                     </Text>
                     <ButtonShowMore onClick={toggleText} text={"Узнать больше"} />
                 </>

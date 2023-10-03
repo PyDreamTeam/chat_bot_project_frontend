@@ -11,6 +11,11 @@ import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
 import { useDataUserQuery, useDeleteOrderMutation } from "@/src/store/services/userAuth";
 import { orderCheckBox, orderDelete } from "./img/SvgConfig";
+import { SelectLanguage } from "@/src/components/features/HomePage/Header/components/SelectLanguage/SelectLanguage";
+import { useModal } from "@/src/hooks/useModal";
+import Modal from "@/src/components/shared/modal/Modal";
+import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
+import DeleteOrderPopup from "@/src/pages/my-account/orders/ordersPopups/DeleteOrderPopup";
 
 interface IHomePageHeader {
     name?: string;
@@ -29,6 +34,7 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
     const [deleteOrder, { error: errorDelete }] = useDeleteOrderMutation();
+    const { isShown, toggle } = useModal();
 
     const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -72,21 +78,7 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                             </Title>
                         </div>
                         <div className={styles.orderTitleRight}>
-                            <div
-                                className={styles.orderIconCheck}
-                                data-tooltip="Сохранить изменения"
-                                onClick={submitForm}
-                            >
-                                {orderCheckBox}
-                            </div>
-                            <div
-                                className={styles.orderIconDelete}
-                                data-tooltip="Удалить заказ"
-                                onClick={() => {
-                                    Cookies.set("Deleted_order", `${id}`);
-                                    deleteOrder({ token, id }).then(() => router.push("/my-account/orders"));
-                                }}
-                            >
+                            <div className={styles.orderIconDelete} data-tooltip="Удалить заказ" onClick={toggle}>
                                 {orderDelete}
                             </div>
                         </div>
@@ -99,6 +91,26 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                         </Title>
                     </Link>
                 )}
+                {page === "favorites" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Избранное"}
+                    </Title>
+                )}
+                {page === "faq" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"FAQ"}
+                    </Title>
+                )}
+                {page === "articles" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Статьи"}
+                    </Title>
+                )}
+                {page === "tariff" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Тарифы"}
+                    </Title>
+                )}
                 {(page === "profile_changeData" || page === "profile_templates") && (
                     <Title type={"h4"} color={"black"}>
                         Профиль
@@ -110,13 +122,19 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                     </Title>
                 )}
             </>
-            <UserInfo
-                profileOnClick={handleOpenProfile}
-                isOpen={open}
-                onClick={handleToggleBurgerMenu}
-                first_name={data?.first_name}
-                last_name={data?.last_name}
-            />
+            <div className={styles.headerRightBlock}>
+                <SelectLanguage />
+                <UserInfo
+                    profileOnClick={handleOpenProfile}
+                    isOpen={open}
+                    onClick={handleToggleBurgerMenu}
+                    first_name={data?.first_name}
+                    last_name={data?.last_name}
+                />
+            </div>
+            <Modal isShown={isShown} hide={toggle}>
+                <DeleteOrderPopup close={toggle} orderNumber={orderNumber} />
+            </Modal>
         </header>
     );
 };

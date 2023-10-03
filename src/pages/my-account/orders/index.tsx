@@ -15,21 +15,23 @@ const OrdersPage: FC = () => {
     const handleToggleDelPopup = () => setOpenDel((prevState) => !prevState);
     const handleToggleEditPopup = () => setOpenEdit((prevState) => !prevState);
 
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const timerRefDel = useRef<NodeJS.Timeout | null>(null);
+    const timerRefEdit = useRef<NodeJS.Timeout | null>(null);
+
     let orderDelId: string | undefined = "";
     let orderEditId: string | undefined = "";
 
     const startCloseDelTimer = () => {
-        timerRef.current = setTimeout(() => {
+        timerRefDel.current = setTimeout(() => {
             Cookies.set("Deleted_order", "");
-            handleToggleDelPopup();
+            setOpenDel(false);
         }, 4000);
     };
 
     const startCloseEditTimer = () => {
-        timerRef.current = setTimeout(() => {
+        timerRefEdit.current = setTimeout(() => {
             Cookies.set("Edited_order", "");
-            handleToggleEditPopup();
+            setOpenEdit(false);
         }, 4000);
     };
 
@@ -49,7 +51,10 @@ const OrdersPage: FC = () => {
             startCloseEditTimer();
         }
 
-        return () => clearTimeout(timerRef.current as NodeJS.Timeout);
+        return () => {
+            clearTimeout(timerRefDel.current as NodeJS.Timeout);
+            clearTimeout(timerRefEdit.current as NodeJS.Timeout);
+        };
     }, []);
 
     return (

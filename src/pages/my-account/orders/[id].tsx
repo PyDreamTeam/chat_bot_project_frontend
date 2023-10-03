@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import Cookies from "js-cookie";
 import styles from "./styles/order.module.css";
@@ -14,6 +14,8 @@ import { PhoneInput } from "@/src/components/shared/login/PhoneNumberInput/Pnone
 import { CommentInput } from "@/src/components/shared/login/CommentInput/CommentInput";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Image from "next/image";
+import Link from "next/link";
+import Text from "@/src/components/shared/text/Text";
 
 interface pageProps {
     params: { id: string };
@@ -105,30 +107,29 @@ const page: FC<pageProps> = () => {
                                 }
                             }}
                         >
-                            {({ isSubmitting, errors, touched, isValid, setFieldTouched }) => {
-                                useEffect(() => {
-                                    if (dataOrder) {
-                                        setFieldTouched("first_name");
-                                        setFieldTouched("email");
-                                        setFieldTouched("phone_number");
-                                        setFieldTouched("comment");
-                                    }
-                                }, [dataOrder]);
-
+                            {({ isSubmitting, errors, touched, isValid, setFieldTouched, dirty }) => {
                                 return (
                                     <Form className={styles.form} onSubmit={handleSubmit}>
                                         <FirstNameInput errors={errors} touched={touched} />
                                         <EmailInput errors={errors} touched={touched} />
                                         <PhoneInput errors={errors} touched={touched} />
                                         <CommentInput errors={errors} touched={touched} />
-                                        <Button
-                                            disabled={isSubmitting}
-                                            active={isValid}
-                                            type={"submit"}
-                                            onClick={handleSubmit}
-                                        >
-                                            Отправить
-                                        </Button>
+                                        <div className={styles.buttonsContainer}>
+                                            <Link href={"/my-account/orders"} className={styles.buttonCancel}>
+                                                <Text type="reg18" color="grey">
+                                                    Отмена
+                                                </Text>
+                                            </Link>
+                                            <Button
+                                                disabled={isSubmitting || !dirty}
+                                                active={isValid && dirty}
+                                                type={"submit"}
+                                                onClick={handleSubmit}
+                                                width={257}
+                                            >
+                                                Сохранить и отправить
+                                            </Button>
+                                        </div>
                                     </Form>
                                 );
                             }}

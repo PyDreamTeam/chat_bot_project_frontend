@@ -36,7 +36,7 @@ const CardSolution: FC<PropsSolutionCard> = ({ type, id, image, title, price, sh
                     <Image src={image ? `${image}` : ""} width={100} height={100} alt="logo" className={styles.img} />
                 </div>
                 <div className={styles.title}>
-                    <Title type="h4" color="dark">
+                    <Title type="h5" color="dark">
                         {title}
                     </Title>
                     <div>
@@ -54,8 +54,12 @@ const CardSolution: FC<PropsSolutionCard> = ({ type, id, image, title, price, sh
                 </div>
             </div>
             <div className={styles.mid}>
-                {price}
-                {short_description}
+                <Title type="h4" color="dark">
+                    {price} BYN
+                </Title>
+                <Text type="reg18" color="grey">
+                    {short_description}
+                </Text>
                 <div className={styles.features}>
                     {tags
                         .filter((item) => item.is_message === false)

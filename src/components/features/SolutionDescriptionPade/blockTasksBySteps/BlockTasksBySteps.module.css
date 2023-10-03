@@ -1,32 +1,38 @@
 .wrapper {
-    padding: 80px 0 74px;
+    padding: 80px 0 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 50px;
     position: relative;
 }
-
-.blockText p {
-    max-width: 645px;
-}
 .blockText h3 {
     padding-bottom: 24px;
 }
 .blockScroll {
-    padding-top: 24px;
+    height: 648px;
 }
+.text {
+    margin-bottom: 48px;
+    max-width: 645px;
+}
+/*  */
 .blockAccordion {
-    height: 675px;
-    overflow: auto;
-    cursor: s-resize;
+    height: 648px;
+    overflow-y: auto;
+    cursor: pointer;
+    padding: 0 10px 0 0;
 }
-
-.scroll {
-    position: absolute;
-    height: 685px;
-    width: 17px;
-    background: white;
-    top: 25%;
-    left: 742px;
+.blockAccordion::-webkit-scrollbar {
+    width: 13px;
+    height: 640px;
+}
+.blockAccordion::-webkit-scrollbar-track {
+    background-color: #eef4fd;
+    border-radius: 10px;
+}
+.blockAccordion::-webkit-scrollbar-thumb {
+    background-color: #d0ddf0;
+    border-radius: 15px;
+    width: 8px;
 }

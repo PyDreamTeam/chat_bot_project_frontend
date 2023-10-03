@@ -16,6 +16,10 @@ export const clientEndpoints: ClientEndpoints = {
             payment: `${profile}/payment`,
         },
         templates: `${myAccount}/templates`,
+        favorites: `${myAccount}/favorites`,
+        faq: `${myAccount}/faq`,
+        articles: `${myAccount}/articles`,
+        tariff: `${myAccount}/tariff`,
         orders: {
             get: `${orders}`,
             order: `${orders}/order`,

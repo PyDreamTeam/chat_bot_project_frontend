@@ -10,12 +10,15 @@ import { BlockTariffPlan } from "./blockTariffPlan/BlockTariffPlan";
 import BlockFAQ from "@/src/components/features/HomePage/Main/blockFAQ/BlockFAQ";
 import BlockSolution from "@/src/components/features/HomePage/Main/blockSolution/BlockSolution";
 import BlockPlatform from "./blockPlatform/BlockPlatform";
+import BlockForWhom from "./blockForWhom/BlockForWhom";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const Main = () => {
     return (
         <div className={styles.main}>
             <BlockSelectionBot />
             <BlockOurAdvantages />
+            <BlockForWhom />
             <BlockVideo />
             <BlockAboutUs />
             <BlockSolution />
@@ -24,6 +27,7 @@ const Main = () => {
             <BlockFeedback />
             <BlockTariffPlan />
             <BlockFAQ />
+            <ButtonScrollToUp />
         </div>
     );
 };

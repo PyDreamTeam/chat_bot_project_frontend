@@ -25,21 +25,15 @@ import { isPossiblePhoneNumber } from "react-phone-number-input";
 interface IPropsRequest {
     open?: () => void;
     close?: () => void;
-}
-
-interface IInitialTouched {
-    first_name?: boolean;
-    email?: boolean;
-    phone_number?: boolean;
-    comment?: boolean;
+    dataComment?: string;
 }
 
 // TODO: unhandled server errors?
 
-const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
+const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
     const [createOrderUnregistered, { isSuccess: isSuccessAnonym }] = useCreateOrderUnregisteredMutation();
-    const [state, setState] = useState<IInitialTouched>();
+    const [state, setState] = useState();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -47,7 +41,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
     const startCloseTimer = () => {
         timerRef.current = setTimeout(() => {
             close?.();
-        }, 5000);
+        }, 3000);
     };
 
     useEffect(() => {
@@ -83,7 +77,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                 first_name: data?.first_name || "",
                                 email: data?.email || "",
                                 phone_number: data?.phone_number || "",
-                                comment: "",
+                                comment: dataComment || "",
                             }}
                             validationSchema={Yup.object().shape({
                                 first_name: Yup.string()
@@ -143,6 +137,9 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open }) => {
                                         setFieldTouched("first_name");
                                         setFieldTouched("email");
                                         setFieldTouched("phone_number");
+                                    }
+                                    if (dataComment) {
+                                        setFieldTouched("comment");
                                     }
                                 }, [data]);
 
