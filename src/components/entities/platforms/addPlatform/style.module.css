@@ -111,3 +111,31 @@
     align-items: center;
     justify-content: space-between;
 }
+
+/*Стили для UploadImage*/
+
+.hidden {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    line-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.logoText {
+    margin-top: 16px;
+}
+
+.logoImage {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.image {
+    margin-top: 8px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}

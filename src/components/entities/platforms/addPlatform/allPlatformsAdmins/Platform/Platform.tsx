@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import { useDeletePlatformMutation } from "@/src/store/services/platforms";
 import { useRouter } from "next/router";
 import Title from "@/src/components/shared/text/Title";
+import Link from "next/link";
 
 interface PropsPlatform {
     id?: number 
@@ -84,9 +85,12 @@ export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id}) => {
                 </Text>
             </div>
             <div className={css.platformStatus}>
-                <Text type="reg16" color="grey">
-                    {link}
-                </Text>
+                {link && 
+                <Link href={link}>
+                    <Text type="reg16" color="grey">
+                        {link}
+                    </Text>
+                </Link>}
             </div>
             <div className={css.platformKeyWords}>
                 <Text type="reg16" color="grey">

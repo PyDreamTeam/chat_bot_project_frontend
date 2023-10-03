@@ -3,12 +3,13 @@ import { InputAddPlatform } from "./InputAddPlatform";
 import Text from "@/src/components/shared/text/Text";
 import css from "./style.module.css";
 import Image from "next/image";
-import { useAppDispatch } from "@/src/hooks/types";
+import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { countLinkToSolution } from "@/src/store/reducers/addPlatform/slice";
 
 export const MultipleInput = () => {
 
     const dispatch = useAppDispatch();
+    const linksToSolution = useAppSelector(state => state.reducerAddPlatform.links_to_solution);
     const [inputs, setInputs] = useState<string[]>([]);
 
     useEffect(() => {
@@ -16,7 +17,7 @@ export const MultipleInput = () => {
     }, [inputs]);
 
     const addInput = () => {
-        setInputs([...inputs, ""]);
+        setInputs([...linksToSolution, ""]);
     };
 
     const removeInput = (index: number) => {
@@ -27,7 +28,7 @@ export const MultipleInput = () => {
 
     return (
         <div>
-            {inputs.map((input, index) => (
+            {linksToSolution?.map((input, index) => (
                 <div key={index}>
                     <div className={css.linksSolution}>
                         <Text type="reg18" color="dark">Ссылка</Text>

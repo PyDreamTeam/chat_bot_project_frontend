@@ -3,30 +3,35 @@ import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFu
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
-import css from "./addPlatform.module.css";
+import css from "./changePlatform.module.css";
 import Title from "@/src/components/shared/text/Title";
 import { InputAddPlatform } from "@/src/components/entities/platforms/addPlatform/InputAddPlatform";
 import { TextAreaAddPlatform } from "@/src/components/entities/platforms/addPlatform/TextAreaAddPlatform";
 import { useEffect, useState } from "react";
 import { MultipleInput } from "@/src/components/entities/platforms/addPlatform/MultipleInput";
-import { useAddPlatformMutation, useGetPlatformQuery, useGetPlatformsFiltersQuery } from "@/src/store/services/platforms";
+import { useAddPlatformMutation, useChangePlatformMutation, useGetPlatformQuery, useGetPlatformsFiltersQuery } from "@/src/store/services/platforms";
 import { GroupsFilters, PropsGroupsFilters } from "@/src/components/entities/platforms/addPlatform/filtersForAddPlatform/GroupsFiltrs/GroupsFilters";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import { linkToPlatform } from "@/src/store/reducers/addPlatform/slice";
+import { getFilterFromBack, getLinkToPlatform, getLinkToSolution, linkToPlatform } from "@/src/store/reducers/addPlatform/slice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
 
 const ChangePlatform = () => {
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
+    const [changePlatform, {isSuccess: isSuccessChange}] = useChangePlatformMutation();
     const dispatch = useAppDispatch();
+    const filters = useAppSelector(state => state.reducerAddPlatform.filters);
+    const link = useAppSelector(state => state.reducerAddPlatform.linkToPlatform);
+    const links = useAppSelector(state => state.reducerAddPlatform.links_to_solution);
     const router = useRouter();
     const {changeId} = router.query;
     const {data} = useGetPlatformQuery(Number(changeId));
     const token = JSON.parse(Cookies.get("loginUser") || "[]"); 
-    const [addPlatform, {isSuccess: isSuccessAddPlatform}] = useAddPlatformMutation();
+    const [id, setId] = useState<number | undefined>(undefined);
 
     const [platform, setPlatform] = useState<PropsPlatformCard>({
         title: "",
@@ -40,19 +45,46 @@ const ChangePlatform = () => {
         filter: []
     });
 
+    console.log("platform", platform);
+
+    useEffect(() => {
+        dispatch(getFilterFromBack(data?.tags));
+        dispatch(getLinkToPlatform(data?.link));
+        dispatch(getLinkToSolution(data?.links_to_solution));
+    }, [data]);
+
+    useEffect(() => {
+        setId(data?.id);
+    }, [data]);
+
     useEffect(() => {
         setPlatform((prev) => ({...prev,
             title: data?.title,
             short_description: data?.short_description,
             full_description: data?.full_description,
-            turnkey_solutions: data?.turnkey_solutions,
             price: data?.price,
             image: data?.image,
-            link: data?.link,
-            links_to_solution: data?.links_to_solution,
-            filter: data?.filter
         }));
     }, [data]);
+
+    useEffect(() => {
+        setPlatform(prev => ({...prev,
+            links_to_solution: links,
+            turnkey_solutions: links?.length
+        }));
+    }, [links]);
+
+    useEffect(() => {
+        setPlatform(prev => ({...prev,
+            link: link,
+        }));
+    }, [link]);
+
+    useEffect(() => {
+        setPlatform(prev => ({...prev,
+            filter: filters?.map(item => item.id),
+        }));
+    }, [filters]);
 
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
@@ -63,42 +95,33 @@ const ChangePlatform = () => {
         setIsModalClose(!isModalClose);
     };
     
-    const inputsLinks = useAppSelector(state => state.reducerAddPlatform.links_to_solution);
+    
     useEffect(() => {
-        setPlatform(prev => ({...prev, links_to_solution: inputsLinks, turnkey_solutions: inputsLinks.length}));
-    }, [inputsLinks]);
-    const filters = useAppSelector(state => state.reducerAddPlatform.filters);
-    useEffect(() => {
-        setPlatform(prev => ({...prev, filter: filters.map(item => item.id)}));
-    }, [filters]);
-    const link = useAppSelector(state => state.reducerAddPlatform.linkToPlatform);
-    useEffect(() => {
-        setPlatform(prev => ({...prev, link: link}));
-    }, [link]);
-    useEffect(() => {
-        if(isSuccessAddPlatform) {
+        if(isSuccessChange) {
             setIsModalClose(false);
             setIsSuccessModal(true);
-            setPlatform(prev => ({...prev, 
-                title: "",
-                short_description: "",
-                full_description: "",
-                turnkey_solutions: 0,
-                price: "",
-                image: "",
-                link: "",
-                links_to_solution: [],
-                filter: [] }));
             setTimeout(() => {
                 setIsSuccessModal(false);
+                router.reload();
             }, 3000);
         }
-    }, [isSuccessAddPlatform]);
+    }, [isSuccessChange]);
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         const pattern = /^[0-9\b]+$/; 
         if (!pattern.test(event.key)) {
             event.preventDefault();
+        }
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if(file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPlatform(prev => ({...prev, image: reader.result as string}));
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -126,6 +149,7 @@ const ChangePlatform = () => {
                     className={css.titlePlatform}
                     style={css.size640}
                 />
+                <UploadImage onChange={handleFileChange} image={platform.image} isImage={Boolean(platform.image)}/>
                 <TextAreaAddPlatform
                     value={platform.short_description}
                     onChange={(e) => setPlatform(prev => ({...prev, short_description: e.target.value}))}
@@ -171,8 +195,8 @@ const ChangePlatform = () => {
                 />
                 <InputAddPlatform 
                     label="Ссылка на страницу платформы"
+                    value={link}
                     onChange={(e) => {
-                        // setPlatform(prev => ({...prev, link: e.target.value}));
                         dispatch(linkToPlatform(e.target.value));
                     }}
                     placeholder="www.example.com"
@@ -191,7 +215,7 @@ const ChangePlatform = () => {
                                 <button className={css.btnCloseModal} onClick={() => router.push("/admin/platforms")}>
                                     <Text type="reg18" color="red">Удалить изменения</Text>
                                 </button>
-                                <button className={css.btnSaveModal} onClick={() => addPlatform({platform, token})}>
+                                <button className={css.btnSaveModal} onClick={() => changePlatform({id, token, platform})}>
                                     <Text type="reg18" color="white">Сохранить</Text>
                                 </button>
                             </div>
@@ -212,9 +236,7 @@ const ChangePlatform = () => {
                     <button className={css.btnClose} onClick={handleClickClose}>
                         <Text type="reg18" color="grey">Отмена</Text>
                     </button>
-                    <button className={css.btnSave} onClick={() => {
-                        addPlatform({platform, token});
-                    }}>
+                    <button className={css.btnSave} onClick={() => changePlatform({id, token, platform})}>
                         <Text type="reg18" color="white">Сохранить</Text>
                     </button>
                 </div>

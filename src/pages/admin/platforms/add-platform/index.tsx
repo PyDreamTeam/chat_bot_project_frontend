@@ -13,10 +13,11 @@ import { useAddPlatformMutation, useGetPlatformsFiltersQuery } from "@/src/store
 import { GroupsFilters, PropsGroupsFilters } from "@/src/components/entities/platforms/addPlatform/filtersForAddPlatform/GroupsFiltrs/GroupsFilters";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import { linkToPlatform } from "@/src/store/reducers/addPlatform/slice";
+import { deleteAllFiltersFromPlatform, linkToPlatform } from "@/src/store/reducers/addPlatform/slice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
 
 const AddPlatform = () => {
 
@@ -47,6 +48,9 @@ const AddPlatform = () => {
         setIsModalClose(!isModalClose);
     };
     
+    useEffect(() => {
+        dispatch(deleteAllFiltersFromPlatform());
+    }, []);
     const inputsLinks = useAppSelector(state => state.reducerAddPlatform.links_to_solution);
     useEffect(() => {
         setPlatform(prev => ({...prev, links_to_solution: inputsLinks, turnkey_solutions: inputsLinks.length}));
@@ -73,6 +77,7 @@ const AddPlatform = () => {
                 link: "",
                 links_to_solution: [],
                 filter: [] }));
+            dispatch(deleteAllFiltersFromPlatform());
             setTimeout(() => {
                 setIsSuccessModal(false);
             }, 3000);
@@ -83,6 +88,17 @@ const AddPlatform = () => {
         const pattern = /^[0-9\b]+$/; 
         if (!pattern.test(event.key)) {
             event.preventDefault();
+        }
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if(file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPlatform(prev => ({...prev, image: reader.result as string}));
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -110,6 +126,7 @@ const AddPlatform = () => {
                     className={css.titlePlatform}
                     style={css.size640}
                 />
+                <UploadImage onChange={handleFileChange} image={platform.image} isImage={Boolean(platform.image)}/>
                 <TextAreaAddPlatform
                     value={platform.short_description}
                     onChange={(e) => setPlatform(prev => ({...prev, short_description: e.target.value}))}

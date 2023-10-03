@@ -11,7 +11,7 @@ export const PlatformsList = () => {
             </div>
             <div className={css.platformSubTittle}>
                 <Text type="sem16" color="dark">
-                    Заголовок
+                    Ссылка на страницу
                 </Text>
             </div>
             <div>
