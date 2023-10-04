@@ -1,10 +1,3 @@
-.blockFilter {
-    margin-top: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .btnDelete {
     display: flex;
     align-items: center;
@@ -15,8 +8,11 @@
     background: #FFF;
 }
 
-.title {
+.titleFilter {
     margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .filter {

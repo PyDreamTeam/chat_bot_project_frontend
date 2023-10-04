@@ -9,7 +9,6 @@ import { addFilterForPlatform, deleteFilterFromPlatform } from "@/src/store/redu
 interface PropsFiltersAndTagsSingle {
         onClick?: () => void
         filter?: string
-        index: number
         id?: number
         multiple?: boolean
         tags?: 
@@ -19,7 +18,7 @@ interface PropsFiltersAndTagsSingle {
             }[]
 }
 
-export const FiltersAndTagsSingle: FC<PropsFiltersAndTagsSingle> = ({filter, index, id, tags=[], multiple, onClick}) => {
+export const FiltersAndTagsSingle: FC<PropsFiltersAndTagsSingle> = ({filter, id, tags=[], multiple, onClick}) => {
 
     const dispatch = useAppDispatch();
     const filters = useAppSelector(state => state.reducerAddPlatform.filters);
@@ -27,14 +26,10 @@ export const FiltersAndTagsSingle: FC<PropsFiltersAndTagsSingle> = ({filter, ind
     
     return (
         <div>
-            <div className={css.blockFilter}>
-                <Text type="med20" color="dark">Фильтр {index + 1}</Text>
-                <button className={css.btnDelete}>
-                    <Image src="/platforms/delete.svg" alt="icon" width={16} height={17}/>
-                    <Text type="reg14" color="red">Удалить фильтр</Text>
-                </button>
+            <div className={css.titleFilter}>
+                <Text type="reg18" color="dark">Название фильтра</Text>
+                <Image src="/img/close.svg" alt="close" width={24} height={24} onClick={onClick} style={{cursor: "pointer"}}/>
             </div>
-            <Text type="reg18" color="dark" className={css.title}>Название фильтра</Text>
             <Text type="reg18" color="dark" className={css.filter}>{filter}</Text>
             <ul className={css.listTags}>
                 <Text type="reg18" color="dark" className={css.subTitle}>Параметры фильтра</Text>

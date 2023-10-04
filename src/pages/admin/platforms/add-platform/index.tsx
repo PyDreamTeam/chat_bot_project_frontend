@@ -18,6 +18,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
+import { Loader } from "@/src/components/shared/Loader/Loader";
 
 const AddPlatform = () => {
 
@@ -25,7 +26,7 @@ const AddPlatform = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]"); 
-    const [addPlatform, {data, isSuccess: isSuccessAddPlatform}] = useAddPlatformMutation();
+    const [addPlatform, {data, isSuccess: isSuccessAddPlatform, isLoading}] = useAddPlatformMutation();
 
     const [platform, setPlatform] = useState<PropsPlatformCard>({
         title: "",
@@ -173,7 +174,6 @@ const AddPlatform = () => {
                 <InputAddPlatform 
                     label="Ссылка на страницу платформы"
                     onChange={(e) => {
-                        // setPlatform(prev => ({...prev, link: e.target.value}));
                         dispatch(linkToPlatform(e.target.value));
                     }}
                     placeholder="www.example.com"
@@ -209,6 +209,10 @@ const AddPlatform = () => {
                         </div>
                     </div>
                 }
+                {isLoading && 
+                <div className={css.modal}>
+                    <Loader isLoading={isLoading}/>
+                </div>}
                 <div className={css.groupBtn}>
                     <button className={css.btnClose} onClick={handleClickClose}>
                         <Text type="reg18" color="grey">Отмена</Text>

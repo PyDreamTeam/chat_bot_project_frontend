@@ -18,11 +18,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
+import { Loader } from "@/src/components/shared/Loader/Loader";
 
 const ChangePlatform = () => {
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
-    const [changePlatform, {isSuccess: isSuccessChange}] = useChangePlatformMutation();
+    const [changePlatform, {isSuccess: isSuccessChange, isLoading}] = useChangePlatformMutation();
     const dispatch = useAppDispatch();
     const filters = useAppSelector(state => state.reducerAddPlatform.filters);
     const link = useAppSelector(state => state.reducerAddPlatform.linkToPlatform);
@@ -230,6 +231,10 @@ const ChangePlatform = () => {
                         </div>
                     </div>
                 }
+                {isLoading && 
+                <div className={css.modal}>
+                    <Loader isLoading={isLoading}/>
+                </div>}
                 <div className={css.groupBtn}>
                     <button className={css.btnClose} onClick={handleClickClose}>
                         <Text type="reg18" color="grey">Отмена</Text>
