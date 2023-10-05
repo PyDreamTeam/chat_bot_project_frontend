@@ -23,16 +23,18 @@ import { error } from "console";
 import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { ButtonCancel } from "../../shared/buttons/ButtonCancel";
+import { useRouter } from "next/router";
 
 interface IPropsRequest {
     open?: () => void;
     close?: () => void;
     dataComment?: string;
+    forceUpdate?: () => void;
 }
 
 // TODO: unhandled server errors?
 
-const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
+const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUpdate }) => {
     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
     const [createOrderUnregistered, { isSuccess: isSuccessAnonym }] = useCreateOrderUnregisteredMutation();
     const [changeDataUser, { isSuccess: isSuccessChange, isLoading: isLoadingChange }] = useChangeDataUserMutation();
@@ -41,6 +43,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
     const tokenAccess = token.access;
     const { data } = useDataUserQuery(token);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const router = useRouter();
 
     const startCloseTimer = () => {
         timerRef.current = setTimeout(() => {
@@ -175,7 +178,13 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
                         alt="close"
                         width={34}
                         height={34}
-                        onClick={close}
+                        onClick={() => {
+                            if (data?.phone_number) {
+                                close?.();
+                            } else {
+                                setOpenPhoneSaver(true);
+                            }
+                        }}
                         className={styles.imgClose}
                     />
                     <Image
@@ -183,7 +192,6 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
                         alt="imgSuccess"
                         width={120}
                         height={120}
-                        onClick={close}
                         className={styles.imgSuccess}
                     />
                     <div className={styles.textSuccess}>
@@ -232,7 +240,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
                                     phone_number: Cookies.get("Order_phone") || undefined,
                                 };
                                 const token = tokenAccess;
-                                changeDataUser({ requestValues, token });
+                                changeDataUser({ requestValues, token }).then(router.reload);
                                 close?.();
                             }}
                             width={240}

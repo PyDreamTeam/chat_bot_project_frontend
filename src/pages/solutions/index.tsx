@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Title from "@/src/components/shared/text/Title";
@@ -12,15 +12,28 @@ import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
-import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
+import Cookies from "js-cookie";
+import PhoneSavedPopup from "@/src/components/shared/popups/PhoneSavedPopup";
 
 const Solutions = () => {
     const { isShown, toggle } = useModal();
+    const [openPopup, setOpenPopup] = useState<boolean>(false);
+    const [phone, setPhone] = useState<string | undefined>("");
+    const handleTogglePopup = () => setOpenPopup((prevState) => !prevState);
+    const timerRefEdit = useRef<NodeJS.Timeout | null>(null);
+    let orderPhone: string | undefined = "";
+
+    const startClosePopupTimer = () => {
+        timerRefEdit.current = setTimeout(() => {
+            Cookies.set("Order_phone", "");
+            setOpenPopup(false);
+        }, 4000);
+    };
 
     // const { data: combinedData, isLoading, isFetching } = useGetListSolutionsQuery({});
 
@@ -30,9 +43,24 @@ const Solutions = () => {
         readMore();
     };
 
+    useEffect(() => {
+        orderPhone = Cookies.get("Order_phone");
+        setPhone(orderPhone);
+
+        if (orderPhone) {
+            setOpenPopup(true);
+            startClosePopupTimer();
+        }
+
+        return () => {
+            clearTimeout(timerRefEdit.current as NodeJS.Timeout);
+        };
+    }, []);
+
     return (
         <>
             <Header type="other" />
+            <PhoneSavedPopup activePopup={openPopup} phone={phone} close={handleTogglePopup} />
             <div className={styles.wrapper}>
                 <div className={styles.container}>
                     <div className={styles.topWrap}>
