@@ -60,7 +60,7 @@ const TemplateSignUp = () => {
                                 .matches(/^\D*$/, "Не должно содержать цифр"),
                             last_name: Yup.string().trim()
                                 .min(2, "Содержит две или более букв")
-                                .max(100, "Не более 30 букв")
+                                .max(30, "Не более 30 букв")
                                 .matches(/^\D*$/, "Не должно содержать цифр"),
                             email: Yup.string()
                                 .email("Неккоректный email")
