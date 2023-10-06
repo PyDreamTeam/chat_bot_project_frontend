@@ -5,7 +5,7 @@ import Image from "next/image";
 import styles from "./styles/CardSolution.module.css";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 
-const CardSolution: FC<PropsSolutionCard> = ({ type, id, image, title, price, short_description, tags = [] }) => {
+const CardSolution: FC<PropsSolutionCard> = ({ type, image, title, price, short_description, tags = [] }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const handleClickHeart = (e: MouseEvent) => {
@@ -31,15 +31,21 @@ const CardSolution: FC<PropsSolutionCard> = ({ type, id, image, title, price, sh
 
     return (
         <div className={type === "slider" ? `${styles.sliderCard}` : `${styles.solution}`}>
-            <div className={styles.top}>
-                <div className={styles.logo}>
-                    <Image src={image ? `${image}` : ""} width={100} height={100} alt="logo" className={styles.img} />
-                </div>
-                <div className={styles.title}>
-                    <Title type="h5" color="dark">
-                        {title}
-                    </Title>
-                    <div>
+            <div className={styles.topWrap}>
+                <div className={styles.top}>
+                    <div className={styles.logo}>
+                        <Image
+                            src={image ? `${image}` : ""}
+                            width={100}
+                            height={100}
+                            alt="logo"
+                            className={styles.img}
+                        />
+                    </div>
+                    <div className={styles.title}>
+                        <Title type="h5" color="dark">
+                            {title}
+                        </Title>
                         <Image
                             src={`/platforms/${imageHeart}.svg`}
                             alt="heart"
@@ -52,24 +58,25 @@ const CardSolution: FC<PropsSolutionCard> = ({ type, id, image, title, price, sh
                         />
                     </div>
                 </div>
-            </div>
-            <div className={styles.mid}>
-                <Title type="h4" color="dark">
-                    {price} BYN
-                </Title>
-                <Text type="reg18" color="grey">
-                    {short_description}
-                </Text>
-                <div className={styles.features}>
-                    {tags
-                        .filter((item) => item.is_message === false)
-                        .map((item) => (
-                            <div key={item.id} className={styles.tag}>
-                                <Text type="reg18" color="grey">
-                                    {item.tag}
-                                </Text>
-                            </div>
-                        ))}
+                <div className={styles.mid}>
+                    <Title type="h4" color="dark">
+                        {price}
+                        <Image src={"/img/ruble.svg"} alt="ruble" width={20} height={21} className={styles.ruble} />
+                    </Title>
+                    <Text type="reg18" color="grey">
+                        {short_description}
+                    </Text>
+                    <div className={styles.features}>
+                        {tags
+                            .filter((item) => item.is_message === false)
+                            .map((item) => (
+                                <div key={item.id} className={styles.tag}>
+                                    <Text type="reg18" color="grey">
+                                        {item.tag}
+                                    </Text>
+                                </div>
+                            ))}
+                    </div>
                 </div>
             </div>
             <div className={styles.iconBlock}>

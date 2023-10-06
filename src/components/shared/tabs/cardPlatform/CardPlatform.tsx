@@ -30,41 +30,50 @@ const CardPlatform: FC<PropsPlatformCard> = ({ title, price, short_description, 
     };
     return (
         <div className={styles.card}>
-            <div className={styles.top}>
-                <div className={styles.logo}>
-                    <Image src={image ? `${image}` : ""} width={100} height={100} alt="logo" className={styles.img} />
-                </div>
-                <div className={styles.title}>
-                    <Title type="h4" color="dark">
-                        {title}
-                    </Title>
-                    <div>
+            <div className={styles.topWrap}>
+                <div className={styles.top}>
+                    <div className={styles.logo}>
                         <Image
-                            src={`/platforms/${imageHeart}.svg`}
-                            alt="heart"
-                            width={24}
-                            height={24}
-                            onClick={handleClickHeart}
-                            onMouseLeave={handleMouseLeave}
-                            onMouseEnter={handleMouseEnter}
-                            className={styles.heart}
+                            src={image ? `${image}` : ""}
+                            width={100}
+                            height={100}
+                            alt="logo"
+                            className={styles.img}
                         />
                     </div>
+                    <div className={styles.title}>
+                        <Title type="h4" color="dark">
+                            {title}
+                        </Title>
+                        <div>
+                            <Image
+                                src={`/platforms/${imageHeart}.svg`}
+                                alt="heart"
+                                width={24}
+                                height={24}
+                                onClick={handleClickHeart}
+                                onMouseLeave={handleMouseLeave}
+                                onMouseEnter={handleMouseEnter}
+                                className={styles.heart}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.mid}>
-                {price}
-                {short_description}
-                <div className={styles.features}>
-                    {tags
-                        .filter((item) => item.is_message === false)
-                        .map((item) => (
-                            <div key={item.id} className={styles.tag}>
-                                <Text type="reg18" color="grey">
-                                    {item.tag}
-                                </Text>
-                            </div>
-                        ))}
+                <div className={styles.mid}>
+                    <Text type="reg18" color="grey">
+                        {short_description}
+                    </Text>
+                    <div className={styles.features}>
+                        {tags
+                            .filter((item) => item.is_message === false)
+                            .map((item) => (
+                                <div key={item.id} className={styles.tag}>
+                                    <Text type="reg18" color="grey">
+                                        {item.tag}
+                                    </Text>
+                                </div>
+                            ))}
+                    </div>
                 </div>
             </div>
             <div className={styles.iconBlock}>

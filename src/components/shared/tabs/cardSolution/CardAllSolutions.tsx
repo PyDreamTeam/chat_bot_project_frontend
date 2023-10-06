@@ -64,39 +64,47 @@ const CardAllSolutions: FC<ICardSolution> = ({ id, image, title, price, messenge
     };
     return (
         <div className={styles.solution}>
-            <div className={styles.top}>
-                <div className={styles.logo}>
-                    <Image src={image ? `${image}` : ""} width={100} height={100} alt="logo" className={styles.img} />
-                </div>
-                <div className={styles.title}>
-                    {title}
-                    <div>
+            <div className={styles.topWrap}>
+                <div className={styles.top}>
+                    <div className={styles.logo}>
                         <Image
-                            src={`/platforms/${imageHeart}.svg`}
-                            alt="heart"
-                            width={24}
-                            height={24}
-                            onClick={handleClickHeart}
-                            onMouseLeave={handleMouseLeave}
-                            onMouseEnter={handleMouseEnter}
-                            className={styles.heart}
+                            src={image ? `${image}` : ""}
+                            width={100}
+                            height={100}
+                            alt="logo"
+                            className={styles.img}
                         />
                     </div>
+                    <div className={styles.title}>
+                        {title}
+                        <div>
+                            <Image
+                                src={`/platforms/${imageHeart}.svg`}
+                                alt="heart"
+                                width={24}
+                                height={24}
+                                onClick={handleClickHeart}
+                                onMouseLeave={handleMouseLeave}
+                                onMouseEnter={handleMouseEnter}
+                                className={styles.heart}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.mid}>
-                {price}
-                {short_description}
-                <div className={styles.features}>
-                    {tags
-                        .filter((item) => item.is_message === false)
-                        .map((item) => (
-                            <div key={item.id} className={styles.tag}>
-                                <Text type="reg18" color="grey">
-                                    {item.tag}
-                                </Text>
-                            </div>
-                        ))}
+                <div className={styles.mid}>
+                    {price}
+                    {short_description}
+                    <div className={styles.features}>
+                        {tags
+                            .filter((item) => item.is_message === false)
+                            .map((item) => (
+                                <div key={item.id} className={styles.tag}>
+                                    <Text type="reg18" color="grey">
+                                        {item.tag}
+                                    </Text>
+                                </div>
+                            ))}
+                    </div>
                 </div>
             </div>
             <div className={styles.iconBlock}>
