@@ -7,6 +7,7 @@ import { useModal } from "@/src/hooks/useModal";
 import Image from "next/image";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import ElemChooseChatBot, { ElemVariantProps } from "@/src/components/shared/elemChooseChatBot/ElemChooseChatBot";
+import { useRouter } from "next/router";
 
 interface IUserRequest {
     htmlFor: string;
@@ -17,25 +18,29 @@ interface IUserRequest {
 }
 
 export const BlockSelectionBot = () => {
-    const { isShown, toggle } = useModal();
+    const router = useRouter();
+    const handleClick = () => {
+        router.push("/solutions-filter");
+    };
 
     return (
         <div className={css.wrapper}>
             <div className={css.container}>
                 <div className={css.blockLeft}>
                     <div className={css.textInfo}>
+                        <ElemChooseChatBot variant={ElemVariantProps.home} text={"конструктор чат-ботов"} />
                         <Title type="h1" color="black">
-                            Подбери <ElemChooseChatBot variant={ElemVariantProps.home} text={"конструктор чат-ботов"} />
-                            и автоматизируй свои продажи
+                            Автоматизируй бизнес и получайте больше продаж
                         </Title>
 
                         <Text type="reg24" color="grey">
-                            Более 100 разнообразных шаблонов под любые задачи вашего бизнеса
+                            Используйте проверенные шаблоны чат-ботов в мессенджерах. Это самый простой и эффективный
+                            способ получить нужные вам результаты в короткий срок
                         </Text>
                     </div>
 
                     <div className={css.button}>
-                        <Button type="button" active={true} onClick={toggle}>
+                        <Button active={true} width={250} type="button" onClick={handleClick}>
                             Подобрать решение
                         </Button>
                     </div>
@@ -60,9 +65,6 @@ export const BlockSelectionBot = () => {
                     </div>
                 </div>
             </div>
-            <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal>
         </div>
     );
 };

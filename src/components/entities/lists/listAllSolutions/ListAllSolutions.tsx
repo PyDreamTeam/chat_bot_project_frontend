@@ -3,6 +3,7 @@ import styles from "./styles/ListSolutions.module.css";
 import { IListCardsSolutions } from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
 import CardSolution from "@/src/components/shared/tabs/cardSolution/CardSolution";
 import { useRouter } from "next/router";
+import { PropsSolutionCard } from "../../platforms/types";
 
 const ListAllSolutions: FC<IListCardsSolutions> = ({ results = [] }) => {
     const router = useRouter();

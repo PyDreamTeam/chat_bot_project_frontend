@@ -5,6 +5,34 @@
     gap: 120px;
 }
 
-.form button {
-    margin-top: 16px;
+.form {
+    width: 440px;
+    text-align: left;
 }
+
+.orderEditWrapper>form div:first-child {
+    margin-top: 0;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    gap: 16px;
+}
+
+
+.buttonCancel {
+    max-width: 167px;
+    padding: 10px 24px;
+    align-self: center;
+}
+
+.buttonCancel:hover p{
+    color: red;
+}
+
+/* .form button {
+    margin-top: 24px;
+} */

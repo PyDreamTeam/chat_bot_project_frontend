@@ -12,6 +12,8 @@ import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Slider from "@/src/components/shared/slider/Slider";
 import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutions/ListCardsSolutions";
 import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
+import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const Platform = () => {
     const router = useRouter();
@@ -55,7 +57,7 @@ const Platform = () => {
                         15 реализованных решений
                     </Title>
                 </div>
-                <Slider type="pageSlider">
+                <Slider cardType="464" type="pageSlider">
                     <ListCardsSolutions results={combinedData} />
                 </Slider>
                 <div className={css.settings}>
@@ -64,6 +66,8 @@ const Platform = () => {
                     </Title>
                 </div>
                 <GroupFilters results={dataFilters?.results} />
+                <ButtonOrder />
+                <ButtonScrollToUp />
             </div>
             <Footer />
         </div>

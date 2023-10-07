@@ -5,9 +5,10 @@ import Image from "next/image";
 
 export const ButtonScrollToUp: FC = () => {
     const [backToTop, setBackToTop] = useState(false);
+
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 1300) {
                 setBackToTop(true);
             } else {
                 setBackToTop(false);
@@ -35,3 +36,4 @@ export const ButtonScrollToUp: FC = () => {
         </>
     );
 };
+// className={fixed ? `${css.buttonToUp}` : `${css.Relative}`}

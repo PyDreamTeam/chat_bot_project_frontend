@@ -21,11 +21,17 @@ const SolutionItem: FC<ISolutionItem> = ({ title, description, selectedPlatforms
                 <Title type={"h4"} color={"black"}>
                     {title}
                 </Title>
-                <Text type={"reg18"} color={"black"}>
-                    {description}
-                </Text>
-                <SelectedOptions typesOfSolution={typesOfSolution} />
-                <SelectedPlatforms platforms={selectedPlatforms} />
+                <div className={styles.solutionItemDescription}>
+                    <Text type={"reg18"} color={"black"}>
+                        {description}
+                    </Text>
+                </div>
+                <div className={styles.solutionSelectedOptions}>
+                    <SelectedOptions typesOfSolution={typesOfSolution} />
+                </div>
+                <div className={styles.solutionSelectedPlatforms}>
+                    <SelectedPlatforms platforms={selectedPlatforms} />
+                </div>
             </div>
             <div className={styles.solutionItemImg} />
         </div>

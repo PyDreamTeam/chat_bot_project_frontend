@@ -5,7 +5,7 @@
 .container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 24px 88px 202px;
+    padding: 24px 88px 0px;
 }
 
 .title {
@@ -73,16 +73,4 @@
 }
 .listSoluyions {
     list-style: none;
-}
-.sticky {
-    position: relative;
-    margin: 0 0 0 auto;
-    bottom: 20%;
-    right: 10%;
-}
-.absolut {
-    position: absolute;
-
-    bottom: 20%;
-    right: 10%;
 }
