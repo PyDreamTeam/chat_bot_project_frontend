@@ -77,7 +77,7 @@ export const NewPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, e
                 <div className={css.stateEye}>
                     {openEye === "text" && (
                         <Image
-                            src="/sign/closePassword.svg"
+                            src="/sign/openPassword.svg"
                             width={24}
                             height={24}
                             alt="stateEye"
@@ -86,7 +86,7 @@ export const NewPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, e
                     )}
                     {openEye === "password" && (
                         <Image
-                            src="/sign/openPassword.svg"
+                            src="/sign/closePassword.svg"
                             width={24}
                             height={24}
                             alt="stateEye"

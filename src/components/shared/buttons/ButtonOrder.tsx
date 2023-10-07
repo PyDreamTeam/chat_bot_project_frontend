@@ -6,29 +6,61 @@ import { useModal } from "@/src/hooks/useModal";
 import Modal from "../modal/Modal";
 import SelectionRequest from "../../entities/selectionRequest/SelectionRequest";
 
-export const ButtonOrder: FC = () => {
-    // const [textCircle, setTextCircle] = useState([заказать бесплатно заказать бесплатно]);
-    const { isShown, toggle } = useModal();
+interface IPropsButtonOrder {
+    dataComment?: string;
+}
 
-    // const text = document.querySelector(".textCircle");
-    // text.innerHTML = text.innerContent.split("")
+export const ButtonOrder: FC<IPropsButtonOrder> = ({ dataComment }) => {
+    const { isShown, toggle } = useModal();
+    const [appearance, setAppearance] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) {
+                setAppearance(true);
+            } else {
+                setAppearance(false);
+            }
+        });
+    }, []);
 
     return (
         <>
-            <button className={css.buttonOrder} onClick={toggle}>
-                <div className={css.circle}>
-                    <div className={css.orderImg}>
-                        <Image src="/img/letter.png" alt="platforms" width={32} height={32}></Image>
-                        <div className={css.text}>
-                            <p>Оформить заявку</p>
+            {appearance && (
+                <>
+                    <button className={css.buttonOrder} onClick={toggle}>
+                        <div className={css.circle}>
+                            <div className={css.orderImg}>
+                                <Image src="/img/letter.png" alt="platforms" width={32} height={32}></Image>
+                                <div className={css.text}>
+                                    <p>Оформить заявку</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    {/* <div className={css.circleText}>заказать</div> */}
-                </div>
-            </button>
-            <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal>
+                        <svg id={css.rotatingText} viewBox="0 0 200 200" width="250" height="250">
+                            <defs>
+                                <path
+                                    id="circle"
+                                    d="M 100, 100
+            m -75, 0
+            a 75, 75 0 1, 0 150, 0
+            a 75, 75 0 1, 0 -150, 0
+            "
+                                ></path>
+                            </defs>
+                            <text width="400">
+                                <textPath xlinkHref="#circle" className={css.circleText}>
+                                    . заказать бесплатно . заказать бесплатно
+                                </textPath>
+                            </text>
+                        </svg>
+                    </button>
+
+                    <Modal isShown={isShown} hide={toggle}>
+                        <SelectionRequest close={toggle} dataComment={dataComment} />
+                    </Modal>
+                </>
+            )}
         </>
     );
 };

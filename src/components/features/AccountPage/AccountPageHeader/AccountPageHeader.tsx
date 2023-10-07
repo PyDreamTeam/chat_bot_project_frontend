@@ -9,7 +9,13 @@ import Link from "next/link";
 import { removeCredentials } from "@/src/store/reducers/credentialsSlice";
 import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
-import { useDataUserQuery } from "@/src/store/services/userAuth";
+import { useDataUserQuery, useDeleteOrderMutation } from "@/src/store/services/userAuth";
+import { orderCheckBox, orderDelete } from "./img/SvgConfig";
+import { SelectLanguage } from "@/src/components/features/HomePage/Header/components/SelectLanguage/SelectLanguage";
+import { useModal } from "@/src/hooks/useModal";
+import Modal from "@/src/components/shared/modal/Modal";
+import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
+import DeleteOrderPopup from "@/src/pages/my-account/orders/ordersPopups/DeleteOrderPopup";
 
 interface IHomePageHeader {
     name?: string;
@@ -17,16 +23,18 @@ interface IHomePageHeader {
     id?: string | number;
     page: keyof typeof AccountPageTypes;
     orderNumber?: string;
+    submitForm?: () => void;
 }
 
-const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber }) => {
+const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber, submitForm }) => {
     const router = useRouter();
     const [open, setOpen] = useState<boolean>(false);
     const handleToggleBurgerMenu = () => setOpen((prevState) => !prevState);
-    const dispatch = useAppDispatch();
-
+    const id = orderNumber;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
+    const [deleteOrder, { error: errorDelete }] = useDeleteOrderMutation();
+    const { isShown, toggle } = useModal();
 
     const handleOpenProfile = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -55,18 +63,25 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                 )}
                 {page === "orderEdit" && (
                     <div className={styles.orderTitle}>
-                        <div className={styles.orderIconEdit}>
-                            <Image
-                                src="/img/Edit_bold.svg"
-                                alt="edit"
-                                width={20}
-                                height={20}
-                                className={styles.imgEdit}
-                            />
+                        <div className={styles.orderTitleLeft}>
+                            <div className={styles.orderIconEdit}>
+                                <Image
+                                    src="/img/Edit_bold.svg"
+                                    alt="edit"
+                                    width={20}
+                                    height={20}
+                                    className={styles.imgEdit}
+                                />
+                            </div>
+                            <Title type={"h4"} color={"black"}>
+                                {`Заказ ${orderNumber}`}
+                            </Title>
                         </div>
-                        <Title type={"h4"} color={"black"}>
-                            {`Заказ ${orderNumber}`}
-                        </Title>
+                        <div className={styles.orderTitleRight}>
+                            <div className={styles.orderIconDelete} data-tooltip="Удалить заказ" onClick={toggle}>
+                                {orderDelete}
+                            </div>
+                        </div>
                     </div>
                 )}
                 {page === "templates" && (
@@ -75,6 +90,26 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                             {"< Aimilogic"}
                         </Title>
                     </Link>
+                )}
+                {page === "favorites" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Избранное"}
+                    </Title>
+                )}
+                {page === "faq" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"FAQ"}
+                    </Title>
+                )}
+                {page === "articles" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Статьи"}
+                    </Title>
+                )}
+                {page === "tariff" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"Тарифы"}
+                    </Title>
                 )}
                 {(page === "profile_changeData" || page === "profile_templates") && (
                     <Title type={"h4"} color={"black"}>
@@ -87,13 +122,19 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                     </Title>
                 )}
             </>
-            <UserInfo
-                profileOnClick={handleOpenProfile}
-                isOpen={open}
-                onClick={handleToggleBurgerMenu}
-                first_name={data?.first_name}
-                last_name={data?.last_name}
-            />
+            <div className={styles.headerRightBlock}>
+                <SelectLanguage />
+                <UserInfo
+                    profileOnClick={handleOpenProfile}
+                    isOpen={open}
+                    onClick={handleToggleBurgerMenu}
+                    first_name={data?.first_name}
+                    last_name={data?.last_name}
+                />
+            </div>
+            <Modal isShown={isShown} hide={toggle}>
+                <DeleteOrderPopup close={toggle} orderNumber={orderNumber} />
+            </Modal>
         </header>
     );
 };

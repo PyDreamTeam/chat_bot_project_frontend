@@ -23,7 +23,7 @@
 .textInfo {
     display: flex;
     flex-direction: column;
-    gap: 31px;
+    gap: 40px;
 }
 
 .blockRight {
@@ -59,4 +59,24 @@
     width: 280px;
     border-radius: 16px 16px 0 16px;
     background: rgba(174, 247, 252, 0.6);
+}
+.link {
+    color: white;
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 16px;
+    border: none;
+    background-color: #4466f5;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 250px;
+}
+
+.link:hover {
+    opacity: 0.8;
 }

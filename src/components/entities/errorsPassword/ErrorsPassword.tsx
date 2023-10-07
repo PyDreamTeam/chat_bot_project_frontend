@@ -10,11 +10,13 @@ const err = {
     number: "содержит по крайней мере одну цифру (0–9)",
     special: "содержит по крайней мере один спецсимвол",
     req: "ведите пароль",
+    max: "содержит не более 50 символов"
 };
 
 const errPas = [
     // {condition: err.req, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg"},
     { condition: err.min, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg" },
+    { condition: err.max, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg" },
     { condition: err.string, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg" },
     { condition: err.number, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg" },
     { condition: err.special, iconDone: "/sign/done.svg", iconNotDone: "/sign/notDone.svg" },
@@ -28,9 +30,10 @@ export const ErrorsPassword: FC<PropsErrorsPassword> = ({ password }) => {
     const passwordShema = Yup.object().shape({
         password: Yup.string()
             .min(8, err.min)
-            .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
+            .max(50, err.max)
+            .matches(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])/, err.string)
             .matches(/^(?=.*[0-9])/, err.number)
-            .matches(/^(?=.*[@$!%*?&])/, err.special)
+            .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
             .required(err.req),
     });
 

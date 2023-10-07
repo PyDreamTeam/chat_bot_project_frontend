@@ -8,11 +8,25 @@ export interface ClientEndpoints {
             payment: string;
         };
         templates: string;
+        favorites: string;
+        faq: string;
+        articles: string;
+        tariff: string;
         orders: {
             get: string;
             order: string;
         };
     };
+    admin: {
+        get: string;
+        users: {
+            get: string;
+            all: string;
+            administrators: string;
+            moderators: string;
+            edit: string;
+        }
+    }
     home: {
         get: string;
     };

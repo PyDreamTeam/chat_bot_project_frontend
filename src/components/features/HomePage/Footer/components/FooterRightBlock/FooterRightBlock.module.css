@@ -2,7 +2,6 @@
     width: 394px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
 }
 
 .footerRightContainer h4 {

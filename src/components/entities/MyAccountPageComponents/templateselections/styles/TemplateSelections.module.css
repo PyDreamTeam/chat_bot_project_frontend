@@ -1,38 +1,27 @@
 .templateSelectionsWrapper {
-    padding: 65px 0 30px;
     width: 100%;
     display: flex;
-    border-bottom: 1px solid #e1e2e6;
 }
-
 .templateSelectionsBlock {
     width: 100%;
-    padding: 30px 0 20px 48px;
+    padding: 40px 32px;
     background-color: #ffe2f9;
     box-shadow: 16px 4px 32px rgba(43, 53, 116, 0.04);
     border-radius: 20px;
     display: flex;
-    gap: 58px;
+    gap: 20px;
     align-items: center;
 }
-
-.templateMailImage {
-    margin-bottom: 10px;
-}
-
 .textBlock p {
     max-width: 560px;
-}
-
-.textBlock p:last-child {
-    padding-top: 8px;
+    padding-top: 12px;
 }
 
 .textBlock a {
     display: flex;
-    gap: 20px;
-    padding-top: 26px;
+    gap: 12px;
+    padding-top: 9px;
 }
 .arrow {
-    margin-top: 6px;
+    margin-top: 11px;
 }
