@@ -9,7 +9,7 @@ const BlockVideo = () => {
     return (
         <div className={styles.wrapper}>
             <Title type={"h3"} color={"black"}>
-                Как работает платформа
+                Как это работает
             </Title>
             <div className={styles.videoBlock}>
                 <Image src={"img/imageVideo.png"} alt={"video"} width={1264} height={725} />
