@@ -33,7 +33,14 @@ export const LastNameInput: FC<PropsLastNameInput> = ({ errors, touched }) => {
                     type="text"
                     name="last_name"
                     placeholder={data ? data.last_name : "Иванов"}
-                    className={errors.last_name && touched.last_name ? `${css.inputError}` : `${css.input}`}
+                    className={
+                        errors.last_name
+                            ? touched.last_name
+                                ? `${css.inputError}`
+                                : `${css.input}`
+                            : touched.last_name
+                                ? `${css.inputValid}`
+                                : `${css.input}`}
                 />
             </div>
             <div className={css.error}>

@@ -3,11 +3,16 @@
     cursor: pointer;
 }
 
-.tabItem:first-child {
-    padding: 10px 10px 10px 0;
+.adminPage {
+    padding: 8px 24px;
+}
+.adminPage p {
+    color: #595f6c;
 }
 
 .active {
-    color: #4466f5;
     border-bottom: 2px solid #4466f5;
+}
+.active p {
+    color: #4466f5;
 }

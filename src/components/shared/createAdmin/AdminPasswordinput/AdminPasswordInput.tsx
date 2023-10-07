@@ -2,7 +2,7 @@ import Text from "@/src/components/shared/text/Text";
 import { ErrorMessage, Field, FormikErrors, FormikTouched, useFormikContext } from "formik";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
-import css from "../css/login.module.css";
+import css from "../styles/createAdmin.module.css";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { SerializedError } from "@reduxjs/toolkit";
 import { ErrorsPassword } from "@/src/components/entities/errorsPassword/ErrorsPassword";
@@ -23,19 +23,18 @@ function isDefaultNewPasswordError(error?: NewPasswordErrors): error is DefaultN
     return (error as DefaultNewPasswordError)?.data?.password !== undefined;
 }
 
-interface PropsNewPasswordInput {
+interface PropsAdminPasswordInput {
     errors: FormikErrors<{ password: string }>;
     touched: FormikTouched<{ password: string }>;
     error?: FetchBaseQueryError | SerializedError;
-    password: string;
 }
 
 const newPasswordErrorMap: Record<string, string> = {
     "The password is too similar to the email.": "Email и пароль совпадают",
 };
 
-export const NewPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, error, password }) => {
-    const [openEye, setEye] = useState<string>("password");
+export const AdminPasswordInput: FC<PropsAdminPasswordInput> = ({ errors, touched, error }) => {
+    const [openEye, setEye] = useState<string>("text");
     const openAndClose = () => {
         if (openEye === "password") {
             setEye("text");
@@ -59,7 +58,7 @@ export const NewPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, e
         <div className={css.blockInput}>
             <label htmlFor="password">
                 <Text type="reg18" color="black">
-                    Пароль
+                    Пароль по умолчанию
                 </Text>
             </label>
             <div className={css.errorIcon}>
@@ -72,7 +71,7 @@ export const NewPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, e
                     type={openEye}
                     name="password"
                     placeholder="Придумайте пароль"
-                    className={errors.password && touched.password ? `${css.inputError}` : `${css.input}`}
+                    className={`${css.inputDisabled} ${css.inputValid}`}
                 />
                 <div className={css.stateEye}>
                     {openEye === "text" && (
@@ -100,11 +99,6 @@ export const NewPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, e
                     <ErrorMessage name="password" />
                 </Text>
             </div>
-            {touched.password && (
-                <div className={css.errorsBlock}>
-                    <ErrorsPassword password={password} />
-                </div>
-            )}
         </div>
     );
 };
