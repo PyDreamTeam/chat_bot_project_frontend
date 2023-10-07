@@ -1,3 +1,4 @@
+import { reducerAddPlatform } from "./reducers/addPlatform/slice";
 import { platforms } from "./services/platforms";
 import { solutions } from "./services/solutions";
 import { configureStore } from "@reduxjs/toolkit";
@@ -11,6 +12,7 @@ import { reducerSolutions } from "./reducers/solutions/slice";
 export const store = configureStore({
     reducer: {
         reducerFilters,
+        reducerAddPlatform,
         signUpError,
         credentialsSlice,
         reducerSolutions,

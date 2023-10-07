@@ -53,13 +53,15 @@ export interface PropsPlatformCard {
     short_description?: string;
     full_description?: string;
     turnkey_solutions?: number;
-    price?: number;
+    price?: number | string;
+    status?: string;
     is_active?: boolean;
     created_at?: string;
-    image?: string;
+    image: any;
     link?: string;
+    links_to_solution?: string[];
     type?: Card;
-    filter?: Array<number>;
+    filter?: number[];
     tags?: {
         id?: number;
         tag?: string;
@@ -90,7 +92,7 @@ export interface PropsSolutionCard {
     steps_title?: string;
     steps_text?: string;
     actions_to_complete_tasks?: string;
-    price?: number;
+    price?: number | string;
     is_active?: boolean;
     created_at?: string;
     image?: string;
@@ -116,7 +118,7 @@ export interface PropsSolutionCard {
     short_description?: string;
     full_description?: string;
     turnkey_solutions?: number;
-    price?: number;
+    price?: number | string;
     is_active?: boolean;
     created_at?: string;
     image?: string;

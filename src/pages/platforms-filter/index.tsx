@@ -34,16 +34,6 @@ const PlatformsFilters = () => {
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
 
-    // const { data: dataPlatforms, isLoading: isLoadingPlatforms } = useGetPlatformsQuery({
-    //     id_tags: ids,
-    //     price_min: minPrice,
-    //     price_max: maxPrice,
-    //     title: search,
-    //     sort_abc: sortAbc,
-    //     page_number: pageNumber,
-    //     items_per_page: 4,
-    // });
-
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {
         id_tags: ids,
         price_min: minPrice,
