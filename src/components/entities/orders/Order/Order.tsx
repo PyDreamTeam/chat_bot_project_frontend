@@ -24,7 +24,13 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     {first_name}
                 </Text>
             </div>
-            <div className={styles.orderEmail} data-tooltip={email}>
+            <div
+                className={styles.orderEmail}
+                data-tooltip={email}
+                onClick={() => {
+                    router.push(`/my-account/orders/${id}`);
+                }}
+            >
                 <Text type="reg16" color="grey">
                     {email}
                 </Text>
@@ -34,7 +40,13 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     {phone_number}
                 </Text>
             </div>
-            <div className={styles.orderComment} data-tooltip={comment}>
+            <div
+                className={styles.orderComment}
+                data-tooltip={comment}
+                onClick={() => {
+                    router.push(`/my-account/orders/${id}`);
+                }}
+            >
                 <Text type="reg16" color="grey">
                     {comment}
                 </Text>

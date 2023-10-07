@@ -24,44 +24,44 @@ type TagProps = CommonProps & {
     color: TextColor;
 };
 
-const Regular24: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.reg24} ${styles[color]}`}>{children}</p>
+const Regular24: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.reg24} ${styles[color]} ${className}`}>{children}</p>
 );
 
-const Regular20: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.reg20} ${styles[color]}`}>{children}</p>
+const Regular20: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.reg20} ${styles[color]} ${className}`}>{children}</p>
 );
 
-const Medium20: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.med20} ${styles[color]}`}>{children}</p>
+const Medium20: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.med20} ${styles[color]} ${className}`}>{children}</p>
 );
 
-const Regular18: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.reg18} ${styles[color]}`}>{children}</p>
+const Regular18: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.reg18} ${styles[color]} ${className}`}>{children}</p>
 );
 
-const Regular16: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.reg16} ${styles[color]}`}>{children}</p>
+const Regular16: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.reg16} ${styles[color]} ${className}`}>{children}</p>
 );
 
-const Semibold16: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.sem16} ${styles[color]}`}>{children}</p>
+const Semibold16: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.sem16} ${styles[color]} ${className}`}>{children}</p>
 );
-const Regular14: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.reg14} ${styles[color]}`}>{children}</p>
+const Regular14: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.reg14} ${styles[color]} ${className}`}>{children}</p>
 );
-const Sem24Link: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.sem24Link} ${styles[color]}`}>{children}</p>
+const Sem24Link: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.sem24Link} ${styles[color]} ${className}`}>{children}</p>
 );
-const Med24Btn: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.med24btn} ${styles[color]}`}>{children}</p>
+const Med24Btn: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.med24btn} ${styles[color]} ${className}`}>{children}</p>
 );
-const Med18Btn: FC<TagProps> = ({ children, color }) => (
-    <p className={`${styles.med18btn} ${styles[color]}`}>{children}</p>
+const Med18Btn: FC<TagProps> = ({ children, color, className }) => (
+    <p className={`${styles.med18btn} ${styles[color]} ${className}`}>{children}</p>
 );
 
-const Inline: FC<TagProps> = ({ children, color }) => (
-    <span className={`${styles.inline} ${styles[color]}`}>{children}</span>
+const Inline: FC<TagProps> = ({ children, color, className }) => (
+    <span className={`${styles.inline} ${styles[color]} ${className}`}>{children}</span>
 );
 
 const componentsDisplay = {
@@ -78,9 +78,13 @@ const componentsDisplay = {
     inline: Inline,
 } as const;
 
-const Text: FC<TextProps> = ({ children, type, color }) => {
+const Text: FC<TextProps> = ({ children, type, color, className }) => {
     const Tag = componentsDisplay[type];
 
-    return <Tag color={color}>{children}</Tag>;
+    return (
+        <Tag color={color} className={className}>
+            {children}
+        </Tag>
+    );
 };
 export default Text;

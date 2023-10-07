@@ -23,7 +23,7 @@ export const PhoneInput: FC<PropsPhoneInput> = ({ errors, touched }) => {
                     <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />
                 )}
             </div>
-            <div>
+            <div className={css.phoneInputWrapper}>
                 <PhoneInputField
                     name="phone_number"
                     type="text"

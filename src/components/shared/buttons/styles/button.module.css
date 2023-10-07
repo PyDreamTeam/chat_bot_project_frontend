@@ -14,7 +14,8 @@
     transition: 0.2s;
 }
 
-.buttonActive:hover {
+.buttonActive:hover,
+.buttonNegativeActive:hover {
     opacity: 0.8;
 }
 
@@ -70,11 +71,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* position: fixed; */
     position: sticky;
-    margin: 0 0 0 auto;
-    bottom: 20%;
-    right: 10%;
+    margin: 0 0 10px auto;
+    bottom: 1%;
+    right: 3px;
     padding: 8px;
     width: 80px;
     z-index: 10;
@@ -91,9 +91,9 @@
 /* button to make an application */
 
 .buttonOrder {
-    /* position: fixed; */
     position: sticky;
-    bottom: 10%;
+    bottom: 6%;
+    right: 0px;
     z-index: 5;
     border-radius: 50%;
     height: 210px;
@@ -105,18 +105,9 @@
     justify-content: center;
     cursor: pointer;
     transition: 0.3s;
-    margin: 0 0 0 auto;
+    margin: 0 0 10px auto;
+    overflow: hidden;
 }
-
-/* animation: spin 1.5s infinite linear; */
-/* @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-} */
 
 .buttonOrder:hover {
     background-color: rgb(244, 245, 246);
@@ -138,7 +129,7 @@
 }
 
 .orderImg {
-    /* position: relative; */
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,8 +141,69 @@
     font-family: "Inter", sans-serif;
     font-weight: 700;
 }
-.circleText {
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#rotatingText {
+    animation-name: rotate-circle;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     position: absolute;
-    font-size: 16px;
-    color: #595f6c;
+}
+
+@keyframes rotate-circle {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.circleText {
+    letter-spacing: 2px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    fill: #111;
+    color: white;
+}
+
+.buttonNegativeActive {
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 16px;
+    border: none;
+    background-color: var(--status-color-error-color);
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonCancelActive {
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 16px;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: var(--text-color-2);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonCancelActive:hover {
+    background-color: var(--sub-color);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Title from "@/src/components/shared/text/Title";
@@ -21,13 +21,13 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 const Solutions = () => {
     const { isShown, toggle } = useModal();
 
-    const { data: combinedData, isLoading, isFetching } = useGetListSolutionsQuery({});
+    // const { data: combinedData, isLoading, isFetching } = useGetListSolutionsQuery({});
 
-    // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
+    const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetListSolutionsQuery, {});
 
-    // const handleScroll = () => {
-    //     readMore();
-    // };
+    const handleScroll = () => {
+        readMore();
+    };
 
     return (
         <>
@@ -60,11 +60,11 @@ const Solutions = () => {
                             </div>
                         ) : (
                             <>
-                                <ListAllSolutions results={combinedData?.results} />
+                                <ListAllSolutions results={combinedData} />
                                 <div className={styles.loaderSolutions}>
                                     <Loader isLoading={isFetching} />
                                 </div>
-                                {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
+                                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                             </>
                         )}
                     </div>
@@ -90,12 +90,8 @@ const Solutions = () => {
                             </Modal>
                         </div>
                     </div>
-                    {/* <div className={styles.sticky}> */}
                     <ButtonOrder />
-                    {/* </div> */}
-                    {/* <div className={styles.absolut}> */}
                     <ButtonScrollToUp />
-                    {/* </div> */}
                 </div>
             </div>
             <Footer />

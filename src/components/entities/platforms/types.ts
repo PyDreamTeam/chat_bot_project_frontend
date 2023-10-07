@@ -72,6 +72,42 @@ export interface PropsPlatformCard {
 export interface PropsSolutionCard {
     id?: number;
     title?: string;
+    subtitle?: string;
+    business_model?: string;
+    business_area?: string;
+    business_niche?: string;
+    objective?: string;
+    solution_type?: string;
+    short_description?: string;
+    full_description?: string;
+    platform?: string;
+    messengers?: string;
+    integration_with_CRM?: string;
+    integration_with_payment_systems?: string;
+    tasks?: string;
+    advantages?: string;
+    dignity?: string;
+    steps_title?: string;
+    steps_text?: string;
+    actions_to_complete_tasks?: string;
+    price?: number;
+    is_active?: boolean;
+    created_at?: string;
+    image?: string;
+    link?: string;
+    type?: string | string;
+    tags?: {
+        id?: number;
+        tag?: string;
+        image_tag?: string;
+        is_active?: boolean;
+        is_message?: boolean;
+    }[];
+}
+
+export interface PropsSolutionCard {
+    id?: number;
+    title?: string;
     business_model?: string;
     business_area?: string;
     business_niche?: string;

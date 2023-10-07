@@ -43,7 +43,7 @@ export const config: Advantages[] = [
     },
 ];
 
-const CardSales: FC<PropsSolutionCard> = ({ price }) => {
+const CardSales: FC<PropsSolutionCard> = ({ price, dignity }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.blueBlock}>
@@ -52,9 +52,7 @@ const CardSales: FC<PropsSolutionCard> = ({ price }) => {
                         от
                     </Text>
                     <Title type={"h3"} color={"dark"}>
-                        {/* {price} */}
-                        {/* после исправления в бэке раскоментить */}
-                        99
+                        {price}
                     </Title>
                     <Text type={"reg18"} color={"telegray"}>
                         BYN

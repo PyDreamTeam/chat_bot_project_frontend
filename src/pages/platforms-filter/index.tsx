@@ -103,6 +103,7 @@ const PlatformsFilters = () => {
                                     className={css.search}
                                 />
                                 <InputSearch
+                                    placeholder={"Найти платформу"}
                                     value={search}
                                     onChange={(e) => {
                                         refresh();
