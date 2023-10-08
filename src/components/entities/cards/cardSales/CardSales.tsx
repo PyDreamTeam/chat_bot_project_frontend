@@ -55,7 +55,7 @@ const CardSales: FC<PropsSolutionCard> = ({ price, dignity }) => {
                         {price}
                     </Title>
                     <Text type={"reg18"} color={"telegray"}>
-                        BYN
+                        <Image src={"/img/ruble.svg"} alt="ruble" width={20} height={21} className={styles.ruble} />
                     </Text>
                 </div>
                 <div className={styles.advantages}>

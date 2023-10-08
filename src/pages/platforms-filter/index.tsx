@@ -17,6 +17,8 @@ import { Loader } from "@/src/components/shared/Loader/Loader";
 import { useRouter } from "next/router";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
+import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const PlatformsFilters = () => {
     const router = useRouter();
@@ -141,6 +143,8 @@ const PlatformsFilters = () => {
                             )}
                         </div>
                     </div>
+                    <ButtonOrder />
+                    <ButtonScrollToUp />
                 </div>
             </div>
         </div>
