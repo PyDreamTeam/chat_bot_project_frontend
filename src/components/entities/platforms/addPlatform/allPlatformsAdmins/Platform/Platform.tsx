@@ -3,13 +3,14 @@ import css from "./platform.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import Cookies from "js-cookie";
-import { useDeletePlatformMutation } from "@/src/store/services/platforms";
+import { useDeletePlatformMutation, useGetPlatformForArchiveMutation, usePlatformArchiveMutation } from "@/src/store/services/platforms";
 import { useRouter } from "next/router";
 import Title from "@/src/components/shared/text/Title";
 import Link from "next/link";
 
 interface PropsPlatform {
     id?: number 
+    sort?: string
     title?: string
     link?: string
     tags?: {
@@ -17,21 +18,33 @@ interface PropsPlatform {
     }[]
 }
 
-const functionPlatform = [
+const functionPlatformSave = [
     {title: "Быстрый просмотр", value: "read"},
+    {title: "Опубликовать", value: "public"},
     {title: "Редактировать", value: "edit"},
     {title: "Удалить", value: "delete"},
 ];
 
-export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id}) => {
+const functionPlatformPublic = [
+    {title: "Быстрый просмотр", value: "read"},
+    {title: "Снять с публикации", value: "deletePublic"},
+    {title: "Редактировать", value: "edit"},
+    {title: "Удалить", value: "delete"},
+];
+
+export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id, sort}) => {
 
     const [deletePlatform, {isSuccess}] = useDeletePlatformMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
+    const [getPlatformForArchive, {data}] = useGetPlatformForArchiveMutation();
+    const [platformArchive, {isSuccess: isSuccessPlatformArchive}] = usePlatformArchiveMutation();
 
     const [stateIcon, setStateIcon] = useState<string>("workPlatform");
     const [isModalDelete, setIsModalDelete] = useState(false);
     const [isSuccessModal, setIsSuccessModal] = useState(false);
+    const [isDeletePlatformFromPublic, setIsDeletePlatformFromPublic] = useState(false);
+    const [isSuccessDeletePlatformFromPublic, setIsSuccessDeletePlatformFromPublic] = useState(false);
 
     useEffect(() => {
         if(isSuccess) {
@@ -43,6 +56,17 @@ export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id}) => {
             }, 3000);
         }
     }, [isSuccess]);
+
+    useEffect(() => {
+        if(isSuccessPlatformArchive) {
+            setIsDeletePlatformFromPublic(false);
+            setIsSuccessDeletePlatformFromPublic(true);
+            setTimeout(() => {
+                setIsSuccessDeletePlatformFromPublic(false);
+                router.reload();
+            }, 3000);
+        }
+    }, [isSuccessPlatformArchive]);
 
     const handleMouseEnter = () => {
         if(stateIcon === "workPlatform") {
@@ -75,6 +99,13 @@ export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id}) => {
         if(value === "read") {
             router.push(`/platforms/platform/${id}`);
         }
+        if(value === "deletePublic") {
+            setIsDeletePlatformFromPublic(true);
+            getPlatformForArchive(Number(id));
+        }
+        if(value === "public") {
+            router.push(`/admin/platforms/public-platform/${id}`);
+        }
     };
 
     return(
@@ -105,9 +136,9 @@ export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id}) => {
                 <Image src={`/platforms/${stateIcon}.svg`} alt="icon" width={24} height={24}/>
                 {stateIcon === "workPlatformActive" && 
                     <ul className={css.listFunctions}>
-                        {functionPlatform.map(({title, value}) => (
+                        {(sort === "save" ? functionPlatformSave : functionPlatformPublic).map(({title, value}) => (
                             <li key={title} className={css.function} onClick={() => handleFunctionsPlatforms(value, id)}>
-                                <Text type="reg14" color="dark" className={css.titleText}>
+                                <Text type="reg14" color="dark" className={`${css.titleText} ${value === "delete" && css.titleTextDelete}`}>
                                     {title}
                                 </Text>
                             </li>
@@ -130,6 +161,34 @@ export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id}) => {
                                     <Text type="reg18" color="white">Удалить</Text>
                                 </button>
                             </div>
+                        </div>
+                    </div>
+            }
+            {isDeletePlatformFromPublic && 
+                    <div className={css.modal}>
+                        <div className={css.modalContent}>
+                            <Image src="/img/close.svg" alt="icon" width={24} height={24} className={css.imgCloseModal} onClick={() => setIsDeletePlatformFromPublic(false)}/>
+                            <Image src={"/platforms/platformArchive.svg"} alt="icon" width={56} height={56}/>
+                            <Title type="h5" color="dark" className={css.titleModalClose}>Снять с публикации платформу? </Title>
+                            <Text type="reg18" color="telegray" className={css.subTitleModalClose}>Вы действительно хотите снять с публикации платформу? После снятия с публикации, платформа перейдет в архив.</Text>
+                            <div className={css.groupBtnModalClose}>
+                                <button className={css.btnCloseModal} onClick={() => setIsDeletePlatformFromPublic(false)}>
+                                    <Text type="reg18" color="blue">Отмена</Text>
+                                </button>
+                                <button className={css.btnDeleteForPublic} onClick={() => platformArchive({id, token, data})}>
+                                    <Text type="reg18" color="white">Снять с публикации</Text>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            }
+            {
+                isSuccessDeletePlatformFromPublic && 
+                    <div className={css.modal}>
+                        <div className={css.modalContent}>
+                            <Image src="/img/close.svg" alt="icon" width={24} height={24} className={css.imgCloseModal} onClick={() => router.reload()}/>
+                            <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120}/>
+                            <Title type="h5" color="dark" className={css.titleModalClose}>Платформа снята с публикации!</Title>
                         </div>
                     </div>
             }

@@ -34,6 +34,12 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getPlatformForArchive: builder.mutation<PropsPlatformCard, number>({
+            query: (id) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "GET",
+            }),
+        }),
         getListPlatforms: builder.query({
             query: () => ({
                 url: "/api/platform/platforms/",
@@ -60,6 +66,30 @@ export const platforms = createApi({
                 body: platform
             })
         }),
+        platformPublic: builder.mutation({
+            query: ({id, token, platform }) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {title: platform.title,
+                    status: "public"
+                }
+            })
+        }),
+        platformArchive: builder.mutation({
+            query: ({id, token, data }) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {title: data.title,
+                    status: "archive"
+                }
+            })
+        }),
         deletePlatform: builder.mutation({
             query: ({id, token}) => ({
                 url: `/api/platform/platforms/${id}/`,
@@ -76,8 +106,11 @@ export const {
     useGetPlatformsFiltersQuery,
     useGetPlatformsQuery,
     useGetPlatformQuery,
+    useGetPlatformForArchiveMutation,
     useAddPlatformMutation,
     useGetListPlatformsQuery,
     useDeletePlatformMutation,
-    useChangePlatformMutation
+    useChangePlatformMutation,
+    usePlatformArchiveMutation,
+    usePlatformPublicMutation,
 } = platforms;
