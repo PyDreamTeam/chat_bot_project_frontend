@@ -15,6 +15,8 @@ import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/Fie
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
+import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 //import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 const SolutionsFilters = () => {
@@ -131,6 +133,8 @@ const SolutionsFilters = () => {
                             )}
                         </div>
                     </div>
+                    <ButtonOrder />
+                    <ButtonScrollToUp />
                 </div>
             </div>
         </div>

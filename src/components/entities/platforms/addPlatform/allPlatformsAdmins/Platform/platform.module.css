@@ -42,13 +42,16 @@
 .function:nth-child(2) {
     border-bottom: 1px solid #E1E2E6;
 }
+.function:nth-child(3) {
+    border-bottom: 1px solid #E1E2E6;
+}
 .function:active {
     background-color: #E2ECFF;
 }
 .function:first-child:active {
     border-radius: 10px 10px 0 0;
 }
-.function:nth-child(3) {
+.function:nth-child(4) {
     border-radius: 0 0 10px 10px;
 }
 
@@ -58,6 +61,10 @@
 
 .titleText:active {
     color: #17181A;
+}
+
+.titleTextDelete {
+    color: #F53527;
 }
 
 .modal {
@@ -109,6 +116,13 @@
 }
 .btnSaveModal {
     padding: 10px 82px;
+    border-radius: 16px;
+    background: #F53527;
+    border: 1px solid #F53527
+}
+
+.btnDeleteForPublic {
+    padding: 10px 29px;
     border-radius: 16px;
     background: #F53527;
     border: 1px solid #F53527
