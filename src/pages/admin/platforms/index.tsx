@@ -106,7 +106,7 @@ const PlatformsAdmin = () => {
                         .filter((item) => item.status === sort)
                         .map((item) => (
                             <li key={item.id}>
-                                <Platform title={item.title} link={item.link} tags={item.tags} id={item.id}/>
+                                <Platform title={item.title} link={item.link} tags={item.tags} id={item.id} sort={sort}/>
                             </li>
                         ))
                     }
