@@ -24,47 +24,20 @@ import PhoneSavedPopup from "@/src/components/shared/popups/PhoneSavedPopup";
 
 const Platforms = () => {
     const { isShown, toggle } = useModal();
-    const [openPopup, setOpenPopup] = useState<boolean>(false);
-    const [phone, setPhone] = useState<string | undefined>("");
-    const handleTogglePopup = () => setOpenPopup((prevState) => !prevState);
-    const timerRefEdit = useRef<NodeJS.Timeout | null>(null);
-    let orderPhone: string | undefined = "";
-
-    const startClosePopupTimer = () => {
-        timerRefEdit.current = setTimeout(() => {
-            Cookies.set("Order_phone", "");
-            setOpenPopup(false);
-        }, 4000);
-    };
     const router = useRouter();
+
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
-
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
 
     const handleScroll = () => {
         readMore();
     };
 
-    useEffect(() => {
-        orderPhone = Cookies.get("Order_phone");
-        setPhone(orderPhone);
-
-        if (orderPhone) {
-            setOpenPopup(true);
-            startClosePopupTimer();
-        }
-
-        return () => {
-            clearTimeout(timerRefEdit.current as NodeJS.Timeout);
-        };
-    }, []);
-
     return (
         <div>
             <Header type="other" />
-            <PhoneSavedPopup activePopup={openPopup} phone={phone} close={handleTogglePopup} />
             <div className={styles.wrapper}>
                 <div className={styles.container}>
                     <div className={styles.topWrap}>
