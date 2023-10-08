@@ -3,7 +3,8 @@ const myAccount = "/my-account";
 const profile = `${myAccount}/profile`;
 const orders = `${myAccount}/orders`;
 
-
+const admin = "/admin";
+const users = `${admin}/users`;
 
 export const clientEndpoints: ClientEndpoints = {
     myAccount: {
@@ -23,6 +24,16 @@ export const clientEndpoints: ClientEndpoints = {
             get: `${orders}`,
             order: `${orders}/order`,
         },
+    },
+    admin: {
+        get: admin,
+        users: {
+            get: users,
+            all: `${users}/all`,
+            administrators: `${users}/administrators`,
+            moderators: `${users}/moderators`,
+            edit: `${users}/edit/:id`,
+        }
     },
     home: {
         get: "/home",

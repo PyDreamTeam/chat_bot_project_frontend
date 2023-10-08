@@ -17,6 +17,16 @@ export interface ClientEndpoints {
             order: string;
         };
     };
+    admin: {
+        get: string;
+        users: {
+            get: string;
+            all: string;
+            administrators: string;
+            moderators: string;
+            edit: string;
+        }
+    }
     home: {
         get: string;
     };

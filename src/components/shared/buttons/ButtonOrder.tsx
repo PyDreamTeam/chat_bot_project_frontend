@@ -12,40 +12,55 @@ interface IPropsButtonOrder {
 
 export const ButtonOrder: FC<IPropsButtonOrder> = ({ dataComment }) => {
     const { isShown, toggle } = useModal();
+    const [appearance, setAppearance] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) {
+                setAppearance(true);
+            } else {
+                setAppearance(false);
+            }
+        });
+    }, []);
 
     return (
         <>
-            <button className={css.buttonOrder} onClick={toggle}>
-                <div className={css.circle}>
-                    <div className={css.orderImg}>
-                        <Image src="/img/letter.png" alt="platforms" width={32} height={32}></Image>
-                        <div className={css.text}>
-                            <p>Оформить заявку</p>
+            {appearance && (
+                <>
+                    <button className={css.buttonOrder} onClick={toggle}>
+                        <div className={css.circle}>
+                            <div className={css.orderImg}>
+                                <Image src="/img/letter.png" alt="platforms" width={32} height={32}></Image>
+                                <div className={css.text}>
+                                    <p>Оформить заявку</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <svg id={css.rotatingText} viewBox="0 0 200 200" width="250" height="250">
-                    <defs>
-                        <path
-                            id="circle"
-                            d="M 100, 100
+                        <svg id={css.rotatingText} viewBox="0 0 200 200" width="250" height="250">
+                            <defs>
+                                <path
+                                    id="circle"
+                                    d="M 100, 100
             m -75, 0
             a 75, 75 0 1, 0 150, 0
             a 75, 75 0 1, 0 -150, 0
             "
-                        ></path>
-                    </defs>
-                    <text width="400">
-                        <textPath xlinkHref="#circle" className={css.circleText}>
-                            . заказать бесплатно . заказать бесплатно
-                        </textPath>
-                    </text>
-                </svg>
-            </button>
+                                ></path>
+                            </defs>
+                            <text width="400">
+                                <textPath xlinkHref="#circle" className={css.circleText}>
+                                    . заказать бесплатно . заказать бесплатно
+                                </textPath>
+                            </text>
+                        </svg>
+                    </button>
 
-            <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} dataComment={dataComment} />
-            </Modal>
+                    <Modal isShown={isShown} hide={toggle}>
+                        <SelectionRequest close={toggle} dataComment={dataComment} />
+                    </Modal>
+                </>
+            )}
         </>
     );
 };

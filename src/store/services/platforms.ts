@@ -1,6 +1,8 @@
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const boundary = "----WebKitFormBoundaryexample";
+
 export const platforms = createApi({
     reducerPath: "platforms",
     baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
@@ -48,6 +50,25 @@ export const platforms = createApi({
                 body: platform,
             }),
         }),
+        changePlatform: builder.mutation({
+            query: ({id, token, platform}) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: platform
+            })
+        }),
+        deletePlatform: builder.mutation({
+            query: ({id, token}) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                }
+            })
+        })
     }),
 });
 
@@ -57,4 +78,6 @@ export const {
     useGetPlatformQuery,
     useAddPlatformMutation,
     useGetListPlatformsQuery,
+    useDeletePlatformMutation,
+    useChangePlatformMutation
 } = platforms;
