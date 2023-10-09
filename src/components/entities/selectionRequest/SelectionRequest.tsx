@@ -13,6 +13,7 @@ import { EmailInput } from "../../shared/login/EmaiInput/EmailInput";
 import { CommentInput } from "../../shared/login/CommentInput/CommentInput";
 import { Button } from "../../shared/buttons/Button";
 import {
+    useChangeDataUserMutation,
     useCreateOrderMutation,
     useCreateOrderUnregisteredMutation,
     useDataUserQuery,
@@ -21,26 +22,37 @@ import Cookies from "js-cookie";
 import { error } from "console";
 import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
+import { ButtonCancel } from "../../shared/buttons/ButtonCancel";
+import { useRouter } from "next/router";
 
 interface IPropsRequest {
     open?: () => void;
     close?: () => void;
     dataComment?: string;
+    forceUpdate?: () => void;
 }
 
 // TODO: unhandled server errors?
 
-const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
+const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUpdate }) => {
     const [createOrder, { isSuccess, error: errorData, isLoading }] = useCreateOrderMutation();
     const [createOrderUnregistered, { isSuccess: isSuccessAnonym }] = useCreateOrderUnregisteredMutation();
-    const [state, setState] = useState();
+    const [changeDataUser, { isSuccess: isSuccessChange, isLoading: isLoadingChange }] = useChangeDataUserMutation();
+    const [openPhoneSaver, setOpenPhoneSaver] = useState(false);
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const tokenAccess = token.access;
     const { data } = useDataUserQuery(token);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const router = useRouter();
 
     const startCloseTimer = () => {
         timerRef.current = setTimeout(() => {
-            close?.();
+            if (data?.phone_number) {
+                close?.();
+            } else {
+                setOpenPhoneSaver(true);
+                setTimeout(() => close?.(), 4000);
+            }
         }, 3000);
     };
 
@@ -114,6 +126,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
                                     createOrder({ requestValues, token })
                                         .then((response) => {
                                             response ? startCloseTimer() : null;
+                                            Cookies.set("Order_phone", `${requestValues.phone_number}`);
                                             formikBag.setSubmitting(false);
                                         })
                                         .catch((error) => {
@@ -158,14 +171,20 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
                         </Formik>
                     </div>
                 </div>
-            ) : (
+            ) : !openPhoneSaver ? (
                 <div className={styles.containerSuccess}>
                     <Image
                         src="/sign/close.svg"
                         alt="close"
                         width={34}
                         height={34}
-                        onClick={close}
+                        onClick={() => {
+                            if (data?.phone_number) {
+                                close?.();
+                            } else {
+                                setOpenPhoneSaver(true);
+                            }
+                        }}
                         className={styles.imgClose}
                     />
                     <Image
@@ -173,7 +192,6 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
                         alt="imgSuccess"
                         width={120}
                         height={120}
-                        onClick={close}
                         className={styles.imgSuccess}
                     />
                     <div className={styles.textSuccess}>
@@ -183,6 +201,52 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment }) => {
                         <Text type="reg16" color="grey">
                             Наши специалисты свяжутся с вами в течение суток
                         </Text>
+                    </div>
+                </div>
+            ) : (
+                <div className={styles.containerPhoneSaver}>
+                    <Image
+                        src="/sign/close.svg"
+                        alt="close"
+                        width={34}
+                        height={34}
+                        onClick={close}
+                        className={styles.imgClose}
+                    />
+                    <Image
+                        src="/icon/Phone-add.svg"
+                        alt="imgSuccess"
+                        width={56}
+                        height={56}
+                        className={styles.imgSuccess}
+                    />
+                    <div className={styles.textBlock}>
+                        <Text type="med20" color="black">
+                            Сохранить указанный номер телефона в личный кабинет?
+                        </Text>
+                        <Text type="med20" color="grey">
+                            {`${Cookies.get("Order_phone")}`}
+                        </Text>
+                    </div>
+                    <div className={styles.buttonsContainer}>
+                        <ButtonCancel type={"button"} active={true} onClick={close} width={240}>
+                            Отмена
+                        </ButtonCancel>
+                        <Button
+                            type={"button"}
+                            active={true}
+                            onClick={() => {
+                                const requestValues = {
+                                    phone_number: Cookies.get("Order_phone") || undefined,
+                                };
+                                const token = tokenAccess;
+                                changeDataUser({ requestValues, token }).then(router.reload);
+                                close?.();
+                            }}
+                            width={240}
+                        >
+                            Сохранить
+                        </Button>
                     </div>
                 </div>
             )}
