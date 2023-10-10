@@ -179,7 +179,9 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                         width={34}
                         height={34}
                         onClick={() => {
-                            if (data?.phone_number) {
+                            if (!data?.email) {
+                                close?.();
+                            } else if (data?.phone_number) {
                                 close?.();
                             } else {
                                 setOpenPhoneSaver(true);
