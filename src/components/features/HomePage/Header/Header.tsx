@@ -18,13 +18,14 @@ const Header: FC<PropsHeader> = ({ type }) => {
 
     const startClosePopupTimer = () => {
         timerRefEdit.current = setTimeout(() => {
+            Cookies.set("Saved_phone", "");
             Cookies.set("Order_phone", "");
             setOpenPopup(false);
         }, 4000);
     };
 
     useEffect(() => {
-        orderPhone = Cookies.get("Order_phone");
+        orderPhone = Cookies.get("Saved_phone");
         setPhone(orderPhone);
 
         if (orderPhone) {

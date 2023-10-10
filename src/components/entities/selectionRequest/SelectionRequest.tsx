@@ -127,6 +127,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                         .then((response) => {
                                             response ? startCloseTimer() : null;
                                             Cookies.set("Order_phone", `${requestValues.phone_number}`);
+                                            setTimeout(() => Cookies.set("Order_phone", ""), 10000);
                                             formikBag.setSubmitting(false);
                                         })
                                         .catch((error) => {
@@ -149,6 +150,8 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                     if (data) {
                                         setFieldTouched("first_name");
                                         setFieldTouched("email");
+                                    }
+                                    if (data?.phone_number) {
                                         setFieldTouched("phone_number");
                                     }
                                     if (dataComment) {
@@ -179,7 +182,9 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                         width={34}
                         height={34}
                         onClick={() => {
-                            if (data?.phone_number) {
+                            if (!data?.email) {
+                                close?.();
+                            } else if (data?.phone_number) {
                                 close?.();
                             } else {
                                 setOpenPhoneSaver(true);
@@ -210,7 +215,10 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                         alt="close"
                         width={34}
                         height={34}
-                        onClick={close}
+                        onClick={() => {
+                            Cookies.set("Order_phone", "");
+                            close?.();
+                        }}
                         className={styles.imgClose}
                     />
                     <Image
@@ -229,15 +237,25 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                         </Text>
                     </div>
                     <div className={styles.buttonsContainer}>
-                        <ButtonCancel type={"button"} active={true} onClick={close} width={240}>
+                        <ButtonCancel
+                            type={"button"}
+                            active={true}
+                            onClick={() => {
+                                Cookies.set("Order_phone", "");
+                                close?.();
+                            }}
+                            width={240}
+                        >
                             Отмена
                         </ButtonCancel>
                         <Button
                             type={"button"}
                             active={true}
                             onClick={() => {
+                                const savedPhone = Cookies.get("Order_phone") || "";
+                                Cookies.set("Saved_phone", savedPhone);
                                 const requestValues = {
-                                    phone_number: Cookies.get("Order_phone") || undefined,
+                                    phone_number: savedPhone,
                                 };
                                 const token = tokenAccess;
                                 changeDataUser({ requestValues, token }).then(router.reload);
