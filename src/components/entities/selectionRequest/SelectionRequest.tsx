@@ -150,6 +150,8 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                     if (data) {
                                         setFieldTouched("first_name");
                                         setFieldTouched("email");
+                                    }
+                                    if (data?.phone_number) {
                                         setFieldTouched("phone_number");
                                     }
                                     if (dataComment) {
