@@ -31,7 +31,7 @@ export const ErrorsPassword: FC<PropsErrorsPassword> = ({ password }) => {
         password: Yup.string()
             .min(8, err.min)
             .max(50, err.max)
-            .matches(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])/, err.string)
+            .matches(/^(?!.*[^\P{Alphabetic}a-zA-Z])/u, err.string)
             .matches(/^(?=.*[0-9])/, err.number)
             .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
             .required(err.req),
