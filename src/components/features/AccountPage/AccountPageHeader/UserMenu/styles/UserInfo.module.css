@@ -11,7 +11,12 @@
     cursor: pointer;
     position: relative;
 }
-
+.headerArrowButton {
+    color: black;
+}
+.headerArrowButtonOpen {
+    transform: rotate(180deg);
+}
 .avatarCircle {
     width: 36px;
     height: 36px;
@@ -22,7 +27,6 @@
     text-align: center;
     align-items: center;
 }
-
 .blockName {
     display: flex;
     gap: 6px;
