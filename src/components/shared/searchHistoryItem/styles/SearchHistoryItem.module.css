@@ -1,19 +1,27 @@
 .cardBlock {
-     background: #ffffff;
-     box-shadow: 0 2px 40px -20px rgba(68, 56, 235, 0.5);
-     border-radius: 20px;
-     padding: 22px 56px 22px 20px;
-     display: flex;
-     justify-content: flex-start;
-     flex-direction: column;
-     cursor: pointer;
-     width: 33%;
-     max-width: 304px;
-     position: relative;
+    background: #ffffff;
+    box-shadow: 0 2px 40px -20px rgba(68, 56, 235, 0.5);
+    border-radius: 20px;
+    padding: 40px 32px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    cursor: pointer;
+    width: 327px;
+    height: 267px;
+    position: relative;
+}
+.image {
+    margin-bottom: 16px;
+    width: 94px;
+    height: 94px;
+}
+.subtitle {
+    margin-top: 8px;
 }
 
 .mark {
-     position: absolute;
-     top: -7px;
-     right: 0;
+    position: absolute;
+    top: -7px;
+    right: 0;
 }

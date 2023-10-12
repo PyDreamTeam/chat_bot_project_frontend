@@ -1,18 +1,19 @@
 .elem {
     display: inline-block;
     position: relative;
-    border: 2px solid #4466F5;
+    border: 2px solid #4466f5;
     font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 600;
-    color: #4466F5;
+    color: #4466f5;
 }
+
 .homePage {
-    padding: 7px 10px;
+    width: 372px;
+    padding: 8px 5px;
     font-size: 30px;
     line-height: 39px;
-    margin-bottom: -8px;
-    margin-left: 10px;
+    margin-bottom: -32px;
 }
 .authWrapper {
     padding: 3px 3px;
@@ -25,7 +26,7 @@
     position: absolute;
     content: "";
     border-radius: 10px;
-    background-color: #4466F5;
+    background-color: #4466f5;
     width: 10px;
     height: 10px;
 }
@@ -33,7 +34,7 @@
     position: absolute;
     content: "";
     border-radius: 10px;
-    background-color: #4466F5;
+    background-color: #4466f5;
     width: 5px;
     height: 5px;
 }
@@ -69,4 +70,20 @@
 .bottomWrap {
     bottom: -4px;
     left: -4px;
+}
+
+/*----------------------дЛя SAleBot-------------------------*/
+.elemSaleBot {
+    display: inline-block;
+    position: relative;
+    border: 2px solid #4466f5;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: #4466f5;
+    font-size: 30px;
+    line-height: 130%;
+    text-transform: uppercase;
+    padding: 7px 30px;
+    margin-left: 17px;
 }

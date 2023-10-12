@@ -6,20 +6,20 @@ import { PropsConfig } from "../../../shared/solutionItem/PropsConfig";
 import uuid from "uuid-random";
 
 const Solutions = () => {
-     return (
-          <div className={styles.solutionsContainer}>
-               {PropsConfig.map((Solution) => (
-                    <SolutionItem
-                         key={uuid()}
-                         typesOfSolution={Solution.typesOfSolution}
-                         selectedPlatforms={Solution.selectedPlatforms}
-                         image={Solution.img}
-                         title={Solution.title}
-                         description={Solution.description}
-                    />
-               ))}
-          </div>
-     );
+    return (
+        <div className={styles.solutionsContainer}>
+            {PropsConfig.map((Solution) => (
+                <SolutionItem
+                    key={uuid()}
+                    typesOfSolution={Solution.typesOfSolution}
+                    selectedPlatforms={Solution.selectedPlatforms}
+                    image={Solution.img}
+                    title={Solution.title}
+                    description={Solution.description}
+                />
+            ))}
+        </div>
+    );
 };
 
 export default Solutions;

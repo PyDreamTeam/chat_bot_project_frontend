@@ -1,31 +1,31 @@
 .rightBlock {
-     display: flex;
-     justify-content: right;
+    display: flex;
+    justify-content: right;
 }
 
 .rightBlock {
-     display: flex;
-     gap: 132px;
+    display: flex;
+    gap: 132px;
 }
 .buttonsAuthWrapper {
-     display: flex;
-     gap: 16px;
-     margin-right: 2px;
+    display: flex;
+    gap: 16px;
+    margin-right: 2px;
 }
 
-.selectLang{
-     display: flex;
-     align-items: center;
+.selectLang {
+    display: flex;
+    align-items: center;
 }
 
-.selectLanguage{
-     background: #EEF4FD;
-     border: none;
-     font-size: 18px;
-     font-weight: 500;
-     line-height: 28px;
-     display: inline-flex;
-     align-items: center;
-     gap: 3px;
-     flex-shrink: 0;
+.selectLanguage {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
 }

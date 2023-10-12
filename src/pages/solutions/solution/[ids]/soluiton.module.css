@@ -1,0 +1,21 @@
+.container {
+    max-width: 1264px;
+    margin: 24px auto 0;
+}
+
+.link {
+    color: #909090;
+}
+
+.platform {
+    margin-top: 56px;
+    margin-bottom: 80px;
+}
+
+.settings {
+    margin-bottom: 8px;
+    margin-top: 80px;
+}
+.sliderTitle {
+    margin-bottom: 24px;
+}

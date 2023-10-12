@@ -5,15 +5,15 @@ import Main from "../features/HomePage/Main/Main";
 import { useAppSelector } from "@/src/hooks/types";
 
 const HomepageWrapper = () => {
-     const { id } = useAppSelector((state) => state.credentialsSlice.credentials);
+    const { id } = useAppSelector((state) => state.credentialsSlice.credentials);
 
-     return (
-          <>
-               <Header type="start"/>
-               <Main />
-               <Footer />
-          </>
-     );
+    return (
+        <>
+            <Header type="start" />
+            <Main />
+            <Footer />
+        </>
+    );
 };
 
 export default HomepageWrapper;

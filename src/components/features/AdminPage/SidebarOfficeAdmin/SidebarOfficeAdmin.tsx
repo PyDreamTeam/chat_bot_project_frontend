@@ -18,45 +18,45 @@ const personalAccountRoute = "/my-profile/personalAccount";
 const settingsRoute = "/my-profile/settings";
 
 const SidebarOfficeAdmin: FC = () => {
-     const dispatch = useAppDispatch();
-     const [activeTabItem, setActiveTabItem] = useState<number>(1);
-     const router = useRouter();
+    const dispatch = useAppDispatch();
+    const [activeTabItem, setActiveTabItem] = useState<number>(1);
+    const router = useRouter();
 
-     useEffect(() => {
-          switch (router.route) {
-               case myProfileRoute:
-                    return setActiveTabItem(1);
-               case adminAndModeratorRoute:
-                    return setActiveTabItem(2);
-               case platformsRoute:
-                    return setActiveTabItem(3);
-               case solutionsRoute:
-                    return setActiveTabItem(4);
-               case mainPageRoute:
-                    return setActiveTabItem(5);
-               case personalAccountRoute:
-                    return setActiveTabItem(6);
-               case settingsRoute:
-                    return setActiveTabItem(7);
-               default:
-                    setActiveTabItem(1);
-          }
-     }, [router]);
+    useEffect(() => {
+        switch (router.route) {
+            case myProfileRoute:
+                return setActiveTabItem(1);
+            case adminAndModeratorRoute:
+                return setActiveTabItem(2);
+            case platformsRoute:
+                return setActiveTabItem(3);
+            case solutionsRoute:
+                return setActiveTabItem(4);
+            case mainPageRoute:
+                return setActiveTabItem(5);
+            case personalAccountRoute:
+                return setActiveTabItem(6);
+            case settingsRoute:
+                return setActiveTabItem(7);
+            default:
+                setActiveTabItem(1);
+        }
+    }, [router]);
 
-     const handleSetActiveTabItem = (id: number) => {
-          id === 7 && dispatch(removeCredentials());
-          setActiveTabItem(id);
-     };
+    const handleSetActiveTabItem = (id: number) => {
+        id === 7 && dispatch(removeCredentials());
+        setActiveTabItem(id);
+    };
 
-     return (
-          <aside className={styles.asideWrapper}>
-               <Link href="/home">
-                    <Logo variant={LogoVariantProps.header} />
-               </Link>
-               
-               <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />
-          </aside>
-     );
+    return (
+        <aside className={styles.asideWrapper}>
+            <Link href="/home">
+                <Logo variant={LogoVariantProps.header} />
+            </Link>
+
+            <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />
+        </aside>
+    );
 };
 
 export default SidebarOfficeAdmin;

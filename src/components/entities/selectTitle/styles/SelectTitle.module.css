@@ -1,7 +1,6 @@
 .selectTitle {
-     max-width: 972px;
-     display: flex;
-     justify-content: space-between;
-     margin: auto;
-     padding: 40px 0 51px;
+    max-width: 1020px;
+    display: flex;
+    padding: 28px 0 57px;
+    gap: 20px;
 }

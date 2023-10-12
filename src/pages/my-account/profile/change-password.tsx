@@ -3,11 +3,11 @@ import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import React from "react";
 
 const ChangePasswordPage = () => {
-     return (
-          <AccountPageWrapper page={"profile_settings_password"}>
-               <ChangePassword />
-          </AccountPageWrapper>
-     );
+    return (
+        <AccountPageWrapper page={"profile_settings_password"}>
+            <ChangePassword />
+        </AccountPageWrapper>
+    );
 };
 
 export default ChangePasswordPage;

@@ -5,12 +5,14 @@ import ListAccordion from "@/src/components/entities/lists/accordionList/ListAcc
 import { CONFIG_BLOCK_FAQ } from "@/src/components/features/HomePage/Main/blockFAQ/ConfigBlockFAQ";
 
 const BlockFAQ = () => {
-     return (
-          <div className={styles.wrapper}>
-               <Title type={"h3"} color={"black"}>FAQ</Title>
-               <ListAccordion data={CONFIG_BLOCK_FAQ}/>
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <Title type={"h3"} color={"black"}>
+                FAQ
+            </Title>
+            <ListAccordion data={CONFIG_BLOCK_FAQ} />
+        </div>
+    );
 };
 
 export default BlockFAQ;

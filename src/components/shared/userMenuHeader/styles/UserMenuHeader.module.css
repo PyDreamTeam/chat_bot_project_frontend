@@ -1,35 +1,49 @@
 .menuWrapper {
-     min-width: 200px;
-     width: 100%;
-     position: absolute;
-     top: 70px;
-     right: 0;
-     align-items: center;
-     display: flex;
-     flex-direction: column;
-     text-align: left;
-     list-style-type: none;
-     padding: 10px;
-     background: #f4f5f6;
-     box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
-     border-radius: 20px;
-     z-index: 2;
+    min-width: 219px;
+    height: 208px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    list-style-type: none;
+    background: #FFF;
+    box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
+    border-radius: 20px;
+    z-index: 3;
 }
 
 .navigateButton {
-     border: none;
-     display: block;
-     background: transparent;
-     position: relative;
-     width: 100%;
-     text-align: left;
-     font-family: "Inter";
-     font-style: normal;
-     font-weight: 400;
-     font-size: 18px;
-     line-height: 150%;
-     color: #17181a;
-     padding: 10px 0 10px 10px;
-     transition: 0.5s;
-     cursor: pointer;
+    border: none;
+    display: block;
+    background: transparent;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #17181A;
+    padding: 16px;
+    transition: 0.5s;
+    cursor: pointer;
+    border-bottom: 1px solid #E1E2E6;
+    height: 52px;
+}
+.navigateButton:hover {
+    background-color: #E2ECFF;
+}
+.navigateButton:nth-child(1):hover {
+    border-radius: 20px 20px 0px 0px;
+}
+.navigateButton:last-child {
+    color: #F53527;
+    border-bottom: none;
+}
+.navigateButton:last-child:hover {
+    border-radius: 0px 0px 20px 20px;
 }

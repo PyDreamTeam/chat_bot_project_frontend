@@ -1,6 +1,11 @@
 .tabs {
-     display: flex;
-     gap: 64px;
-     padding-top: 47px;
-     border-bottom: 1px solid #e1e2e6;
+    display: flex;
+    gap: 64px;
+    padding-top: 47px;
+    border-bottom: 1px solid #e1e2e6;
+}
+.adminPage {
+    padding-top: 16px;
+    width: fit-content;
+    gap: 0;
 }

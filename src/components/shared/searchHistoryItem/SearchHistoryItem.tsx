@@ -9,30 +9,35 @@ import Text from "@/src/components/shared/text/Text";
 import Title from "../text/Title";
 
 interface ISearchHistoryItem {
-     title: string;
-     description: string;
-     profile: boolean
+    title: string;
+    description: string;
+    profile: boolean;
 }
 
 interface IFavoritesItem extends ISearchHistoryItem {
-     favorite?: boolean;
+    favorite?: boolean;
 }
 
-const SearchHistoryItem: FC<ISearchHistoryItem & IFavoritesItem> = ({ title, description, favorite, profile}) => {
-     return (
-          <div className={styles.cardBlock}>
-               {/*{SearchHistorySvgConfig[title]}*/}
-               <Image alt={"platform"} src={title === "Aimilogic" ? Aimilogic : Mail} />
-               {profile === true ? <Text type={"med20"} color={"black"}>{title}</Text> : <Title type={"h5"} color={"black"}>
+const SearchHistoryItem: FC<ISearchHistoryItem & IFavoritesItem> = ({ title, description, favorite, profile }) => {
+    return (
+        <div className={styles.cardBlock}>
+            {/*{SearchHistorySvgConfig[title]}*/}
+            <Image className={styles.image} alt={"platform"} src={title === "Aimilogic" ? Aimilogic : Mail} />
+            {profile === true ? (
+                <Text type={"med20"} color={"black"}>
                     {title}
-               </Title>}
-               
-               <Text type={"reg18"} color={"black"}>
-                    {description}
-               </Text>
-               {favorite && <div className={styles.mark}>{SearchHistorySvgConfig.Mark}</div>}
-          </div>
-     );
+                </Text>
+            ) : (
+                <Title type={"h5"} color={"black"}>
+                    {title}
+                </Title>
+            )}
+            <Text className={styles.subtitle} type={"reg18"} color={"black"}>
+                {description}
+            </Text>
+            {favorite && <div className={styles.mark}>{SearchHistorySvgConfig.Mark}</div>}
+        </div>
+    );
 };
 
 export default SearchHistoryItem;

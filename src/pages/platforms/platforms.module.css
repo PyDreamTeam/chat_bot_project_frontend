@@ -1,0 +1,88 @@
+.wrapper {
+    margin: 0 auto;
+    width: 100%;
+}
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 88px 0px;
+}
+
+.title {
+    padding: 16px 0 16px;
+    line-height: 0;
+}
+.text {
+    padding: 0px 0 16px;
+}
+.path {
+    color: rgb(144, 144, 144);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.path:hover {
+    color: rgb(107, 105, 105);
+}
+.topWrap {
+    margin-bottom: 32px;
+}
+
+.bottomWrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    width: 100%;
+    height: 462px;
+    border-radius: 20px;
+    background-color: rgb(238, 244, 253);
+}
+.blockRight {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    padding-left: 91px;
+}
+
+.description {
+    padding: 24px 0 24px;
+}
+.button {
+    width: 250px;
+    height: 48px;
+    padding: 10px 10px;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 16px;
+    border: none;
+    background-color: rgb(68, 102, 245);
+    transition: all 0.3s;
+}
+.button:hover {
+    opacity: 0.8;
+}
+.loaderPlatforms {
+    width: 100%;
+    height: 100%;
+}
+.listPlatforms {
+    list-style: none;
+}
+.link {
+    color: white;
+}
+
+.click {
+    display: grid;
+}
+.platforms {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr;
+    gap: 32px;
+    list-style: none;
+}

@@ -17,31 +17,39 @@
     padding: 17px;
     margin-top: 9px;
     width: 100%;
-    font-family: "Inter",sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
     border-radius: 20px;
-    background-color: #f4f5f6;
-    border: 1px solid #f4f5f6;
-    color: #595f6c;
+    background-color: var(--sub-color-2);
+    border: 1px solid var(--sub-color-2);
+    color: var(--text-color-1);
 }
-.input:focus {
+.input:focus,
+.inputValid:focus {
     outline: none;
 }
 
-.input[name="comment"] {
+.input[name="comment"],
+.inputValid[name="comment"] {
     height: 194px;
     word-wrap: break-word;
     white-space: pre-wrap;
     resize: none;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.phoneInputWrapper {
+    margin-top: 9px;
 }
 
 .error {
     margin-top: 8px;
 }
-.error p{
+.error p {
     margin-bottom: 4px;
 }
 
@@ -49,18 +57,37 @@
     padding: 18px 15px 19px;
     margin-top: 6px;
     width: 100%;
-    font-family: "Inter",sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
     border-radius: 20px;
-    background-color: #f4f5f6;
-    border: 2px solid #f53527;
-    color: #595f6c;
+    background-color: var(--sub-color-2);
+    border: 2px solid var(--status-color-error-color);
+    color: var(--text-color-2);
 }
 .inputError:focus {
     outline: none;
+}
+
+.inputError[name="comment"] {
+    height: 194px;
+}
+
+.inputValid {
+    padding: 17px;
+    margin-top: 9px;
+    width: 100%;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    border-radius: 20px;
+    background-color: var(--sub-color-2);
+    color: var(--text-color-1);
+    border: 1px solid var(--accent-color-2);
 }
 
 .groupStateEye {
@@ -86,13 +113,13 @@
     width: 20px;
     height: 20px;
     margin-right: 10px;
-    border: 2px solid #9ce562;
+    border: 2px solid var(--accent-color-2);
     border-radius: 8px;
     outline: none;
     cursor: pointer;
 }
 .checkbox:checked {
-    background-color: #9ce562;
+    background-color: var(--accent-color-2);
 }
 .checkbox::before {
     content: "✓";
@@ -108,22 +135,8 @@
 }
 .checkbox:checked::before {
     border-radius: 6px;
-    background-color: #9ce562;
+    background-color: var(--accent-color-2);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .container {
     display: flex;
@@ -149,11 +162,9 @@
     text-align: left;
 }
 
-
-
 .blockInfo {
-   margin-top: 16px;
-   text-align: center;
+    margin-top: 16px;
+    text-align: center;
 }
 
 .errorsBlock {

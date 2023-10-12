@@ -1,14 +1,14 @@
 .asideWrapper {
-     max-width: 379px;
-     width: 100%;
-     min-height: 100vh;
-     max-height: 100%;
-     background: #e2ecff;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     padding-top: 46px;
-     gap: 48px;
-     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-     justify-content: flex-start;
+    max-width: 379px;
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    background: #e2ecff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 46px;
+    gap: 48px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    justify-content: flex-start;
 }

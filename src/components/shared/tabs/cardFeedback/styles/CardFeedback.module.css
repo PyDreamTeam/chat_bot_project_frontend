@@ -19,13 +19,12 @@
 }
 
 .card:hover {
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
-  background-color: #F4F5F6;
-  transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+    background-color: #f4f5f6;
+    transform: translateY(-4px);
 }
 
-.top+p {
-    height: 78px;
+.top + p {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;

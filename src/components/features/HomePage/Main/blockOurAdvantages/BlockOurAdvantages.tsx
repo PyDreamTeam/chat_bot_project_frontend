@@ -5,19 +5,20 @@ import CardsOurAdvantages from "@/src/components/entities/cards/cardsOurAdvantag
 import styles from "./styles/BlockOurAdvantages.module.css";
 
 const BlockOurAdvantages = () => {
-     return (
-          <div className={styles.wrapper}>
-               <div className={styles.blockText}>
-                    <Title type={"h3"} color={"black"}>
-                         Наши преимущества
-                    </Title>
-                    <Text type={"reg18"} color={"grey"}>
-                         Мы поможем  решим ваши задачи. Повысим качество обслуживания ваших клиентов. Автоматизируем работу вашей компании, сократим и оптимизируем расходы
-                    </Text>
-               </div>
-               <CardsOurAdvantages/>
-          </div>
-     );
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.blockText}>
+                <Title type={"h3"} color={"black"}>
+                    Что вы получите
+                </Title>
+                <Text type={"reg18"} color={"grey"}>
+                    Закажите шаблон чат-бота под любую задачу вашего бизнеса. Здесь вы найдете только проверенные
+                    решения, созданные на основе нашего 5-летнего опыта. Мы собрали все, что вам нужно для:
+                </Text>
+            </div>
+            <CardsOurAdvantages />
+        </div>
+    );
 };
 
 export default BlockOurAdvantages;

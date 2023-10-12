@@ -1,14 +1,14 @@
 .selectTitle {
-     background: #f4f5f6;
-     border-radius: 20px;
-     padding: 10px;
-     display: flex;
-     gap: 16px;
+    background: #f4f5f6;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
 }
 .blockSelect {
-     position: relative;
+    position: relative;
 }
 .radioButton {
-     position: absolute;
-     top: 52px;
+    position: absolute;
+    top: 52px;
 }

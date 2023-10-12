@@ -7,16 +7,16 @@ import styles from "./AuthLeftBlock.module.css";
 import Link from "next/link";
 
 const AuthLeftBlock = () => {
-     return (
-          <div className={styles.authLeftBlock}>
-               <Link href="/home">
-                    <Logo variant={LogoVariantProps.header} />
-                    <div className={styles.blockBlue}>
-                         <ElemChooseChatBot variant={ElemVariantProps.auth}/>
-                    </div>
-               </Link>
-          </div>
-     );
+    return (
+        <div className={styles.authLeftBlock}>
+            <Link href="/home">
+                <Logo variant={LogoVariantProps.header} />
+                <div className={styles.blockBlue}>
+                    <ElemChooseChatBot variant={ElemVariantProps.auth} text={"конструктор чат-ботов"} />
+                </div>
+            </Link>
+        </div>
+    );
 };
 
 export default AuthLeftBlock;

@@ -5,11 +5,13 @@ import uuid from "uuid-random";
 import { PlatformsSvgConfig } from "@/src/components/shared/solutionItem/selectedPlatforms/img/PlatformsSvgConfig";
 
 interface ISelectedPlatforms {
-     platforms: string[];
+    platforms: string[];
 }
 
 const SelectedPlatforms: FC<ISelectedPlatforms> = ({ platforms }) => {
-     return <div className={styles.selectedPlatformsBlock}>{platforms.map((platform) => PlatformsSvgConfig[platform])}</div>;
+    return (
+        <div className={styles.selectedPlatformsBlock}>{platforms.map((platform) => PlatformsSvgConfig[platform])}</div>
+    );
 };
 
 export default SelectedPlatforms;

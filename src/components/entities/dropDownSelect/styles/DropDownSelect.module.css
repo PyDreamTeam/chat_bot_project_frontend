@@ -1,18 +1,18 @@
 .dropDown {
-     font-family: "Inter", sans-serif;
-     font-style: normal;
-     font-weight: 400;
-     font-size: 18px;
-     line-height: 150%;
-     display: flex;
-     flex-direction: column;
-     padding: 20px;
-     background: #e2ecff;
-     border-radius: 20px;
-     width: 283px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #e2ecff;
+    border-radius: 20px;
+    width: 283px;
 }
 .btn {
-     padding-top: 16px;
-     display: flex;
-     justify-content: space-between;
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
 }

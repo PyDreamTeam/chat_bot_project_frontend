@@ -1,4 +1,7 @@
 .cards {
     display: flex;
-    gap: 28px;
+    gap: 24px;
+}
+.link {
+    display: grid;
 }

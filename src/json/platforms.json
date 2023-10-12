@@ -1,0 +1,330 @@
+{
+    "count": 6,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "title": "Платформа 1",
+            "short_description": "Краткое описание платформы 1",
+            "full_description": "Полное описание платформы 1",
+            "turnkey_solutions": 1,
+            "price": 100,
+            "is_active": true,
+            "created_at": "2023-08-03T08:22:40.732247Z",
+            "image": "https://static-cse.canva.com/blob/584142/Apple.png",
+            "tags": [
+                {
+                    "id": 10,
+                    "tag": "Prodamus",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 13,
+                    "tag": "Тинькофф",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 22,
+                    "tag": "Webhook",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 38,
+                    "tag": "Telegram",
+                    "image_tag": "telegram",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 39,
+                    "tag": "Viber",
+                    "image_tag": "viber",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 40,
+                    "tag": "ВКонтакте",
+                    "image_tag": "vk",
+                    "is_active": true,
+                    "is_message": true
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Платформа 2",
+            "short_description": "Краткое описание платформы 2",
+            "full_description": "Полное описание платформы 2",
+            "turnkey_solutions": 2,
+            "price": 200,
+            "is_active": true,
+            "created_at": "2023-08-03T08:22:40.752816Z",
+            "image": "https://static-cse.canva.com/blob/584210/Nasa.jpg",
+            "tags": [
+                {
+                    "id": 20,
+                    "tag": "Zapier",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 22,
+                    "tag": "Webhook",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 23,
+                    "tag": "Алиса",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 38,
+                    "tag": "Telegram",
+                    "image_tag": "telegram",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 39,
+                    "tag": "Viber",
+                    "image_tag": "viber",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 40,
+                    "tag": "ВКонтакте",
+                    "image_tag": "vk",
+                    "is_active": true,
+                    "is_message": true
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Платформа 3",
+            "short_description": "Краткое описание платформы 3",
+            "full_description": "Полное описание платформы 3",
+            "turnkey_solutions": 3,
+            "price": 300,
+            "is_active": true,
+            "created_at": "2023-08-03T08:22:40.786067Z",
+            "image": "https://static-cse.canva.com/blob/584144/.png",
+            "tags": [
+                {
+                    "id": 23,
+                    "tag": "Алиса",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 30,
+                    "tag": "Мультиканально",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 33,
+                    "tag": "Мультиканально",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 38,
+                    "tag": "Telegram",
+                    "image_tag": "telegram",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 39,
+                    "tag": "Viber",
+                    "image_tag": "viber",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 40,
+                    "tag": "ВКонтакте",
+                    "image_tag": "vk",
+                    "is_active": true,
+                    "is_message": true
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Платформа 4",
+            "short_description": "Краткое описание платформы 4",
+            "full_description": "Полное описание платформы 4",
+            "turnkey_solutions": 4,
+            "price": 400,
+            "is_active": true,
+            "created_at": "2023-08-03T08:22:40.810585Z",
+            "image": "https://static-cse.canva.com/blob/584138/.png",
+            "tags": [
+                {
+                    "id": 24,
+                    "tag": "Маруся",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 38,
+                    "tag": "Telegram",
+                    "image_tag": "telegram",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 39,
+                    "tag": "Viber",
+                    "image_tag": "viber",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 40,
+                    "tag": "ВКонтакте",
+                    "image_tag": "vk",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 43,
+                    "tag": "Визуальный редактор",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Платформа 5",
+            "short_description": "Краткое описание платформы 5",
+            "full_description": "Полное описание платформы 5",
+            "turnkey_solutions": 5,
+            "price": 500,
+            "is_active": true,
+            "created_at": "2023-08-03T08:22:40.835724Z",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2Fy8JeXQfy-v3T-BKQfEflaQLt-ExWd9X5A&usqp=CAU",
+            "tags": [
+                {
+                    "id": 25,
+                    "tag": "Aimybox Google Assistant",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 38,
+                    "tag": "Telegram",
+                    "image_tag": "telegram",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 39,
+                    "tag": "Viber",
+                    "image_tag": "viber",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 40,
+                    "tag": "ВКонтакте",
+                    "image_tag": "vk",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 50,
+                    "tag": "По номеру телефона",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 53,
+                    "tag": "Пользовательские переменные",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Платформа 6",
+            "short_description": "Краткое описание платформы 6",
+            "full_description": "Полное описание платформы 6",
+            "turnkey_solutions": 6,
+            "price": 600,
+            "is_active": true,
+            "created_at": "2023-08-03T08:22:40.859928Z",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2Fy8JeXQfy-v3T-BKQfEflaQLt-ExWd9X5A&usqp=CAU",
+            "tags": [
+                {
+                    "id": 26,
+                    "tag": "Салют",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 38,
+                    "tag": "Telegram",
+                    "image_tag": "telegram",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 39,
+                    "tag": "Viber",
+                    "image_tag": "viber",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 40,
+                    "tag": "ВКонтакте",
+                    "image_tag": "vk",
+                    "is_active": true,
+                    "is_message": true
+                },
+                {
+                    "id": 60,
+                    "tag": "Добавление/удаление метки",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                },
+                {
+                    "id": 63,
+                    "tag": "Подписка/отписка",
+                    "image_tag": "None",
+                    "is_active": true,
+                    "is_message": false
+                }
+            ]
+        }
+    ]
+}

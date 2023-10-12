@@ -1,0 +1,61 @@
+.addUserBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.addUserBlock form,
+.icon {
+    width: 50%;
+}
+.role {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.buttons {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    font-size: 18px;
+    font-weight: 500;
+}
+.buttons button {
+    font-size: 18px;
+}
+.cancel {
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    width: 50%;
+    line-height: 28px;
+    padding: 8px 0;
+}
+.cancel a {
+    color: #595f6c;
+}
+
+.create:disabled {
+    background: #e1e2e6;
+    cursor: not-allowed;
+}
+.active {
+    background: #4466f5;
+    cursor: pointer;
+    width: 50%;
+    color: white;
+    border: 0;
+    border-radius: 16px;
+}
+.disabled {
+    background: #e1e2e6;
+    cursor: not-allowed;
+    width: 50%;
+    color: white;
+    border: 0;
+    border-radius: 16px;
+}
+.icon {
+    display: flex;
+    justify-content: end;
+}

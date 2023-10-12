@@ -1,7 +1,8 @@
 .link {
-     color: #4466f5;
-     display: flex;
-     gap: 8px;
+    color: #4466f5;
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .arrow {

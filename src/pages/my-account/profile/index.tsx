@@ -8,26 +8,24 @@ import React from "react";
 import Cookies from "js-cookie";
 
 const Profile = () => {
-     const router = useRouter();
-     const mobileNumber = "+375297177707";
-     const token = JSON.parse(Cookies.get("loginUser") || "[]"); 
+    const router = useRouter();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
+    const { data } = useDataUserQuery(token);
 
-     const {data} = useDataUserQuery(token);
-
-     return (
-          <AccountPageWrapper page="profile_templates">
-               <AccountPageCredential
-                    page="profile_templates"
-                    mobileNumber={mobileNumber}
-                    email={data?.email}
-                    isEmailVerified={true}
-                    first_name={data?.first_name}
-                    last_name={data?.last_name}
-               />
-               <SearchHistory title={"Сохраненные шаблоны"} />
-          </AccountPageWrapper>
-     );
+    return (
+        <AccountPageWrapper page="profile_templates">
+            <AccountPageCredential
+                page="profile_templates"
+                phone_number={data?.phone_number}
+                email={data?.email}
+                isEmailVerified={true}
+                first_name={data?.first_name}
+                last_name={data?.last_name}
+            />
+            <SearchHistory title={"Сохраненные шаблоны"} />
+        </AccountPageWrapper>
+    );
 };
 
 export default Profile;

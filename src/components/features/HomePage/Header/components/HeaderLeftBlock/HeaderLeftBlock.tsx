@@ -5,14 +5,13 @@ import { LogoVariantProps } from "@/src/components/shared/Logo/Logo";
 import Link from "next/link";
 
 const HeaderLeftBlock = () => {
-     return (
-          <Link href="/home">
-               <div className={styles.leftBlock}>
-                    <Logo variant={LogoVariantProps.header} />
-               </div>
-          </Link>
-          
-     );
+    return (
+        <Link href="/home">
+            <div className={styles.leftBlock}>
+                <Logo variant={LogoVariantProps.header} />
+            </div>
+        </Link>
+    );
 };
 
 export default HeaderLeftBlock;

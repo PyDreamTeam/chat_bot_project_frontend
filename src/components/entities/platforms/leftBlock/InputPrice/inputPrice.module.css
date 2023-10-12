@@ -1,0 +1,11 @@
+.input {
+    max-width: 134px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #909090;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}

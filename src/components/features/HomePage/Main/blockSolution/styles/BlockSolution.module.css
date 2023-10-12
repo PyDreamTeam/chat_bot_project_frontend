@@ -22,3 +22,23 @@
     align-items: center;
     gap: 24px;
 }
+.link {
+    color: white;
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 16px;
+    border: none;
+    background-color: #4466f5;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 250px;
+}
+
+.link:hover {
+    opacity: 0.8;
+}

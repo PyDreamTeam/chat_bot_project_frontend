@@ -7,39 +7,39 @@ import uuid from "uuid-random";
 type IPasswordErrorList = IPasswordError[];
 
 const initialPasswordErrorList: IPasswordErrorList = [
-     {
-          errorText: "содержит не менее 8 символов",
-          isError: true,
-     },
-     {
-          errorText: "содержит как строчные (a–z), так и прописные буквы (A–Z)",
-          isError: true,
-     },
-     {
-          errorText: "содержит по крайней мере одну цифру (0–9)",
-          isError: true,
-     },
-     {
-          errorText: "содержит по крайней мере один спецсимвол",
-          isError: true,
-     },
+    {
+        errorText: "содержит не менее 8 символов",
+        isError: true,
+    },
+    {
+        errorText: "содержит как строчные (a–z), так и прописные буквы (A–Z)",
+        isError: true,
+    },
+    {
+        errorText: "содержит по крайней мере одну цифру (0–9)",
+        isError: true,
+    },
+    {
+        errorText: "содержит по крайней мере один спецсимвол",
+        isError: true,
+    },
 ];
 
 interface IErrorList {
-     errors: boolean;
-     errorsValue?: string;
+    errors: boolean;
+    errorsValue?: string;
 }
 
 const ErrorList: FC<IErrorList> = ({ errors, errorsValue }) => {
-     const [passwordErrorList, setPasswordErrorList] = useState<IPasswordErrorList>(initialPasswordErrorList);
+    const [passwordErrorList, setPasswordErrorList] = useState<IPasswordErrorList>(initialPasswordErrorList);
 
-     return (
-          <div className={`${styles.errorBlock} ${!errors && styles.hiddenBlock}`}>
-               {passwordErrorList.map((error) => (
-                    <PasswordError key={uuid()} errorText={error.errorText} isError={error.isError} />
-               ))}
-          </div>
-     );
+    return (
+        <div className={`${styles.errorBlock} ${!errors && styles.hiddenBlock}`}>
+            {passwordErrorList.map((error) => (
+                <PasswordError key={uuid()} errorText={error.errorText} isError={error.isError} />
+            ))}
+        </div>
+    );
 };
 
 export default ErrorList;
