@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "../../shared/login/LastNameInput/LastNameInput";
 import { ButtonLogin } from "../../shared/buttons/ButtonLogin";
-import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
+import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
 
 export const DataForm = () => {
     const router = useRouter();
@@ -60,7 +60,7 @@ export const DataForm = () => {
                         <Form>
                             <FirstNameInput errors={errors} touched={touched} />
                             <LastNameInput errors={errors} touched={touched} />
-                            <PhoneNumberInput errors={errors} touched={touched} />
+                            <PhoneInput errors={errors} touched={touched}/>
                             <div className={css.btn}>
                                 <ButtonLogin type="submit" disabled={isLoading} active={isValid}>
                                     Сохранить изменения
