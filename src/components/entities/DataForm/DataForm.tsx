@@ -9,6 +9,7 @@ import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput
 import { LastNameInput } from "../../shared/login/LastNameInput/LastNameInput";
 import { ButtonLogin } from "../../shared/buttons/ButtonLogin";
 import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
+import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 export const DataForm = () => {
     const router = useRouter();
@@ -43,7 +44,16 @@ export const DataForm = () => {
                         .trim()
                         .matches(/^\D*$/, "Не должно содержать цифр")
                         .matches(/^[A-Za-zА-Яа-я_0-9]+$/, "Должна содержать только буквы"),
-                    phone_number: Yup.string().matches(/^\+375(29|25|33|44)\d{7}$/, "Неверный формат номера телефона"),
+                    phone_number: Yup.string()
+                        .test({
+                            name: "phone_number",
+                            message: "Некорректный номер телефона",
+                            test: (value) => {
+                                if (value !== undefined) {
+                                    return isPossiblePhoneNumber(value);
+                                }
+                            },
+                        })
                 })}
                 onSubmit={(values) => {
                     const requestValues = {
