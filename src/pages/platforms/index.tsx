@@ -27,6 +27,9 @@ const Platforms = () => {
         router.push(`/platforms/platform/${idp}`);
     };
 
+    const Click = () => {
+        router.push("/platforms-filter");
+    };
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
 
     const handleScroll = () => {
@@ -103,10 +106,8 @@ const Platforms = () => {
                                     Воспользуйтесь одним из наших шаблонов, разработанных под конкретную бизнес-задачу
                                 </Text>
                             </div>
-                            <Button active={true} width={250} type="button">
-                                <Link className={styles.link} href="/platforms-filter">
-                                    Подобрать платформу
-                                </Link>
+                            <Button active={true} width={250} type="button" onClick={Click}>
+                                Подобрать платформу
                             </Button>
                             <Modal isShown={isShown} hide={toggle}>
                                 <SelectionRequest close={toggle} />

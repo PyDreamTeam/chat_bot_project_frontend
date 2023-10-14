@@ -31,13 +31,15 @@ export const ButtonOrder: FC<IPropsButtonOrder> = ({ dataComment }) => {
                     <button className={css.buttonOrder} onClick={toggle}>
                         <div className={css.circle}>
                             <div className={css.orderImg}>
-                                <Image src="/img/letter.png" alt="platforms" width={32} height={32}></Image>
-                                <div className={css.text}>
-                                    <p>Оформить заявку</p>
+                                <Image src="/img/letter.png" alt="platforms" width={21} height={21}></Image>
+                                <div>
+                                    <Text className={css.text} type="reg14" color="white">
+                                        Оформить заявку
+                                    </Text>
                                 </div>
                             </div>
                         </div>
-                        <svg id={css.rotatingText} viewBox="0 0 200 200" width="250" height="250">
+                        <svg id={css.rotatingText} viewBox="0 0 200 200" width="170" height="170">
                             <defs>
                                 <path
                                     id="circle"
