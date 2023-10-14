@@ -7,11 +7,12 @@ export interface ClientEndpoints {
             changePassword: string;
             payment: string;
         };
-        templates: string;
+        selection: string;
+        solution: string;
+        platform: string;
         favorites: string;
         faq: string;
-        articles: string;
-        tariff: string;
+        searchHistory: string;
         orders: {
             get: string;
             order: string;

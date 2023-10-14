@@ -10,12 +10,13 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const myAccountRoute = "/my-account";
+const selectionsRoute = "/my-account";
 const ordersRoute = "/my-account/orders";
-const templatesRoute = "/my-account/templates";
 const favoritesRoute = "/my-account/favorites";
+const searchHistoryRoute = "/my-account/search-hisory";
 const faqRoute = "/my-account/faq";
-const articlesRoute = "/my-account/articles";
-const ratesRoute = "/my-account/rates";
+const solutionRoute = "/my-account/solution";
+const platformRoute = "/my-account/platform";
 
 const Sidebar: FC = () => {
     const dispatch = useAppDispatch();
@@ -26,18 +27,20 @@ const Sidebar: FC = () => {
         switch (router.route) {
             case myAccountRoute:
                 return setActiveTabItem(1);
-            case ordersRoute:
+            case selectionsRoute:
                 return setActiveTabItem(2);
-            case templatesRoute:
+            case solutionRoute:
                 return setActiveTabItem(3);
-            case favoritesRoute:
+            case platformRoute:
                 return setActiveTabItem(4);
-            case faqRoute:
+            case ordersRoute:
                 return setActiveTabItem(5);
-            case articlesRoute:
+            case favoritesRoute:
                 return setActiveTabItem(6);
-            case ratesRoute:
+            case searchHistoryRoute:
                 return setActiveTabItem(7);
+            case faqRoute:
+                return setActiveTabItem(8);
             default:
                 setActiveTabItem(1);
         }
@@ -53,8 +56,9 @@ const Sidebar: FC = () => {
             <Link href="/home">
                 <Logo variant={LogoVariantProps.admin} />
             </Link>
-
-            <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />
+            <div className={styles.link}>
+                <ListSidebar config={SIDEBAR_CONFIG} activeTabItem={activeTabItem} />
+            </div>
         </aside>
     );
 };
