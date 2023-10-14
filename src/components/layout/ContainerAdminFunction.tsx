@@ -3,15 +3,20 @@ import css from "./style.module.css";
 import AccountPageHeader from "../features/AccountPage/AccountPageHeader/AccountPageHeader";
 import Cookies from "js-cookie";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
+import { WithChildren } from "@/src/shared/types/withChildren";
 
-export const ContainerAdminFunction: FC<PropsWithChildren> = ({children}) => {
+interface IAdminContainer {
+    title?: string;
+}
+
+export const ContainerAdminFunction: FC<IAdminContainer & WithChildren> = ({ children, title }) => {
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const {data} = useDataUserQuery(token);
+    const { data } = useDataUserQuery(token);
 
-    return(
+    return (
         <div className={css.containerAdminFunction}>
-            <AccountPageHeader page="adminPage" name={`${data?.first_name} ${data?.last_name}`}/>
+            <AccountPageHeader page="adminPage" title={title} name={`${data?.first_name} ${data?.last_name}`} />
             {children}
         </div>
     );

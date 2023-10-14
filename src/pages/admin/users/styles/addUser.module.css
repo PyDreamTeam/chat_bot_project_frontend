@@ -1,0 +1,11 @@
+.links {
+    display: flex;
+    align-items: center;
+    margin-top: -23px;
+}
+.link {
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #909090;
+}

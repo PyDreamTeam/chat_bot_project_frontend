@@ -2,7 +2,7 @@ import { FC, ChangeEvent } from "react";
 import css from "./checkbox.module.css";
 
 interface PropsCheckbox {
-    onClick: () => void;
+    onClick?: () => void;
     checked?: boolean;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;

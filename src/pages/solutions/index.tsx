@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Title from "@/src/components/shared/text/Title";
@@ -22,12 +22,9 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 const Solutions = () => {
     const { isShown, toggle } = useModal();
     const router = useRouter();
-    const Click = () => {
-        //rename
+    const onClick = () => {
         router.push("/solutions-filter");
     };
-
-    // const { data: combinedData, isLoading, isFetching } = useGetListSolutionsQuery({});
 
     const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetListSolutionsQuery, {});
 
@@ -88,18 +85,18 @@ const Solutions = () => {
                                 </Text>
                             </div>
 
-                            <Button active={true} width={250} type="button" onClick={Click}>
+                            <Button active={true} width={250} type="button" onClick={onClick}>
                                 Подобрать решение
                             </Button>
-                            <Modal isShown={isShown} hide={toggle}>
-                                <SelectionRequest close={toggle} />
-                            </Modal>
                         </div>
                     </div>
                     <ButtonOrder />
                     <ButtonScrollToUp />
                 </div>
             </div>
+            <Modal isShown={isShown} hide={toggle}>
+                <SelectionRequest close={toggle} />
+            </Modal>
             <Footer />
         </>
     );

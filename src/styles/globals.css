@@ -55,6 +55,10 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
+    list-style: none;
+}
+button {
+    cursor: pointer;
 }
 body {
     margin: 0;

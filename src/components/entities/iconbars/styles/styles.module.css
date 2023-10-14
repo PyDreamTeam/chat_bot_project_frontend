@@ -6,6 +6,7 @@
     gap: 24px;
 }
 .socialsButton {
+    width: 74px;
     background: transparent;
     border: none;
     cursor: pointer;

@@ -8,7 +8,7 @@ import Footer from "../features/HomePage/Footer/Footer";
 
 const adminNavigation = [
     {title: "Главная страница", href: "/admin", icon: "/admin/icon_home.svg"},
-    {title: "Администрация и модерация", href: "/admin/users", icon: "/admin/icon_people.svg"},
+    {title: "Администрация и модерация", href: "/admin/users/all", icon: "/admin/icon_people.svg"},
     {title: "Платформы", href: "/admin/platforms", icon: "/admin/icon_platform.svg"},
     {title: "Решения", href: "/admin/solutions", icon: "/admin/icon_solution.svg"},
     {title: "Настройки", href: "/admin/settings", icon: "/admin/icon_settings.svg"},

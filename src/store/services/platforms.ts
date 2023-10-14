@@ -1,6 +1,8 @@
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const boundary = "----WebKitFormBoundaryexample";
+
 export const platforms = createApi({
     reducerPath: "platforms",
     baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
@@ -32,6 +34,12 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getPlatformForArchive: builder.mutation<PropsPlatformCard, number>({
+            query: (id) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "GET",
+            }),
+        }),
         getListPlatforms: builder.query({
             query: () => ({
                 url: "/api/platform/platforms/",
@@ -48,6 +56,49 @@ export const platforms = createApi({
                 body: platform,
             }),
         }),
+        changePlatform: builder.mutation({
+            query: ({id, token, platform}) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: platform
+            })
+        }),
+        platformPublic: builder.mutation({
+            query: ({id, token, platform }) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {title: platform.title,
+                    status: "public"
+                }
+            })
+        }),
+        platformArchive: builder.mutation({
+            query: ({id, token, data }) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {title: data.title,
+                    status: "archive"
+                }
+            })
+        }),
+        deletePlatform: builder.mutation({
+            query: ({id, token}) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                }
+            })
+        })
     }),
 });
 
@@ -55,6 +106,11 @@ export const {
     useGetPlatformsFiltersQuery,
     useGetPlatformsQuery,
     useGetPlatformQuery,
+    useGetPlatformForArchiveMutation,
     useAddPlatformMutation,
     useGetListPlatformsQuery,
+    useDeletePlatformMutation,
+    useChangePlatformMutation,
+    usePlatformArchiveMutation,
+    usePlatformPublicMutation,
 } = platforms;

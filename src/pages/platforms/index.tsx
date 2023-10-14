@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Title from "@/src/components/shared/text/Title";
@@ -19,17 +19,20 @@ import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollTo
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { useRouter } from "next/router";
 import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
+import Cookies from "js-cookie";
+import PhoneSavedPopup from "@/src/components/shared/popups/PhoneSavedPopup";
 
 const Platforms = () => {
     const { isShown, toggle } = useModal();
     const router = useRouter();
+
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
-
-    const Click = () => {
+    const onClick = () => {
         router.push("/platforms-filter");
     };
+
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
 
     const handleScroll = () => {
@@ -37,7 +40,7 @@ const Platforms = () => {
     };
 
     return (
-        <>
+        <div>
             <Header type="other" />
             <div className={styles.wrapper}>
                 <div className={styles.container}>
@@ -106,20 +109,20 @@ const Platforms = () => {
                                     Воспользуйтесь одним из наших шаблонов, разработанных под конкретную бизнес-задачу
                                 </Text>
                             </div>
-                            <Button active={true} width={250} type="button" onClick={Click}>
+                            <Button active={true} width={250} type="button" onClick={onClick}>
                                 Подобрать платформу
                             </Button>
-                            <Modal isShown={isShown} hide={toggle}>
-                                <SelectionRequest close={toggle} />
-                            </Modal>
                         </div>
                     </div>
                     <ButtonOrder />
                     <ButtonScrollToUp />
                 </div>
             </div>
+            <Modal isShown={isShown} hide={toggle}>
+                <SelectionRequest close={toggle} />
+            </Modal>
             <Footer />
-        </>
+        </div>
     );
 };
 
