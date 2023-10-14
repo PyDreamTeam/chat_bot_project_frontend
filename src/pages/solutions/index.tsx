@@ -39,10 +39,10 @@ const Solutions = () => {
                 <div className={styles.container}>
                     <div className={styles.topWrap}>
                         <Text type="reg14" color="telegray">
-                            <Link href={"/home"} className={styles.link}>
+                            <Link href={"/home"} className={styles.path}>
                                 Главная
                             </Link>
-                            / <span className={styles.link}>Посмотреть все</span>
+                            / <span className={styles.path}>Посмотреть все</span>
                         </Text>
                         <div className={styles.title}>
                             <Title type="h3" color="dark">

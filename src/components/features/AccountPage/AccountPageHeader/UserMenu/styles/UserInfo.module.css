@@ -1,7 +1,7 @@
 .userInfoWrapper {
     max-width: 500px;
     padding: 10px 20px;
-    background: #ffffff;
+    background: var(--back-color);
     box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
     border-radius: 20px;
     display: flex;
@@ -12,7 +12,7 @@
     position: relative;
 }
 .headerArrowButton {
-    color: black;
+    color: var(--text-color-2);
 }
 .headerArrowButtonOpen {
     transform: rotate(180deg);
@@ -21,7 +21,7 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: #e2ecff;
+    background: var(--accent-color-3);
     display: flex;
     justify-content: center;
     text-align: center;
