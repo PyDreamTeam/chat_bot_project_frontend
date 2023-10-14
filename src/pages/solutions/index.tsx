@@ -33,10 +33,10 @@ const Solutions = () => {
                 <div className={styles.container}>
                     <div className={styles.topWrap}>
                         <Text type="reg14" color="telegray">
-                            <Link href={"/home"} className={styles.link}>
+                            <Link href={"/home"} className={styles.path}>
                                 Главная
                             </Link>
-                            / <span className={styles.link}>Посмотреть все</span>
+                            / <span className={styles.path}>Посмотреть все</span>
                         </Text>
                         <div className={styles.title}>
                             <Title type="h3" color="dark">
@@ -78,9 +78,10 @@ const Solutions = () => {
                                     Воспользуйтесь одним из наших шаблонов, разработанных под конкретную бизнес-задачу
                                 </Text>
                             </div>
-
-                            <Button active={true} width={250} type="button" onClick={toggle}>
-                                Подобрать решение
+                            <Button active={true} width={250} type="button">
+                                <Link className={styles.link} href="/solutions-filter">
+                                    Подобрать решение
+                                </Link>
                             </Button>
                         </div>
                     </div>
