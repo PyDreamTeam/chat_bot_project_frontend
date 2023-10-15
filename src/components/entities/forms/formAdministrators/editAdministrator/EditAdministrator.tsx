@@ -58,7 +58,7 @@ const EditAdministrator = () => {
                     password: Yup.string()
                         .min(8, err.min)
                         .max(50, err.max)
-                        .matches(/^(?=.*[A-Za-z][!-~]+)[^А-Яа-я]*$/, err.string)
+                        .matches(/^(?!.*[^\P{Alphabetic}a-zA-Z])/u, err.string)
                         .matches(/^(?=.*[0-9])/, err.number)
                         .matches(/^(?=.*[@$!%*?&])/, err.special)
                         .required(err.req),

@@ -66,6 +66,12 @@ const UserInfo: FC<IUserInfoProps> = ({
             },
         },
         {
+            text: "Заказы",
+            onClick() {
+                router.replace(clientEndpoints.myAccount.orders.get);
+            },
+        },
+        {
             text: "Настройки аккаунта",
             onClick() {
                 router.replace(clientEndpoints.myAccount.profile.personalData);
@@ -92,7 +98,7 @@ const UserInfo: FC<IUserInfoProps> = ({
                     </Text>
                 </div>
             )}
-            <div>{headerArrow}</div>
+            <div className={isOpen ? styles.headerArrowButtonOpen : styles.headerArrowButton}>{headerArrow}</div>
             {isOpen && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
         </div>
     );
