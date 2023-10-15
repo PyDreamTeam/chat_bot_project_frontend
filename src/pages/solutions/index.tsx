@@ -5,7 +5,6 @@ import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import styles from "@/src/pages/solutions/solutions.module.css";
 import ListAllSolutions from "@/src/components/entities/lists/listAllSolutions/ListAllSolutions";
 import { Button } from "@/src/components/shared/buttons/Button";
@@ -21,10 +20,6 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 
 const Solutions = () => {
     const { isShown, toggle } = useModal();
-    const router = useRouter();
-    const onClick = () => {
-        router.push("/solutions-filter");
-    };
 
     const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetListSolutionsQuery, {});
 
@@ -84,9 +79,10 @@ const Solutions = () => {
                                     Воспользуйтесь одним из наших шаблонов, разработанных под конкретную бизнес-задачу
                                 </Text>
                             </div>
-
-                            <Button active={true} width={250} type="button" onClick={onClick}>
-                                Подобрать решение
+                            <Button active={true} width={250} type="button">
+                                <Link className={styles.link} href="/solutions-filter">
+                                    Подобрать решение
+                                </Link>
                             </Button>
                         </div>
                     </div>
