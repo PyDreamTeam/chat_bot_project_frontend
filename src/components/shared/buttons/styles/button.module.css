@@ -71,10 +71,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
-    margin: 0 0 10px auto;
-    bottom: 1%;
-    right: 3px;
+    position: fixed;
+    /* margin: 0 0 10px auto; */
+    bottom: 15px;
+    right: 8px;
     padding: 8px;
     width: 80px;
     z-index: 10;
@@ -91,13 +91,13 @@
 /* button to make an application */
 
 .buttonOrder {
-    position: sticky;
-    bottom: 6%;
-    right: 0px;
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
     z-index: 5;
     border-radius: 50%;
-    height: 210px;
-    width: 210px;
+    height: 139px;
+    width: 139px;
     border: none;
     background-color: #ffffff;
     display: flex;
@@ -105,7 +105,7 @@
     justify-content: center;
     cursor: pointer;
     transition: 0.3s;
-    margin: 0 0 10px auto;
+    /* margin: 0 0 10px auto; */
     overflow: hidden;
 }
 
@@ -118,8 +118,8 @@
 
 .circle {
     background-color: #4466f5;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border: none;
     border-radius: 50%;
     display: flex;
@@ -136,9 +136,6 @@
     flex-direction: column;
 }
 .text {
-    font-size: 18px;
-    color: white;
-    font-family: "Inter", sans-serif;
     font-weight: 700;
 }
 
@@ -164,10 +161,10 @@
     }
 }
 .circleText {
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     font-family: "Inter", sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     fill: #111;
     color: white;
 }

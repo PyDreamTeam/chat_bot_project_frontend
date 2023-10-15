@@ -20,6 +20,7 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 
 const Solutions = () => {
     const { isShown, toggle } = useModal();
+
     const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetListSolutionsQuery, {});
 
     const handleScroll = () => {
