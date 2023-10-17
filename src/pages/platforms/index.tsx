@@ -29,6 +29,7 @@ const Platforms = () => {
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
+
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
 
     const handleScroll = () => {

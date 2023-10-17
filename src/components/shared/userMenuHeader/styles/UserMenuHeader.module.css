@@ -14,7 +14,6 @@
     border-radius: 20px;
     z-index: 3;
 }
-
 .navigateButton {
     border: none;
     display: block;
@@ -25,23 +24,23 @@
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: var(--text-5);
     line-height: 150%;
-    color: #17181A;
+    color: var(--text-color-1);
     padding: 16px;
     transition: 0.5s;
     cursor: pointer;
-    border-bottom: 1px solid #E1E2E6;
+    border-bottom: 1px solid var(--sub-color);
     height: 52px;
 }
 .navigateButton:hover {
-    background-color: #E2ECFF;
+    background-color: var(--accent-color-3);
 }
 .navigateButton:nth-child(1):hover {
     border-radius: 20px 20px 0px 0px;
 }
 .navigateButton:last-child {
-    color: #F53527;
+    color: var(--status-color-error-color);
     border-bottom: none;
 }
 .navigateButton:last-child:hover {
