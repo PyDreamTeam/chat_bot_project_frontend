@@ -51,6 +51,9 @@
     color: #ffffff;
     cursor: pointer;
 }
+.active:hover {
+    opacity: 0.8;
+}
 
 .disabled {
     width: 100%;

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import css from "./dataForm.module.css";
-import { useChangeDataUserMutation } from "@/src/store/services/userAuth";
+import { useChangeDataUserMutation, useDataUserQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput";
@@ -13,13 +13,14 @@ import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 export const DataForm = () => {
     const router = useRouter();
-    const [changeDataUser, { isSuccess, isLoading }] = useChangeDataUserMutation();
+    const [changeDataUser, { isSuccess }] = useChangeDataUserMutation();
     const tk = JSON.parse(Cookies.get("loginUser") || "[]");
     const token = tk.access;
+    const { data } = useDataUserQuery(tk);
 
     useEffect(() => {
         if (isSuccess) {
-            router.reload();
+            // router.reload();
         }
     }, [isSuccess]);
 
@@ -27,9 +28,9 @@ export const DataForm = () => {
         <div>
             <Formik
                 initialValues={{
-                    first_name: "",
-                    last_name: "",
-                    phone_number: "",
+                    first_name: data?.first_name || "",
+                    last_name: data?.last_name || "",
+                    phone_number: data?.phone_number || "",
                 }}
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
@@ -62,17 +63,19 @@ export const DataForm = () => {
                         phone_number: values.phone_number || undefined,
                     };
 
-                    changeDataUser({ requestValues, token });
+                    changeDataUser({ requestValues, token }).then(router.reload);
                 }}
             >
-                {({ errors, touched, isValid }) => {
+                {({isSubmitting, errors, touched, isValid, setFieldTouched }) => {
+
                     return (
                         <Form>
                             <FirstNameInput errors={errors} touched={touched} />
                             <LastNameInput errors={errors} touched={touched} />
                             <PhoneInput errors={errors} touched={touched}/>
                             <div className={css.btn}>
-                                <ButtonLogin type="submit" disabled={isLoading} active={isValid}>
+                                <ButtonLogin 
+                                    type="submit" disabled={isSubmitting} active={isValid}>
                                     Сохранить изменения
                                 </ButtonLogin>
                             </div>
