@@ -15,12 +15,16 @@ export const clientEndpoints: ClientEndpoints = {
             changePassword: `${profile}/change-password`,
             payment: `${profile}/payment`,
         },
-        selection: `${myAccount}`,
-        solution: `${myAccount}/solution`,
-        platform: `${myAccount}/platform`,
+        selection: `${myAccount}/selection`,
+        solution: {
+            get: "/solutions",
+        },
+        platform: {
+            get: "/platforms",
+        },
         favorites: `${myAccount}/favorites`,
         faq: `${myAccount}/faq`,
-        searchHistory: `${myAccount}/search-history`,
+        history: `${myAccount}/history`,
         orders: {
             get: `${orders}`,
             order: `${orders}/order`,

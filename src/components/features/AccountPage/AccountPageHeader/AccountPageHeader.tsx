@@ -84,31 +84,24 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                         </div>
                     </div>
                 )}
-                {page === "templates" && (
-                    <Link href={"/my-account"}>
-                        <Title type={"h4"} color={"black"}>
-                            {"< Aimilogic"}
-                        </Title>
-                    </Link>
-                )}
                 {page === "favorites" && (
                     <Title type={"h4"} color={"black"}>
                         {"Избранное"}
                     </Title>
                 )}
+                {page === "history" && (
+                    <Title type={"h4"} color={"black"}>
+                        {"История просмотров"}
+                    </Title>
+                )}
+                {page === "selection" && (
+                    <Title type={"h4"} color={"black"}>
+                        {title ? title : `Добро пожаловать, ${name}!`}
+                    </Title>
+                )}
                 {page === "faq" && (
                     <Title type={"h4"} color={"black"}>
                         {"FAQ"}
-                    </Title>
-                )}
-                {page === "articles" && (
-                    <Title type={"h4"} color={"black"}>
-                        {"Статьи"}
-                    </Title>
-                )}
-                {page === "tariff" && (
-                    <Title type={"h4"} color={"black"}>
-                        {"Тарифы"}
                     </Title>
                 )}
                 {(page === "profile_changeData" || page === "profile_templates") && (

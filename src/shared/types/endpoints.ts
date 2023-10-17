@@ -8,11 +8,15 @@ export interface ClientEndpoints {
             payment: string;
         };
         selection: string;
-        solution: string;
-        platform: string;
+        solution: {
+            get: string;
+        };
+        platform: {
+            get: string;
+        };
         favorites: string;
         faq: string;
-        searchHistory: string;
+        history: string;
         orders: {
             get: string;
             order: string;

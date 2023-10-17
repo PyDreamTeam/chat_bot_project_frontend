@@ -10,13 +10,13 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const myAccountRoute = "/my-account";
-const selectionsRoute = "/my-account";
+const selectionsRoute = "/my-account/selection";
 const ordersRoute = "/my-account/orders";
 const favoritesRoute = "/my-account/favorites";
-const searchHistoryRoute = "/my-account/search-hisory";
+const historyRoute = "/my-account/history";
 const faqRoute = "/my-account/faq";
-const solutionRoute = "/my-account/solution";
-const platformRoute = "/my-account/platform";
+const solutionRoute = "/solutions";
+const platformRoute = "/platforms";
 
 const Sidebar: FC = () => {
     const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ const Sidebar: FC = () => {
                 return setActiveTabItem(5);
             case favoritesRoute:
                 return setActiveTabItem(6);
-            case searchHistoryRoute:
+            case historyRoute:
                 return setActiveTabItem(7);
             case faqRoute:
                 return setActiveTabItem(8);
