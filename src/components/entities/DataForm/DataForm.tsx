@@ -27,6 +27,7 @@ export const DataForm = () => {
     return (
         <div>
             <Formik
+                enableReinitialize={true}
                 initialValues={{
                     first_name: data?.first_name || "",
                     last_name: data?.last_name || "",
@@ -45,16 +46,15 @@ export const DataForm = () => {
                         .trim()
                         .matches(/^\D*$/, "Не должно содержать цифр")
                         .matches(/^[A-Za-zА-Яа-я_0-9]+$/, "Должна содержать только буквы"),
-                    phone_number: Yup.string()
-                        .test({
-                            name: "phone_number",
-                            message: "Некорректный номер телефона",
-                            test: (value) => {
-                                if (value !== undefined) {
-                                    return isPossiblePhoneNumber(value);
-                                }
-                            },
-                        })
+                    phone_number: Yup.string().test({
+                        name: "phone_number",
+                        message: "Некорректный номер телефона",
+                        test: (value) => {
+                            if (value !== undefined) {
+                                return isPossiblePhoneNumber(value);
+                            }
+                        },
+                    }),
                 })}
                 onSubmit={(values) => {
                     const requestValues = {
@@ -66,16 +66,14 @@ export const DataForm = () => {
                     changeDataUser({ requestValues, token }).then(router.reload);
                 }}
             >
-                {({isSubmitting, errors, touched, isValid, setFieldTouched }) => {
-
+                {({ isSubmitting, errors, touched, isValid, setFieldTouched }) => {
                     return (
                         <Form>
                             <FirstNameInput errors={errors} touched={touched} />
                             <LastNameInput errors={errors} touched={touched} />
-                            <PhoneInput errors={errors} touched={touched}/>
+                            <PhoneInput errors={errors} touched={touched} />
                             <div className={css.btn}>
-                                <ButtonLogin 
-                                    type="submit" disabled={isSubmitting} active={isValid}>
+                                <ButtonLogin type="submit" disabled={isSubmitting} active={isValid}>
                                     Сохранить изменения
                                 </ButtonLogin>
                             </div>
