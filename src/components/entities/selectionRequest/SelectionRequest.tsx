@@ -101,9 +101,14 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                 first_name: Yup.string()
                                     .required("Поле обязательное для заполнения. Введите имя")
                                     .min(2, "Содержит две или более букв")
-                                    .matches(/^\D*$/, "Не должно содержать цифр"),
+                                    .max(30, "Не более 30 букв")
+                                    .matches(
+                                        /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
+                                        "Может содержать только буквы и не более одного дефиса"
+                                    ),
                                 email: Yup.string()
                                     .email("Некорректный email")
+                                    .max(50, "Не более 50 символов")
                                     .required("Поле обязательное для заполнения. Введите email"),
                                 phone_number: Yup.string()
                                     .test({

@@ -19,11 +19,10 @@ export interface TabItemProps {
 
 
 const TabItem: FC<ITabItem & TabItemProps> = ({ id, title = "", icon, activeTabItem, href }) => {
+
     return (
         <Link href={href} className={`${styles.tabItem} 
         ${activeTabItem === id ? styles.active : null} 
-        ${id === 3 ? styles.tabHidden : styles.tabItem} 
-        ${id === 4 ? styles.tabHidden : styles.tabItem}
         `}>
             {icon}
             <Text type={"med20"} color={"black"}>
