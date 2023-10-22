@@ -18,7 +18,7 @@ interface IUserMenu {
 const UserRoleMenu: FC<IUserMenu> = ({ activeMenu, navButtons, activeBtn }) => {
     return (
         <div className={`${styles.menuWrapper} ${activeMenu ? styles.active : null}`}>
-            {navButtons.map((button) => (
+            {navButtons?.map((button) => (
                 button.text !== activeBtn &&
                 <button className={styles.navigateButton} key={uuid()} onClick={button.onClick}>
                     {button.text}
