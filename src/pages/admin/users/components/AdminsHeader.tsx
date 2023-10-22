@@ -12,14 +12,14 @@ const AdminsHeader = () => {
                 E-mail
             </Text>
         </div>
-        <div className={css.userRole}>
-            <Text type="sem16" color="dark">
-                Роль пользователя
-            </Text>
-        </div>
         <div className={css.userStatus}>
             <Text type="sem16" color="dark">
                 Статус
+            </Text>
+        </div>
+        <div className={css.userRole}>
+            <Text type="sem16" color="dark">
+                Роль пользователя
             </Text>
         </div>
     </div>);
