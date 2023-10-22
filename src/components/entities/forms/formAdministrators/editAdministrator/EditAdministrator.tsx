@@ -8,7 +8,7 @@ import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
 import Image from "next/image";
 import { RadioButtonGroup } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
-import { useEditAdminMutation } from "@/src/store/services/adminModer";
+import { useEditAdminMutation } from "@/src/store/services/changeRole";
 import { useRouter } from "next/router";
 import { userData } from "@/src/pages/admin/users/all/allUsers";
 

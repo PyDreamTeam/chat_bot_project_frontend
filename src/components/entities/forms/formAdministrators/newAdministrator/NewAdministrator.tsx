@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./newAdministrator.module.css";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useCreateAdminMutation } from "@/src/store/services/adminModer";
+import { useCreateAdminMutation } from "@/src/store/services/changeRole";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
