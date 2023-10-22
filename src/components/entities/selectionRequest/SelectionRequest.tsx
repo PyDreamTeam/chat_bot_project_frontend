@@ -24,6 +24,10 @@ import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { ButtonCancel } from "../../shared/buttons/ButtonCancel";
 import { useRouter } from "next/router";
+import Modal from "../../shared/modal/Modal";
+import { useModal } from "@/src/hooks/useModal";
+import PhoneSavedPopup from "../../shared/popups/PhoneSavedPopup";
+import OrderSavedPopup from "../../shared/popups/OrderSavedPopup";
 
 interface IPropsRequest {
     open?: () => void;
@@ -45,13 +49,15 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const router = useRouter();
 
+    const { isShown, toggle } = useModal();
+
     const startCloseTimer = () => {
         timerRef.current = setTimeout(() => {
             if (data?.phone_number) {
                 close?.();
             } else {
                 setOpenPhoneSaver(true);
-                setTimeout(() => close?.(), 4000);
+                setTimeout(() => close?.(), 400000);
             }
         }, 3000);
     };
@@ -95,9 +101,14 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                 first_name: Yup.string()
                                     .required("Поле обязательное для заполнения. Введите имя")
                                     .min(2, "Содержит две или более букв")
-                                    .matches(/^\D*$/, "Не должно содержать цифр"),
+                                    .max(30, "Не более 30 букв")
+                                    .matches(
+                                        /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
+                                        "Может содержать только буквы и не более одного дефиса"
+                                    ),
                                 email: Yup.string()
                                     .email("Некорректный email")
+                                    .max(50, "Не более 50 символов")
                                     .required("Поле обязательное для заполнения. Введите email"),
                                 phone_number: Yup.string()
                                     .test({
@@ -188,6 +199,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                 close?.();
                             } else {
                                 setOpenPhoneSaver(true);
+                                toggle();
                             }
                         }}
                         className={styles.imgClose}
@@ -210,6 +222,7 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                 </div>
             ) : (
                 <div className={styles.containerPhoneSaver}>
+                    <OrderSavedPopup activePopup={isShown} close={toggle} />
                     <Image
                         src="/sign/close.svg"
                         alt="close"

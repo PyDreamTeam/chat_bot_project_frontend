@@ -29,6 +29,7 @@ const Platforms = () => {
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
+
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
 
     const handleScroll = () => {
@@ -116,9 +117,6 @@ const Platforms = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
-            <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal>
             <Footer />
         </div>
     );

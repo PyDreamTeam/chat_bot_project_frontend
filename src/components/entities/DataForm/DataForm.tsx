@@ -2,33 +2,36 @@ import { useEffect } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import css from "./dataForm.module.css";
-import { useChangeDataUserMutation } from "@/src/store/services/userAuth";
+import { useChangeDataUserMutation, useDataUserQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { FirstNameInput } from "../../shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "../../shared/login/LastNameInput/LastNameInput";
 import { ButtonLogin } from "../../shared/buttons/ButtonLogin";
-import { PhoneNumberInput } from "../../shared/login/PhoneNumberInput/PhoneNumberInput";
+import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
+import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 export const DataForm = () => {
     const router = useRouter();
-    const [changeDataUser, { isSuccess, isLoading }] = useChangeDataUserMutation();
+    const [changeDataUser, { isSuccess }] = useChangeDataUserMutation();
     const tk = JSON.parse(Cookies.get("loginUser") || "[]");
     const token = tk.access;
+    const { data } = useDataUserQuery(tk);
 
     useEffect(() => {
         if (isSuccess) {
-            router.reload();
+            // router.reload();
         }
     }, [isSuccess]);
 
     return (
         <div>
             <Formik
+                enableReinitialize={true}
                 initialValues={{
-                    first_name: "",
-                    last_name: "",
-                    phone_number: "",
+                    first_name: data?.first_name || "",
+                    last_name: data?.last_name || "",
+                    phone_number: data?.phone_number || "",
                 }}
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
@@ -36,14 +39,28 @@ export const DataForm = () => {
                         .max(30, "Слишком длинное имя")
                         .trim()
                         .matches(/^\D*$/, "Не должно содержать цифр")
-                        .matches(/^[A-Za-zА-Яа-я_0-9]+$/, "Должно содержать только буквы"),
+                        .matches(
+                            /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
+                            "Может содержать только буквы и не более одного дефиса"
+                        ),
                     last_name: Yup.string()
                         .min(2, "Должно быть не менее двух букв")
                         .max(30, "Слишком длинная фамилия")
                         .trim()
                         .matches(/^\D*$/, "Не должно содержать цифр")
-                        .matches(/^[A-Za-zА-Яа-я_0-9]+$/, "Должна содержать только буквы"),
-                    phone_number: Yup.string().matches(/^\+375(29|25|33|44)\d{7}$/, "Неверный формат номера телефона"),
+                        .matches(
+                            /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
+                            "Может содержать только буквы и не более одного дефиса"
+                        ),
+                    phone_number: Yup.string().test({
+                        name: "phone_number",
+                        message: "Некорректный номер телефона",
+                        test: (value) => {
+                            if (value !== undefined) {
+                                return isPossiblePhoneNumber(value);
+                            }
+                        },
+                    }),
                 })}
                 onSubmit={(values) => {
                     const requestValues = {
@@ -52,17 +69,17 @@ export const DataForm = () => {
                         phone_number: values.phone_number || undefined,
                     };
 
-                    changeDataUser({ requestValues, token });
+                    changeDataUser({ requestValues, token }).then(router.reload);
                 }}
             >
-                {({ errors, touched, isValid }) => {
+                {({ isSubmitting, errors, touched, isValid, setFieldTouched }) => {
                     return (
                         <Form>
                             <FirstNameInput errors={errors} touched={touched} />
                             <LastNameInput errors={errors} touched={touched} />
-                            <PhoneNumberInput errors={errors} touched={touched} />
+                            <PhoneInput errors={errors} touched={touched} />
                             <div className={css.btn}>
-                                <ButtonLogin type="submit" disabled={isLoading} active={isValid}>
+                                <ButtonLogin type="submit" disabled={isSubmitting} active={isValid}>
                                     Сохранить изменения
                                 </ButtonLogin>
                             </div>

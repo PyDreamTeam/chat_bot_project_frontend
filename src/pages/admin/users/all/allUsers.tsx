@@ -9,6 +9,7 @@ import NoUsers from "../components/NoUsers";
 import { Route } from "react-router-dom";
 import { useRouter } from "next/router";
 import { Roles } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
+import ChangeUserRole from "../components/changeUserRole";
 
 export const userData = [
     { first_name: "Кирилл", last_name: "a", email: "wneoifnwe@gmail.com", password: "Aa12345678@", role: "AD", status: true, id: 12 },
@@ -17,31 +18,36 @@ export const userData = [
     { first_name: "Алена", last_name: "d", email: "weytmnrgwe@gmail.com", password: "Aa12345678@", role: "AD", status: false, id: 15 },
 ];
 const AllUsers = () => {
+
     const [key, setKey] = useState(0);
-    const route = useRouter();
+    // const route = useRouter();
 
     return (
         <div className={css.users}>
             <AdminsHeader />
             <div className={css.users} >
                 {userData.length !== 0 ? userData.map((person) => (
-                    <div className={css.user} key={person.id}>
+                    <div className={`${css.user} ${!person.status && css.locked}`} key={person.id}>
                         <div className={css.userName}>{person.first_name} {person.last_name}</div>
                         <div className={css.userEmail}>{person.email}</div>
-                        <div className={css.userRole}>{person.role === "AD" ? Roles.AD : Roles.MN}</div>
                         <div className={css.switch}>
-                            <label >
+                            <label >{person.status ? "Активен" : "Заблокирован"}
                                 <input key={key} type="checkbox" checked={person.status}
                                     onClick={() => {
                                         setKey((k) => k + 1);
                                         person.status = !person.status;
                                     }} />
                                 <span className={css.slider}></span>
-                                {person.status ? "Активен" : "Заблокирован"}
-                            </label>
 
+                            </label>
                         </div>
-                        <div className={css.edit} onClick={() => { route.push(`/admin/users/edit?id=${person.id}`); }}>
+                        {/* <div className={css.userRole}>{person.role === "AD" ? Roles.AD : Roles.MN}</div> */}
+                        <ChangeUserRole
+                            role={person.role === "AD" ? Roles.AD : Roles.MN}
+                            id={person.id}
+                            disabled={!person.status}
+                        />
+                        {/* <div className={css.edit} onClick={() => { route.push(`/admin/users/edit?id=${person.id}`); }}>
 
                             <Image
                                 src="/admin/icon_edit.svg"
@@ -50,7 +56,7 @@ const AllUsers = () => {
                                 height={18}
                             />
 
-                        </div>
+                        </div> */}
                     </div>
                 )) :
                     <NoUsers />
