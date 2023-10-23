@@ -55,9 +55,11 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
         timerRef.current = setTimeout(() => {
             if (data?.phone_number) {
                 close?.();
-            } else {
+            } else if (data) {
                 setOpenPhoneSaver(true);
-                setTimeout(() => close?.(), 400000);
+                setTimeout(() => close?.(), 5000);
+            } else {
+                close?.();
             }
         }, 3000);
     };
