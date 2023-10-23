@@ -53,17 +53,25 @@ const TemplateSignUp = () => {
                             get_email_notifications: false,
                         }}
                         validationSchema={Yup.object().shape({
-                            first_name: Yup.string().trim()
+                            first_name: Yup.string()
+                                .trim()
                                 .required("Введите имя")
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(/^\D*$/, "Не должно содержать цифр"),
-                            last_name: Yup.string().trim()
+                                .matches(
+                                    /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
+                                    "Может содержать только буквы и не более одного дефиса"
+                                ),
+                            last_name: Yup.string()
+                                .trim()
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(/^\D*$/, "Не должно содержать цифр"),
+                                .matches(
+                                    /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
+                                    "Может содержать только буквы и не более одного дефиса"
+                                ),
                             email: Yup.string()
-                                .email("Неккоректный email")
+                                .email("Некорректный email")
                                 .max(50, "Не более 50 символов")
                                 .required("Введите email"),
                             password: Yup.string()
@@ -72,7 +80,7 @@ const TemplateSignUp = () => {
                                 .matches(/^(?!.*[^\P{Alphabetic}a-zA-Z])/u, err.string)
                                 .matches(/^(?=.*[0-9])/, err.number)
                                 .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
-                                .required(err.req),     
+                                .required(err.req),
                             re_password: Yup.string()
                                 .required("Подтвердите пароль")
                                 .oneOf([Yup.ref("password")], "Пароли не совпадают"),
