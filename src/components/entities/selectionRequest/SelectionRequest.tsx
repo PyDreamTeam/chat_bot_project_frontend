@@ -24,10 +24,9 @@ import { PhoneInput } from "../../shared/login/PhoneNumberInput/PnoneInput";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { ButtonCancel } from "../../shared/buttons/ButtonCancel";
 import { useRouter } from "next/router";
-import Modal from "../../shared/modal/Modal";
 import { useModal } from "@/src/hooks/useModal";
-import PhoneSavedPopup from "../../shared/popups/PhoneSavedPopup";
 import OrderSavedPopup from "../../shared/popups/OrderSavedPopup";
+import { EmailEngRegExp } from "@/src/shared/contsants/regExps";
 
 interface IPropsRequest {
     open?: () => void;
@@ -109,7 +108,8 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                         "Может содержать только буквы и не более одного дефиса"
                                     ),
                                 email: Yup.string()
-                                    .email("Некорректный email")
+                                    // .email("Некорректный email")
+                                    .matches(EmailEngRegExp, "Некорректный email")
                                     .max(50, "Не более 50 символов")
                                     .required("Поле обязательное для заполнения. Введите email"),
                                 phone_number: Yup.string()
