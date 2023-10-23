@@ -6,7 +6,7 @@ import {
     PasswordRegExpMatchLowercaseAndUppercase,
     PasswordRegExpMatchNumber,
     PasswordRegExpMatchSpecialCharacter,
-} from "../shared/contsants/regExps";
+} from "../shared/constants/regExps";
 
 export const initialValuesUpdate = {
     repeatPassword: "",

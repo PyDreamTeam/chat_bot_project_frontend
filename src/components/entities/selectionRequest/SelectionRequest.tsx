@@ -26,7 +26,7 @@ import { ButtonCancel } from "../../shared/buttons/ButtonCancel";
 import { useRouter } from "next/router";
 import { useModal } from "@/src/hooks/useModal";
 import OrderSavedPopup from "../../shared/popups/OrderSavedPopup";
-import { EmailEngRegExp } from "@/src/shared/contsants/regExps";
+import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
 
 interface IPropsRequest {
     open?: () => void;
@@ -103,12 +103,8 @@ const SelectionRequest: FC<IPropsRequest> = ({ close, open, dataComment, forceUp
                                     .required("Поле обязательное для заполнения. Введите имя")
                                     .min(2, "Содержит две или более букв")
                                     .max(30, "Не более 30 букв")
-                                    .matches(
-                                        /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
-                                        "Может содержать только буквы и не более одного дефиса"
-                                    ),
+                                    .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
                                 email: Yup.string()
-                                    // .email("Некорректный email")
                                     .matches(EmailEngRegExp, "Некорректный email")
                                     .max(50, "Не более 50 символов")
                                     .required("Поле обязательное для заполнения. Введите email"),
