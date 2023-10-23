@@ -10,6 +10,7 @@ import { useLoginUserMutation } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { PasswordInput } from "@/src/components/shared/login/PasswordInput/PasswordInput";
+import { EmailEngRegExp } from "@/src/shared/constants/regExps";
 
 const ComponentSignIn = () => {
     const route = useRouter();
@@ -30,7 +31,7 @@ const ComponentSignIn = () => {
                     password: "",
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email("Некорректный email").required("Введите e-mail"),
+                    email: Yup.string().matches(EmailEngRegExp, "Некорректный email").required("Введите e-mail"),
                     password: Yup.string().required("Введите пароль"),
                 })}
                 onSubmit={(values) => {

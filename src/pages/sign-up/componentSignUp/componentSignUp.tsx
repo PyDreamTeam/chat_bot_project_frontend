@@ -15,6 +15,7 @@ import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput
 import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/RePasswordInput";
 import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
 import Cookies from "js-cookie";
+import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
 
 const err = {
     min: "Содержит не менее 8 символов",
@@ -58,20 +59,14 @@ const TemplateSignUp = () => {
                                 .required("Введите имя")
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(
-                                    /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
-                                    "Может содержать только буквы и не более одного дефиса"
-                                ),
+                                .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
                             last_name: Yup.string()
                                 .trim()
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(
-                                    /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
-                                    "Может содержать только буквы и не более одного дефиса"
-                                ),
+                                .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
                             email: Yup.string()
-                                .email("Некорректный email")
+                                .matches(EmailEngRegExp, "Некорректный email")
                                 .max(50, "Не более 50 символов")
                                 .required("Введите email"),
                             password: Yup.string()
