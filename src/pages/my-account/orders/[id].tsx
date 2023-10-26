@@ -124,7 +124,7 @@ const page: FC<pageProps> = () => {
                                                 </Text>
                                             </Link>
                                             <Button
-                                                disabled={isSubmitting || !dirty}
+                                                disabled={isSubmitting || !dirty || !isValid}
                                                 active={isValid && dirty}
                                                 type={"submit"}
                                                 onClick={handleSubmit}
