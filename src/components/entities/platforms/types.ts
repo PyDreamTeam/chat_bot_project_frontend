@@ -58,6 +58,7 @@ export interface PropsPlatformCard {
     is_active?: boolean;
     created_at?: string;
     image: any;
+    forceUpdate?: () => void;
     link?: string;
     links_to_solution?: string[];
     type?: Card;

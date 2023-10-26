@@ -46,6 +46,15 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getFavoritePlatforms: builder.query({
+            query: (token) => ({
+                url: "/api/platform/platforms/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         addPlatform: builder.mutation({
             query: ({ platform, token }) => ({
                 url: "/api/platform/platforms/",
@@ -56,6 +65,16 @@ export const platforms = createApi({
                 body: platform,
             }),
         }),
+        addPlatformToFavorite: builder.mutation({
+            query: ({ token, id}) => ({
+                url: `/api/platform/platforms/${id}/favorite/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            })
+        }),
+        
         changePlatform: builder.mutation({
             query: ({id, token, platform}) => ({
                 url: `/api/platform/platforms/${id}/`,
@@ -113,4 +132,6 @@ export const {
     useChangePlatformMutation,
     usePlatformArchiveMutation,
     usePlatformPublicMutation,
+    useAddPlatformToFavoriteMutation,
+    useGetFavoritePlatformsQuery,
 } = platforms;

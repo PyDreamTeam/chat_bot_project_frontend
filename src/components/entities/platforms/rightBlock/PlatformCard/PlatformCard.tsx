@@ -4,6 +4,8 @@ import { PropsPlatformCard } from "../../types";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
+import { useAddPlatformToFavoriteMutation } from "@/src/store/services/platforms";
+import Cookies from "js-cookie";
 
 export const PlatformCard: FC<PropsPlatformCard> = ({
     id,
@@ -13,11 +15,16 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     tags = [],
     type,
     price,
+    forceUpdate,
     link,
 }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
+    const [addToFavorite] = useAddPlatformToFavoriteMutation();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
     const handleClickHeart = (e: MouseEvent) => {
+        addToFavorite({id, token}).then(forceUpdate);
         e.stopPropagation();
         if (imageHeart === "like") {
             setImageHeart("dislike");
