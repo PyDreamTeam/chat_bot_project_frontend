@@ -23,6 +23,7 @@ import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
+import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
 
 const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
@@ -146,27 +147,41 @@ const PlatformsFilters = () => {
                                 <Loader isLoading={tagsIsLoading} />
                             </div>
                         ) : (
-                            <ul>
-                                {searchFilter
-                                    ? searchData.search_results.group_results
-                                          .filter((item: any) => item.status === sort)
-                                          .map((item: any) => (
-                                              <li key={item.id}>
-                                                  <Text type="reg16" color="black">
-                                                      {item.title}
-                                                  </Text>
-                                              </li>
-                                          ))
-                                    : tagsData.results
-                                          .filter((item: any) => item.status === sort)
-                                          .map((item: any) => (
-                                              <li key={item.id}>
-                                                  <Text type="reg16" color="black">
-                                                      {item.group}
-                                                  </Text>
-                                              </li>
-                                          ))}
-                            </ul>
+                            <div>
+                                {searchFilter ? (
+                                    <div>
+                                        <ul>
+                                            {searchData.search_results.group_results
+                                                .filter((item: any) => item.status === sort)
+                                                .map((item: any) => (
+                                                    <li key={item.id}>
+                                                        <Text type="reg16" color="black">
+                                                            {item.title}
+                                                        </Text>
+                                                    </li>
+                                                ))}
+                                        </ul>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <Text type="reg18" color="telegray" className={css.text}>
+                                            ВСЕ ФИЛЬТРЫ
+                                        </Text>
+                                        <FiltersList tagsData={tagsData.results} sort={sort} />
+                                        {/* <ul>
+                                            {tagsData.results
+                                                .filter((item: any) => item.status === sort)
+                                                .map((item: any) => (
+                                                    <li key={item.id}>
+                                                        <Text type="reg16" color="black">
+                                                            {item.group}
+                                                        </Text>
+                                                    </li>
+                                                ))}
+                                        </ul> */}
+                                    </div>
+                                )}
+                            </div>
                         )}
                         <div className={css.loaderPlatforms}>
                             <Loader isLoading={searchIsFetching} />
