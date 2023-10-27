@@ -14,6 +14,9 @@ import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Platform } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platform/Platform";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { Button } from "@/src/components/shared/buttons/Button";
+import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
+import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 
 const sortPlatforms = [
     { title: "Опубликованные", value: "public" },
@@ -48,8 +51,12 @@ const PlatformsFilters = () => {
     };
 
     const router = useRouter();
-    const handleRouter = () => {
-        router.push("/admin/platforms/add-platform");
+    const handleAddGroup = () => {
+        console.log("add group filter");
+        // router.push("/admin/platforms/platforms-filters/add-filter");
+    };
+    const handleAddFilter = () => {
+        router.push("/admin/platforms/platforms-filters/add-filter");
     };
 
     return (
@@ -61,19 +68,25 @@ const PlatformsFilters = () => {
                             Главная
                         </Text>
                     </Link>
-                    <span className={css.link}>/Платформы</span>
-                    <span className={css.link}>/Работа с фильтрами платформ</span>
-                </div>
-
-                {/* <div className={css.workPlatform}>
-                    <Text type="med20" color="dark">
-                        Работа с платформами
-                    </Text>
-                    <button className={css.addPlatformBtn} onClick={handleRouter}>
-                        <Text type="reg16" color="white">
-                            + Создать платформу
+                    <Link href={"/admin/platforms"}>
+                        <Text type="reg16" color="telegray">
+                            /Платформы
                         </Text>
-                    </button>
+                    </Link>
+                    <span className={css.link}>/Фильтры</span>
+                </div>
+                <div className={css.workFilters}>
+                    <Text type="med20" color="dark">
+                        Управление фильтрами платформ
+                    </Text>
+                    <div className={css.buttonsBlock}>
+                        <ButtonSmallPrimary active={true} type={"button"} onClick={handleAddGroup}>
+                            Добавить группу фильтров
+                        </ButtonSmallPrimary>
+                        <ButtonSmallSecondary active={true} type={"button"} onClick={handleAddFilter}>
+                            Добавить фильтр
+                        </ButtonSmallSecondary>
+                    </div>
                 </div>
                 <div className={css.groupSearch}>
                     <Image
@@ -89,7 +102,7 @@ const PlatformsFilters = () => {
                         onChange={(e) => setSearchPlatform(e.target.value)}
                     />
                 </div>
-                {combinedData.length > 0 ? (
+                {/* {combinedData.length > 0 ? (
                     <div>
                         <ul className={css.sortListPlatform}>
                             {sortPlatforms.map(({ title, value }) => (
@@ -144,8 +157,8 @@ const PlatformsFilters = () => {
                             Создайте новую платформу
                         </Text>
                     </div>
-                )}
-                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
+                )} */}
+                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );
