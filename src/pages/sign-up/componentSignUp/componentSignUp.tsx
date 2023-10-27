@@ -16,6 +16,7 @@ import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/R
 import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
 import Cookies from "js-cookie";
 import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
+import { Loader } from "@/src/components/shared/Loader/Loader";
 
 const err = {
     min: "Содержит не менее 8 символов",
@@ -27,7 +28,7 @@ const err = {
 
 const TemplateSignUp = () => {
     const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
-    const [loginUser, { isSuccess: isSuccessLogin, data }] = useLoginUserMutation();
+    const [loginUser, { isSuccess: isSuccessLogin, data, isLoading: isLoadingLogin }] = useLoginUserMutation();
 
     const route = useRouter();
 
@@ -35,6 +36,14 @@ const TemplateSignUp = () => {
         <div className={css.container}>
             <AuthWrapper titleText={"Регистрация"}>
                 <div className={css.wrapper}>
+                    {isLoading && 
+                <div className={css.modal}>
+                    <Loader isLoading={isLoading}/>
+                </div>}
+                    {isLoadingLogin && 
+                <div className={css.modal}>
+                    <Loader isLoading={isLoadingLogin}/>
+                </div>}
                     <div className={css.account}>
                         <Text type="reg16" color="grey" className={css.centerText}>
                             Уже есть аккаунт?
