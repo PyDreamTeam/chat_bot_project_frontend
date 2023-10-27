@@ -117,9 +117,6 @@ const Platforms = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
-            <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal>
             <Footer />
         </div>
     );

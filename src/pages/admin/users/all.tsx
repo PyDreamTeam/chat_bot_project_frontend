@@ -5,9 +5,9 @@ import UsersAdmin from ".";
 
 const AllUsersPage = () => {
     return (
-            <UsersAdmin>
-                <AllUsers/>
-            </UsersAdmin>        
+        <UsersAdmin>
+            <AllUsers />
+        </UsersAdmin>
     );
 };
 

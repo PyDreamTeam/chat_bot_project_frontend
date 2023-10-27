@@ -7,7 +7,12 @@ import css from "./platforms-filters.module.css";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useGetListPlatformsQuery, useGetPlatformQuery, useGetPlatformsQuery } from "@/src/store/services/platforms";
+import {
+    useGetListPlatformsQuery,
+    useGetPlatformQuery,
+    useGetPlatformsFiltersQuery,
+    useGetPlatformsQuery,
+} from "@/src/store/services/platforms";
 import { PlatformsList } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/PlatformsList/PlatformsList";
 import { Platforms } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platforms/Platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
@@ -27,9 +32,12 @@ const sortPlatforms = [
 const PlatformsFilters = () => {
     const [searchPlatform, setSearchPlatform] = useState<string>("");
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {
+    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsFiltersQuery, {
         title: searchPlatform,
     });
+    // const { data, isLoading } = useGetPlatformsFiltersQuery(1);
+    // console.log(data?.results);
+
     const handleScroll = () => {
         readMore();
     };
@@ -37,15 +45,15 @@ const PlatformsFilters = () => {
     const [sort, setSort] = useState<string>("save");
     const handleChangeSortPlatform = (title: string) => {
         if (title === "Опубликованные") {
-            refresh();
+            // refresh();
             setSort("public");
         }
         if (title === "Созданные") {
-            refresh();
+            // refresh();
             setSort("save");
         }
         if (title === "Архив") {
-            refresh();
+            // refresh();
             setSort("archive");
         }
     };

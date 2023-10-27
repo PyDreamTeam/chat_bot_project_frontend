@@ -62,7 +62,7 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
 
                 <div className={css.work}>
                     <Text type="med20" color="dark">Управление пользователями</Text>
-                    <button className={css.addBtn}><a href="/admin/users/add"><Text type="reg16" color="white">+ Добавить пользователя</Text></a></button>
+                    {/* <button className={css.addBtn}><a href="/admin/users/add"><Text type="reg16" color="white">+ Добавить пользователя</Text></a></button> */}
                 </div>
                 <div className={css.groupSearch}>
                     <Image
