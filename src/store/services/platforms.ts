@@ -98,7 +98,16 @@ export const platforms = createApi({
                     Authorization: `JWT ${token.access}`,
                 }
             })
-        })
+        }),
+        searchPlatformsFilters: builder.query({
+            query: (arg: {
+                title?: string;
+            }) => ({
+                url: "/api/platform/filters-search/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
     }),
 });
 
@@ -113,4 +122,5 @@ export const {
     useChangePlatformMutation,
     usePlatformArchiveMutation,
     usePlatformPublicMutation,
+    useSearchPlatformsFiltersQuery,
 } = platforms;

@@ -17,13 +17,14 @@ import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
+import Title from "@/src/components/shared/text/Title";
 
 const AddPlatformFilter = () => {
     const router = useRouter();
 
     return (
         <WrapperAdminPage>
-            <ContainerAdminFunction>
+            <ContainerAdminFunction title="Добавить фильтр">
                 <div className={css.links}>
                     <Link href={"/admin"}>
                         <Text type="reg16" color="telegray">
@@ -41,6 +42,27 @@ const AddPlatformFilter = () => {
                         </Text>
                     </Link>
                     <span className={css.link}>/Добавить фильтр</span>
+                </div>
+                <Text type="reg24" color="dark">
+                    🔨 Страница находится в разработке! 🔧
+                </Text>
+                <div className={css.filterFormWrapper}>
+                    <div className={css.buttonsContainer}>
+                        <Link href={"/my-account/orders"} className={css.buttonCancel}>
+                            <Text type="reg18" color="grey">
+                                Отмена
+                            </Text>
+                        </Link>
+                        <Button
+                            // disabled={isSubmitting || !dirty || !isValid}
+                            // active={isValid && dirty}
+                            type={"submit"}
+                            // onClick={handleSubmit}
+                            width={257}
+                        >
+                            Создать
+                        </Button>
+                    </div>
                 </div>
             </ContainerAdminFunction>
         </WrapperAdminPage>

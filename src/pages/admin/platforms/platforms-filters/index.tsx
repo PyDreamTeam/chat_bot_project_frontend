@@ -12,6 +12,7 @@ import {
     useGetPlatformQuery,
     useGetPlatformsFiltersQuery,
     useGetPlatformsQuery,
+    useSearchPlatformsFiltersQuery,
 } from "@/src/store/services/platforms";
 import { PlatformsList } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/PlatformsList/PlatformsList";
 import { Platforms } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platforms/Platforms";
@@ -23,27 +24,38 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 
-const sortPlatforms = [
+const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
     { title: "Созданные", value: "save" },
     { title: "Архив", value: "archive" },
 ];
 
 const PlatformsFilters = () => {
-    const [searchPlatform, setSearchPlatform] = useState<string>("");
+    const [searchFilter, setSearchFilter] = useState<string>("");
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsFiltersQuery, {
-        title: searchPlatform,
-    });
-    // const { data, isLoading } = useGetPlatformsFiltersQuery(1);
-    // console.log(data?.results);
+    // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
+    //     useSearchPlatformsFiltersQuery,
+    //     {
+    //         title: searchFilter,
+    //     }
+    // );
 
-    const handleScroll = () => {
-        readMore();
-    };
+    const {
+        data: searchData,
+        isLoading: searchIsLoading,
+        isFetching: searchIsFetching,
+    } = useSearchPlatformsFiltersQuery({ title: searchFilter });
+    // console.log(data?.search_results?.group_results?.length);
+
+    const { data: tagsData, isLoading: tagsIsLoading, isFetching: tagsIsFetching } = useGetPlatformsFiltersQuery({});
+    console.log(tagsData?.results);
+
+    // const handleScroll = () => {
+    //     readMore();
+    // };
 
     const [sort, setSort] = useState<string>("save");
-    const handleChangeSortPlatform = (title: string) => {
+    const handleChangeSortFilters = (title: string) => {
         if (title === "Опубликованные") {
             // refresh();
             setSort("public");
@@ -61,7 +73,7 @@ const PlatformsFilters = () => {
     const router = useRouter();
     const handleAddGroup = () => {
         console.log("add group filter");
-        // router.push("/admin/platforms/platforms-filters/add-filter");
+        // TODO: add group filter function
     };
     const handleAddFilter = () => {
         router.push("/admin/platforms/platforms-filters/add-filter");
@@ -106,17 +118,17 @@ const PlatformsFilters = () => {
                     />
                     <InputSearch
                         placeholder="Поиск"
-                        value={searchPlatform}
-                        onChange={(e) => setSearchPlatform(e.target.value)}
+                        value={searchFilter}
+                        onChange={(e) => setSearchFilter(e.target.value)}
                     />
                 </div>
-                {/* {combinedData.length > 0 ? (
+                {tagsData?.results?.length > 0 ? (
                     <div>
-                        <ul className={css.sortListPlatform}>
-                            {sortPlatforms.map(({ title, value }) => (
+                        <ul className={css.sortList}>
+                            {sortFiltersArr.map(({ title, value }) => (
                                 <li
                                     key={title}
-                                    onClick={() => handleChangeSortPlatform(title)}
+                                    onClick={() => handleChangeSortFilters(title)}
                                     className={sort === value ? `${css.sortPlatformActive}` : `${css.sortPlatform}`}
                                 >
                                     <Text
@@ -129,44 +141,49 @@ const PlatformsFilters = () => {
                                 </li>
                             ))}
                         </ul>
-                        <PlatformsList />
-                        {isLoading ? (
+                        {tagsIsLoading ? (
                             <div className={css.loaderPlatforms}>
-                                <Loader isLoading={isLoading} />
+                                <Loader isLoading={tagsIsLoading} />
                             </div>
                         ) : (
                             <ul>
-                                {combinedData
-                                    .filter((item) => item.status === sort)
-                                    .map((item) => (
-                                        <li key={item.id}>
-                                            <Platform
-                                                title={item.title}
-                                                link={item.link}
-                                                tags={item.tags}
-                                                id={item.id}
-                                                sort={sort}
-                                            />
-                                        </li>
-                                    ))}
+                                {searchFilter
+                                    ? searchData.search_results.group_results
+                                          .filter((item: any) => item.status === sort)
+                                          .map((item: any) => (
+                                              <li key={item.id}>
+                                                  <Text type="reg16" color="black">
+                                                      {item.title}
+                                                  </Text>
+                                              </li>
+                                          ))
+                                    : tagsData.results
+                                          .filter((item: any) => item.status === sort)
+                                          .map((item: any) => (
+                                              <li key={item.id}>
+                                                  <Text type="reg16" color="black">
+                                                      {item.group}
+                                                  </Text>
+                                              </li>
+                                          ))}
                             </ul>
                         )}
                         <div className={css.loaderPlatforms}>
-                            <Loader isLoading={isFetching} />
+                            <Loader isLoading={searchIsFetching} />
                         </div>
                     </div>
                 ) : (
-                    <div className={css.addPlatformImg} onClick={handleRouter}>
+                    <div className={css.addPlatformImg}>
                         <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
                         <Text type="med18btn" color="dark">
-                            Платформ пока нет
+                            Фильтров пока нет
                         </Text>
                         <Text type="reg18" color="telegray" className={css.text}>
-                            Создайте новую платформу
+                            Создайте новую группу фильтров
                         </Text>
                     </div>
-                )} */}
-                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                )}
+                {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );
