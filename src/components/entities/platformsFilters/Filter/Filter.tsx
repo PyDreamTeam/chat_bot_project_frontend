@@ -1,35 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
 import uuid from "uuid-random";
 import { Loader } from "@/src/components/shared/Loader/Loader";
-import styles from "./FiltersGroup.module.css";
+import styles from "./Filter.module.css";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
-import Filter from "../Filter/Filter";
 
-interface PropsPlatformFilters {
+interface PropsFilter {
+    title?: string;
     id?: number;
-    status?: string;
-    group?: string;
-    filters?: {
-        filter: string;
-        id: number;
-        image: string;
-        count: number;
-        functionality: string;
-        integration: string;
-        multiple: boolean;
-        tags: {
-            id: number;
-            tag: string;
-        }[];
-    }[];
-}
-
-interface PropsFiltersGroup {
-    groupData: PropsPlatformFilters;
-    sort: string;
+    sort?: string;
 }
 
 const dropdownFilterPublic = [
@@ -45,7 +26,7 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
+const Filter: FC<PropsFilter> = ({ title, id, sort }) => {
     // const [orders, setOrders] = useState<PropsOrder[]>([]);
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
@@ -96,9 +77,9 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
 
     return (
         <div>
-            <div className={styles.groupItem}>
-                <Text type="sem16" color="black">
-                    {groupData.group}
+            <div className={styles.filterItem}>
+                <Text type="reg16" color="black">
+                    {title}
                 </Text>
                 <div
                     onMouseEnter={handleMouseEnter}
@@ -113,7 +94,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
                                 <li
                                     key={title}
                                     className={styles.function}
-                                    onClick={() => handleFunctionsPlatforms(value, groupData.id)}
+                                    onClick={() => handleFunctionsPlatforms(value, id)}
                                 >
                                     <Text
                                         type="reg14"
@@ -130,15 +111,8 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
                     )}
                 </div>
             </div>
-            <ul className={styles.groupFilters}>
-                {groupData.filters?.map((item) => (
-                    <li key={uuid()}>
-                        <Filter title={item.filter} id={item.id} sort={sort} />
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 };
 
-export default FiltersGroup;
+export default Filter;

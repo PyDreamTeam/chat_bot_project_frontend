@@ -42,7 +42,7 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
                             {/* <Text type="reg16" color="black">
                                 {item.group}
                             </Text> */}
-                            <FiltersGroup groupData={item} />
+                            <FiltersGroup groupData={item} sort={sort} />
                         </li>
                     ))}
             </ul>

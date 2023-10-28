@@ -28,6 +28,7 @@
 .groupSearch {
     position: relative;
     margin-top: 30px;
+    margin-bottom: 16px;
 }
 
 .search {
@@ -51,7 +52,8 @@
 }
 
 .sortList {
-    margin-top: 16px;
+    /* margin-top: 16px; */
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
 }

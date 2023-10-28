@@ -124,7 +124,7 @@ const PlatformsFilters = () => {
                     />
                 </div>
                 {tagsData?.results?.length > 0 ? (
-                    <div>
+                    <div className={css.filtersContainer}>
                         <ul className={css.sortList}>
                             {sortFiltersArr.map(({ title, value }) => (
                                 <li
@@ -164,21 +164,7 @@ const PlatformsFilters = () => {
                                     </div>
                                 ) : (
                                     <div>
-                                        <Text type="reg18" color="telegray" className={css.text}>
-                                            ВСЕ ФИЛЬТРЫ
-                                        </Text>
                                         <FiltersList tagsData={tagsData.results} sort={sort} />
-                                        {/* <ul>
-                                            {tagsData.results
-                                                .filter((item: any) => item.status === sort)
-                                                .map((item: any) => (
-                                                    <li key={item.id}>
-                                                        <Text type="reg16" color="black">
-                                                            {item.group}
-                                                        </Text>
-                                                    </li>
-                                                ))}
-                                        </ul> */}
                                     </div>
                                 )}
                             </div>
