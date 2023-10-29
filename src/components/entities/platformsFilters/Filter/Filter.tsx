@@ -6,11 +6,15 @@ import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
+import Modal from "@/src/components/shared/modal/Modal";
+import DeleteFilterPopup from "../DeleteFilterPopup/DeleteFilterPopup";
+import { useModal } from "@/src/hooks/useModal";
 
 interface PropsFilter {
     title?: string;
     id?: number;
     sort?: string;
+    onDelete: () => void;
 }
 
 const dropdownFilterPublic = [
@@ -26,8 +30,10 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Filter: FC<PropsFilter> = ({ title, id, sort }) => {
+const Filter: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
     // const [orders, setOrders] = useState<PropsOrder[]>([]);
+    const { isShown, toggle } = useModal();
+
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
 
@@ -55,6 +61,8 @@ const Filter: FC<PropsFilter> = ({ title, id, sort }) => {
 
     const handleFunctionsPlatforms = (value: string, id?: number) => {
         if (value === "delete") {
+            onDelete();
+            console.log("delete clicked");
             // setIsModalDelete(true);
         }
         if (value === "edit") {

@@ -152,17 +152,6 @@ const PlatformsFilters = () => {
                                 {searchFilter ? (
                                     <div>
                                         <SearchFiltersList searchData={searchData.search_results} sort={sort} />
-                                        {/* <ul>
-                                            {searchData.search_results.group_results
-                                                .filter((item: any) => item.status === sort)
-                                                .map((item: any) => (
-                                                    <li key={item.id}>
-                                                        <Text type="reg16" color="black">
-                                                            {item.title}
-                                                        </Text>
-                                                    </li>
-                                                ))}
-                                        </ul> */}
                                     </div>
                                 ) : (
                                     <div>

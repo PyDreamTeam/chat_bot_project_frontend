@@ -31,16 +31,17 @@ interface PropsPlatformFilters {
 interface PropsFiltersGroup {
     groupData: PropsPlatformFilters;
     sort: string;
+    onDelete: () => void;
 }
 
-const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
+const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, onDelete }) => {
     return (
         <div>
             <Group title={groupData.group} id={groupData.id} sort={sort} />
             <ul className={styles.groupFilters}>
                 {groupData.filters?.map((item) => (
                     <li key={uuid()}>
-                        <Filter title={item.filter} id={item.id} sort={sort} />
+                        <Filter title={item.filter} id={item.id} sort={sort} onDelete={onDelete} />
                     </li>
                 ))}
             </ul>

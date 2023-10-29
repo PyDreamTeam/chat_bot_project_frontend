@@ -27,7 +27,6 @@ const dropdownFilterSave = [
 ];
 
 const Group: FC<PropsFilter> = ({ title, id, sort }) => {
-    // const [orders, setOrders] = useState<PropsOrder[]>([]);
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
 
@@ -37,13 +36,11 @@ const Group: FC<PropsFilter> = ({ title, id, sort }) => {
             setStateIcon("workPlatformHover");
         }
     };
-
     const handleMouseLeave = () => {
         if (stateIcon === "workPlatformHover") {
             setStateIcon("workPlatform");
         }
     };
-
     const handleClickIcon = () => {
         if (stateIcon === "workPlatformHover" || stateIcon === "workPlatform") {
             setStateIcon("workPlatformActive");
@@ -71,9 +68,6 @@ const Group: FC<PropsFilter> = ({ title, id, sort }) => {
             router.push(`/admin/platforms/public-platform/${id}`);
         }
     };
-    // const { data: dataOrders, isLoading: isLoadingOrders } = useGetOrdersListQuery(token, {
-    //     refetchOnMountOrArgChange: true,
-    // });
 
     return (
         <div>
