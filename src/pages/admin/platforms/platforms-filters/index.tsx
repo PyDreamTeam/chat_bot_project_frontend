@@ -24,6 +24,7 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
+import SearchFiltersList from "@/src/components/entities/platformsFilters/SearchFiltersList/SearchFiltersList";
 
 const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
@@ -46,10 +47,10 @@ const PlatformsFilters = () => {
         isLoading: searchIsLoading,
         isFetching: searchIsFetching,
     } = useSearchPlatformsFiltersQuery({ title: searchFilter });
-    // console.log(data?.search_results?.group_results?.length);
+    console.log(searchData?.search_results);
 
     const { data: tagsData, isLoading: tagsIsLoading, isFetching: tagsIsFetching } = useGetPlatformsFiltersQuery({});
-    console.log(tagsData?.results);
+    // console.log(tagsData?.results);
 
     // const handleScroll = () => {
     //     readMore();
@@ -150,7 +151,8 @@ const PlatformsFilters = () => {
                             <div>
                                 {searchFilter ? (
                                     <div>
-                                        <ul>
+                                        <SearchFiltersList searchData={searchData.search_results} sort={sort} />
+                                        {/* <ul>
                                             {searchData.search_results.group_results
                                                 .filter((item: any) => item.status === sort)
                                                 .map((item: any) => (
@@ -160,7 +162,7 @@ const PlatformsFilters = () => {
                                                         </Text>
                                                     </li>
                                                 ))}
-                                        </ul>
+                                        </ul> */}
                                     </div>
                                 ) : (
                                     <div>

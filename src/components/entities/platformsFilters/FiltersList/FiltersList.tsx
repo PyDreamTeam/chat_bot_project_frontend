@@ -39,9 +39,6 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
                     .filter((item: any) => item.status === sort)
                     .map((item: any) => (
                         <li key={item.id}>
-                            {/* <Text type="reg16" color="black">
-                                {item.group}
-                            </Text> */}
                             <FiltersGroup groupData={item} sort={sort} />
                         </li>
                     ))}
