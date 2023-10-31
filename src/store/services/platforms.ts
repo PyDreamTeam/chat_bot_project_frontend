@@ -90,6 +90,18 @@ export const platforms = createApi({
                 }
             })
         }),
+        sendToCreated: builder.mutation({
+            query: ({id, token, data }) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {title: data.title,
+                    status: "save"
+                }
+            })
+        }),
         deletePlatform: builder.mutation({
             query: ({id, token}) => ({
                 url: `/api/platform/platforms/${id}/`,
@@ -113,4 +125,5 @@ export const {
     useChangePlatformMutation,
     usePlatformArchiveMutation,
     usePlatformPublicMutation,
+    useSendToCreatedMutation,
 } = platforms;
