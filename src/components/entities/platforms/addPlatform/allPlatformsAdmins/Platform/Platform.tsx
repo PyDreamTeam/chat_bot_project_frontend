@@ -35,7 +35,7 @@ const functionPlatformArchive = [
     {title: "Быстрый просмотр", value: "read"},
     {title: "Опубликовать", value: "public"},
     {title: "Отправить в созданные", value: "sendToCreated"},
-    {title: "Удалить", value: "delete"},
+    // {title: "Удалить", value: "delete"},
 ];
 
 export const Platform: FC<PropsPlatform> = ({title, link, tags=[], id, sort}) => {
