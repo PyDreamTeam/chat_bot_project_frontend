@@ -16,6 +16,7 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import Image from "next/image";
 import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
+import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
 
 interface pageProps {
     params: { id: string };
@@ -66,9 +67,11 @@ const page: FC<pageProps> = () => {
                                 first_name: Yup.string()
                                     .required("Поле обязательное для заполнения. Введите имя")
                                     .min(2, "Содержит две или более букв")
-                                    .matches(/^\D*$/, "Не должно содержать цифр"),
+                                    .max(30, "Не более 30 букв")
+                                    .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
                                 email: Yup.string()
-                                    .email("Некорректный email")
+                                    .matches(EmailEngRegExp, "Некорректный email")
+                                    .max(50, "Не более 50 символов")
                                     .required("Поле обязательное для заполнения. Введите email"),
                                 phone_number: Yup.string()
                                     .test({
@@ -121,7 +124,7 @@ const page: FC<pageProps> = () => {
                                                 </Text>
                                             </Link>
                                             <Button
-                                                disabled={isSubmitting || !dirty}
+                                                disabled={isSubmitting || !dirty || !isValid}
                                                 active={isValid && dirty}
                                                 type={"submit"}
                                                 onClick={handleSubmit}

@@ -10,8 +10,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
 const navElements = [
-    { href: "/home", text: "О сервисе" },
-    { href: "/home", text: "Статьи" },
+    { href: "/about", text: "О сервисе" },
+    { href: "/articles", text: "Статьи" },
     { href: "/solutions-filter", text: "Решения" },
     { href: "/platforms-filter", text: "Платформы" },
 ];

@@ -9,15 +9,18 @@ const FooterLeftBlock = () => {
     return (
         <div className={styles.footerLeftContainer}>
             <Logo variant={LogoVariantProps.footer} />
-            <Link href={"/"}>
+            <Link href={"mailto:info@townsend.pro"}>
                 <Text type={"reg16"} color={"white"} className={styles.footerInfo}>
                     info@townsend.pro
                 </Text>
             </Link>
             <div className={styles.footerLogoBlock}>
-                <Link href={"/"}>{WhatsAppLogo}</Link>
+                {/* <Link href={"/"}>{WhatsAppLogo}</Link>
                 <Link href={"/"}>{VkLogo}</Link>
-                <Link href={"/"}>{TelegramLogo}</Link>
+                <Link href={"/"}>{TelegramLogo}</Link> */}
+                {WhatsAppLogo}
+                {VkLogo}
+                {TelegramLogo}
             </div>
             <div className={styles.footerCopyright}>
                 <Text type={"reg24"} color={"white"} className={styles.footerInfo}>

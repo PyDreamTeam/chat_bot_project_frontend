@@ -1,4 +1,4 @@
-import { NameRegExp, PhoneRegExp } from "../shared/contsants/regExps";
+import { NameRegExp, PhoneRegExp } from "../shared/constants/regExps";
 import { IInputField } from "../components/entities/forms/FormUniversal";
 import * as Yup from "yup";
 

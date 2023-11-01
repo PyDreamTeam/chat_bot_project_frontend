@@ -15,6 +15,8 @@ import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput
 import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/RePasswordInput";
 import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
 import Cookies from "js-cookie";
+import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
+import { Loader } from "@/src/components/shared/Loader/Loader";
 
 const err = {
     min: "Содержит не менее 8 символов",
@@ -26,7 +28,7 @@ const err = {
 
 const TemplateSignUp = () => {
     const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
-    const [loginUser, { isSuccess: isSuccessLogin, data }] = useLoginUserMutation();
+    const [loginUser, { isSuccess: isSuccessLogin, data, isLoading: isLoadingLogin }] = useLoginUserMutation();
 
     const route = useRouter();
 
@@ -34,6 +36,14 @@ const TemplateSignUp = () => {
         <div className={css.container}>
             <AuthWrapper titleText={"Регистрация"}>
                 <div className={css.wrapper}>
+                    {isLoading && 
+                <div className={css.modal}>
+                    <Loader isLoading={isLoading}/>
+                </div>}
+                    {isLoadingLogin && 
+                <div className={css.modal}>
+                    <Loader isLoading={isLoadingLogin}/>
+                </div>}
                     <div className={css.account}>
                         <Text type="reg16" color="grey" className={css.centerText}>
                             Уже есть аккаунт?
@@ -53,17 +63,19 @@ const TemplateSignUp = () => {
                             get_email_notifications: false,
                         }}
                         validationSchema={Yup.object().shape({
-                            first_name: Yup.string().trim()
+                            first_name: Yup.string()
+                                .trim()
                                 .required("Введите имя")
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(/^\D*$/, "Не должно содержать цифр"),
-                            last_name: Yup.string().trim()
+                                .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
+                            last_name: Yup.string()
+                                .trim()
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(/^\D*$/, "Не должно содержать цифр"),
+                                .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
                             email: Yup.string()
-                                .email("Неккоректный email")
+                                .matches(EmailEngRegExp, "Некорректный email")
                                 .max(50, "Не более 50 символов")
                                 .required("Введите email"),
                             password: Yup.string()
@@ -72,7 +84,7 @@ const TemplateSignUp = () => {
                                 .matches(/^(?!.*[^\P{Alphabetic}a-zA-Z])/u, err.string)
                                 .matches(/^(?=.*[0-9])/, err.number)
                                 .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
-                                .required(err.req),     
+                                .required(err.req),
                             re_password: Yup.string()
                                 .required("Подтвердите пароль")
                                 .oneOf([Yup.ref("password")], "Пароли не совпадают"),

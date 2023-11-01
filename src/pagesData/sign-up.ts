@@ -1,4 +1,4 @@
-import { EmailEngRegExp, NameRegExp, PasswordRegExp } from "../shared/contsants/regExps";
+import { EmailEngRegExp, NameRegExp, PasswordRegExp } from "../shared/constants/regExps";
 import { IInputField } from "../components/entities/forms/FormUniversal";
 import * as Yup from "yup";
 

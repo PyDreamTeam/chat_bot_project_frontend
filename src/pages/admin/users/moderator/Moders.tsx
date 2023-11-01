@@ -12,11 +12,11 @@ const Moders = () => {
         <div className={css.users}>
             <AdminsHeader />
             {userData.length !== 0 ? userData.map((person) => (
-                person.role === "Модератор" &&
+                person.role === "MN" &&
                 <div className={css.user} key={person.id}>
                     <div className={css.userName}>{person.first_name} {person.last_name}</div>
                     <div className={css.userEmail}>{person.email}</div>
-                    <div className={css.userRole}>{person.role}</div>
+
                     <div className={css.switch}>
                         <label>
                             <input type="checkbox" checked={person.status} key={key}
@@ -28,16 +28,7 @@ const Moders = () => {
                             {person.status ? "Активен" : "Заблокирован"}
                         </label>
                     </div>
-                    <div className={css.edit}>
-                        <a href={"/admin/users/edit"}>
-                            <Image
-                                src="/admin/icon_edit.svg"
-                                alt="edit"
-                                width={24}
-                                height={24}
-                            />
-                        </a>
-                    </div>
+                    <div className={css.userRole}>{person.role}</div>
                 </div>
             )) :
                 <NoUsers />}
