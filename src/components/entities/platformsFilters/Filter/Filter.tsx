@@ -9,12 +9,14 @@ import Text from "@/src/components/shared/text/Text";
 import Modal from "@/src/components/shared/modal/Modal";
 import DeleteFilterPopup from "../DeleteFilterPopup/DeleteFilterPopup";
 import { useModal } from "@/src/hooks/useModal";
+import { usePlatformFilterPublicMutation, usePlatformFilterSaveMutation } from "@/src/store/services/platforms";
+import { restoreFromArchive } from "../img/SvgConfig";
 
 interface PropsFilter {
-    title?: string;
+    title: string;
     id?: number;
     sort?: string;
-    onDelete: () => void;
+    onDelete: (id: number | undefined, title: string) => void;
 }
 
 const dropdownFilterPublic = [
@@ -31,8 +33,9 @@ const dropdownFilterSave = [
 ];
 
 const Filter: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
-    // const [orders, setOrders] = useState<PropsOrder[]>([]);
-    const { isShown, toggle } = useModal();
+    const [publicFilter, { isSuccess, error, isLoading }] = usePlatformFilterPublicMutation();
+    const [moveToSaveFilter, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
+        usePlatformFilterSaveMutation();
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
@@ -61,27 +64,19 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
 
     const handleFunctionsPlatforms = (value: string, id?: number) => {
         if (value === "delete") {
-            onDelete();
-            console.log("delete clicked");
+            onDelete(id, title);
             // setIsModalDelete(true);
         }
         if (value === "edit") {
-            router.push(`/admin/platforms/change-platform/${id}`);
-        }
-        if (value === "read") {
-            router.push(`/platforms/platform/${id}`);
+            router.push(`/admin/platforms/platforms-filters/edit-filter/${id}`);
         }
         if (value === "deletePublic") {
-            // setIsDeletePlatformFromPublic(true);
-            // getPlatformForArchive(Number(id));
+            moveToSaveFilter({ id, token });
         }
         if (value === "public") {
-            router.push(`/admin/platforms/public-platform/${id}`);
+            publicFilter({ id, token });
         }
     };
-    // const { data: dataOrders, isLoading: isLoadingOrders } = useGetOrdersListQuery(token, {
-    //     refetchOnMountOrArgChange: true,
-    // });
 
     return (
         <div>
@@ -89,35 +84,50 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
                 <Text type="reg16" color="black">
                     {title}
                 </Text>
-                <div
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={handleClickIcon}
-                    className={styles.workPlatform}
-                >
-                    <Image src={`/platforms/${stateIcon}.svg`} alt="icon" width={24} height={24} />
-                    {stateIcon === "workPlatformActive" && (
-                        <ul className={styles.listFunctions}>
-                            {(sort === "save" ? dropdownFilterSave : dropdownFilterPublic).map(({ title, value }) => (
-                                <li
-                                    key={title}
-                                    className={styles.function}
-                                    onClick={() => handleFunctionsPlatforms(value, id)}
-                                >
-                                    <Text
-                                        type="reg14"
-                                        color="dark"
-                                        className={`${styles.titleText} ${
-                                            value === "delete" && styles.titleTextDelete
-                                        }`}
-                                    >
-                                        {title}
-                                    </Text>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
+                {sort === "archive" ? (
+                    <div
+                        className={styles.orderIconDelete}
+                        data-tooltip="Восстановить"
+                        onClick={() => {
+                            console.log("restore");
+                            moveToSaveFilter({ id, token }).then(router.reload);
+                        }}
+                    >
+                        {restoreFromArchive}
+                    </div>
+                ) : (
+                    <div
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={handleClickIcon}
+                        className={styles.workPlatform}
+                    >
+                        <Image src={`/platforms/${stateIcon}.svg`} alt="icon" width={24} height={24} />
+                        {stateIcon === "workPlatformActive" && (
+                            <ul className={styles.listFunctions}>
+                                {(sort === "save" ? dropdownFilterSave : dropdownFilterPublic).map(
+                                    ({ title, value }) => (
+                                        <li
+                                            key={title}
+                                            className={styles.function}
+                                            onClick={() => handleFunctionsPlatforms(value, id)}
+                                        >
+                                            <Text
+                                                type="reg14"
+                                                color="dark"
+                                                className={`${styles.titleText} ${
+                                                    value === "delete" && styles.titleTextDelete
+                                                }`}
+                                            >
+                                                {title}
+                                            </Text>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );

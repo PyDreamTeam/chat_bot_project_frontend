@@ -58,3 +58,22 @@
 .titleTextDelete {
     color: #F53527;
 }
+
+.restoreIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid var(--back-color);
+    border-radius: 15px;
+
+}
+.restoreIcon:hover {
+    background-color: var(--accent-color-3);
+}
+
+.restoreIcon:hover svg path {
+    fill: var(--accent-color);
+}

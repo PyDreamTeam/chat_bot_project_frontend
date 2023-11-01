@@ -165,14 +165,22 @@ const PlatformsFilters = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className={css.addPlatformImg}>
-                        <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
-                        <Text type="med18btn" color="dark">
-                            Фильтров пока нет
-                        </Text>
-                        <Text type="reg18" color="telegray" className={css.text}>
-                            Создайте новую группу фильтров
-                        </Text>
+                    <div>
+                        {tagsIsLoading ? (
+                            <div className={css.loaderPlatforms}>
+                                <Loader isLoading={tagsIsLoading} />
+                            </div>
+                        ) : (
+                            <div className={css.addPlatformImg}>
+                                <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
+                                <Text type="med18btn" color="dark">
+                                    Фильтров пока нет
+                                </Text>
+                                <Text type="reg18" color="telegray" className={css.text}>
+                                    Создайте новую группу фильтров
+                                </Text>
+                            </div>
+                        )}
                     </div>
                 )}
                 {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}

@@ -6,11 +6,18 @@ import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
+import {
+    usePlatformFilterGroupArchiveMutation,
+    usePlatformFilterGroupPublicMutation,
+    usePlatformFilterGroupSaveMutation,
+} from "@/src/store/services/platforms";
+import { restoreFromArchive } from "../img/SvgConfig";
 
 interface PropsFilter {
     title?: string;
     id?: number;
     sort?: string;
+    onDelete: (id: number | undefined, title: string | undefined) => void;
 }
 
 const dropdownFilterPublic = [
@@ -26,9 +33,13 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Group: FC<PropsFilter> = ({ title, id, sort }) => {
+const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
+
+    const [publicGroup, { isSuccess, error, isLoading }] = usePlatformFilterGroupPublicMutation();
+    const [moveToSaveGroup, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
+        usePlatformFilterGroupSaveMutation();
 
     const [stateIcon, setStateIcon] = useState<string>("workPlatform");
     const handleMouseEnter = () => {
@@ -52,6 +63,7 @@ const Group: FC<PropsFilter> = ({ title, id, sort }) => {
 
     const handleFunctionsPlatforms = (value: string, id?: number) => {
         if (value === "delete") {
+            onDelete(id, title);
             // setIsModalDelete(true);
         }
         if (value === "edit") {
@@ -61,11 +73,10 @@ const Group: FC<PropsFilter> = ({ title, id, sort }) => {
             router.push(`/platforms/platform/${id}`);
         }
         if (value === "deletePublic") {
-            // setIsDeletePlatformFromPublic(true);
-            // getPlatformForArchive(Number(id));
+            moveToSaveGroup({ id, token });
         }
         if (value === "public") {
-            router.push(`/admin/platforms/public-platform/${id}`);
+            publicGroup({ id, token });
         }
     };
 
@@ -75,35 +86,50 @@ const Group: FC<PropsFilter> = ({ title, id, sort }) => {
                 <Text type="sem16" color="black">
                     {title}
                 </Text>
-                <div
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={handleClickIcon}
-                    className={styles.workPlatform}
-                >
-                    <Image src={`/platforms/${stateIcon}.svg`} alt="icon" width={24} height={24} />
-                    {stateIcon === "workPlatformActive" && (
-                        <ul className={styles.listFunctions}>
-                            {(sort === "save" ? dropdownFilterSave : dropdownFilterPublic).map(({ title, value }) => (
-                                <li
-                                    key={title}
-                                    className={styles.function}
-                                    onClick={() => handleFunctionsPlatforms(value, id)}
-                                >
-                                    <Text
-                                        type="reg14"
-                                        color="dark"
-                                        className={`${styles.titleText} ${
-                                            value === "delete" && styles.titleTextDelete
-                                        }`}
-                                    >
-                                        {title}
-                                    </Text>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
+                {sort === "archive" ? (
+                    <div
+                        className={styles.restoreIcon}
+                        data-tooltip="Восстановить"
+                        onClick={() => {
+                            console.log("restore");
+                            moveToSaveGroup({ id, token }).then(router.reload);
+                        }}
+                    >
+                        {restoreFromArchive}
+                    </div>
+                ) : (
+                    <div
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={handleClickIcon}
+                        className={styles.workPlatform}
+                    >
+                        <Image src={`/platforms/${stateIcon}.svg`} alt="icon" width={24} height={24} />
+                        {stateIcon === "workPlatformActive" && (
+                            <ul className={styles.listFunctions}>
+                                {(sort === "save" ? dropdownFilterSave : dropdownFilterPublic).map(
+                                    ({ title, value }) => (
+                                        <li
+                                            key={title}
+                                            className={styles.function}
+                                            onClick={() => handleFunctionsPlatforms(value, id)}
+                                        >
+                                            <Text
+                                                type="reg14"
+                                                color="dark"
+                                                className={`${styles.titleText} ${
+                                                    value === "delete" && styles.titleTextDelete
+                                                }`}
+                                            >
+                                                {title}
+                                            </Text>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );

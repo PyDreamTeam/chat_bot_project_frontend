@@ -6,6 +6,10 @@ import FiltersGroup from "../FiltersGroup/FiltersGroup";
 import Group from "../Group/Group";
 import Filter from "../Filter/Filter";
 import uuid from "uuid-random";
+import { useModal } from "@/src/hooks/useModal";
+import Modal from "@/src/components/shared/modal/Modal";
+import DeleteFilterPopup from "../DeleteFilterPopup/DeleteFilterPopup";
+import DeleteFilterGroupPopup from "../DeleteFilterPopup/DeleteFilterGroupPopup";
 
 // import Orders from "./Orders";
 
@@ -39,6 +43,23 @@ interface PropsSearchFiltersList {
 
 const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, sort }) => {
     // const [key, setKey] = useState(0);
+    const { isShown, toggle } = useModal();
+    const { isShown: isShownGroup, toggle: toggleGroup } = useModal();
+
+    const [filterId, setFilterId] = useState<number | undefined>();
+    const [filterTitle, setFilterTitle] = useState<string>();
+    const [filterGroupId, setFilterGroupId] = useState<number | undefined>();
+    const [filterGroupTitle, setFilterGroupTitle] = useState<string | undefined>();
+    const handleDelete = (filterId: number | undefined, filterTitle: string) => {
+        setFilterId(filterId);
+        setFilterTitle(filterTitle);
+        toggle();
+    };
+    const handleDeleteGroup = (filterGroupId: number | undefined, filterGroupTitle: string | undefined) => {
+        setFilterGroupId(filterGroupId);
+        setFilterGroupTitle(filterGroupTitle);
+        toggleGroup();
+    };
 
     return (
         <div className={styles.filtersListWrapper}>
@@ -47,7 +68,7 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, sort }) => 
                     .filter((item: any) => item.status === sort)
                     .map((item: any) => (
                         <li key={item.id}>
-                            <Group title={item.title} id={item.id} sort={sort} />
+                            <Group title={item.group} id={item.id} sort={sort} onDelete={handleDeleteGroup} />
                         </li>
                     ))}
             </ul>
@@ -56,10 +77,20 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, sort }) => 
                     .filter((item: any) => item.status === sort)
                     .map((item) => (
                         <li key={uuid()}>
-                            <Filter title={item.title} id={item.id} sort={sort} />
+                            <Filter title={item.title} id={item.id} sort={sort} onDelete={handleDelete} />
                         </li>
                     ))}
             </ul>
+            <Modal isShown={isShown} hide={toggle}>
+                <DeleteFilterPopup close={toggle} filterId={filterId} filterTitle={filterTitle} />
+            </Modal>
+            <Modal isShown={isShownGroup} hide={toggleGroup}>
+                <DeleteFilterGroupPopup
+                    close={toggleGroup}
+                    filterGroupId={filterGroupId}
+                    filterGroupTitle={filterGroupTitle}
+                />
+            </Modal>
             {/* <Orders forceUpdate={() => setKey((k) => k + 1)} /> */}
         </div>
     );

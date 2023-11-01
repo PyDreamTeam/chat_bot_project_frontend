@@ -13,6 +13,9 @@
     gap: 12px;
     margin-top: 32px;
 }
+.textBlock p {
+    text-align: center;
+}
 
 .imgClose {
     position: absolute;

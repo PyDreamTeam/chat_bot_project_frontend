@@ -6,8 +6,7 @@ import FiltersGroup from "../FiltersGroup/FiltersGroup";
 import Modal from "@/src/components/shared/modal/Modal";
 import DeleteFilterPopup from "../DeleteFilterPopup/DeleteFilterPopup";
 import { useModal } from "@/src/hooks/useModal";
-
-// import Orders from "./Orders";
+import { useContext } from "react";
 
 interface PropsPlatformFilters {
     id?: number;
@@ -35,7 +34,6 @@ interface PropsTest {
 
 const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
     // const [key, setKey] = useState(0);
-    const { isShown, toggle } = useModal();
 
     return (
         <div className={styles.filtersListWrapper}>
@@ -44,13 +42,10 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
                     .filter((item: any) => item.status === sort)
                     .map((item: any) => (
                         <li key={item.id}>
-                            <FiltersGroup groupData={item} sort={sort} onDelete={toggle} />
+                            <FiltersGroup groupData={item} sort={sort} />
                         </li>
                     ))}
             </ul>
-            <Modal isShown={isShown} hide={toggle}>
-                <DeleteFilterPopup close={toggle} filterId={"filterId"} />
-            </Modal>
             {/* <Orders forceUpdate={() => setKey((k) => k + 1)} /> */}
         </div>
     );
