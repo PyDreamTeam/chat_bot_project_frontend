@@ -26,14 +26,14 @@ export interface IListSliderCards {
 }
 
 export interface Advantages {
-    icon: React.ReactNode;
-    text: React.ReactNode;
+    text?: string;
 }
 
 export interface StatisticsCards {
-    icon: React.ReactNode;
-    title: React.ReactNode;
-    text: React.ReactNode;
+    variant?: string;
+    icon?: string;
+    title?: string;
+    text?: string;
 }
 
 export interface CardsFunnel {

@@ -105,6 +105,15 @@ export interface PropsSolutionCard {
         is_active?: boolean;
         is_message?: boolean;
     }[];
+    results?: {
+        id?: number;
+        dignities?: string;
+    }[];
+}
+
+export interface PropsSolutionAdvantages {
+    id?: number;
+    advantage?: string;
 }
 
 export interface PropsSolutionCard {

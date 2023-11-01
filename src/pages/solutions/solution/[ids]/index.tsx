@@ -1,5 +1,5 @@
 import Header from "@/src/components/features/HomePage/Header/Header";
-import { useGetSolutionQuery, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
+import { useGetSolutionQuery } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import styles from "@/src/pages/solutions/solution/[ids]/soluiton.module.css";
 import Text from "@/src/components/shared/text/Text";
@@ -36,7 +36,7 @@ const Solution = () => {
                         /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                <BlockComplexFunnel id={data?.id} title={data?.title} advantages={data?.advantages} />
+                <BlockComplexFunnel title={data?.title} />
                 <BlockShotDescription
                     id={data?.id}
                     business_model={data?.business_model}
@@ -46,7 +46,6 @@ const Solution = () => {
                     objective={data?.objective}
                     price={data?.price}
                     subtitle={data?.subtitle}
-                    dignity={data?.dignity}
                     full_description={data?.full_description}
                     short_description={data?.short_description}
                     messengers={data?.messengers}
@@ -55,8 +54,8 @@ const Solution = () => {
                     integration_with_payment_systems={data?.integration_with_payment_systems}
                 />
                 <BlockGreatSolutions />
-                <BlockFunnelBenefits />
                 <BlockHowItWorks />
+                <BlockFunnelBenefits />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_text={data?.steps_text} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />

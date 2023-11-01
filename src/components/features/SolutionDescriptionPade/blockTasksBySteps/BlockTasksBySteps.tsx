@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
-
 import styles from "./BlockTasksBySteps.module.css";
 import img from "/public/img/Step.svg";
 import Image from "next/image";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
-
-import { CONFIG_BLOCK_STEPS } from "@/src/components/features/SolutionDescriptionPade/blockTasksBySteps/ConfigBlockSteps";
+import { useGetSolutionStepsQuery } from "@/src/store/services/solutions";
 import ListStepAccordion from "@/src/components/entities/lists/accordionList/ListStepAccordion";
 
 const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_text }) => {
+    const { data } = useGetSolutionStepsQuery({});
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.blockText}>
@@ -22,7 +22,7 @@ const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_text }) =
                 </Text>
                 <div className={styles.blockScroll}>
                     <div className={styles.blockAccordion}>
-                        <ListStepAccordion data={CONFIG_BLOCK_STEPS} />
+                        <ListStepAccordion data={data?.results} />
                     </div>
                 </div>
             </div>

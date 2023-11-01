@@ -23,7 +23,39 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+        getSolutionAdvantages: builder.query({
+            query: () => ({
+                url: "/api/solution/advantages/",
+                method: "GET",
+            }),
+        }),
+        getSolutionDignities: builder.query({
+            query: () => ({
+                url: "/api/solution/dignities/",
+                method: "GET",
+            }),
+        }),
+        getSolutionCards: builder.query({
+            query: () => ({
+                url: "/api/solution/cards/",
+                method: "GET",
+            }),
+        }),
+        getSolutionSteps: builder.query({
+            query: () => ({
+                url: "/api/solution/steps/",
+                method: "GET",
+            }),
+        }),
     }),
 });
 
-export const { useGetListSolutionsQuery, useGetSolutionQuery, useGetSolutionsFiltersQuery } = solutions;
+export const {
+    useGetListSolutionsQuery,
+    useGetSolutionQuery,
+    useGetSolutionsFiltersQuery,
+    useGetSolutionAdvantagesQuery,
+    useGetSolutionDignitiesQuery,
+    useGetSolutionCardsQuery,
+    useGetSolutionStepsQuery,
+} = solutions;
