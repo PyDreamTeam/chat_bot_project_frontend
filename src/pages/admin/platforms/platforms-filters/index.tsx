@@ -53,7 +53,11 @@ const PlatformsFilters = () => {
         isFetching: searchIsFetching,
     } = useSearchPlatformsFiltersQuery({ title: searchFilter });
 
-    const { data: tagsData, isLoading: tagsIsLoading, isFetching: tagsIsFetching } = useGetPlatformsFiltersQuery({});
+    const {
+        data: tagsData,
+        isLoading: tagsIsLoading,
+        isFetching: tagsIsFetching,
+    } = useGetPlatformsFiltersQuery({ refetchOnMountOrArgChange: true });
     // console.log(tagsData?.results);
 
     // const handleScroll = () => {
@@ -161,6 +165,7 @@ const PlatformsFilters = () => {
                     </ul>
                 </div>
                 <InputGroup
+                    type="new"
                     placeholder=" Добавьте название для группы фильтров"
                     isShown={isShownInput}
                     onBlur={(e) => {

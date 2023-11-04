@@ -1,4 +1,9 @@
-.inputGroup {
+.container {
+    position: relative;
+}
+
+.inputGroup,
+.inputGroupNew {
     display: block;
     width: 100%;
     padding: 8px 0px 6px 8px;
@@ -13,6 +18,20 @@
 }
 .inputGroupHide {
     display: none;
+}
+.inputGroupEdit {
+    position: absolute;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid var(--accent-color);
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    caret-color: var(--accent-color)
 }
 
 .inputGroup::placeholder { /* Most modern browsers support this now. */

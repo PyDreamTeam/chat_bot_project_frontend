@@ -1,12 +1,6 @@
 import React, { FC, useState } from "react";
-import Text from "@/src/components/shared/text/Text";
 import styles from "./FiltersList.module.css";
-import { PropsGroupFilters } from "../../platforms/types";
 import FiltersGroup from "../FiltersGroup/FiltersGroup";
-import Modal from "@/src/components/shared/modal/Modal";
-import DeleteFilterPopup from "../DeleteFilterPopup/DeleteFilterPopup";
-import { useModal } from "@/src/hooks/useModal";
-import { useContext } from "react";
 
 interface PropsPlatformFilters {
     id?: number;
@@ -33,8 +27,6 @@ interface PropsTest {
 }
 
 const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
-    // const [key, setKey] = useState(0);
-
     return (
         <div className={styles.filtersListWrapper}>
             <ul>
@@ -46,7 +38,6 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
                         </li>
                     ))}
             </ul>
-            {/* <Orders forceUpdate={() => setKey((k) => k + 1)} /> */}
         </div>
     );
 };

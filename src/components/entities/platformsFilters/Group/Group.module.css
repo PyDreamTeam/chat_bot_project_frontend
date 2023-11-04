@@ -1,3 +1,7 @@
+.groupContainer {
+    box-sizing: border-box;
+    max-width: 1060px;
+}
 .groupItem {
     display: flex;
     justify-content: space-between;

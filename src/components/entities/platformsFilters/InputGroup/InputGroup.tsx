@@ -1,7 +1,8 @@
 import React, { FC, ChangeEvent, FocusEvent } from "react";
-import style from "./inputGroup.module.css";
+import styles from "./inputGroup.module.css";
 
 interface PropsInputGroup {
+    type: "new" | "edit";
     placeholder?: string;
     value?: string;
     isShown?: boolean;
@@ -10,15 +11,21 @@ interface PropsInputGroup {
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const InputGroup: FC<PropsInputGroup> = ({ placeholder, value, isShown, onChange, onBlur, onKeyDown }) => (
-    <input
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        className={isShown ? style.inputGroup : style.inputGroupHide}
-        placeholder={placeholder}
-        onKeyDown={onKeyDown}
-    />
-);
+const InputGroup: FC<PropsInputGroup> = ({ type, placeholder, value, isShown, onChange, onBlur, onKeyDown }) => {
+    return (
+        <div className={styles.container}>
+            <input
+                defaultValue={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                className={`${styles.inputGroup}
+                    ${!isShown ? styles.inputGroupHide : type === "edit" ? styles.inputGroupEdit : styles.inputGroupNew}
+                    `}
+                placeholder={placeholder}
+                onKeyDown={onKeyDown}
+            />
+        </div>
+    );
+};
 
 export default InputGroup;

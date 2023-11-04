@@ -1,15 +1,16 @@
-import React, { FC, useEffect, useState } from "react";
-import { Loader } from "@/src/components/shared/Loader/Loader";
+import React, { FC, useEffect, KeyboardEvent, useState } from "react";
 import styles from "./Group.module.css";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
 import {
+    useEditPlatformFilterGroupMutation,
     usePlatformFilterGroupPublicMutation,
     usePlatformFilterGroupSaveMutation,
 } from "@/src/store/services/platforms";
 import { restoreFromArchive } from "../img/SvgConfig";
+import InputGroup from "../InputGroup/InputGroup";
 
 interface PropsFilter {
     title?: string;
@@ -37,6 +38,8 @@ const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
     const [publicGroup, { isSuccess, error, isLoading }] = usePlatformFilterGroupPublicMutation();
     const [moveToSaveGroup, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
         usePlatformFilterGroupSaveMutation();
+    const [editGroup, { isSuccess: editIsSuccess, error: editError, isLoading: reditIsLoading }] =
+        useEditPlatformFilterGroupMutation();
 
     const [stateIcon, setStateIcon] = useState<string>("workPlatform");
     const handleMouseEnter = () => {
@@ -61,21 +64,43 @@ const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
     const handleFunctionsPlatforms = (value: string, id?: number) => {
         if (value === "delete") {
             onDelete(id, title);
-            // setIsModalDelete(true);
         }
         if (value === "edit") {
-            // router.push(`/admin/platforms/change-platform/${id}`);
+            setIsShownInput((prevState) => (prevState = true));
         }
         if (value === "deletePublic") {
-            moveToSaveGroup({ id, token });
+            moveToSaveGroup({ id, token }).then(router.reload);
         }
         if (value === "public") {
-            publicGroup({ id, token });
+            publicGroup({ id, token }).then(router.reload);
+        }
+    };
+
+    const [isShownInput, setIsShownInput] = useState(false);
+    const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key == "Enter" || e.key == "NumpadEnter") {
+            const title = (e.target as HTMLInputElement).value;
+            editGroup({ id, token, title }).then(router.reload);
+        }
+        if (e.key == "Escape") {
+            setIsShownInput((prevState) => (prevState = false));
         }
     };
 
     return (
-        <div>
+        <div className={styles.groupContainer}>
+            <InputGroup
+                type="edit"
+                placeholder=" Добавьте название для группы фильтров"
+                value={title}
+                isShown={isShownInput}
+                onBlur={(e) => {
+                    setIsShownInput((prevState) => (prevState = false));
+                }}
+                onKeyDown={(e) => {
+                    handleKeyDownGroup(e);
+                }}
+            />
             <div className={styles.groupItem}>
                 <Text type="sem16" color="black">
                     {title}
