@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import uuid from "uuid-random";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import styles from "./Group.module.css";
 import Image from "next/image";
@@ -7,7 +6,6 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
 import {
-    usePlatformFilterGroupArchiveMutation,
     usePlatformFilterGroupPublicMutation,
     usePlatformFilterGroupSaveMutation,
 } from "@/src/store/services/platforms";
@@ -21,7 +19,6 @@ interface PropsFilter {
 }
 
 const dropdownFilterPublic = [
-    //TODO:save or deletePublic?
     { title: "Cнять с публикации", value: "deletePublic" },
     { title: "Редактировать", value: "edit" },
     { title: "Удалить", value: "delete" },
@@ -67,10 +64,7 @@ const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
             // setIsModalDelete(true);
         }
         if (value === "edit") {
-            router.push(`/admin/platforms/change-platform/${id}`);
-        }
-        if (value === "read") {
-            router.push(`/platforms/platform/${id}`);
+            // router.push(`/admin/platforms/change-platform/${id}`);
         }
         if (value === "deletePublic") {
             moveToSaveGroup({ id, token });

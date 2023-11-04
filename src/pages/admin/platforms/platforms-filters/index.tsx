@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -8,6 +8,7 @@ import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSea
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {
+    useCreatePlatformFilterGroupMutation,
     useGetListPlatformsQuery,
     useGetPlatformQuery,
     useGetPlatformsFiltersQuery,
@@ -25,6 +26,8 @@ import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallP
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
 import SearchFiltersList from "@/src/components/entities/platformsFilters/SearchFiltersList/SearchFiltersList";
+import InputGroup from "@/src/components/entities/platformsFilters/InputGroup/InputGroup";
+import Cookies from "js-cookie";
 
 const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
@@ -33,7 +36,9 @@ const sortFiltersArr = [
 ];
 
 const PlatformsFilters = () => {
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const [searchFilter, setSearchFilter] = useState<string>("");
+    const [createGroup, { isSuccess, error, isLoading }] = useCreatePlatformFilterGroupMutation();
 
     // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
     //     useSearchPlatformsFiltersQuery,
@@ -47,7 +52,6 @@ const PlatformsFilters = () => {
         isLoading: searchIsLoading,
         isFetching: searchIsFetching,
     } = useSearchPlatformsFiltersQuery({ title: searchFilter });
-    console.log(searchData?.search_results);
 
     const { data: tagsData, isLoading: tagsIsLoading, isFetching: tagsIsFetching } = useGetPlatformsFiltersQuery({});
     // console.log(tagsData?.results);
@@ -73,12 +77,21 @@ const PlatformsFilters = () => {
     };
 
     const router = useRouter();
-    const handleAddGroup = () => {
-        console.log("add group filter");
-        // TODO: add group filter function
-    };
+
     const handleAddFilter = () => {
         router.push("/admin/platforms/platforms-filters/add-filter");
+    };
+    const [isShownInput, setIsShownInput] = useState(false);
+
+    const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key == "Enter" || e.key == "NumpadEnter") {
+            const title = (e.target as HTMLInputElement).value;
+            setIsShownInput((prevState) => (prevState = false));
+            createGroup({ token, title }).then(router.reload);
+        }
+        if (e.key == "Escape") {
+            setIsShownInput((prevState) => (prevState = false));
+        }
     };
 
     return (
@@ -102,7 +115,11 @@ const PlatformsFilters = () => {
                         Управление фильтрами платформ
                     </Text>
                     <div className={css.buttonsBlock}>
-                        <ButtonSmallPrimary active={true} type={"button"} onClick={handleAddGroup}>
+                        <ButtonSmallPrimary
+                            active={true}
+                            type={"button"}
+                            onClick={() => setIsShownInput((prevState) => (prevState = true))}
+                        >
                             Добавить группу фильтров
                         </ButtonSmallPrimary>
                         <ButtonSmallSecondary active={true} type={"button"} onClick={handleAddFilter}>
@@ -124,25 +141,37 @@ const PlatformsFilters = () => {
                         onChange={(e) => setSearchFilter(e.target.value)}
                     />
                 </div>
+                <div className={css.sortContainer}>
+                    <ul className={css.sortList}>
+                        {sortFiltersArr.map(({ title, value }) => (
+                            <li
+                                key={title}
+                                onClick={() => handleChangeSortFilters(title)}
+                                className={sort === value ? `${css.sortPlatformActive}` : `${css.sortPlatform}`}
+                            >
+                                <Text
+                                    type="reg16"
+                                    color="grey"
+                                    className={sort === value ? `${css.sortTextActive}` : `${css.sortText}`}
+                                >
+                                    {title}
+                                </Text>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <InputGroup
+                    placeholder=" Добавьте название для группы фильтров"
+                    isShown={isShownInput}
+                    onBlur={(e) => {
+                        setIsShownInput((prevState) => (prevState = false));
+                    }}
+                    onKeyDown={(e) => {
+                        handleKeyDownGroup(e);
+                    }}
+                />
                 {tagsData?.results?.length > 0 ? (
                     <div className={css.filtersContainer}>
-                        <ul className={css.sortList}>
-                            {sortFiltersArr.map(({ title, value }) => (
-                                <li
-                                    key={title}
-                                    onClick={() => handleChangeSortFilters(title)}
-                                    className={sort === value ? `${css.sortPlatformActive}` : `${css.sortPlatform}`}
-                                >
-                                    <Text
-                                        type="reg16"
-                                        color="grey"
-                                        className={sort === value ? `${css.sortTextActive}` : `${css.sortText}`}
-                                    >
-                                        {title}
-                                    </Text>
-                                </li>
-                            ))}
-                        </ul>
                         {tagsIsLoading ? (
                             <div className={css.loaderPlatforms}>
                                 <Loader isLoading={tagsIsLoading} />
@@ -160,9 +189,6 @@ const PlatformsFilters = () => {
                                 )}
                             </div>
                         )}
-                        <div className={css.loaderPlatforms}>
-                            <Loader isLoading={searchIsFetching} />
-                        </div>
                     </div>
                 ) : (
                     <div>

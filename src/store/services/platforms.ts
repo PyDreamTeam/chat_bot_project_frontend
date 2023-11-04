@@ -120,6 +120,20 @@ export const platforms = createApi({
                 body: arg,
             }),
         }),
+        createPlatformFilterGroup: builder.mutation({
+            query: ({token, title }) => ({
+                url: "/api/platform/groups/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title,
+                    status: "save",
+                    image: "image"
+                }
+            })
+        }),
         platformFilterPublic: builder.mutation({
             query: ({id, token }) => ({
                 url: `/api/platform/filters/${id}/`,
@@ -208,6 +222,7 @@ export const {
     usePlatformPublicMutation,
     useSendToCreatedMutation,
     useSearchPlatformsFiltersQuery,
+    useCreatePlatformFilterGroupMutation,
     usePlatformFilterPublicMutation,
     usePlatformFilterGroupPublicMutation,
     usePlatformFilterSaveMutation,
