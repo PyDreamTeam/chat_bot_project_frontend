@@ -21,7 +21,7 @@ import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/I
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 const SolutionsFilters = () => {
     const router = useRouter();
-    const handleClick = (idp: number) => {
+    const handleClick = (ids: number) => {
         router.push(`/solutions/solution/${ids}`);
     };
 
