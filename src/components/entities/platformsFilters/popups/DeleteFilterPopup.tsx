@@ -3,25 +3,25 @@ import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import styles from "./DeleteFilterPopup.module.css";
-import { useDeleteOrderMutation } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-
 import { ButtonNegative } from "@/src/components/shared/buttons/ButtonNegative";
 import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
-import { usePlatformFilterGroupArchiveMutation } from "@/src/store/services/platforms";
+import { usePlatformFilterArchiveMutation } from "@/src/store/services/platforms";
 
 interface IPropsPopup {
     open?: () => void;
     close: () => void;
-    filterGroupId?: number | undefined;
-    filterGroupTitle?: string;
+    filterId?: number | undefined;
+    filterTitle?: string;
 }
 
-const DeleteFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, filterGroupTitle }) => {
-    const [archiveGroup, { isSuccess: isSuccessArchive, error: errorArchive, isLoading: isLoadingArchive }] =
-        usePlatformFilterGroupArchiveMutation();
-    const id = filterGroupId;
+const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, filterId, filterTitle }) => {
+    const [
+        archiveFilter,
+        { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
+    ] = usePlatformFilterArchiveMutation();
+    const id = filterId;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const router = useRouter();
@@ -43,10 +43,10 @@ const DeleteFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, f
             <Image src="/img/Delete.svg" alt="imgSuccess" width={56} height={56} />
             <div className={styles.textBlock}>
                 <Title type="h5" color="black">
-                    Удалить группу фильтров
+                    Удалить фильтр
                 </Title>
                 <Text type="reg16" color="grey">
-                    {`Вы действительно хотите удалить группу фильтров "${filterGroupTitle}"? После удаления группа фильтров перейдёт в архив`}
+                    {`Вы действительно хотите удалить фильтр "${filterTitle}"? После удаления фильтр перейдёт в архив`}
                 </Text>
             </div>
             <div className={styles.buttonsContainer}>
@@ -56,11 +56,7 @@ const DeleteFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, f
                 <ButtonNegative
                     type={"button"}
                     active={true}
-                    onClick={() => {
-                        console.log(`delete filter id ${id}`);
-                        archiveGroup({ id, token }).then(close).then(router.reload);
-                        // close();
-                    }}
+                    onClick={() => archiveFilter({ id, token }).then(close).then(router.reload)}
                     width={240}
                 >
                     Удалить
@@ -70,4 +66,4 @@ const DeleteFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, f
     );
 };
 
-export default DeleteFilterGroupPopup;
+export default DeleteFilterPopup;

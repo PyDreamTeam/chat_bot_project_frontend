@@ -9,19 +9,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import {
     useCreatePlatformFilterGroupMutation,
-    useGetListPlatformsQuery,
-    useGetPlatformQuery,
     useGetPlatformsFiltersQuery,
-    useGetPlatformsQuery,
     useSearchPlatformsFiltersQuery,
 } from "@/src/store/services/platforms";
-import { PlatformsList } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/PlatformsList/PlatformsList";
-import { Platforms } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platforms/Platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
-import { Platform } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platform/Platform";
 import { Loader } from "@/src/components/shared/Loader/Loader";
-import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
@@ -58,7 +51,6 @@ const PlatformsFilters = () => {
         isLoading: tagsIsLoading,
         isFetching: tagsIsFetching,
     } = useGetPlatformsFiltersQuery({ refetchOnMountOrArgChange: true });
-    // console.log(tagsData?.results);
 
     // const handleScroll = () => {
     //     readMore();
@@ -185,7 +177,11 @@ const PlatformsFilters = () => {
                             <div>
                                 {searchFilter ? (
                                     <div>
-                                        <SearchFiltersList searchData={searchData.search_results} sort={sort} />
+                                        <SearchFiltersList
+                                            searchData={searchData.search_results}
+                                            tagsData={tagsData.results}
+                                            sort={sort}
+                                        />
                                     </div>
                                 ) : (
                                     <div>

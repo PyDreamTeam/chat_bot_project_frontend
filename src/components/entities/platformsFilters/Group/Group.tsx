@@ -8,15 +8,31 @@ import {
     useEditPlatformFilterGroupMutation,
     usePlatformFilterGroupPublicMutation,
     usePlatformFilterGroupSaveMutation,
+    usePlatformFilterSaveMutation,
 } from "@/src/store/services/platforms";
 import { restoreFromArchive } from "../img/SvgConfig";
 import InputGroup from "../InputGroup/InputGroup";
 
-interface PropsFilter {
+interface PropsFilterGroup {
     title?: string;
     id?: number;
     sort?: string;
+    filters?: {
+        filter: string;
+        id: number;
+        image: string;
+        count: number;
+        status: string;
+        functionality: string;
+        integration: string;
+        multiple: boolean;
+        tags: {
+            id: number;
+            tag: string;
+        }[];
+    }[];
     onDelete: (id: number | undefined, title: string | undefined) => void;
+    onRestore?: (id: number | undefined, title: string | undefined) => void;
 }
 
 const dropdownFilterPublic = [
@@ -31,15 +47,21 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
+const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRestore }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
 
     const [publicGroup, { isSuccess, error, isLoading }] = usePlatformFilterGroupPublicMutation();
-    const [moveToSaveGroup, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
-        usePlatformFilterGroupSaveMutation();
-    const [editGroup, { isSuccess: editIsSuccess, error: editError, isLoading: reditIsLoading }] =
+    const [
+        moveToSaveGroup,
+        { isSuccess: restoreGroupIsSuccess, error: restoreGroupError, isLoading: restoreGroupIsLoading },
+    ] = usePlatformFilterGroupSaveMutation();
+    const [editGroup, { isSuccess: editIsSuccess, error: editError, isLoading: editIsLoading }] =
         useEditPlatformFilterGroupMutation();
+    const [
+        moveToSaveFilter,
+        { isSuccess: restoreFilterIsSuccess, error: restoreFilterError, isLoading: restoreFilterIsLoading },
+    ] = usePlatformFilterSaveMutation();
 
     const [stateIcon, setStateIcon] = useState<string>("workPlatform");
     const handleMouseEnter = () => {
@@ -61,7 +83,7 @@ const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
         }
     };
 
-    const handleFunctionsPlatforms = (value: string, id?: number) => {
+    const handleDropdownClick = (value: string, id?: number) => {
         if (value === "delete") {
             onDelete(id, title);
         }
@@ -69,10 +91,17 @@ const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
             setIsShownInput((prevState) => (prevState = true));
         }
         if (value === "deletePublic") {
+            if (filters?.length) {
+                filters.forEach((item) => {
+                    if (item.status === "public") {
+                        moveToSaveFilter({ id: item.id, token });
+                    }
+                });
+            }
             moveToSaveGroup({ id, token }).then(router.reload);
         }
         if (value === "public") {
-            publicGroup({ id, token }).then(router.reload);
+            publicGroup({ id, token });
         }
     };
 
@@ -110,8 +139,7 @@ const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
                         className={styles.restoreIcon}
                         data-tooltip="Восстановить"
                         onClick={() => {
-                            console.log("restore");
-                            moveToSaveGroup({ id, token }).then(router.reload);
+                            onRestore?.(id, title);
                         }}
                     >
                         {restoreFromArchive}
@@ -131,7 +159,7 @@ const Group: FC<PropsFilter> = ({ title, id, sort, onDelete }) => {
                                         <li
                                             key={title}
                                             className={styles.function}
-                                            onClick={() => handleFunctionsPlatforms(value, id)}
+                                            onClick={() => handleDropdownClick(value, id)}
                                         >
                                             <Text
                                                 type="reg14"

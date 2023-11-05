@@ -1,17 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import uuid from "uuid-random";
-import { Loader } from "@/src/components/shared/Loader/Loader";
 import styles from "./FiltersGroup.module.css";
-import Image from "next/image";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
-import Text from "@/src/components/shared/text/Text";
 import Filter from "../Filter/Filter";
 import Group from "../Group/Group";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
-import DeleteFilterPopup from "../DeleteFilterPopup/DeleteFilterPopup";
-import DeleteFilterGroupPopup from "../DeleteFilterPopup/DeleteFilterGroupPopup";
+import DeleteFilterPopup from "../popups/DeleteFilterPopup";
+import DeleteFilterGroupPopup from "../popups/DeleteFilterGroupPopup";
+import RestoreFilterGroupPopup from "../popups/RestoreFilterGroupPopup";
 interface PropsPlatformFilters {
     id?: number;
     status?: string;
@@ -21,6 +17,7 @@ interface PropsPlatformFilters {
         id: number;
         image: string;
         count: number;
+        status: string;
         functionality: string;
         integration: string;
         multiple: boolean;
@@ -37,42 +34,73 @@ interface PropsFiltersGroup {
 }
 
 const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
-    const { isShown, toggle } = useModal();
-    const { isShown: isShownGroup, toggle: toggleGroup } = useModal();
+    const { isShown: isShownDeleteFilter, toggle: toggleDeleteFilter } = useModal();
+    const { isShown: isShownDeleteGroup, toggle: toggleDeleteGroup } = useModal();
+    const { isShown: isShownRestoreGroup, toggle: toggleRestoreGroup } = useModal();
 
     const [filterId, setFilterId] = useState<number | undefined>();
     const [filterTitle, setFilterTitle] = useState<string>();
     const [filterGroupId, setFilterGroupId] = useState<number | undefined>();
     const [filterGroupTitle, setFilterGroupTitle] = useState<string | undefined>();
-    const handleDelete = (filterId: number | undefined, filterTitle: string) => {
+    const handleDeleteFilter = (filterId: number | undefined, filterTitle: string) => {
         setFilterId(filterId);
         setFilterTitle(filterTitle);
-        toggle();
+        toggleDeleteFilter();
     };
     const handleDeleteGroup = (filterGroupId: number | undefined, filterGroupTitle: string | undefined) => {
         setFilterGroupId(filterGroupId);
         setFilterGroupTitle(filterGroupTitle);
-        toggleGroup();
+        toggleDeleteGroup();
+    };
+    const handleRestoreGroup = (filterGroupId: number | undefined, filterGroupTitle: string | undefined) => {
+        setFilterGroupId(filterGroupId);
+        setFilterGroupTitle(filterGroupTitle);
+        toggleRestoreGroup();
     };
 
     return (
         <div>
-            <Group title={groupData.group} id={groupData.id} sort={sort} onDelete={handleDeleteGroup} />
+            <Group
+                title={groupData.group}
+                id={groupData.id}
+                sort={sort}
+                filters={groupData.filters}
+                onDelete={handleDeleteGroup}
+                onRestore={handleRestoreGroup}
+            />
             <ul className={styles.groupFilters}>
-                {groupData.filters?.map((item) => (
-                    <li key={uuid()}>
-                        <Filter title={item.filter} id={item.id} sort={sort} onDelete={handleDelete} />
-                    </li>
-                ))}
+                {groupData.filters
+                    ?.filter((item: any) => item.status === sort)
+                    .map((item) => (
+                        <li key={uuid()}>
+                            <Filter
+                                title={item.filter}
+                                id={item.id}
+                                sort={sort}
+                                groupStatus={groupData.status}
+                                groupId={groupData.id}
+                                onDelete={handleDeleteFilter}
+                            />
+                        </li>
+                    ))}
             </ul>
-            <Modal isShown={isShown} hide={toggle}>
-                <DeleteFilterPopup close={toggle} filterId={filterId} filterTitle={filterTitle} />
-            </Modal>
-            <Modal isShown={isShownGroup} hide={toggleGroup}>
+            <Modal isShown={isShownDeleteGroup} hide={toggleDeleteGroup}>
                 <DeleteFilterGroupPopup
-                    close={toggleGroup}
+                    close={toggleDeleteGroup}
                     filterGroupId={filterGroupId}
                     filterGroupTitle={filterGroupTitle}
+                    filters={groupData.filters}
+                />
+            </Modal>
+            <Modal isShown={isShownDeleteFilter} hide={toggleDeleteFilter}>
+                <DeleteFilterPopup close={toggleDeleteFilter} filterId={filterId} filterTitle={filterTitle} />
+            </Modal>
+            <Modal isShown={isShownRestoreGroup} hide={toggleRestoreGroup}>
+                <RestoreFilterGroupPopup
+                    close={toggleRestoreGroup}
+                    filterGroupId={filterGroupId}
+                    filterGroupTitle={filterGroupTitle}
+                    filters={groupData.filters}
                 />
             </Modal>
         </div>
