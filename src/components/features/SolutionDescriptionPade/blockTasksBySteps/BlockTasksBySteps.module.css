@@ -10,6 +10,13 @@
 }
 .blockScroll {
     height: 648px;
+    max-width: 770px;
+    overflow-y: hidden;
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+}
+.blockScroll:hover {
+    overflow-y: scroll;
 }
 .text {
     margin-bottom: 48px;
@@ -17,21 +24,30 @@
 }
 /*  */
 .blockAccordion {
-    height: 648px;
-    overflow-y: auto;
-    cursor: pointer;
-    padding: 0 10px 0 0;
+    max-height: 648px;
+    margin-right: 10px;
 }
-/* .blockAccordion::-webkit-scrollbar {
-    width: 13px;
-    height: 640px;
+
+.blockScroll::-webkit-scrollbar {
+    width: 8px;
 }
-.blockAccordion::-webkit-scrollbar-track {
-    background-color: #eef4fd;
+.blockScroll::-webkit-scrollbar-track {
+    background-color: transparent;
     border-radius: 10px;
 }
-.blockAccordion::-webkit-scrollbar-thumb {
+.blockScroll::-webkit-scrollbar-thumb {
     background-color: #d0ddf0;
+    border-right: none;
+    border-left: none;
     border-radius: 15px;
     width: 8px;
+}
+/* .blockScroll::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 170px;
+} */
+
+/* .blockAccordion::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 70px;
 } */

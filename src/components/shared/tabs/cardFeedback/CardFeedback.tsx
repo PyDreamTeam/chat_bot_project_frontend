@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-
+import React, { FC, useState } from "react";
+import Text from "../../text/Text";
 import styles from "./styles/CardFeedback.module.css";
 import { TsConfigJson } from "type-fest";
 import JSX = TsConfigJson.CompilerOptions.JSX;
@@ -9,7 +9,7 @@ export interface ICard {
     img: React.ReactNode;
     name: JSX.Element;
     jobTitle: JSX.Element;
-    text: JSX.Element;
+    text: string;
 }
 
 const CardFeedback: FC<ICard> = ({ img, name, jobTitle, text }) => {
@@ -22,7 +22,9 @@ const CardFeedback: FC<ICard> = ({ img, name, jobTitle, text }) => {
                     {jobTitle}
                 </div>
             </div>
-            {text}
+            <Text type="reg18" color="black">
+                {text}
+            </Text>
         </div>
     );
 };
