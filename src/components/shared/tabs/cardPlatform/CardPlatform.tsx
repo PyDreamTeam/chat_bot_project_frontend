@@ -1,14 +1,22 @@
-import React, { FC, useState, MouseEvent } from "react";
+import React, { FC, useState, MouseEvent, useEffect } from "react";
 import Text from "@/src/components/shared/text/Text";
 import Title from "../../text/Title";
 import Image from "next/image";
 import styles from "./styles/CardPlatform.module.css";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
+import { useAddPlatformToFavoriteMutation } from "@/src/store/services/platforms";
+import Cookies from "js-cookie";
 
-const CardPlatform: FC<PropsPlatformCard> = ({ title, price, short_description, image, tags = [] }) => {
+
+const CardPlatform: FC<PropsPlatformCard> = ({ title, price, id, short_description, forceUpdate, image, tags = [] }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
+    const [addToFavorite] = useAddPlatformToFavoriteMutation();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    
 
     const handleClickHeart = (e: MouseEvent) => {
+        addToFavorite({id, token}).then(forceUpdate);
+    
         e.stopPropagation();
         if (imageHeart === "like") {
             setImageHeart("dislike");

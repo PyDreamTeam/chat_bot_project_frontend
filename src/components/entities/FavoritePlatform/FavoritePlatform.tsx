@@ -1,27 +1,24 @@
 import { FC, MouseEvent, useState } from "react";
-import css from "./platformCard.module.css";
-import { PropsPlatformCard } from "../../types";
-import Title from "@/src/components/shared/text/Title";
+import styles from "../FavoritePlatform/FavoritePlatform.module.css";
+import { PropsFavoritePlatformCard } from "../platforms/types";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
-import { useAddPlatformToFavoriteMutation} from "@/src/store/services/platforms";
+import { useAddPlatformToFavoriteMutation } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
 
-export const PlatformCard: FC<PropsPlatformCard> = ({
+export const FavoritePlatform: FC<PropsFavoritePlatformCard> = ({
     id,
     title,
     short_description,
     image,
     tags = [],
-    type,
-    price,
-    link,
     forceUpdate
 }) => {
-    const [imageHeart, setImageHeart] = useState("dislike");
 
+    const [imageHeart, setImageHeart] = useState("like");
     const [addToFavorite] = useAddPlatformToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
     const handleClickHeart = (e: MouseEvent) => {
         addToFavorite({id, token}).then(forceUpdate);
         e.stopPropagation();
@@ -40,20 +37,15 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     };
     const handleMouseLeave = () => {
         if (imageHeart === "hoverHeart") {
-            setImageHeart("dislike");
+            setImageHeart("like");
         }
     };
 
     return (
-        <div className={type === "filter" ? `${css.platforms}` : `${css.onePlatform}`}>
-            <div>
-                <div className={css.title}>
-                    {type === "filter" && <h4 className={css.platform}>{title}</h4>}
-                    {type === "platform" && (
-                        <a href={link}>
-                            <h4 className={css.platformOne}>{title}</h4>
-                        </a>
-                    )}
+        <div className={styles.container}>
+            <div className={styles.containerInfo}>
+                <div className={styles.title}>
+                    <h4 className={styles.text}>{title}</h4>
                     <Image
                         src={`/platforms/${imageHeart}.svg`}
                         alt="heart"
@@ -62,34 +54,26 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
                         onClick={handleClickHeart}
                         onMouseLeave={handleMouseLeave}
                         onMouseEnter={handleMouseEnter}
-                        className={css.heart}
+                        className={styles.heart}
                     />
                 </div>
-                {type === "platform" && (
-                    <div className={css.price}>
-                        <Title type="h3" color="dark">
-                            {price} ₽
-                        </Title>
-                    </div>
-                )}
-                <div className={css.infoCard}>
+                <div className={styles.infoCard}>
                     <Text type="reg18" color="grey">
                         {short_description}
                     </Text>
                 </div>
-
-                <ul className={css.listTags}>
+                <ul className={styles.containerTags}>
                     {tags
                         .filter((item) => item.is_message === false)
                         .map((item) => (
-                            <li key={item.id} className={css.tag}>
+                            <li key={item.id} className={styles.tag}>
                                 <Text type="reg18" color="grey">
                                     {item.tag}
                                 </Text>
                             </li>
                         ))}
                 </ul>
-                <ul className={css.listMessages}>
+                <ul className={styles.containerMesssengare}>
                     {tags
                         .filter((item) => item.is_message === true)
                         .map((item) => (
@@ -99,9 +83,8 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
                         ))}
                 </ul>
             </div>
-
-            <div className={css.logo}>
-                <Image src={image ? `${image}` : ""} width={250} height={250} alt="logo" className={css.img} />
+            <div className={styles.logo}>
+                <Image src={image ? `${image}` : ""} width={250} height={250} alt="logo" className={styles.img} />
             </div>
         </div>
     );

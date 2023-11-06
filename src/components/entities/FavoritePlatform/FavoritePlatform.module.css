@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.containerTags {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+.containerMesssengare {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+.title {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+.text {
+    font-size: 30px;
+    font-family: "Inter";
+}
+.tag {
+    border-radius: 20px;
+    background: var(--sub-color-2);
+    display: flex;
+    height: 38px;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.heart {
+    cursor: pointer;
+}
+.img {
+    display: flex;
+    padding: 32px 34px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: var(--back-color);
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+}

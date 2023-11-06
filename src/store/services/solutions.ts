@@ -32,7 +32,31 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+        getFavoriteSolutions: builder.query({
+            query: (token) => ({
+                url: "/api/solution/solutions/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
+        addSolutionToFavorite: builder.mutation({
+            query: ({ token, id}) => ({
+                url: `/api/solution/solutions/${id}/favorite/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            })
+        }),
     }),
 });
 
-export const { useGetListSolutionsQuery, useGetSolutionQuery, useGetSolutionsFiltersQuery } = solutions;
+export const { 
+    useGetListSolutionsQuery, 
+    useGetSolutionQuery, 
+    useGetSolutionsFiltersQuery,
+    useGetFavoriteSolutionsQuery,
+    useAddSolutionToFavoriteMutation
+} = solutions;

@@ -19,6 +19,7 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
+import { SolutionCard } from "@/src/components/entities/platforms/rightBlock/SolutionCard/SolutionCard";
 const SolutionsFilters = () => {
     const router = useRouter();
     const handleClick = (ids: number) => {
@@ -123,12 +124,13 @@ const SolutionsFilters = () => {
                                                 }
                                             }}
                                         >
-                                            <PlatformCard
+                                            <SolutionCard
                                                 id={item.id}
                                                 title={item.title}
                                                 short_description={item.short_description}
                                                 tags={item.tags}
                                                 image={item.image}
+                                                price={item.price}
                                                 type="filter"
                                             />
                                         </li>
