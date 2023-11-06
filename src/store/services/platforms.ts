@@ -131,7 +131,124 @@ export const platforms = createApi({
                     Authorization: `JWT ${token.access}`,
                 }
             })
-        })
+        }),
+        searchPlatformsFilters: builder.query({
+            query: (arg: {
+                title?: string;
+            }) => ({
+                url: "/api/platform/filters-search/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
+        addPlatformFilter: builder.mutation({
+            query: ({ filter, token }) => ({
+                url: "/api/platform/platforms/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: filter,
+            }),
+        }),
+        createPlatformFilterGroup: builder.mutation({
+            query: ({token, title }) => ({
+                url: "/api/platform/groups/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title,
+                    status: "save",
+                    image: "image"
+                }
+            })
+        }),
+        editPlatformFilterGroup: builder.mutation({
+            query: ({id, token, title }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title
+                }
+            })
+        }),
+        platformFilterPublic: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public"
+                }
+            })
+        }),
+        platformFilterGroupPublic: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public"
+                }
+            })
+        }),
+        platformFilterSave: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save"
+                }
+            })
+        }),
+        platformFilterGroupSave: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save"
+                }
+            })
+        }),
+        platformFilterArchive: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "archive"
+                }
+            })
+        }),
+        platformFilterGroupArchive: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "archive"
+                }
+            })
+        }),
     }),
 });
 
@@ -149,4 +266,14 @@ export const {
     useAddPlatformToFavoriteMutation,
     useGetFavoritePlatformsQuery,
     useSendToCreatedMutation,
+    useAddPlatformFilterMutation,
+    useSearchPlatformsFiltersQuery,
+    useCreatePlatformFilterGroupMutation,
+    useEditPlatformFilterGroupMutation,
+    usePlatformFilterPublicMutation,
+    usePlatformFilterGroupPublicMutation,
+    usePlatformFilterSaveMutation,
+    usePlatformFilterGroupSaveMutation,
+    usePlatformFilterArchiveMutation,
+    usePlatformFilterGroupArchiveMutation
 } = platforms;
