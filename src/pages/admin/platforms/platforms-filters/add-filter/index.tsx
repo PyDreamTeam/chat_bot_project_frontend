@@ -19,6 +19,7 @@ import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallP
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import Title from "@/src/components/shared/text/Title";
 import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter/InputAddFilter";
+import { TextAreaAddFilter } from "@/src/components/entities/platformsFilters/addFilter/TextAreaAddFilter";
 
 interface PropsPlatformFilter {
     title: string;
@@ -28,6 +29,16 @@ interface PropsPlatformFilter {
     status: string;
     image: string;
     group: number;
+}
+
+interface ITags {
+    tags: {
+        tag: string;
+        id: number;
+        image_tag: string;
+        status: string;
+        is_message: boolean;
+    }[];
 }
 
 const AddPlatformFilter = () => {
@@ -43,6 +54,8 @@ const AddPlatformFilter = () => {
         image: "",
         group: 0,
     });
+    const [tags, setTags] = useState<ITags>();
+    // const filterTags: ITags = [];
 
     return (
         <WrapperAdminPage>
@@ -68,15 +81,42 @@ const AddPlatformFilter = () => {
                 <Text type="reg24" color="dark">
                     🔨 Страница находится в разработке! 🔧
                 </Text>
-                <InputAddFilter
-                    label="Название платформы"
-                    // value={platform.title}
-                    onChange={(e) => setFilter((prev) => ({ ...prev, title: e.target.value }))}
-                    placeholder="Текст"
-                    className={css.titlePlatform}
-                    style={css.size640}
-                />
                 <div className={css.filterFormWrapper}>
+                    <InputAddFilter
+                        label="Название фильтра"
+                        // value={platform.title}
+                        onChange={(e) => setFilter((prev) => ({ ...prev, title: e.target.value }))}
+                        placeholder="Текст"
+                        className={css.inputAddFilter}
+                    />
+                    <TextAreaAddFilter
+                        // value={platform.short_description}
+                        onChange={(e) => setFilter((prev) => ({ ...prev, functionality: e.target.value }))}
+                        label="Краткое описание функционала фильтра"
+                        placeholder="Текст (200 символов)"
+                        className={css.textAreaPlatform}
+                    />
+                    <div className={css.filterParameters}>
+                        <Text type="med20" color="black">
+                            Параметры фильтра
+                        </Text>
+                        <InputAddFilter
+                            label="Параметр фильтра"
+                            // value={platform.title}
+                            onChange={(e) => {
+                                // filterTags.tags.push({
+                                //     tag: e.target.value,
+                                //     id: 0,
+                                //     image_tag: "None",
+                                //     status: "save",
+                                //     is_message: false,
+                                // });
+                                // setFilter((prev) => ({ ...prev, title: e.target.value }));
+                            }}
+                            placeholder="Текст"
+                            className={css.inputAddFilter}
+                        />
+                    </div>
                     <div className={css.buttonsContainer}>
                         <Link href={"/my-account/orders"} className={css.buttonCancel}>
                             <Text type="reg18" color="grey">

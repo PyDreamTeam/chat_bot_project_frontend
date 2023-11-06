@@ -39,7 +39,7 @@ const InputAddFilter: FC<PropsInputAddFilter> = ({
                 {label}
             </Text>
             <input
-                className={`${css.inputAddPlatform} ${style}`}
+                className={`${css.inputAddFilter} ${style}`}
                 onChange={onChange}
                 placeholder={placeholder}
                 value={value}
