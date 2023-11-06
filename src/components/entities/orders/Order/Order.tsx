@@ -19,7 +19,13 @@ export const Order: FC<PropsOrder> = ({ id, first_name, email, phone_number, com
                     {id}
                 </Text>
             </div>
-            <div className={styles.orderName}>
+            <div
+                className={styles.orderName}
+                data-tooltip={first_name}
+                onClick={() => {
+                    router.push(`/my-account/orders/${id}`);
+                }}
+            >
                 <Text type="reg16" color="grey">
                     {first_name}
                 </Text>

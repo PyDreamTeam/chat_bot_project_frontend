@@ -12,9 +12,18 @@ export const solutions = createApi({
             }),
         }),
         getListSolutions: builder.query({
-            query: () => ({
-                url: "/api/solution/solutions/",
-                method: "GET",
+            query: (arg: {
+                id_tags?: Array<number>;
+                price_min?: number;
+                price_max?: number;
+                title?: string;
+                sort_abc?: string;
+                page_number?: number;
+                items_per_page?: number;
+            }) => ({
+                url: "/api/solution/filtration/",
+                method: "POST",
+                body: arg,
             }),
         }),
         getSolution: builder.query<PropsSolutionCard, number>({

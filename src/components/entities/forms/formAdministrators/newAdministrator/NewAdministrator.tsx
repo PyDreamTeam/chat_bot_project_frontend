@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./newAdministrator.module.css";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useCreateAdminMutation } from "@/src/store/services/adminModer";
+
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
@@ -17,7 +17,7 @@ const err = {
 };
 const NewAdministrator = () => {
     const route = useRouter();
-    const [createAdmin, { isLoading, error: errorData }] = useCreateAdminMutation();
+    //const [createAdmin, { isLoading, error: errorData }] = useCreateAdminMutation();
 
     return (
         <div className={styles.addUserBlock}>
@@ -71,12 +71,12 @@ const NewAdministrator = () => {
                         <Form className={styles.form}>
                             <FirstNameInput errors={errors} touched={touched} />
                             <LastNameInput errors={errors} touched={touched} />
-                            <EmailInput errors={errors} touched={touched} error={errorData} />
+                            {/* <EmailInput errors={errors} touched={touched} error={errorData} />
                             <AdminPasswordInput
                                 errors={errors}
                                 touched={touched}
                                 error={errorData}
-                            />
+                            /> */}
                             <RadioButtonGroup
                                 name="user_role"
                                 values={["AD", "MN"]}
@@ -86,9 +86,9 @@ const NewAdministrator = () => {
                             />
                             <div className={styles.buttons}>
                                 <button className={styles.cancel}><a href="/admin/users/all">Отмена</a></button>
-                                <button className={isValid ? styles.active : styles.disabled} disabled={isLoading} type="submit">
+                                {/* <button className={isValid ? styles.active : styles.disabled} disabled={isLoading} type="submit">
                                     Создать
-                                </button>
+                                </button> */}
                             </div>
                         </Form >
                     );

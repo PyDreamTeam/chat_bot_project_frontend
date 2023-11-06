@@ -20,6 +20,12 @@ export const GroupTagsSingle: FC<PropsGroupTags> = ({ tags = [], filter, onClick
             dispatch(addFilters({ id: id, tag: tag, filter: filter }));
             setSelectedFilter(id);
         }
+        if (selectedFilter === id) {
+            if(selectedFilter === id) {
+                dispatch(deleteFilters(id));
+                setSelectedFilter(null);
+            }
+        }
     };
 
     const filters = useAppSelector((state) => state.reducerFilters.filters);
