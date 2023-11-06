@@ -1,11 +1,13 @@
 /* Стили для инпута заголовка для добавления платформ */
 
-.inputAddPlatform {
+.inputAddFilter {
+    height: 64px;
+    width: 100%;
     margin-top: 8px;
     padding: 16px;
     border-radius: 20px;
-    border: 1px solid #F4F5F6;
-    background: #F4F5F6;
+    border: 1px solid var(--sub-color-2);
+    background: var(--sub-color-2);
 
     font-family: Inter;
     font-size: 18px;
@@ -14,50 +16,8 @@
     line-height: 27px; 
 }
 
-.inputLink {
-    background-image: linear-gradient(to right, #E1E2E6 50%, #F4F5F6 50%);
-    background-repeat: no-repeat;
-    background-size: 30% 100%;
-}
-
-.input1 {
-    width: 92px;
-    padding: 16px 0 16px 16px;
-    background-color: #E1E2E6;
-    border: 1px solid #E1E2E6;
-    outline: none;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 27px; 
-    border-radius: 20px 0px 0px 20px;
-    color: #595F6C; 
-}
-
-.input2 {
-    width: 548px;
-    padding: 16px;
-    background-color: #F4F5F6;
-    border: 1px solid #F4F5F6;
-    outline: none;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 27px;
-    border-radius: 0 20px 20px 0;  
-}
-
-.blockInput {
-    margin-top: 8px;
-}
-
-.countSolutions {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.width640 {
+    width: 640px;
 }
 
 /* .blockInfoSolution {
