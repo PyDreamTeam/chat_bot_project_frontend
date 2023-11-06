@@ -9,7 +9,7 @@ import { Loader } from "@/src/components/shared/Loader/Loader";
 import { GroupFilters } from "@/src/components/entities/platforms/leftBlock/GroupFilters/GroupFilters";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { useAppSelector } from "@/src/hooks/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/FieldOptions/FieldOptions";
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
@@ -17,12 +17,13 @@ import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
-//import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
+import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
+import { SolutionCard } from "@/src/components/entities/platforms/rightBlock/SolutionCard/SolutionCard";
 const SolutionsFilters = () => {
     const router = useRouter();
-    const handleClick = (idp: number) => {
-        router.push(`/solutions/solution/${idp}`);
+    const handleClick = (ids: number) => {
+        router.push(`/solutions/solution/${ids}`);
     };
 
     const filter = useAppSelector((state) => state.reducerFilters.filters);
@@ -43,9 +44,17 @@ const SolutionsFilters = () => {
         sort_abc: sortAbc,
     });
 
-    /* const handleScroll = () => {
+    useEffect(() => {
+        if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
+            setSortAbc("a");
+        } else if (filter.find((item) => item.tag === "Z до А (Я до А)")) {
+            setSortAbc("z");
+        } else setSortAbc("");
+    }, [filter]);
+
+    const handleScroll = () => {
         readMore();
-    }; */
+    };
 
     return (
         <div>
@@ -115,12 +124,13 @@ const SolutionsFilters = () => {
                                                 }
                                             }}
                                         >
-                                            <PlatformCard
+                                            <SolutionCard
                                                 id={item.id}
                                                 title={item.title}
                                                 short_description={item.short_description}
                                                 tags={item.tags}
                                                 image={item.image}
+                                                price={item.price}
                                                 type="filter"
                                             />
                                         </li>
@@ -128,7 +138,7 @@ const SolutionsFilters = () => {
                                     <div className={css.loaderSolutions}>
                                         <Loader isLoading={isFetching} />
                                     </div>
-                                    {/*combinedData.length > 0  && <InfiniteScroll onLoadMore={handleScroll} />*/}
+                                    {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                                 </ul>
                             )}
                         </div>

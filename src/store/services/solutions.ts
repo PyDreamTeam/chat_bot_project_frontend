@@ -12,9 +12,18 @@ export const solutions = createApi({
             }),
         }),
         getListSolutions: builder.query({
-            query: () => ({
-                url: "/api/solution/solutions/",
-                method: "GET",
+            query: (arg: {
+                id_tags?: Array<number>;
+                price_min?: number;
+                price_max?: number;
+                title?: string;
+                sort_abc?: string;
+                page_number?: number;
+                items_per_page?: number;
+            }) => ({
+                url: "/api/solution/filtration/",
+                method: "POST",
+                body: arg,
             }),
         }),
         getSolution: builder.query<PropsSolutionCard, number>({
@@ -23,7 +32,31 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+        getFavoriteSolutions: builder.query({
+            query: (token) => ({
+                url: "/api/solution/solutions/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
+        addSolutionToFavorite: builder.mutation({
+            query: ({ token, id}) => ({
+                url: `/api/solution/solutions/${id}/favorite/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            })
+        }),
     }),
 });
 
-export const { useGetListSolutionsQuery, useGetSolutionQuery, useGetSolutionsFiltersQuery } = solutions;
+export const { 
+    useGetListSolutionsQuery, 
+    useGetSolutionQuery, 
+    useGetSolutionsFiltersQuery,
+    useGetFavoriteSolutionsQuery,
+    useAddSolutionToFavoriteMutation
+} = solutions;

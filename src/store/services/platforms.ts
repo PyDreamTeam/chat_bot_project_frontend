@@ -46,6 +46,15 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getFavoritePlatforms: builder.query({
+            query: (token) => ({
+                url: "/api/platform/platforms/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         addPlatform: builder.mutation({
             query: ({ platform, token }) => ({
                 url: "/api/platform/platforms/",
@@ -56,8 +65,18 @@ export const platforms = createApi({
                 body: platform,
             }),
         }),
+        addPlatformToFavorite: builder.mutation({
+            query: ({ token, id}) => ({
+                url: `/api/platform/platforms/${id}/favorite/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            })
+        }),
+        
         changePlatform: builder.mutation({
-            query: ({id, token, platform}) => ({
+            query: ({ id, token, platform }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
@@ -67,25 +86,27 @@ export const platforms = createApi({
             })
         }),
         platformPublic: builder.mutation({
-            query: ({id, token, platform }) => ({
+            query: ({ id, token, platform }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
-                body: {title: platform.title,
+                body: {
+                    title: platform.title,
                     status: "public"
                 }
             })
         }),
         platformArchive: builder.mutation({
-            query: ({id, token, data }) => ({
+            query: ({ id, token, data }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
-                body: {title: data.title,
+                body: {
+                    title: data.title,
                     status: "archive"
                 }
             })
@@ -103,7 +124,7 @@ export const platforms = createApi({
             })
         }),
         deletePlatform: builder.mutation({
-            query: ({id, token}) => ({
+            query: ({ id, token }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "DELETE",
                 headers: {
@@ -242,6 +263,8 @@ export const {
     useChangePlatformMutation,
     usePlatformArchiveMutation,
     usePlatformPublicMutation,
+    useAddPlatformToFavoriteMutation,
+    useGetFavoritePlatformsQuery,
     useSendToCreatedMutation,
     useAddPlatformFilterMutation,
     useSearchPlatformsFiltersQuery,

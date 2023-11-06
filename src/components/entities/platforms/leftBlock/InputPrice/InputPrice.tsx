@@ -8,5 +8,5 @@ interface PropsInputPriceMin {
 }
 
 export const InputPrice: FC<PropsInputPriceMin> = ({ value, onChange, placeholder }) => (
-    <input value={value} onChange={onChange} className={css.input} placeholder={placeholder} />
+    <input value={value} onChange={onChange} className={css.input} placeholder={placeholder} type={"number"} />
 );
