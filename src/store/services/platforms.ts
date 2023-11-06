@@ -146,5 +146,7 @@ export const {
     useChangePlatformMutation,
     usePlatformArchiveMutation,
     usePlatformPublicMutation,
+    useAddPlatformToFavoriteMutation,
+    useGetFavoritePlatformsQuery,
     useSendToCreatedMutation,
 } = platforms;
