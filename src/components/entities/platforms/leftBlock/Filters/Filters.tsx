@@ -68,8 +68,8 @@ export const Filters: FC<PropsFilters> = ({ filters = [], onClick }) => {
                                         value={minPrice}
                                         onChange={(e) => {
                                             setMinPrice(e.target.value);
-                                            onClick();
-                                            if(e.target.value.trim() === "") {
+
+                                            if (e.target.value.trim() !== "") {
                                                 onClick();
                                             }
                                         }}
@@ -81,7 +81,7 @@ export const Filters: FC<PropsFilters> = ({ filters = [], onClick }) => {
                                         onChange={(e) => {
                                             setMaxPrice(e.target.value);
                                             onClick();
-                                            if(e.target.value.trim() === "") {
+                                            if (e.target.value.trim() === "") {
                                                 onClick();
                                             }
                                         }}

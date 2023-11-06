@@ -57,7 +57,7 @@ export const platforms = createApi({
             }),
         }),
         changePlatform: builder.mutation({
-            query: ({id, token, platform}) => ({
+            query: ({ id, token, platform }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
@@ -67,25 +67,27 @@ export const platforms = createApi({
             })
         }),
         platformPublic: builder.mutation({
-            query: ({id, token, platform }) => ({
+            query: ({ id, token, platform }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
-                body: {title: platform.title,
+                body: {
+                    title: platform.title,
                     status: "public"
                 }
             })
         }),
         platformArchive: builder.mutation({
-            query: ({id, token, data }) => ({
+            query: ({ id, token, data }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
-                body: {title: data.title,
+                body: {
+                    title: data.title,
                     status: "archive"
                 }
             })
@@ -103,7 +105,7 @@ export const platforms = createApi({
             })
         }),
         deletePlatform: builder.mutation({
-            query: ({id, token}) => ({
+            query: ({ id, token }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "DELETE",
                 headers: {
