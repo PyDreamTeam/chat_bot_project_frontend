@@ -1,32 +1,45 @@
 import React, {useState} from "react";
-import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
-import FavoritesPlatformsComponent from "@/src/components/entities/FavoritesPageComponent/FavoritesPageComponent";
 import styles from "../favorites/favorite.module.css";
-import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
-import { useGetFavoritePlatformsQuery } from "@/src/store/services/platforms";
-import Cookies from "js-cookie";
+import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
+import FavoritesPlatformsComponent from "@/src/components/entities/FavoritesPlatformsComponent/FavoritesPlatformsComponent";
+import FavoriteSearhComponent from "@/src/components/entities/FavoriteSearchComponent/FavoriteSearchComponent";
+import FavoriteTabs from "@/src/components/entities/FavoriteTabs/FavoriteTabs";
+import FavoritesSolutionsComponent from "@/src/components/entities/FavoritesSolutionsComponent/FavoritesSolutionsComponent";
 
 
+const tabs = [ "Платформы", "Решения"];
 
 const FavoritesPage = () => {
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const {data: card} = useGetFavoritePlatformsQuery(token);
+    
+    const [key, setKey] = useState(0);
+    const [k, setK] = useState(0);
+    const [activeTab, setActiveTab] = useState(0);
 
     return (
         <AccountPageWrapper page="favorites">
-            <FavoritesPlatformsComponent/>
             <div>
-                {card?.results.filter((item: any) => item.is_favorite === true).map((item: any) => (
-                    <PlatformCard
-                        title={item.title}
-                        type="filter"
-                        image={item.image}
-                        short_description={item.short_description}
-                        id = {item.id}
-                        key = {item.id}
-                        tags = {item.tags}
+                <FavoriteSearhComponent/>
+            </div>
+            <div>
+                {tabs.map((tab, index) => (<FavoriteTabs
+                    key={index}
+                    title={tab}
+                    index={index}
+                    activeTab={activeTab}
+                    setActiveTab={setActiveTab}
+                />))}
+            </div>
+            <div key = {key}>
+                <div className={activeTab === 1 ? styles.inActivePlatformContainer : styles.activePlatformContainer}> 
+                    <FavoritesPlatformsComponent
+                        forceUpdate={() => setKey((k) => k + 1)}
                     />
-                ))}
+                </div>
+                <div className={activeTab === 0 ? styles.inActiveSolutionContainer : styles.activeSolutionContainer}>
+                    <FavoritesSolutionsComponent
+                        forceUpdate={() => setKey((k) => k + 1)}
+                    />
+                </div>
             </div>
         </AccountPageWrapper>
     );
