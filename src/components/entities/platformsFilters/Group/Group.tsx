@@ -8,6 +8,7 @@ import {
     useEditPlatformFilterGroupMutation,
     usePlatformFilterGroupPublicMutation,
     usePlatformFilterGroupSaveMutation,
+    usePlatformFilterPublicMutation,
     usePlatformFilterSaveMutation,
 } from "@/src/store/services/platforms";
 import { restoreFromArchive } from "../img/SvgConfig";
@@ -50,8 +51,10 @@ const dropdownFilterSave = [
 const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRestore }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
-
-    const [publicGroup, { isSuccess, error, isLoading }] = usePlatformFilterGroupPublicMutation();
+    const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
+        usePlatformFilterGroupPublicMutation();
+    const [publicFilter, { isSuccess: publicFilterIsSuccess, isLoading: publicFilterIsLoading }] =
+        usePlatformFilterPublicMutation();
     const [
         moveToSaveGroup,
         { isSuccess: restoreGroupIsSuccess, error: restoreGroupError, isLoading: restoreGroupIsLoading },
@@ -101,7 +104,14 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
             moveToSaveGroup({ id, token }).then(router.reload);
         }
         if (value === "public") {
-            publicGroup({ id, token });
+            if (filters?.length) {
+                filters.forEach((item) => {
+                    if (item.status === "save") {
+                        publicFilter({ id: item.id, token });
+                    }
+                });
+            }
+            publicGroup({ id, token }).then(router.reload);
         }
     };
 
