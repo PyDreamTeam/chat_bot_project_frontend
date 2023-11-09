@@ -11,7 +11,7 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
-        getListSolutions: builder.query({
+        getSolutions: builder.query({
             query: (arg: {
                 id_tags?: Array<number>;
                 price_min?: number;
@@ -24,6 +24,12 @@ export const solutions = createApi({
                 url: "/api/solution/filtration/",
                 method: "POST",
                 body: arg,
+            }),
+        }),
+        getListSolutions: builder.query({
+            query: () => ({
+                url: "/api/solution/solutions/",
+                method: "GET",
             }),
         }),
         getSolution: builder.query<PropsSolutionCard, number>({
@@ -42,7 +48,7 @@ export const solutions = createApi({
             }),
         }),
         addSolutionToFavorite: builder.mutation({
-            query: ({ token, id}) => ({
+            query: ({ token, id }) => ({
                 url: `/api/solution/solutions/${id}/favorite/`,
                 method: "GET",
                 headers: {
@@ -53,9 +59,10 @@ export const solutions = createApi({
     }),
 });
 
-export const { 
-    useGetListSolutionsQuery, 
-    useGetSolutionQuery, 
+export const {
+    useGetSolutionsQuery,
+    useGetListSolutionsQuery,
+    useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
     useGetFavoriteSolutionsQuery,
     useAddSolutionToFavoriteMutation
