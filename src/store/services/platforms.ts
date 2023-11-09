@@ -46,6 +46,15 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getFavoritePlatforms: builder.query({
+            query: (token) => ({
+                url: "/api/platform/platforms/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         addPlatform: builder.mutation({
             query: ({ platform, token }) => ({
                 url: "/api/platform/platforms/",
@@ -56,8 +65,18 @@ export const platforms = createApi({
                 body: platform,
             }),
         }),
+        addPlatformToFavorite: builder.mutation({
+            query: ({ token, id}) => ({
+                url: `/api/platform/platforms/${id}/favorite/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            })
+        }),
+        
         changePlatform: builder.mutation({
-            query: ({id, token, platform}) => ({
+            query: ({ id, token, platform }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
@@ -67,18 +86,32 @@ export const platforms = createApi({
             })
         }),
         platformPublic: builder.mutation({
-            query: ({id, token, platform }) => ({
+            query: ({ id, token, platform }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
-                body: {title: platform.title,
+                body: {
+                    title: platform.title,
                     status: "public"
                 }
             })
         }),
         platformArchive: builder.mutation({
+            query: ({ id, token, data }) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: data.title,
+                    status: "archive"
+                }
+            })
+        }),
+        sendToCreated: builder.mutation({
             query: ({id, token, data }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "PUT",
@@ -86,19 +119,136 @@ export const platforms = createApi({
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {title: data.title,
-                    status: "archive"
+                    status: "save"
                 }
             })
         }),
         deletePlatform: builder.mutation({
-            query: ({id, token}) => ({
+            query: ({ id, token }) => ({
                 url: `/api/platform/platforms/${id}/`,
                 method: "DELETE",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 }
             })
-        })
+        }),
+        searchPlatformsFilters: builder.query({
+            query: (arg: {
+                title?: string;
+            }) => ({
+                url: "/api/platform/filters-search/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
+        addPlatformFilter: builder.mutation({
+            query: ({ filter, token }) => ({
+                url: "/api/platform/platforms/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: filter,
+            }),
+        }),
+        createPlatformFilterGroup: builder.mutation({
+            query: ({token, title }) => ({
+                url: "/api/platform/groups/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title,
+                    status: "save",
+                    image: "image"
+                }
+            })
+        }),
+        editPlatformFilterGroup: builder.mutation({
+            query: ({id, token, title }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title
+                }
+            })
+        }),
+        platformFilterPublic: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public"
+                }
+            })
+        }),
+        platformFilterGroupPublic: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public"
+                }
+            })
+        }),
+        platformFilterSave: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save"
+                }
+            })
+        }),
+        platformFilterGroupSave: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save"
+                }
+            })
+        }),
+        platformFilterArchive: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "archive"
+                }
+            })
+        }),
+        platformFilterGroupArchive: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/platform/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "archive"
+                }
+            })
+        }),
     }),
 });
 
@@ -113,4 +263,17 @@ export const {
     useChangePlatformMutation,
     usePlatformArchiveMutation,
     usePlatformPublicMutation,
+    useAddPlatformToFavoriteMutation,
+    useGetFavoritePlatformsQuery,
+    useSendToCreatedMutation,
+    useAddPlatformFilterMutation,
+    useSearchPlatformsFiltersQuery,
+    useCreatePlatformFilterGroupMutation,
+    useEditPlatformFilterGroupMutation,
+    usePlatformFilterPublicMutation,
+    usePlatformFilterGroupPublicMutation,
+    usePlatformFilterSaveMutation,
+    usePlatformFilterGroupSaveMutation,
+    usePlatformFilterArchiveMutation,
+    usePlatformFilterGroupArchiveMutation
 } = platforms;

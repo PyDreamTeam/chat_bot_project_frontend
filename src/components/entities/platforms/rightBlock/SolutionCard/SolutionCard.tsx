@@ -4,11 +4,18 @@ import { PropsSolutionCard } from "../../types";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
+import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
+import Cookies from "js-cookie";
 
-export const SolutionCard: FC<PropsSolutionCard> = ({ title, short_description, image, tags = [], price }) => {
+export const SolutionCard: FC<PropsSolutionCard> = ({ title, short_description, image, tags = [], price, forceUpdate, id }) => {
+    
     const [imageHeart, setImageHeart] = useState("dislike");
 
+    const [addToFavorite] = useAddSolutionToFavoriteMutation();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
     const handleClickHeart = (e: MouseEvent) => {
+        addToFavorite({id, token}).then(forceUpdate);
         e.stopPropagation();
         if (imageHeart === "like") {
             setImageHeart("dislike");
@@ -45,17 +52,16 @@ export const SolutionCard: FC<PropsSolutionCard> = ({ title, short_description, 
                         className={css.heart}
                     />
                 </div>
-                <div className={css.price}>
-                    <Title type="h3" color="dark">
+                <div>
+                    <p className={css.price}>
                         {price} ₽
-                    </Title>
+                    </p>
                 </div>
                 <div className={css.infoCard}>
                     <Text type="reg18" color="grey">
                         {short_description}
                     </Text>
                 </div>
-
                 <ul className={css.listTags}>
                     {tags
                         .filter((item) => item.is_message === false)

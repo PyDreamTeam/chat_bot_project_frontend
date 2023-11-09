@@ -58,6 +58,54 @@ export interface PropsPlatformCard {
     is_active?: boolean;
     created_at?: string;
     image: any;
+    forceUpdate?: () => void;
+    link?: string;
+    links_to_solution?: string[];
+    type?: Card;
+    filter?: number[];
+    tags?: {
+        id?: number;
+        tag?: string;
+        image_tag?: string;
+        is_active?: boolean;
+        is_message?: boolean;
+    }[];
+}
+
+export interface PropsFavoritePlatformCard {
+    id?: number;
+    title?: string;
+    short_description?: string;
+    full_description?: string;
+    turnkey_solutions?: number;
+    status?: string;
+    is_active?: boolean;
+    created_at?: string;
+    image: any;
+    forceUpdate: () => void;
+    link?: string;
+    links_to_solution?: string[];
+    filter?: number[];
+    tags?: {
+        id?: number;
+        tag?: string;
+        image_tag?: string;
+        is_active?: boolean;
+        is_message?: boolean;
+    }[];
+}
+export interface PropsFavoriteSolutionCard {
+    id?: number;
+    title?: string;
+    short_description?: string;
+    full_description?: string;
+    turnkey_solutions?: number;
+    price?: number | string;
+    status?: string;
+    is_active?: boolean;
+    created_at?: string;
+    image: any;
+    forceUpdate: () => void;
     link?: string;
     links_to_solution?: string[];
     type?: Card;
@@ -98,6 +146,7 @@ export interface PropsSolutionCard {
     image?: string;
     link?: string;
     type?: string | string;
+    forceUpdate?: () => void;
     tags?: {
         id?: number;
         tag?: string;
