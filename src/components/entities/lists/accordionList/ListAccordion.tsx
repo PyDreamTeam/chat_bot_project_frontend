@@ -12,21 +12,23 @@ interface IAccordionProps {
 }
 
 const ListAccordion: FC<IAccordionProps> = ({ data = [] }) => {
-    const [selected, setSelected] = useState<number | null>(null);
+    const [openId, setId] = useState<number | null>(null);
     return (
-        <div className={styles.wrapper}>
-            {data.length &&
-                data.map((item, index) => (
-                    <ItemAccordion
-                        id={index}
-                        key={index}
-                        title={item.title}
-                        content={item.content}
-                        setSelected={setSelected}
-                        isSelected={selected === index}
-                    />
-                ))}
-        </div>
+        <>
+            <ul className={styles.accordion}>
+                {data.length &&
+                    data.map((item, index) => (
+                        <ItemAccordion
+                            id={index}
+                            key={index}
+                            title={item.title}
+                            content={item.content}
+                            onClick={() => (index === openId ? setId(null) : setId(index))}
+                            isOpen={index === openId}
+                        />
+                    ))}
+            </ul>
+        </>
     );
 };
 

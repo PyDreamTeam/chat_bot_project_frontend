@@ -1,5 +1,20 @@
-.card {
-    height: 256px;
+/* .card {
+    min-height: 256px;
+    padding: 46px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+} */
+
+.smallCard {
+    max-width: 411px;
+    min-height: 256px;
     padding: 46px 32px;
     display: flex;
     flex-direction: column;
@@ -11,13 +26,46 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-.smallCard {
+.active {
     max-width: 411px;
-}
-.bigCard {
-    max-width: 616px;
+    min-height: 256px;
+    padding: 46px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
+.bigCard {
+    max-width: 616px;
+    min-height: 256px;
+    padding: 46px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.smallCard:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+    background-color: #f4f5f6;
+    transform: translateY(-4px);
+}
+.bigCard:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+    background-color: #f4f5f6;
+    transform: translateY(-4px);
+}
 .card:hover {
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
     background-color: #f4f5f6;
@@ -25,7 +73,7 @@
 }
 
 .top + p {
-    overflow: hidden;
+    /* overflow: hidden; */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
