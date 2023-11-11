@@ -13,6 +13,8 @@ const Profile = () => {
 
     const { data } = useDataUserQuery(token);
 
+    //if (data?.user_role === ("AD" || "SA")) router.push("/admin");
+
     return (
         <AccountPageWrapper page="profile_templates">
             <AccountPageCredential
