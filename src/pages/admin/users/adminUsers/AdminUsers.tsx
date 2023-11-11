@@ -106,7 +106,9 @@ const AdminUsers: FC<IAccountPageCredential> = ({ type }) => {
 
                     ))
                 ) : (
-                    <NoUsers />
+                    <NoUsers
+                        text={"Пользователей пока нет"}
+                    />
                 )
             }
         </div>

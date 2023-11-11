@@ -4,7 +4,6 @@
     align-items: center;
     gap: 27px;
     height: 56px;
-    border-bottom: 1px solid #e1e2e6;
 }
 .userName {
     min-width: 200px;
