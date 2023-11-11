@@ -1,16 +1,22 @@
 .container {
-    position: relative;
+    position: absolute;
+    width: 100%;
     display:flex;
+    flex-direction: row;
     gap: 16px;
+    background-color: var(--back-color);
+    z-index: 99;
 }
 
-.inputGroup,
-.inputGroupNew {
-    display: block;
+.inputGroupHide {
+    display: none;
+}
+.inputGroupEdit {
+    display: flex;
     width: 100%;
-    padding: 8px 0px 6px 8px;
+    padding: 8px;
     border: none;
-    border-bottom: 1px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
     font-family: "Inter";
     font-style: normal;
     font-weight: 600;
@@ -18,15 +24,12 @@
     line-height: 24px;
     caret-color: var(--accent-color)
 }
-.inputGroupHide {
-    display: none;
-}
 
 .inputGroup::placeholder { /* Most modern browsers support this now. */
    color:    var(--sub-color);
 }
 
-.inputGroup:focus {
+.inputGroupEdit:focus {
     outline: none;
 }
 

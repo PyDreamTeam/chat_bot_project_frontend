@@ -1,12 +1,12 @@
 import React, { FC, ChangeEvent, FocusEvent, useState, MutableRefObject } from "react";
 import { useRef } from "react";
-import styles from "./InputGroup.module.css";
+import styles from "./InputGroupEdit.module.css";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 
 interface PropsInputGroup {
     type: "new" | "edit";
     placeholder?: string;
-    value?: string;
+    value?: string | undefined;
     isShown?: boolean;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
@@ -15,7 +15,7 @@ interface PropsInputGroup {
     onCancel?: () => void;
 }
 
-const InputGroup: FC<PropsInputGroup> = ({
+const InputGroupEdit: FC<PropsInputGroup> = ({
     type,
     placeholder,
     value,
@@ -39,9 +39,7 @@ const InputGroup: FC<PropsInputGroup> = ({
                 defaultValue={value}
                 onChange={(e) => setInputValue(e.target.value)}
                 onBlur={onBlur}
-                className={`${styles.inputGroup}
-                    ${!isShown ? styles.inputGroupHide : styles.inputGroupNew}
-                    `}
+                className={`${!isShown ? styles.inputGroupHide : styles.inputGroupEdit}`}
                 placeholder={placeholder}
                 onKeyDown={onKeyDown}
             />
@@ -51,7 +49,7 @@ const InputGroup: FC<PropsInputGroup> = ({
                     negative={true}
                     type={"button"}
                     onClick={() => {
-                        inputRef.current.value = "";
+                        if (value) inputRef.current.value = value;
                         if (onCancel) onCancel();
                     }}
                 >
@@ -64,11 +62,11 @@ const InputGroup: FC<PropsInputGroup> = ({
                         if (onSubmit) onSubmit(inputValue);
                     }}
                 >
-                    Добавить
+                    Сохранить
                 </ButtonSmallSecondary>
             </div>
         </div>
     );
 };
 
-export default InputGroup;
+export default InputGroupEdit;

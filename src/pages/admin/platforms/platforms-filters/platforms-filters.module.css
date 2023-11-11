@@ -8,7 +8,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: #909090;
+    color: var(--text-color-3);
 }
 
 .workFilters {
@@ -59,19 +59,18 @@
 }
 
 .sortPlatform {
-    border-bottom: 2px solid #E1E2E6;
+    border-bottom: 2px solid var(--sub-color);
     cursor: pointer; 
 }
 
-.sortPlatformActive {
-    border-bottom: 2px solid #4466F5;
-    color: #4466F5;
+.sortFilterActive {
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--accent-color);
     cursor: pointer; 
 }
 
 .sortPlatform:hover {
-    color: #4466F5;
-    border-bottom: 2px solid #4466F5;
+    color: var(--accent-color);
 }
 
 .sortText {
@@ -80,11 +79,11 @@
 
 .sortTextActive {
     padding: 8px 24px;
-    color: #4466F5;
+    color: var(--accent-color);
 }
 
 .sortText:hover {
-    color: #4466F5;
+    color: var(--accent-color);
 }
 
 .loaderPlatforms {

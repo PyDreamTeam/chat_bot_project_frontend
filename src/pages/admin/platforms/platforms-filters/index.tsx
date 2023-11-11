@@ -21,6 +21,7 @@ import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/
 import SearchFiltersList from "@/src/components/entities/platformsFilters/SearchFiltersList/SearchFiltersList";
 import InputGroup from "@/src/components/entities/platformsFilters/InputGroup/InputGroup";
 import Cookies from "js-cookie";
+import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
 const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
@@ -90,6 +91,17 @@ const PlatformsFilters = () => {
         }
     };
 
+    const handleSubmitAddGroup = (inputValue: string | undefined) => {
+        if (inputValue) {
+            setIsShownInput((prevState) => (prevState = false));
+            createGroup({ token, title: inputValue }).then(router.reload);
+        }
+        setIsShownInput((prevState) => (prevState = false));
+    };
+    const handleCancelAddGroup = () => {
+        setIsShownInput((prevState) => (prevState = false));
+    };
+
     return (
         <WrapperAdminPage>
             <ContainerAdminFunction>
@@ -116,9 +128,11 @@ const PlatformsFilters = () => {
                             type={"button"}
                             onClick={() => setIsShownInput((prevState) => (prevState = true))}
                         >
+                            {plusSvgSecondary}
                             Добавить группу фильтров
                         </ButtonSmallPrimary>
                         <ButtonSmallSecondary active={true} type={"button"} onClick={handleAddFilter}>
+                            {plusSvgPrimary}
                             Добавить фильтр
                         </ButtonSmallSecondary>
                     </div>
@@ -143,7 +157,7 @@ const PlatformsFilters = () => {
                             <li
                                 key={title}
                                 onClick={() => handleChangeSortFilters(title)}
-                                className={sort === value ? `${css.sortPlatformActive}` : `${css.sortPlatform}`}
+                                className={sort === value ? `${css.sortFilterActive}` : `${css.sortPlatform}`}
                             >
                                 <Text
                                     type="reg16"
@@ -160,12 +174,11 @@ const PlatformsFilters = () => {
                     type="new"
                     placeholder=" Добавьте название для группы фильтров"
                     isShown={isShownInput}
-                    onBlur={(e) => {
-                        setIsShownInput((prevState) => (prevState = false));
-                    }}
                     onKeyDown={(e) => {
                         handleKeyDownGroup(e);
                     }}
+                    onSubmit={handleSubmitAddGroup}
+                    onCancel={handleCancelAddGroup}
                 />
                 {tagsData?.results?.length > 0 ? (
                     <div className={css.filtersContainer}>

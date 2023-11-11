@@ -1,6 +1,7 @@
 .groupContainer {
-    box-sizing: border-box;
-    max-width: 1060px;
+    position: relative;
+    /* box-sizing: border-box;
+    max-width: 1060px; */
 }
 .groupItem {
     display: flex;

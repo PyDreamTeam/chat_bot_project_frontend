@@ -39,7 +39,8 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
                           .filter((item: any) => item.status === sort || item.status === "public")
                           .map((item: any) => (
                               <li key={item.id}>
-                                  <FiltersGroup groupData={item} sort={sort} />
+                                  {(item.filters.filter((f: any) => f.status === "save").length > 0 ||
+                                      item.status === sort) && <FiltersGroup groupData={item} sort={sort} />}
                               </li>
                           ))
                     : tagsData

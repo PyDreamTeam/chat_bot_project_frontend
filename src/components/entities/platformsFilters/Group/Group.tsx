@@ -12,7 +12,7 @@ import {
     usePlatformFilterSaveMutation,
 } from "@/src/store/services/platforms";
 import { restoreFromArchive } from "../img/SvgConfig";
-import InputGroup from "../InputGroup/InputGroup";
+import InputGroupEdit from "../InputGroupEdit/InputGroupEdit";
 
 interface PropsFilterGroup {
     title?: string;
@@ -126,19 +126,25 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
         }
     };
 
+    const handleSubmitEditGroup = (inputValue: string | undefined) => {
+        if (inputValue) {
+            editGroup({ id, token, title: inputValue }).then(router.reload);
+        }
+        setIsShownInput((prevState) => (prevState = false));
+    };
+
     return (
         <div className={styles.groupContainer}>
-            <InputGroup
+            <InputGroupEdit
                 type="edit"
                 placeholder=" Добавьте название для группы фильтров"
                 value={title}
                 isShown={isShownInput}
-                onBlur={(e) => {
-                    setIsShownInput((prevState) => (prevState = false));
-                }}
                 onKeyDown={(e) => {
                     handleKeyDownGroup(e);
                 }}
+                onCancel={() => setIsShownInput((prevState) => (prevState = false))}
+                onSubmit={handleSubmitEditGroup}
             />
             <div className={styles.groupItem}>
                 <Text type="sem16" color="black">
