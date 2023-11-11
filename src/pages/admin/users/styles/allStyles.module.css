@@ -9,6 +9,7 @@
 .userName {
     min-width: 200px;
     text-transform: capitalize;
+    overflow-wrap: anywhere;
 }
 .userEmail {
     min-width: 300px;

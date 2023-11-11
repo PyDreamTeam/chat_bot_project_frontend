@@ -26,4 +26,8 @@ export const solutions = createApi({
     }),
 });
 
-export const { useGetListSolutionsQuery, useGetSolutionQuery, useGetSolutionsFiltersQuery } = solutions;
+export const {
+    useGetListSolutionsQuery,
+    useGetSolutionQuery,
+    useGetSolutionsFiltersQuery
+} = solutions;

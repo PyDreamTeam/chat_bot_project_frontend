@@ -32,7 +32,7 @@ export const TABS_CONFIG = [
     },
 ];
 const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
-
+    const [search, setSearch] = useState("");
     const router = useRouter();
     const [activeTabItem, setActiveTabItem] = useState<number>(firstTab);
 
@@ -73,9 +73,17 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
                         className={css.search}
                     />
                     <InputSearch
-                        value=""
+                        value={search}
                         placeholder="Поиск"
-                        onChange={(e) => console.log(e.target.value)}
+                        onChange={(e) => {
+                            if (e.target.value.trim() !== "") {
+                                setSearch(e.target.value);
+                                //refresh();
+                            }
+                            if (e.target.value === "") {
+                                setSearch(e.target.value);
+                            }
+                        }}
                     />
                 </div>
                 <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} page="adminPage" />

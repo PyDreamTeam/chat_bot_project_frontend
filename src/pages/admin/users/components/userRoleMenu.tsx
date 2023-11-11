@@ -1,7 +1,5 @@
 import React, { FC, FormEvent, MouseEventHandler } from "react";
-
 import styles from "../styles/changeRole.module.css";
-
 import uuid from "uuid-random";
 
 interface IUserMenuButton {
@@ -18,12 +16,18 @@ interface IUserMenu {
 const UserRoleMenu: FC<IUserMenu> = ({ activeMenu, navButtons, activeBtn }) => {
     return (
         <div className={`${styles.menuWrapper} ${activeMenu ? styles.active : null}`}>
-            {navButtons?.map((button) => (
-                button.text !== activeBtn &&
-                <button className={styles.navigateButton} key={uuid()} onClick={button.onClick}>
-                    {button.text}
-                </button>
-            ))}
+            {navButtons?.map(
+                (button) =>
+                    button.text !== activeBtn && (
+                        <button
+                            className={styles.navigateButton}
+                            key={uuid()}
+                            onClick={button.onClick}
+                        >
+                            {button.text}
+                        </button>
+                    )
+            )}
         </div>
     );
 };

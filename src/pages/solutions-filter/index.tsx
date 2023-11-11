@@ -88,10 +88,12 @@ const SolutionsFilters = () => {
                                     placeholder={"Найти решение"}
                                     value={search}
                                     onChange={(e) => {
-                                        refresh();
-                                        setSearch(e.target.value);
-                                        if (e.target.value.trim() === "") {
+                                        if (e.target.value.trim() !== "") {
+                                            setSearch(e.target.value);
                                             refresh();
+                                        }
+                                        if (e.target.value === "") {
+                                            setSearch(e.target.value);
                                         }
                                     }}
                                 />
