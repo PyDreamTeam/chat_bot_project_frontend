@@ -9,7 +9,7 @@ import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput
 import Image from "next/image";
 import { RadioButtonGroup } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
 import { useRouter } from "next/router";
-import { userData } from "@/src/pages/admin/users/all/allUsers";
+import { userData } from "@/src/pages/admin/users/adminUsers/AdminUsers";
 
 const err = {
     min: "Содержит не менее 8 символов",

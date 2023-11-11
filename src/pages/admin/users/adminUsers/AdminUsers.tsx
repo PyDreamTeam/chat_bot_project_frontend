@@ -1,7 +1,7 @@
 import css from "../styles/allStyles.module.css";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import AdminsHeader from "../components/AdminsHeader";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import NoUsers from "../components/NoUsers";
@@ -13,7 +13,8 @@ import { useChangeRoleMutation, useChangeStatusMutation, useGetUsersQuery } from
 import Cookies from "js-cookie";
 import { Alert } from "../components/Notification";
 
-interface IPerson {
+
+export interface IPerson {
     first_name: string;
     last_name: string;
     email: string;
@@ -27,13 +28,16 @@ export const userData: Array<IPerson> = [
     { first_name: "Матвей", last_name: "c", email: "ntrtbfvswrwe@gmail.com", user_role: "MN", is_active: true, id: 4 },
     { first_name: "Алена", last_name: "d", email: "weytmnrgwe@gmail.com", user_role: "AD", is_active: false, id: 5 },
 ];
-const AllUsers = () => {
+
+export interface IAccountPageCredential {
+    type: string[];
+}
+const AdminUsers: FC<IAccountPageCredential> = ({ type }) => {
     const tk = JSON.parse(Cookies.get("loginUser") || "[]");
     const token = tk.access;
     const [key, setKey] = useState(0);
     const [userKey, setUserKey] = useState(1);
     const [classname, setClassname] = useState("invisible");
-    // const route = useRouter();
     const { refetch, data: dataUsers, isLoading: isLoadingUsers } = useGetUsersQuery(token);
 
     const [changeRole, { isSuccess: isSuccessChangeRole }] = useChangeRoleMutation();
@@ -58,9 +62,12 @@ const AllUsers = () => {
     return (
         <div className={css.users}>
             <AdminsHeader />
-            <div className={css.users}>
-                {dataUsers?.results.length !== (0 || undefined) ? (
+            {isLoadingUsers ? <div className={css.loader}>
+                <Loader isLoading={isLoadingUsers} />
+            </div> :
+                dataUsers?.results.length !== (0 || undefined) ? (
                     dataUsers?.results.map((person: IPerson) => (
+                        type.includes(person.user_role) &&
                         <div className={`${css.user} ${!person.is_active && css.locked}`} key={userKey}>
                             <div className={css.userName}>
                                 {person.first_name} {person.last_name}
@@ -75,8 +82,6 @@ const AllUsers = () => {
                                         checked={person.is_active}
                                         onClick={() => {
                                             setKey((k) => k - 1);
-
-                                            /* person.is_active = !person.is_active; */
                                             const id = person.id;
                                             const requestValues = { is_active: !person.is_active };
                                             changeStatus({ requestValues, token, id });
@@ -92,29 +97,20 @@ const AllUsers = () => {
                                 onClick={changeRole}
                                 isSuccessChange={isSuccessChangeRole}
                             />
-                            {/* <div className={css.edit} onClick={() => { route.push(`/admin/users/edit?id=${person.id}`); }}>
-
-                            <Image
-                                src="/admin/icon_edit.svg"
-                                alt="edit"
-                                width={18}
-                                height={18}
-                            />
-
-                        </div> */}
                             <Alert
                                 classname={classname}
                                 message={"Изменения сохранены"}
                                 onClick={() => setClassname("invisible")}
                             />
                         </div>
+
                     ))
                 ) : (
                     <NoUsers />
-                )}
-            </div>
+                )
+            }
         </div>
     );
 };
 
-export default AllUsers;
+export default AdminUsers;
