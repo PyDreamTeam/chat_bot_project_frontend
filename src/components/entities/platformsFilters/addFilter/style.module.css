@@ -1,0 +1,101 @@
+/* Стили для инпута заголовка для добавления платформ */
+
+.inputAddFilter {
+    height: 64px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid var(--sub-color-2);
+    background: var(--sub-color-2);
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; 
+}
+
+.width640 {
+    width: 640px;
+}
+
+/* .blockInfoSolution {
+    position: relative;
+} */
+
+.infoSolution {
+    width: 381px;
+    position: absolute;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #E1E2E6;
+    box-shadow: 4px 8px 32px 0px rgba(43, 53, 116, 0.08);
+    top: 40px;
+}
+
+/* Стили для textarea добавления платформ */
+
+.textareaAddPlatform {
+    width: 640px;
+    height: 194px;
+    margin-top: 8px;
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid #F4F5F6;
+    background: #F4F5F6;
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    resize: none;
+}
+
+/* Стили для множественногo input добавления платформ */
+
+.addLinkSolutionBtn {
+    margin-top: 16px;
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid #4466F5;
+    background: #FFF;
+    cursor: pointer;
+}
+.linksSolution {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*Стили для UploadImage*/
+
+.hidden {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    line-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.logoText {
+    margin-top: 16px;
+}
+
+.logoImage {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.image {
+    margin-top: 8px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}

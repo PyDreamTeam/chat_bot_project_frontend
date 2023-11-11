@@ -1,0 +1,4 @@
+.filtersListWrapper {
+    display: flex;
+    flex-direction: column;
+}

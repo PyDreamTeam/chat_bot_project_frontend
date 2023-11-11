@@ -17,6 +17,7 @@ import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNoti
 import Cookies from "js-cookie";
 import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { LoaderStatus } from "@/src/components/shared/LoaderStatus/LoaderStatus";
 
 const err = {
     min: "Содержит не менее 8 символов",
@@ -36,14 +37,8 @@ const TemplateSignUp = () => {
         <div className={css.container}>
             <AuthWrapper titleText={"Регистрация"}>
                 <div className={css.wrapper}>
-                    {isLoading && 
-                <div className={css.modal}>
-                    <Loader isLoading={isLoading}/>
-                </div>}
-                    {isLoadingLogin && 
-                <div className={css.modal}>
-                    <Loader isLoading={isLoadingLogin}/>
-                </div>}
+                    <LoaderStatus isLoading={isLoading}/>
+                    <LoaderStatus isLoading={isLoadingLogin}/>
                     <div className={css.account}>
                         <Text type="reg16" color="grey" className={css.centerText}>
                             Уже есть аккаунт?

@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border-bottom: 1px solid var(--sub-color);
+    margin: 64px 0 24px 0;
+}
+.input {
+    border: none;
+    height: 24px;
+    font-size: 16px;
+    font-family: "Inter";
+    padding-bottom: 8px;
+    width: 100%;
+    outline: none;
+}
+.loop {
+    cursor: pointer;
+    margin-bottom: 8px;
+}
