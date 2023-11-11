@@ -9,7 +9,7 @@ interface IAlert {
     message: string;
     onClick: () => void;
 }
-export const Alert: FC<IAlert> = ({ classname, message, onClick }) => {
+const Alert: FC<IAlert> = ({ classname, message, onClick }) => {
 
 
     return (
@@ -30,3 +30,4 @@ export const Alert: FC<IAlert> = ({ classname, message, onClick }) => {
         </div>
     );
 };
+export default Alert;

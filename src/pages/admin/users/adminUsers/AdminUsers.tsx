@@ -11,7 +11,7 @@ import { Roles } from "@/src/components/shared/createAdmin/RadioButtonGroup/Radi
 import ChangeUserRole from "../components/changeUserRole";
 import { useChangeRoleMutation, useChangeStatusMutation, useGetUsersQuery } from "@/src/store/services/changeRole";
 import Cookies from "js-cookie";
-import { Alert } from "../components/Notification";
+import Alert from "../components/Notification";
 
 
 export interface IPerson {
