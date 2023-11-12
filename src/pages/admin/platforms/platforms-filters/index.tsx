@@ -171,7 +171,6 @@ const PlatformsFilters = () => {
                     </ul>
                 </div>
                 <InputGroup
-                    type="new"
                     placeholder=" Добавьте название для группы фильтров"
                     isShown={isShownInput}
                     onKeyDown={(e) => {

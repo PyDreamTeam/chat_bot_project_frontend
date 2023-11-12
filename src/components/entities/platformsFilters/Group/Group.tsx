@@ -136,7 +136,6 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
     return (
         <div className={styles.groupContainer}>
             <InputGroupEdit
-                type="edit"
                 placeholder=" Добавьте название для группы фильтров"
                 value={title}
                 isShown={isShownInput}

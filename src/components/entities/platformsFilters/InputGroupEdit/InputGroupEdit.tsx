@@ -4,7 +4,6 @@ import styles from "./InputGroupEdit.module.css";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 
 interface PropsInputGroup {
-    type: "new" | "edit";
     placeholder?: string;
     value?: string | undefined;
     isShown?: boolean;
@@ -16,7 +15,6 @@ interface PropsInputGroup {
 }
 
 const InputGroupEdit: FC<PropsInputGroup> = ({
-    type,
     placeholder,
     value,
     isShown,
