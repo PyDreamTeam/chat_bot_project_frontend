@@ -1,13 +1,13 @@
 import React from "react";
+import AdminUsers from "./adminUsers/AdminUsers";
 import UsersAdmin from ".";
-import Moders from "./moderator/Moders";
-
+import { usersOutput } from "./all";
 
 const ModeratorsPage = () => {
     return (
-            <UsersAdmin>
-                <Moders/>
-            </UsersAdmin>        
+        <UsersAdmin>
+            <AdminUsers type={usersOutput.MN} />
+        </UsersAdmin>
     );
 };
 
