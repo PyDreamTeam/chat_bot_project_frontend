@@ -1,10 +1,9 @@
 import React, { FC, ChangeEvent, FocusEvent, useState, MutableRefObject } from "react";
 import { useRef } from "react";
-import styles from "./InputGroup.module.css";
+import styles from "./style.module.css";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 
 interface PropsInputGroup {
-    type: "new" | "edit";
     placeholder?: string;
     value?: string;
     isShown?: boolean;
@@ -16,7 +15,6 @@ interface PropsInputGroup {
 }
 
 const InputGroup: FC<PropsInputGroup> = ({
-    type,
     placeholder,
     value,
     isShown,
