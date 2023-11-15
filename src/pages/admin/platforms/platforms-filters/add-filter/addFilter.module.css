@@ -35,8 +35,25 @@
     align-items: flex-start;
     gap: 8px;
 }
+.filterParameters button {
+    margin-top: 12px;
+}
+
+.tagTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.multipleSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
 
 .buttonsContainer {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;

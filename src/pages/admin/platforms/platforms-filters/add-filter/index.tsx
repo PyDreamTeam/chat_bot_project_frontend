@@ -6,21 +6,16 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./addFilter.module.css";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useAddPlatformFilterMutation, useGetPlatformFilterGroupsQuery } from "@/src/store/services/platforms";
-import { PlatformsList } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/PlatformsList/PlatformsList";
-import { Platforms } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platforms/Platforms";
-import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
-import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
-import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
-import Title from "@/src/components/shared/text/Title";
 import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter/InputAddFilter";
 import { TextAreaAddFilter } from "@/src/components/entities/platformsFilters/addFilter/TextAreaAddFilter";
 import { DropDownSelectGroup } from "@/src/components/entities/platformsFilters/addFilter/DropDownSelectGroup";
 import { SelectGroupIcon } from "@/src/components/entities/platformsFilters/addFilter/SelectGroupIcon";
+import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
+import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
 interface PropsPlatformFilter {
     title: string;
@@ -29,24 +24,27 @@ interface PropsPlatformFilter {
     multiple: boolean;
     status: string;
     image: string;
-    group: number;
-    tags: ITags[];
+    group: number | null;
+    tags: ITags;
+}
+
+interface ITagsEntry {
+    tag: string;
+    id?: number;
+    image_tag?: string;
+    status?: string;
+    is_message?: boolean;
 }
 
 interface ITags {
-    tags: {
-        tag: string;
-        id?: number;
-        image_tag: string;
-        status: string;
-        is_message: boolean;
-    }[];
+    [index: number]: ITagsEntry;
 }
 
 const AddPlatformFilter = () => {
-    const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useAddPlatformFilterMutation();
+
+    const [isValid, setIsValid] = useState<boolean>(false);
 
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
     const [selectedGroup, setSelectedGroup] = useState("Выбрать группу");
@@ -54,23 +52,57 @@ const AddPlatformFilter = () => {
     const [filter, setFilter] = useState<PropsPlatformFilter>({
         title: "",
         functionality: "",
-        integration: "",
+        integration: "integration",
         multiple: true,
         status: "save",
         image: "",
-        group: 0,
+        group: null,
         tags: [],
     });
     const [tags, setTags] = useState<ITags>();
 
+    const [inputsTags, setInputsTags] = useState<string[]>([""]);
+
+    const addInput = () => {
+        setInputsTags([...inputsTags, ""]);
+    };
+
+    const removeInput = (index: number) => {
+        const newInputs = [...inputsTags];
+        newInputs.splice(index, 1);
+        setInputsTags(newInputs);
+    };
+
     const handleSelectedGroupId = (groupId: number) => {
         setFilter((prev) => ({ ...prev, group: groupId }));
+        isValidFilter();
     };
     const handleSetImageName = (imageName: string) => {
         setFilter((prev) => ({ ...prev, image: imageName }));
+        isValidFilter();
         console.log(filter);
     };
-    // const filterTags: ITags = [];
+
+    const handleRadioMultiple = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value === "single") {
+            setFilter((prev) => ({ ...prev, multiple: false }));
+        } else {
+            setFilter((prev) => ({ ...prev, multiple: true }));
+        }
+        isValidFilter();
+    };
+
+    const isValidFilter = () => {
+        const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
+
+        if (typeof isUndefined == "undefined") {
+            setIsValid(true);
+        } else setIsValid(false);
+    };
+
+    const handleSubmit = () => {
+        addFilter({ filter, token });
+    };
 
     return (
         <WrapperAdminPage>
@@ -93,9 +125,6 @@ const AddPlatformFilter = () => {
                     </Link>
                     <span className={css.link}>/Добавить фильтр</span>
                 </div>
-                <Text type="reg24" color="dark">
-                    🔨 Страница находится в разработке! 🔧
-                </Text>
                 <div className={css.filterFormWrapper}>
                     <DropDownSelectGroup
                         dataGroups={dataGroups?.results}
@@ -106,14 +135,20 @@ const AddPlatformFilter = () => {
                     <InputAddFilter
                         label="Название фильтра"
                         // value={platform.title}
-                        onChange={(e) => setFilter((prev) => ({ ...prev, title: e.target.value }))}
+                        onChange={(e) => {
+                            isValidFilter();
+                            setFilter((prev) => ({ ...prev, title: e.target.value }));
+                        }}
                         placeholder="Текст"
                         className={css.inputAddFilter}
                     />
                     <SelectGroupIcon setImageName={handleSetImageName} />
                     <TextAreaAddFilter
                         // value={platform.short_description}
-                        onChange={(e) => setFilter((prev) => ({ ...prev, functionality: e.target.value }))}
+                        onChange={(e) => {
+                            isValidFilter();
+                            setFilter((prev) => ({ ...prev, functionality: e.target.value }));
+                        }}
                         label="Краткое описание функционала фильтра"
                         placeholder="Текст (200 символов)"
                         className={css.textAreaPlatform}
@@ -122,36 +157,59 @@ const AddPlatformFilter = () => {
                         <Text type="med20" color="black">
                             Параметры фильтра
                         </Text>
-                        <InputAddFilter
-                            label="Параметр фильтра"
-                            // value={platform.title}
-                            onChange={(e) => {
-                                // filterTags.tags.push({
-                                //     tag: e.target.value,
-                                //     id: 0,
-                                //     image_tag: "None",
-                                //     status: "save",
-                                //     is_message: false,
-                                // });
-                                // setFilter((prev) => ({ ...prev, title: e.target.value }));
-                            }}
-                            placeholder="Параметр фильтра"
-                            className={css.inputAddFilter}
-                        />
+                        {inputsTags?.map((input, index) => (
+                            <div key={index}>
+                                <div className={css.tagTitle}>
+                                    <Text type="reg18" color="dark">
+                                        Параметр фильтра
+                                    </Text>
+                                    <Image
+                                        src="/img/close.svg"
+                                        alt="icon"
+                                        width={24}
+                                        height={24}
+                                        onClick={() => removeInput(index)}
+                                        style={{ cursor: "pointer" }}
+                                    />
+                                </div>
+                                <InputAddFilter
+                                    // value={platform.title}
+                                    onChange={(e) => {
+                                        const newInputs = [...inputsTags];
+                                        newInputs[index] = e.target.value;
+                                        setInputsTags(newInputs);
+                                        const newTags = newInputs.map((tagName) => {
+                                            return {
+                                                tag: tagName,
+                                                // image_tag: "None",
+                                                // status: "save",
+                                                // is_message: false,
+                                            };
+                                        });
+                                        setFilter((prev) => ({ ...prev, tags: newTags }));
+                                    }}
+                                    placeholder="Параметр фильтра"
+                                    className={css.inputAddFilter}
+                                />
+                            </div>
+                        ))}
+                        <ButtonSmallSecondary active={true} type={"button"} onClick={addInput}>
+                            {plusSvgPrimary}
+                            Добавить фильтр
+                        </ButtonSmallSecondary>
                     </div>
+                    <InputRadioFilterMultiple
+                        className={css.multipleSelection}
+                        label="Выбор параметров"
+                        onChange={handleRadioMultiple}
+                    />
                     <div className={css.buttonsContainer}>
-                        <Link href={"/my-account/orders"} className={css.buttonCancel}>
+                        <Link href={"/admin/platforms/platforms-filters"} className={css.buttonCancel}>
                             <Text type="reg18" color="grey">
                                 Отмена
                             </Text>
                         </Link>
-                        <Button
-                            // disabled={isSubmitting || !dirty || !isValid}
-                            // active={isValid && dirty}
-                            type={"submit"}
-                            // onClick={handleSubmit}
-                            width={257}
-                        >
+                        <Button disabled={!isValid} active={isValid} type={"button"} onClick={handleSubmit} width={257}>
                             Создать
                         </Button>
                     </div>
