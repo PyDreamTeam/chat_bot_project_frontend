@@ -1,9 +1,9 @@
 /* DROPDOWN SELECT GROUP */
 
 .dropDown {
-  width: 640px;
-  user-select: none;
-  position: relative;
+    width: 640px;
+    user-select: none;
+    position: relative;
 }
 .dropDown .dropDownBtn {
     margin-top: 8px;
@@ -42,13 +42,13 @@
     line-height: 150%; 
 }
 .dropDown .dropDownContent .dropDownItem {
-  padding: 8px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 .dropDown .dropDownContent .dropDownItem:hover {
-  background: var(--sub-color-2);
+    background: var(--sub-color-2);
 }
 
 .arrowButton {
@@ -116,7 +116,7 @@
 }
 
 .iconCardActive>svg path{
-    fill:#4466F5;
+    fill: var(--accent-color);
 
 }
 
@@ -128,8 +128,8 @@
     margin-top: 8px;
     padding: 16px;
     border-radius: 20px;
-    border: 1px solid #F4F5F6;
-    background: #F4F5F6;
+    border: 1px solid var(--sub-color-2);
+    background: var(--sub-color-2);
 
     font-family: Inter;
     font-size: 18px;
@@ -145,7 +145,7 @@
     margin-top: 16px;
     padding: 8px 20px;
     border-radius: 12px;
-    border: 1px solid #4466F5;
+    border: 1px solid var(--accent-color);
     background: #FFF;
     cursor: pointer;
 }
@@ -157,6 +157,28 @@
     align-items: center;
     justify-content: space-between;
 }
+
+/* Radio Inputs multiple select */
+
+.radioContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.radioInput {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent-color);
+}
+
+.textGrey {
+    color: var(--text-color-2);
+}
+.text {
+    color: var(--text-color-1);
+}
+
 
 /*Стили для UploadImage*/
 
