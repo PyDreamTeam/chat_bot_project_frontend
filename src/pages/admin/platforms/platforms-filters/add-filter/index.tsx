@@ -1,11 +1,13 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
+import Title from "@/src/components/shared/text/Title";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./addFilter.module.css";
 import Image from "next/image";
+import { useModal } from "@/src/hooks/useModal";
 import { useAddPlatformFilterMutation, useGetPlatformFilterGroupsQuery } from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
@@ -16,6 +18,8 @@ import { DropDownSelectGroup } from "@/src/components/entities/platformsFilters/
 import { SelectGroupIcon } from "@/src/components/entities/platformsFilters/addFilter/SelectGroupIcon";
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
+import { useRouter } from "next/router";
+import OrderSavedPopup from "@/src/components/shared/popups/OrderSavedPopup";
 
 interface PropsPlatformFilter {
     title: string;
@@ -42,6 +46,8 @@ interface ITags {
 
 const AddPlatformFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const router = useRouter();
+    const { isShown, toggle } = useModal();
     const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useAddPlatformFilterMutation();
 
     const [isValid, setIsValid] = useState<boolean>(false);
@@ -103,6 +109,39 @@ const AddPlatformFilter = () => {
     const handleSubmit = () => {
         addFilter({ filter, token });
     };
+
+    const [isModalClose, setIsModalClose] = useState<boolean>(false);
+    const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
+    const handleSuccessAddPlatform = () => {
+        setIsSuccessModal(!isSuccessModal);
+    };
+    const handleClickClose = () => {
+        setIsModalClose(!isModalClose);
+    };
+
+    useEffect(() => {
+        if (isSuccessAddFilter) {
+            setIsModalClose(false);
+            setIsSuccessModal(true);
+            // setPlatform((prev) => ({
+            //     ...prev,
+            //     title: "",
+            //     short_description: "",
+            //     full_description: "",
+            //     turnkey_solutions: 0,
+            //     price: "",
+            //     image: "",
+            //     link: "",
+            //     links_to_solution: [],
+            //     filter: [],
+            // }));
+            // dispatch(deleteAllFiltersFromPlatform());
+            setTimeout(() => {
+                setIsSuccessModal(false);
+                router.reload();
+            }, 3000);
+        }
+    }, [isSuccessAddFilter]);
 
     return (
         <WrapperAdminPage>
@@ -213,6 +252,38 @@ const AddPlatformFilter = () => {
                             Создать
                         </Button>
                     </div>
+                    {/* TODO: */}
+                    {isSuccessModal && (
+                        <div className={css.backdrop}>
+                            <div className={css.modal}>
+                                <div className={css.modalContent}>
+                                    <Image
+                                        src="/sign/close.svg"
+                                        alt="icon"
+                                        width={34}
+                                        height={34}
+                                        className={css.imgCloseModal}
+                                        onClick={handleSuccessAddPlatform}
+                                        style={{ cursor: "pointer" }}
+                                    />
+                                    <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
+                                    <div className={css.textSuccess}>
+                                        <Title type="h5" color="black">
+                                            Фильтр сохранен!
+                                        </Title>
+                                        <Text type="reg16" color="grey">
+                                            Наши специалисты свяжутся с вами в течение суток
+                                        </Text>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {isLoading && (
+                        <div className={css.modal}>
+                            <Loader isLoading={isLoading} />
+                        </div>
+                    )}
                 </div>
             </ContainerAdminFunction>
         </WrapperAdminPage>
