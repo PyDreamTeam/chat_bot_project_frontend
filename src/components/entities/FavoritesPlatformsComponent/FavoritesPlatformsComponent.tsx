@@ -1,8 +1,10 @@
 import React, {FC} from "react";
+import styles from "../FavoritesPlatformsComponent/FavoritesPlatfromsComponent.module.css";
 import { FavoritePlatform } from "../FavoritePlatform/FavoritePlatform";
 import { useGetFavoritePlatformsQuery } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
 import FavoriteStub from "../FavoriteStub/FavoriteStub";
+import { Loader } from "../../shared/Loader/Loader";
 
 
 
@@ -14,13 +16,19 @@ export interface IFavoritesPlatformComponent {
 const FavoritesPlatformsComponent: FC<IFavoritesPlatformComponent> = ({forceUpdate}) => {
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const {data: platform} = useGetFavoritePlatformsQuery(token, {
+    const {data: platform, isLoading} = useGetFavoritePlatformsQuery(token, {
         refetchOnMountOrArgChange: true,
     });
 
     return (
         <div>
-            {platform?.results.filter((item: any) => item.is_favorite).length > 0  ? 
+            {isLoading ? (
+                <div className={styles.loader}>
+                    <Loader isLoading={isLoading} />
+                </div>
+            ) : (
+                <div>
+                    {platform?.results.filter((item: any) => item.is_favorite).length > 0  ? 
                 platform?.results.filter((item: any) => item.is_favorite).map((item: any) => (
                     <FavoritePlatform
                         title={item.title}
@@ -32,6 +40,9 @@ const FavoritesPlatformsComponent: FC<IFavoritesPlatformComponent> = ({forceUpda
                         forceUpdate={() => forceUpdate()}
                     />
                 )) : <FavoriteStub text={"Избранных платформ пока нет"} link={"/platforms"}/>}
+                </div>
+            )
+            }
         </div>
     );
 };
