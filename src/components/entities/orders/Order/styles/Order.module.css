@@ -12,6 +12,7 @@
 
 .orderName {
     width: 169px;
+    cursor: pointer;
 }
 
 .orderEmail {
@@ -20,7 +21,8 @@
     cursor: pointer;
 }
 
-.orderEmail>p {
+.orderEmail>p,
+.orderName>p {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -44,12 +46,14 @@
 }
 
 .orderComment:hover p,
-.orderEmail:hover p{
+.orderEmail:hover p,
+.orderName:hover p{
     color: var(--accent-color);
 }
 
 .orderComment::after,
-.orderEmail::after {
+.orderEmail::after,
+.orderName::after {
     max-width: 330px;
     padding: 16px 24px;
     font-family: Inter;
@@ -72,7 +76,8 @@
 }
         
 .orderComment:hover::after,
-.orderEmail:hover::after {
+.orderEmail:hover::after,
+.orderName:hover::after {
     opacity: 1; /* Показываем его */
     visibility: visible;
 }

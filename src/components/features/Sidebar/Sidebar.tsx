@@ -42,7 +42,7 @@ const Sidebar: FC = () => {
             case faqRoute:
                 return setActiveTabItem(8);
             default:
-                setActiveTabItem(1);
+                setActiveTabItem(0);
         }
     }, [router]);
 

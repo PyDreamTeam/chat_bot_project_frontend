@@ -13,7 +13,7 @@ interface PropsRadioButtonGroup {
     label: string;
 }
 
-export const Roles = { AD: "Администратор", MN: "Модератор" };
+export const Roles = { AD: "Администратор", MN: "Модератор", US: "Пользователь" };
 
 export const RadioButtonGroup: FC<PropsRadioButtonGroup> = ({
     errors,

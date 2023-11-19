@@ -1,9 +1,10 @@
 import React from "react";
+import AccountMainPage from "../../features/AccountMainPage/AccountMainPage";
 
 
 const SelectionPageComponent = () => {
     return (
-        <div>Как на главной странице</div>
+        <AccountMainPage/>
     );
 };
 

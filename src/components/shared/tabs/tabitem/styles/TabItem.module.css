@@ -8,25 +8,17 @@
     transition: 0.3s;
     cursor: pointer;
     align-items: center;
-    padding: 14px 0 14px 30px;
+    padding: 14px 20px 14px 30px;
 }
 .tabHidden {
     display: none;
 }
-/* .tabItem:nth-child(3),
-.tabItem:nth-child(4){
-    display: none;
-} */
-/* .tabItem:nth-child(2):focus-within + .tabItem:nth-child(3) {
-    display: flex;
-} */
-
 .tabItem.active {
     background: #ffffff;
 }
 .tabItem:nth-child(3), 
 .tabItem:nth-child(4){
-    padding: 14px 0 14px 66px;
+    padding: 14px 20px 14px 66px;
 }
 
 .tabItem:hover {
@@ -43,4 +35,10 @@
 .tabItem:nth-child(7),
 .tabItem:nth-child(5){
     margin-bottom: 40px;
+}
+.tabItem:nth-child(7) {
+    padding: 14px 16px 14px 30px;
+}
+.tabItem:nth-child(8) {
+    margin-bottom: 20px;
 }

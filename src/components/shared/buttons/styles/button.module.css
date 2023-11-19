@@ -15,6 +15,8 @@
 }
 
 .buttonActive:hover,
+.buttonSmallPrimaryActive:hover,
+.buttonSmallSecondaryActive:hover,
 .buttonNegativeActive:hover {
     opacity: 0.8;
 }
@@ -32,6 +34,87 @@
     line-height: 28px;
     color: #ffffff;
     cursor: pointer;
+}
+
+/* SmallPrimary */
+
+.buttonSmallPrimaryActive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--accent-color);
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonSmallPrimaryDisabled {
+    display: flex;
+    width: auto;
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--sub-color);
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* SmallSecondary */
+
+.buttonSmallSecondaryActive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    padding: 8px 20px;
+    color: var(--accent-color);
+    background: white;
+    border: 1px solid var(--accent-color);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonSmallSecondaryDisabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    padding: 8px 20px;
+    color: var(--sub-color);
+    background: white;
+    border: 1px solid var(--sub-color);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 /* Стили для ButtonLogin */

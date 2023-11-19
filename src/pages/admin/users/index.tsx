@@ -32,7 +32,7 @@ export const TABS_CONFIG = [
     },
 ];
 const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
-
+    const [search, setSearch] = useState("");
     const router = useRouter();
     const [activeTabItem, setActiveTabItem] = useState<number>(firstTab);
 
@@ -62,7 +62,7 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
 
                 <div className={css.work}>
                     <Text type="med20" color="dark">Управление пользователями</Text>
-                    <button className={css.addBtn}><a href="/admin/users/add"><Text type="reg16" color="white">+ Добавить пользователя</Text></a></button>
+                    {/* <button className={css.addBtn}><a href="/admin/users/add"><Text type="reg16" color="white">+ Добавить пользователя</Text></a></button> */}
                 </div>
                 <div className={css.groupSearch}>
                     <Image
@@ -73,9 +73,17 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
                         className={css.search}
                     />
                     <InputSearch
-                        value=""
+                        value={search}
                         placeholder="Поиск"
-                        onChange={(e) => console.log(e.target.value)}
+                        onChange={(e) => {
+                            if (e.target.value.trim() !== "") {
+                                setSearch(e.target.value);
+                                //refresh();
+                            }
+                            if (e.target.value === "") {
+                                setSearch(e.target.value);
+                            }
+                        }}
                     />
                 </div>
                 <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} page="adminPage" />

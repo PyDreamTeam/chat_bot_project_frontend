@@ -1,13 +1,19 @@
 import React from "react";
-import AllUsers from "./all/allUsers";
 import UsersAdmin from ".";
+import AdminUsers from "./adminUsers/AdminUsers";
 
+
+export const usersOutput = {
+    ALL: ["AD", "MN", "US"],
+    AD: ["AD"],
+    MN: ["MN"],
+};
 
 const AllUsersPage = () => {
     return (
-            <UsersAdmin>
-                <AllUsers/>
-            </UsersAdmin>        
+        <UsersAdmin>
+            <AdminUsers type={usersOutput.ALL} />
+        </UsersAdmin>
     );
 };
 

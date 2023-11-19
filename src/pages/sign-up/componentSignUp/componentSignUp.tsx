@@ -15,6 +15,9 @@ import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput
 import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/RePasswordInput";
 import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
 import Cookies from "js-cookie";
+import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
+import { Loader } from "@/src/components/shared/Loader/Loader";
+import { LoaderStatus } from "@/src/components/shared/LoaderStatus/LoaderStatus";
 
 const err = {
     min: "Содержит не менее 8 символов",
@@ -26,7 +29,7 @@ const err = {
 
 const TemplateSignUp = () => {
     const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
-    const [loginUser, { isSuccess: isSuccessLogin, data }] = useLoginUserMutation();
+    const [loginUser, { isSuccess: isSuccessLogin, data, isLoading: isLoadingLogin }] = useLoginUserMutation();
 
     const route = useRouter();
 
@@ -34,6 +37,8 @@ const TemplateSignUp = () => {
         <div className={css.container}>
             <AuthWrapper titleText={"Регистрация"}>
                 <div className={css.wrapper}>
+                    <LoaderStatus isLoading={isLoading}/>
+                    <LoaderStatus isLoading={isLoadingLogin}/>
                     <div className={css.account}>
                         <Text type="reg16" color="grey" className={css.centerText}>
                             Уже есть аккаунт?
@@ -58,20 +63,14 @@ const TemplateSignUp = () => {
                                 .required("Введите имя")
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(
-                                    /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
-                                    "Может содержать только буквы и не более одного дефиса"
-                                ),
+                                .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
                             last_name: Yup.string()
                                 .trim()
                                 .min(2, "Содержит две или более букв")
                                 .max(30, "Не более 30 букв")
-                                .matches(
-                                    /^[a-zA-Zа-яА-ЯёЁ]+(-[a-zA-Zа-яА-ЯёЁ]+)?$/,
-                                    "Может содержать только буквы и не более одного дефиса"
-                                ),
+                                .matches(NameRegExp, "Может содержать только буквы и не более одного дефиса"),
                             email: Yup.string()
-                                .email("Некорректный email")
+                                .matches(EmailEngRegExp, "Некорректный email")
                                 .max(50, "Не более 50 символов")
                                 .required("Введите email"),
                             password: Yup.string()

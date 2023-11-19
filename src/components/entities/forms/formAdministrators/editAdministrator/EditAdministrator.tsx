@@ -8,9 +8,8 @@ import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { NewPasswordInput } from "@/src/components/shared/login/NewPasswordInput/NewPasswordInput";
 import Image from "next/image";
 import { RadioButtonGroup } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
-import { useEditAdminMutation } from "@/src/store/services/adminModer";
 import { useRouter } from "next/router";
-import { userData } from "@/src/pages/admin/users/all/allUsers";
+import { userData } from "@/src/pages/admin/users/adminUsers/AdminUsers";
 
 const err = {
     min: "Содержит не менее 8 символов",
@@ -24,7 +23,7 @@ const err = {
 const EditAdministrator = () => {
     const route = useRouter();
     const { query } = useRouter();
-    const [editAdmin, { error: errorData, isLoading }] = useEditAdminMutation();
+    //const [editAdmin, { error: errorData, isLoading }] = useEditAdminMutation();
 
     const user = userData.find((person) => (person.id === Number(query.id)));
 
@@ -35,8 +34,7 @@ const EditAdministrator = () => {
                     first_name: user.first_name,
                     last_name: user.last_name,
                     email: user.email,
-                    password: user.password,
-                    user_role: user.role,
+                    user_role: user.user_role,
                 }}
                 validationSchema={Yup.object().shape({
                     first_name: Yup.string()
@@ -81,13 +79,13 @@ const EditAdministrator = () => {
                         <Form className={styles.form}>
                             <FirstNameInput errors={errors} touched={touched} />
                             <LastNameInput errors={errors} touched={touched} />
-                            <EmailInput errors={errors} touched={touched} error={errorData} />
+                            {/* <EmailInput errors={errors} touched={touched} error={errorData} />
                             <NewPasswordInput
                                 errors={errors}
                                 touched={touched}
                                 error={errorData}
                                 password={password}
-                            />
+                            /> */}
                             <RadioButtonGroup
                                 name="user_role"
                                 values={["AD", "MN"]}
@@ -97,9 +95,9 @@ const EditAdministrator = () => {
                             />
                             <div className={styles.buttons}>
                                 <button className={styles.cancel}><a href="/admin/users/all">Отмена</a></button>
-                                <button className={isValid ? styles.active : styles.disabled} disabled={isLoading} type="submit">
+                                {/*  <button className={isValid ? styles.active : styles.disabled} disabled={isLoading} type="submit">
                                     Сохранить
-                                </button>
+                                </button> */}
                             </div>
                         </Form>
                     );

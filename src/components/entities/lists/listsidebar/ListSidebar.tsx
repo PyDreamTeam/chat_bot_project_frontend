@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import TabItem, { ITabItem, TabItemProps } from "../../../shared/tabs/tabitem/TabItem";
 import { useLogoutUserMutation, useVerifyUserMutation } from "@/src/store/services/userAuth";
 import { useRouter } from "next/router";
+import { headerArrow } from "@/src/components/features/AccountPage/AccountPageHeader/img/SvgConfig";
 
 interface IListSidebar {
     config: ITabItem[];

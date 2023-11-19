@@ -4,20 +4,30 @@
     align-items: center;
     gap: 27px;
     height: 56px;
-    border-bottom: 1px solid #e1e2e6;
 }
 .userName {
-    min-width: 150px;
+    min-width: 200px;
     text-transform: capitalize;
+    overflow-wrap: anywhere;
 }
 .userEmail {
-    width: 300px;
-    text-align: left;
+    min-width: 300px;
 }
 .userRole {
-    width: 180px;
+    min-width: 200px;
+}
+.userStatus {
+    min-width: 170px;
+}
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .users {
+    position: relative;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -42,13 +52,10 @@
     cursor: pointer;
     width: 100%;
 }
-.userStatus {
-    width: 170px;
-}
 
 .switch {
     height: 24px;
-    width: 170px;
+    min-width: 170px;
 }
 
 .switch input {
@@ -107,4 +114,11 @@ input:checked + .slider:before {
 }
 .noUsers p:last-child {
     margin-top: 16px;
+}
+.locked,
+.locked p {
+    color: #909090;
+}
+.locked svg path {
+    fill: #909090;
 }

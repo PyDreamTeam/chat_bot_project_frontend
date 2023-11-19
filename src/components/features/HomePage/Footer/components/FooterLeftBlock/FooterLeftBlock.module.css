@@ -13,6 +13,10 @@
     margin-bottom: 40px;
 }
 
+.footerLogoBlock>svg {
+    cursor: pointer;
+}
+
 .footerCopyright {
     display: flex;
     gap: 10px;
