@@ -7,7 +7,6 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./addFilter.module.css";
 import Image from "next/image";
-import { useModal } from "@/src/hooks/useModal";
 import { useAddPlatformFilterMutation, useGetPlatformFilterGroupsQuery } from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
@@ -19,7 +18,7 @@ import { SelectGroupIcon } from "@/src/components/entities/platformsFilters/addF
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import { useRouter } from "next/router";
-import OrderSavedPopup from "@/src/components/shared/popups/OrderSavedPopup";
+import { IMessenger, SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 
 interface PropsPlatformFilter {
     title: string;
@@ -29,25 +28,19 @@ interface PropsPlatformFilter {
     status: string;
     image: string;
     group: number | null;
-    tags: ITags;
+    tags: ITagM[];
 }
 
-interface ITagsEntry {
+interface ITagM {
     tag: string;
-    id?: number;
-    image_tag?: string;
-    status?: string;
-    is_message?: boolean;
-}
-
-interface ITags {
-    [index: number]: ITagsEntry;
+    image_tag: string;
+    status: string;
+    is_message: boolean;
 }
 
 const AddPlatformFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
-    const { isShown, toggle } = useModal();
     const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useAddPlatformFilterMutation();
 
     const [isValid, setIsValid] = useState<boolean>(false);
@@ -65,7 +58,8 @@ const AddPlatformFilter = () => {
         group: null,
         tags: [],
     });
-    const [tags, setTags] = useState<ITags>();
+    const [tags, setTags] = useState<ITagM[]>([]);
+    const [tagsMessengers, setTagsMessengers] = useState<ITagM[]>([]);
 
     const [inputsTags, setInputsTags] = useState<string[]>([""]);
 
@@ -77,6 +71,15 @@ const AddPlatformFilter = () => {
         const newInputs = [...inputsTags];
         newInputs.splice(index, 1);
         setInputsTags(newInputs);
+        const newTags = newInputs.map((tagName) => {
+            return {
+                tag: tagName,
+                image_tag: "None",
+                status: "save",
+                is_message: false,
+            };
+        });
+        setTags(newTags);
     };
 
     const handleSelectedGroupId = (groupId: number) => {
@@ -98,6 +101,20 @@ const AddPlatformFilter = () => {
         isValidFilter();
     };
 
+    const handleSetMessengers = (tagsM: IMessenger[]) => {
+        const newTagsMessengers = tagsM.map((tag) => {
+            return {
+                tag: tag.name,
+                image_tag: tag.image,
+                status: "save",
+                is_message: true,
+            };
+        });
+        console.log(newTagsMessengers);
+        setTagsMessengers(newTagsMessengers);
+        isValidFilter();
+    };
+
     const isValidFilter = () => {
         const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
 
@@ -107,41 +124,29 @@ const AddPlatformFilter = () => {
     };
 
     const handleSubmit = () => {
+        console.log(filter);
         addFilter({ filter, token });
     };
 
-    const [isModalClose, setIsModalClose] = useState<boolean>(false);
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
     const handleSuccessAddPlatform = () => {
         setIsSuccessModal(!isSuccessModal);
     };
-    const handleClickClose = () => {
-        setIsModalClose(!isModalClose);
-    };
 
     useEffect(() => {
         if (isSuccessAddFilter) {
-            setIsModalClose(false);
             setIsSuccessModal(true);
-            // setPlatform((prev) => ({
-            //     ...prev,
-            //     title: "",
-            //     short_description: "",
-            //     full_description: "",
-            //     turnkey_solutions: 0,
-            //     price: "",
-            //     image: "",
-            //     link: "",
-            //     links_to_solution: [],
-            //     filter: [],
-            // }));
-            // dispatch(deleteAllFiltersFromPlatform());
             setTimeout(() => {
                 setIsSuccessModal(false);
                 router.reload();
             }, 3000);
         }
     }, [isSuccessAddFilter]);
+
+    useEffect(() => {
+        const newTags = tags.concat(tagsMessengers);
+        setFilter((prev) => ({ ...prev, tags: newTags }));
+    }, [tags, tagsMessengers]);
 
     return (
         <WrapperAdminPage>
@@ -220,11 +225,12 @@ const AddPlatformFilter = () => {
                                         const newTags = newInputs.map((tagName) => {
                                             return {
                                                 tag: tagName,
-                                                // image_tag: "None",
-                                                // status: "save",
-                                                // is_message: false,
+                                                image_tag: "None",
+                                                status: "save",
+                                                is_message: false,
                                             };
                                         });
+                                        setTags(newTags);
                                         setFilter((prev) => ({ ...prev, tags: newTags }));
                                     }}
                                     placeholder="Параметр фильтра"
@@ -237,6 +243,8 @@ const AddPlatformFilter = () => {
                             Добавить фильтр
                         </ButtonSmallSecondary>
                     </div>
+
+                    <SelectMessengers setMessengers={handleSetMessengers} />
                     <InputRadioFilterMultiple
                         className={css.multipleSelection}
                         label="Выбор параметров"
@@ -252,7 +260,6 @@ const AddPlatformFilter = () => {
                             Создать
                         </Button>
                     </div>
-                    {/* TODO: */}
                     {isSuccessModal && (
                         <div className={css.backdrop}>
                             <div className={css.modal}>

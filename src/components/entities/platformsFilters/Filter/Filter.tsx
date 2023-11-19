@@ -5,11 +5,12 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
 import {
+    useDeletePlatformFilterMutation,
     usePlatformFilterGroupPublicMutation,
     usePlatformFilterPublicMutation,
     usePlatformFilterSaveMutation,
 } from "@/src/store/services/platforms";
-import { restoreFromArchive } from "../img/SvgConfig";
+import { deleteFilterSvg, restoreFromArchive } from "../img/SvgConfig";
 
 interface PropsFilter {
     title: string;
@@ -38,6 +39,9 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
     const [publicFilter, { isSuccess, error, isLoading }] = usePlatformFilterPublicMutation();
     const [moveToSaveFilter, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
         usePlatformFilterSaveMutation();
+    // useDeletePlatformFilterMutation
+    const [deleteFilter, { isSuccess: deleteIsSuccess, error: deleteError, isLoading: deleteIsLoading }] =
+        useDeletePlatformFilterMutation();
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
@@ -89,16 +93,33 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
                     {title}
                 </Text>
                 {sort === "archive" ? (
-                    <div
-                        className={groupStatus != "archive" ? styles.restoreIcon : styles.restoreIconHide}
-                        data-tooltip="Восстановить"
-                        onClick={() => {
-                            if (groupStatus != "archive") {
-                                moveToSaveFilter({ id, token }).then(router.reload);
-                            }
-                        }}
-                    >
-                        {groupStatus != "archive" && restoreFromArchive}
+                    <div className={groupStatus != "archive" ? styles.restoreIcon : styles.restoreIconHide}>
+                        {groupStatus != "archive" && (
+                            <div className={styles.iconsContainer}>
+                                <div
+                                    className={styles.iconReSVG}
+                                    data-tooltip="Восстановить"
+                                    onClick={() => {
+                                        if (groupStatus != "archive") {
+                                            moveToSaveFilter({ id, token }).then(router.reload);
+                                        }
+                                    }}
+                                >
+                                    {restoreFromArchive}
+                                </div>
+                                <div
+                                    className={styles.iconDelSVG}
+                                    data-tooltip="Удалить"
+                                    onClick={() => {
+                                        if (groupStatus != "archive") {
+                                            deleteFilter({ id, token }).then(router.reload);
+                                        }
+                                    }}
+                                >
+                                    {deleteFilterSvg}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <div
