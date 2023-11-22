@@ -14,15 +14,14 @@ export interface ICard {
 }
 
 const CardFeedback: FC<ICard> = ({ img, name, jobTitle, text, maxLength }) => {
-    const [isTruncated, setIsTruncated] = useState(true);
+    const [isTruncated, setIsTruncated] = useState(false);
 
     const toggleText = () => {
         setIsTruncated(!isTruncated);
     };
-    // className={`${styles.card} ${styles.smallCard}`}
-    // className={isTruncated ? styles.active : styles.smallCard}
+
     return (
-        <div className={styles.smallCard} onClick={toggleText}>
+        <div className={isTruncated ? `${styles.smallCard} ${styles.active}` : styles.smallCard} onClick={toggleText}>
             <div className={styles.top}>
                 {img}
                 <div className={styles.title}>
@@ -31,15 +30,15 @@ const CardFeedback: FC<ICard> = ({ img, name, jobTitle, text, maxLength }) => {
                 </div>
             </div>
             {isTruncated ? (
-                <div className={styles}>
-                    <Text type={"reg16"} color={"black"}>
-                        {text?.slice(0, maxLength)}...
-                    </Text>
-                </div>
-            ) : (
                 <div>
                     <Text type={"reg16"} color={"black"}>
                         {text}
+                    </Text>
+                </div>
+            ) : (
+                <div className={styles}>
+                    <Text type={"reg16"} color={"black"}>
+                        {text?.slice(0, maxLength)}...
                     </Text>
                 </div>
             )}
