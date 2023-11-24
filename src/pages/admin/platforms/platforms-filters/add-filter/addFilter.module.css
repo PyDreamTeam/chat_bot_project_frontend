@@ -35,8 +35,25 @@
     align-items: flex-start;
     gap: 8px;
 }
+.filterParameters button {
+    margin-top: 12px;
+}
+
+.tagTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.multipleSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
 
 .buttonsContainer {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -52,4 +69,89 @@
 
 .buttonCancel:hover p{
     color: red;
+}
+
+/* MODAL */
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(53, 53, 53, 0.66);
+    backdrop-filter: blur(5px);
+    z-index: 500;
+    overflow: scroll;
+}
+
+.modal {
+    max-width: 1200px;
+    background-color: white;
+    position: relative;
+    margin: auto;
+    border-radius: 30px;
+}
+
+/* .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+
+.modalContent {
+    position: relative;
+    width: 560px;
+    padding: 32px;
+    padding-bottom: 40px;
+    border-radius: 30px;
+    background: #FFF;
+    text-align: center;
+}
+
+.imgCloseModal {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+}
+
+.textSuccess {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.titleModalClose {
+    margin-top: 32px;
+}
+.subTitleModalClose {
+    margin-top: 16px;
+}
+.groupBtnModalClose {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+}
+.btnCloseModal {
+    padding: 10px 30px;
+    border-radius: 16px;
+    background: #FFF;
+    border: 1px solid #FFF;
+}
+.btnSaveModal {
+    padding: 10px 72px;
+    border-radius: 16px;
+    background: #4466F5;
+    border: 1px solid #4466F5
 }
