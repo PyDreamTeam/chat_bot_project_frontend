@@ -8,10 +8,10 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: #909090;
+    color: var(--text-color-3);
 }
 
-.workPlatform {
+.workFilters {
     margin-top: 32px;
     margin-bottom: 24px;
     display: flex;
@@ -19,17 +19,16 @@
     justify-content: space-between;
 }
 
-.addPlatformBtn {
-    padding: 8px 20px;
-    border-radius: 12px;
-    background: #4466F5;
-    border: 1px solid #4466F5;
-    cursor: pointer;
+.buttonsBlock {
+    display: flex;
+    gap: 40px;
 }
+
 
 .groupSearch {
     position: relative;
     margin-top: 30px;
+    margin-bottom: 16px;
 }
 
 .search {
@@ -52,26 +51,26 @@
     margin-top: 16px;
 }
 
-.sortListPlatform {
-    margin-top: 16px;
+.sortList {
+    /* margin-top: 16px; */
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
 }
 
 .sortPlatform {
-    border-bottom: 2px solid #E1E2E6;
+    border-bottom: 2px solid var(--sub-color);
     cursor: pointer; 
 }
 
-.sortPlatformActive {
-    border-bottom: 2px solid #4466F5;
-    color: #4466F5;
+.sortFilterActive {
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--accent-color);
     cursor: pointer; 
 }
 
 .sortPlatform:hover {
-    color: #4466F5;
-    border-bottom: 2px solid #4466F5;
+    color: var(--accent-color);
 }
 
 .sortText {
@@ -80,11 +79,11 @@
 
 .sortTextActive {
     padding: 8px 24px;
-    color: #4466F5;
+    color: var(--accent-color);
 }
 
 .sortText:hover {
-    color: #4466F5;
+    color: var(--accent-color);
 }
 
 .loaderPlatforms {

@@ -1,0 +1,12 @@
+.activePlatformContainer {
+    display: block;
+}
+.inActivePlatformContainer {
+    display: none;
+}
+.activeSolutionContainer {
+    display: block;
+}
+.inActiveSolutionContainer {
+    display: none;
+}

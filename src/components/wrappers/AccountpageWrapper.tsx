@@ -87,7 +87,7 @@ const AccountPageWrapper: FC<IAccountWrapper & WithChildren> = ({ page, children
                         orderNumber={orderNumber}
                         submitForm={submitForm}
                     />
-                    {page === "profile_settings_password" || page === "profile_settings_personalData" ? (
+                    {page === "profile_settings_password" || page === "profile_settings_personalData" || page === "profile_payment" ? (
                         <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} />
                     ) : null}
                     {children}

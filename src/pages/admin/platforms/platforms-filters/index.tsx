@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -8,39 +8,57 @@ import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSea
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {
-    useGetListPlatformsQuery,
-    useGetPlatformQuery,
+    useCreatePlatformFilterGroupMutation,
     useGetPlatformsFiltersQuery,
-    useGetPlatformsQuery,
+    useSearchPlatformsFiltersQuery,
 } from "@/src/store/services/platforms";
-import { PlatformsList } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/PlatformsList/PlatformsList";
-import { Platforms } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platforms/Platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
-import { Platform } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platform/Platform";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
+import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
+import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
+import SearchFiltersList from "@/src/components/entities/platformsFilters/SearchFiltersList/SearchFiltersList";
+import InputGroup from "@/src/components/entities/platformsFilters/InputGroup/InputGroup";
+import Cookies from "js-cookie";
+import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
-const sortPlatforms = [
+const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
     { title: "Созданные", value: "save" },
     { title: "Архив", value: "archive" },
 ];
 
 const PlatformsFilters = () => {
-    const [searchPlatform, setSearchPlatform] = useState<string>("");
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const [searchFilter, setSearchFilter] = useState<string>("");
+    const [createGroup, { isSuccess, error, isLoading }] = useCreatePlatformFilterGroupMutation();
 
-    // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsFiltersQuery, {
-    //     title: searchPlatform,
-    // });
-    const { data, isLoading } = useGetPlatformsFiltersQuery(1);
-    console.log(data?.results);
+    // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(
+    //     useSearchPlatformsFiltersQuery,
+    //     {
+    //         title: searchFilter,
+    //     }
+    // );
+
+    const {
+        data: searchData,
+        isLoading: searchIsLoading,
+        isFetching: searchIsFetching,
+    } = useSearchPlatformsFiltersQuery({ title: searchFilter });
+
+    const {
+        data: tagsData,
+        isLoading: tagsIsLoading,
+        isFetching: tagsIsFetching,
+    } = useGetPlatformsFiltersQuery({ refetchOnMountOrArgChange: true });
 
     // const handleScroll = () => {
     //     readMore();
     // };
 
     const [sort, setSort] = useState<string>("save");
-    const handleChangeSortPlatform = (title: string) => {
+    const handleChangeSortFilters = (title: string) => {
         if (title === "Опубликованные") {
             // refresh();
             setSort("public");
@@ -56,9 +74,33 @@ const PlatformsFilters = () => {
     };
 
     const router = useRouter();
-    // const handleRouter = () => {
-    //     router.push("/admin/platforms/add-platform");
-    // };
+
+    const handleAddFilter = () => {
+        router.push("/admin/platforms/platforms-filters/add-filter");
+    };
+    const [isShownInput, setIsShownInput] = useState(false);
+
+    const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key == "Enter" || e.key == "NumpadEnter") {
+            const title = (e.target as HTMLInputElement).value;
+            setIsShownInput((prevState) => (prevState = false));
+            createGroup({ token, title }).then(router.reload);
+        }
+        if (e.key == "Escape") {
+            setIsShownInput((prevState) => (prevState = false));
+        }
+    };
+
+    const handleSubmitAddGroup = (inputValue: string | undefined) => {
+        if (inputValue) {
+            setIsShownInput((prevState) => (prevState = false));
+            createGroup({ token, title: inputValue }).then(router.reload);
+        }
+        setIsShownInput((prevState) => (prevState = false));
+    };
+    const handleCancelAddGroup = () => {
+        setIsShownInput((prevState) => (prevState = false));
+    };
 
     return (
         <WrapperAdminPage>
@@ -69,19 +111,31 @@ const PlatformsFilters = () => {
                             Главная
                         </Text>
                     </Link>
-                    <span className={css.link}>/Платформы</span>
-                    <span className={css.link}>/Работа с фильтрами платформ</span>
-                </div>
-
-                {/* <div className={css.workPlatform}>
-                    <Text type="med20" color="dark">
-                        Работа с платформами
-                    </Text>
-                    <button className={css.addPlatformBtn} onClick={handleRouter}>
-                        <Text type="reg16" color="white">
-                            + Создать платформу
+                    <Link href={"/admin/platforms"}>
+                        <Text type="reg16" color="telegray">
+                            /Платформы
                         </Text>
-                    </button>
+                    </Link>
+                    <span className={css.link}>/Фильтры</span>
+                </div>
+                <div className={css.workFilters}>
+                    <Text type="med20" color="dark">
+                        Управление фильтрами платформ
+                    </Text>
+                    <div className={css.buttonsBlock}>
+                        <ButtonSmallPrimary
+                            active={true}
+                            type={"button"}
+                            onClick={() => setIsShownInput((prevState) => (prevState = true))}
+                        >
+                            {plusSvgSecondary}
+                            Добавить группу фильтров
+                        </ButtonSmallPrimary>
+                        <ButtonSmallSecondary active={true} type={"button"} onClick={handleAddFilter}>
+                            {plusSvgPrimary}
+                            Добавить фильтр
+                        </ButtonSmallSecondary>
+                    </div>
                 </div>
                 <div className={css.groupSearch}>
                     <Image
@@ -93,67 +147,82 @@ const PlatformsFilters = () => {
                     />
                     <InputSearch
                         placeholder="Поиск"
-                        value={searchPlatform}
-                        onChange={(e) => setSearchPlatform(e.target.value)}
+                        value={searchFilter}
+                        onChange={(e) => setSearchFilter(e.target.value)}
                     />
                 </div>
-                {combinedData.length > 0 ? (
-                    <div>
-                        <ul className={css.sortListPlatform}>
-                            {sortPlatforms.map(({ title, value }) => (
-                                <li
-                                    key={title}
-                                    onClick={() => handleChangeSortPlatform(title)}
-                                    className={sort === value ? `${css.sortPlatformActive}` : `${css.sortPlatform}`}
+                <div className={css.sortContainer}>
+                    <ul className={css.sortList}>
+                        {sortFiltersArr.map(({ title, value }) => (
+                            <li
+                                key={title}
+                                onClick={() => handleChangeSortFilters(title)}
+                                className={sort === value ? `${css.sortFilterActive}` : `${css.sortPlatform}`}
+                            >
+                                <Text
+                                    type="reg16"
+                                    color="grey"
+                                    className={sort === value ? `${css.sortTextActive}` : `${css.sortText}`}
                                 >
-                                    <Text
-                                        type="reg16"
-                                        color="grey"
-                                        className={sort === value ? `${css.sortTextActive}` : `${css.sortText}`}
-                                    >
-                                        {title}
-                                    </Text>
-                                </li>
-                            ))}
-                        </ul>
-                        <PlatformsList />
-                        {isLoading ? (
+                                    {title}
+                                </Text>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <InputGroup
+                    placeholder=" Добавьте название для группы фильтров"
+                    isShown={isShownInput}
+                    onKeyDown={(e) => {
+                        handleKeyDownGroup(e);
+                    }}
+                    onSubmit={handleSubmitAddGroup}
+                    onCancel={handleCancelAddGroup}
+                />
+                {tagsData?.results?.length > 0 ? (
+                    <div className={css.filtersContainer}>
+                        {tagsIsLoading ? (
                             <div className={css.loaderPlatforms}>
-                                <Loader isLoading={isLoading} />
+                                <Loader isLoading={tagsIsLoading} />
                             </div>
                         ) : (
-                            <ul>
-                                {combinedData
-                                    .filter((item) => item.status === sort)
-                                    .map((item) => (
-                                        <li key={item.id}>
-                                            <Platform
-                                                title={item.title}
-                                                link={item.link}
-                                                tags={item.tags}
-                                                id={item.id}
-                                                sort={sort}
-                                            />
-                                        </li>
-                                    ))}
-                            </ul>
+                            <div>
+                                {searchFilter ? (
+                                    <div>
+                                        <SearchFiltersList
+                                            searchData={searchData.search_results}
+                                            tagsData={tagsData.results}
+                                            sort={sort}
+                                        />
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <FiltersList tagsData={tagsData.results} sort={sort} />
+                                    </div>
+                                )}
+                            </div>
                         )}
-                        <div className={css.loaderPlatforms}>
-                            <Loader isLoading={isFetching} />
-                        </div>
                     </div>
                 ) : (
-                    <div className={css.addPlatformImg} onClick={handleRouter}>
-                        <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
-                        <Text type="med18btn" color="dark">
-                            Платформ пока нет
-                        </Text>
-                        <Text type="reg18" color="telegray" className={css.text}>
-                            Создайте новую платформу
-                        </Text>
+                    <div>
+                        {tagsIsLoading ? (
+                            <div className={css.loaderPlatforms}>
+                                <Loader isLoading={tagsIsLoading} />
+                            </div>
+                        ) : (
+                            <div className={css.addPlatformImg}>
+                                <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
+                                <Text type="med18btn" color="dark">
+                                    Фильтров пока нет
+                                </Text>
+                                <Text type="reg18" color="telegray" className={css.text}>
+                                    Создайте новую группу фильтров
+                                </Text>
+                            </div>
+                        )}
                     </div>
                 )}
-                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
+                {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );

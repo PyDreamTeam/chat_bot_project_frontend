@@ -13,6 +13,8 @@ const Profile = () => {
 
     const { data } = useDataUserQuery(token);
 
+    //if (data?.user_role === ("AD" || "SA")) router.push("/admin");
+
     return (
         <AccountPageWrapper page="profile_templates">
             <AccountPageCredential
@@ -23,7 +25,6 @@ const Profile = () => {
                 first_name={data?.first_name}
                 last_name={data?.last_name}
             />
-            <SearchHistory title={"Сохраненные шаблоны"} />
         </AccountPageWrapper>
     );
 };

@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { PasswordInput } from "@/src/components/shared/login/PasswordInput/PasswordInput";
 import { EmailEngRegExp } from "@/src/shared/constants/regExps";
+import { LoaderStatus } from "@/src/components/shared/LoaderStatus/LoaderStatus";
 
 const ComponentSignIn = () => {
     const route = useRouter();
@@ -41,6 +42,7 @@ const ComponentSignIn = () => {
                 {({ errors, touched, isValid }) => {
                     return (
                         <Form className={css.form}>
+                            <LoaderStatus isLoading={isLoading}/>
                             <EmailInput errors={errors} touched={touched} error={error} />
                             <PasswordInput errors={errors} touched={touched} error={error} />
 

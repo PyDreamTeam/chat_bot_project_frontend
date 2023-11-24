@@ -116,25 +116,27 @@ const PlatformsFilters = () => {
                                 </div>
                             ) : (
                                 <ul className={css.listPlatforms}>
-                                    {combinedData.map((item: PropsPlatformCard) => (
-                                        <li
-                                            key={item.id}
-                                            onClick={() => {
-                                                if (item.id) {
-                                                    handleClick(item.id);
-                                                }
-                                            }}
-                                        >
-                                            <PlatformCard
-                                                id={item.id}
-                                                title={item.title}
-                                                short_description={item.short_description}
-                                                tags={item.tags}
-                                                image={item.image}
-                                                type="filter"
-                                            />
-                                        </li>
-                                    ))}
+                                    {combinedData
+                                        .filter(item => item.status === "public")
+                                        .map((item: PropsPlatformCard) => (
+                                            <li
+                                                key={item.id}
+                                                onClick={() => {
+                                                    if (item.id) {
+                                                        handleClick(item.id);
+                                                    }
+                                                }}
+                                            >
+                                                <PlatformCard
+                                                    id={item.id}
+                                                    title={item.title}
+                                                    short_description={item.short_description}
+                                                    tags={item.tags}
+                                                    image={item.image}
+                                                    type="filter"
+                                                />
+                                            </li>
+                                        ))}
                                     <div className={css.loaderPlatforms}>
                                         <Loader isLoading={isFetching} />
                                     </div>

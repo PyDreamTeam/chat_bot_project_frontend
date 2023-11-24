@@ -11,6 +11,21 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+        getSolutions: builder.query({
+            query: (arg: {
+                id_tags?: Array<number>;
+                price_min?: number;
+                price_max?: number;
+                title?: string;
+                sort_abc?: string;
+                page_number?: number;
+                items_per_page?: number;
+            }) => ({
+                url: "/api/solution/filtration/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
         getListSolutions: builder.query({
             query: () => ({
                 url: "/api/solution/solutions/",
@@ -23,6 +38,7 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+<<<<<<< HEAD
         getSolutionAdvantages: builder.query({
             query: () => ({
                 url: "/api/solution/advantages/",
@@ -46,11 +62,31 @@ export const solutions = createApi({
                 url: "/api/solution/steps/",
                 method: "GET",
             }),
+=======
+        getFavoriteSolutions: builder.query({
+            query: (token) => ({
+                url: "/api/solution/solutions/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
+        addSolutionToFavorite: builder.mutation({
+            query: ({ token, id }) => ({
+                url: `/api/solution/solutions/${id}/favorite/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            })
+>>>>>>> origin
         }),
     }),
 });
 
 export const {
+<<<<<<< HEAD
     useGetListSolutionsQuery,
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
@@ -58,4 +94,12 @@ export const {
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
+=======
+    useGetSolutionsQuery,
+    useGetListSolutionsQuery,
+    useGetSolutionQuery,
+    useGetSolutionsFiltersQuery,
+    useGetFavoriteSolutionsQuery,
+    useAddSolutionToFavoriteMutation
+>>>>>>> origin
 } = solutions;

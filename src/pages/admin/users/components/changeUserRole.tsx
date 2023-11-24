@@ -12,13 +12,13 @@ import { Roles } from "@/src/components/shared/createAdmin/RadioButtonGroup/Radi
 import uuid from "uuid-random";
 import Cookies from "js-cookie";
 import { useLogoutUserMutation, useVerifyUserMutation } from "@/src/store/services/userAuth";
+import { useChangeRoleMutation } from "@/src/store/services/changeRole";
 import UserRoleMenu from "./userRoleMenu";
 
-
 interface IUserInfoProps {
-    onClick?: () => void;
+    onClick?: any;
+    isSuccessChange: boolean;
     role: string | undefined;
-    avatarUrl?: string;
     className?: string;
     id: number;
     disabled: boolean;
@@ -26,59 +26,43 @@ interface IUserInfoProps {
 
 const ChangeUserRole: FC<IUserInfoProps> = ({
     onClick,
+    isSuccessChange,
     role = "",
-    avatarUrl,
     className = "",
     id,
     disabled = false,
 }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const handleToggleRoleMenu = () => setIsOpen((prevState) => !prevState);
-    const router = useRouter();
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
-
-    const [logoutUser, { isSuccess: isSuccessLogout }] = useLogoutUserMutation();
-    const [verifyUser, { isSuccess: isSuccessVerify, isError: isErrorVerify }] = useVerifyUserMutation();
-
-    useEffect(() => {
-        verifyUser(token.refresh);
-    }, []);
-
-    useEffect(() => {
-        if (isErrorVerify) {
-            router.push("/sign-in");
-        }
-    }, [isSuccessVerify, isErrorVerify]);
-
-    useEffect(() => {
-        if (isSuccessLogout) {
-            Cookies.remove("loginUser");
-            verifyUser(token.refresh);
-        }
-    }, [isSuccessLogout]);
+    const handleToggleRoleMenu = () => { if (!disabled) setIsOpen((prevState) => !prevState); };
+    const tk = JSON.parse(Cookies.get("loginUser") || "[]");
+    const token = tk.access;
 
     const navElements = [
         {
             text: Roles.US,
-            onClick: () => { console.log(role); role = Roles.US; console.log(role); },
-            /* onClick() {
-                router.replace(clientEndpoints.myAccount.profile.get);
-            }, */
+            onClick: () => {
+                const requestValues = { user_role: "US" };
+                onClick({ requestValues, token, id });
+            },
         },
         {
             text: Roles.AD,
-            onClick: () => { role = Roles.AD; },
+            onClick: () => {
+                const requestValues = { user_role: "AD" };
+                onClick({ requestValues, token, id });
+            },
         },
         {
             text: Roles.MN,
-            onClick: () => { role = Roles.MN; },
+            onClick: () => {
+                const requestValues = { user_role: "MN" };
+                onClick({ requestValues, token, id });
+            },
         },
     ];
 
-
-
     return (
-        <div className={`${styles.changeRoleWrapper} ${className}`} key={uuid()} onClick={handleToggleRoleMenu}>
+        <div className={`${styles.changeRoleWrapper} ${className}`} key={uuid()} onClick={handleToggleRoleMenu} >
             {role && (
                 <div className={styles.blockName}>
                     <Text type={"reg16"} color={"grey"}>

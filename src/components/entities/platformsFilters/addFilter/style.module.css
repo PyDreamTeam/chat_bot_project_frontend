@@ -1,0 +1,230 @@
+/* DROPDOWN SELECT GROUP */
+
+.dropDown {
+    width: 640px;
+    user-select: none;
+    position: relative;
+}
+.dropDown .dropDownBtn {
+    margin-top: 8px;
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid var(--sub-color-2);
+    background: var(--sub-color-2);
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; 
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.dropDown .dropDownContent {
+    position: absolute;
+    top: 110%;
+    width: 100%;
+    left: 0;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid var(--sub-color);
+    border-radius: 20px;
+    box-shadow: 4px 8px 32px 0px rgba(43, 53, 116, 0.08);
+    z-index: 2;
+
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; 
+}
+.dropDown .dropDownContent .dropDownItem {
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.dropDown .dropDownContent .dropDownItem:hover {
+    background: var(--sub-color-2);
+}
+
+.arrowButton {
+    width: 24px;
+    height: 24px;
+    color: var(--text-color-2);
+}
+.arrowButtonOpen {
+    transform: rotate(180deg);
+}
+
+/* INPUT FILTER NAME */
+
+.inputAddFilter {
+    height: 64px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid var(--sub-color-2);
+    background: var(--sub-color-2);
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; 
+}
+
+.width640 {
+    width: 640px;
+}
+
+/* SELECT ICONS */
+
+.iconCardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.iconCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--sub-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.iconCard:hover {
+    border-color: var(--accent-color);
+}
+.iconCardActive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.iconCardActive>svg path{
+    fill: var(--accent-color);
+
+}
+
+/* Стили для textarea добавления платформ */
+
+.textareaAddPlatform {
+    width: 640px;
+    height: 194px;
+    margin-top: 8px;
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid var(--sub-color-2);
+    background: var(--sub-color-2);
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    resize: none;
+}
+
+/* Стили для множественногo input */
+
+.addLinkSolutionBtn {
+    margin-top: 16px;
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-color);
+    background: #FFF;
+    cursor: pointer;
+}
+.linksSolution {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Radio Inputs multiple select */
+
+.radioContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.radioInput {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent-color);
+}
+
+.textGrey {
+    color: var(--text-color-2);
+}
+.text {
+    color: var(--text-color-1);
+}
+
+/*MESSENGERS*/
+
+.iconsMessengersBlock {
+    display: flex;
+    gap: 24px;
+}
+.iconMessenger,
+.iconMessengerSelected {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.iconImg {
+    filter: grayscale(100%);
+}
+
+.iconMessengerSelected img {
+    filter: none;
+}
+
+
+/*Стили для UploadImage*/
+
+.hidden {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    line-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.logoText {
+    margin-top: 16px;
+}
+
+.logoImage {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.image {
+    margin-top: 8px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}

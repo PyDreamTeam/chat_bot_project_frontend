@@ -4,11 +4,19 @@ import Title from "../../text/Title";
 import Image from "next/image";
 import styles from "./styles/CardSolution.module.css";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
+import Cookies from "js-cookie";
 
-const CardSolution: FC<PropsSolutionCard> = ({ type, image, title, price, short_description, tags = [] }) => {
+
+const CardSolution: FC<PropsSolutionCard> = ({ type, image, title, price, short_description, id, forceUpdate, tags = [] }) => {
+    const [addToFavorite] = useAddSolutionToFavoriteMutation();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
     const [imageHeart, setImageHeart] = useState("dislike");
+    
 
     const handleClickHeart = (e: MouseEvent) => {
+        addToFavorite({id, token}).then(forceUpdate);
         e.stopPropagation();
         if (imageHeart === "like") {
             setImageHeart("dislike");
