@@ -8,7 +8,7 @@ import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { useGetSolutionStepsQuery } from "@/src/store/services/solutions";
 import ListStepAccordion from "@/src/components/entities/lists/accordionList/ListStepAccordion";
 
-const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_text }) => {
+const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_description }) => {
     const { data } = useGetSolutionStepsQuery({});
 
     return (
@@ -17,9 +17,11 @@ const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_text }) =
                 <Title type={"h3"} color={"dark"}>
                     {steps_title}
                 </Title>
-                <Text className={styles.text} type={"reg18"} color={"grey"}>
-                    {steps_text}
-                </Text>
+                <div className={styles.text}>
+                    <Text type={"reg18"} color={"grey"}>
+                        {steps_description}
+                    </Text>
+                </div>
                 <div className={styles.blockScroll}>
                     <div className={styles.blockAccordion}>
                         <ListStepAccordion data={data?.results} />

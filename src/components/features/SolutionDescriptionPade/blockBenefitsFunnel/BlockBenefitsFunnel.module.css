@@ -14,9 +14,9 @@
 .blockText h3 {
     line-height: 1;
 }
-.blockText p {
-    margin-right: 70px;
-    max-width: 570px;
+
+.text {
+    width: 619px;
 }
 
 .blockCard {

@@ -6,12 +6,12 @@
     gap: 50px;
 }
 .blockText h3 {
-    padding-bottom: 24px;
+    margin: 0px 0px 24px 10px;
 }
 .blockScroll {
     height: 648px;
     max-width: 770px;
-    overflow-y: hidden;
+    overflow: hidden;
     cursor: pointer;
     padding: 5px 10px 5px 10px;
 }
@@ -19,10 +19,10 @@
     overflow-y: scroll;
 }
 .text {
-    margin-bottom: 48px;
+    margin: 0px 0px 48px 10px;
     max-width: 645px;
 }
-/*  */
+
 .blockAccordion {
     max-height: 648px;
     margin-right: 10px;

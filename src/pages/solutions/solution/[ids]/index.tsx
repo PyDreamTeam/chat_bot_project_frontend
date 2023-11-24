@@ -55,8 +55,8 @@ const Solution = () => {
                 />
                 <BlockGreatSolutions />
                 <BlockHowItWorks />
-                <BlockFunnelBenefits />
-                <BlockTasksBySteps steps_title={data?.steps_title} steps_text={data?.steps_text} />
+                <BlockFunnelBenefits cards_title={data?.cards_title} cards_description={data?.cards_description} />
+                <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />
             </div>
