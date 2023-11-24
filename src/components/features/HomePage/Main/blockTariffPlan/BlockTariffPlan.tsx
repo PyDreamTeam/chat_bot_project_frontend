@@ -9,14 +9,7 @@ const tariffPlansCards: TariffPlanCard[] = [
         title: "Решение с доработкой",
         price: "от 9 000 ₽",
         icon: <CheckMark />,
-        advantage: [
-            "1 plan",
-            "Transfers and payments",
-            "Transfers and payments",
-            "Transfers and payments",
-            "Basic analytics",
-        ],
-        btn: "Выбрать план",
+        advantage: ["1 решение", "Переводы и платежи", "Переводы и платежи", "Переводы и платежи", "Базовая аналитика"],
         hotPlan: false,
     },
     {
@@ -24,13 +17,12 @@ const tariffPlansCards: TariffPlanCard[] = [
         price: "от 17 000 ₽",
         icon: <CheckMark />,
         advantage: [
-            "5 plans",
-            "Transfers and payments",
-            "Transfers and payments",
-            "Transfers and payments",
-            "Premium analytics",
+            "5 решений",
+            "Переводы и платежи",
+            "Переводы и платежи",
+            "Переводы и платежи",
+            "Премиальная аналитика",
         ],
-        btn: "Выбрать план",
         hotPlan: true,
         bestPlan: "/img/hotPlan.svg",
     },
@@ -39,13 +31,12 @@ const tariffPlansCards: TariffPlanCard[] = [
         price: "от 29 000 ₽",
         icon: <CheckMark />,
         advantage: [
-            "8 plans",
-            "Transfers and payments",
-            "Transfers and payments",
-            "Transfers and payments",
-            "Premium analytics",
+            "8 решений",
+            "Переводы и платежи",
+            "Переводы и платежи",
+            "Переводы и платежи",
+            "Премиальная аналитика",
         ],
-        btn: "Выбрать план",
         hotPlan: false,
     },
 ];
@@ -66,9 +57,9 @@ export const BlockTariffPlan = () => {
                         price={item.price}
                         icon={item.icon}
                         advantage={item.advantage}
-                        btn={item.btn}
                         hotPlan={item.hotPlan}
                         bestPlan={item.bestPlan}
+                        dataComment={`Выбранный тариф: ${item?.title}`}
                     />
                 ))}
             </ul>

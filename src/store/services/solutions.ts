@@ -38,7 +38,6 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
-<<<<<<< HEAD
         getSolutionAdvantages: builder.query({
             query: () => ({
                 url: "/api/solution/advantages/",
@@ -62,7 +61,7 @@ export const solutions = createApi({
                 url: "/api/solution/steps/",
                 method: "GET",
             }),
-=======
+        }),
         getFavoriteSolutions: builder.query({
             query: (token) => ({
                 url: "/api/solution/solutions/",
@@ -79,27 +78,20 @@ export const solutions = createApi({
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
-            })
->>>>>>> origin
+            }),
         }),
     }),
 });
 
 export const {
-<<<<<<< HEAD
     useGetListSolutionsQuery,
+    useGetSolutionsQuery,
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
+    useGetFavoriteSolutionsQuery,
+    useAddSolutionToFavoriteMutation,
     useGetSolutionAdvantagesQuery,
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
-=======
-    useGetSolutionsQuery,
-    useGetListSolutionsQuery,
-    useGetSolutionQuery,
-    useGetSolutionsFiltersQuery,
-    useGetFavoriteSolutionsQuery,
-    useAddSolutionToFavoriteMutation
->>>>>>> origin
 } = solutions;
