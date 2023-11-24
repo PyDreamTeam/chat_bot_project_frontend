@@ -60,3 +60,31 @@
 .navigateButton:hover {
     color: #4466f5;
 }
+
+.alert {
+    width: 570px;
+    height: 64px;
+    position: fixed;
+    top: 64px;
+    right: 64px;
+    border-radius: 30px;
+    padding: 20px 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    transition: 0.5s;
+    opacity: 1;
+}
+.alert p {
+    width: 440px;
+}
+.invisible {
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+.closeBtn {
+    cursor: pointer;
+}

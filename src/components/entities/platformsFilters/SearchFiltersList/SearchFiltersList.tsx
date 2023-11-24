@@ -1,8 +1,6 @@
 import React, { FC, useState } from "react";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./SearchFiltersList.module.css";
-import { PropsGroupFilters } from "../../platforms/types";
-import FiltersGroup from "../FiltersGroup/FiltersGroup";
 import Group from "../Group/Group";
 import Filter from "../Filter/Filter";
 import uuid from "uuid-random";
@@ -11,6 +9,7 @@ import Modal from "@/src/components/shared/modal/Modal";
 import DeleteFilterPopup from "../popups/DeleteFilterPopup";
 import DeleteFilterGroupPopup from "../popups/DeleteFilterGroupPopup";
 import RestoreFilterGroupPopup from "../popups/RestoreFilterGroupPopup";
+import Image from "next/image";
 
 // import Orders from "./Orders";
 
@@ -118,6 +117,15 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, s
                         </li>
                     ))}
             </ul>
+            {searchData.group_results.filter((item: any) => item.status === sort).length > 0 ||
+            searchData.filter_results.filter((item: any) => item.status === sort).length > 0 ? null : (
+                <div className={styles.noResultsImg}>
+                    <Image src="/admin/platform_search.svg" alt="icon" width={120} height={120} />
+                    <Text type="med18btn" color="dark">
+                        Ничего не нашлось
+                    </Text>
+                </div>
+            )}
             <Modal isShown={isShown} hide={toggle}>
                 <DeleteFilterPopup close={toggle} filterId={filterId} filterTitle={filterTitle} />
             </Modal>

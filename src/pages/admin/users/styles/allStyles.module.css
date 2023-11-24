@@ -4,11 +4,11 @@
     align-items: center;
     gap: 27px;
     height: 56px;
-    border-bottom: 1px solid #e1e2e6;
 }
 .userName {
     min-width: 200px;
     text-transform: capitalize;
+    overflow-wrap: anywhere;
 }
 .userEmail {
     min-width: 300px;
@@ -19,7 +19,15 @@
 .userStatus {
     min-width: 170px;
 }
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .users {
+    position: relative;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     gap: 10px;
