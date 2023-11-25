@@ -23,7 +23,6 @@ import Cookies from "js-cookie";
 import PhoneSavedPopup from "@/src/components/shared/popups/PhoneSavedPopup";
 
 const Platforms = () => {
-    const { isShown, toggle } = useModal();
     const router = useRouter();
 
     const handleClick = (idp: number) => {

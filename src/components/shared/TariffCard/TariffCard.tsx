@@ -17,6 +17,7 @@ export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, 
     const { isSuccess } = useDataUserQuery(token);
     const router = useRouter();
     const { isShown, toggle } = useModal();
+
     return (
         <div className={hotPlan ? `${css.hotPlan}` : `${css.container}`}>
             <div className={!hotPlan && css.blockTitle}>
@@ -55,14 +56,17 @@ export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, 
                 ))}
             </ul>
             {isSuccess ? (
-                <Modal isShown={isShown} hide={toggle}>
-                    <SelectionRequest close={toggle} dataComment={dataComment} />
-                </Modal>
+                <Button active={true} type="submit" onClick={toggle}>
+                    Выбрать план
+                </Button>
             ) : (
                 <Button active={true} type="submit" onClick={() => router.push("/sign-in")}>
                     Выбрать план
                 </Button>
             )}
+            <Modal isShown={isShown} hide={toggle}>
+                <SelectionRequest close={toggle} dataComment={dataComment} />
+            </Modal>
         </div>
     );
 };
