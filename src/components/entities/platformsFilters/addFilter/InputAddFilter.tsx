@@ -1,4 +1,5 @@
 import { ChangeEvent, FC, useState, KeyboardEvent } from "react";
+import uuid from "uuid-random";
 import css from "./style.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";

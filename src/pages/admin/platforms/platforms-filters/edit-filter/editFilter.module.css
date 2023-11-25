@@ -20,6 +20,12 @@
     gap: 16px;
 }
 
+.loaderOrders {
+    display: flex;
+    align-self: center;
+    margin-top: 100px;
+}
+
 .form {
     width: 440px;
     text-align: left;

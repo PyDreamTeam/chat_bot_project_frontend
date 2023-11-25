@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import uuid from "uuid-random";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -38,30 +39,36 @@ const EditPlatformFilter: FC<pageProps> = () => {
     const { data: filterData, isLoading: filterIsLoading } = useGetPlatformFilterQuery({ id });
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
-    // console.log(dataGroups);
+
     const [selectedGroup, setSelectedGroup] = useState(filterGroup?.title);
     const { data: tagsData, isLoading: tagsIsLoading } = useGetPlatformsFiltersQuery({});
 
     const setInitialTags = () => {
         const filterTagsArray: ITagM[] = tagsData?.results
-            ?.find((item: any) => item.id === filterGroup.id)
+            ?.find((item: any) => item.id === filterGroup?.id)
             .filters?.find((filter: any) => filter.id == id).tags;
         const inputsTagsArray = filterTagsArray?.map((item) => item.tag);
         return inputsTagsArray;
     };
 
     const filterTagsArray: ITagM[] = tagsData?.results
-        ?.find((item: any) => item.id === filterGroup.id)
-        .filters?.find((filter: any) => filter.id == id).tags;
+        ?.find((item: any) => item.id === filterGroup?.id)
+        ?.filters?.find((filter: any) => filter.id == id).tags;
 
-    const inputsTagsArray = filterTagsArray?.map((item) => item.tag);
-    console.log(inputsTagsArray);
+    const cleanMessengersTags = filterTagsArray?.filter((item) => {
+        return item.is_message === true;
+    });
 
-    const [tags, setTags] = useState<ITagM[]>(filterTagsArray);
-    const [tagsMessengers, setTagsMessengers] = useState<ITagM[]>([]);
-    const [inputsTags, setInputsTags] = useState<string[]>(setInitialTags);
+    const cleanTags = filterTagsArray?.filter((item) => {
+        return item.is_message === false;
+    });
+    const cleanTagsNames = cleanTags?.map((item) => item.tag);
 
-    // console.log(filterTagsArray);
+    // const inputsTagsArray = filterTagsArray?.map((item) => item.tag);
+
+    const [tags, setTags] = useState<ITagM[]>(cleanTags);
+    const [tagsMessengers, setTagsMessengers] = useState<ITagM[]>(cleanMessengersTags);
+    const [inputsTags, setInputsTags] = useState<(string | undefined)[]>(cleanTagsNames);
 
     const [filter, setFilter] = useState<PropsPlatformFilter>({
         title: "",
@@ -114,17 +121,20 @@ const EditPlatformFilter: FC<pageProps> = () => {
         console.log(filter);
     };
 
-    const handleSetMessengers = (tagsM: IMessenger[]) => {
-        const newTagsMessengers = tagsM.map((tag) => {
-            return {
-                tag: tag.name,
-                image_tag: tag.image,
-                status: "save",
-                is_message: true,
-            };
-        });
-        console.log(newTagsMessengers);
-        setTagsMessengers(newTagsMessengers);
+    const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
+        console.log(tagsM);
+        if (tagsM != undefined) {
+            const newTagsMessengers: ITagM[] = tagsM.map((item) => {
+                return {
+                    tag: item?.tag,
+                    image_tag: item?.image_tag,
+                    status: "save",
+                    is_message: true,
+                };
+            });
+            console.log(newTagsMessengers);
+            setTagsMessengers(newTagsMessengers);
+        }
         isValidFilter();
     };
 
@@ -139,7 +149,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
 
     const handleSubmit = () => {
         console.log(filter);
-        // addFilter({ filter, token });
+        // patchFilter({ filter, token });
     };
 
     // useEffect(() => {
@@ -152,15 +162,30 @@ const EditPlatformFilter: FC<pageProps> = () => {
     //     }
     // }, [isSuccessAddFilter]);
 
-    // useEffect(() => {
-    //     const newTags = tags.concat(tagsMessengers);
-    //     setFilter((prev) => ({ ...prev, tags: newTags }));
-    // }, [tags, tagsMessengers]);
+    useEffect(() => {
+        console.log("useEffect tags, tagsMessengers");
+        if (tagsMessengers) {
+            const newTags = tags?.concat(tagsMessengers);
+            setFilter((prev) => ({ ...prev, tags: newTags }));
+        }
+    }, [tags, tagsMessengers]);
 
     useEffect(() => {
-        setInputsTags((prev) => inputsTagsArray);
-        // console.log("useEfect");
+        setInputsTags(inputsTags);
+        console.log("useEfect");
     }, []);
+
+    // useEffect(() => {
+    //     if (tagsMessengers) {
+    //         const newTags = tags?.concat(tagsMessengers);
+    //         setFilter((prev) => ({
+    //             ...prev,
+    //             title: filterData?.filter,
+    //             short_description: filterData?.functionality,
+    //             tags: newTags,
+    //         }));
+    //     }
+    // }, [filterData]);
 
     return (
         <WrapperAdminPage>
@@ -209,8 +234,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
                             />
-                            {/* TODO: set default filter icon */}
-                            <SelectGroupIcon setImageName={handleSetImageName} />
+                            <SelectGroupIcon defaultImage={filterData.image} setImageName={handleSetImageName} />
                             <TextAreaAddFilter
                                 value={filterData?.functionality}
                                 onChange={(e) => {
@@ -244,8 +268,10 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                         <InputAddFilter
                                             value={input}
                                             onChange={(e) => {
+                                                e.preventDefault();
                                                 const newInputs = [...inputsTags];
                                                 newInputs[index] = e.target.value;
+                                                console.log(newInputs);
                                                 setInputsTags(newInputs);
                                                 const newTags = newInputs.map((tagName) => {
                                                     return {
@@ -268,7 +294,10 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                     Добавить фильтр
                                 </ButtonSmallSecondary>
                             </div>
-                            <SelectMessengers setMessengers={handleSetMessengers} />
+                            <SelectMessengers
+                                defaultMessengers={cleanMessengersTags}
+                                setMessengers={handleSetMessengers}
+                            />
                             <InputRadioFilterMultiple
                                 className={css.multipleSelection}
                                 label="Выбор параметров"
