@@ -23,11 +23,11 @@ const ListSidebar: FC<IListSidebar & TabItemProps> = ({ config = [], activeTabIt
         }
     }, [isSuccessLogout]);
 
-    useEffect(() => {
-        if (isError) {
-            route.push("/sign-in");
-        }
-    }, [isError]);
+    // useEffect(() => {
+    //     if (isError) {
+    //         route.push("/sign-in");
+    //     }
+    // }, [isError]);
 
     return (
         <nav className={styles.list}>

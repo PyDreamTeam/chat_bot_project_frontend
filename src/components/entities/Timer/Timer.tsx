@@ -1,7 +1,7 @@
 import css from "./timer.module.css";
 import { useEffect, useState } from "react";
 
-export const Timer = () => {
+export const Timer = ({ onClick }: { onClick: () => void }) => {
     const [seconds, setSeconds] = useState<number>(30);
 
     useEffect(() => {
@@ -14,6 +14,7 @@ export const Timer = () => {
 
     const reloadTimer = () => {
         setSeconds(30);
+        onClick();
     };
 
     return (

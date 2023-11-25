@@ -6,7 +6,7 @@ import { FC, useEffect } from "react";
 import * as Yup from "yup";
 import css from "./componentSignUp.module.css";
 import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
-import { useCreateUserMutation, useLoginUserMutation } from "@/src/store/services/userAuth";
+import { useCreateUserMutation, useLoginUserMutation, useSendAgainMutation } from "@/src/store/services/userAuth";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
@@ -30,10 +30,16 @@ const err = {
 };
 
 const TemplateSignUp = () => {
-    const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
+    const [createUser, { isSuccess, error: errorData, isLoading, status }] = useCreateUserMutation();
+    const [sendAgain] = useSendAgainMutation();
     const [loginUser, { isSuccess: isSuccessLogin, data, isLoading: isLoadingLogin }] = useLoginUserMutation();
 
     const route = useRouter();
+
+    const sendAgainEmail = async () => {
+        const email = await JSON.parse(Cookies.get("emailUser") || "[]");
+        sendAgain({ email: email });
+    };
 
     return (
         <div className={css.container}>
@@ -88,6 +94,7 @@ const TemplateSignUp = () => {
                                     .oneOf([Yup.ref("password")], "Пароли не совпадают"),
                             })}
                             onSubmit={(values) => {
+                                Cookies.set("emailUser", JSON.stringify(values.email));
                                 createUser(values);
                             }}
                         >
@@ -105,18 +112,18 @@ const TemplateSignUp = () => {
                                 //     }
                                 // }, [isSuccess]);
 
-                                useEffect(() => {
-                                    if (isSuccess) {
-                                        loginUser({ email, password });
-                                    }
-                                }, [isSuccess]);
+                                // useEffect(() => {
+                                //     if (isSuccess) {
+                                //         loginUser({ email, password });
+                                //     }
+                                // }, [isSuccess]);
 
-                                useEffect(() => {
-                                    if (isSuccessLogin) {
-                                        Cookies.set("loginUser", JSON.stringify(data));
-                                        route.push("/my-account");
-                                    }
-                                }, [isSuccessLogin]);
+                                // useEffect(() => {
+                                //     if (isSuccessLogin) {
+                                //         Cookies.set("loginUser", JSON.stringify(data));
+                                //         route.push("/my-account");
+                                //     }
+                                // }, [isSuccessLogin]);
 
                                 return (
                                     <Form className={css.form}>
@@ -159,7 +166,7 @@ const TemplateSignUp = () => {
                             перейдите по ссылке в письме, чтобы закончить регистрацию.
                         </p>
                         <div className={css.timer}>
-                            <Timer />
+                            <Timer onClick={sendAgainEmail} />
                         </div>
                     </div>
                 </AuthWrapper>

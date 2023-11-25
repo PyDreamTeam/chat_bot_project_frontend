@@ -41,11 +41,11 @@ const UserInfo: FC<IUserInfoProps> = ({
         verifyUser(token.refresh);
     }, []);
 
-    useEffect(() => {
-        if (isErrorVerify) {
-            router.push("/sign-in");
-        }
-    }, [isSuccessVerify, isErrorVerify]);
+    // useEffect(() => {
+    //     if (isErrorVerify) {
+    //         router.push("/sign-in");
+    //     }
+    // }, [isSuccessVerify, isErrorVerify]);
 
     const logout = () => {
         logoutUser(token);
