@@ -20,7 +20,7 @@ import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/plat
 import { useRouter } from "next/router";
 import { IMessenger, SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 
-interface PropsPlatformFilter {
+export interface PropsPlatformFilter {
     title: string;
     functionality: string;
     integration: string;
@@ -31,8 +31,9 @@ interface PropsPlatformFilter {
     tags: ITagM[];
 }
 
-interface ITagM {
+export interface ITagM {
     tag: string;
+    id?: number;
     image_tag: string;
     status: string;
     is_message: boolean;

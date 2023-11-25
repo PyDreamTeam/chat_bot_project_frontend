@@ -42,7 +42,7 @@ const InputAddFilter: FC<PropsInputAddFilter> = ({
                 className={`${css.inputAddFilter} ${style}`}
                 onChange={onChange}
                 placeholder={placeholder}
-                value={value}
+                defaultValue={value}
                 disabled={disabled}
                 onKeyPress={onKeyPress}
             />
