@@ -34,6 +34,7 @@ interface PropsFilterGroup {
     }[];
     onDelete: (id: number | undefined, title: string | undefined) => void;
     onRestore?: (id: number | undefined, title: string | undefined) => void;
+    refresh?: () => void;
 }
 
 const dropdownFilterPublic = [
@@ -48,7 +49,7 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRestore }) => {
+const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRestore, refresh }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
@@ -101,7 +102,7 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
                     }
                 });
             }
-            moveToSaveGroup({ id, token }).then(router.reload);
+            moveToSaveGroup({ id, token }).then(refresh);
         }
         if (value === "public") {
             if (filters?.length) {
@@ -111,7 +112,7 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
                     }
                 });
             }
-            publicGroup({ id, token }).then(router.reload);
+            publicGroup({ id, token }).then(refresh);
         }
     };
 
@@ -119,7 +120,7 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
     const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key == "Enter" || e.key == "NumpadEnter") {
             const title = (e.target as HTMLInputElement).value;
-            editGroup({ id, token, title }).then(router.reload);
+            editGroup({ id, token, title }).then(refresh);
         }
         if (e.key == "Escape") {
             setIsShownInput((prevState) => (prevState = false));
@@ -128,7 +129,7 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
 
     const handleSubmitEditGroup = (inputValue: string | undefined) => {
         if (inputValue) {
-            editGroup({ id, token, title: inputValue }).then(router.reload);
+            editGroup({ id, token, title: inputValue }).then(refresh);
         }
         setIsShownInput((prevState) => (prevState = false));
     };

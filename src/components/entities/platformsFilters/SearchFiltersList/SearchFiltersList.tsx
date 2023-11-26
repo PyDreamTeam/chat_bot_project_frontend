@@ -60,9 +60,10 @@ interface PropsSearchFiltersList {
     searchData: PropsSearchFilters;
     tagsData: PropsPlatformFilters[];
     sort: string;
+    refresh?: () => void;
 }
 
-const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, sort }) => {
+const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, sort, refresh }) => {
     // const [key, setKey] = useState(0);
     const { isShown, toggle } = useModal();
     const { isShown: isShownGroup, toggle: toggleGroup } = useModal();
@@ -104,6 +105,7 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, s
                                 sort={sort}
                                 onDelete={handleDeleteGroup}
                                 onRestore={handleRestoreGroup}
+                                refresh={refresh}
                             />
                         </li>
                     ))}
@@ -113,7 +115,13 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, s
                     .filter((item: any) => item.status === sort)
                     .map((item) => (
                         <li key={uuid()}>
-                            <Filter title={item.title} id={item.id} sort={sort} onDelete={handleDelete} />
+                            <Filter
+                                title={item.title}
+                                id={item.id}
+                                sort={sort}
+                                onDelete={handleDelete}
+                                refresh={refresh}
+                            />
                         </li>
                     ))}
             </ul>
@@ -127,13 +135,14 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, s
                 </div>
             )}
             <Modal isShown={isShown} hide={toggle}>
-                <DeleteFilterPopup close={toggle} filterId={filterId} filterTitle={filterTitle} />
+                <DeleteFilterPopup close={toggle} filterId={filterId} filterTitle={filterTitle} refresh={refresh} />
             </Modal>
             <Modal isShown={isShownGroup} hide={toggleGroup}>
                 <DeleteFilterGroupPopup
                     close={toggleGroup}
                     filterGroupId={filterGroupId}
                     filterGroupTitle={filterGroupTitle}
+                    refresh={refresh}
                 />
             </Modal>
             <Modal isShown={isShownRestoreGroup} hide={toggleRestoreGroup}>
@@ -142,6 +151,7 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, s
                     filterGroupId={filterGroupId}
                     filterGroupTitle={filterGroupTitle}
                     filters={groupData?.filters}
+                    refresh={refresh}
                 />
             </Modal>
         </div>

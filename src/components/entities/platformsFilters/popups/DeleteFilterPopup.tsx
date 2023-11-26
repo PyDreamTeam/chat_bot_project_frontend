@@ -4,7 +4,6 @@ import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import styles from "./DeleteFilterPopup.module.css";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 import { ButtonNegative } from "@/src/components/shared/buttons/ButtonNegative";
 import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
 import { usePlatformFilterArchiveMutation } from "@/src/store/services/platforms";
@@ -12,11 +11,12 @@ import { usePlatformFilterArchiveMutation } from "@/src/store/services/platforms
 interface IPropsPopup {
     open?: () => void;
     close: () => void;
+    refresh?: () => void;
     filterId?: number | undefined;
     filterTitle?: string;
 }
 
-const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, filterId, filterTitle }) => {
+const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, refresh, filterId, filterTitle }) => {
     const [
         archiveFilter,
         { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
@@ -24,7 +24,6 @@ const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, filterId, filterTitle
     const id = filterId;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const router = useRouter();
 
     useEffect(() => {
         return () => clearTimeout(timerRef.current as NodeJS.Timeout);
@@ -56,7 +55,7 @@ const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, filterId, filterTitle
                 <ButtonNegative
                     type={"button"}
                     active={true}
-                    onClick={() => archiveFilter({ id, token }).then(close).then(router.reload)}
+                    onClick={() => archiveFilter({ id, token }).then(close).then(refresh)}
                     width={240}
                 >
                     Удалить

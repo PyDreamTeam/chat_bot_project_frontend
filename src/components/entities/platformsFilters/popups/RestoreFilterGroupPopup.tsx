@@ -4,18 +4,14 @@ import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import styles from "./DeleteFilterPopup.module.css";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
 import { Button } from "@/src/components/shared/buttons/Button";
-import {
-    usePlatformFilterGroupArchiveMutation,
-    usePlatformFilterGroupSaveMutation,
-    usePlatformFilterSaveMutation,
-} from "@/src/store/services/platforms";
+import { usePlatformFilterGroupSaveMutation, usePlatformFilterSaveMutation } from "@/src/store/services/platforms";
 
 interface IPropsPopup {
     open?: () => void;
     close: () => void;
+    refresh?: () => void;
     filterGroupId?: number | undefined;
     filterGroupTitle?: string;
     filters?: {
@@ -34,13 +30,7 @@ interface IPropsPopup {
     }[];
 }
 
-const RestoreFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, filterGroupTitle, filters }) => {
-    const [archiveGroup, { isSuccess: isSuccessArchive, error: errorArchive, isLoading: isLoadingArchive }] =
-        usePlatformFilterGroupArchiveMutation();
-    const [
-        archiveFilter,
-        { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
-    ] = usePlatformFilterGroupArchiveMutation();
+const RestoreFilterGroupPopup: FC<IPropsPopup> = ({ close, refresh, filterGroupId, filterGroupTitle, filters }) => {
     const [
         moveToSaveGroup,
         { isSuccess: restoreGroupIsSuccess, error: restoreGroupError, isLoading: restoreGroupIsLoading },
@@ -53,7 +43,6 @@ const RestoreFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, 
     const id = filterGroupId;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const router = useRouter();
 
     useEffect(() => {
         return () => clearTimeout(timerRef.current as NodeJS.Timeout);
@@ -93,7 +82,7 @@ const RestoreFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, 
                                 }
                             });
                         }
-                        moveToSaveGroup({ id, token }).then(close).then(router.reload);
+                        moveToSaveGroup({ id, token }).then(close).then(refresh);
                     }}
                     width={240}
                 >
