@@ -7,6 +7,7 @@
     padding: 48px 85px 245px 85px;
     border-radius: 20px;
     position: relative;
+    width: 362px;
 }
 
 .price {
@@ -20,7 +21,7 @@
 
 .advantages {
     position: absolute;
-    max-width: 282px;
+    width: 282px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -32,6 +33,13 @@
     left: 40px;
     margin-top: 31px;
 }
+.absolute {
+    position: relative;
+}
 .btnWrapper {
-    margin: 78px 0 0 84px;
+    /* position: absolute; */
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    left: 21px;
 }

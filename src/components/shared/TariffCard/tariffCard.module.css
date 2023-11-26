@@ -13,15 +13,18 @@
     background: #fff;
     box-shadow: 2px 2px 40px -12px rgba(68, 56, 235, 0.5);
 }
-
+.blockTitle {
+    display: flex;
+}
 .title {
+    align-items: flex-start;
     padding: 5px 10px;
-    max-width: 223px;
+    min-width: 100px;
     border-radius: 20px;
     background: #f4f5f6;
 }
 
-.titleBlock {
+.hotTitle {
     display: flex;
     align-items: center;
     justify-content: space-between;

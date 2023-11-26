@@ -1,9 +1,8 @@
 .wrapper {
     max-width: 1440px;
 }
+
 .accordion {
-    width: 544px;
-}
-.accordionBlock {
-    width: 1264px;
+    max-width: 1440px;
+    list-style-type: none;
 }

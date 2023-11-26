@@ -143,4 +143,34 @@
     justify-content: center;
     align-items: center;
     z-index: 100;
-  }
+}
+
+.positionImg {
+    position: relative;
+}
+
+.img {
+    position: absolute;
+    top: -256px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.textSendMail {
+    margin-top: 36px;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    color: #595f6c;
+    text-align: left;
+}
+.email {
+    color: #17181a;
+}
+
+.timer {
+    display: flex;
+    justify-content: start;
+}

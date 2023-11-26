@@ -8,42 +8,7 @@ import Image from "next/image";
 import ButtonFavorites from "@/src/components/shared/buttons/ButtonFavorites";
 import { PropsSolutionCard } from "../../platforms/types";
 
-export const config: Advantages[] = [
-    {
-        icon: <Image src={"/img/Пункты.svg"} alt={"Пункты"} width={24} height={24} />,
-        text: (
-            <Text type={"reg16"} color={"grey"}>
-                Получение большего количества клиентов
-            </Text>
-        ),
-    },
-    {
-        icon: <Image src={"/img/Пункты.svg"} alt={"Пункты"} width={24} height={24} />,
-        text: (
-            <Text type={"reg16"} color={"grey"}>
-                Привлечение клиентов по сниженной стоимости
-            </Text>
-        ),
-    },
-    {
-        icon: <Image src={"/img/Пункты.svg"} alt={"Пункты"} width={24} height={24} />,
-        text: (
-            <Text type={"reg16"} color={"grey"}>
-                Наглядный контроль отдела продаж
-            </Text>
-        ),
-    },
-    {
-        icon: <Image src={"/img/Пункты.svg"} alt={"Пункты"} width={24} height={24} />,
-        text: (
-            <Text type={"reg16"} color={"grey"}>
-                Высокое качество обслуживанияя
-            </Text>
-        ),
-    },
-];
-
-const CardSales: FC<PropsSolutionCard> = ({ price, dignity }) => {
+const CardSales: FC<PropsSolutionCard> = ({ price, results = [] }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.blueBlock}>
@@ -58,10 +23,12 @@ const CardSales: FC<PropsSolutionCard> = ({ price, dignity }) => {
                         <Image src={"/img/ruble.svg"} alt="ruble" width={20} height={21} className={styles.ruble} />
                     </Text>
                 </div>
+
                 <div className={styles.advantages}>
-                    {config.map((lab, index) => (
-                        <TabAdvantages key={index} icon={lab.icon} text={lab.text} />
+                    {results.map((item, id) => (
+                        <TabAdvantages key={id} text={item.dignities} />
                     ))}
+                    {/* <div className={styles.absolute}></div> */}
                 </div>
             </div>
             <div className={styles.btnWrapper}>

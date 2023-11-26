@@ -9,24 +9,12 @@ import { useModal } from "@/src/hooks/useModal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import Modal from "@/src/components/shared/modal/Modal";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { useGetSolutionAdvantagesQuery } from "@/src/store/services/solutions";
+import { ListAdvantages } from "@/src/components/entities/lists/listAdvantages";
 
-const BlockComplexFunnel: FC<PropsSolutionCard> = ({ id, title, advantages }) => {
+const BlockComplexFunnel: FC<PropsSolutionCard> = ({ title }) => {
     const { isShown, toggle } = useModal();
-    interface Type {
-        advantage: React.ReactNode;
-    }
-
-    const adv: Type[] = [
-        {
-            advantage: " ghtbveotcndj 1",
-        },
-        {
-            advantage: " ghtbveotcndj 2",
-        },
-        {
-            advantage: " ghtbveotcndj 3",
-        },
-    ];
+    const { data } = useGetSolutionAdvantagesQuery({});
 
     return (
         <div className={styles.wrapper}>
@@ -34,32 +22,7 @@ const BlockComplexFunnel: FC<PropsSolutionCard> = ({ id, title, advantages }) =>
                 <Title type={"h3"} color={"black"}>
                     {title}
                 </Title>
-                <ul className={styles.list}>
-                    {adv.map((item, id) => (
-                        <li key={id}>
-                            <Text type={"reg18"} color={"grey"}>
-                                {item.advantage}
-                            </Text>
-                        </li>
-                    ))}
-                </ul>
-                {/* <ul className={styles.list}>
-                    <li>
-                        <Text type={"reg18"} color={"grey"}>
-                            {advantages}
-                        </Text>
-                    </li>
-                    <li>
-                        <Text type={"reg18"} color={"grey"}>
-                            {advantages}
-                        </Text>
-                    </li>
-                    <li>
-                        <Text type={"reg18"} color={"grey"}>
-                            {advantages}
-                        </Text>
-                    </li>
-                </ul> */}
+                <ListAdvantages results={data?.results} />
                 <div className={styles.blockBtn}>
                     <div className={styles.button}>
                         <Button type="button" active={true} onClick={toggle}>

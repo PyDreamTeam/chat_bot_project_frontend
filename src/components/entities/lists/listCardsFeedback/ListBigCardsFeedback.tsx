@@ -17,6 +17,7 @@ const ListBigCardsFeedback: FC<ICardFeedback> = ({ config = [] }) => {
                     name={tab.name}
                     jobTitle={tab.jobTitle}
                     text={tab.text}
+                    maxLength={171}
                 />
             ))}
         </div>

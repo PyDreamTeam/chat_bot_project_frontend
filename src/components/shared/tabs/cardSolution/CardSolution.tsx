@@ -44,7 +44,6 @@ const CardSolution: FC<PropsSolutionCard> = ({ type, image, title, price, short_
                     <div className={styles.logo}>
                         <Image
                             src={image ? `${image}` : ""}
-                            // src=""
                             width={100}
                             height={100}
                             alt="logo"

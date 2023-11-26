@@ -37,6 +37,20 @@ export const userAuth = createApi({
                 body: arg,
             }),
         }),
+        sendAgain: builder.mutation({
+            query: (arg) => ({
+                url: "/api/auth/users/resend_activation/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
+        userActivation: builder.mutation({
+            query: (arg) => ({
+                url: "/api/auth/users/activation/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
         logoutUser: builder.mutation({
             query: (jwt: { access: string; refresh: string }) => ({
                 url: "/api/auth/logout/",
@@ -137,6 +151,8 @@ export const userAuth = createApi({
 export const {
     useCreateUserMutation,
     useLoginUserMutation,
+    useSendAgainMutation,
+    useUserActivationMutation,
     useLogoutUserMutation,
     useDataUserQuery,
     useChangeDataUserMutation,
