@@ -38,7 +38,7 @@ const TemplateSignUp = () => {
     };
     useEffect(() => {
         setEmailUser(JSON.parse(Cookies.get("emailUser") || "[]"));
-    }, [emailUser]);
+    }, [emailUser, isLoading]);
 
     return (
         <div className={css.container}>
