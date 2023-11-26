@@ -1,12 +1,11 @@
 import Text from "@/src/components/shared/text/Text";
 import { Form, Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import css from "./componentSignUp.module.css";
 import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
-import { useCreateUserMutation, useLoginUserMutation, useSendAgainMutation } from "@/src/store/services/userAuth";
+import { useCreateUserMutation, useSendAgainMutation } from "@/src/store/services/userAuth";
 import AuthWrapper from "@/src/components/wrappers/AuthWrapper";
 import { FirstNameInput } from "@/src/components/shared/login/FirstNameInput/FirstNameInput";
 import { LastNameInput } from "@/src/components/shared/login/LastNameInput/LastNameInput";
@@ -16,7 +15,6 @@ import { RePasswordInput } from "@/src/components/shared/login/RePasswordInput/R
 import { GetEmailNotification } from "@/src/components/shared/login/GetEmailNotification/GetEmailNotifications";
 import Cookies from "js-cookie";
 import { EmailEngRegExp, NameRegExp } from "@/src/shared/constants/regExps";
-import { Loader } from "@/src/components/shared/Loader/Loader";
 import { LoaderStatus } from "@/src/components/shared/LoaderStatus/LoaderStatus";
 import { Timer } from "@/src/components/entities/Timer/Timer";
 import Image from "next/image";
@@ -30,16 +28,17 @@ const err = {
 };
 
 const TemplateSignUp = () => {
-    const [createUser, { isSuccess, error: errorData, isLoading, status }] = useCreateUserMutation();
+    const [createUser, { isSuccess, error: errorData, isLoading }] = useCreateUserMutation();
     const [sendAgain] = useSendAgainMutation();
-    const [loginUser, { isSuccess: isSuccessLogin, data, isLoading: isLoadingLogin }] = useLoginUserMutation();
-
-    const route = useRouter();
+    const [emailUser, setEmailUser] = useState("");
 
     const sendAgainEmail = async () => {
         const email = await JSON.parse(Cookies.get("emailUser") || "[]");
         sendAgain({ email: email });
     };
+    useEffect(() => {
+        setEmailUser(JSON.parse(Cookies.get("emailUser") || "[]"));
+    }, [emailUser, isLoading]);
 
     return (
         <div className={css.container}>
@@ -47,7 +46,6 @@ const TemplateSignUp = () => {
                 <AuthWrapper titleText={"Регистрация"}>
                     <div className={css.wrapper}>
                         <LoaderStatus isLoading={isLoading} />
-                        <LoaderStatus isLoading={isLoadingLogin} />
                         <div className={css.account}>
                             <Text type="reg16" color="grey" className={css.centerText}>
                                 Уже есть аккаунт?
@@ -105,26 +103,6 @@ const TemplateSignUp = () => {
                                 const dataPassword = getFieldProps("password");
                                 const password = dataPassword.value;
 
-                                // useEffect(() => {
-                                //     if (isSuccess) {
-                                //         console.log("success");
-                                //         localStorage.set("emailUser", JSON.stringify(email));
-                                //     }
-                                // }, [isSuccess]);
-
-                                // useEffect(() => {
-                                //     if (isSuccess) {
-                                //         loginUser({ email, password });
-                                //     }
-                                // }, [isSuccess]);
-
-                                // useEffect(() => {
-                                //     if (isSuccessLogin) {
-                                //         Cookies.set("loginUser", JSON.stringify(data));
-                                //         route.push("/my-account");
-                                //     }
-                                // }, [isSuccessLogin]);
-
                                 return (
                                     <Form className={css.form}>
                                         <FirstNameInput errors={errors} touched={touched} />
@@ -162,8 +140,8 @@ const TemplateSignUp = () => {
                     <div className={css.positionImg}>
                         <Image src="/sign/saveChanges.svg" alt="icon" width={120} height={120} className={css.img} />
                         <p className={css.textSendMail}>
-                            На <span className={css.email}>example@mail.com</span> отправлено письмо. Пожалуйста,
-                            перейдите по ссылке в письме, чтобы закончить регистрацию.
+                            На <span className={css.email}>{emailUser}</span> отправлено письмо. Пожалуйста, перейдите
+                            по ссылке в письме, чтобы закончить регистрацию.
                         </p>
                         <div className={css.timer}>
                             <Timer onClick={sendAgainEmail} />
