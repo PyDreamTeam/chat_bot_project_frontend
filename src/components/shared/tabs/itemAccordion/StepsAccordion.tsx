@@ -1,41 +1,39 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import Image from "next/image";
 import styles from "./styles/StepsAccordion.module.css";
 import Text from "@/src/components/shared/text/Text";
+import Title from "../../text/Title";
 
 export interface IAccordionItem {
     id: number;
     title: string;
-    content: string;
+    text: string;
 }
 
 export interface IAccordionItemProps {
-    isSelected: boolean;
-    setSelected: (id: null | number) => void;
+    openItems: boolean[];
+    toggleItem: (id: number) => void;
 }
 
-const StepsAccordion: FC<IAccordionItem & IAccordionItemProps> = ({ id, title, content, isSelected, setSelected }) => {
-    const openClick = () => setSelected(isSelected ? null : id);
+const StepsAccordion: FC<IAccordionItem & IAccordionItemProps> = ({ id, title, text, toggleItem, openItems }) => {
     return (
-        <div key={id} className={`${styles.wrapper} ${isSelected && styles.active}`}>
-            <div className={styles.openTitle}>
-                <Text type={"med20"} color={"dark"}>
+        <li key={id} className={`${styles.wrap} ${openItems[id] && styles.active}`}>
+            <div onClick={() => toggleItem(id)} className={styles.title}>
+                <Title type="h5" color="dark">
                     {title}
-                </Text>
-                <div className={`${styles.content} ${isSelected && styles.show}`}>
-                    <Text type={"reg16"} color={"grey"}>
-                        {content}
-                    </Text>
-                </div>
-            </div>
-            <div className={`${styles.header} ${isSelected && styles.open}`} onClick={openClick}>
-                {isSelected ? (
-                    <Image src={"/img/StepClose.png"} alt="Close" width={70} height={70} />
+                </Title>
+                {openItems[id] ? (
+                    <Image src={"/img/StepClose.png"} alt="chevron" width={70} height={70} />
                 ) : (
-                    <Image src={"/img/StepOpen.png"} alt="Open" width={70} height={70} />
+                    <Image src={"/img/StepOpen.png"} alt="chevron" width={70} height={70} />
                 )}
             </div>
-        </div>
+            <div className={`${styles.content} ${openItems[id] && styles.show}`}>
+                <Text type={"reg16"} color={"grey"}>
+                    {text}
+                </Text>
+            </div>
+        </li>
     );
 };
 
