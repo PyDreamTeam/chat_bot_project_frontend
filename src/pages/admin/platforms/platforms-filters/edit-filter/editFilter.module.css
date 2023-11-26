@@ -31,9 +31,9 @@
     text-align: left;
 }
 
-.inputAddFilter {
+/* .inputAddFilter {
     width: 640px;
-}
+} */
 
 .filterParameters {
     display: flex;
