@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import AccountMainPage from "@/src/components/features/AccountMainPage/AccountMainPage";
+import { useCreateUserMutation, useLoginUserMutation, useUserActivationMutation } from "@/src/store/services/userAuth";
 
 const MyAccount = () => {
     const route = useRouter();
@@ -17,7 +18,7 @@ const MyAccount = () => {
 
     return (
         <AccountPageWrapper page="startPage">
-            <AccountMainPage/>
+            <AccountMainPage />
         </AccountPageWrapper>
     );
 };

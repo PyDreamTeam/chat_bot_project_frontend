@@ -1,0 +1,25 @@
+.text {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.send {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    color: #909090;
+}
+
+.sendActive {
+    color: #4466f5;
+    cursor: pointer;
+}
+
+.timer {
+    color: #17181a;
+}
