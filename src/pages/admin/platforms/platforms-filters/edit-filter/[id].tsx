@@ -14,7 +14,6 @@ import {
 } from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
-import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
@@ -23,7 +22,7 @@ import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter
 import { ITagM, PropsPlatformFilter } from "../add-filter";
 import { SelectGroupIcon } from "@/src/components/entities/platformsFilters/addFilter/SelectGroupIcon";
 import { TextAreaAddFilter } from "@/src/components/entities/platformsFilters/addFilter/TextAreaAddFilter";
-import { IMessenger, SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
+import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
 import { plusSvgPrimary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
@@ -37,6 +36,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
     const filterId: string = router.query.id as string;
     const id = filterId;
     const { data: filterData, isLoading: filterIsLoading } = useGetPlatformFilterQuery({ id });
+    console.log(filterData);
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
 
@@ -63,8 +63,6 @@ const EditPlatformFilter: FC<pageProps> = () => {
         return item.is_message === false;
     });
     const cleanTagsNames = cleanTags?.map((item) => item.tag);
-
-    // const inputsTagsArray = filterTagsArray?.map((item) => item.tag);
 
     const [tags, setTags] = useState<ITagM[]>(cleanTags);
     const [tagsMessengers, setTagsMessengers] = useState<ITagM[]>(cleanMessengersTags);
@@ -163,7 +161,6 @@ const EditPlatformFilter: FC<pageProps> = () => {
     // }, [isSuccessAddFilter]);
 
     useEffect(() => {
-        console.log("useEffect tags, tagsMessengers");
         if (tagsMessengers) {
             const newTags = tags?.concat(tagsMessengers);
             setFilter((prev) => ({ ...prev, tags: newTags }));
@@ -172,20 +169,22 @@ const EditPlatformFilter: FC<pageProps> = () => {
 
     useEffect(() => {
         setInputsTags(inputsTags);
-        console.log("useEfect");
     }, []);
 
-    // useEffect(() => {
-    //     if (tagsMessengers) {
-    //         const newTags = tags?.concat(tagsMessengers);
-    //         setFilter((prev) => ({
-    //             ...prev,
-    //             title: filterData?.filter,
-    //             short_description: filterData?.functionality,
-    //             tags: newTags,
-    //         }));
-    //     }
-    // }, [filterData]);
+    useEffect(() => {
+        if (tagsMessengers) {
+            const newTags = tags?.concat(tagsMessengers);
+            setFilter((prev) => ({
+                ...prev,
+                title: filterData?.filter,
+                short_description: filterData?.functionality,
+                multiple: filterData?.multiple,
+                status: filterData?.status,
+                group: filterData?.group,
+                tags: newTags,
+            }));
+        }
+    }, []);
 
     return (
         <WrapperAdminPage>
@@ -234,7 +233,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
                             />
-                            <SelectGroupIcon defaultImage={filterData.image} setImageName={handleSetImageName} />
+                            <SelectGroupIcon defaultImage={filterData?.image} setImageName={handleSetImageName} />
                             <TextAreaAddFilter
                                 value={filterData?.functionality}
                                 onChange={(e) => {

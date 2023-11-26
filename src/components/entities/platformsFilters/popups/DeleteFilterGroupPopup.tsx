@@ -15,6 +15,7 @@ import {
 interface IPropsPopup {
     open?: () => void;
     close: () => void;
+    refresh?: () => void;
     filterGroupId?: number | undefined;
     filterGroupTitle?: string;
     filters?: {
@@ -33,7 +34,14 @@ interface IPropsPopup {
     }[];
 }
 
-const DeleteFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, filterGroupTitle, filters }) => {
+const DeleteFilterGroupPopup: FC<IPropsPopup> = ({
+    close,
+    open,
+    refresh,
+    filterGroupId,
+    filterGroupTitle,
+    filters,
+}) => {
     const [archiveGroup, { isSuccess: isSuccessArchive, error: errorArchive, isLoading: isLoadingArchive }] =
         usePlatformFilterGroupArchiveMutation();
     const [
@@ -84,7 +92,7 @@ const DeleteFilterGroupPopup: FC<IPropsPopup> = ({ close, open, filterGroupId, f
                                 }
                             });
                         }
-                        archiveGroup({ id, token }).then(close).then(router.reload);
+                        archiveGroup({ id, token }).then(close).then(refresh);
                     }}
                     width={240}
                 >
