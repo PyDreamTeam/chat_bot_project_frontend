@@ -37,8 +37,8 @@ const TemplateSignUp = () => {
         <div className={css.container}>
             <AuthWrapper titleText={"Регистрация"}>
                 <div className={css.wrapper}>
-                    <LoaderStatus isLoading={isLoading}/>
-                    <LoaderStatus isLoading={isLoadingLogin}/>
+                    <LoaderStatus isLoading={isLoading} />
+                    <LoaderStatus isLoading={isLoadingLogin} />
                     <div className={css.account}>
                         <Text type="reg16" color="grey" className={css.centerText}>
                             Уже есть аккаунт?

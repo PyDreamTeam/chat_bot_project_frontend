@@ -1,23 +1,15 @@
-import { FC, FormEvent, useEffect, useState } from "react";
-
-import Image from "next/image";
+import { FC, useState } from "react";
 
 import styles from "../styles/changeRole.module.css";
 
 import Text from "@/src/components/shared/text/Text";
-import UserMenuHeader from "@/src/components/shared/userMenuHeader/UserMenuHeader";
-import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
-import { useRouter } from "next/router";
 import { Roles } from "@/src/components/shared/createAdmin/RadioButtonGroup/RadioButtonGroup";
 import uuid from "uuid-random";
 import Cookies from "js-cookie";
-import { useLogoutUserMutation, useVerifyUserMutation } from "@/src/store/services/userAuth";
-import { useChangeRoleMutation } from "@/src/store/services/changeRole";
 import UserRoleMenu from "./userRoleMenu";
 
 interface IUserInfoProps {
     onClick?: any;
-    isSuccessChange: boolean;
     role: string | undefined;
     className?: string;
     id: number;
@@ -26,7 +18,6 @@ interface IUserInfoProps {
 
 const ChangeUserRole: FC<IUserInfoProps> = ({
     onClick,
-    isSuccessChange,
     role = "",
     className = "",
     id,
