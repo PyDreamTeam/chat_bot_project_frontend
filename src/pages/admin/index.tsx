@@ -9,23 +9,23 @@ import Link from "next/link";
 import css from "./admin.module.css";
 
 const adminNavigation = [
-    {title: "Администрация и модерация", href: "/admin/users/all", icon: "/admin/icon_people.svg"},
-    {title: "Платформы", href: "/admin/platforms", icon: "/admin/icon_platform.svg"},
-    {title: "Решения", href: "/admin/solutions", icon: "/admin/icon_solution.svg"},
-    {title: "Главная страница", href: "/admin", icon: "/admin/icon_home.svg"},
-    {title: "Личный кабинет", href: "/admin/account", icon: "/admin/icon_admin.svg"},
-    {title: "Настройки", href: "/admin/settings", icon: "/admin/icon_settings.svg"},
+    { title: "Администрация и модерация", href: "/admin/users/all", icon: "/admin/icon_people.svg" },
+    { title: "Платформы", href: "/admin/platforms", icon: "/admin/icon_platform.svg" },
+    { title: "Решения", href: "/admin/solutions", icon: "/admin/icon_solution.svg" },
+    { title: "Главная страница", href: "/admin", icon: "/admin/icon_home.svg" },
+    { title: "Личный кабинет", href: "/admin/account", icon: "/admin/icon_admin.svg" },
+    { title: "Настройки", href: "/admin/settings", icon: "/admin/icon_settings.svg" },
 ];
 
 const AdminPage = () => {
-    
-    return(
+
+    return (
         <WrapperAdminPage>
             <ContainerAdminFunction>
                 <ul className={css.listNav}>
-                    {adminNavigation.map(({title, href, icon}) => (
+                    {adminNavigation.map(({ title, href, icon }) => (
                         <Link href={href} key={title} className={css.nav}>
-                            <Image src={icon} alt="icon" width={94} height={94} className={css.icon}/>
+                            <Image src={icon} alt="icon" width={94} height={94} className={css.icon} />
                             <Title type="h5" color="dark">{title}</Title>
                         </Link>
                     ))}
