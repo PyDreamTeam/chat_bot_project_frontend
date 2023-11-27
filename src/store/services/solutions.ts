@@ -38,6 +38,30 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+        getSolutionAdvantages: builder.query({
+            query: () => ({
+                url: "/api/solution/advantages/",
+                method: "GET",
+            }),
+        }),
+        getSolutionDignities: builder.query({
+            query: () => ({
+                url: "/api/solution/dignities/",
+                method: "GET",
+            }),
+        }),
+        getSolutionCards: builder.query({
+            query: () => ({
+                url: "/api/solution/cards/",
+                method: "GET",
+            }),
+        }),
+        getSolutionSteps: builder.query({
+            query: () => ({
+                url: "/api/solution/steps/",
+                method: "GET",
+            }),
+        }),
         getFavoriteSolutions: builder.query({
             query: (token) => ({
                 url: "/api/solution/solutions/",
@@ -54,16 +78,20 @@ export const solutions = createApi({
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
-            })
+            }),
         }),
     }),
 });
 
 export const {
-    useGetSolutionsQuery,
     useGetListSolutionsQuery,
+    useGetSolutionsQuery,
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
     useGetFavoriteSolutionsQuery,
-    useAddSolutionToFavoriteMutation
+    useAddSolutionToFavoriteMutation,
+    useGetSolutionAdvantagesQuery,
+    useGetSolutionDignitiesQuery,
+    useGetSolutionCardsQuery,
+    useGetSolutionStepsQuery,
 } = solutions;

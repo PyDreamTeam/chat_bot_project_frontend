@@ -14,11 +14,11 @@ const PersonalDataForm = () => {
     useEffect(() => {
         verifyUser(token.access);
     }, []);
-    useEffect(() => {
-        if (isError) {
-            router.push("/sign-in");
-        }
-    }, [isError]);
+    // useEffect(() => {
+    //     if (isError) {
+    //         router.push("/sign-in");
+    //     }
+    // }, [isError]);
 
     return (
         <div className={styles.personalDataBlock}>

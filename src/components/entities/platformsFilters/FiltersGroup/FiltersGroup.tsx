@@ -31,9 +31,10 @@ interface PropsPlatformFilters {
 interface PropsFiltersGroup {
     groupData: PropsPlatformFilters;
     sort: string;
+    refresh?: () => void;
 }
 
-const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
+const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
     const { isShown: isShownDeleteFilter, toggle: toggleDeleteFilter } = useModal();
     const { isShown: isShownDeleteGroup, toggle: toggleDeleteGroup } = useModal();
     const { isShown: isShownRestoreGroup, toggle: toggleRestoreGroup } = useModal();
@@ -67,6 +68,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
                 filters={groupData.filters}
                 onDelete={handleDeleteGroup}
                 onRestore={handleRestoreGroup}
+                refresh={refresh}
             />
             <ul className={styles.groupFilters}>
                 {groupData.filters
@@ -80,6 +82,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
                                 groupStatus={groupData.status}
                                 groupId={groupData.id}
                                 onDelete={handleDeleteFilter}
+                                refresh={refresh}
                             />
                         </li>
                     ))}
@@ -90,10 +93,16 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
                     filterGroupId={filterGroupId}
                     filterGroupTitle={filterGroupTitle}
                     filters={groupData.filters}
+                    refresh={refresh}
                 />
             </Modal>
             <Modal isShown={isShownDeleteFilter} hide={toggleDeleteFilter}>
-                <DeleteFilterPopup close={toggleDeleteFilter} filterId={filterId} filterTitle={filterTitle} />
+                <DeleteFilterPopup
+                    close={toggleDeleteFilter}
+                    refresh={refresh}
+                    filterId={filterId}
+                    filterTitle={filterTitle}
+                />
             </Modal>
             <Modal isShown={isShownRestoreGroup} hide={toggleRestoreGroup}>
                 <RestoreFilterGroupPopup
@@ -101,6 +110,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort }) => {
                     filterGroupId={filterGroupId}
                     filterGroupTitle={filterGroupTitle}
                     filters={groupData.filters}
+                    refresh={refresh}
                 />
             </Modal>
         </div>

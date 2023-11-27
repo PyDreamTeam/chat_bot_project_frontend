@@ -10,56 +10,24 @@ import styles from "./BlockGreatSolutions.module.css";
 
 const cards: StatisticsCards[] = [
     {
-        icon: <Image src={"/icon/Clients.svg"} alt={"icon"} width={48} height={48} />,
-        title: (
-            <Title type={"h4"} color={"dark"}>
-                15K
-            </Title>
-        ),
-        text: (
-            <Text type={"med20"} color={"telegray"}>
-                Обзоров
-            </Text>
-        ),
+        icon: "/icon/Clients.svg",
+        title: "15K",
+        text: "Обзоров",
     },
     {
-        icon: <Image src={"/icon/Purchases.svg"} alt={"icon"} width={48} height={48} />,
-        title: (
-            <Title type={"h4"} color={"dark"}>
-                30+
-            </Title>
-        ),
-        text: (
-            <Text type={"med20"} color={"telegray"}>
-                Покупок
-            </Text>
-        ),
+        icon: "/icon/Purchases.svg",
+        title: " 30+",
+        text: "Покупок",
     },
     {
-        icon: <Image src={"/icon/Rating.svg"} alt={"icon"} width={48} height={48} />,
-        title: (
-            <Title type={"h4"} color={"dark"}>
-                4.8
-            </Title>
-        ),
-        text: (
-            <Text type={"med20"} color={"telegray"}>
-                Рейтинг
-            </Text>
-        ),
+        icon: "/icon/Rating.svg",
+        title: "4.8",
+        text: "Рейтинг",
     },
     {
-        icon: <Image src={"/icon/Heart.svg"} alt={"icon"} width={48} height={48} />,
-        title: (
-            <Title type={"h4"} color={"dark"}>
-                50+
-            </Title>
-        ),
-        text: (
-            <Text type={"med20"} color={"telegray"}>
-                В избранном
-            </Text>
-        ),
+        icon: "/icon/Heart.svg",
+        title: "50+",
+        text: "В избранном",
     },
 ];
 

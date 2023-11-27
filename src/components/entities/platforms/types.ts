@@ -138,7 +138,9 @@ export interface PropsSolutionCard {
     advantages?: string;
     dignity?: string;
     steps_title?: string;
-    steps_text?: string;
+    steps_description?: string;
+    cards_title?: string;
+    cards_description?: string;
     actions_to_complete_tasks?: string;
     price?: number | string;
     is_active?: boolean;
@@ -154,6 +156,15 @@ export interface PropsSolutionCard {
         is_active?: boolean;
         is_message?: boolean;
     }[];
+    results?: {
+        id?: number;
+        dignities?: string;
+    }[];
+}
+
+export interface PropsSolutionAdvantages {
+    id?: number;
+    advantage?: string;
 }
 
 export interface PropsSolutionCard {

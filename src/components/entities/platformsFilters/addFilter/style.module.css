@@ -179,6 +179,27 @@
     color: var(--text-color-1);
 }
 
+/*MESSENGERS*/
+
+.iconsMessengersBlock {
+    display: flex;
+    gap: 24px;
+}
+.iconMessenger,
+.iconMessengerSelected {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.iconImg {
+    filter: grayscale(100%);
+}
+
+.iconMessengerSelected img {
+    filter: none;
+}
+
 
 /*Стили для UploadImage*/
 

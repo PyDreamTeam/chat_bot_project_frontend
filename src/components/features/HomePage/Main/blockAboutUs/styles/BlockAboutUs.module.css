@@ -1,5 +1,6 @@
 .wrapper {
     max-width: 1440px;
+    height: 682px;
     display: flex;
     align-items: center;
     padding: 74px 88px 80px;
@@ -51,4 +52,25 @@
 .circleBrown::before {
     right: -32px;
     background-color: #c1b2a3;
+}
+.text {
+    height: 100px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+.text:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+    background-color: #f4f5f6;
+    transform: translateY(-4px);
+}
+.text p {
+    margin-bottom: 10px;
+}
+.text p:last-child {
+    margin-bottom: 0px;
+}
+.text.active {
+    height: auto;
+    overflow: visible;
 }

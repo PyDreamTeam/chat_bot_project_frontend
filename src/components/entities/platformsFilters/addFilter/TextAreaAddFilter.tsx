@@ -20,7 +20,7 @@ export const TextAreaAddFilter: FC<PropsTextAreaAddFilter> = ({ onChange, classN
                 className={`${css.textareaAddPlatform}`}
                 onChange={onChange}
                 placeholder={placeholder}
-                value={value}
+                defaultValue={value}
             />
         </div>
     );

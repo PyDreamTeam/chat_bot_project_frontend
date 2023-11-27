@@ -151,6 +151,21 @@ export const platforms = createApi({
                 body: filter,
             }),
         }),
+        getPlatformFilter: builder.query({
+            query: ({ id }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "GET",
+            }),
+        }),
+        deletePlatformFilter: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                }
+            })
+        }),
         createPlatformFilterGroup: builder.mutation({
             query: ({token, title }) => ({
                 url: "/api/platform/groups/",
@@ -273,6 +288,8 @@ export const {
     useGetFavoritePlatformsQuery,
     useSendToCreatedMutation,
     useAddPlatformFilterMutation,
+    useGetPlatformFilterQuery,
+    useDeletePlatformFilterMutation,
     useSearchPlatformsFiltersQuery,
     useCreatePlatformFilterGroupMutation,
     useGetPlatformFilterGroupsQuery,
