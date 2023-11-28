@@ -31,10 +31,6 @@
     text-align: left;
 }
 
-/* .inputAddFilter {
-    width: 640px;
-} */
-
 .filterParameters {
     display: flex;
     flex-direction: column;

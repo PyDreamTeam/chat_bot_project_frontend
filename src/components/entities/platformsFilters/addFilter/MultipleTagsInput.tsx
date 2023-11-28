@@ -3,25 +3,18 @@ import Text from "@/src/components/shared/text/Text";
 import css from "./style.module.css";
 import Image from "next/image";
 import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter/InputAddFilter";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import { countLinkToSolution } from "@/src/store/reducers/addPlatform/slice";
 import { ITagM } from "@/src/pages/admin/platforms/platforms-filters/add-filter";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import { plusSvgPrimary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
 interface IMultipleTagsProps {
     defaultTags: ITagM[];
-    // setMessengers: (tagsM: (ITagM | undefined)[] | undefined) => void;
     setTextTags: (tagsT: ITagM[]) => void;
 }
 
 export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setTextTags }) => {
-    const textTags = defaultTags.filter((item) => item.is_message === false);
-
-    // const [inputsTags, setInputsTags] = useState<ITagM[]>(defaultTags);
-    // const [tags, setTags] = useState<ITagM[]>(defaultTags);
+    const textTags = defaultTags?.filter((item) => item.is_message === false);
     const [inputsTags, setInputsTags] = useState<ITagM[]>(textTags);
-    const [tags, setTags] = useState<ITagM[]>(textTags);
 
     const addInput = () => {
         setInputsTags([
@@ -47,26 +40,8 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setText
                 is_message: false,
             };
         });
-        setTags(newTags);
+        setTextTags(newTags);
     };
-
-    // const dispatch = useAppDispatch();
-    // const linksToSolution = useAppSelector((state) => state.reducerAddPlatform.links_to_solution);
-    // const [inputs, setInputs] = useState<string[]>([]);
-
-    // useEffect(() => {
-    //     dispatch(countLinkToSolution(inputs));
-    // }, [inputs]);
-
-    // const addInput = () => {
-    //     setInputs([...linksToSolution, ""]);
-    // };
-
-    // const removeInput = (index: number) => {
-    //     const newInputs = [...inputs];
-    //     newInputs.splice(index, 1);
-    //     setInputs(newInputs);
-    // };
 
     return (
         <div className={css.filterParameters}>
@@ -103,7 +78,6 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setText
                                     is_message: false,
                                 };
                             });
-                            setTags(newTags);
                             setTextTags(newTags);
                         }}
                         placeholder="Параметр фильтра"
