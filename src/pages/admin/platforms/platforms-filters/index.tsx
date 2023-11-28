@@ -45,12 +45,14 @@ const PlatformsFilters = () => {
         data: searchData,
         isLoading: searchIsLoading,
         isFetching: searchIsFetching,
+        refetch: refetchSearch,
     } = useSearchPlatformsFiltersQuery({ title: searchFilter });
 
     const {
         data: tagsData,
         isLoading: tagsIsLoading,
         isFetching: tagsIsFetching,
+        refetch,
     } = useGetPlatformsFiltersQuery({ refetchOnMountOrArgChange: true });
 
     // const handleScroll = () => {
@@ -84,7 +86,7 @@ const PlatformsFilters = () => {
         if (e.key == "Enter" || e.key == "NumpadEnter") {
             const title = (e.target as HTMLInputElement).value;
             setIsShownInput((prevState) => (prevState = false));
-            createGroup({ token, title }).then(router.reload);
+            createGroup({ token, title }).then(refetch);
         }
         if (e.key == "Escape") {
             setIsShownInput((prevState) => (prevState = false));
@@ -94,12 +96,18 @@ const PlatformsFilters = () => {
     const handleSubmitAddGroup = (inputValue: string | undefined) => {
         if (inputValue) {
             setIsShownInput((prevState) => (prevState = false));
-            createGroup({ token, title: inputValue }).then(router.reload);
+            // createGroup({ token, title: inputValue }).then(router.reload);
+            createGroup({ token, title: inputValue }).then(refetch);
         }
         setIsShownInput((prevState) => (prevState = false));
     };
     const handleCancelAddGroup = () => {
         setIsShownInput((prevState) => (prevState = false));
+    };
+
+    const handleRefreshSearch = () => {
+        refetchSearch();
+        refetch();
     };
 
     return (
@@ -193,11 +201,12 @@ const PlatformsFilters = () => {
                                             searchData={searchData.search_results}
                                             tagsData={tagsData.results}
                                             sort={sort}
+                                            refresh={handleRefreshSearch}
                                         />
                                     </div>
                                 ) : (
                                     <div>
-                                        <FiltersList tagsData={tagsData.results} sort={sort} />
+                                        <FiltersList tagsData={tagsData.results} sort={sort} refresh={refetch} />
                                     </div>
                                 )}
                             </div>

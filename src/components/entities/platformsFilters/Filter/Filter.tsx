@@ -19,6 +19,7 @@ interface PropsFilter {
     groupStatus?: string;
     groupId?: number;
     onDelete: (id: number | undefined, title: string) => void;
+    refresh?: () => void;
 }
 
 const dropdownFilterPublic = [
@@ -33,13 +34,12 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDelete }) => {
+const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDelete, refresh }) => {
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
         usePlatformFilterGroupPublicMutation();
     const [publicFilter, { isSuccess, error, isLoading }] = usePlatformFilterPublicMutation();
     const [moveToSaveFilter, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
         usePlatformFilterSaveMutation();
-    // useDeletePlatformFilterMutation
     const [deleteFilter, { isSuccess: deleteIsSuccess, error: deleteError, isLoading: deleteIsLoading }] =
         useDeletePlatformFilterMutation();
 
@@ -76,13 +76,13 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
             router.push(`/admin/platforms/platforms-filters/edit-filter/${id}`);
         }
         if (value === "deletePublic") {
-            moveToSaveFilter({ id, token }).then(router.reload);
+            moveToSaveFilter({ id, token }).then(refresh);
         }
         if (value === "public") {
             if (groupStatus === "save") {
                 publicGroup({ id: groupId, token });
             }
-            publicFilter({ id, token }).then(router.reload);
+            publicFilter({ id, token }).then(refresh);
         }
     };
 
@@ -101,7 +101,7 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
                                     data-tooltip="Восстановить"
                                     onClick={() => {
                                         if (groupStatus != "archive") {
-                                            moveToSaveFilter({ id, token }).then(router.reload);
+                                            moveToSaveFilter({ id, token }).then(refresh);
                                         }
                                     }}
                                 >
@@ -112,7 +112,7 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
                                     data-tooltip="Удалить"
                                     onClick={() => {
                                         if (groupStatus != "archive") {
-                                            deleteFilter({ id, token }).then(router.reload);
+                                            deleteFilter({ id, token }).then(refresh);
                                         }
                                     }}
                                 >

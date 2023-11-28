@@ -1,4 +1,5 @@
 import { ChangeEvent, FC, useState, KeyboardEvent } from "react";
+import uuid from "uuid-random";
 import css from "./style.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
@@ -42,7 +43,7 @@ const InputAddFilter: FC<PropsInputAddFilter> = ({
                 className={`${css.inputAddFilter} ${style}`}
                 onChange={onChange}
                 placeholder={placeholder}
-                value={value}
+                defaultValue={value}
                 disabled={disabled}
                 onKeyPress={onKeyPress}
             />

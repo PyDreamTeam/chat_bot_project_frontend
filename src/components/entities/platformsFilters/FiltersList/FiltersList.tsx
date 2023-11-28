@@ -29,9 +29,10 @@ interface PropsPlatformFilters {
 interface PropsTest {
     tagsData: PropsPlatformFilters[];
     sort: string;
+    refresh?: () => void;
 }
 
-const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
+const FiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
     return (
         <div className={styles.filtersListWrapper}>
             <ul>
@@ -41,14 +42,16 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
                           .map((item: any) => (
                               <li key={item.id}>
                                   {(item.filters.filter((f: any) => f.status === "save").length > 0 ||
-                                      item.status === sort) && <FiltersGroup groupData={item} sort={sort} />}
+                                      item.status === sort) && (
+                                      <FiltersGroup groupData={item} sort={sort} refresh={refresh} />
+                                  )}
                               </li>
                           ))
                     : tagsData
                           .filter((item: any) => item.status === sort)
                           .map((item: any) => (
                               <li key={item.id}>
-                                  <FiltersGroup groupData={item} sort={sort} />
+                                  <FiltersGroup groupData={item} sort={sort} refresh={refresh} />
                               </li>
                           ))}
             </ul>
@@ -93,6 +96,7 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort }) => {
                                                             sort={sort}
                                                             groupStatus={groupStatus}
                                                             onDelete={() => null}
+                                                            refresh={refresh}
                                                         />
                                                     </li>
                                                 ));

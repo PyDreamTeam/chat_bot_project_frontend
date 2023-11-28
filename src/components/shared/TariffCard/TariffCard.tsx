@@ -1,15 +1,26 @@
 import { TariffPlanCard } from "@/src/types";
 import { FC } from "react";
 import Text from "../text/Text";
+import { useRouter } from "next/navigation";
 import Title from "../text/Title";
 import Image from "next/image";
 import { Button } from "../buttons/Button";
 import css from "./tariffCard.module.css";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
+import Cookies from "js-cookie";
+import Modal from "../modal/Modal";
+import SelectionRequest from "../../entities/selectionRequest/SelectionRequest";
+import { useModal } from "@/src/hooks/useModal";
 
-export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, btn, hotPlan, bestPlan }) => {
+export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, hotPlan, bestPlan, dataComment }) => {
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { isSuccess } = useDataUserQuery(token);
+    const router = useRouter();
+    const { isShown, toggle } = useModal();
+
     return (
         <div className={hotPlan ? `${css.hotPlan}` : `${css.container}`}>
-            <div>
+            <div className={!hotPlan && css.blockTitle}>
                 {!hotPlan ? (
                     <div className={css.title}>
                         <Text type="reg18" color="grey">
@@ -17,7 +28,7 @@ export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, 
                         </Text>
                     </div>
                 ) : (
-                    <div className={css.titleBlock}>
+                    <div className={css.hotTitle}>
                         <div className={css.title}>
                             <Text type="reg18" color="grey">
                                 {title}
@@ -30,7 +41,7 @@ export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, 
             <div className={css.priceBlock}>
                 <Title type="h4" color="black">
                     {price}
-                    <span className={css.price}>/month</span>
+                    <span className={css.price}>/месяц</span>
                 </Title>
             </div>
 
@@ -44,10 +55,18 @@ export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, 
                     </div>
                 ))}
             </ul>
-
-            <Button active={true} type="submit">
-                {btn}
-            </Button>
+            {isSuccess ? (
+                <Button active={true} type="submit" onClick={toggle}>
+                    Выбрать план
+                </Button>
+            ) : (
+                <Button active={true} type="submit" onClick={() => router.push("/sign-in")}>
+                    Выбрать план
+                </Button>
+            )}
+            <Modal isShown={isShown} hide={toggle}>
+                <SelectionRequest close={toggle} dataComment={dataComment} />
+            </Modal>
         </div>
     );
 };

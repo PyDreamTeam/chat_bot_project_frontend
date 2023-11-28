@@ -8,6 +8,7 @@ import CardSales from "@/src/components/entities/cards/cardSales/CardSales";
 import ReadMore from "@/src/components/features/SolutionDescriptionPade/blockShotDescription/ReadMore";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import Label from "@/src/components/shared/labels/Label";
+import { useGetSolutionDignitiesQuery } from "@/src/store/services/solutions";
 
 const BlockShotDescription: FC<PropsSolutionCard> = ({
     id,
@@ -23,11 +24,11 @@ const BlockShotDescription: FC<PropsSolutionCard> = ({
     platform,
     integration_with_CRM,
     integration_with_payment_systems,
-    dignity,
 }) => {
+    const { data } = useGetSolutionDignitiesQuery({});
     return (
         <div className={styles.wrapper}>
-            <CardSales price={price} dignity={dignity} />
+            <CardSales price={price} results={data?.results} />
             <div className={styles.blockText}>
                 <Title type={"h3"} color={"black"}>
                     {subtitle}

@@ -20,7 +20,7 @@ import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/plat
 import { useRouter } from "next/router";
 import { IMessenger, SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 
-interface PropsPlatformFilter {
+export interface PropsPlatformFilter {
     title: string;
     functionality: string;
     integration: string;
@@ -28,14 +28,15 @@ interface PropsPlatformFilter {
     status: string;
     image: string;
     group: number | null;
-    tags: ITagM[];
+    tags: (ITagM | undefined)[];
 }
 
-interface ITagM {
-    tag: string;
-    image_tag: string;
-    status: string;
-    is_message: boolean;
+export interface ITagM {
+    tag: string | undefined;
+    id?: number | undefined;
+    image_tag: string | undefined;
+    status: string | undefined;
+    is_message: boolean | undefined;
 }
 
 const AddPlatformFilter = () => {
@@ -58,8 +59,8 @@ const AddPlatformFilter = () => {
         group: null,
         tags: [],
     });
-    const [tags, setTags] = useState<ITagM[]>([]);
-    const [tagsMessengers, setTagsMessengers] = useState<ITagM[]>([]);
+    const [tags, setTags] = useState<(ITagM | undefined)[] | undefined>([]);
+    const [tagsMessengers, setTagsMessengers] = useState<(ITagM | undefined)[] | undefined>([]);
 
     const [inputsTags, setInputsTags] = useState<string[]>([""]);
 
@@ -101,16 +102,15 @@ const AddPlatformFilter = () => {
         isValidFilter();
     };
 
-    const handleSetMessengers = (tagsM: IMessenger[]) => {
-        const newTagsMessengers = tagsM.map((tag) => {
+    const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
+        const newTagsMessengers: (ITagM | undefined)[] | undefined = tagsM?.map((item) => {
             return {
-                tag: tag.name,
-                image_tag: tag.image,
+                tag: item?.tag,
+                image_tag: item?.image_tag,
                 status: "save",
                 is_message: true,
             };
         });
-        console.log(newTagsMessengers);
         setTagsMessengers(newTagsMessengers);
         isValidFilter();
     };
@@ -144,8 +144,11 @@ const AddPlatformFilter = () => {
     }, [isSuccessAddFilter]);
 
     useEffect(() => {
-        const newTags = tags.concat(tagsMessengers);
-        setFilter((prev) => ({ ...prev, tags: newTags }));
+        const newTags = tags?.concat(tagsMessengers);
+        if (newTags) {
+            setFilter((prev) => ({ ...prev, tags: newTags }));
+        }
+        console.log("useEffect newTags concat");
     }, [tags, tagsMessengers]);
 
     return (
