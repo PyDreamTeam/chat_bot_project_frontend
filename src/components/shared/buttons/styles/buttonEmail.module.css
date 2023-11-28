@@ -1,0 +1,60 @@
+.active {
+    margin-top: 10px;
+    border-radius: 16px;
+    width: 100%;
+    border: 1px solid #595f6c;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.active a {
+    padding: 13px;
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+.active span {
+    padding: 13px;
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+.active:hover {
+    transform: scale(1.04);
+    opacity: 0.8;
+}
+
+.disabled {
+    margin-top: 10px;
+    border-radius: 16px;
+    width: 100%;
+    border: 1px solid #595f6c;
+    background: #e1e2e6;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: #826262;
+}
+.disabled a {
+    padding: 13px;
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+.disabled span {
+    padding: 13px;
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    width: 100%;
+    height: 100%;
+}
