@@ -6,7 +6,7 @@ import css from "./componentSignIn.module.css";
 import Link from "next/link";
 import { ButtonLogin } from "@/src/components/shared/buttons/ButtonLogin";
 import { useRouter } from "next/router";
-import { useLoginUserMutation } from "@/src/store/services/userAuth";
+import { useDataUserQuery, useLoginUserMutation } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import { EmailInput } from "@/src/components/shared/login/EmaiInput/EmailInput";
 import { PasswordInput } from "@/src/components/shared/login/PasswordInput/PasswordInput";
@@ -16,13 +16,19 @@ import { LoaderStatus } from "@/src/components/shared/LoaderStatus/LoaderStatus"
 const ComponentSignIn = () => {
     const route = useRouter();
     const [loginUser, { data, isSuccess, isLoading, error }] = useLoginUserMutation();
+    const { data: userData, isSuccess: isSuccessUser } = useDataUserQuery(data);
 
     useEffect(() => {
         if (isSuccess) {
             Cookies.set("loginUser", JSON.stringify(data));
-            route.push("/my-account");
+
+            if (isSuccessUser && userData.user_role === "US") {
+                route.push("/my-account");
+            } else {
+                route.push("/admin");
+            }
         }
-    }, [isSuccess]);
+    }, [isSuccess, isSuccessUser]);
 
     return (
         <div>
@@ -42,7 +48,7 @@ const ComponentSignIn = () => {
                 {({ errors, touched, isValid }) => {
                     return (
                         <Form className={css.form}>
-                            <LoaderStatus isLoading={isLoading}/>
+                            <LoaderStatus isLoading={isLoading} />
                             <EmailInput errors={errors} touched={touched} error={error} />
                             <PasswordInput errors={errors} touched={touched} error={error} />
 
