@@ -1,21 +1,17 @@
 import { FC, useEffect, useState } from "react";
-import uuid from "uuid-random";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./editFilter.module.css";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import {
     useGetPlatformFilterGroupsQuery,
     useGetPlatformFilterQuery,
-    useGetPlatformsFiltersQuery,
+    usePutPlatformFilterMutation,
 } from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
-import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
-import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
 import { DropDownSelectGroup } from "@/src/components/entities/platformsFilters/addFilter/DropDownSelectGroup";
 import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter/InputAddFilter";
@@ -24,7 +20,7 @@ import { SelectGroupIcon } from "@/src/components/entities/platformsFilters/addF
 import { TextAreaAddFilter } from "@/src/components/entities/platformsFilters/addFilter/TextAreaAddFilter";
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
-import { plusSvgPrimary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
+import { MultipleTagsInput } from "@/src/components/entities/platformsFilters/addFilter/MultipleTagsInput";
 
 interface pageProps {
     params: { id: string };
@@ -35,77 +31,42 @@ const EditPlatformFilter: FC<pageProps> = () => {
     const router = useRouter();
     const filterId: string = router.query.id as string;
     const id = filterId;
-    const { data: filterData, isLoading: filterIsLoading } = useGetPlatformFilterQuery({ id });
-    console.log(filterData);
+    const {
+        data: filterData,
+        isLoading: filterIsLoading,
+        isSuccess: filterIsSuccess,
+    } = useGetPlatformFilterQuery({ id });
+    const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutPlatformFilterMutation();
+
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
 
     const [selectedGroup, setSelectedGroup] = useState(filterGroup?.title);
-    const { data: tagsData, isLoading: tagsIsLoading } = useGetPlatformsFiltersQuery({});
 
-    const setInitialTags = () => {
-        const filterTagsArray: ITagM[] = tagsData?.results
-            ?.find((item: any) => item.id === filterGroup?.id)
-            .filters?.find((filter: any) => filter.id == id).tags;
-        const inputsTagsArray = filterTagsArray?.map((item) => item.tag);
-        return inputsTagsArray;
-    };
-
-    const filterTagsArray: ITagM[] = tagsData?.results
-        ?.find((item: any) => item.id === filterGroup?.id)
-        ?.filters?.find((filter: any) => filter.id == id).tags;
-
-    const cleanMessengersTags = filterTagsArray?.filter((item) => {
+    const cleanMessengersTags = filterData?.tags.filter((item: ITagM) => {
         return item.is_message === true;
     });
 
-    const cleanTags = filterTagsArray?.filter((item) => {
-        return item.is_message === false;
-    });
-    const cleanTagsNames = cleanTags?.map((item) => item.tag);
-
-    const [tags, setTags] = useState<ITagM[]>(cleanTags);
-    const [tagsMessengers, setTagsMessengers] = useState<ITagM[]>(cleanMessengersTags);
-    const [inputsTags, setInputsTags] = useState<(string | undefined)[]>(cleanTagsNames);
-
     const [filter, setFilter] = useState<PropsPlatformFilter>({
-        title: "",
-        functionality: "",
-        integration: "integration",
-        multiple: true,
-        status: "save",
-        image: "",
-        group: null,
-        tags: [],
+        title: filterData?.filter,
+        functionality: filterData?.functionality,
+        integration: filterData?.integration,
+        multiple: filterData?.multiple,
+        status: filterData?.status,
+        image: filterData?.image,
+        group: filterData?.group,
+        tags: filterData?.tags,
     });
 
     const [isValid, setIsValid] = useState<boolean>(false);
 
     const isValidFilter = () => {
-        const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
-
-        if (typeof isUndefined == "undefined") {
-            setIsValid(true);
-        } else setIsValid(false);
-    };
-
-    const addInput = () => {
-        setInputsTags([...inputsTags, ""]);
-    };
-
-    const removeInput = (index: number) => {
-        const newInputs = [...inputsTags];
-        newInputs.splice(index, 1);
-        setInputsTags(newInputs);
-        const newTags = newInputs.map((tagName) => {
-            return {
-                tag: tagName,
-                image_tag: "None",
-                status: "save",
-                is_message: false,
-            };
-        });
-        setTags(newTags);
+        if (filter != undefined || filter != null) {
+            const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
+            if (typeof isUndefined == "undefined") {
+                setIsValid(true);
+            } else setIsValid(false);
+        }
     };
 
     const handleSelectedGroupId = (groupId: number) => {
@@ -120,18 +81,27 @@ const EditPlatformFilter: FC<pageProps> = () => {
     };
 
     const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
-        console.log(tagsM);
         if (tagsM != undefined) {
-            const newTagsMessengers: ITagM[] = tagsM.map((item) => {
-                return {
-                    tag: item?.tag,
-                    image_tag: item?.image_tag,
-                    status: "save",
-                    is_message: true,
-                };
-            });
-            console.log(newTagsMessengers);
-            setTagsMessengers(newTagsMessengers);
+            const newTags = filter.tags
+                .filter((item: ITagM | undefined) => {
+                    return item?.is_message === false;
+                })
+                .concat(tagsM);
+
+            setFilter((prev) => ({ ...prev, tags: newTags }));
+        }
+        isValidFilter();
+    };
+
+    const handleSetTextTags = (tagsT: ITagM[]) => {
+        if (tagsT != undefined) {
+            const newTags = filter.tags
+                .filter((item: ITagM | undefined) => {
+                    return item?.is_message === true;
+                })
+                .concat(tagsT);
+
+            setFilter((prev) => ({ ...prev, tags: newTags }));
         }
         isValidFilter();
     };
@@ -147,44 +117,26 @@ const EditPlatformFilter: FC<pageProps> = () => {
 
     const handleSubmit = () => {
         console.log(filter);
-        // patchFilter({ filter, token });
+        putFilter({ filter, token, id });
     };
 
-    // useEffect(() => {
-    //     if (isSuccessAddFilter) {
-    //         setIsSuccessModal(true);
-    //         setTimeout(() => {
-    //             setIsSuccessModal(false);
-    //             router.reload();
-    //         }, 3000);
-    //     }
-    // }, [isSuccessAddFilter]);
-
     useEffect(() => {
-        if (tagsMessengers) {
-            const newTags = tags?.concat(tagsMessengers);
-            setFilter((prev) => ({ ...prev, tags: newTags }));
-        }
-    }, [tags, tagsMessengers]);
-
-    useEffect(() => {
-        setInputsTags(inputsTags);
-    }, []);
-
-    useEffect(() => {
-        if (tagsMessengers) {
-            const newTags = tags?.concat(tagsMessengers);
+        console.log("useEffect setFilter");
+        if (filterIsSuccess) {
+            console.log(filterData);
             setFilter((prev) => ({
                 ...prev,
                 title: filterData?.filter,
-                short_description: filterData?.functionality,
+                functionality: filterData?.functionality,
+                integration: filterData?.integration,
                 multiple: filterData?.multiple,
                 status: filterData?.status,
+                image: filterData?.image,
                 group: filterData?.group,
-                tags: newTags,
+                tags: filterData?.tags,
             }));
         }
-    }, []);
+    }, [filterIsSuccess]);
 
     return (
         <WrapperAdminPage>
@@ -207,13 +159,10 @@ const EditPlatformFilter: FC<pageProps> = () => {
                     </Link>
                     <span className={css.link}>/Редактировать фильтр</span>
                 </div>
-                <Text type="reg24" color="dark">
-                    🔨 Страница редактирования фильтра находится в разработке! 🔧
-                </Text>
                 <div className={css.filterFormWrapper}>
-                    {tagsIsLoading ? (
+                    {filterIsLoading ? (
                         <div className={css.loaderOrders}>
-                            <Loader isLoading={tagsIsLoading} />
+                            <Loader isLoading={filterIsLoading} />
                         </div>
                     ) : (
                         <div className={css.filterFormWrapper}>
@@ -244,55 +193,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                 placeholder="Текст (200 символов)"
                                 className={css.textAreaPlatform}
                             />
-                            <div className={css.filterParameters}>
-                                <Text type="med20" color="black">
-                                    Параметры фильтра
-                                </Text>
-                                {/* TODO: input tags from server */}
-                                {inputsTags?.map((input, index) => (
-                                    <div key={index}>
-                                        <div className={css.tagTitle}>
-                                            <Text type="reg18" color="dark">
-                                                Параметр фильтра
-                                            </Text>
-                                            <Image
-                                                src="/img/close.svg"
-                                                alt="icon"
-                                                width={24}
-                                                height={24}
-                                                onClick={() => removeInput(index)}
-                                                style={{ cursor: "pointer" }}
-                                            />
-                                        </div>
-                                        <InputAddFilter
-                                            value={input}
-                                            onChange={(e) => {
-                                                e.preventDefault();
-                                                const newInputs = [...inputsTags];
-                                                newInputs[index] = e.target.value;
-                                                console.log(newInputs);
-                                                setInputsTags(newInputs);
-                                                const newTags = newInputs.map((tagName) => {
-                                                    return {
-                                                        tag: tagName,
-                                                        image_tag: "None",
-                                                        status: "save",
-                                                        is_message: false,
-                                                    };
-                                                });
-                                                setTags(newTags);
-                                                setFilter((prev) => ({ ...prev, tags: newTags }));
-                                            }}
-                                            placeholder="Параметр фильтра"
-                                            className={css.inputAddFilter}
-                                        />
-                                    </div>
-                                ))}
-                                <ButtonSmallSecondary active={true} type={"button"} onClick={addInput}>
-                                    {plusSvgPrimary}
-                                    Добавить фильтр
-                                </ButtonSmallSecondary>
-                            </div>
+                            <MultipleTagsInput defaultTags={filterData?.tags} setTextTags={handleSetTextTags} />
                             <SelectMessengers
                                 defaultMessengers={cleanMessengersTags}
                                 setMessengers={handleSetMessengers}
