@@ -22,7 +22,7 @@ const ComponentSignIn = () => {
         if (isSuccess) {
             Cookies.set("loginUser", JSON.stringify(data));
 
-            if (isSuccessUser && userData.user_role === "US") {
+            if (userData?.user_role === "US") {
                 route.push("/my-account");
             } else {
                 route.push("/admin");

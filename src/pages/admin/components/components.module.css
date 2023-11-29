@@ -1,0 +1,39 @@
+.banner {
+    width: 932px;
+    height: 274px;
+    overflow: visible;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 85px;
+    margin: 64px 0;
+    border-radius: 10px;
+}
+
+.blockLogo {
+    display: flex;
+    min-width: 322px;
+    padding: 24px;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.slogan {
+    position: relative;
+    display: flex;
+    width: 413px;
+    padding: 24px 0px 24px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-left: 5px solid #4466f5;
+}
+
+.slogan_bg {
+    position: absolute;
+    z-index: -1;
+}
