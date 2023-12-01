@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { boolean } from "yup";
 
 export const changeRole = createApi({
     reducerPath: "changeRole",

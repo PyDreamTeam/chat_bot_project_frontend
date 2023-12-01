@@ -56,13 +56,12 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
                     <Link href={"/admin"}>
                         <Text type="reg16" color="telegray">Главная</Text>
                     </Link>
-                    <span className={css.link}>/Администрация и модерация</span>
-                    <span className={css.link}>/Управление пользователями</span>
+                    <Text type="reg16" color="telegray">/Администрация и модерация</Text>
+                    <Text type="reg16" color="telegray">/Управление пользователями</Text>
                 </div>
 
                 <div className={css.work}>
                     <Text type="med20" color="dark">Управление пользователями</Text>
-                    {/* <button className={css.addBtn}><a href="/admin/users/add"><Text type="reg16" color="white">+ Добавить пользователя</Text></a></button> */}
                 </div>
                 <div className={css.groupSearch}>
                     <Image
