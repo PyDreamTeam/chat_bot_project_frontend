@@ -80,6 +80,20 @@ export const solutions = createApi({
                 },
             }),
         }),
+        createSolutionFilterGroup: builder.mutation({
+            query: ({token, title }) => ({
+                url: "/api/solution/groups/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title,
+                    status: "save",
+                    image: "image"
+                }
+            })
+        }),
     }),
 });
 
@@ -94,4 +108,5 @@ export const {
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
+    useCreateSolutionFilterGroupMutation,
 } = solutions;
