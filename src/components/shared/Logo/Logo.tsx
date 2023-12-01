@@ -2,13 +2,14 @@ import React, { FC } from "react";
 import styles from "./styles/Logo.module.css";
 
 export enum LogoVariantProps {
-    header = "header",
-    footer = "footer",
-    admin = "admin"
+    header = "logoHeader",
+    footer = "logoFooter",
+    admin = "logoAdmin",
+    adminPage = "logoAdminPage"
 }
 
 type ILogo = {
-    variant: LogoVariantProps.header | LogoVariantProps.footer | LogoVariantProps.admin;
+    variant: LogoVariantProps.header | LogoVariantProps.footer | LogoVariantProps.admin | LogoVariantProps.adminPage;
     className?: string
 };
 
@@ -16,9 +17,7 @@ const Logo: FC<ILogo> = ({ variant, className }) => {
     return (
         <div
             className={`${styles.logo} 
-            ${variant === LogoVariantProps.header && styles.logoHeader} 
-            ${variant === LogoVariantProps.footer && styles.logoFooter} 
-            ${variant === LogoVariantProps.admin && styles.logoAdmin}
+            ${styles[variant]}
             ${className} 
             `}
         >
