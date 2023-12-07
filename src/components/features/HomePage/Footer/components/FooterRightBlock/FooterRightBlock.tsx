@@ -10,16 +10,10 @@ import { useRouter } from "next/navigation";
 import { ButtonEmail } from "@/src/components/shared/buttons/ButtonEmail";
 
 const FooterRightBlock = () => {
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const { isSuccess } = useDataUserQuery(token);
     const router = useRouter();
 
     const onClick = () => {
-        if (!isSuccess) {
-            router.push("/sign-in");
-        } else {
-            router.push("mailto:kuksa.nastya64@yandex.by");
-        }
+        router.push("mailto:kuksa.nastya64@yandex.by");
     };
 
     const validationSchema = yup.object().shape({
