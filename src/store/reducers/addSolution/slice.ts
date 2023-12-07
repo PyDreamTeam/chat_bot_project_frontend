@@ -8,70 +8,70 @@ interface Filters {
 
 interface State {
     filters: Filters[];
-    links_to_solution: string[];
-    turnkey_solutions: number;
-    linkToPlatform: string;
+    links_to_platform: string[];
+    turnkey_platforms: number;
+    linkToSolution: string;
 }
 
 const initialState: State = {
     filters: [],
-    links_to_solution: [],
-    turnkey_solutions: 0,
-    linkToPlatform: "",
+    links_to_platform: [],
+    turnkey_platforms: 0,
+    linkToSolution: "",
 };
 
-const addPlatformSlice = createSlice({
-    name: "addPlatform",
+const addSolutionSlice = createSlice({
+    name: "addSolution",
     initialState,
     reducers: {
-        countLinkToSolution: (state, action: PayloadAction<string[]>) => {
+        countLinkToPlatform: (state, action: PayloadAction<string[]>) => {
             if (action.payload) {
                 const linkToSolution = action.payload.map((item) => item);
-                state.links_to_solution = linkToSolution;
+                state.links_to_platform = linkToSolution;
             }
-        },
-        getLinkToSolution: (state, action) => {
-            if (action.payload === null) {
-                action.payload = [];
-                state.links_to_solution = action.payload;
-            }
-            state.links_to_solution = action.payload;
-        },
-        linkToPlatform: (state, action: PayloadAction<string>) => {
-            state.linkToPlatform = action.payload;
         },
         getLinkToPlatform: (state, action) => {
+            if (action.payload === null) {
+                action.payload = [];
+                state.links_to_platform = action.payload;
+            }
+            state.links_to_platform = action.payload;
+        },
+        linkToSolution: (state, action: PayloadAction<string>) => {
+            state.linkToSolution = action.payload;
+        },
+        getLinkToSolution: (state, action) => {
             if (action.payload) {
                 const link = action.payload.replace("https://", "");
-                state.linkToPlatform = link;
+                state.linkToSolution = link;
             }
         },
-        addFilterForPlatform: (state, action: PayloadAction<{ id: number; tag: string }>) => {
+        addFilterForSolution: (state, action: PayloadAction<{ id: number; tag: string }>) => {
             const isFilterInStore = state.filters.find((item) => item.id === action.payload.id);
             if (!isFilterInStore) {
                 state.filters = [...state.filters, action.payload];
             }
         },
-        deleteFilterFromPlatform: (state, action: PayloadAction<number>) => {
+        deleteFilterFromSolution: (state, action: PayloadAction<number>) => {
             state.filters = state.filters.filter((item) => item.id !== action.payload);
         },
         getFilterFromBack: (state, action) => {
             state.filters = action.payload;
         },
-        deleteAllFiltersFromPlatform: (state) => {
+        deleteAllFiltersFromSolution: (state) => {
             state.filters = [];
         },
     },
 });
 
 export const {
-    countLinkToSolution,
+    countLinkToPlatform,
     getLinkToSolution,
-    addFilterForPlatform,
-    deleteFilterFromPlatform,
-    linkToPlatform,
+    addFilterForSolution,
+    deleteFilterFromSolution,
+    linkToSolution,
     getLinkToPlatform,
-    deleteAllFiltersFromPlatform,
+    deleteAllFiltersFromSolution,
     getFilterFromBack,
-} = addPlatformSlice.actions;
-export const reducerAddPlatform = addPlatformSlice.reducer;
+} = addSolutionSlice.actions;
+export const reducerAddSolution = addSolutionSlice.reducer;

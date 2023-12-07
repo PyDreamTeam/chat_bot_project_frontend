@@ -1,19 +1,19 @@
 import { FC, useState, useEffect } from "react";
-import css from "./platform.module.css";
+import css from "./solution.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import {
-    useDeletePlatformMutation,
-    useGetPlatformForArchiveMutation,
-    usePlatformArchiveMutation,
+    useDeleteSloutionMutation,
+    useSolutionArchiveMutation,
+    useGetSolutionForArchiveMutation,
     useSendToCreatedMutation,
-} from "@/src/store/services/platforms";
+} from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import Title from "@/src/components/shared/text/Title";
 import Link from "next/link";
 
-interface PropsPlatform {
+interface PropsSolution {
     id?: number;
     sort?: string;
     title?: string;
@@ -23,40 +23,40 @@ interface PropsPlatform {
     }[];
 }
 
-const functionPlatformSave = [
+const functionSolutionSave = [
     { title: "Быстрый просмотр", value: "read" },
     { title: "Опубликовать", value: "public" },
     { title: "Редактировать", value: "edit" },
     { title: "Архив", value: "archive" },
 ];
 
-const functionPlatformPublic = [
+const functionSolutionPublic = [
     { title: "Быстрый просмотр", value: "read" },
     { title: "Снять с публикации", value: "deletePublic" },
     { title: "Редактировать", value: "edit" },
     { title: "Архив", value: "archive" },
 ];
-const functionPlatformArchive = [
+const functionSolutionArchive = [
     { title: "Быстрый просмотр", value: "read" },
     { title: "Опубликовать", value: "public" },
     { title: "Отправить в созданные", value: "sendToCreated" },
     // {title: "Удалить", value: "delete"},
 ];
 
-export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }) => {
-    const [deletePlatform, { isSuccess }] = useDeletePlatformMutation();
+export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }) => {
+    const [deleteSolution, { isSuccess }] = useDeleteSloutionMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
-    const [getPlatformForArchive, { data, isSuccess: isSuccessGetPlatform }] = useGetPlatformForArchiveMutation();
-    const [platformArchive, { isSuccess: isSuccessPlatformArchive }] = usePlatformArchiveMutation();
+    const [getSolutionForArchive, { data, isSuccess: isSuccessGetSolution }] = useGetSolutionForArchiveMutation();
+    const [solutionArchive, { isSuccess: isSuccessSolutionArchive }] = useSolutionArchiveMutation();
     const [sendToCreated, { isSuccess: isSuccessSendToCreated }] = useSendToCreatedMutation();
 
-    const [stateIcon, setStateIcon] = useState<string>("workPlatform");
+    const [stateIcon, setStateIcon] = useState<string>("workSolution");
     const [isModalDelete, setIsModalDelete] = useState(false);
     const [isSuccessModal, setIsSuccessModal] = useState(false);
-    const [isDeletePlatformFromPublic, setIsDeletePlatformFromPublic] = useState(false);
-    const [isArchivePlatform, setIsArchivePlatform] = useState(false);
-    const [isSuccessDeletePlatformFromPublic, setIsSuccessDeletePlatformFromPublic] = useState(false);
+    const [isDeleteSolutionFromPublic, setIsDeleteSolutionFromPublic] = useState(false);
+    const [isArchiveSolution, setIsArchiveSolution] = useState(false);
+    const [isSuccessDeleteSolutionFromPublic, setIsSuccessDeleteSolutionFromPublic] = useState(false);
 
     useEffect(() => {
         if (isSuccess) {
@@ -76,47 +76,47 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
     }, [isSuccessSendToCreated]);
 
     useEffect(() => {
-        if (stateIcon === "workPlatformActive") {
-            getPlatformForArchive(Number(id));
+        if (stateIcon === "workSolutionActive") {
+            getSolutionForArchive(Number(id));
         }
     }, [stateIcon]);
 
     useEffect(() => {
-        if (isSuccessPlatformArchive) {
-            setIsDeletePlatformFromPublic(false);
-            setIsArchivePlatform(false);
-            setIsSuccessDeletePlatformFromPublic(true);
+        if (isSuccessSolutionArchive) {
+            setIsDeleteSolutionFromPublic(false);
+            setIsArchiveSolution(false);
+            setIsSuccessDeleteSolutionFromPublic(true);
             setTimeout(() => {
-                setIsSuccessDeletePlatformFromPublic(false);
+                setIsSuccessDeleteSolutionFromPublic(false);
                 router.reload();
             }, 3000);
         }
-    }, [isSuccessPlatformArchive]);
+    }, [isSuccessSolutionArchive]);
 
     const handleMouseEnter = () => {
-        if (stateIcon === "workPlatform") {
-            setStateIcon("workPlatformHover");
+        if (stateIcon === "workSolution") {
+            setStateIcon("workSolutionHover");
         }
     };
 
     const handleMouseLeave = () => {
-        if (stateIcon === "workPlatformHover") {
-            setStateIcon("workPlatform");
+        if (stateIcon === "workSolutionHover") {
+            setStateIcon("workSolution");
         }
     };
 
     const handleClickIcon = () => {
-        if (stateIcon === "workPlatformHover" || stateIcon === "workPlatform") {
-            setStateIcon("workPlatformActive");
+        if (stateIcon === "workSolutionHover" || stateIcon === "workSolution") {
+            setStateIcon("workSolutionActive");
         }
-        if (stateIcon === "workPlatformActive") {
-            setStateIcon("workPlatform");
+        if (stateIcon === "workSolutionActive") {
+            setStateIcon("workSolution");
         }
     };
 
-    const handleFunctionsPlatforms = (value: string, id?: number) => {
+    const handleFunctionsSolutions = (value: string, id?: number) => {
         if (value === "archive") {
-            setIsArchivePlatform(true);
+            setIsArchiveSolution(true);
         }
         if (value === "sendToCreated") {
             sendToCreated({ id, token, data });
@@ -125,28 +125,28 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
             setIsModalDelete(true);
         }
         if (value === "edit") {
-            router.push(`/admin/platforms/change-platform/${id}`);
+            router.push(`/admin/solutions/change-solution/${id}`);
         }
         if (value === "read") {
-            router.push(`/platforms/platform/${id}`);
+            router.push(`/solutions/solution/${id}`);
         }
         if (value === "deletePublic") {
-            setIsDeletePlatformFromPublic(true);
-            getPlatformForArchive(Number(id));
+            setIsDeleteSolutionFromPublic(true);
+            getSolutionForArchive(Number(id));
         }
         if (value === "public") {
-            router.push(`/admin/platforms/public-platform/${id}`);
+            router.push(`/admin/solutions/public-solution/${id}`);
         }
     };
 
     return (
         <div className={css.container}>
-            <div className={css.platformTitle}>
+            <div className={css.solutionTitle}>
                 <Text type="reg16" color="grey">
                     {title}
                 </Text>
             </div>
-            <div className={css.platformStatus}>
+            <div className={css.solutionStatus}>
                 {link && (
                     <Link href={link}>
                         <Text type="reg16" color="grey">
@@ -155,7 +155,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                     </Link>
                 )}
             </div>
-            <div className={css.platformKeyWords}>
+            <div className={css.solutionKeyWords}>
                 <Text type="reg16" color="grey">
                     {tags.map((item) => item.tag + ", ")}
                 </Text>
@@ -164,21 +164,21 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleClickIcon}
-                className={css.workPlatform}
+                className={css.workSolution}
             >
                 <Image src={`/platforms/${stateIcon}.svg`} alt="icon" width={24} height={24} />
-                {stateIcon === "workPlatformActive" && (
+                {stateIcon === "workSolutionActive" && (
                     <ul className={css.listFunctions}>
                         {(sort === "save"
-                            ? functionPlatformSave
+                            ? functionSolutionSave
                             : sort === "archive"
-                            ? functionPlatformArchive
-                            : functionPlatformPublic
+                            ? functionSolutionArchive
+                            : functionSolutionPublic
                         ).map(({ title, value }) => (
                             <li
                                 key={title}
                                 className={css.function}
-                                onClick={() => handleFunctionsPlatforms(value, id)}
+                                onClick={() => handleFunctionsSolutions(value, id)}
                             >
                                 <Text
                                     type="reg14"
@@ -205,10 +205,10 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                         />
                         <Image src={"/platforms/deletePlatformIcon.svg"} alt="icon" width={56} height={56} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
-                            Удалить платформу
+                            Удалить решение
                         </Title>
                         <Text type="reg18" color="telegray" className={css.subTitleModalClose}>
-                            Вы действительно хотите удалить платформу {title}?
+                            Вы действительно хотите удалить решение {title}?
                         </Text>
                         <div className={css.groupBtnModalClose}>
                             <button className={css.btnCloseModal} onClick={() => setIsModalDelete(false)}>
@@ -216,7 +216,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                                     Отмена
                                 </Text>
                             </button>
-                            <button className={css.btnSaveModal} onClick={() => deletePlatform({ id, token })}>
+                            <button className={css.btnSaveModal} onClick={() => deleteSolution({ id, token })}>
                                 <Text type="reg18" color="white">
                                     Удалить
                                 </Text>
@@ -225,7 +225,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                     </div>
                 </div>
             )}
-            {isArchivePlatform && (
+            {isArchiveSolution && (
                 <div className={css.modal}>
                     <div className={css.modalContent}>
                         <Image
@@ -234,22 +234,22 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                             width={24}
                             height={24}
                             className={css.imgCloseModal}
-                            onClick={() => setIsArchivePlatform(false)}
+                            onClick={() => setIsArchiveSolution(false)}
                         />
                         <Image src={"/platforms/deletePlatformIcon.svg"} alt="icon" width={56} height={56} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
                             Архив
                         </Title>
                         <Text type="reg18" color="telegray" className={css.subTitleModalClose}>
-                            Вы действительно хотите переместить платформу {title} в архив?
+                            Вы действительно хотите переместить решение {title} в архив?
                         </Text>
                         <div className={css.groupBtnModalClose}>
-                            <button className={css.btnCloseModal} onClick={() => setIsArchivePlatform(false)}>
+                            <button className={css.btnCloseModal} onClick={() => setIsArchiveSolution(false)}>
                                 <Text type="reg18" color="blue">
                                     Отмена
                                 </Text>
                             </button>
-                            <button className={css.btnSaveModal} onClick={() => platformArchive({ id, token, data })}>
+                            <button className={css.btnSaveModal} onClick={() => solutionArchive({ id, token, data })}>
                                 <Text type="reg18" color="white">
                                     Архив
                                 </Text>
@@ -258,7 +258,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                     </div>
                 </div>
             )}
-            {isDeletePlatformFromPublic && (
+            {isDeleteSolutionFromPublic && (
                 <div className={css.modal}>
                     <div className={css.modalContent}>
                         <Image
@@ -267,25 +267,25 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                             width={24}
                             height={24}
                             className={css.imgCloseModal}
-                            onClick={() => setIsDeletePlatformFromPublic(false)}
+                            onClick={() => setIsDeleteSolutionFromPublic(false)}
                         />
                         <Image src={"/platforms/platformArchive.svg"} alt="icon" width={56} height={56} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
-                            Снять с публикации платформу?{" "}
+                            Снять с публикации решение?{" "}
                         </Title>
                         <Text type="reg18" color="telegray" className={css.subTitleModalClose}>
-                            Вы действительно хотите снять с публикации платформу? После снятия с публикации, платформа
+                            Вы действительно хотите снять с публикации решение? После снятия с публикации, решение
                             перейдет в архив.
                         </Text>
                         <div className={css.groupBtnModalClose}>
-                            <button className={css.btnCloseModal} onClick={() => setIsDeletePlatformFromPublic(false)}>
+                            <button className={css.btnCloseModal} onClick={() => setIsDeleteSolutionFromPublic(false)}>
                                 <Text type="reg18" color="blue">
                                     Отмена
                                 </Text>
                             </button>
                             <button
                                 className={css.btnDeleteForPublic}
-                                onClick={() => platformArchive({ id, token, data })}
+                                onClick={() => solutionArchive({ id, token, data })}
                             >
                                 <Text type="reg18" color="white">
                                     Снять с публикации
@@ -295,7 +295,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                     </div>
                 </div>
             )}
-            {isSuccessDeletePlatformFromPublic && (
+            {isSuccessDeleteSolutionFromPublic && (
                 <div className={css.modal}>
                     <div className={css.modalContent}>
                         <Image
@@ -308,7 +308,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
-                            Платформа перемещена в архив!
+                            Решение перемещено в архив!
                         </Title>
                     </div>
                 </div>
@@ -326,7 +326,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
-                            Платформа успешно удалена!
+                            Решение успешно удалено!
                         </Title>
                     </div>
                 </div>

@@ -80,6 +80,67 @@ export const solutions = createApi({
                 },
             }),
         }),
+        deleteSloution: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
+        solutionArchive: builder.mutation({
+            query: ({ id, token, data }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: data.title,
+                    status: "archive",
+                },
+            }),
+        }),
+        getSolutionForArchive: builder.mutation<PropsSolutionCard, number>({
+            query: (id) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "GET",
+            }),
+        }),
+        sendToCreated: builder.mutation({
+            query: ({ id, token, data }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: { title: data.title, status: "save" },
+            }),
+        }),
+        changeSolution: builder.mutation({
+            query: ({ id, token, solution }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: solution,
+            }),
+        }),
+        solutionPublic: builder.mutation({
+            query: ({ id, token, solution }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: solution.title,
+                    status: "public",
+                },
+            }),
+        }),
     }),
 });
 
@@ -94,4 +155,10 @@ export const {
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
+    useDeleteSloutionMutation,
+    useSolutionArchiveMutation,
+    useGetSolutionForArchiveMutation,
+    useSendToCreatedMutation,
+    useChangeSolutionMutation,
+    useSolutionPublicMutation,
 } = solutions;

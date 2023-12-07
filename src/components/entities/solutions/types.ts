@@ -127,13 +127,10 @@ export interface PropsSolutionCard {
     business_area?: string;
     business_niche?: string;
     objective?: string;
-    turnkey_platforms?: number;
-    links_to_platform?: string[];
     solution_type?: string;
     short_description?: string;
     full_description?: string;
     platform?: string;
-    status?: string;
     messengers?: string;
     integration_with_CRM?: string;
     integration_with_payment_systems?: string;
@@ -148,11 +145,10 @@ export interface PropsSolutionCard {
     price?: number | string;
     is_active?: boolean;
     created_at?: string;
-    image?: any;
+    image?: string;
     link?: string;
     type?: string | string;
     forceUpdate?: () => void;
-    filter?: number[];
     tags?: {
         id?: number;
         tag?: string;
@@ -171,28 +167,28 @@ export interface PropsSolutionAdvantages {
     advantage?: string;
 }
 
-// export interface PropsSolutionCard {
-//     id?: number;
-//     title?: string;
-//     business_model?: string;
-//     business_area?: string;
-//     business_niche?: string;
-//     objective?: string;
-//     solution_type?: string;
-//     short_description?: string;
-//     full_description?: string;
-//     turnkey_solutions?: number;
-//     price?: number | string;
-//     is_active?: boolean;
-//     created_at?: string;
-//     image?: string;
-//     link?: string;
-//     type?: string | string;
-//     tags?: {
-//         id?: number;
-//         tag?: string;
-//         image_tag?: string;
-//         is_active?: boolean;
-//         is_message?: boolean;
-//     }[];
-// }
+export interface PropsSolutionCard {
+    id?: number;
+    title?: string;
+    business_model?: string;
+    business_area?: string;
+    business_niche?: string;
+    objective?: string;
+    solution_type?: string;
+    short_description?: string;
+    full_description?: string;
+    turnkey_solutions?: number;
+    price?: number | string;
+    is_active?: boolean;
+    created_at?: string;
+    image?: string;
+    link?: string;
+    type?: string | string;
+    tags?: {
+        id?: number;
+        tag?: string;
+        image_tag?: string;
+        is_active?: boolean;
+        is_message?: boolean;
+    }[];
+}

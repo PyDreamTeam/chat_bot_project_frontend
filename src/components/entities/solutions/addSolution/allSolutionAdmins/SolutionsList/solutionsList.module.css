@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    margin-top: 16px;
+    padding: 16px 8px;
+    gap: 102px;
+    border-bottom: 1px solid #e1e2e6;
+}
+
+.solutionTitle {
+    width: 190px;
+}
+
+.solutionSubTittle {
+    width: 170px;
+}

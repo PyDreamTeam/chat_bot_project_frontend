@@ -1,0 +1,57 @@
+.listTag {
+    list-style: none;
+    padding-left: 36px;
+}
+
+.listTag:first-child {
+    margin-top: 16px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.btnClose {
+    margin-top: 16px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 309px;
+    background-color: #f4f5f6;
+    border: 1px solid #e1e2e6;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btnOpen {
+    margin-top: 16px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 309px;
+    background-color: #f4f5f6;
+    border: 1px solid #909090;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.wrapperList {
+    position: relative;
+}
+
+.listOpen {
+    width: 308px;
+    padding: 5px 16px 20px 22px;
+    position: absolute;
+    left: 315px;
+    top: -48px;
+    background-color: white;
+    z-index: 999;
+    border: 1px solid #e1e2e6;
+    box-shadow: 3px 5px 10px #e1e2e6;
+    border-radius: 10px;
+}
