@@ -4,7 +4,7 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import css from "./solutions.module.css";
-import InputSearch from "@/src/components/entities/solutions/rightBlock/InputSearch/InputSearch";
+import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useGetSolutionsQuery } from "@/src/store/services/solutions";
