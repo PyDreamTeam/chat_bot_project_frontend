@@ -18,7 +18,7 @@ import { SelectGroupIcon } from "@/src/components/entities/platformsFilters/addF
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import { useRouter } from "next/router";
-import { IMessenger, SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
+import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 
 export interface PropsPlatformFilter {
     title: string;

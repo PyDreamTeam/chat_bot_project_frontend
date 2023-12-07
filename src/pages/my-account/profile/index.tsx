@@ -3,17 +3,13 @@ import SearchHistory from "@/src/components/entities/MyAccountPageComponents/sea
 import AccountPageWrapper from "@/src/components/wrappers/AccountpageWrapper";
 import { useAppSelector } from "@/src/hooks/types";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
-import { useRouter } from "next/router";
 import React from "react";
 import Cookies from "js-cookie";
 
 const Profile = () => {
-    const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
     const { data } = useDataUserQuery(token);
-
-    //if (data?.user_role === ("AD" || "SA")) router.push("/admin");
 
     return (
         <AccountPageWrapper page="profile_templates">
