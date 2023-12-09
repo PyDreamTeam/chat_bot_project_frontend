@@ -26,7 +26,7 @@ const Slider: FC<ISliderProps> = ({ children, type, cardType }) => {
     const [isEnableRight, setIsEnableRight] = useState(true);
     const [isEnableLeft, setIsEnableLeft] = useState(false);
 
-    children ? (childrenCount = children?.props.results.length) : (childrenCount = 1);
+    children ? (childrenCount = children?.props.results?.length) : (childrenCount = 1);
 
     const handleRightClick = () => {
         setOffset((currentOffset) => {

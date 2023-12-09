@@ -1,10 +1,10 @@
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import css from "./platformCard.module.css";
 import { PropsPlatformCard } from "../../types";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
-import { useAddPlatformToFavoriteMutation} from "@/src/store/services/platforms";
+import { useAddPlatformToFavoriteMutation, useGetFavoritePlatformQuery } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
 
 export const PlatformCard: FC<PropsPlatformCard> = ({
@@ -16,24 +16,28 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     type,
     price,
     link,
-    forceUpdate
+    is_favorite,
+    forceUpdate,
 }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const [addToFavorite] = useAddPlatformToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
+    const { data: favData, isSuccess } = useGetFavoritePlatformQuery({ token, id });
+
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({id, token}).then(forceUpdate);
+        addToFavorite({ id, token }).then(forceUpdate);
         e.stopPropagation();
         if (imageHeart === "like") {
-            setImageHeart("dislike");   
+            setImageHeart("dislike");
         }
         if (imageHeart === "dislike") {
             setImageHeart("like");
         }
         if (imageHeart === "hoverHeart") {
             setImageHeart("like");
-        }  
+        }
     };
     const handleMouseEnter = () => {
         if (imageHeart === "dislike") setImageHeart("hoverHeart");
@@ -43,6 +47,17 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
             setImageHeart("dislike");
         }
     };
+
+    useEffect(() => {
+        console.log(is_favorite);
+        if (isSuccess) {
+            if (is_favorite) {
+                setImageHeart("like");
+            } else {
+                setImageHeart("dislike");
+            }
+        }
+    }, [isSuccess]);
 
     return (
         <div className={type === "filter" ? `${css.platforms}` : `${css.onePlatform}`}>

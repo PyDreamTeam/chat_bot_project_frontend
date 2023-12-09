@@ -6,26 +6,40 @@ import styles from "./styles/CardPlatform.module.css";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { useAddPlatformToFavoriteMutation } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
 
-
-const CardPlatform: FC<PropsPlatformCard> = ({ title, price, id, short_description, forceUpdate, image, tags = [] }) => {
+const CardPlatform: FC<PropsPlatformCard> = ({
+    title,
+    price,
+    id,
+    short_description,
+    forceUpdate,
+    image,
+    is_favorite,
+    tags = [],
+}) => {
     const [imageHeart, setImageHeart] = useState("dislike");
     const [addToFavorite] = useAddPlatformToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    
+    const { data: userData, isSuccess } = useDataUserQuery(token);
 
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({id, token}).then(forceUpdate);
-    
-        e.stopPropagation();
-        if (imageHeart === "like") {
-            setImageHeart("dislike");
-        }
-        if (imageHeart === "dislike") {
-            setImageHeart("like");
-        }
-        if (imageHeart === "hoverHeart") {
-            setImageHeart("like");
+        if (!isSuccess) {
+            e.stopPropagation();
+            console.log("sign in!");
+        } else {
+            addToFavorite({ id, token }).then(forceUpdate);
+
+            e.stopPropagation();
+            if (imageHeart === "like") {
+                setImageHeart("dislike");
+            }
+            if (imageHeart === "dislike") {
+                setImageHeart("like");
+            }
+            if (imageHeart === "hoverHeart") {
+                setImageHeart("like");
+            }
         }
     };
     const handleMouseEnter = () => {
@@ -36,6 +50,14 @@ const CardPlatform: FC<PropsPlatformCard> = ({ title, price, id, short_descripti
             setImageHeart("dislike");
         }
     };
+    useEffect(() => {
+        if (is_favorite) {
+            setImageHeart("like");
+        } else {
+            setImageHeart("dislike");
+        }
+    }, []);
+
     return (
         <div className={styles.card}>
             <div className={styles.topWrap}>
