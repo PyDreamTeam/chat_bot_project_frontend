@@ -20,7 +20,7 @@ const superAdminNavigation = [
             { subTitle: "Созданные платформы", subHref: "/admin/platforms" },
             { subTitle: "Архив платформ", subHref: "/admin/platforms" },
             { subTitle: "Создать платформу", subHref: "/admin/platforms/add-platform" },
-            { subTitle: "Фильтры платформ", subHref: "/admin/platforms" }],
+            { subTitle: "Фильтры платформ", subHref: "/admin/platforms/platforms-filters" }],
         href: "/admin/platforms",
         icon: "/admin/icon_platform.svg"
     },
@@ -57,7 +57,7 @@ const superAdminNavigation = [
 const AdminPage = () => {
     const route = useRouter();
 
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const token = JSON.parse(Cookies.get("loginUser") || "[]").access;
 
     useEffect(() => {
         if (token === undefined) {
