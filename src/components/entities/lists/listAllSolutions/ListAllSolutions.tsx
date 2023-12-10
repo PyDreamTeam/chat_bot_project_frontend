@@ -30,6 +30,7 @@ const ListAllSolutions: FC<IListCardsSolutions> = ({ results = [] }) => {
                         price={tab.price}
                         short_description={tab.short_description}
                         tags={tab.tags}
+                        is_favorite={tab.is_favorite}
                     />
                 </div>
             ))}

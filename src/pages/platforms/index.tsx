@@ -10,10 +10,14 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useGetPlatformsQuery } from "@/src/store/services/platforms";
+import {
+    useGetFavoritePlatformsQuery,
+    useGetListPlatformsQuery,
+    useGetPlatformsQuery,
+} from "@/src/store/services/platforms";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { useAppSelector } from "@/src/hooks/types";
-import useInfiniteScroll from "@/src/hooks/useInfinityScrollPlatforms";
+import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
@@ -21,18 +25,31 @@ import { useRouter } from "next/router";
 import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
 import Cookies from "js-cookie";
 import PhoneSavedPopup from "@/src/components/shared/popups/PhoneSavedPopup";
+import { UseQuery } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 
 const Platforms = () => {
     const router = useRouter();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {});
+    // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetListPlatformsQuery, {});
+    const { data, isLoading: isLoadingUnreg } = useGetListPlatformsQuery({});
+
+    const {
+        data: combinedData,
+        isLoading,
+        refetch,
+        isFetching,
+    } = useGetFavoritePlatformsQuery(token, {
+        refetchOnMountOrArgChange: true,
+        refetchOnFocus: true,
+    });
 
     const handleScroll = () => {
-        readMore();
+        // readMore();
     };
 
     return (
@@ -66,29 +83,51 @@ const Platforms = () => {
                             </div>
                         ) : (
                             <ul className={styles.platforms}>
-                                {combinedData.map((item) => (
-                                    <li
-                                        className={styles.click}
-                                        key={item.id}
-                                        onClick={() => {
-                                            if (item.id) {
-                                                handleClick(item.id);
-                                            }
-                                        }}
-                                    >
-                                        <CardPlatform
-                                            id={item.id}
-                                            title={item.title}
-                                            short_description={item.short_description}
-                                            tags={item.tags}
-                                            image={item.image}
-                                        />
-                                    </li>
-                                ))}
+                                {combinedData
+                                    ? combinedData.results.map((item: any) => (
+                                          <li
+                                              className={styles.click}
+                                              key={item.id}
+                                              onClick={() => {
+                                                  if (item.id) {
+                                                      handleClick(item.id);
+                                                  }
+                                              }}
+                                          >
+                                              <CardPlatform
+                                                  id={item.id}
+                                                  title={item.title}
+                                                  short_description={item.short_description}
+                                                  tags={item.tags}
+                                                  image={item.image}
+                                                  is_favorite={item.is_favorite}
+                                              />
+                                          </li>
+                                      ))
+                                    : data.results.map((item: any) => (
+                                          <li
+                                              className={styles.click}
+                                              key={item.id}
+                                              onClick={() => {
+                                                  if (item.id) {
+                                                      handleClick(item.id);
+                                                  }
+                                              }}
+                                          >
+                                              <CardPlatform
+                                                  id={item.id}
+                                                  title={item.title}
+                                                  short_description={item.short_description}
+                                                  tags={item.tags}
+                                                  image={item.image}
+                                                  is_favorite={item.is_favorite}
+                                              />
+                                          </li>
+                                      ))}
                                 <div className={styles.loaderPlatforms}>
                                     <Loader isLoading={isFetching} />
                                 </div>
-                                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                                {combinedData?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                             </ul>
                         )}
                     </div>

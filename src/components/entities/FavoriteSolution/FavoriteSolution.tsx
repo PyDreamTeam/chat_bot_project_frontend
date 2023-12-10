@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useState } from "react";
 import styles from "../FavoriteSolution/FavoriteSolution.module.css";
 import { PropsFavoriteSolutionCard } from "../platforms/types";
+import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import Title from "../../shared/text/Title";
@@ -14,25 +15,24 @@ export const FavoriteSolution: FC<PropsFavoriteSolutionCard> = ({
     image,
     price,
     tags = [],
-    forceUpdate
+    forceUpdate,
 }) => {
-
     const [imageHeart, setImageHeart] = useState("like");
     const [addToFavorite] = useAddSolutionToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({id, token}).then(forceUpdate);
+        addToFavorite({ id, token }).then(forceUpdate);
         e.stopPropagation();
         if (imageHeart === "like") {
-            setImageHeart("dislike");   
+            setImageHeart("dislike");
         }
         if (imageHeart === "dislike") {
             setImageHeart("like");
         }
         if (imageHeart === "hoverHeart") {
             setImageHeart("like");
-        }  
+        }
     };
     const handleMouseEnter = () => {
         if (imageHeart === "dislike") setImageHeart("hoverHeart");
@@ -47,7 +47,11 @@ export const FavoriteSolution: FC<PropsFavoriteSolutionCard> = ({
         <div className={styles.container}>
             <div className={styles.containerInfo}>
                 <div className={styles.title}>
-                    <h4 className={styles.text}>{title}</h4>
+                    <Link href={`/solutions/solution/${id}`}>
+                        <Title type="h4" color="black" className={styles.titleLink}>
+                            {title}
+                        </Title>
+                    </Link>
                     <Image
                         src={`/platforms/${imageHeart}.svg`}
                         alt="heart"
@@ -59,7 +63,7 @@ export const FavoriteSolution: FC<PropsFavoriteSolutionCard> = ({
                         className={styles.heart}
                     />
                 </div>
-                <div >
+                <div>
                     <p className={styles.price}> {price} ₽</p>
                 </div>
                 <div className={styles.infoCard}>
@@ -89,7 +93,7 @@ export const FavoriteSolution: FC<PropsFavoriteSolutionCard> = ({
                 </ul>
             </div>
             <div className={styles.logo}>
-                <Image src={image ? `${image}` : ""} width={250} height={250} alt="logo" className={styles.img} />
+                <Image src={image ? `${image}` : ""} width={186} height={186} alt="logo" className={styles.img} />
             </div>
         </div>
     );

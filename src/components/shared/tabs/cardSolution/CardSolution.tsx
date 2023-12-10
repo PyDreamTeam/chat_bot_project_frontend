@@ -1,4 +1,4 @@
-import React, { FC, useState, MouseEvent } from "react";
+import React, { FC, useState, MouseEvent, useEffect } from "react";
 import Text from "@/src/components/shared/text/Text";
 import Title from "../../text/Title";
 import Image from "next/image";
@@ -6,26 +6,42 @@ import styles from "./styles/CardSolution.module.css";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
 import Cookies from "js-cookie";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
 
-
-const CardSolution: FC<PropsSolutionCard> = ({ type, image, title, price, short_description, id, forceUpdate, tags = [] }) => {
+const CardSolution: FC<PropsSolutionCard> = ({
+    type,
+    image,
+    title,
+    price,
+    short_description,
+    id,
+    forceUpdate,
+    is_favorite,
+    tags = [],
+}) => {
     const [addToFavorite] = useAddSolutionToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { data: userData, isSuccess } = useDataUserQuery(token);
 
     const [imageHeart, setImageHeart] = useState("dislike");
-    
 
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({id, token}).then(forceUpdate);
-        e.stopPropagation();
-        if (imageHeart === "like") {
-            setImageHeart("dislike");
-        }
-        if (imageHeart === "dislike") {
-            setImageHeart("like");
-        }
-        if (imageHeart === "hoverHeart") {
-            setImageHeart("like");
+        if (!isSuccess) {
+            e.stopPropagation();
+            console.log("sign in!");
+        } else {
+            addToFavorite({ id, token }).then(forceUpdate);
+
+            e.stopPropagation();
+            if (imageHeart === "like") {
+                setImageHeart("dislike");
+            }
+            if (imageHeart === "dislike") {
+                setImageHeart("like");
+            }
+            if (imageHeart === "hoverHeart") {
+                setImageHeart("like");
+            }
         }
     };
     const handleMouseEnter = () => {
@@ -36,6 +52,14 @@ const CardSolution: FC<PropsSolutionCard> = ({ type, image, title, price, short_
             setImageHeart("dislike");
         }
     };
+
+    useEffect(() => {
+        if (is_favorite) {
+            setImageHeart("like");
+        } else {
+            setImageHeart("dislike");
+        }
+    }, []);
 
     return (
         <div className={type === "slider" ? `${styles.sliderCard}` : `${styles.solution}`}>
