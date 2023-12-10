@@ -8,6 +8,7 @@ import ChangeUserRole from "../components/changeUserRole";
 import { useChangeUserInfoMutation, useGetUsersQuery } from "@/src/store/services/changeRole";
 import Cookies from "js-cookie";
 import Alert from "../components/Notification";
+import { useRouter } from "next/navigation";
 
 
 export interface IPerson {
@@ -23,8 +24,14 @@ export interface IAccountPageCredential {
     type: string[];
 }
 const AdminUsers: FC<IAccountPageCredential> = ({ type }) => {
-    const tk = JSON.parse(Cookies.get("loginUser") || "[]");
-    const token = tk.access;
+    const route = useRouter();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]").access;
+
+    useEffect(() => {
+        if (token === undefined) {
+            route.push("/sign-in");
+        }
+    }, []);
 
     const [classname, setClassname] = useState("invisible");
     const { refetch, data: dataUsers, isLoading: isLoadingUsers } = useGetUsersQuery(token);

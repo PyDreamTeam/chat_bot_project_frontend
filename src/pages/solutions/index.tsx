@@ -11,20 +11,34 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useGetSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetFavoriteSolutionsQuery, useGetSolutionsQuery } from "@/src/store/services/solutions";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
+import Cookies from "js-cookie";
 
 const Solutions = () => {
-    const { isShown, toggle } = useModal();
+    // const { isShown, toggle } = useModal();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
-    const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
+    // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
+
+    const { data, isLoading: isLoadingUnreg } = useGetSolutionsQuery({});
+
+    const {
+        data: combinedData,
+        isLoading,
+        refetch,
+        isFetching,
+    } = useGetFavoriteSolutionsQuery(token, {
+        refetchOnMountOrArgChange: true,
+        refetchOnFocus: true,
+    });
 
     const handleScroll = () => {
-        readMore();
+        // readMore();
     };
 
     return (
@@ -56,13 +70,21 @@ const Solutions = () => {
                             <div className={styles.loaderSolutions}>
                                 <Loader isLoading={isLoading} />
                             </div>
-                        ) : (
+                        ) : combinedData ? (
                             <>
-                                <ListAllSolutions results={combinedData} />
+                                <ListAllSolutions results={combinedData.results} />
                                 <div className={styles.loaderSolutions}>
                                     <Loader isLoading={isFetching} />
                                 </div>
                                 {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                            </>
+                        ) : (
+                            <>
+                                <ListAllSolutions results={data?.results} />
+                                <div className={styles.loaderSolutions}>
+                                    <Loader isLoading={isFetching} />
+                                </div>
+                                {data?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                             </>
                         )}
                     </div>
@@ -90,9 +112,9 @@ const Solutions = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
-            <Modal isShown={isShown} hide={toggle}>
+            {/* <Modal isShown={isShown} hide={toggle}>
                 <SelectionRequest close={toggle} />
-            </Modal>
+            </Modal> */}
             <Footer />
         </>
     );
