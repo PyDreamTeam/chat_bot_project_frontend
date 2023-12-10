@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./styles/BlockPlatform.module.css";
@@ -24,6 +24,7 @@ const BlockPlatform = () => {
         isSuccess,
     } = useGetFavoritePlatformsQuery(token, {
         refetchOnMountOrArgChange: true,
+        refetchOnFocus: true,
     });
     const router = useRouter();
     const handleClick = () => {
@@ -49,13 +50,13 @@ const BlockPlatform = () => {
             </div>
             {isLoading ? (
                 <>Loading ....</>
-            ) : combinedData ? (
-                <Slider cardType="644" type="homeSlider">
-                    <ListCardsPlatforms results={combinedData.results} />
-                </Slider>
             ) : (
                 <Slider cardType="644" type="homeSlider">
-                    <ListCardsPlatforms results={data?.results} />
+                    {combinedData ? (
+                        <ListCardsPlatforms results={combinedData.results} />
+                    ) : (
+                        <ListCardsPlatforms results={data?.results} />
+                    )}
                 </Slider>
             )}
         </div>

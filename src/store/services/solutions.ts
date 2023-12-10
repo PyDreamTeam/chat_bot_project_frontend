@@ -80,6 +80,15 @@ export const solutions = createApi({
                 },
             }),
         }),
+        getFavoriteSolution: builder.query({
+            query: ({token, id}) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -89,6 +98,7 @@ export const {
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
     useGetFavoriteSolutionsQuery,
+    useGetFavoriteSolutionQuery,
     useAddSolutionToFavoriteMutation,
     useGetSolutionAdvantagesQuery,
     useGetSolutionDignitiesQuery,
