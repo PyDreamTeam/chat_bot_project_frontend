@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./styles/BlockPlatform.module.css";
@@ -10,7 +10,6 @@ import { useGetFavoritePlatformsQuery, useGetListPlatformsQuery } from "@/src/st
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 
 const BlockPlatform = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
@@ -22,25 +21,14 @@ const BlockPlatform = () => {
         data: combinedData,
         isLoading,
         refetch,
-        isFetching,
         isSuccess,
     } = useGetFavoritePlatformsQuery(token, {
         refetchOnMountOrArgChange: true,
-        refetchOnFocus: true,
     });
-    const [platforms, setPlatforms] = useState<PropsPlatformCard[]>([]);
     const router = useRouter();
     const handleClick = () => {
         router.push("/platforms-filter");
     };
-
-    useEffect(() => {
-        if (isSuccess) {
-            setPlatforms(combinedData.results);
-        } else {
-            setPlatforms(data?.results);
-        }
-    }, [isSuccess, isSuccessUnreg]);
 
     return (
         <div className={styles.wrapper}>
@@ -59,9 +47,17 @@ const BlockPlatform = () => {
                     <LinkShowAllCards href="/platforms" />
                 </div>
             </div>
-            <Slider cardType="644" type="homeSlider">
-                <ListCardsPlatforms results={platforms} />
-            </Slider>
+            {isLoading ? (
+                <>Loading ....</>
+            ) : combinedData ? (
+                <Slider cardType="644" type="homeSlider">
+                    <ListCardsPlatforms results={combinedData.results} />
+                </Slider>
+            ) : (
+                <Slider cardType="644" type="homeSlider">
+                    <ListCardsPlatforms results={data?.results} />
+                </Slider>
+            )}
         </div>
     );
 };
