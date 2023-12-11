@@ -1,6 +1,5 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import { useState } from "react";
 import styles from "./FooterRightBlock.module.css";
 import Text from "@/src/components/shared/text/Text";
 import { EmailEngRegExp } from "@/src/shared/constants/regExps";
@@ -32,8 +31,9 @@ const FooterRightBlock = () => {
             <Formik
                 initialValues={{ email: "" }}
                 validationSchema={validationSchema}
-                onSubmit={() => {
-                    console.log("send email");
+                onSubmit={(values, { resetForm }) => {
+                    resetForm();
+                    console.log(JSON.stringify(values));
                 }}
             >
                 {({ errors, values, touched, handleSubmit, isValid, isSubmitting }) => (
