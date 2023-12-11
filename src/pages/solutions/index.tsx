@@ -25,7 +25,7 @@ const Solutions = () => {
 
     // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
 
-    const { data, isLoading: isLoadingUnreg } = useGetSolutionsQuery({});
+    const { data: dataUnreg, isLoading: isLoadingUnreg } = useGetSolutionsQuery({});
 
     const {
         data: combinedData,
@@ -80,11 +80,11 @@ const Solutions = () => {
                             </>
                         ) : (
                             <>
-                                <ListAllSolutions results={data?.results} />
+                                <ListAllSolutions results={dataUnreg?.results} />
                                 <div className={styles.loaderSolutions}>
                                     <Loader isLoading={isFetching} />
                                 </div>
-                                {data?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                                {dataUnreg?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                             </>
                         )}
                     </div>
