@@ -1,6 +1,11 @@
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
 import Header from "@/src/components/features/HomePage/Header/Header";
-import { useGetPlatformQuery, useGetPlatformsFiltersQuery, useGetPlatformsQuery } from "@/src/store/services/platforms";
+import {
+    useGetFavoritePlatformQuery,
+    useGetPlatformQuery,
+    useGetPlatformsFiltersQuery,
+    useGetPlatformsQuery,
+} from "@/src/store/services/platforms";
 import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import css from "./platform.module.css";
@@ -14,12 +19,16 @@ import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutio
 import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
+import Cookies from "js-cookie";
 
 const Platform = () => {
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
     const router = useRouter();
     const { idp } = router.query;
 
     const { data } = useGetPlatformQuery(Number(idp));
+    const { data: favData } = useGetFavoritePlatformQuery({ token, id: idp });
     const { data: dataFilters } = useGetPlatformsFiltersQuery({});
 
     const { combinedData } = useInfiniteScrollSolutions(useGetListSolutionsQuery, {});
@@ -50,6 +59,7 @@ const Platform = () => {
                         type="platform"
                         price={data?.price}
                         link={data?.link}
+                        is_favorite={favData?.is_favorite}
                     />
                 </div>
                 <div className={css.sliderTitle}>

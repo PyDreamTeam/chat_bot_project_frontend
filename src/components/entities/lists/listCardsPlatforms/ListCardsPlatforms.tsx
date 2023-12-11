@@ -8,7 +8,7 @@ export interface IListCardsPlatforms {
     results: PropsPlatformCard[];
 }
 
-const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
+const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results }) => {
     const router = useRouter();
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
@@ -16,7 +16,7 @@ const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
 
     return (
         <div className={styles.cards}>
-            {results.map((item) => (
+            {results?.map((item) => (
                 <div
                     className={styles.link}
                     key={item.id}
@@ -32,6 +32,7 @@ const ListCardsPlatforms: FC<IListCardsPlatforms> = ({ results = [] }) => {
                         short_description={item.short_description}
                         image={item.image}
                         tags={item.tags}
+                        is_favorite={item.is_favorite}
                     />
                 </div>
             ))}

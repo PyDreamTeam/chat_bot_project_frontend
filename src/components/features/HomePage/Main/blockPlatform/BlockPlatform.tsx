@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./styles/BlockPlatform.module.css";
@@ -6,16 +6,31 @@ import LinkShowAllCards from "@/src/components/shared/links/LinkShowAllCards";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Slider from "@/src/components/shared/slider/Slider";
 import ListCardsPlatforms from "@/src/components/entities/lists/listCardsPlatforms/ListCardsPlatforms";
-import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
+import { useGetFavoritePlatformsQuery, useGetListPlatformsQuery } from "@/src/store/services/platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 const BlockPlatform = () => {
-    const { combinedData } = useInfiniteScroll(useGetListPlatformsQuery, {});
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
+    // const { combinedData } = useInfiniteScroll(useGetListPlatformsQuery, {});
+    const { data, isLoading: isLoadingUnreg, isSuccess: isSuccessUnreg } = useGetListPlatformsQuery({});
+
+    const {
+        data: combinedData,
+        isLoading,
+        refetch,
+        isSuccess,
+    } = useGetFavoritePlatformsQuery(token, {
+        refetchOnMountOrArgChange: true,
+        refetchOnFocus: true,
+    });
     const router = useRouter();
     const handleClick = () => {
         router.push("/platforms-filter");
     };
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.blockText}>
@@ -33,9 +48,17 @@ const BlockPlatform = () => {
                     <LinkShowAllCards href="/platforms" />
                 </div>
             </div>
-            <Slider cardType="644" type="homeSlider">
-                <ListCardsPlatforms results={combinedData} />
-            </Slider>
+            {isLoading ? (
+                <>Loading ....</>
+            ) : (
+                <Slider cardType="644" type="homeSlider">
+                    {combinedData ? (
+                        <ListCardsPlatforms results={combinedData.results} />
+                    ) : (
+                        <ListCardsPlatforms results={data?.results} />
+                    )}
+                </Slider>
+            )}
         </div>
     );
 };

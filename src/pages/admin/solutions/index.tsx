@@ -22,7 +22,6 @@ const sortSolutions = [
 
 const SolutionsAdmin = () => {
     const [searchSolution, setSearchSolution] = useState<string>("");
-
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {
         title: searchSolution,
     });

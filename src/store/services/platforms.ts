@@ -34,6 +34,15 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getFavoritePlatform: builder.query({
+            query: ({token, id}) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         getPlatformForArchive: builder.mutation<PropsPlatformCard, number>({
             query: (id) => ({
                 url: `/api/platform/platforms/${id}/`,
@@ -166,6 +175,16 @@ export const platforms = createApi({
                 }
             })
         }),
+        putPlatformFilter: builder.mutation({
+            query: ({ filter, token, id }) => ({
+                url: `/api/platform/filters/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+                body: filter,
+            }),
+        }),
         createPlatformFilterGroup: builder.mutation({
             query: ({token, title }) => ({
                 url: "/api/platform/groups/",
@@ -286,10 +305,12 @@ export const {
     usePlatformPublicMutation,
     useAddPlatformToFavoriteMutation,
     useGetFavoritePlatformsQuery,
+    useGetFavoritePlatformQuery,
     useSendToCreatedMutation,
     useAddPlatformFilterMutation,
     useGetPlatformFilterQuery,
     useDeletePlatformFilterMutation,
+    usePutPlatformFilterMutation,
     useSearchPlatformsFiltersQuery,
     useCreatePlatformFilterGroupMutation,
     useGetPlatformFilterGroupsQuery,

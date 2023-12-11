@@ -39,7 +39,7 @@ export interface ITagM {
     is_message: boolean | undefined;
 }
 
-const AddPlatformFilter = () => {
+const AddSolutionFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useAddPlatformFilterMutation();
@@ -160,12 +160,12 @@ const AddPlatformFilter = () => {
                             Главная
                         </Text>
                     </Link>
-                    <Link href={"/admin/platforms"}>
+                    <Link href={"/admin/solutions"}>
                         <Text type="reg16" color="telegray">
-                            /Платформы
+                            /Решения
                         </Text>
                     </Link>
-                    <Link href={"/admin/platforms/platforms-filters"}>
+                    <Link href={"/admin/solutions/solutions-filters"}>
                         <Text type="reg16" color="telegray">
                             /Фильтры
                         </Text>
@@ -300,4 +300,4 @@ const AddPlatformFilter = () => {
     );
 };
 
-export default AddPlatformFilter;
+export default AddSolutionFilter;
