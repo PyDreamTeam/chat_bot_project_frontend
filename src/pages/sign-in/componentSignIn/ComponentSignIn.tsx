@@ -21,14 +21,18 @@ const ComponentSignIn = () => {
     useEffect(() => {
         if (isSuccess) {
             Cookies.set("loginUser", JSON.stringify(data));
+        }
+    }, [isSuccess,]);
 
+    useEffect(() => {
+        if (isSuccessUser) {
             if (userData?.user_role === "US") {
                 route.push("/my-account");
             } else {
                 route.push("/admin");
             }
         }
-    }, [isSuccess, isSuccessUser]);
+    }, [isSuccessUser]);
 
     return (
         <div>
