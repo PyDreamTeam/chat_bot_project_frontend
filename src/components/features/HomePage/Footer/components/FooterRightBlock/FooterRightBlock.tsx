@@ -12,7 +12,7 @@ const FooterRightBlock = () => {
     const router = useRouter();
 
     const onClick = () => {
-        router.push("mailto:kuksa.nastya64@yandex.by");
+        router.push("mailto:townsend@gmail.com?subject=Подписка");
     };
 
     const validationSchema = yup.object().shape({
