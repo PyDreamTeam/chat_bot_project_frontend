@@ -9,16 +9,30 @@ import ListCardsSolutions from "@/src/components/entities/lists/listCardsSolutio
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useGetListSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetFavoriteSolutionsQuery, useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import useInfiniteScrollSolutions from "@/src/hooks/useInfinityScrollPlatforms";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+
 const BlockSolution = () => {
-    const { isShown, toggle } = useModal();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const handleClick = () => {
         router.push("/solutions-filter");
     };
-    const { combinedData } = useInfiniteScrollSolutions(useGetListSolutionsQuery, {});
+    // const { combinedData } = useInfiniteScrollSolutions(useGetListSolutionsQuery, {});
+
+    const { data, isLoading: isLoadingUnreg } = useGetListSolutionsQuery({});
+
+    const {
+        data: combinedData,
+        isLoading,
+        refetch,
+        isSuccess,
+    } = useGetFavoriteSolutionsQuery(token, {
+        refetchOnMountOrArgChange: true,
+        refetchOnFocus: true,
+    });
 
     return (
         <div className={styles.wrapper}>
@@ -37,12 +51,17 @@ const BlockSolution = () => {
                     <LinkShowAllCards href="/solutions" />
                 </div>
             </div>
-            <Slider cardType="464" type="homeSlider">
-                <ListCardsSolutions results={combinedData} />
-            </Slider>
-            <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal>
+            {isLoading ? (
+                <>Loading ....</>
+            ) : combinedData ? (
+                <Slider cardType="644" type="homeSlider">
+                    <ListCardsSolutions results={combinedData.results} />
+                </Slider>
+            ) : (
+                <Slider cardType="644" type="homeSlider">
+                    <ListCardsSolutions results={data?.results} />
+                </Slider>
+            )}
         </div>
     );
 };

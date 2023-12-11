@@ -80,6 +80,29 @@ export const solutions = createApi({
                 },
             }),
         }),
+        getFavoriteSolution: builder.query({
+            query: ({token, id}) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
+        createSolutionFilterGroup: builder.mutation({
+            query: ({token, title }) => ({
+                url: "/api/solution/groups/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title,
+                    status: "save",
+                    image: "image"
+                }
+            })
+        }),
     }),
 });
 
@@ -89,9 +112,11 @@ export const {
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
     useGetFavoriteSolutionsQuery,
+    useGetFavoriteSolutionQuery,
     useAddSolutionToFavoriteMutation,
     useGetSolutionAdvantagesQuery,
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
+    useCreateSolutionFilterGroupMutation,
 } = solutions;

@@ -63,6 +63,7 @@ export interface PropsPlatformCard {
     links_to_solution?: string[];
     type?: Card;
     filter?: number[];
+    is_favorite?: boolean;
     tags?: {
         id?: number;
         tag?: string;
@@ -149,6 +150,7 @@ export interface PropsSolutionCard {
     link?: string;
     type?: string | string;
     forceUpdate?: () => void;
+    is_favorite?: boolean;
     tags?: {
         id?: number;
         tag?: string;

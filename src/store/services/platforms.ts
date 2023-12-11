@@ -34,6 +34,15 @@ export const platforms = createApi({
                 method: "GET",
             }),
         }),
+        getFavoritePlatform: builder.query({
+            query: ({token, id}) => ({
+                url: `/api/platform/platforms/${id}/`,
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         getPlatformForArchive: builder.mutation<PropsPlatformCard, number>({
             query: (id) => ({
                 url: `/api/platform/platforms/${id}/`,
@@ -296,6 +305,7 @@ export const {
     usePlatformPublicMutation,
     useAddPlatformToFavoriteMutation,
     useGetFavoritePlatformsQuery,
+    useGetFavoritePlatformQuery,
     useSendToCreatedMutation,
     useAddPlatformFilterMutation,
     useGetPlatformFilterQuery,
