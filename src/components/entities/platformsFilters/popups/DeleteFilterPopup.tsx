@@ -23,6 +23,9 @@ const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, refresh, filterId, fi
         { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
     ] = usePlatformFilterArchiveMutation();
     const id = filterId;
+    const groupId = filterGroupId;
+    console.log(groupId);
+    console.log(id);
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -56,7 +59,9 @@ const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, refresh, filterId, fi
                 <ButtonNegative
                     type={"button"}
                     active={true}
-                    onClick={() => archiveFilter({ id, title: filterTitle, group: 0, token }).then(close).then(refresh)}
+                    onClick={() =>
+                        archiveFilter({ id, title: filterTitle, group: filterGroupId, token }).then(close).then(refresh)
+                    }
                     width={240}
                 >
                     Удалить

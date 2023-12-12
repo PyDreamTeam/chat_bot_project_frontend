@@ -274,8 +274,8 @@ export const platforms = createApi({
                 },
                 body: {
                     status: "archive",
-                    title: title,
-                    group: group
+                    group: group,
+                    title: title
                 }
             })
         }),
