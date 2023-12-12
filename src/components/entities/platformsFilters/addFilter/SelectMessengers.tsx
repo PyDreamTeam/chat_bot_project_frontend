@@ -17,11 +17,11 @@ export interface IMessenger {
 
 export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setMessengers }) => {
     const messengers: ITagM[] = [
-        { tag: "Facebook", image_tag: "fb", status: "save", is_message: true },
-        { tag: "ВКонтакте", image_tag: "vk", status: "save", is_message: true },
-        { tag: "Viber", image_tag: "viber", status: "save", is_message: true },
-        { tag: "Telegram", image_tag: "telegram", status: "save", is_message: true },
-        { tag: "Whatsapp", image_tag: "wp", status: "save", is_message: true },
+        { properties: "Facebook", image: "fb", status: "save", is_message: true },
+        { properties: "ВКонтакте", image: "vk", status: "save", is_message: true },
+        { properties: "Viber", image: "viber", status: "save", is_message: true },
+        { properties: "Telegram", image: "telegram", status: "save", is_message: true },
+        { properties: "Whatsapp", image: "wp", status: "save", is_message: true },
     ];
 
     const [defaultArr, setDefaultArr] = useState<(ITagM | undefined)[] | undefined>(defaultMessengers);
@@ -31,11 +31,11 @@ export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setM
     const handleClick = (messenger: ITagM) => {
         if (selected) {
             const arr = selected?.slice();
-            const clickedItem = arr?.find((item, index) => item?.tag === messenger.tag);
+            const clickedItem = arr?.find((item, index) => item?.properties === messenger.properties);
             if (clickedItem == undefined) {
                 arr?.push(messenger);
             } else {
-                const index = arr.findIndex((item) => item?.tag == messenger.tag);
+                const index = arr.findIndex((item) => item?.properties == messenger.properties);
                 arr.splice(index, 1);
             }
             setSelected(arr);
@@ -65,15 +65,15 @@ export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setM
                     <div
                         key={index}
                         className={
-                            selected?.find((item) => item?.tag === messenger.tag) != undefined ||
-                            defaultArr?.find((item) => item?.tag === messenger.tag) != undefined
+                            selected?.find((item) => item?.properties === messenger.properties) != undefined ||
+                            defaultArr?.find((item) => item?.properties === messenger.properties) != undefined
                                 ? styles.iconMessengerSelected
                                 : styles.iconMessenger
                         }
                         onClick={() => handleClick(messenger)}
                     >
                         <Image
-                            src={`/platforms/${messenger.image_tag}.svg`}
+                            src={`/platforms/${messenger.image}.svg`}
                             width={40}
                             height={40}
                             alt="messenger"

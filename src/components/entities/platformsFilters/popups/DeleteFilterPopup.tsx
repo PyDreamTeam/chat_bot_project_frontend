@@ -14,9 +14,10 @@ interface IPropsPopup {
     refresh?: () => void;
     filterId?: number | undefined;
     filterTitle?: string;
+    filterGroupId?: number;
 }
 
-const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, refresh, filterId, filterTitle }) => {
+const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, refresh, filterId, filterTitle, filterGroupId }) => {
     const [
         archiveFilter,
         { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
@@ -55,7 +56,7 @@ const DeleteFilterPopup: FC<IPropsPopup> = ({ close, open, refresh, filterId, fi
                 <ButtonNegative
                     type={"button"}
                     active={true}
-                    onClick={() => archiveFilter({ id, token }).then(close).then(refresh)}
+                    onClick={() => archiveFilter({ id, title: filterTitle, group: 0, token }).then(close).then(refresh)}
                     width={240}
                 >
                     Удалить

@@ -32,11 +32,12 @@ export interface PropsPlatformFilter {
 }
 
 export interface ITagM {
-    tag: string | undefined;
+    tag?: string | undefined;
     id?: number | undefined;
-    image_tag: string | undefined;
+    image: string | undefined;
     status: string | undefined;
     is_message: boolean | undefined;
+    properties: string | undefined;
 }
 
 const AddPlatformFilter = () => {
@@ -74,8 +75,8 @@ const AddPlatformFilter = () => {
         setInputsTags(newInputs);
         const newTags = newInputs.map((tagName) => {
             return {
-                tag: tagName,
-                image_tag: "None",
+                properties: tagName,
+                image: "None",
                 status: "save",
                 is_message: false,
             };
@@ -105,8 +106,8 @@ const AddPlatformFilter = () => {
     const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
         const newTagsMessengers: (ITagM | undefined)[] | undefined = tagsM?.map((item) => {
             return {
-                tag: item?.tag,
-                image_tag: item?.image_tag,
+                properties: item?.properties,
+                image: item?.image,
                 status: "save",
                 is_message: true,
             };
@@ -227,8 +228,8 @@ const AddPlatformFilter = () => {
                                         setInputsTags(newInputs);
                                         const newTags = newInputs.map((tagName) => {
                                             return {
-                                                tag: tagName,
-                                                image_tag: "None",
+                                                properties: tagName,
+                                                image: "None",
                                                 status: "save",
                                                 is_message: false,
                                             };

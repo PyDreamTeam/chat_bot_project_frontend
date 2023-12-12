@@ -102,6 +102,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
                     refresh={refresh}
                     filterId={filterId}
                     filterTitle={filterTitle}
+                    filterGroupId={filterGroupId}
                 />
             </Modal>
             <Modal isShown={isShownRestoreGroup} hide={toggleRestoreGroup}>

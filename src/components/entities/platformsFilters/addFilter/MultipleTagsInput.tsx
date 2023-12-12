@@ -20,8 +20,8 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setText
         setInputsTags([
             ...inputsTags,
             {
-                tag: "",
-                image_tag: "",
+                properties: "",
+                image: "",
                 status: "",
                 is_message: false,
             },
@@ -34,8 +34,8 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setText
         setInputsTags(newInputs);
         const newTags = newInputs.map((tagName) => {
             return {
-                tag: tagName.tag,
-                image_tag: "None",
+                properties: tagName.properties,
+                image: "None",
                 status: "save",
                 is_message: false,
             };
@@ -64,16 +64,16 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setText
                         />
                     </div>
                     <InputAddFilter
-                        value={input.tag}
+                        value={input.properties}
                         onChange={(e) => {
                             e.preventDefault();
                             const newInputs = [...inputsTags];
-                            newInputs[index].tag = e.target.value;
+                            newInputs[index].properties = e.target.value;
                             setInputsTags(newInputs);
                             const newTags = newInputs.map((tagName) => {
                                 return {
-                                    tag: tagName.tag,
-                                    image_tag: "None",
+                                    properties: tagName.properties,
+                                    image: "None",
                                     status: "save",
                                     is_message: false,
                                 };

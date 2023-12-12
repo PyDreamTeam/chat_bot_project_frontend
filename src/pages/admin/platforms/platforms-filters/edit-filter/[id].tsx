@@ -36,6 +36,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
         isLoading: filterIsLoading,
         isSuccess: filterIsSuccess,
     } = useGetPlatformFilterQuery({ id });
+    console.log(filterData);
     const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutPlatformFilterMutation();
 
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
@@ -48,7 +49,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
     });
 
     const [filter, setFilter] = useState<PropsPlatformFilter>({
-        title: filterData?.filter,
+        title: filterData?.title,
         functionality: filterData?.functionality,
         integration: filterData?.integration,
         multiple: filterData?.multiple,
@@ -126,7 +127,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
             console.log(filterData);
             setFilter((prev) => ({
                 ...prev,
-                title: filterData?.filter,
+                title: filterData?.title,
                 functionality: filterData?.functionality,
                 integration: filterData?.integration,
                 multiple: filterData?.multiple,
@@ -174,7 +175,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
                             />
                             <InputAddFilter
                                 label="Название фильтра"
-                                value={filterData?.filter}
+                                value={filterData?.title}
                                 onChange={(e) => {
                                     isValidFilter();
                                     setFilter((prev) => ({ ...prev, title: e.target.value }));
