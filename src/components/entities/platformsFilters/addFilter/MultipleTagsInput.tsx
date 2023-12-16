@@ -3,27 +3,50 @@ import Text from "@/src/components/shared/text/Text";
 import css from "./style.module.css";
 import Image from "next/image";
 import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter/InputAddFilter";
-import { ITagM } from "@/src/pages/admin/platforms/platforms-filters/add-filter";
+import { ITagM, PropsPlatformFilter } from "@/src/pages/admin/platforms/platforms-filters/add-filter";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import { plusSvgPrimary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
+interface PropsDefaultFilter {
+    id: number;
+    title: string;
+    functionality: string;
+    integration: string;
+    multiple: boolean;
+    status: string;
+    image: string;
+    group: number | null;
+    tags: ITagM[];
+}
 interface IMultipleTagsProps {
-    defaultTags: ITagM[];
+    filterData: PropsDefaultFilter;
     setTextTags: (tagsT: ITagM[]) => void;
 }
 
-export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setTextTags }) => {
-    const textTags = defaultTags?.filter((item) => item.is_message === false);
+export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ filterData, setTextTags }) => {
+    const textTags = filterData?.tags
+        .filter((item) => item?.is_message === false)
+        .map((tag) => {
+            return {
+                properties: tag?.properties,
+                image: "None",
+                status: "save",
+                is_message: false,
+                filter_id: filterData.id,
+            };
+        });
+    console.log(textTags);
     const [inputsTags, setInputsTags] = useState<ITagM[]>(textTags);
 
     const addInput = () => {
         setInputsTags([
             ...inputsTags,
             {
-                tag: "",
-                image_tag: "",
+                properties: "",
+                image: "",
                 status: "",
                 is_message: false,
+                filter_id: filterData.id,
             },
         ]);
     };
@@ -32,12 +55,13 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setText
         const newInputs = [...inputsTags];
         newInputs.splice(index, 1);
         setInputsTags(newInputs);
-        const newTags = newInputs.map((tagName) => {
+        const newTags = newInputs.map((tag) => {
             return {
-                tag: tagName.tag,
-                image_tag: "None",
+                properties: tag?.properties,
+                image: "None",
                 status: "save",
                 is_message: false,
+                filter_id: tag?.filter_id,
             };
         });
         setTextTags(newTags);
@@ -64,18 +88,19 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ defaultTags, setText
                         />
                     </div>
                     <InputAddFilter
-                        value={input.tag}
+                        value={input?.properties}
                         onChange={(e) => {
                             e.preventDefault();
                             const newInputs = [...inputsTags];
-                            newInputs[index].tag = e.target.value;
+                            newInputs[index].properties = e.target.value;
                             setInputsTags(newInputs);
                             const newTags = newInputs.map((tagName) => {
                                 return {
-                                    tag: tagName.tag,
-                                    image_tag: "None",
+                                    properties: tagName?.properties,
+                                    image: "None",
                                     status: "save",
                                     is_message: false,
+                                    filter_id: tagName?.filter_id,
                                 };
                             });
                             setTextTags(newTags);

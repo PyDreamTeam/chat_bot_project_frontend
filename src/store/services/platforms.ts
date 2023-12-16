@@ -266,14 +266,16 @@ export const platforms = createApi({
             })
         }),
         platformFilterArchive: builder.mutation({
-            query: ({id, token }) => ({
+            query: ({id, title, group, token }) => ({
                 url: `/api/platform/filters/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "archive"
+                    status: "archive",
+                    group: group,
+                    title: title
                 }
             })
         }),
