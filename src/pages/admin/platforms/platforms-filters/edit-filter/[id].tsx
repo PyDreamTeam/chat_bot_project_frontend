@@ -35,7 +35,8 @@ const EditPlatformFilter: FC<pageProps> = () => {
         data: filterData,
         isLoading: filterIsLoading,
         isSuccess: filterIsSuccess,
-    } = useGetPlatformFilterQuery({ id });
+        refetch,
+    } = useGetPlatformFilterQuery({ id }, { refetchOnMountOrArgChange: true });
     const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutPlatformFilterMutation();
 
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
@@ -48,7 +49,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
     });
 
     const [filter, setFilter] = useState<PropsPlatformFilter>({
-        title: filterData?.filter,
+        title: filterData?.title,
         functionality: filterData?.functionality,
         integration: filterData?.integration,
         multiple: filterData?.multiple,
@@ -117,16 +118,17 @@ const EditPlatformFilter: FC<pageProps> = () => {
 
     const handleSubmit = () => {
         console.log(filter);
-        putFilter({ filter, token, id });
+        putFilter({ filter, token, id })
+            .then(refetch)
+            .then(() => router.push("/admin/platforms/platforms-filters/"));
     };
 
     useEffect(() => {
         console.log("useEffect setFilter");
         if (filterIsSuccess) {
-            console.log(filterData);
             setFilter((prev) => ({
                 ...prev,
-                title: filterData?.filter,
+                title: filterData?.title,
                 functionality: filterData?.functionality,
                 integration: filterData?.integration,
                 multiple: filterData?.multiple,
@@ -174,7 +176,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
                             />
                             <InputAddFilter
                                 label="Название фильтра"
-                                value={filterData?.filter}
+                                value={filterData?.title}
                                 onChange={(e) => {
                                     isValidFilter();
                                     setFilter((prev) => ({ ...prev, title: e.target.value }));
@@ -193,9 +195,10 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                 placeholder="Текст (200 символов)"
                                 className={css.textAreaPlatform}
                             />
-                            <MultipleTagsInput defaultTags={filterData?.tags} setTextTags={handleSetTextTags} />
+                            <MultipleTagsInput filterData={filterData} setTextTags={handleSetTextTags} />
                             <SelectMessengers
                                 defaultMessengers={cleanMessengersTags}
+                                filterData={filterData}
                                 setMessengers={handleSetMessengers}
                             />
                             <InputRadioFilterMultiple

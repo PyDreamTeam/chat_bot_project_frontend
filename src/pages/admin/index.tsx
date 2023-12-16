@@ -59,12 +59,6 @@ const AdminPage = () => {
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]").access;
 
-    useEffect(() => {
-        if (token === undefined) {
-            route.push("/sign-in");
-        }
-    }, []);
-
     const { data } = useDataUserQuery(token);
 
     const adminNavigation = superAdminNavigation.slice();
