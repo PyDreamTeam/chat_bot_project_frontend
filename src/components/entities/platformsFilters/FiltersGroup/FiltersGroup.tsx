@@ -98,6 +98,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
             </Modal>
             <Modal isShown={isShownDeleteFilter} hide={toggleDeleteFilter}>
                 <DeleteFilterPopup
+                    type="archive"
                     close={toggleDeleteFilter}
                     refresh={refresh}
                     filterId={filterId}

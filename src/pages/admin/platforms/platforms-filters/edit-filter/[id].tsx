@@ -35,8 +35,8 @@ const EditPlatformFilter: FC<pageProps> = () => {
         data: filterData,
         isLoading: filterIsLoading,
         isSuccess: filterIsSuccess,
-    } = useGetPlatformFilterQuery({ id });
-    console.log(filterData);
+        refetch,
+    } = useGetPlatformFilterQuery({ id }, { refetchOnMountOrArgChange: true });
     const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutPlatformFilterMutation();
 
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
@@ -118,13 +118,14 @@ const EditPlatformFilter: FC<pageProps> = () => {
 
     const handleSubmit = () => {
         console.log(filter);
-        putFilter({ filter, token, id });
+        putFilter({ filter, token, id })
+            .then(refetch)
+            .then(() => router.push("/admin/platforms/platforms-filters/"));
     };
 
     useEffect(() => {
         console.log("useEffect setFilter");
         if (filterIsSuccess) {
-            console.log(filterData);
             setFilter((prev) => ({
                 ...prev,
                 title: filterData?.title,
@@ -194,9 +195,10 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                 placeholder="Текст (200 символов)"
                                 className={css.textAreaPlatform}
                             />
-                            <MultipleTagsInput defaultTags={filterData?.tags} setTextTags={handleSetTextTags} />
+                            <MultipleTagsInput filterData={filterData} setTextTags={handleSetTextTags} />
                             <SelectMessengers
                                 defaultMessengers={cleanMessengersTags}
+                                filterData={filterData}
                                 setMessengers={handleSetMessengers}
                             />
                             <InputRadioFilterMultiple

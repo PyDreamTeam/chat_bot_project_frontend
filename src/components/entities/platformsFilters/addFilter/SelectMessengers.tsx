@@ -4,8 +4,20 @@ import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { ITagM } from "@/src/pages/admin/platforms/platforms-filters/add-filter";
 
+interface PropsDefaultFilter {
+    id: number;
+    title: string;
+    functionality: string;
+    integration: string;
+    multiple: boolean;
+    status: string;
+    image: string;
+    group: number | null;
+    tags: ITagM[];
+}
 export interface SelectMessengers {
     defaultMessengers?: (ITagM | undefined)[];
+    filterData?: PropsDefaultFilter;
     setMessengers: (tagsM: (ITagM | undefined)[] | undefined) => void;
 }
 
@@ -15,13 +27,13 @@ export interface IMessenger {
     active: boolean;
 }
 
-export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setMessengers }) => {
+export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, filterData, setMessengers }) => {
     const messengers: ITagM[] = [
-        { properties: "Facebook", image: "fb", status: "save", is_message: true },
-        { properties: "ВКонтакте", image: "vk", status: "save", is_message: true },
-        { properties: "Viber", image: "viber", status: "save", is_message: true },
-        { properties: "Telegram", image: "telegram", status: "save", is_message: true },
-        { properties: "Whatsapp", image: "wp", status: "save", is_message: true },
+        { properties: "Facebook", image: "fb", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "ВКонтакте", image: "vk", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "Viber", image: "viber", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "Telegram", image: "telegram", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "Whatsapp", image: "wp", status: "save", is_message: true, filter_id: filterData?.id },
     ];
 
     const [defaultArr, setDefaultArr] = useState<(ITagM | undefined)[] | undefined>(defaultMessengers);
@@ -41,7 +53,6 @@ export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setM
             setSelected(arr);
             setDefaultArr(arr);
             setMessengers(arr);
-            console.log(arr);
         } else {
             const arr: ITagM[] = [];
             arr?.push(messenger);
