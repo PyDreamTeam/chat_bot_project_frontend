@@ -83,7 +83,7 @@ const TemplateSignUp = () => {
                                 password: Yup.string()
                                     .min(8, err.min)
                                     .max(50, "Не более 50 символов")
-                                    .matches(/^(?!.*[^\P{Alphabetic}a-zA-Z])/u, err.string)
+                                    .matches(/(?=.*[a-z])(?=.*[A-Z])/, err.string)
                                     .matches(/^(?=.*[0-9])/, err.number)
                                     .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
                                     .required(err.req),
