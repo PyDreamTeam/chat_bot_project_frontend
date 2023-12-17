@@ -20,7 +20,6 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import Cookies from "js-cookie";
 
 const Solutions = () => {
-    // const { isShown, toggle } = useModal();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
     // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
@@ -112,9 +111,6 @@ const Solutions = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
-            {/* <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal> */}
             <Footer />
         </>
     );

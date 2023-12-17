@@ -54,8 +54,8 @@ const Solution = () => {
                     integration_with_payment_systems={data?.integration_with_payment_systems}
                 />
                 <BlockGreatSolutions />
-                <BlockHowItWorks />
                 <BlockFunnelBenefits cards_title={data?.cards_title} cards_description={data?.cards_description} />
+                <BlockHowItWorks />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />

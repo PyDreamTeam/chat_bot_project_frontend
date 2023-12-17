@@ -20,6 +20,7 @@ import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollTo
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import { SolutionCard } from "@/src/components/entities/platforms/rightBlock/SolutionCard/SolutionCard";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
 const SolutionsFilters = () => {
     const router = useRouter();
     const handleClick = (ids: number) => {
@@ -149,6 +150,7 @@ const SolutionsFilters = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

@@ -19,6 +19,7 @@ import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/I
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
 
 const PlatformsFilters = () => {
     const router = useRouter();
@@ -117,7 +118,7 @@ const PlatformsFilters = () => {
                             ) : (
                                 <ul className={css.listPlatforms}>
                                     {combinedData
-                                        .filter(item => item.status === "public")
+                                        .filter((item) => item.status === "public")
                                         .map((item: PropsPlatformCard) => (
                                             <li
                                                 key={item.id}
@@ -149,6 +150,7 @@ const PlatformsFilters = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

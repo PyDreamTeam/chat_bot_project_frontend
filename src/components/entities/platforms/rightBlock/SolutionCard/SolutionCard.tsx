@@ -6,16 +6,24 @@ import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
 import Cookies from "js-cookie";
+import ToolTip from "@/src/components/shared/toolTip/ToolTip";
 
-export const SolutionCard: FC<PropsSolutionCard> = ({ title, short_description, image, tags = [], price, forceUpdate, id }) => {
-    
+export const SolutionCard: FC<PropsSolutionCard> = ({
+    title,
+    short_description,
+    image,
+    tags = [],
+    price,
+    forceUpdate,
+    id,
+}) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const [addToFavorite] = useAddSolutionToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({id, token}).then(forceUpdate);
+        addToFavorite({ id, token }).then(forceUpdate);
         e.stopPropagation();
         if (imageHeart === "like") {
             setImageHeart("dislike");
@@ -41,21 +49,21 @@ export const SolutionCard: FC<PropsSolutionCard> = ({ title, short_description, 
             <div>
                 <div className={css.title}>
                     <h4 className={css.platformOne}>{title}</h4>
-                    <Image
-                        src={`/platforms/${imageHeart}.svg`}
-                        alt="heart"
-                        width={24}
-                        height={24}
-                        onClick={handleClickHeart}
-                        onMouseLeave={handleMouseLeave}
-                        onMouseEnter={handleMouseEnter}
-                        className={css.heart}
-                    />
+                    <ToolTip text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
+                        <Image
+                            src={`/platforms/${imageHeart}.svg`}
+                            alt="heart"
+                            width={24}
+                            height={24}
+                            onClick={handleClickHeart}
+                            onMouseLeave={handleMouseLeave}
+                            onMouseEnter={handleMouseEnter}
+                            className={css.heart}
+                        />
+                    </ToolTip>
                 </div>
                 <div>
-                    <p className={css.price}>
-                        {price} ₽
-                    </p>
+                    <p className={css.price}>{price} ₽</p>
                 </div>
                 <div className={css.infoCard}>
                     <Text type="reg18" color="grey">
