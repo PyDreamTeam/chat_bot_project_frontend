@@ -4,8 +4,20 @@ import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { ITagM } from "@/src/pages/admin/platforms/platforms-filters/add-filter";
 
+interface PropsDefaultFilter {
+    id: number;
+    title: string;
+    functionality: string;
+    integration: string;
+    multiple: boolean;
+    status: string;
+    image: string;
+    group: number | null;
+    tags: ITagM[];
+}
 export interface SelectMessengers {
     defaultMessengers?: (ITagM | undefined)[];
+    filterData?: PropsDefaultFilter;
     setMessengers: (tagsM: (ITagM | undefined)[] | undefined) => void;
 }
 
@@ -15,13 +27,13 @@ export interface IMessenger {
     active: boolean;
 }
 
-export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setMessengers }) => {
+export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, filterData, setMessengers }) => {
     const messengers: ITagM[] = [
-        { tag: "Facebook", image_tag: "fb", status: "save", is_message: true },
-        { tag: "ВКонтакте", image_tag: "vk", status: "save", is_message: true },
-        { tag: "Viber", image_tag: "viber", status: "save", is_message: true },
-        { tag: "Telegram", image_tag: "telegram", status: "save", is_message: true },
-        { tag: "Whatsapp", image_tag: "wp", status: "save", is_message: true },
+        { properties: "Facebook", image: "fb", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "ВКонтакте", image: "vk", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "Viber", image: "viber", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "Telegram", image: "telegram", status: "save", is_message: true, filter_id: filterData?.id },
+        { properties: "Whatsapp", image: "wp", status: "save", is_message: true, filter_id: filterData?.id },
     ];
 
     const [defaultArr, setDefaultArr] = useState<(ITagM | undefined)[] | undefined>(defaultMessengers);
@@ -31,17 +43,16 @@ export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setM
     const handleClick = (messenger: ITagM) => {
         if (selected) {
             const arr = selected?.slice();
-            const clickedItem = arr?.find((item, index) => item?.tag === messenger.tag);
+            const clickedItem = arr?.find((item, index) => item?.properties === messenger.properties);
             if (clickedItem == undefined) {
                 arr?.push(messenger);
             } else {
-                const index = arr.findIndex((item) => item?.tag == messenger.tag);
+                const index = arr.findIndex((item) => item?.properties == messenger.properties);
                 arr.splice(index, 1);
             }
             setSelected(arr);
             setDefaultArr(arr);
             setMessengers(arr);
-            console.log(arr);
         } else {
             const arr: ITagM[] = [];
             arr?.push(messenger);
@@ -65,15 +76,15 @@ export const SelectMessengers: FC<SelectMessengers> = ({ defaultMessengers, setM
                     <div
                         key={index}
                         className={
-                            selected?.find((item) => item?.tag === messenger.tag) != undefined ||
-                            defaultArr?.find((item) => item?.tag === messenger.tag) != undefined
+                            selected?.find((item) => item?.properties === messenger.properties) != undefined ||
+                            defaultArr?.find((item) => item?.properties === messenger.properties) != undefined
                                 ? styles.iconMessengerSelected
                                 : styles.iconMessenger
                         }
                         onClick={() => handleClick(messenger)}
                     >
                         <Image
-                            src={`/platforms/${messenger.image_tag}.svg`}
+                            src={`/platforms/${messenger.image}.svg`}
                             width={40}
                             height={40}
                             alt="messenger"

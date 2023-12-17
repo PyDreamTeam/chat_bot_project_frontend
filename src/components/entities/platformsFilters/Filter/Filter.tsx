@@ -3,6 +3,9 @@ import styles from "./Filter.module.css";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { useModal } from "@/src/hooks/useModal";
+import Modal from "@/src/components/shared/modal/Modal";
+import DeleteFilterPopup from "../popups/DeleteFilterPopup";
 import Text from "@/src/components/shared/text/Text";
 import {
     useDeletePlatformFilterMutation,
@@ -35,6 +38,8 @@ const dropdownFilterSave = [
 ];
 
 const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDelete, refresh }) => {
+    const { isShown: isShownDeleteFilter, toggle: toggleDeleteFilter } = useModal();
+
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
         usePlatformFilterGroupPublicMutation();
     const [publicFilter, { isSuccess, error, isLoading }] = usePlatformFilterPublicMutation();
@@ -112,7 +117,7 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
                                     data-tooltip="Удалить"
                                     onClick={() => {
                                         if (groupStatus != "archive") {
-                                            deleteFilter({ id, token }).then(refresh);
+                                            toggleDeleteFilter();
                                         }
                                     }}
                                 >
@@ -155,6 +160,16 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
                     </div>
                 )}
             </div>
+            <Modal isShown={isShownDeleteFilter} hide={toggleDeleteFilter}>
+                <DeleteFilterPopup
+                    type="delete"
+                    close={toggleDeleteFilter}
+                    refresh={refresh}
+                    filterId={id}
+                    filterTitle={title}
+                    filterGroupId={groupId}
+                />
+            </Modal>
         </div>
     );
 };

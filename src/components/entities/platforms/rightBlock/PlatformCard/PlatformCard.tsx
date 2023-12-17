@@ -28,16 +28,22 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     const { data: favData, isSuccess } = useGetFavoritePlatformQuery({ token, id });
 
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({ id, token }).then(forceUpdate);
-        e.stopPropagation();
-        if (imageHeart === "like") {
-            setImageHeart("dislike");
-        }
-        if (imageHeart === "dislike") {
-            setImageHeart("like");
-        }
-        if (imageHeart === "hoverHeart") {
-            setImageHeart("like");
+        if (!isSuccess) {
+            e.stopPropagation();
+            console.log("sign in!");
+        } else {
+            addToFavorite({ id, token }).then(forceUpdate);
+
+            e.stopPropagation();
+            if (imageHeart === "like") {
+                setImageHeart("dislike");
+            }
+            if (imageHeart === "dislike") {
+                setImageHeart("like");
+            }
+            if (imageHeart === "hoverHeart") {
+                setImageHeart("like");
+            }
         }
     };
     const handleMouseEnter = () => {
