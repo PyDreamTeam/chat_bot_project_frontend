@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import styles from "./CardSales.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import { Advantages } from "@/src/types";
 import TabAdvantages from "@/src/components/shared/tabs/tabAdvantages/TabAdvantages";
 import Image from "next/image";
 import ButtonFavorites from "@/src/components/shared/buttons/ButtonFavorites";
 import { PropsSolutionCard } from "../../platforms/types";
+import ToolTip from "@/src/components/shared/toolTip/ToolTip";
 
 const CardSales: FC<PropsSolutionCard> = ({ price, results = [] }) => {
     return (
@@ -28,11 +28,12 @@ const CardSales: FC<PropsSolutionCard> = ({ price, results = [] }) => {
                     {results.map((item, id) => (
                         <TabAdvantages key={id} text={item.dignities} />
                     ))}
-                    {/* <div className={styles.absolute}></div> */}
                 </div>
             </div>
             <div className={styles.btnWrapper}>
-                <ButtonFavorites text={""} />
+                <ToolTip type={true} text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
+                    <ButtonFavorites text={""} />
+                </ToolTip>
             </div>
         </div>
     );

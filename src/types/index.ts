@@ -32,6 +32,7 @@ export interface Advantages {
 export interface StatisticsCards {
     variant?: string;
     icon?: string;
+    img?: string;
     title?: string;
     text?: string;
 }

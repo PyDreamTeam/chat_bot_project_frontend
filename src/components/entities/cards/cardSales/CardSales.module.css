@@ -37,7 +37,6 @@
     position: relative;
 }
 .btnWrapper {
-    /* position: absolute; */
     display: flex;
     justify-content: center;
     margin-top: 24px;

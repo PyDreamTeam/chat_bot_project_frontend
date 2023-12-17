@@ -7,6 +7,7 @@ import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { useAddPlatformToFavoriteMutation } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
+import ToolTip from "../../toolTip/ToolTip";
 
 const CardPlatform: FC<PropsPlatformCard> = ({
     title,
@@ -76,16 +77,18 @@ const CardPlatform: FC<PropsPlatformCard> = ({
                             {title}
                         </Title>
                         <div>
-                            <Image
-                                src={`/platforms/${imageHeart}.svg`}
-                                alt="heart"
-                                width={24}
-                                height={24}
-                                onClick={handleClickHeart}
-                                onMouseLeave={handleMouseLeave}
-                                onMouseEnter={handleMouseEnter}
-                                className={styles.heart}
-                            />
+                            <ToolTip text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
+                                <Image
+                                    src={`/platforms/${imageHeart}.svg`}
+                                    alt="heart"
+                                    width={24}
+                                    height={24}
+                                    onClick={handleClickHeart}
+                                    onMouseLeave={handleMouseLeave}
+                                    onMouseEnter={handleMouseEnter}
+                                    className={styles.heart}
+                                />
+                            </ToolTip>
                         </div>
                     </div>
                 </div>

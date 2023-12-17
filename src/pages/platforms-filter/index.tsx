@@ -25,6 +25,7 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import Cookies from "js-cookie";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
 
 const PlatformsFilters = () => {
     const router = useRouter();
@@ -204,6 +205,7 @@ const PlatformsFilters = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

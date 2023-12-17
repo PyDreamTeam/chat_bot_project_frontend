@@ -26,7 +26,7 @@ export const CARDS_OUR_ADVANTAGES = [
         icon: <Image src={"/icon/saving-cost.png"} alt="logo-image" width={40} height={40} />,
         text: (
             <Text type={"med20"} color={"white"}>
-                Снижения затрат на реализацию идей
+                Снижение затрат на реализацию идей
             </Text>
         ),
     },
@@ -35,7 +35,7 @@ export const CARDS_OUR_ADVANTAGES = [
         icon: <Image src={"/icon/increased-conversions.png"} alt="logo-image" width={40} height={40} />,
         text: (
             <Text type={"med20"} color={"black"}>
-                Увеличения конверсий
+                Увеличение конверсий
             </Text>
         ),
     },

@@ -9,30 +9,13 @@
     padding-top: 16px;
 }
 
-.funnelCard {
-    width: 405px;
-    padding: 40px;
-    border-radius: 20px;
-    background: #fff;
-    box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.funnelCard p:last-child {
+.Card p:last-child {
     max-width: 270px;
 }
-
-.funnelCard:nth-child(2) {
-    position: relative;
-    top: 64px;
+.Card h4 {
+    margin: 12px 0px 12px 0px;
 }
 
-.funnelCard:nth-child(5) {
-    position: relative;
-    top: 64px;
-}
 .img {
     width: 48px;
     height: 48px;

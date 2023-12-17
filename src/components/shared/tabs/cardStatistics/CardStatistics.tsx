@@ -12,9 +12,7 @@ export enum CardProps {
 
 const CardStatistics: FC<StatisticsCards> = ({ icon, title, text, variant }) => {
     return (
-        <div
-            className={`${styles.card} ${variant === CardProps.statistic ? styles.statisticCard : styles.funnelCard} `}
-        >
+        <div className={`${styles.card} ${variant === CardProps.statistic ? styles.statisticCard : styles.Card} `}>
             <div className={styles.img}>
                 <Image src={icon ? `${icon}` : ""} alt={"icon"} width={48} height={48} />
             </div>
