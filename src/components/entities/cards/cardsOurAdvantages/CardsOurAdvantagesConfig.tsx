@@ -17,7 +17,7 @@ export const CARDS_OUR_ADVANTAGES = [
         icon: <Image src={"/icon/request-automation.png"} alt="logo-image" width={40} height={40} />,
         text: (
             <Text type={"med20"} color={"white"}>
-                Автоматизации обработки заявок
+                Автоматизация обработки заявок
             </Text>
         ),
     },
