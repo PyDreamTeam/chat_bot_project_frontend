@@ -50,7 +50,7 @@ export const NewPasswordInput: FC<PropsNewPasswordInput> = ({ errors, touched, e
     useEffect(() => {
         if (isDefaultNewPasswordError(error)) {
             const errorKey = String(error?.data?.password?.[0]);
-            const errorMessage = newPasswordErrorMap[errorKey] || "Произошла ошбика";
+            const errorMessage = newPasswordErrorMap[errorKey] || "Произошла ошибка";
             setFieldError("password", errorMessage);
         }
     }, [error]);
