@@ -48,7 +48,7 @@ const UserInfo: FC<IUserInfoProps> = ({
     // }, [isSuccessVerify, isErrorVerify]);
 
     const logout = () => {
-        logoutUser(token);
+        logoutUser(token).then(() => router.push("/home"));
     };
 
     useEffect(() => {
