@@ -1,0 +1,31 @@
+.card_skeleton {
+    width: 616px;
+    height: 452px;
+    padding: 28px 28px 28px 28px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+}
+.filterCard_skeleton {
+    display: flex;
+    width: 720px;
+    height: 258px;
+    padding: 8px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+.top_column {
+    margin-bottom: 16px;
+}
+
+.bottom_column span {
+    margin-bottom: 16px;
+}
+.filterBottom_column span {
+    margin-bottom: 16px;
+    margin-right: 15px;
+}
+.filterBottom_column div {
+    margin-bottom: 26px;
+}

@@ -22,10 +22,12 @@ import { useRouter } from "next/router";
 import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
 import Cookies from "js-cookie";
 import { UseQuery } from "@reduxjs/toolkit/dist/query/react/buildHooks";
+import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
 
 const Platforms = () => {
     const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const skeletons = [...new Array(6)];
 
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
@@ -43,7 +45,7 @@ const Platforms = () => {
         refetchOnMountOrArgChange: true,
         refetchOnFocus: true,
     });
-
+    console.log(combinedData);
     const handleScroll = () => {
         // readMore();
     };
@@ -75,7 +77,10 @@ const Platforms = () => {
                     <div className={styles.mainWrap}>
                         {isLoading ? (
                             <div className={styles.loaderPlatforms}>
-                                <Loader isLoading={isLoading} />
+                                {skeletons.map((_, index) => (
+                                    <CardSkeleton type={"list"} key={index} />
+                                ))}
+                                {/* <Loader isLoading={isLoading} /> */}
                             </div>
                         ) : (
                             <ul className={styles.platforms}>

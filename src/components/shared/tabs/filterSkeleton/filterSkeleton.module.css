@@ -1,0 +1,9 @@
+.filters {
+    margin-top: 32px;
+}
+.skeleton {
+    margin-bottom: 24px;
+}
+.skeleton:last-child {
+    margin-bottom: 0px;
+}
