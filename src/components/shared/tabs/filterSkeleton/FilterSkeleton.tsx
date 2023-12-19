@@ -11,7 +11,7 @@ const FilterSkeleton: FC<IFilters> = ({ type }) => {
         <>
             {type === "listFilter" && (
                 <div className={styles.filters}>
-                    <Skeleton duration={1.5} className={styles.skeleton} count={4} width={300} height={31} />
+                    <Skeleton className={styles.skeleton} count={4} width={300} height={31} />
                 </div>
             )}
         </>
