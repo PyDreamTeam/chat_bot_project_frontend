@@ -4,14 +4,15 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { FC } from "react";
 interface IFilters {
     type?: "listFilter" | "other";
+    count?: number;
 }
 
-const FilterSkeleton: FC<IFilters> = ({ type }) => {
+const FilterSkeleton: FC<IFilters> = ({ type, count }) => {
     return (
         <>
             {type === "listFilter" && (
                 <div className={styles.filters}>
-                    <Skeleton className={styles.skeleton} count={4} width={300} height={31} />
+                    <Skeleton className={styles.skeleton} count={count} width={300} height={31} />
                 </div>
             )}
         </>

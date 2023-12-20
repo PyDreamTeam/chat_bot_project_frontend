@@ -81,7 +81,7 @@ const SolutionsFilters = () => {
                         <div className={css.leftBlock}>
                             {isLoadingFilters ? (
                                 <div className={css.loaderFilter}>
-                                    <FilterSkeleton type="listFilter" />
+                                    <FilterSkeleton count={4} type="listFilter" />
                                 </div>
                             ) : (
                                 <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />

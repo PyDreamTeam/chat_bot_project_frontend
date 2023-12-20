@@ -114,7 +114,7 @@ const PlatformsFilters = () => {
                         <div className={css.leftBlock}>
                             {isLoadingFilters ? (
                                 <div className={css.loaderFilter}>
-                                    <FilterSkeleton type="listFilter" />
+                                    <FilterSkeleton count={11} type="listFilter" />
                                 </div>
                             ) : (
                                 <GroupFilters results={dataFilters?.results} onClick={() => refetch} />
