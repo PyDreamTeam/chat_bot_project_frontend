@@ -9,6 +9,9 @@ import Cookies from "js-cookie";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
 import ToolTip from "../../toolTip/ToolTip";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 const CardSolution: FC<PropsSolutionCard> = ({
     type,
     image,

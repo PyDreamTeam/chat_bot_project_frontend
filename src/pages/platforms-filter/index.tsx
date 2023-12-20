@@ -26,11 +26,14 @@ import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollTo
 import Cookies from "js-cookie";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
+import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
+import FilterSkeleton from "@/src/components/shared/tabs/filterSkeleton/FilterSkeleton";
 
 const PlatformsFilters = () => {
     const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data: userData, isSuccess } = useDataUserQuery(token);
+    const skeletons = [...new Array(6)];
 
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
@@ -111,7 +114,7 @@ const PlatformsFilters = () => {
                         <div className={css.leftBlock}>
                             {isLoadingFilters ? (
                                 <div className={css.loaderFilter}>
-                                    <Loader isLoading={isLoadingFilters} />
+                                    <FilterSkeleton count={11} type="listFilter" />
                                 </div>
                             ) : (
                                 <GroupFilters results={dataFilters?.results} onClick={() => refetch} />
@@ -144,7 +147,9 @@ const PlatformsFilters = () => {
                             <AlphabeticalSorting onClick={() => refetch()} />
                             {isLoading ? (
                                 <div className={css.loaderPlatforms}>
-                                    <Loader isLoading={isLoading} />
+                                    {skeletons.map((_, index) => (
+                                        <CardSkeleton type={"filter"} key={index} />
+                                    ))}
                                 </div>
                             ) : (
                                 <ul className={css.listPlatforms}>

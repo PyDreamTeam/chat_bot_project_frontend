@@ -30,14 +30,12 @@
 }
 
 .loaderFilter {
-    margin: 50% 40%;
     width: 360px;
     height: 100%;
 }
 
 .loaderSolutions {
-    margin: 7% 50%;
-    /* width: 100%; */
+    width: 100%;
     height: 100%;
 }
 

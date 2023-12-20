@@ -68,6 +68,9 @@
 .loaderSolutions {
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
 }
 .listSoluyions {
     list-style: none;
