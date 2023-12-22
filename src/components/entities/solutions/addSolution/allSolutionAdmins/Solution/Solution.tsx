@@ -3,12 +3,12 @@ import css from "./solution.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import Cookies from "js-cookie";
-import {
-    useDeleteSloutionMutation,
-    useSolutionArchiveMutation,
-    useGetSolutionForArchiveMutation,
-    useSendToCreatedMutation,
-} from "@/src/store/services/solutions";
+// import {
+//     useDeleteSloutionMutation,
+//     useSolutionArchiveMutation,
+//     useGetSolutionForArchiveMutation,
+//     useSendToCreatedMutation,
+// } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import Title from "@/src/components/shared/text/Title";
 import Link from "next/link";
@@ -44,73 +44,73 @@ const functionSolutionArchive = [
 ];
 
 export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }) => {
-    const [deleteSolution, { isSuccess }] = useDeleteSloutionMutation();
+    // const [deleteSolution, { isSuccess }] = useDeleteSloutionMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
-    const [getSolutionForArchive, { data, isSuccess: isSuccessGetSolution }] = useGetSolutionForArchiveMutation();
-    const [solutionArchive, { isSuccess: isSuccessSolutionArchive }] = useSolutionArchiveMutation();
-    const [sendToCreated, { isSuccess: isSuccessSendToCreated }] = useSendToCreatedMutation();
+    // const [getSolutionForArchive, { data, isSuccess: isSuccessGetSolution }] = useGetSolutionForArchiveMutation();
+    // const [solutionArchive, { isSuccess: isSuccessSolutionArchive }] = useSolutionArchiveMutation();
+    // const [sendToCreated, { isSuccess: isSuccessSendToCreated }] = useSendToCreatedMutation();
 
-    const [stateIcon, setStateIcon] = useState<string>("workSolution");
+    const [stateIcon, setStateIcon] = useState<string>("workPlatform");
     const [isModalDelete, setIsModalDelete] = useState(false);
     const [isSuccessModal, setIsSuccessModal] = useState(false);
     const [isDeleteSolutionFromPublic, setIsDeleteSolutionFromPublic] = useState(false);
     const [isArchiveSolution, setIsArchiveSolution] = useState(false);
     const [isSuccessDeleteSolutionFromPublic, setIsSuccessDeleteSolutionFromPublic] = useState(false);
 
-    useEffect(() => {
-        if (isSuccess) {
-            setIsSuccessModal(true);
-            setIsModalDelete(false);
-            setTimeout(() => {
-                setIsSuccessModal(false);
-                router.reload();
-            }, 3000);
-        }
-    }, [isSuccess]);
+    // useEffect(() => {
+    //     if (isSuccess) {
+    //         setIsSuccessModal(true);
+    //         setIsModalDelete(false);
+    //         setTimeout(() => {
+    //             setIsSuccessModal(false);
+    //             router.reload();
+    //         }, 3000);
+    //     }
+    // }, [isSuccess]);
 
-    useEffect(() => {
-        if (isSuccessSendToCreated) {
-            router.reload();
-        }
-    }, [isSuccessSendToCreated]);
+    // useEffect(() => {
+    //     if (isSuccessSendToCreated) {
+    //         router.reload();
+    //     }
+    // }, [isSuccessSendToCreated]);
 
-    useEffect(() => {
-        if (stateIcon === "workSolutionActive") {
-            getSolutionForArchive(Number(id));
-        }
-    }, [stateIcon]);
+    // useEffect(() => {
+    //     if (stateIcon === "workSolutionActive") {
+    //         getSolutionForArchive(Number(id));
+    //     }
+    // }, [stateIcon]);
 
-    useEffect(() => {
-        if (isSuccessSolutionArchive) {
-            setIsDeleteSolutionFromPublic(false);
-            setIsArchiveSolution(false);
-            setIsSuccessDeleteSolutionFromPublic(true);
-            setTimeout(() => {
-                setIsSuccessDeleteSolutionFromPublic(false);
-                router.reload();
-            }, 3000);
-        }
-    }, [isSuccessSolutionArchive]);
+    // useEffect(() => {
+    //     if (isSuccessSolutionArchive) {
+    //         setIsDeleteSolutionFromPublic(false);
+    //         setIsArchiveSolution(false);
+    //         setIsSuccessDeleteSolutionFromPublic(true);
+    //         setTimeout(() => {
+    //             setIsSuccessDeleteSolutionFromPublic(false);
+    //             router.reload();
+    //         }, 3000);
+    //     }
+    // }, [isSuccessSolutionArchive]);
 
     const handleMouseEnter = () => {
-        if (stateIcon === "workSolution") {
-            setStateIcon("workSolutionHover");
+        if (stateIcon === "workPlatform") {
+            setStateIcon("workPlatformHover");
         }
     };
 
     const handleMouseLeave = () => {
-        if (stateIcon === "workSolutionHover") {
-            setStateIcon("workSolution");
+        if (stateIcon === "workPlatformHover") {
+            setStateIcon("workPlatform");
         }
     };
 
     const handleClickIcon = () => {
-        if (stateIcon === "workSolutionHover" || stateIcon === "workSolution") {
-            setStateIcon("workSolutionActive");
+        if (stateIcon === "workPlatformHover" || stateIcon === "workPlatform") {
+            setStateIcon("workPlatformActive");
         }
-        if (stateIcon === "workSolutionActive") {
-            setStateIcon("workSolution");
+        if (stateIcon === "workPlatformActive") {
+            setStateIcon("workPlatform");
         }
     };
 
@@ -119,7 +119,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
             setIsArchiveSolution(true);
         }
         if (value === "sendToCreated") {
-            sendToCreated({ id, token, data });
+            // sendToCreated({ id, token, data });
         }
         if (value === "delete") {
             setIsModalDelete(true);
@@ -132,7 +132,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
         }
         if (value === "deletePublic") {
             setIsDeleteSolutionFromPublic(true);
-            getSolutionForArchive(Number(id));
+            // getSolutionForArchive(Number(id));
         }
         if (value === "public") {
             router.push(`/admin/solutions/public-solution/${id}`);
@@ -167,7 +167,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
                 className={css.workSolution}
             >
                 <Image src={`/platforms/${stateIcon}.svg`} alt="icon" width={24} height={24} />
-                {stateIcon === "workSolutionActive" && (
+                {stateIcon === "workPlatformActive" && (
                     <ul className={css.listFunctions}>
                         {(sort === "save"
                             ? functionSolutionSave
@@ -216,7 +216,10 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
                                     Отмена
                                 </Text>
                             </button>
-                            <button className={css.btnSaveModal} onClick={() => deleteSolution({ id, token })}>
+                            <button
+                                className={css.btnSaveModal}
+                                // onClick={() => deleteSolution({ id, token })}
+                            >
                                 <Text type="reg18" color="white">
                                     Удалить
                                 </Text>
@@ -249,7 +252,10 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
                                     Отмена
                                 </Text>
                             </button>
-                            <button className={css.btnSaveModal} onClick={() => solutionArchive({ id, token, data })}>
+                            <button
+                                className={css.btnSaveModal}
+                                // onClick={() => solutionArchive({ id, token, data })}
+                            >
                                 <Text type="reg18" color="white">
                                     Архив
                                 </Text>
@@ -285,7 +291,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
                             </button>
                             <button
                                 className={css.btnDeleteForPublic}
-                                onClick={() => solutionArchive({ id, token, data })}
+                                // onClick={() => solutionArchive({ id, token, data })}
                             >
                                 <Text type="reg18" color="white">
                                     Снять с публикации

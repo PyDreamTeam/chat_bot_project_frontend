@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/FieldOptions/FieldOptions";
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
-import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
@@ -117,7 +117,7 @@ const SolutionsFilters = () => {
                                 </div>
                             ) : (
                                 <ul className={css.listSolutions}>
-                                    {combinedData.map((item: PropsPlatformCard) => (
+                                    {combinedData.map((item: PropsSolutionCard) => (
                                         <li
                                             key={item.id}
                                             onClick={() => {

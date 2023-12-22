@@ -3,48 +3,33 @@ import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFu
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
-import css from "./changeSolution.module.css";
+import styles from "./addSolutiom.module.css";
 import Title from "@/src/components/shared/text/Title";
 import { InputAddSolution } from "@/src/components/entities/solutions/addSolution/InputAddSolution";
 import { TextAreaAddSolution } from "@/src/components/entities/solutions/addSolution/TextAreaAddPSolution";
 import { useEffect, useState } from "react";
 import { MultipleInput } from "@/src/components/entities/solutions/addSolution/MultipleInput";
+import { useAddSolutionMutation, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
 import {
-    useChangeSolutionMutation,
-    useGetSolutionQuery,
-    useGetSolutionsFiltersQuery,
-} from "@/src/store/services/solutions";
-import {
-    GroupsFilters,
     PropsGroupsFilters,
+    GroupsFilters,
 } from "@/src/components/entities/solutions/addSolution/filtersForAddSolution/GroupsFiltrs/GroupsFilters";
 import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import {
-    getFilterFromBack,
-    getLinkToPlatform,
-    getLinkToSolution,
-    linkToSolution,
-} from "@/src/store/reducers/addSolution/slice";
+import { deleteAllFiltersFromPlatform, linkToPlatform } from "@/src/store/reducers/addPlatform/slice";
+import { deleteAllFiltersFromSolution, linkToSolution } from "@/src/store/reducers/addSolution/slice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 
-const ChangeSolution = () => {
+const AddSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
-    const [changeSolution, { isSuccess: isSuccessChange, isLoading }] = useChangeSolutionMutation();
     const dispatch = useAppDispatch();
-    const filters = useAppSelector((state) => state.reducerAddSolution.filters);
-    const link = useAppSelector((state) => state.reducerAddSolution.linkToSolution);
-    const links = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
     const router = useRouter();
-    const { changeId } = router.query;
-    const { data } = useGetSolutionQuery(Number(changeId));
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const [id, setId] = useState<number | undefined>(undefined);
-
+    const [addSolution, { data, isSuccess: isSuccessAddSolution, isLoading }] = useAddSolutionMutation();
     const [solution, setSolution] = useState<PropsSolutionCard>({
         title: "",
         short_description: "",
@@ -57,39 +42,6 @@ const ChangeSolution = () => {
         filter: [],
     });
 
-    useEffect(() => {
-        dispatch(getFilterFromBack(data?.tags));
-        dispatch(getLinkToSolution(data?.link));
-        dispatch(getLinkToPlatform(data?.links_to_platform));
-    }, [data]);
-
-    useEffect(() => {
-        setId(data?.id);
-    }, [data]);
-
-    useEffect(() => {
-        setSolution((prev) => ({
-            ...prev,
-            title: data?.title,
-            short_description: data?.short_description,
-            full_description: data?.full_description,
-            price: data?.price,
-            image: data?.image,
-        }));
-    }, [data]);
-
-    useEffect(() => {
-        setSolution((prev) => ({ ...prev, links_to_platform: links, turnkey_platforms: links?.length }));
-    }, [links]);
-
-    useEffect(() => {
-        setSolution((prev) => ({ ...prev, link: link }));
-    }, [link]);
-
-    useEffect(() => {
-        setSolution((prev) => ({ ...prev, filter: filters?.map((item) => item.id) }));
-    }, [filters]);
-
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
     const handleSuccessAddPlatform = () => {
@@ -100,15 +52,47 @@ const ChangeSolution = () => {
     };
 
     useEffect(() => {
-        if (isSuccessChange) {
+        dispatch(deleteAllFiltersFromPlatform());
+    }, []);
+
+    const inputsLinks = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
+
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, links_to_platform: inputsLinks, turnkey_platforms: inputsLinks.length }));
+    }, [inputsLinks]);
+
+    const filters = useAppSelector((state) => state.reducerAddSolution.filters);
+
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, filter: filters.map((item) => item.id) }));
+    }, [filters]);
+    const link = useAppSelector((state) => state.reducerAddSolution.linkToSolution);
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, link: link }));
+    }, [link]);
+
+    useEffect(() => {
+        if (isSuccessAddSolution) {
             setIsModalClose(false);
             setIsSuccessModal(true);
+            setSolution((prev) => ({
+                ...prev,
+                title: "",
+                short_description: "",
+                full_description: "",
+                turnkey_solutions: 0,
+                price: "",
+                image: "",
+                link: "",
+                links_to_solution: [],
+                filter: [],
+            }));
+            dispatch(deleteAllFiltersFromSolution());
             setTimeout(() => {
                 setIsSuccessModal(false);
-                router.reload();
             }, 3000);
         }
-    }, [isSuccessChange]);
+    }, [isSuccessAddSolution]);
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         const pattern = /^[0-9\b]+$/;
@@ -131,19 +115,19 @@ const ChangeSolution = () => {
     return (
         <WrapperAdminPage>
             <ContainerAdminFunction>
-                <div className={css.links}>
+                <div className={styles.links}>
                     <Link href={"/admin"}>
                         <Text type="reg16" color="telegray">
                             Главная
                         </Text>
                     </Link>
                     <Link href={"/admin/solutions"}>
-                        <span className={css.link}>/Решения</span>
-                        <span className={css.link}>/Работа с решениями</span>
+                        <span className={styles.link}>/Решения</span>
+                        <span className={styles.link}>/Работа с решениями</span>
                     </Link>
-                    <span className={css.link}>/Создание решениями</span>
+                    <span className={styles.link}>/Создание решения</span>
                 </div>
-                <Title type="h5" color="dark" className={css.title}>
+                <Title type="h5" color="dark" className={styles.title}>
                     Создание решения
                 </Title>
                 <InputAddSolution
@@ -151,8 +135,8 @@ const ChangeSolution = () => {
                     value={solution.title}
                     onChange={(e) => setSolution((prev) => ({ ...prev, title: e.target.value }))}
                     placeholder="Текст"
-                    className={css.titleSolution}
-                    style={css.size640}
+                    className={styles.titleSolution}
+                    style={styles.size640}
                 />
                 <UploadImage onChange={handleFileChange} image={solution.image} isImage={Boolean(solution.image)} />
                 <TextAreaAddSolution
@@ -160,19 +144,19 @@ const ChangeSolution = () => {
                     onChange={(e) => setSolution((prev) => ({ ...prev, short_description: e.target.value }))}
                     label="Краткое описание решения"
                     placeholder="Текст (200 символов)"
-                    className={css.textAreaSolution}
+                    className={styles.textAreaSolution}
                 />
                 <TextAreaAddSolution
                     value={solution.full_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, full_description: e.target.value }))}
                     label="Полное описание решения"
                     placeholder="Текст до 800 символов"
-                    className={css.textAreaSolution}
+                    className={styles.textAreaSolution}
                 />
-                <Title type="h5" color="dark" className={css.subTitle}>
+                <Title type="h5" color="dark" className={styles.subTitle}>
                     Описание фильтров
                 </Title>
-                <ul className={css.listFilters}>
+                <ul className={styles.listFilters}>
                     {dataFilters?.results.map((item: PropsGroupsFilters) => (
                         <li key={item.id}>
                             <GroupsFilters id={item.id} group={item.group} filters={item.filters} />
@@ -180,7 +164,7 @@ const ChangeSolution = () => {
                     ))}
                 </ul>
 
-                <Title type="h5" color="dark" className={css.subTitle}>
+                <Title type="h5" color="dark" className={styles.subTitle}>
                     Ссылки на платформы
                 </Title>
                 <MultipleInput />
@@ -188,8 +172,8 @@ const ChangeSolution = () => {
                     label="Количество реализованных платформ"
                     value={solution.turnkey_platforms}
                     placeholder="0"
-                    className={css.countPlatforms}
-                    style={css.size203}
+                    className={styles.countPlatforms}
+                    style={styles.size203}
                     disabled={true}
                     countPlatforms={true}
                 />
@@ -198,49 +182,51 @@ const ChangeSolution = () => {
                     onChange={(e) => setSolution((prev) => ({ ...prev, price: Number(e.target.value) }))}
                     label="Стоимость решения"
                     placeholder="0 RUB"
-                    className={css.countPlatforms}
-                    style={css.size203}
+                    className={styles.countPlatforms}
+                    style={styles.size203}
                     onKeyPress={handleKeyPress}
                 />
                 <InputAddSolution
                     label="Ссылка на страницу решения"
-                    value={link}
                     onChange={(e) => {
-                        dispatch(linkToSolution(e.target.value));
+                        dispatch(linkToPlatform(e.target.value));
                     }}
                     placeholder="www.example.com"
-                    className={css.linkSolution}
-                    style={css.size640}
+                    className={styles.linkSolution}
+                    style={styles.size640}
                     link={true}
                 />
                 {isModalClose && (
-                    <div className={css.modal}>
-                        <div className={css.modalContent}>
+                    <div className={styles.modal}>
+                        <div className={styles.modalContent}>
                             <Image
                                 src="/img/close.svg"
                                 alt="icon"
                                 width={24}
                                 height={24}
-                                className={css.imgCloseModal}
+                                className={styles.imgCloseModal}
                                 onClick={handleClickClose}
                                 style={{ cursor: "pointer" }}
                             />
                             <Image src={"/platforms/saveChanges.svg"} alt="icon" width={56} height={56} />
-                            <Title type="h5" color="dark" className={css.titleModalClose}>
+                            <Title type="h5" color="dark" className={styles.titleModalClose}>
                                 Сохранить изменения?
                             </Title>
-                            <Text type="reg18" color="telegray" className={css.subTitleModalClose}>
+                            <Text type="reg18" color="telegray" className={styles.subTitleModalClose}>
                                 Все несохраненные данные будут утеряны!
                             </Text>
-                            <div className={css.groupBtnModalClose}>
-                                <button className={css.btnCloseModal} onClick={() => router.push("/admin/solutions")}>
+                            <div className={styles.groupBtnModalClose}>
+                                <button
+                                    className={styles.btnCloseModal}
+                                    onClick={() => router.push("/admin/platforms")}
+                                >
                                     <Text type="reg18" color="red">
                                         Удалить изменения
                                     </Text>
                                 </button>
                                 <button
-                                    className={css.btnSaveModal}
-                                    onClick={() => changeSolution({ id, token, solution })}
+                                    className={styles.btnSaveModal}
+                                    onClick={() => addSolution({ solution, token })}
                                 >
                                     <Text type="reg18" color="white">
                                         Сохранить
@@ -251,36 +237,41 @@ const ChangeSolution = () => {
                     </div>
                 )}
                 {isSuccessModal && (
-                    <div className={css.modal}>
-                        <div className={css.modalContent}>
+                    <div className={styles.modal}>
+                        <div className={styles.modalContent}>
                             <Image
                                 src="/img/close.svg"
                                 alt="icon"
                                 width={24}
                                 height={24}
-                                className={css.imgCloseModal}
+                                className={styles.imgCloseModal}
                                 onClick={handleSuccessAddPlatform}
                                 style={{ cursor: "pointer" }}
                             />
                             <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
-                            <Title type="h5" color="dark" className={css.titleModalClose}>
-                                Платформа успешно сохранена!
+                            <Title type="h5" color="dark" className={styles.titleModalClose}>
+                                Решение успешно сохранено!
                             </Title>
                         </div>
                     </div>
                 )}
                 {isLoading && (
-                    <div className={css.modal}>
+                    <div className={styles.modal}>
                         <Loader isLoading={isLoading} />
                     </div>
                 )}
-                <div className={css.groupBtn}>
-                    <button className={css.btnClose} onClick={handleClickClose}>
+                <div className={styles.groupBtn}>
+                    <button className={styles.btnClose} onClick={handleClickClose}>
                         <Text type="reg18" color="grey">
                             Отмена
                         </Text>
                     </button>
-                    <button className={css.btnSave} onClick={() => changeSolution({ id, token, solution })}>
+                    <button
+                        className={styles.btnSave}
+                        onClick={() => {
+                            addSolution({ solution, token });
+                        }}
+                    >
                         <Text type="reg18" color="white">
                             Сохранить
                         </Text>
@@ -291,4 +282,4 @@ const ChangeSolution = () => {
     );
 };
 
-export default ChangeSolution;
+export default AddSolution;

@@ -7,7 +7,7 @@ import css from "./solutions.module.css";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useGetSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetSolutionsQuery, useGetListSolutionsQuery } from "@/src/store/services/solutions";
 import { SolutionsList } from "@/src/components/entities/solutions/addSolution/allSolutionAdmins/SolutionsList/SolutionsList";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
@@ -25,6 +25,10 @@ const SolutionsAdmin = () => {
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {
         title: searchSolution,
     });
+    // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetListSolutionsQuery, {
+    //     title: searchSolution,
+    // });
+
     const handleScroll = () => {
         readMore();
     };
@@ -44,9 +48,8 @@ const SolutionsAdmin = () => {
             setSort("archive");
         }
     };
-
     const router = useRouter();
-
+    console.log(combinedData);
     const handleRouter = () => {
         router.push("/admin/solutions/add-solution");
     };

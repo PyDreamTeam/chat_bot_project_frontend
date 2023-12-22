@@ -117,7 +117,7 @@ const PlatformsFilters = () => {
                             ) : (
                                 <ul className={css.listPlatforms}>
                                     {combinedData
-                                        .filter(item => item.status === "public")
+                                        .filter((item) => item.status === "public")
                                         .map((item: PropsPlatformCard) => (
                                             <li
                                                 key={item.id}

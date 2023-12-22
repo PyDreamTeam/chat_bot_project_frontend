@@ -46,6 +46,7 @@ const PlatformsAdmin = () => {
             setSort("archive");
         }
     };
+    console.log(combinedData);
     const router = useRouter();
     const handleRouter = () => {
         router.push("/admin/platforms/add-platform");

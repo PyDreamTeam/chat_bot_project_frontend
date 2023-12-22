@@ -1,4 +1,4 @@
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const solutions = createApi({
@@ -164,6 +164,16 @@ export const solutions = createApi({
                 },
             }),
         }),
+        addSolution: builder.mutation({
+            query: ({ solution, token }) => ({
+                url: "/api/solution/solutions/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: solution,
+            }),
+        }),
     }),
 });
 
@@ -180,4 +190,7 @@ export const {
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
     useCreateSolutionFilterGroupMutation,
+    useChangeSolutionMutation,
+    useAddSolutionMutation,
+    useSolutionPublicMutation,
 } = solutions;
