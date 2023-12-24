@@ -90,10 +90,10 @@ const UserInfo: FC<IUserInfoProps> = ({
             </div>
             {first_name && (
                 <div className={styles.blockName}>
-                    <Text type={"reg18"} color={"black"}>
+                    <Text type={"reg18"} color={"black"} className={styles.firstName}>
                         {first_name}
                     </Text>
-                    <Text type={"reg18"} color={"black"}>
+                    <Text type={"reg18"} color={"black"} className={styles.lastName}>
                         {last_name}
                     </Text>
                 </div>
