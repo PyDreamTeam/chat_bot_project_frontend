@@ -63,7 +63,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "sound-wave-circle",
+        title: "sound-wave",
     },
     {
         id: 5,
@@ -121,7 +121,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Paper Upload",
+        title: "paperUpload",
     },
     {
         id: 8,
@@ -149,7 +149,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Add User",
+        title: "add-user",
     },
     {
         id: 10,
@@ -185,7 +185,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "widget",
+        title: "bxs-widget",
     },
     {
         id: 12,
@@ -221,7 +221,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Iconly/Bold/Arrow - Up Square",
+        title: "arrow-up",
     },
     {
         id: 14,
@@ -245,7 +245,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "fa-solid:coins",
+        title: "fa-solid_coins",
     },
     {
         id: 16,
@@ -263,7 +263,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "solar:password-minimalistic-input-bold",
+        title: "solar_password",
     },
     {
         id: 17,
@@ -275,7 +275,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "fluent:people-swap-24-filled",
+        title: "fluent_people-swap",
     },
     {
         id: 18,
@@ -293,7 +293,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Notification",
+        title: "notification",
     },
     {
         id: 19,
@@ -305,7 +305,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "material-symbols:sms-rounded",
+        title: "symbols_sms",
     },
     {
         id: 20,
@@ -330,7 +330,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Download",
+        title: "Download-2",
     },
     {
         id: 21,
@@ -344,7 +344,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Ticket Star",
+        title: "ticket-star",
     },
     {
         id: 22,
@@ -356,7 +356,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Credit-card-edit",
+        title: "credit-card-edit",
     },
     {
         id: 23,
@@ -370,6 +370,6 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "Wallet",
+        title: "wallet",
     },
 ];
