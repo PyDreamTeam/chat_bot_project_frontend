@@ -36,6 +36,10 @@
     align-self: stretch;
 }
 
+.header a:hover h5{
+    color: var(--accent-color);
+}
+
 .subTitles {
     display: flex;
     flex-direction: column;
@@ -45,5 +49,5 @@
     align-self: stretch;
 }
 .subTitles a p:hover {
-    color: #4466f5;
+    color: var(--accent-color);
 }

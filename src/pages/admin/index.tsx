@@ -1,4 +1,3 @@
-import AccountPageHeader from "@/src/components/features/AccountPage/AccountPageHeader/AccountPageHeader";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
@@ -16,41 +15,45 @@ const superAdminNavigation = [
     {
         title: "Платформы",
         subTitles: [
-            { subTitle: "Опубликованные платформы", subHref: "/admin/platforms" },
-            { subTitle: "Созданные платформы", subHref: "/admin/platforms" },
-            { subTitle: "Архив платформ", subHref: "/admin/platforms" },
+            { subTitle: "Опубликованные платформы", subHref: "/admin/platforms", sort: "public" },
+            { subTitle: "Созданные платформы", subHref: "/admin/platforms", sort: "save" },
+            { subTitle: "Архив платформ", subHref: "/admin/platforms", sort: "archive" },
             { subTitle: "Создать платформу", subHref: "/admin/platforms/add-platform" },
-            { subTitle: "Фильтры платформ", subHref: "/admin/platforms/platforms-filters" }],
+            { subTitle: "Фильтры платформ", subHref: "/admin/platforms/platforms-filters" },
+        ],
         href: "/admin/platforms",
-        icon: "/admin/icon_platform.svg"
+        icon: "/admin/icon_platform.svg",
     },
     {
         title: "Решения",
         subTitles: [
-            { subTitle: "Опубликованные решения", subHref: "/admin/solutions" },
-            { subTitle: "Созданные решения", subHref: "/admin/solutions" },
-            { subTitle: "Архив решений", subHref: "/admin/solutions" },
+            { subTitle: "Опубликованные решения", subHref: "/admin/solutions", sort: "public" },
+            { subTitle: "Созданные решения", subHref: "/admin/solutions", sort: "save" },
+            { subTitle: "Архив решений", subHref: "/admin/solutions", sort: "archive" },
             { subTitle: "Создать решение", subHref: "/admin/solutions" },
-            { subTitle: "Фильтры решений", subHref: "/admin/solutions" }],
+            { subTitle: "Фильтры решений", subHref: "/admin/solutions" },
+        ],
         href: "/admin/solutions",
-        icon: "/admin/icon_solution.svg"
+        icon: "/admin/icon_solution.svg",
     },
     {
         title: "Администрация и модерация",
         subTitles: [
             { subTitle: "Администраторы", subHref: "/admin/users/administrators" },
-            { subTitle: "Модераторы", subHref: "/admin/users/moderators" }],
+            { subTitle: "Модераторы", subHref: "/admin/users/moderators" },
+        ],
         href: "/admin/users/all",
-        icon: "/admin/icon_people.svg"
+        icon: "/admin/icon_people.svg",
     },
     /* { title: "Личный кабинет", href: "/admin/account", icon: "/admin/icon_admin.svg" }, */
     {
         title: "Настройки",
         subTitles: [
             { subTitle: "Персональные данные", subHref: "/admin/settings" },
-            { subTitle: "Настройки пароля", subHref: "/admin/settings" }],
+            { subTitle: "Настройки пароля", subHref: "/admin/settings" },
+        ],
         href: "/admin/settings",
-        icon: "/admin/icon_settings.svg"
+        icon: "/admin/icon_settings.svg",
     },
 ];
 
@@ -76,14 +79,22 @@ const AdminPage = () => {
                             <div key={title} className={`${css.nav} ${adminNavigation.length === 4 && css.superAdmin}`}>
                                 <div className={css.header}>
                                     <Image src={icon} alt="icon" width={64} height={64} className={css.icon} />
-                                    <Link href={href} >
-                                        <Title type="h5" color="dark">{title}</Title></Link>
+                                    <Link href={href}>
+                                        <Title type="h5" color="dark">
+                                            {title}
+                                        </Title>
+                                    </Link>
                                 </div>
-                                <div className={css.subTitles}>{subTitles?.map(({ subTitle, subHref }) => {
-                                    return (
-                                        <Link key={subTitle} href={subHref}><Text type="reg16" color="grey" >{subTitle}</Text></Link>
-                                    );
-                                })}
+                                <div className={css.subTitles}>
+                                    {subTitles?.map(({ subTitle, subHref, sort }) => {
+                                        return (
+                                            <Link key={subTitle} href={{ pathname: subHref, query: { sort: sort } }}>
+                                                <Text type="reg16" color="grey">
+                                                    {subTitle}
+                                                </Text>
+                                            </Link>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         );
@@ -95,16 +106,3 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
-
-{/* <Link href={href} key={title} className={`${css.nav} ${adminNavigation.length === 4 && css.superAdmin}`}>
-                                <div className={css.header}>
-                                    <Image src={icon} alt="icon" width={64} height={64} className={css.icon} />
-                                    <Title type="h5" color="dark">{title}</Title>
-                                </div>
-                                <div className={css.subTitles}>{subTitles?.map(({ subTitle, subHref }) => {
-                                    return (
-                                        <Link key={subTitle} href={subHref}><Text type="reg16" color="grey" >{subTitle}</Text></Link>
-                                    );
-                                })}
-                                </div>
-                            </Link> */}
