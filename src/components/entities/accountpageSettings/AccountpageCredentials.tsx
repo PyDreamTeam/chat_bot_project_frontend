@@ -1,11 +1,9 @@
 import React, { FC, useState } from "react";
-import { useChangeDataUserMutation } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
 import styles from "./styles/AccountpageCredential.module.css";
 import UserAvatar from "@/src/components/shared/Avatar/Avatar";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import VerifiedEmail from "@/src/components/shared/verifiedEmail/verifiedEmail";
-import { useRouter } from "next/router";
 import { AccountPageTypes } from "@/src/shared/enums/my-account";
 import { useAppSelector } from "@/src/hooks/types";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
@@ -30,9 +28,8 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({
     first_name,
     last_name,
     page,
-    phone_number
+    phone_number,
 }) => {
-
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { data } = useDataUserQuery(token);
 
@@ -41,10 +38,10 @@ const AccountPageCredential: FC<IAccountPageCredential> = ({
             <UserAvatar url={image} type={"forSettings"} username={first_name} />
             <div className={styles.credentialsRightBlock}>
                 <div className={styles.blockName}>
-                    <Title type={"h4"} color={"black"}>
+                    <Title type={"h4"} color={"black"} className={styles.firstName}>
                         {first_name}
                     </Title>
-                    <Title type={"h4"} color={"black"}>
+                    <Title type={"h4"} color={"black"} className={styles.lastName}>
                         {last_name}
                     </Title>
                 </div>

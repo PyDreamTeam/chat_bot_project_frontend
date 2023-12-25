@@ -1,5 +1,6 @@
 .userInfoWrapper {
-    max-width: 500px;
+    max-width: 460px;
+    max-height: 56px;
     padding: 10px 20px;
     background: var(--back-color);
     box-shadow: 4px 8px 32px rgba(43, 53, 116, 0.08);
@@ -24,10 +25,22 @@
     background: var(--accent-color-3);
     display: flex;
     justify-content: center;
-    text-align: center;
     align-items: center;
 }
 .blockName {
     display: flex;
+    max-width: 300px;
     gap: 6px;
+    user-select: none;
+}
+
+.firstName {
+    text-wrap: nowrap;
+
+}
+.lastName {
+
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -4,6 +4,7 @@ import HeaderLeftBlock from "./components/HeaderLeftBlock/HeaderLeftBlock";
 import HeaderRightBlock from "./components/HeaderRightBlock/HeaderRightBlock";
 import { FC, useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
+import HeaderNavBlock from "./components/HeaderNavBlock/HeaderNavBlock";
 
 interface PropsHeader {
     type?: "start" | "other";
@@ -42,6 +43,7 @@ const Header: FC<PropsHeader> = ({ type }) => {
         <header className={type === "start" ? `${styles.headerWrapper}` : `${styles.headerWrapperOther}`}>
             <div className={styles.header}>
                 <HeaderLeftBlock />
+                <HeaderNavBlock />
                 <HeaderRightBlock />
                 <PhoneSavedPopup activePopup={openPopup} phone={phone} close={handleTogglePopup} />
             </div>

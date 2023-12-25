@@ -1,4 +1,3 @@
-import NavbarHome, { NavBarClasses } from "@/src/components/entities/navbars/NavbarHome";
 import ButtonAuthHeader, { ButtonAuthClasses } from "@/src/components/shared/buttons/ButtonAuthHeader";
 import { clientEndpoints } from "@/src/shared/routes/client-endpoints";
 import React, { useState, FormEvent } from "react";
@@ -8,13 +7,6 @@ import { useDataUserQuery } from "@/src/store/services/userAuth";
 import UserInfo from "@/src/components/features/AccountPage/AccountPageHeader/UserMenu/UserInfo";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-
-const navElements = [
-    { href: "/about", text: "О сервисе" },
-    { href: "/articles", text: "Статьи" },
-    { href: "/solutions-filter", text: "Решения" },
-    { href: "/platforms-filter", text: "Платформы" },
-];
 
 const HeaderRightBlock = () => {
     const router = useRouter();
@@ -32,7 +24,6 @@ const HeaderRightBlock = () => {
 
     return (
         <div className={styles.rightBlock}>
-            <NavbarHome navElements={navElements} className={NavBarClasses.navBarHome} />
             <div className={styles.buttonsAuthWrapper}>
                 <SelectLanguage />
                 {isSuccess ? (
