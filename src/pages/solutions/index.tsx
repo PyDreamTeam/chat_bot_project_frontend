@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import Title from "@/src/components/shared/text/Title";
@@ -8,24 +8,21 @@ import Image from "next/image";
 import styles from "@/src/pages/solutions/solutions.module.css";
 import ListAllSolutions from "@/src/components/entities/lists/listAllSolutions/ListAllSolutions";
 import { Button } from "@/src/components/shared/buttons/Button";
-import { useModal } from "@/src/hooks/useModal";
-import Modal from "@/src/components/shared/modal/Modal";
-import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import { useGetFavoriteSolutionsQuery, useGetSolutionsQuery } from "@/src/store/services/solutions";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
-import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import Cookies from "js-cookie";
+import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
 
 const Solutions = () => {
-    // const { isShown, toggle } = useModal();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const skeletons = [...new Array(6)];
 
     // const { combinedData, isLoading, readMore, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {});
 
-    const { data, isLoading: isLoadingUnreg } = useGetSolutionsQuery({});
+    const { data: dataUnreg, isLoading: isLoadingUnreg } = useGetSolutionsQuery({});
 
     const {
         data: combinedData,
@@ -68,7 +65,9 @@ const Solutions = () => {
                     <div className={styles.mainWrap}>
                         {isLoading ? (
                             <div className={styles.loaderSolutions}>
-                                <Loader isLoading={isLoading} />
+                                {skeletons.map((_, index) => (
+                                    <CardSkeleton type={"list"} key={index} />
+                                ))}
                             </div>
                         ) : combinedData ? (
                             <>
@@ -80,11 +79,11 @@ const Solutions = () => {
                             </>
                         ) : (
                             <>
-                                <ListAllSolutions results={data?.results} />
+                                <ListAllSolutions results={dataUnreg?.results} />
                                 <div className={styles.loaderSolutions}>
                                     <Loader isLoading={isFetching} />
                                 </div>
-                                {data?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                                {dataUnreg?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
                             </>
                         )}
                     </div>
@@ -112,9 +111,6 @@ const Solutions = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
-            {/* <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} />
-            </Modal> */}
             <Footer />
         </>
     );

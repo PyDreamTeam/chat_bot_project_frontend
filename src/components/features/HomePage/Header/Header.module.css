@@ -15,3 +15,8 @@
     padding: 39px 88px;
     margin: 0 auto;
 }
+
+.header a {
+    display: flex;
+    align-items: center;
+}

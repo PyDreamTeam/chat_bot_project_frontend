@@ -6,6 +6,7 @@ import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { useAddPlatformToFavoriteMutation, useGetFavoritePlatformQuery } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
+import ToolTip from "@/src/components/shared/toolTip/ToolTip";
 
 export const PlatformCard: FC<PropsPlatformCard> = ({
     id,
@@ -27,16 +28,22 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     const { data: favData, isSuccess } = useGetFavoritePlatformQuery({ token, id });
 
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({ id, token }).then(forceUpdate);
-        e.stopPropagation();
-        if (imageHeart === "like") {
-            setImageHeart("dislike");
-        }
-        if (imageHeart === "dislike") {
-            setImageHeart("like");
-        }
-        if (imageHeart === "hoverHeart") {
-            setImageHeart("like");
+        if (!isSuccess) {
+            e.stopPropagation();
+            console.log("sign in!");
+        } else {
+            addToFavorite({ id, token }).then(forceUpdate);
+
+            e.stopPropagation();
+            if (imageHeart === "like") {
+                setImageHeart("dislike");
+            }
+            if (imageHeart === "dislike") {
+                setImageHeart("like");
+            }
+            if (imageHeart === "hoverHeart") {
+                setImageHeart("like");
+            }
         }
     };
     const handleMouseEnter = () => {
@@ -69,16 +76,18 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
                             <h4 className={css.platformOne}>{title}</h4>
                         </a>
                     )}
-                    <Image
-                        src={`/platforms/${imageHeart}.svg`}
-                        alt="heart"
-                        width={24}
-                        height={24}
-                        onClick={handleClickHeart}
-                        onMouseLeave={handleMouseLeave}
-                        onMouseEnter={handleMouseEnter}
-                        className={css.heart}
-                    />
+                    <ToolTip text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
+                        <Image
+                            src={`/platforms/${imageHeart}.svg`}
+                            alt="heart"
+                            width={24}
+                            height={24}
+                            onClick={handleClickHeart}
+                            onMouseLeave={handleMouseLeave}
+                            onMouseEnter={handleMouseEnter}
+                            className={css.heart}
+                        />
+                    </ToolTip>
                 </div>
                 {type === "platform" && (
                     <div className={css.price}>

@@ -11,8 +11,6 @@ import DeleteFilterGroupPopup from "../popups/DeleteFilterGroupPopup";
 import RestoreFilterGroupPopup from "../popups/RestoreFilterGroupPopup";
 import Image from "next/image";
 
-// import Orders from "./Orders";
-
 interface PropsSearchFilters {
     id?: number;
     status?: string;
@@ -64,7 +62,6 @@ interface PropsSearchFiltersList {
 }
 
 const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, sort, refresh }) => {
-    // const [key, setKey] = useState(0);
     const { isShown, toggle } = useModal();
     const { isShown: isShownGroup, toggle: toggleGroup } = useModal();
     const { isShown: isShownRestoreGroup, toggle: toggleRestoreGroup } = useModal();
@@ -135,7 +132,13 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, s
                 </div>
             )}
             <Modal isShown={isShown} hide={toggle}>
-                <DeleteFilterPopup close={toggle} filterId={filterId} filterTitle={filterTitle} refresh={refresh} />
+                <DeleteFilterPopup
+                    type="archive"
+                    close={toggle}
+                    filterId={filterId}
+                    filterTitle={filterTitle}
+                    refresh={refresh}
+                />
             </Modal>
             <Modal isShown={isShownGroup} hide={toggleGroup}>
                 <DeleteFilterGroupPopup

@@ -4,7 +4,11 @@ import css from "./platforms.module.css";
 import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import { useGetPlatformsFiltersQuery, useGetPlatformsQuery } from "@/src/store/services/platforms";
+import {
+    useGetFilteredFavoritePlatformsQuery,
+    useGetPlatformsFiltersQuery,
+    useGetPlatformsQuery,
+} from "@/src/store/services/platforms";
 import { GroupFilters } from "@/src/components/entities/platforms/leftBlock/GroupFilters/GroupFilters";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
@@ -15,13 +19,22 @@ import { useAppSelector } from "@/src/hooks/types";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { useRouter } from "next/router";
-import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
-import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
+// import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
+// import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
+import Cookies from "js-cookie";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
+import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
+import FilterSkeleton from "@/src/components/shared/tabs/filterSkeleton/FilterSkeleton";
 
 const PlatformsFilters = () => {
     const router = useRouter();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { data: userData, isSuccess } = useDataUserQuery(token);
+    const skeletons = [...new Array(6)];
+
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
     };
@@ -36,13 +49,36 @@ const PlatformsFilters = () => {
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {
+    const {
+        data: filteredPlatforms,
+        isLoading: isLoadingFilteredPlatforms,
+        refetch: refetchFilteredPlatforms,
+    } = useGetPlatformsQuery({
         id_tags: ids,
         price_min: minPrice,
         price_max: maxPrice,
         title: search,
         sort_abc: sortAbc,
     });
+
+    const {
+        data: filteredFavPlatforms,
+        isLoading,
+        refetch,
+        isFetching,
+    } = useGetFilteredFavoritePlatformsQuery(
+        {
+            token,
+            arg: {
+                id_tags: ids,
+                price_min: minPrice,
+                price_max: maxPrice,
+                title: search,
+                sort_abc: sortAbc,
+            },
+        },
+        { refetchOnMountOrArgChange: true }
+    );
 
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
@@ -52,9 +88,9 @@ const PlatformsFilters = () => {
         } else setSortAbc("");
     }, [filter]);
 
-    const handleScroll = () => {
-        readMore();
-    };
+    // const handleScroll = () => {
+    //     readMore();
+    // };
 
     return (
         <div>
@@ -78,10 +114,10 @@ const PlatformsFilters = () => {
                         <div className={css.leftBlock}>
                             {isLoadingFilters ? (
                                 <div className={css.loaderFilter}>
-                                    <Loader isLoading={isLoadingFilters} />
+                                    <FilterSkeleton count={11} type="listFilter" />
                                 </div>
                             ) : (
-                                <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />
+                                <GroupFilters results={dataFilters?.results} onClick={() => refetch} />
                             )}
                         </div>
 
@@ -98,10 +134,9 @@ const PlatformsFilters = () => {
                                     placeholder={"Найти платформу"}
                                     value={search}
                                     onChange={(e) => {
-                                        refresh();
                                         setSearch(e.target.value);
                                         if (e.target.value.trim() === "") {
-                                            refresh();
+                                            refetch();
                                         }
                                     }}
                                 />
@@ -109,38 +144,64 @@ const PlatformsFilters = () => {
                             <div>
                                 <FieldOptions />
                             </div>
-                            <AlphabeticalSorting onClick={() => refresh()} />
+                            <AlphabeticalSorting onClick={() => refetch()} />
                             {isLoading ? (
                                 <div className={css.loaderPlatforms}>
-                                    <Loader isLoading={isLoading} />
+                                    {skeletons.map((_, index) => (
+                                        <CardSkeleton type={"filter"} key={index} />
+                                    ))}
                                 </div>
                             ) : (
                                 <ul className={css.listPlatforms}>
-                                    {combinedData
-                                        .filter((item) => item.status === "public")
-                                        .map((item: PropsPlatformCard) => (
-                                            <li
-                                                key={item.id}
-                                                onClick={() => {
-                                                    if (item.id) {
-                                                        handleClick(item.id);
-                                                    }
-                                                }}
-                                            >
-                                                <PlatformCard
-                                                    id={item.id}
-                                                    title={item.title}
-                                                    short_description={item.short_description}
-                                                    tags={item.tags}
-                                                    image={item.image}
-                                                    type="filter"
-                                                />
-                                            </li>
-                                        ))}
+                                    {filteredFavPlatforms
+                                        ? filteredFavPlatforms?.results
+                                              .filter((item: any) => item.status === "public")
+                                              .map((item: PropsPlatformCard) => (
+                                                  <li
+                                                      key={item.id}
+                                                      onClick={() => {
+                                                          if (item.id) {
+                                                              handleClick(item.id);
+                                                          }
+                                                      }}
+                                                  >
+                                                      <PlatformCard
+                                                          id={item.id}
+                                                          title={item.title}
+                                                          short_description={item.short_description}
+                                                          tags={item.tags}
+                                                          image={item.image}
+                                                          type="filter"
+                                                          is_favorite={item.is_favorite}
+                                                      />
+                                                  </li>
+                                              ))
+                                        : filteredPlatforms?.results
+                                              .filter((item: any) => item.status === "public")
+                                              .map((item: PropsPlatformCard) => (
+                                                  <li
+                                                      key={item.id}
+                                                      onClick={() => {
+                                                          if (item.id) {
+                                                              handleClick(item.id);
+                                                          }
+                                                      }}
+                                                  >
+                                                      <PlatformCard
+                                                          id={item.id}
+                                                          title={item.title}
+                                                          short_description={item.short_description}
+                                                          tags={item.tags}
+                                                          image={item.image}
+                                                          type="filter"
+                                                          is_favorite={item.is_favorite}
+                                                      />
+                                                  </li>
+                                              ))}
                                     <div className={css.loaderPlatforms}>
                                         <Loader isLoading={isFetching} />
                                     </div>
-                                    {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                                    {/* {filteredFavPlatforms.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
                                 </ul>
                             )}
                         </div>
@@ -149,6 +210,7 @@ const PlatformsFilters = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

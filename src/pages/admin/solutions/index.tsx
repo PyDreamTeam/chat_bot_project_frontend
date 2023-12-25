@@ -13,6 +13,9 @@ import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Solution } from "@/src/components/entities/solutions/addSolution/allSolutionAdmins/Solution/Solution";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { useSearchParams } from "next/navigation";
+import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
+import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
 const sortSolutions = [
     { title: "Опубликованные", value: "public" },
@@ -21,6 +24,7 @@ const sortSolutions = [
 ];
 
 const SolutionsAdmin = () => {
+    const searchParams = useSearchParams();
     const [searchSolution, setSearchSolution] = useState<string>("");
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {
         title: searchSolution,
@@ -32,8 +36,8 @@ const SolutionsAdmin = () => {
     const handleScroll = () => {
         readMore();
     };
-
-    const [sort, setSort] = useState<string>("save");
+    const sortFromQuery = searchParams.get("sort") || "save";
+    const [sort, setSort] = useState<string>(sortFromQuery);
     const handleChangeSortSolution = (title: string) => {
         if (title === "Опубликованные") {
             refresh();
@@ -71,11 +75,10 @@ const SolutionsAdmin = () => {
                     <Text type="med20" color="dark">
                         Работа с решениями
                     </Text>
-                    <button className={css.addSolutionBtn} onClick={handleRouter}>
-                        <Text type="reg16" color="white">
-                            + Создать решение
-                        </Text>
-                    </button>
+                    <ButtonSmallPrimary active={true} type={"button"} onClick={handleRouter}>
+                        {plusSvgSecondary}
+                        Создать решение
+                    </ButtonSmallPrimary>
                 </div>
                 <div className={css.groupSearch}>
                     <Image

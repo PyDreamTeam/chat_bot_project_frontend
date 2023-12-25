@@ -10,7 +10,7 @@ const err = {
     number: "содержит по крайней мере одну цифру (0–9)",
     special: "содержит по крайней мере один спецсимвол",
     req: "ведите пароль",
-    max: "содержит не более 50 символов"
+    max: "содержит не более 50 символов",
 };
 
 const errPas = [
@@ -27,11 +27,11 @@ interface PropsErrorsPassword {
 }
 
 export const ErrorsPassword: FC<PropsErrorsPassword> = ({ password }) => {
-    const passwordShema = Yup.object().shape({
+    const passwordSchema = Yup.object().shape({
         password: Yup.string()
             .min(8, err.min)
             .max(50, err.max)
-            .matches(/^(?!.*[^\P{Alphabetic}a-zA-Z])/u, err.string)
+            .matches(/(?=.*[a-z])(?=.*[A-Z])/, err.string)
             .matches(/^(?=.*[0-9])/, err.number)
             .matches(/^(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\])/, err.special)
             .required(err.req),
@@ -42,7 +42,7 @@ export const ErrorsPassword: FC<PropsErrorsPassword> = ({ password }) => {
     useEffect(() => {
         async function validate(password: string) {
             try {
-                const result = await passwordShema.validate({ password }, { abortEarly: false });
+                const result = await passwordSchema.validate({ password }, { abortEarly: false });
 
                 if (result) {
                     setErr([]);

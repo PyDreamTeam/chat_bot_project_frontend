@@ -15,10 +15,10 @@ const FavoritesPage = () => {
 
     return (
         <AccountPageWrapper page="favorites">
-            <div>
+            {/* <div>
                 <FavoriteSearchComponent />
-            </div>
-            <div>
+            </div> */}
+            <div className={styles.tabs}>
                 {tabs.map((tab, index) => (
                     <FavoriteTabs
                         key={index}

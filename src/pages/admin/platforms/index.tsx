@@ -14,6 +14,9 @@ import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Platform } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platform/Platform";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { useSearchParams } from "next/navigation";
+import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
+import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
 const sortPlatforms = [
     { title: "Опубликованные", value: "public" },
@@ -22,6 +25,7 @@ const sortPlatforms = [
 ];
 
 const PlatformsAdmin = () => {
+    const searchParams = useSearchParams();
     const [searchPlatform, setSearchPlatform] = useState<string>("");
 
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {
@@ -30,8 +34,9 @@ const PlatformsAdmin = () => {
     const handleScroll = () => {
         readMore();
     };
+    const sortFromQuery = searchParams.get("sort") || "save";
 
-    const [sort, setSort] = useState<string>("save");
+    const [sort, setSort] = useState<string>(sortFromQuery);
     const handleChangeSortPlatform = (title: string) => {
         if (title === "Опубликованные") {
             refresh();
@@ -69,11 +74,10 @@ const PlatformsAdmin = () => {
                     <Text type="med20" color="dark">
                         Работа с платформами
                     </Text>
-                    <button className={css.addPlatformBtn} onClick={handleRouter}>
-                        <Text type="reg16" color="white">
-                            + Создать платформу
-                        </Text>
-                    </button>
+                    <ButtonSmallPrimary active={true} type={"button"} onClick={handleRouter}>
+                        {plusSvgSecondary}
+                        Создать платформу
+                    </ButtonSmallPrimary>
                 </div>
                 <div className={css.groupSearch}>
                     <Image

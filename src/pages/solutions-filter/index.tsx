@@ -14,12 +14,15 @@ import Image from "next/image";
 import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/FieldOptions/FieldOptions";
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
 import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
-import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
+import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import { SolutionCard } from "@/src/components/entities/platforms/rightBlock/SolutionCard/SolutionCard";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
+import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
+import FilterSkeleton from "@/src/components/shared/tabs/filterSkeleton/FilterSkeleton";
 const SolutionsFilters = () => {
     const router = useRouter();
     const handleClick = (ids: number) => {
@@ -30,6 +33,7 @@ const SolutionsFilters = () => {
     const ids = filter.filter((item) => item.id >= 1).map((item) => item.id);
     const minPrice = useAppSelector((state) => state.reducerFilters.min_price);
     const maxPrice = useAppSelector((state) => state.reducerFilters.max_price);
+    const skeletons = [...new Array(6)];
 
     const [search, setSearch] = useState("");
     const [sortAbc, setSortAbc] = useState("");
@@ -78,7 +82,7 @@ const SolutionsFilters = () => {
                         <div className={css.leftBlock}>
                             {isLoadingFilters ? (
                                 <div className={css.loaderFilter}>
-                                    <Loader isLoading={isLoadingFilters} />
+                                    <FilterSkeleton count={4} type="listFilter" />
                                 </div>
                             ) : (
                                 <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />
@@ -113,7 +117,9 @@ const SolutionsFilters = () => {
                             <AlphabeticalSorting onClick={() => refresh()} />
                             {isLoading ? (
                                 <div className={css.loaderSolutions}>
-                                    <Loader isLoading={isLoading} />
+                                    {skeletons.map((_, index) => (
+                                        <CardSkeleton type={"filter"} key={index} />
+                                    ))}
                                 </div>
                             ) : (
                                 <ul className={css.listSolutions}>
@@ -149,6 +155,7 @@ const SolutionsFilters = () => {
                     <ButtonScrollToUp />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

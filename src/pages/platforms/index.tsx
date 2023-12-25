@@ -7,9 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "@/src/pages/platforms/platforms.module.css";
 import { Button } from "@/src/components/shared/buttons/Button";
-import { useModal } from "@/src/hooks/useModal";
-import Modal from "@/src/components/shared/modal/Modal";
-import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import {
     useGetFavoritePlatformsQuery,
     useGetListPlatformsQuery,
@@ -24,12 +21,13 @@ import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { useRouter } from "next/router";
 import CardPlatform from "@/src/components/shared/tabs/cardPlatform/CardPlatform";
 import Cookies from "js-cookie";
-import PhoneSavedPopup from "@/src/components/shared/popups/PhoneSavedPopup";
 import { UseQuery } from "@reduxjs/toolkit/dist/query/react/buildHooks";
+import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
 
 const Platforms = () => {
     const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const skeletons = [...new Array(6)];
 
     const handleClick = (idp: number) => {
         router.push(`/platforms/platform/${idp}`);
@@ -47,7 +45,7 @@ const Platforms = () => {
         refetchOnMountOrArgChange: true,
         refetchOnFocus: true,
     });
-
+    console.log(combinedData);
     const handleScroll = () => {
         // readMore();
     };
@@ -79,51 +77,58 @@ const Platforms = () => {
                     <div className={styles.mainWrap}>
                         {isLoading ? (
                             <div className={styles.loaderPlatforms}>
-                                <Loader isLoading={isLoading} />
+                                {skeletons.map((_, index) => (
+                                    <CardSkeleton type={"list"} key={index} />
+                                ))}
+                                {/* <Loader isLoading={isLoading} /> */}
                             </div>
                         ) : (
                             <ul className={styles.platforms}>
                                 {combinedData
-                                    ? combinedData.results.map((item: any) => (
-                                          <li
-                                              className={styles.click}
-                                              key={item.id}
-                                              onClick={() => {
-                                                  if (item.id) {
-                                                      handleClick(item.id);
-                                                  }
-                                              }}
-                                          >
-                                              <CardPlatform
-                                                  id={item.id}
-                                                  title={item.title}
-                                                  short_description={item.short_description}
-                                                  tags={item.tags}
-                                                  image={item.image}
-                                                  is_favorite={item.is_favorite}
-                                              />
-                                          </li>
-                                      ))
-                                    : data.results.map((item: any) => (
-                                          <li
-                                              className={styles.click}
-                                              key={item.id}
-                                              onClick={() => {
-                                                  if (item.id) {
-                                                      handleClick(item.id);
-                                                  }
-                                              }}
-                                          >
-                                              <CardPlatform
-                                                  id={item.id}
-                                                  title={item.title}
-                                                  short_description={item.short_description}
-                                                  tags={item.tags}
-                                                  image={item.image}
-                                                  is_favorite={item.is_favorite}
-                                              />
-                                          </li>
-                                      ))}
+                                    ? combinedData.results
+                                          .filter((item: any) => item.status === "public")
+                                          .map((item: any) => (
+                                              <li
+                                                  className={styles.click}
+                                                  key={item.id}
+                                                  onClick={() => {
+                                                      if (item.id) {
+                                                          handleClick(item.id);
+                                                      }
+                                                  }}
+                                              >
+                                                  <CardPlatform
+                                                      id={item.id}
+                                                      title={item.title}
+                                                      short_description={item.short_description}
+                                                      tags={item.tags}
+                                                      image={item.image}
+                                                      is_favorite={item.is_favorite}
+                                                  />
+                                              </li>
+                                          ))
+                                    : data.results
+                                          .filter((item: any) => item.status === "public")
+                                          .map((item: any) => (
+                                              <li
+                                                  className={styles.click}
+                                                  key={item.id}
+                                                  onClick={() => {
+                                                      if (item.id) {
+                                                          handleClick(item.id);
+                                                      }
+                                                  }}
+                                              >
+                                                  <CardPlatform
+                                                      id={item.id}
+                                                      title={item.title}
+                                                      short_description={item.short_description}
+                                                      tags={item.tags}
+                                                      image={item.image}
+                                                      is_favorite={item.is_favorite}
+                                                  />
+                                              </li>
+                                          ))}
                                 <div className={styles.loaderPlatforms}>
                                     <Loader isLoading={isFetching} />
                                 </div>

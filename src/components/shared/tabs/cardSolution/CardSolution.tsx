@@ -7,6 +7,10 @@ import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
 import Cookies from "js-cookie";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
+import ToolTip from "../../toolTip/ToolTip";
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const CardSolution: FC<PropsSolutionCard> = ({
     type,
@@ -78,16 +82,18 @@ const CardSolution: FC<PropsSolutionCard> = ({
                         <Title type="h5" color="dark">
                             {title}
                         </Title>
-                        <Image
-                            src={`/platforms/${imageHeart}.svg`}
-                            alt="heart"
-                            width={24}
-                            height={24}
-                            onClick={handleClickHeart}
-                            onMouseLeave={handleMouseLeave}
-                            onMouseEnter={handleMouseEnter}
-                            className={styles.heart}
-                        />
+                        <ToolTip text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
+                            <Image
+                                src={`/platforms/${imageHeart}.svg`}
+                                alt="heart"
+                                width={24}
+                                height={24}
+                                onClick={handleClickHeart}
+                                onMouseLeave={handleMouseLeave}
+                                onMouseEnter={handleMouseEnter}
+                                className={styles.heart}
+                            />
+                        </ToolTip>
                     </div>
                 </div>
                 <div className={styles.mid}>

@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 
 export interface PropsPlatformFilter {
+    id?: number;
     title: string;
     functionality: string;
     integration: string;
@@ -32,11 +33,14 @@ export interface PropsPlatformFilter {
 }
 
 export interface ITagM {
-    tag: string | undefined;
+    tag?: string | undefined;
+    title?: string | undefined;
     id?: number | undefined;
-    image_tag: string | undefined;
+    image: string | undefined;
     status: string | undefined;
     is_message: boolean | undefined;
+    properties: string | undefined;
+    filter_id?: number | undefined;
 }
 
 const AddPlatformFilter = () => {
@@ -74,8 +78,8 @@ const AddPlatformFilter = () => {
         setInputsTags(newInputs);
         const newTags = newInputs.map((tagName) => {
             return {
-                tag: tagName,
-                image_tag: "None",
+                properties: tagName,
+                image: "None",
                 status: "save",
                 is_message: false,
             };
@@ -105,8 +109,8 @@ const AddPlatformFilter = () => {
     const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
         const newTagsMessengers: (ITagM | undefined)[] | undefined = tagsM?.map((item) => {
             return {
-                tag: item?.tag,
-                image_tag: item?.image_tag,
+                properties: item?.properties,
+                image: item?.image,
                 status: "save",
                 is_message: true,
             };
@@ -124,7 +128,6 @@ const AddPlatformFilter = () => {
     };
 
     const handleSubmit = () => {
-        console.log(filter);
         addFilter({ filter, token });
     };
 
@@ -148,7 +151,6 @@ const AddPlatformFilter = () => {
         if (newTags) {
             setFilter((prev) => ({ ...prev, tags: newTags }));
         }
-        console.log("useEffect newTags concat");
     }, [tags, tagsMessengers]);
 
     return (
@@ -181,7 +183,6 @@ const AddPlatformFilter = () => {
                     />
                     <InputAddFilter
                         label="Название фильтра"
-                        // value={platform.title}
                         onChange={(e) => {
                             isValidFilter();
                             setFilter((prev) => ({ ...prev, title: e.target.value }));
@@ -191,7 +192,6 @@ const AddPlatformFilter = () => {
                     />
                     <SelectGroupIcon setImageName={handleSetImageName} />
                     <TextAreaAddFilter
-                        // value={platform.short_description}
                         onChange={(e) => {
                             isValidFilter();
                             setFilter((prev) => ({ ...prev, functionality: e.target.value }));
@@ -220,15 +220,14 @@ const AddPlatformFilter = () => {
                                     />
                                 </div>
                                 <InputAddFilter
-                                    // value={platform.title}
                                     onChange={(e) => {
                                         const newInputs = [...inputsTags];
                                         newInputs[index] = e.target.value;
                                         setInputsTags(newInputs);
                                         const newTags = newInputs.map((tagName) => {
                                             return {
-                                                tag: tagName,
-                                                image_tag: "None",
+                                                properties: tagName,
+                                                image: "None",
                                                 status: "save",
                                                 is_message: false,
                                             };
