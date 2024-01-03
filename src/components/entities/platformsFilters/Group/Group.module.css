@@ -82,3 +82,12 @@
 .restoreIcon:hover svg path {
     fill: var(--accent-color);
 }
+
+.loaderPlatforms {
+    display: flex;
+    position: relative;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}

@@ -13,6 +13,7 @@ import {
 } from "@/src/store/services/platforms";
 import { restoreFromArchive } from "../img/SvgConfig";
 import InputGroupEdit from "../InputGroupEdit/InputGroupEdit";
+import { LoaderSmall } from "@/src/components/shared/LoaderSmall/LoaderSmall";
 
 interface PropsFilterGroup {
     title?: string;
@@ -38,7 +39,7 @@ interface PropsFilterGroup {
 }
 
 const dropdownFilterPublic = [
-    { title: "Cнять с публикации", value: "deletePublic" },
+    { title: "Снять с публикации", value: "deletePublic" },
     { title: "Редактировать", value: "edit" },
     { title: "Удалить", value: "delete" },
 ];
@@ -129,9 +130,10 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
 
     const handleSubmitEditGroup = (inputValue: string | undefined) => {
         if (inputValue) {
-            editGroup({ id, token, title: inputValue }).then(refresh);
+            editGroup({ id, token, title: inputValue })
+                .then(refresh)
+                .then(() => setIsShownInput((prevState) => (prevState = false)));
         }
-        setIsShownInput((prevState) => (prevState = false));
     };
 
     return (
@@ -147,9 +149,15 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
                 onSubmit={handleSubmitEditGroup}
             />
             <div className={styles.groupItem}>
-                <Text type="sem16" color="black">
-                    {title}
-                </Text>
+                {editIsLoading ? (
+                    <div className={styles.loaderPlatforms}>
+                        <LoaderSmall isLoading={editIsLoading} />
+                    </div>
+                ) : (
+                    <Text type="sem16" color="black">
+                        {title}
+                    </Text>
+                )}
                 {sort === "archive" ? (
                     <div
                         className={styles.restoreIcon}
