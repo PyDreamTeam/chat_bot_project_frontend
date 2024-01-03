@@ -40,6 +40,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
     const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutPlatformFilterMutation();
 
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
+    console.log(dataGroups?.results);
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
 
     const [selectedGroup, setSelectedGroup] = useState(filterGroup?.title);
