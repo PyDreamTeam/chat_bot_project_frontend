@@ -34,7 +34,6 @@ const InputGroup: FC<PropsInputGroup> = ({
         >
             <input
                 ref={inputRef}
-                defaultValue={value}
                 onChange={(e) => setInputValue(e.target.value)}
                 onBlur={onBlur}
                 className={`${styles.inputGroup}
@@ -60,6 +59,7 @@ const InputGroup: FC<PropsInputGroup> = ({
                     type={"button"}
                     onClick={() => {
                         if (onSubmit) onSubmit(inputValue);
+                        inputRef.current.value = "";
                     }}
                 >
                     Добавить
