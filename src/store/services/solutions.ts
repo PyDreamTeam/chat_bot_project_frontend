@@ -26,6 +26,16 @@ export const solutions = createApi({
                 body: arg,
             }),
         }),
+        getFilteredFavoriteSolutions: builder.query({
+            query: ({ arg, token }) => ({
+                url: "/api/solution/filtration/",
+                method: "POST",
+                body: arg,
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         getListSolutions: builder.query({
             query: () => ({
                 url: "/api/solution/solutions/",
@@ -109,6 +119,7 @@ export const solutions = createApi({
 export const {
     useGetListSolutionsQuery,
     useGetSolutionsQuery,
+    useGetFilteredFavoriteSolutionsQuery,
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
     useGetFavoriteSolutionsQuery,

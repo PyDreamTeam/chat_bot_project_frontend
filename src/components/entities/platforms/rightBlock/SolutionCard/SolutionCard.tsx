@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import css from "./solutionCard.module.css";
 import { PropsSolutionCard } from "../../types";
 import Title from "@/src/components/shared/text/Title";
@@ -16,6 +16,7 @@ export const SolutionCard: FC<PropsSolutionCard> = ({
     price,
     forceUpdate,
     id,
+    is_favorite,
 }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
@@ -43,6 +44,14 @@ export const SolutionCard: FC<PropsSolutionCard> = ({
             setImageHeart("dislike");
         }
     };
+
+    useEffect(() => {
+        if (is_favorite) {
+            setImageHeart("like");
+        } else {
+            setImageHeart("dislike");
+        }
+    }, []);
 
     return (
         <div className={css.onePlatform}>
