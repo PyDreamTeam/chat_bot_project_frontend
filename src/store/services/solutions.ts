@@ -99,6 +99,12 @@ export const solutions = createApi({
                 },
             }),
         }),
+        getSolutionFilterGroups: builder.query({
+            query: () => ({
+                url: "/api/solution/groups/",
+                method: "GET",
+            }),
+        }),
         createSolutionFilterGroup: builder.mutation({
             query: ({token, title }) => ({
                 url: "/api/solution/groups/",
@@ -129,5 +135,6 @@ export const {
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
+    useGetSolutionFilterGroupsQuery,
     useCreateSolutionFilterGroupMutation,
 } = solutions;
