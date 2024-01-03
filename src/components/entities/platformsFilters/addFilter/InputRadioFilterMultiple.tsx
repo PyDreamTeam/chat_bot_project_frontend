@@ -3,14 +3,21 @@ import css from "./style.module.css";
 import Text from "@/src/components/shared/text/Text";
 
 interface PropsTextAreaAddFilter {
+    defaultValue?: string;
     className?: string;
     value?: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     label?: string;
 }
 
-export const InputRadioFilterMultiple: FC<PropsTextAreaAddFilter> = ({ onChange, className, label, value }) => {
-    const [multiple, setMultiple] = useState("multiple");
+export const InputRadioFilterMultiple: FC<PropsTextAreaAddFilter> = ({
+    onChange,
+    className,
+    label,
+    value,
+    defaultValue,
+}) => {
+    const [multiple, setMultiple] = useState(defaultValue);
 
     const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMultiple(e.target.value);
@@ -31,6 +38,7 @@ export const InputRadioFilterMultiple: FC<PropsTextAreaAddFilter> = ({ onChange,
                         onChange(e);
                     }}
                     value="single"
+                    defaultChecked={multiple === "single" ? true : false}
                 />
                 <Text type="reg18" color="dark" className={multiple === "multiple" ? css.textGrey : css.text}>
                     Одиночный
@@ -46,7 +54,7 @@ export const InputRadioFilterMultiple: FC<PropsTextAreaAddFilter> = ({ onChange,
                         onChange(e);
                     }}
                     value="multiple"
-                    defaultChecked={true}
+                    defaultChecked={multiple != "single" ? true : false}
                 />
                 <Text type="reg18" color="dark" className={multiple === "single" ? css.textGrey : css.text}>
                     Множественный
