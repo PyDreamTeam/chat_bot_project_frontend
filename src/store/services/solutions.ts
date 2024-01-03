@@ -26,6 +26,16 @@ export const solutions = createApi({
                 body: arg,
             }),
         }),
+        getFilteredFavoriteSolutions: builder.query({
+            query: ({ arg, token }) => ({
+                url: "/api/solution/filtration/",
+                method: "POST",
+                body: arg,
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         getListSolutions: builder.query({
             query: () => ({
                 url: "/api/solution/solutions/",
@@ -89,6 +99,12 @@ export const solutions = createApi({
                 },
             }),
         }),
+        getSolutionFilterGroups: builder.query({
+            query: () => ({
+                url: "/api/solution/groups/",
+                method: "GET",
+            }),
+        }),
         createSolutionFilterGroup: builder.mutation({
             query: ({token, title }) => ({
                 url: "/api/solution/groups/",
@@ -109,6 +125,7 @@ export const solutions = createApi({
 export const {
     useGetListSolutionsQuery,
     useGetSolutionsQuery,
+    useGetFilteredFavoriteSolutionsQuery,
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
     useGetFavoriteSolutionsQuery,
@@ -118,5 +135,6 @@ export const {
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
+    useGetSolutionFilterGroupsQuery,
     useCreateSolutionFilterGroupMutation,
 } = solutions;

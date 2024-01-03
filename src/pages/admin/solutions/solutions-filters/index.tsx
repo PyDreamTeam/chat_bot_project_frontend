@@ -13,8 +13,8 @@ import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/I
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
-import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
-import SearchFiltersList from "@/src/components/entities/platformsFilters/SearchFiltersList/SearchFiltersList";
+import FiltersList from "@/src/components/entities/solutionsFilters/FiltersList/FiltersList";
+import SearchFiltersList from "@/src/components/entities/solutionsFilters/SearchFiltersList/SearchFiltersList";
 import InputGroup from "@/src/components/entities/platformsFilters/InputGroup/InputGroup";
 import Cookies from "js-cookie";
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
@@ -38,6 +38,7 @@ const SolutionsFilters = () => {
     //     }
     // );
 
+    // TODO: solutions filters search
     const {
         data: searchData,
         isLoading: searchIsLoading,
@@ -192,7 +193,7 @@ const SolutionsFilters = () => {
                             </div>
                         ) : (
                             <div>
-                                <Text type="reg24" color="dark">
+                                <Text type="reg24" color="red" className={css.devText}>
                                     🔨 Страница находится в разработке! 🔧
                                 </Text>
                                 {searchFilter ? (
@@ -207,10 +208,7 @@ const SolutionsFilters = () => {
                                 ) : (
                                     <div>
                                         {/* TODO: Solutions FiltersList */}
-                                        {tagsData.results.map((item: any) => (
-                                            <li key={item.id}>{item.group}</li>
-                                        ))}
-                                        {/* <FiltersList tagsData={tagsData.results} sort={sort} refresh={refetch} /> */}
+                                        <FiltersList tagsData={tagsData.results} sort={sort} refresh={refetch} />
                                     </div>
                                 )}
                             </div>

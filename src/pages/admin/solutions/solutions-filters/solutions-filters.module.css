@@ -11,6 +11,10 @@
     color: var(--text-color-3);
 }
 
+.devText {
+    padding: 32px;
+}
+
 .workFilters {
     margin-top: 32px;
     margin-bottom: 24px;

@@ -1,0 +1,84 @@
+.groupContainer {
+    position: relative;
+    /* box-sizing: border-box;
+    max-width: 1060px; */
+}
+.groupItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid var(--sub-color);
+}
+
+.workPlatform {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}
+
+.listFunctions {
+    position: absolute;
+    width: 178px;
+    right: 0;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.function {
+    padding: 16px;
+}
+
+.function:first-child {
+    border-bottom: 1px solid #E1E2E6;
+}
+.function:nth-child(2) {
+    border-bottom: 1px solid #E1E2E6;
+}
+.function:nth-child(3) {
+    border-bottom: 1px solid #E1E2E6;
+}
+.function:active {
+    background-color: #E2ECFF;
+}
+.function:first-child:active {
+    border-radius: 10px 10px 0 0;
+}
+.function:nth-child(4) {
+    border-radius: 0 0 10px 10px;
+}
+
+.titleText:hover {
+    color: #4466F5;
+}
+
+.titleText:active {
+    color: #17181A;
+}
+
+.titleTextDelete {
+    color: #F53527;
+}
+
+.restoreIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid var(--back-color);
+    border-radius: 15px;
+
+}
+.restoreIcon:hover {
+    background-color: var(--accent-color-3);
+}
+
+.restoreIcon:hover svg path {
+    fill: var(--accent-color);
+}

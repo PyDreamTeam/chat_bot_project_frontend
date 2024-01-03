@@ -1,0 +1,12 @@
+.filtersListWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.noResultsImg {
+    margin-top: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
