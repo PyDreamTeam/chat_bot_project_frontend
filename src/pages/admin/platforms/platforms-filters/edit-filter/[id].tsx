@@ -78,7 +78,6 @@ const EditPlatformFilter: FC<pageProps> = () => {
     const handleSetImageName = (imageName: string) => {
         setFilter((prev) => ({ ...prev, image: imageName }));
         isValidFilter();
-        console.log(filter);
     };
 
     const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
@@ -117,14 +116,12 @@ const EditPlatformFilter: FC<pageProps> = () => {
     };
 
     const handleSubmit = () => {
-        console.log(filter);
         putFilter({ filter, token, id })
             .then(refetch)
             .then(() => router.push("/admin/platforms/platforms-filters/"));
     };
 
     useEffect(() => {
-        console.log("useEffect setFilter");
         if (filterIsSuccess) {
             setFilter((prev) => ({
                 ...prev,
@@ -202,6 +199,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                 setMessengers={handleSetMessengers}
                             />
                             <InputRadioFilterMultiple
+                                defaultValue={filterData.multiple ? "multiple" : "single"}
                                 className={css.multipleSelection}
                                 label="Выбор параметров"
                                 onChange={handleRadioMultiple}

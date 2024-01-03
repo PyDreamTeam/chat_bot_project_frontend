@@ -9,11 +9,13 @@
 .filter {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 11px;
     margin-top: 20px;
 }
 
 .blockInfo {
+    min-width: 56px;
     display: flex;
     align-items: center;
     column-gap: 12px;

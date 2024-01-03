@@ -185,7 +185,7 @@ export const PLATFORM_FILTERS_GROUPS_ICONS = [
                 />
             </svg>
         ),
-        title: "bxs-widget",
+        title: "bxs_widget",
     },
     {
         id: 12,

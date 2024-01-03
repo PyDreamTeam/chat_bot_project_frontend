@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -107,6 +107,10 @@ const SolutionsFilters = () => {
         refetchSearch();
         refetch();
     };
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     return (
         <WrapperAdminPage>
