@@ -173,6 +173,7 @@ const PlatformsFilters = () => {
                                                           image={item.image}
                                                           type="filter"
                                                           is_favorite={item.is_favorite}
+                                                          forceUpdate={refetch}
                                                       />
                                                   </li>
                                               ))
