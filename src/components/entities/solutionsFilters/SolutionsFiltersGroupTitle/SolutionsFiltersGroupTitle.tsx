@@ -1,18 +1,18 @@
 import React, { FC, useEffect, KeyboardEvent, useState } from "react";
-import styles from "./Group.module.css";
+import styles from "./SolutionsFiltersGroupTitle.module.css";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
-import {
-    useEditPlatformFilterGroupMutation,
-    usePlatformFilterGroupPublicMutation,
-    usePlatformFilterGroupSaveMutation,
-    usePlatformFilterPublicMutation,
-    usePlatformFilterSaveMutation,
-} from "@/src/store/services/platforms";
 import { restoreFromArchive } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import InputGroupEdit from "@/src/components/entities/platformsFilters/InputGroupEdit/InputGroupEdit";
+import {
+    useEditSolutionFilterGroupMutation,
+    usePublicSolutionFilterGroupMutation,
+    usePublicSolutionFilterMutation,
+    useSaveSolutionFilterGroupMutation,
+    useSaveSolutionFilterMutation,
+} from "@/src/store/services/solutions";
 
 interface PropsFilterGroup {
     title?: string;
@@ -49,23 +49,33 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRestore, refresh }) => {
+const SolutionsFiltersGroupTitle: FC<PropsFilterGroup> = ({
+    title,
+    id,
+    sort,
+    filters,
+    onDelete,
+    onRestore,
+    refresh,
+}) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
-        usePlatformFilterGroupPublicMutation();
+        usePublicSolutionFilterGroupMutation();
+    // TODO: SOLUTION MUTATIONS
     const [publicFilter, { isSuccess: publicFilterIsSuccess, isLoading: publicFilterIsLoading }] =
-        usePlatformFilterPublicMutation();
+        usePublicSolutionFilterMutation();
     const [
         moveToSaveGroup,
         { isSuccess: restoreGroupIsSuccess, error: restoreGroupError, isLoading: restoreGroupIsLoading },
-    ] = usePlatformFilterGroupSaveMutation();
+    ] = useSaveSolutionFilterGroupMutation();
     const [editGroup, { isSuccess: editIsSuccess, error: editError, isLoading: editIsLoading }] =
-        useEditPlatformFilterGroupMutation();
+        useEditSolutionFilterGroupMutation();
+    // TODO: SOLUTION MUTATIONS
     const [
         moveToSaveFilter,
         { isSuccess: restoreFilterIsSuccess, error: restoreFilterError, isLoading: restoreFilterIsLoading },
-    ] = usePlatformFilterSaveMutation();
+    ] = useSaveSolutionFilterMutation();
 
     const [stateIcon, setStateIcon] = useState<string>("workPlatform");
     const handleMouseEnter = () => {
@@ -198,4 +208,4 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
     );
 };
 
-export default Group;
+export default SolutionsFiltersGroupTitle;
