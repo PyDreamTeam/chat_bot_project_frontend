@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
-import styles from "./FiltersList.module.css";
-import FiltersGroup from "../FiltersGroup/FiltersGroup";
+import styles from "./SolutionsFiltersList.module.css";
+import FiltersGroup from "../SolutionsFiltersGroup/SolutionsFiltersGroup";
 import uuid from "uuid-random";
-import Filter from "../Filter/Filter";
+import Filter from "../SolutionsFilter/SolutionsFilter";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 
@@ -32,7 +32,7 @@ interface PropsTest {
     refresh?: () => void;
 }
 
-const FiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
+const SolutionsFiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
     return (
         <div className={styles.filtersListWrapper}>
             <ul>
@@ -118,4 +118,4 @@ const FiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
     );
 };
 
-export default FiltersList;
+export default SolutionsFiltersList;

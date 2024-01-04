@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import styles from "./Filter.module.css";
+import styles from "./SolutionsFilter.module.css";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -37,7 +37,7 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDelete, refresh }) => {
+const SolutionsFilter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDelete, refresh }) => {
     const { isShown: isShownDeleteFilter, toggle: toggleDeleteFilter } = useModal();
 
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
@@ -174,4 +174,4 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
     );
 };
 
-export default Filter;
+export default SolutionsFilter;

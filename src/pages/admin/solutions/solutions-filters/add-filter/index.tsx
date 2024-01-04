@@ -153,7 +153,6 @@ const AddSolutionFilter = () => {
         if (newTags) {
             setFilter((prev) => ({ ...prev, tags: newTags }));
         }
-        console.log("useEffect newTags concat");
     }, [tags, tagsMessengers]);
 
     return (

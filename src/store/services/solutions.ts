@@ -119,6 +119,99 @@ export const solutions = createApi({
                 }
             })
         }),
+        editSolutionFilterGroup: builder.mutation({
+            query: ({id, token, title }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title
+                }
+            })
+        }),
+        publicSolutionFilterGroup: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public"
+                }
+            })
+        }),
+        saveSolutionFilterGroup: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save"
+                }
+            })
+        }),
+        archiveSolutionFilterGroup: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save"
+                }
+            })
+        }),
+        searchSolutionsFilters: builder.query({
+            query: (arg: {
+                title?: string;
+            }) => ({
+                url: "/api/solution/filters-search/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
+        publicSolutionFilter: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public"
+                }
+            })
+        }),
+        saveSolutionFilter: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save"
+                }
+            })
+        }),
+        archiveSolutionFilter: builder.mutation({
+            query: ({id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "archive"
+                }
+            })
+        }),
     }),
 });
 
@@ -137,4 +230,12 @@ export const {
     useGetSolutionStepsQuery,
     useGetSolutionFilterGroupsQuery,
     useCreateSolutionFilterGroupMutation,
+    useEditSolutionFilterGroupMutation,
+    usePublicSolutionFilterGroupMutation,
+    useSaveSolutionFilterGroupMutation,
+    useArchiveSolutionFilterGroupMutation,
+    useSearchSolutionsFiltersQuery,
+    usePublicSolutionFilterMutation,
+    useSaveSolutionFilterMutation,
+    useArchiveSolutionFilterMutation,
 } = solutions;

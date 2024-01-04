@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import Text from "@/src/components/shared/text/Text";
-import styles from "./SearchFiltersList.module.css";
-import Group from "../Group/Group";
-import Filter from "../Filter/Filter";
+import styles from "./SearchSolutionsFiltersList.module.css";
+import Group from "../SolutionsFiltersGroupTitle/SolutionsFiltersGroupTitle";
+import Filter from "../SolutionsFilter/SolutionsFilter";
 import uuid from "uuid-random";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
@@ -61,7 +61,7 @@ interface PropsSearchFiltersList {
     refresh?: () => void;
 }
 
-const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, sort, refresh }) => {
+const SearchSolutionsFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, sort, refresh }) => {
     const { isShown, toggle } = useModal();
     const { isShown: isShownGroup, toggle: toggleGroup } = useModal();
     const { isShown: isShownRestoreGroup, toggle: toggleRestoreGroup } = useModal();
@@ -161,4 +161,4 @@ const SearchFiltersList: FC<PropsSearchFiltersList> = ({ searchData, tagsData, s
     );
 };
 
-export default SearchFiltersList;
+export default SearchSolutionsFiltersList;
