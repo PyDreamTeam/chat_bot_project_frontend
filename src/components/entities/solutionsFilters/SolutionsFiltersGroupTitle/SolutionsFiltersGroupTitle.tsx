@@ -13,6 +13,7 @@ import {
     useSaveSolutionFilterGroupMutation,
     useSaveSolutionFilterMutation,
 } from "@/src/store/services/solutions";
+import { LoaderSmall } from "@/src/components/shared/LoaderSmall/LoaderSmall";
 
 interface PropsFilterGroup {
     title?: string;
@@ -62,7 +63,6 @@ const SolutionsFiltersGroupTitle: FC<PropsFilterGroup> = ({
     const router = useRouter();
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
         usePublicSolutionFilterGroupMutation();
-    // TODO: SOLUTION MUTATIONS
     const [publicFilter, { isSuccess: publicFilterIsSuccess, isLoading: publicFilterIsLoading }] =
         usePublicSolutionFilterMutation();
     const [
@@ -71,7 +71,6 @@ const SolutionsFiltersGroupTitle: FC<PropsFilterGroup> = ({
     ] = useSaveSolutionFilterGroupMutation();
     const [editGroup, { isSuccess: editIsSuccess, error: editError, isLoading: editIsLoading }] =
         useEditSolutionFilterGroupMutation();
-    // TODO: SOLUTION MUTATIONS
     const [
         moveToSaveFilter,
         { isSuccess: restoreFilterIsSuccess, error: restoreFilterError, isLoading: restoreFilterIsLoading },
@@ -139,9 +138,10 @@ const SolutionsFiltersGroupTitle: FC<PropsFilterGroup> = ({
 
     const handleSubmitEditGroup = (inputValue: string | undefined) => {
         if (inputValue) {
-            editGroup({ id, token, title: inputValue }).then(refresh);
+            editGroup({ id, token, title: inputValue })
+                .then(refresh)
+                .then(() => setIsShownInput((prevState) => (prevState = false)));
         }
-        setIsShownInput((prevState) => (prevState = false));
     };
 
     return (
@@ -157,9 +157,15 @@ const SolutionsFiltersGroupTitle: FC<PropsFilterGroup> = ({
                 onSubmit={handleSubmitEditGroup}
             />
             <div className={styles.groupItem}>
-                <Text type="sem16" color="black">
-                    {title}
-                </Text>
+                {editIsLoading ? (
+                    <div className={styles.loaderPlatforms}>
+                        <LoaderSmall isLoading={editIsLoading} />
+                    </div>
+                ) : (
+                    <Text type="sem16" color="black">
+                        {title}
+                    </Text>
+                )}
                 {sort === "archive" ? (
                     <div
                         className={styles.restoreIcon}

@@ -2,12 +2,12 @@ import { FC, useEffect, useRef } from "react";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import styles from "./DeleteFilterPopup.module.css";
+import styles from "./styles.module.css";
 import Cookies from "js-cookie";
 import { ButtonNegative } from "@/src/components/shared/buttons/ButtonNegative";
 import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
 import { Loader } from "@/src/components/shared/Loader/Loader";
-import { useDeletePlatformFilterMutation, usePlatformFilterArchiveMutation } from "@/src/store/services/platforms";
+import { useArchiveSolutionFilterMutation, useDeleteSolutionFilterMutation } from "@/src/store/services/solutions";
 
 interface IPropsPopup {
     type: "archive" | "delete";
@@ -19,13 +19,21 @@ interface IPropsPopup {
     filterGroupId?: number;
 }
 
-const DeleteFilterPopup: FC<IPropsPopup> = ({ type, close, open, refresh, filterId, filterTitle, filterGroupId }) => {
+const DeleteSolutionsFilterPopup: FC<IPropsPopup> = ({
+    type,
+    close,
+    open,
+    refresh,
+    filterId,
+    filterTitle,
+    filterGroupId,
+}) => {
     const [
         archiveFilter,
         { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
-    ] = usePlatformFilterArchiveMutation();
+    ] = useArchiveSolutionFilterMutation();
     const [deleteFilter, { isSuccess: deleteIsSuccess, error: deleteError, isLoading: deleteIsLoading }] =
-        useDeletePlatformFilterMutation();
+        useDeleteSolutionFilterMutation();
     const id = filterId;
     const groupId = filterGroupId;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
@@ -97,4 +105,4 @@ const DeleteFilterPopup: FC<IPropsPopup> = ({ type, close, open, refresh, filter
     );
 };
 
-export default DeleteFilterPopup;
+export default DeleteSolutionsFilterPopup;

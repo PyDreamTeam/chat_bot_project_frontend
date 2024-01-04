@@ -19,7 +19,7 @@ import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFil
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import { useRouter } from "next/router";
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
-import { useGetSolutionFilterGroupsQuery } from "@/src/store/services/solutions";
+import { useCreateSolutionFilterMutation, useGetSolutionFilterGroupsQuery } from "@/src/store/services/solutions";
 
 export interface PropsPlatformFilter {
     title: string;
@@ -47,7 +47,8 @@ const AddSolutionFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     // TODO: addSolutionFilter
-    const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useAddPlatformFilterMutation();
+    // useCreateSolutionFilterMutation
+    const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useCreateSolutionFilterMutation();
 
     const [isValid, setIsValid] = useState<boolean>(false);
 
@@ -110,7 +111,7 @@ const AddSolutionFilter = () => {
     const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
         const newTagsMessengers: (ITagM | undefined)[] | undefined = tagsM?.map((item) => {
             return {
-                properties: item?.tag,
+                properties: item?.properties,
                 image: item?.image,
                 status: "save",
                 is_message: true,

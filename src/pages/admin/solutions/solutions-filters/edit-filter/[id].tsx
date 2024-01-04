@@ -21,23 +21,36 @@ import { TextAreaAddFilter } from "@/src/components/entities/platformsFilters/ad
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
 import { MultipleTagsInput } from "@/src/components/entities/platformsFilters/addFilter/MultipleTagsInput";
+import { useGetSolutionFilterQuery, usePutSolutionFilterMutation } from "@/src/store/services/solutions";
 
 interface pageProps {
     params: { id: string };
 }
 
-const EditPlatformFilter: FC<pageProps> = () => {
+const EditSolutionFilter: FC<pageProps> = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const filterId: string = router.query.id as string;
     const id = filterId;
+    // TODO: delete platform filter data
     const {
         data: filterData,
         isLoading: filterIsLoading,
         isSuccess: filterIsSuccess,
         refetch,
     } = useGetPlatformFilterQuery({ id }, { refetchOnMountOrArgChange: true });
-    const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutPlatformFilterMutation();
+
+    const {
+        data: solutionFilterData,
+        isLoading: solutionFilterIsLoading,
+        isSuccess: solutionFilterIsSuccess,
+        refetch: solutionFilterRefetch,
+    } = useGetSolutionFilterQuery({ id }, { refetchOnMountOrArgChange: true });
+
+    console.log(filterData);
+    console.log(solutionFilterData);
+
+    const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutSolutionFilterMutation();
 
     const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
@@ -78,7 +91,6 @@ const EditPlatformFilter: FC<pageProps> = () => {
     const handleSetImageName = (imageName: string) => {
         setFilter((prev) => ({ ...prev, image: imageName }));
         isValidFilter();
-        console.log(filter);
     };
 
     const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
@@ -147,12 +159,12 @@ const EditPlatformFilter: FC<pageProps> = () => {
                             Главная
                         </Text>
                     </Link>
-                    <Link href={"/admin/platforms"}>
+                    <Link href={"/admin/solutions"}>
                         <Text type="reg16" color="telegray">
-                            /Платформы
+                            /Решения
                         </Text>
                     </Link>
-                    <Link href={"/admin/platforms/platforms-filters"}>
+                    <Link href={"/admin/solutions/solutions-filters"}>
                         <Text type="reg16" color="telegray">
                             /Фильтры
                         </Text>
@@ -229,4 +241,4 @@ const EditPlatformFilter: FC<pageProps> = () => {
     );
 };
 
-export default EditPlatformFilter;
+export default EditSolutionFilter;

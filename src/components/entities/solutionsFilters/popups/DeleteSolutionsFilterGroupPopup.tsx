@@ -2,11 +2,14 @@ import { FC, useEffect, useRef } from "react";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import styles from "./DeleteFilterPopup.module.css";
+import styles from "./styles.module.css";
 import Cookies from "js-cookie";
+import { ButtonNegative } from "@/src/components/shared/buttons/ButtonNegative";
 import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
-import { Button } from "@/src/components/shared/buttons/Button";
-import { usePlatformFilterGroupSaveMutation, usePlatformFilterSaveMutation } from "@/src/store/services/platforms";
+import {
+    useArchiveSolutionFilterGroupMutation,
+    useArchiveSolutionFilterMutation,
+} from "@/src/store/services/solutions";
 
 interface IPropsPopup {
     open?: () => void;
@@ -30,15 +33,20 @@ interface IPropsPopup {
     }[];
 }
 
-const RestoreFilterGroupPopup: FC<IPropsPopup> = ({ close, refresh, filterGroupId, filterGroupTitle, filters }) => {
+const DeleteSolutionsFilterGroupPopup: FC<IPropsPopup> = ({
+    close,
+    open,
+    refresh,
+    filterGroupId,
+    filterGroupTitle,
+    filters,
+}) => {
+    const [archiveGroup, { isSuccess: isSuccessArchive, error: errorArchive, isLoading: isLoadingArchive }] =
+        useArchiveSolutionFilterGroupMutation();
     const [
-        moveToSaveGroup,
-        { isSuccess: restoreGroupIsSuccess, error: restoreGroupError, isLoading: restoreGroupIsLoading },
-    ] = usePlatformFilterGroupSaveMutation();
-    const [
-        moveToSaveFilter,
-        { isSuccess: restoreFilterIsSuccess, error: restoreFilterError, isLoading: restoreFilterIsLoading },
-    ] = usePlatformFilterSaveMutation();
+        archiveFilter,
+        { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
+    ] = useArchiveSolutionFilterMutation();
 
     const id = filterGroupId;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
@@ -58,39 +66,39 @@ const RestoreFilterGroupPopup: FC<IPropsPopup> = ({ close, refresh, filterGroupI
                 onClick={close}
                 className={styles.imgClose}
             />
-            <Image src="/img/Restore.svg" alt="imgRestore" width={56} height={56} />
+            <Image src="/img/Delete.svg" alt="imgSuccess" width={56} height={56} />
             <div className={styles.textBlock}>
                 <Title type="h5" color="black">
-                    Восстановить группу фильтров?
+                    Удалить группу фильтров
                 </Title>
                 <Text type="reg16" color="grey">
-                    {`При восстановлении, группа фильтров "${filterGroupTitle}" будет добавлена в группу "Созданные"`}
+                    {`Вы действительно хотите удалить группу фильтров "${filterGroupTitle}"? После удаления группа фильтров перейдёт в архив`}
                 </Text>
             </div>
             <div className={styles.buttonsContainer}>
                 <ButtonCancel type={"button"} active={true} onClick={close} width={240}>
                     Отмена
                 </ButtonCancel>
-                <Button
+                <ButtonNegative
                     type={"button"}
                     active={true}
                     onClick={() => {
                         if (filters?.length) {
                             filters.forEach((item) => {
-                                if (item.status === "archive") {
-                                    moveToSaveFilter({ id: item.id, token });
+                                if (item.status === "public" || item.status === "save") {
+                                    archiveFilter({ id: item.id, token });
                                 }
                             });
                         }
-                        moveToSaveGroup({ id, token }).then(close).then(refresh);
+                        archiveGroup({ id, token }).then(close).then(refresh);
                     }}
                     width={240}
                 >
-                    Восстановить
-                </Button>
+                    Удалить
+                </ButtonNegative>
             </div>
         </div>
     );
 };
 
-export default RestoreFilterGroupPopup;
+export default DeleteSolutionsFilterGroupPopup;
