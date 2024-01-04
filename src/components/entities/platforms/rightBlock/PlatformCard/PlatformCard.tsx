@@ -57,7 +57,6 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     };
 
     useEffect(() => {
-        console.log(is_favorite);
         if (isSuccess) {
             if (is_favorite) {
                 setImageHeart("like");

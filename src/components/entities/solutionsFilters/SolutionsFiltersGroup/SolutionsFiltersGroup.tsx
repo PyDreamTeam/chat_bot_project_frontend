@@ -5,9 +5,9 @@ import SolutionsFilter from "../SolutionsFilter/SolutionsFilter";
 import SolutionsFiltersGroupTitle from "../SolutionsFiltersGroupTitle/SolutionsFiltersGroupTitle";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
-import DeleteFilterPopup from "../popups/DeleteFilterPopup";
-import DeleteFilterGroupPopup from "../popups/DeleteFilterGroupPopup";
-import RestoreFilterGroupPopup from "../popups/RestoreFilterGroupPopup";
+import DeleteSolutionsFilterPopup from "../popups/DeleteSolutionsFilterPopup";
+import DeleteSolutionsFilterGroupPopup from "../popups/DeleteSolutionsFilterGroupPopup";
+import RestoreSolutionsFilterGroupPopup from "../popups/RestoreSolutionsFilterGroupPopup";
 interface PropsPlatformFilters {
     id?: number;
     status?: string;
@@ -34,7 +34,7 @@ interface PropsFiltersGroup {
     refresh?: () => void;
 }
 
-const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
+const SolutionsFiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
     const { isShown: isShownDeleteFilter, toggle: toggleDeleteFilter } = useModal();
     const { isShown: isShownDeleteGroup, toggle: toggleDeleteGroup } = useModal();
     const { isShown: isShownRestoreGroup, toggle: toggleRestoreGroup } = useModal();
@@ -88,7 +88,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
                     ))}
             </ul>
             <Modal isShown={isShownDeleteGroup} hide={toggleDeleteGroup}>
-                <DeleteFilterGroupPopup
+                <DeleteSolutionsFilterGroupPopup
                     close={toggleDeleteGroup}
                     filterGroupId={filterGroupId}
                     filterGroupTitle={filterGroupTitle}
@@ -97,7 +97,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
                 />
             </Modal>
             <Modal isShown={isShownDeleteFilter} hide={toggleDeleteFilter}>
-                <DeleteFilterPopup
+                <DeleteSolutionsFilterPopup
                     type="archive"
                     close={toggleDeleteFilter}
                     refresh={refresh}
@@ -107,7 +107,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
                 />
             </Modal>
             <Modal isShown={isShownRestoreGroup} hide={toggleRestoreGroup}>
-                <RestoreFilterGroupPopup
+                <RestoreSolutionsFilterGroupPopup
                     close={toggleRestoreGroup}
                     filterGroupId={filterGroupId}
                     filterGroupTitle={filterGroupTitle}
@@ -119,4 +119,4 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
     );
 };
 
-export default FiltersGroup;
+export default SolutionsFiltersGroup;

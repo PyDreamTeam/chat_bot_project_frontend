@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import styles from "./SolutionsFiltersList.module.css";
-import FiltersGroup from "../SolutionsFiltersGroup/SolutionsFiltersGroup";
+import SolutionsFiltersGroup from "../SolutionsFiltersGroup/SolutionsFiltersGroup";
 import uuid from "uuid-random";
-import Filter from "../SolutionsFilter/SolutionsFilter";
+import SolutionsFilter from "../SolutionsFilter/SolutionsFilter";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 
@@ -43,7 +43,7 @@ const SolutionsFiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
                               <li key={item.id}>
                                   {(item.filters.filter((f: any) => f.status === "save").length > 0 ||
                                       item.status === sort) && (
-                                      <FiltersGroup groupData={item} sort={sort} refresh={refresh} />
+                                      <SolutionsFiltersGroup groupData={item} sort={sort} refresh={refresh} />
                                   )}
                               </li>
                           ))
@@ -51,7 +51,7 @@ const SolutionsFiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
                           .filter((item: any) => item.status === sort)
                           .map((item: any) => (
                               <li key={item.id}>
-                                  <FiltersGroup groupData={item} sort={sort} refresh={refresh} />
+                                  <SolutionsFiltersGroup groupData={item} sort={sort} refresh={refresh} />
                               </li>
                           ))}
             </ul>
@@ -90,7 +90,7 @@ const SolutionsFiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
                                                 .filter((filter: any) => filter.status === "archive")
                                                 .map((item: any) => (
                                                     <li key={uuid()}>
-                                                        <Filter
+                                                        <SolutionsFilter
                                                             title={item.filter}
                                                             id={item.id}
                                                             sort={sort}

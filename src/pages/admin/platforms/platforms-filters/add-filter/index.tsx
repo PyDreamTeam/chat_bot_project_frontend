@@ -94,6 +94,7 @@ const AddPlatformFilter = () => {
     const handleSetImageName = (imageName: string) => {
         setFilter((prev) => ({ ...prev, image: imageName }));
         isValidFilter();
+        console.log(filter);
     };
 
     const handleRadioMultiple = (e: React.ChangeEvent<HTMLInputElement>) => {

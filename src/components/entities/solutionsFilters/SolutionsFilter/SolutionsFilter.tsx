@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
-import DeleteFilterPopup from "../popups/DeleteFilterPopup";
+import DeleteSolutionsFilterPopup from "../popups/DeleteSolutionsFilterPopup";
 import Text from "@/src/components/shared/text/Text";
 import {
     useDeletePlatformFilterMutation,
@@ -14,6 +14,11 @@ import {
     usePlatformFilterSaveMutation,
 } from "@/src/store/services/platforms";
 import { deleteFilterSvg, restoreFromArchive } from "@/src/components/entities/platformsFilters/img/SvgConfig";
+import {
+    usePublicSolutionFilterGroupMutation,
+    usePublicSolutionFilterMutation,
+    useSaveSolutionFilterMutation,
+} from "@/src/store/services/solutions";
 
 interface PropsFilter {
     title: string;
@@ -41,12 +46,12 @@ const SolutionsFilter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupI
     const { isShown: isShownDeleteFilter, toggle: toggleDeleteFilter } = useModal();
 
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
-        usePlatformFilterGroupPublicMutation();
-    const [publicFilter, { isSuccess, error, isLoading }] = usePlatformFilterPublicMutation();
+        usePublicSolutionFilterGroupMutation();
+    const [publicFilter, { isSuccess, error, isLoading }] = usePublicSolutionFilterMutation();
     const [moveToSaveFilter, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
-        usePlatformFilterSaveMutation();
-    const [deleteFilter, { isSuccess: deleteIsSuccess, error: deleteError, isLoading: deleteIsLoading }] =
-        useDeletePlatformFilterMutation();
+        useSaveSolutionFilterMutation();
+    // const [deleteFilter, { isSuccess: deleteIsSuccess, error: deleteError, isLoading: deleteIsLoading }] =
+    //     useDeletePlatformFilterMutation();
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
@@ -78,7 +83,7 @@ const SolutionsFilter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupI
             onDelete(id, title);
         }
         if (value === "edit") {
-            router.push(`/admin/platforms/platforms-filters/edit-filter/${id}`);
+            router.push(`/admin/solutions/solutions-filters/edit-filter/${id}`);
         }
         if (value === "deletePublic") {
             moveToSaveFilter({ id, token }).then(refresh);
@@ -161,7 +166,7 @@ const SolutionsFilter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupI
                 )}
             </div>
             <Modal isShown={isShownDeleteFilter} hide={toggleDeleteFilter}>
-                <DeleteFilterPopup
+                <DeleteSolutionsFilterPopup
                     type="delete"
                     close={toggleDeleteFilter}
                     refresh={refresh}

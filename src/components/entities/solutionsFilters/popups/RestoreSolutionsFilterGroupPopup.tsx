@@ -2,15 +2,11 @@ import { FC, useEffect, useRef } from "react";
 import Image from "next/image";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import styles from "./DeleteFilterPopup.module.css";
+import styles from "./styles.module.css";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
-import { ButtonNegative } from "@/src/components/shared/buttons/ButtonNegative";
 import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
-import {
-    usePlatformFilterArchiveMutation,
-    usePlatformFilterGroupArchiveMutation,
-} from "@/src/store/services/platforms";
+import { Button } from "@/src/components/shared/buttons/Button";
+import { useSaveSolutionFilterGroupMutation, useSaveSolutionFilterMutation } from "@/src/store/services/solutions";
 
 interface IPropsPopup {
     open?: () => void;
@@ -34,25 +30,25 @@ interface IPropsPopup {
     }[];
 }
 
-const DeleteFilterGroupPopup: FC<IPropsPopup> = ({
+const RestoreSolutionsFilterGroupPopup: FC<IPropsPopup> = ({
     close,
-    open,
     refresh,
     filterGroupId,
     filterGroupTitle,
     filters,
 }) => {
-    const [archiveGroup, { isSuccess: isSuccessArchive, error: errorArchive, isLoading: isLoadingArchive }] =
-        usePlatformFilterGroupArchiveMutation();
     const [
-        archiveFilter,
-        { isSuccess: isSuccessArchiveFilter, error: errorArchiveFilter, isLoading: isLoadingArchiveFilter },
-    ] = usePlatformFilterArchiveMutation();
+        moveToSaveGroup,
+        { isSuccess: restoreGroupIsSuccess, error: restoreGroupError, isLoading: restoreGroupIsLoading },
+    ] = useSaveSolutionFilterGroupMutation();
+    const [
+        moveToSaveFilter,
+        { isSuccess: restoreFilterIsSuccess, error: restoreFilterError, isLoading: restoreFilterIsLoading },
+    ] = useSaveSolutionFilterMutation();
 
     const id = filterGroupId;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const router = useRouter();
 
     useEffect(() => {
         return () => clearTimeout(timerRef.current as NodeJS.Timeout);
@@ -68,39 +64,39 @@ const DeleteFilterGroupPopup: FC<IPropsPopup> = ({
                 onClick={close}
                 className={styles.imgClose}
             />
-            <Image src="/img/Delete.svg" alt="imgSuccess" width={56} height={56} />
+            <Image src="/img/Restore.svg" alt="imgRestore" width={56} height={56} />
             <div className={styles.textBlock}>
                 <Title type="h5" color="black">
-                    Удалить группу фильтров
+                    Восстановить группу фильтров?
                 </Title>
                 <Text type="reg16" color="grey">
-                    {`Вы действительно хотите удалить группу фильтров "${filterGroupTitle}"? После удаления группа фильтров перейдёт в архив`}
+                    {`При восстановлении, группа фильтров "${filterGroupTitle}" будет добавлена в группу "Созданные"`}
                 </Text>
             </div>
             <div className={styles.buttonsContainer}>
                 <ButtonCancel type={"button"} active={true} onClick={close} width={240}>
                     Отмена
                 </ButtonCancel>
-                <ButtonNegative
+                <Button
                     type={"button"}
                     active={true}
                     onClick={() => {
                         if (filters?.length) {
                             filters.forEach((item) => {
-                                if (item.status === "public" || item.status === "save") {
-                                    archiveFilter({ id: item.id, token });
+                                if (item.status === "archive") {
+                                    moveToSaveFilter({ id: item.id, token });
                                 }
                             });
                         }
-                        archiveGroup({ id, token }).then(close).then(refresh);
+                        moveToSaveGroup({ id, token }).then(close).then(refresh);
                     }}
                     width={240}
                 >
-                    Удалить
-                </ButtonNegative>
+                    Восстановить
+                </Button>
             </div>
         </div>
     );
 };
 
-export default DeleteFilterGroupPopup;
+export default RestoreSolutionsFilterGroupPopup;

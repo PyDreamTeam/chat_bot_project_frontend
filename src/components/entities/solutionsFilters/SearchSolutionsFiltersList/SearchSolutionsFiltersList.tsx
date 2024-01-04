@@ -1,14 +1,14 @@
 import React, { FC, useState } from "react";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./SearchSolutionsFiltersList.module.css";
-import Group from "../SolutionsFiltersGroupTitle/SolutionsFiltersGroupTitle";
-import Filter from "../SolutionsFilter/SolutionsFilter";
+import SolutionsFiltersGroupTitle from "../SolutionsFiltersGroupTitle/SolutionsFiltersGroupTitle";
+import SolutionsFilter from "../SolutionsFilter/SolutionsFilter";
 import uuid from "uuid-random";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
-import DeleteFilterPopup from "../popups/DeleteFilterPopup";
-import DeleteFilterGroupPopup from "../popups/DeleteFilterGroupPopup";
-import RestoreFilterGroupPopup from "../popups/RestoreFilterGroupPopup";
+import DeleteFilterPopup from "../popups/DeleteSolutionsFilterPopup";
+import DeleteFilterGroupPopup from "../popups/DeleteSolutionsFilterGroupPopup";
+import RestoreFilterGroupPopup from "../popups/RestoreSolutionsFilterGroupPopup";
 import Image from "next/image";
 
 interface PropsSearchFilters {
@@ -96,7 +96,7 @@ const SearchSolutionsFiltersList: FC<PropsSearchFiltersList> = ({ searchData, ta
                     .filter((item: any) => item.status === sort)
                     .map((item: any) => (
                         <li key={item.id}>
-                            <Group
+                            <SolutionsFiltersGroupTitle
                                 title={item.group}
                                 id={item.id}
                                 sort={sort}
@@ -112,7 +112,7 @@ const SearchSolutionsFiltersList: FC<PropsSearchFiltersList> = ({ searchData, ta
                     .filter((item: any) => item.status === sort)
                     .map((item) => (
                         <li key={uuid()}>
-                            <Filter
+                            <SolutionsFilter
                                 title={item.title}
                                 id={item.id}
                                 sort={sort}

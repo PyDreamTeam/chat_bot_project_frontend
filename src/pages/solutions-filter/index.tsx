@@ -68,8 +68,6 @@ const SolutionsFilters = () => {
         sort_abc: sortAbc,
     });
 
-    console.log(filteredSolutions?.results);
-
     const {
         data: filteredFavSolutions,
         isLoading,
@@ -89,8 +87,6 @@ const SolutionsFilters = () => {
         { refetchOnMountOrArgChange: true }
     );
 
-    console.log(filteredFavSolutions?.results);
-
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
             setSortAbc("a");
@@ -99,9 +95,9 @@ const SolutionsFilters = () => {
         } else setSortAbc("");
     }, [filter]);
 
-    const handleScroll = () => {
-        // readMore();
-    };
+    // const handleScroll = () => {
+    //     readMore();
+    // };
 
     return (
         <div>
@@ -161,7 +157,7 @@ const SolutionsFilters = () => {
                                 <FieldOptions />
                             </div>
                             <AlphabeticalSorting onClick={() => refetchFilteredSolutions()} />
-                            {isLoadingFilteredSolutions ? (
+                            {isLoading ? (
                                 <div className={css.loaderSolutions}>
                                     {skeletons.map((_, index) => (
                                         <CardSkeleton type={"filter"} key={index} />
@@ -188,6 +184,7 @@ const SolutionsFilters = () => {
                                                       price={item.price}
                                                       type="filter"
                                                       is_favorite={item.is_favorite}
+                                                      forceUpdate={refetch}
                                                   />
                                               </li>
                                           ))

@@ -11,6 +11,12 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+        getSolutionsFiltersList: builder.query({
+            query: () => ({
+                url: "/api/solution/filters/",
+                method: "GET",
+            }),
+        }),
         getSolutions: builder.query({
             query: (arg: {
                 id_tags?: Array<number>;
@@ -163,7 +169,7 @@ export const solutions = createApi({
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "save"
+                    status: "archive"
                 }
             })
         }),
@@ -174,6 +180,32 @@ export const solutions = createApi({
                 url: "/api/solution/filters-search/",
                 method: "POST",
                 body: arg,
+            }),
+        }),
+        createSolutionFilter: builder.mutation({
+            query: ({ filter, token }) => ({
+                url: "/api/solution/filters/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: filter,
+            }),
+        }),
+        getSolutionFilter: builder.query({
+            query: ({ id }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "GET",
+            }),
+        }),
+        putSolutionFilter: builder.mutation({
+            query: ({ filter, token, id }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+                body: filter,
             }),
         }),
         publicSolutionFilter: builder.mutation({
@@ -212,6 +244,15 @@ export const solutions = createApi({
                 }
             })
         }),
+        deleteSolutionFilter: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                }
+            })
+        }),
     }),
 });
 
@@ -221,6 +262,7 @@ export const {
     useGetFilteredFavoriteSolutionsQuery,
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
+    useGetSolutionsFiltersListQuery,
     useGetFavoriteSolutionsQuery,
     useGetFavoriteSolutionQuery,
     useAddSolutionToFavoriteMutation,
@@ -235,7 +277,11 @@ export const {
     useSaveSolutionFilterGroupMutation,
     useArchiveSolutionFilterGroupMutation,
     useSearchSolutionsFiltersQuery,
+    useCreateSolutionFilterMutation,
+    useGetSolutionFilterQuery,
+    usePutSolutionFilterMutation,
     usePublicSolutionFilterMutation,
     useSaveSolutionFilterMutation,
     useArchiveSolutionFilterMutation,
+    useDeleteSolutionFilterMutation,
 } = solutions;
