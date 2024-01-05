@@ -40,8 +40,8 @@ const ChangeSolution = () => {
     const link = useAppSelector((state) => state.reducerAddSolution.linkToSolution);
     const links = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
     const router = useRouter();
-    const { changeId } = router.query;
-    const { data } = useGetSolutionQuery(Number(changeId));
+    const { changeIds } = router.query;
+    const { data } = useGetSolutionQuery(Number(changeIds));
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const [id, setId] = useState<number | undefined>(undefined);
 

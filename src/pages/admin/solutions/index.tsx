@@ -7,7 +7,7 @@ import css from "./solutions.module.css";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useGetSolutionsQuery, useGetListSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetSolutionsQuery } from "@/src/store/services/solutions";
 import { SolutionsList } from "@/src/components/entities/solutions/addSolution/allSolutionAdmins/SolutionsList/SolutionsList";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
@@ -15,7 +15,7 @@ import { Solution } from "@/src/components/entities/solutions/addSolution/allSol
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { useSearchParams } from "next/navigation";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
-import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
+import { plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
 const sortSolutions = [
     { title: "Опубликованные", value: "public" },
@@ -29,9 +29,6 @@ const SolutionsAdmin = () => {
     const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {
         title: searchSolution,
     });
-    // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetListSolutionsQuery, {
-    //     title: searchSolution,
-    // });
 
     const handleScroll = () => {
         readMore();

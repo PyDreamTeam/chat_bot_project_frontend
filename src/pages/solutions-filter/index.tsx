@@ -123,26 +123,28 @@ const SolutionsFilters = () => {
                                 </div>
                             ) : (
                                 <ul className={css.listSolutions}>
-                                    {combinedData.map((item: PropsSolutionCard) => (
-                                        <li
-                                            key={item.id}
-                                            onClick={() => {
-                                                if (item.id) {
-                                                    handleClick(item.id);
-                                                }
-                                            }}
-                                        >
-                                            <SolutionCard
-                                                id={item.id}
-                                                title={item.title}
-                                                short_description={item.short_description}
-                                                tags={item.tags}
-                                                image={item.image}
-                                                price={item.price}
-                                                type="filter"
-                                            />
-                                        </li>
-                                    ))}
+                                    {combinedData
+                                        .filter((item: any) => item.status === "public")
+                                        .map((item: PropsSolutionCard) => (
+                                            <li
+                                                key={item.id}
+                                                onClick={() => {
+                                                    if (item.id) {
+                                                        handleClick(item.id);
+                                                    }
+                                                }}
+                                            >
+                                                <SolutionCard
+                                                    id={item.id}
+                                                    title={item.title}
+                                                    short_description={item.short_description}
+                                                    tags={item.tags}
+                                                    image={item.image}
+                                                    price={item.price}
+                                                    type="filter"
+                                                />
+                                            </li>
+                                        ))}
                                     <div className={css.loaderSolutions}>
                                         <Loader isLoading={isFetching} />
                                     </div>

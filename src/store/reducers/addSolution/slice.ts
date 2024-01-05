@@ -26,8 +26,8 @@ const addSolutionSlice = createSlice({
     reducers: {
         countLinkToPlatform: (state, action: PayloadAction<string[]>) => {
             if (action.payload) {
-                const linkToSolution = action.payload.map((item) => item);
-                state.links_to_platform = linkToSolution;
+                const linkToPlatform = action.payload.map((item) => item);
+                state.links_to_platform = linkToPlatform;
             }
         },
         getLinkToPlatform: (state, action) => {

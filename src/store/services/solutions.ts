@@ -193,4 +193,8 @@ export const {
     useChangeSolutionMutation,
     useAddSolutionMutation,
     useSolutionPublicMutation,
+    useDeleteSloutionMutation,
+    useSolutionArchiveMutation,
+    useGetSolutionForArchiveMutation,
+    useSendToCreatedMutation,
 } = solutions;

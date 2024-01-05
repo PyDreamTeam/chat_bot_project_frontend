@@ -6,7 +6,7 @@ import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/src/pages/solutions/solutions.module.css";
-import ListAllSolutions from "@/src/components/entities/lists/listAllSolutions/ListAllSolutions";
+// import ListAllSolutions from "@/src/components/entities/lists/listAllSolutions/ListAllSolutions";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { useGetFavoriteSolutionsQuery, useGetSolutionsQuery } from "@/src/store/services/solutions";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
@@ -15,6 +15,8 @@ import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollTo
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import Cookies from "js-cookie";
 import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
+import CardSolution from "@/src/components/shared/tabs/cardSolution/CardSolution";
+import { useRouter } from "next/router";
 
 const Solutions = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
@@ -36,6 +38,10 @@ const Solutions = () => {
 
     const handleScroll = () => {
         // readMore();
+    };
+    const router = useRouter();
+    const handleClick = (idp: number) => {
+        router.push(`/solutions/solution/${idp}`);
     };
 
     return (
@@ -69,22 +75,62 @@ const Solutions = () => {
                                     <CardSkeleton type={"list"} key={index} />
                                 ))}
                             </div>
-                        ) : combinedData ? (
-                            <>
-                                <ListAllSolutions results={combinedData.results} />
-                                <div className={styles.loaderSolutions}>
-                                    <Loader isLoading={isFetching} />
-                                </div>
-                                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
-                            </>
                         ) : (
-                            <>
-                                <ListAllSolutions results={dataUnreg?.results} />
+                            <ul className={styles.solutions}>
+                                {combinedData
+                                    ? combinedData.results
+                                          .filter((item: any) => item.status === "public")
+                                          .map((item: any) => (
+                                              <li
+                                                  className={styles.click}
+                                                  key={item.id}
+                                                  onClick={() => {
+                                                      if (item.id) {
+                                                          handleClick(item.id);
+                                                      }
+                                                  }}
+                                              >
+                                                  <CardSolution
+                                                      type="other"
+                                                      id={item.id}
+                                                      image={item.image}
+                                                      title={item.title}
+                                                      price={item.price}
+                                                      short_description={item.short_description}
+                                                      tags={item.tags}
+                                                      is_favorite={item.is_favorite}
+                                                  />
+                                              </li>
+                                          ))
+                                    : dataUnreg.results
+                                          .filter((item: any) => item.status === "public")
+                                          .map((item: any) => (
+                                              <li
+                                                  className={styles.click}
+                                                  key={item.id}
+                                                  onClick={() => {
+                                                      if (item.id) {
+                                                          handleClick(item.id);
+                                                      }
+                                                  }}
+                                              >
+                                                  <CardSolution
+                                                      type="other"
+                                                      id={item.id}
+                                                      image={item.image}
+                                                      title={item.title}
+                                                      price={item.price}
+                                                      short_description={item.short_description}
+                                                      tags={item.tags}
+                                                      is_favorite={item.is_favorite}
+                                                  />
+                                              </li>
+                                          ))}
                                 <div className={styles.loaderSolutions}>
                                     <Loader isLoading={isFetching} />
                                 </div>
-                                {dataUnreg?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
-                            </>
+                                {combinedData?.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                            </ul>
                         )}
                     </div>
                     <div className={styles.bottomWrap}>
