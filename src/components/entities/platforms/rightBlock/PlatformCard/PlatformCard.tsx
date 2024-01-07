@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useAddPlatformToFavoriteMutation, useGetFavoritePlatformQuery } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
 import ToolTip from "@/src/components/shared/toolTip/ToolTip";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
 
 export const PlatformCard: FC<PropsPlatformCard> = ({
     id,
@@ -25,7 +26,7 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     const [addToFavorite] = useAddPlatformToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
 
-    const { data: favData, isSuccess } = useGetFavoritePlatformQuery({ token, id });
+    const { isSuccess } = useDataUserQuery(token);
 
     const handleClickHeart = (e: MouseEvent) => {
         if (!isSuccess) {
@@ -56,7 +57,6 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
     };
 
     useEffect(() => {
-        console.log(is_favorite);
         if (isSuccess) {
             if (is_favorite) {
                 setImageHeart("like");

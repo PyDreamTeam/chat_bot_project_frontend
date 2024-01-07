@@ -5,7 +5,7 @@ import Title from "@/src/components/shared/text/Title";
 import TabAdvantages from "@/src/components/shared/tabs/tabAdvantages/TabAdvantages";
 import Image from "next/image";
 import ButtonFavorites from "@/src/components/shared/buttons/ButtonFavorites";
-import { PropsSolutionCard } from "../../platforms/types";
+import { PropsSolutionCard } from "../../solutions/types";
 import ToolTip from "@/src/components/shared/toolTip/ToolTip";
 
 const CardSales: FC<PropsSolutionCard> = ({ price, results = [] }) => {

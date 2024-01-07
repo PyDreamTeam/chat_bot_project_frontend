@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -96,7 +96,6 @@ const PlatformsFilters = () => {
     const handleSubmitAddGroup = (inputValue: string | undefined) => {
         if (inputValue) {
             setIsShownInput((prevState) => (prevState = false));
-            // createGroup({ token, title: inputValue }).then(router.reload);
             createGroup({ token, title: inputValue }).then(refetch);
         }
         setIsShownInput((prevState) => (prevState = false));
@@ -109,6 +108,10 @@ const PlatformsFilters = () => {
         refetchSearch();
         refetch();
     };
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     return (
         <WrapperAdminPage>

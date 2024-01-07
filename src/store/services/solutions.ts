@@ -11,6 +11,12 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
+        getSolutionsFiltersList: builder.query({
+            query: () => ({
+                url: "/api/solution/filters/",
+                method: "GET",
+            }),
+        }),
         getSolutions: builder.query({
             query: (arg: {
                 id_tags?: Array<number>;
@@ -24,6 +30,16 @@ export const solutions = createApi({
                 url: "/api/solution/filtration/",
                 method: "POST",
                 body: arg,
+            }),
+        }),
+        getFilteredFavoriteSolutions: builder.query({
+            query: ({ arg, token }) => ({
+                url: "/api/solution/filtration/",
+                method: "POST",
+                body: arg,
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
             }),
         }),
         getListSolutions: builder.query({
@@ -87,6 +103,12 @@ export const solutions = createApi({
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
+            }),
+        }),
+        getSolutionFilterGroups: builder.query({
+            query: () => ({
+                url: "/api/solution/groups/",
+                method: "GET",
             }),
         }),
         createSolutionFilterGroup: builder.mutation({
@@ -174,14 +196,142 @@ export const solutions = createApi({
                 body: solution,
             }),
         }),
+        editSolutionFilterGroup: builder.mutation({
+            query: ({ id, token, title }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: title,
+                },
+            }),
+        }),
+        publicSolutionFilterGroup: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public",
+                },
+            }),
+        }),
+        saveSolutionFilterGroup: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save",
+                },
+            }),
+        }),
+        archiveSolutionFilterGroup: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/groups/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "archive",
+                },
+            }),
+        }),
+        searchSolutionsFilters: builder.query({
+            query: (arg: { title?: string }) => ({
+                url: "/api/solution/filters-search/",
+                method: "POST",
+                body: arg,
+            }),
+        }),
+        createSolutionFilter: builder.mutation({
+            query: ({ filter, token }) => ({
+                url: "/api/solution/filters/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: filter,
+            }),
+        }),
+        getSolutionFilter: builder.query({
+            query: ({ id }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "GET",
+            }),
+        }),
+        putSolutionFilter: builder.mutation({
+            query: ({ filter, token, id }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+                body: filter,
+            }),
+        }),
+        publicSolutionFilter: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "public",
+                },
+            }),
+        }),
+        saveSolutionFilter: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "save",
+                },
+            }),
+        }),
+        archiveSolutionFilter: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "PATCH",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    status: "archive",
+                },
+            }),
+        }),
+        deleteSolutionFilter: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/filters/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
     }),
 });
 
 export const {
     useGetListSolutionsQuery,
     useGetSolutionsQuery,
+    useGetFilteredFavoriteSolutionsQuery,
     useGetSolutionQuery,
     useGetSolutionsFiltersQuery,
+    useGetSolutionsFiltersListQuery,
     useGetFavoriteSolutionsQuery,
     useGetFavoriteSolutionQuery,
     useAddSolutionToFavoriteMutation,
@@ -189,7 +339,20 @@ export const {
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,
+    useGetSolutionFilterGroupsQuery,
     useCreateSolutionFilterGroupMutation,
+    useEditSolutionFilterGroupMutation,
+    usePublicSolutionFilterGroupMutation,
+    useSaveSolutionFilterGroupMutation,
+    useArchiveSolutionFilterGroupMutation,
+    useSearchSolutionsFiltersQuery,
+    useCreateSolutionFilterMutation,
+    useGetSolutionFilterQuery,
+    usePutSolutionFilterMutation,
+    usePublicSolutionFilterMutation,
+    useSaveSolutionFilterMutation,
+    useArchiveSolutionFilterMutation,
+    useDeleteSolutionFilterMutation,
     useChangeSolutionMutation,
     useAddSolutionMutation,
     useSolutionPublicMutation,

@@ -1,5 +1,5 @@
 import Header from "@/src/components/features/HomePage/Header/Header";
-import { useGetSolutionQuery } from "@/src/store/services/solutions";
+import { useGetSolutionQuery, useGetSolutionsFiltersQuery, useGetSolutionsQuery } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import styles from "@/src/pages/solutions/solution/[ids]/soluiton.module.css";
 import Text from "@/src/components/shared/text/Text";
@@ -17,8 +17,9 @@ import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollTo
 const Solution = () => {
     const router = useRouter();
     const { ids } = router.query;
-
     const { data } = useGetSolutionQuery(Number(ids));
+    const { data: dataFilters } = useGetSolutionsFiltersQuery({});
+    // console.log(dataFilters.results);
 
     return (
         <div>
@@ -38,20 +39,10 @@ const Solution = () => {
                 </div>
                 <BlockComplexFunnel title={data?.title} />
                 <BlockShotDescription
-                    id={data?.id}
-                    business_model={data?.business_model}
-                    business_area={data?.business_area}
-                    business_niche={data?.business_niche}
-                    solution_type={data?.solution_type}
-                    objective={data?.objective}
+                    results={dataFilters?.results}
                     price={data?.price}
                     subtitle={data?.subtitle}
                     full_description={data?.full_description}
-                    short_description={data?.short_description}
-                    messengers={data?.messengers}
-                    platform={data?.platform}
-                    integration_with_CRM={data?.integration_with_CRM}
-                    integration_with_payment_systems={data?.integration_with_payment_systems}
                 />
                 <BlockGreatSolutions />
                 <BlockFunnelBenefits cards_title={data?.cards_title} cards_description={data?.cards_description} />

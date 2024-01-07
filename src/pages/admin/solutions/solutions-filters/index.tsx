@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -7,18 +7,21 @@ import css from "./solutions-filters.module.css";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useSearchPlatformsFiltersQuery } from "@/src/store/services/platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
-import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
-import SearchFiltersList from "@/src/components/entities/platformsFilters/SearchFiltersList/SearchFiltersList";
+import SolutionsFiltersList from "@/src/components/entities/solutionsFilters/SolutionsFiltersList/SolutionsFiltersList";
+import SearchSolutionsFiltersList from "@/src/components/entities/solutionsFilters/SearchSolutionsFiltersList/SearchSolutionsFiltersList";
 import InputGroup from "@/src/components/entities/platformsFilters/InputGroup/InputGroup";
 import Cookies from "js-cookie";
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
-import { useCreateSolutionFilterGroupMutation, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
+import {
+    useCreateSolutionFilterGroupMutation,
+    useGetSolutionsFiltersQuery,
+    useSearchSolutionsFiltersQuery,
+} from "@/src/store/services/solutions";
 
 const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
@@ -38,12 +41,13 @@ const SolutionsFilters = () => {
     //     }
     // );
 
+    // TODO: solutions filters search
     const {
         data: searchData,
         isLoading: searchIsLoading,
         isFetching: searchIsFetching,
         refetch: refetchSearch,
-    } = useSearchPlatformsFiltersQuery({ title: searchFilter });
+    } = useSearchSolutionsFiltersQuery({ title: searchFilter });
 
     const {
         data: tagsData,
@@ -106,6 +110,10 @@ const SolutionsFilters = () => {
         refetchSearch();
         refetch();
     };
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     return (
         <WrapperAdminPage>
@@ -192,12 +200,12 @@ const SolutionsFilters = () => {
                             </div>
                         ) : (
                             <div>
-                                <Text type="reg24" color="dark">
+                                <Text type="reg24" color="red" className={css.devText}>
                                     🔨 Страница находится в разработке! 🔧
                                 </Text>
                                 {searchFilter ? (
                                     <div>
-                                        <SearchFiltersList
+                                        <SearchSolutionsFiltersList
                                             searchData={searchData.search_results}
                                             tagsData={tagsData.results}
                                             sort={sort}
@@ -206,11 +214,11 @@ const SolutionsFilters = () => {
                                     </div>
                                 ) : (
                                     <div>
-                                        {/* TODO: Solutions FiltersList */}
-                                        {tagsData.results.map((item: any) => (
-                                            <li key={item.id}>{item.group}</li>
-                                        ))}
-                                        {/* <FiltersList tagsData={tagsData.results} sort={sort} refresh={refetch} /> */}
+                                        <SolutionsFiltersList
+                                            tagsData={tagsData.results}
+                                            sort={sort}
+                                            refresh={refetch}
+                                        />
                                     </div>
                                 )}
                             </div>

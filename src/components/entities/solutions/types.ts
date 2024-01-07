@@ -148,6 +148,7 @@ export interface PropsSolutionCard {
     is_active?: boolean;
     created_at?: string;
     image?: string | any;
+    is_favorite?: boolean;
     link?: string;
     type?: string | string;
     filter?: number[];

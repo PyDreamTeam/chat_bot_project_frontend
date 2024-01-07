@@ -42,8 +42,8 @@ const SolutionsAdmin = () => {
     const link = useAppSelector((state) => state.reducerAddSolution.linkToSolution);
     const links = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
     const router = useRouter();
-    const { publicIds } = router.query;
-    const { data } = useGetSolutionQuery(Number(publicIds));
+    const { publicids } = router.query;
+    const { data } = useGetSolutionQuery(Number(publicids));
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const [id, setId] = useState<number | undefined>(undefined);
 
@@ -131,7 +131,7 @@ const SolutionsAdmin = () => {
             reader.readAsDataURL(file);
         }
     };
-    console.log(dataFilters);
+    console.log(data);
 
     return (
         <WrapperAdminPage>

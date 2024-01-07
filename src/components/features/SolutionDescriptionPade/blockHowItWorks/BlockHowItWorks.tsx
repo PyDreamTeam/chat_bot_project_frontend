@@ -1,7 +1,6 @@
 import React from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
-
 import styles from "./BlockHowItWorks.module.css";
 import Image from "next/image";
 

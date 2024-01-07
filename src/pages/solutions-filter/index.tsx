@@ -4,7 +4,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
-import { useGetSolutionsFiltersQuery, useGetSolutionsQuery } from "@/src/store/services/solutions";
+import {
+    useGetFilteredFavoriteSolutionsQuery,
+    useGetSolutionsFiltersQuery,
+    useGetSolutionsQuery,
+} from "@/src/store/services/solutions";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { GroupFilters } from "@/src/components/entities/platforms/leftBlock/GroupFilters/GroupFilters";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
@@ -13,7 +17,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/FieldOptions/FieldOptions";
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
-import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
+// import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
@@ -23,7 +27,12 @@ import { SolutionCard } from "@/src/components/entities/platforms/rightBlock/Sol
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import CardSkeleton from "@/src/components/shared/tabs/cardSkeleton/CardSkeleton";
 import FilterSkeleton from "@/src/components/shared/tabs/filterSkeleton/FilterSkeleton";
+import Cookies from "js-cookie";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
+
 const SolutionsFilters = () => {
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { data: userData, isSuccess } = useDataUserQuery(token);
     const router = useRouter();
     const handleClick = (ids: number) => {
         router.push(`/solutions/solution/${ids}`);
@@ -40,13 +49,44 @@ const SolutionsFilters = () => {
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {
+    // const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {
+    //     id_tags: ids,
+    //     price_min: minPrice,
+    //     price_max: maxPrice,
+    //     title: search,
+    //     sort_abc: sortAbc,
+    // });
+
+    const {
+        data: filteredSolutions,
+        isLoading: isLoadingFilteredSolutions,
+        refetch: refetchFilteredSolutions,
+    } = useGetSolutionsQuery({
         id_tags: ids,
         price_min: minPrice,
         price_max: maxPrice,
         title: search,
         sort_abc: sortAbc,
     });
+
+    const {
+        data: filteredFavSolutions,
+        isLoading,
+        refetch,
+        isFetching,
+    } = useGetFilteredFavoriteSolutionsQuery(
+        {
+            token,
+            arg: {
+                id_tags: ids,
+                price_min: minPrice,
+                price_max: maxPrice,
+                title: search,
+                sort_abc: sortAbc,
+            },
+        },
+        { refetchOnMountOrArgChange: true }
+    );
 
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
@@ -56,9 +96,9 @@ const SolutionsFilters = () => {
         } else setSortAbc("");
     }, [filter]);
 
-    const handleScroll = () => {
-        readMore();
-    };
+    // const handleScroll = () => {
+    //     readMore();
+    // };
 
     return (
         <div>
@@ -85,7 +125,10 @@ const SolutionsFilters = () => {
                                     <FilterSkeleton count={4} type="listFilter" />
                                 </div>
                             ) : (
-                                <GroupFilters results={dataFilters?.results} onClick={() => refresh()} />
+                                <GroupFilters
+                                    results={dataFilters?.results}
+                                    onClick={() => refetchFilteredSolutions()}
+                                />
                             )}
                         </div>
                         <div className={css.rightBlock}>
@@ -103,7 +146,7 @@ const SolutionsFilters = () => {
                                     onChange={(e) => {
                                         if (e.target.value.trim() !== "") {
                                             setSearch(e.target.value);
-                                            refresh();
+                                            refetchFilteredSolutions();
                                         }
                                         if (e.target.value === "") {
                                             setSearch(e.target.value);
@@ -114,7 +157,7 @@ const SolutionsFilters = () => {
                             <div>
                                 <FieldOptions />
                             </div>
-                            <AlphabeticalSorting onClick={() => refresh()} />
+                            <AlphabeticalSorting onClick={() => refetchFilteredSolutions()} />
                             {isLoading ? (
                                 <div className={css.loaderSolutions}>
                                     {skeletons.map((_, index) => (
@@ -123,32 +166,58 @@ const SolutionsFilters = () => {
                                 </div>
                             ) : (
                                 <ul className={css.listSolutions}>
-                                    {combinedData
-                                        .filter((item: any) => item.status === "public")
-                                        .map((item: PropsSolutionCard) => (
-                                            <li
-                                                key={item.id}
-                                                onClick={() => {
-                                                    if (item.id) {
-                                                        handleClick(item.id);
-                                                    }
-                                                }}
-                                            >
-                                                <SolutionCard
-                                                    id={item.id}
-                                                    title={item.title}
-                                                    short_description={item.short_description}
-                                                    tags={item.tags}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    type="filter"
-                                                />
-                                            </li>
-                                        ))}
+                                    {filteredFavSolutions
+                                        ? filteredFavSolutions?.results
+                                              ?.filter((item: any) => item.status === "public")
+                                              ?.map((item: PropsPlatformCard) => (
+                                                  <li
+                                                      key={item.id}
+                                                      onClick={() => {
+                                                          if (item.id) {
+                                                              handleClick(item.id);
+                                                          }
+                                                      }}
+                                                  >
+                                                      <SolutionCard
+                                                          id={item.id}
+                                                          title={item.title}
+                                                          short_description={item.short_description}
+                                                          tags={item.tags}
+                                                          image={item.image}
+                                                          price={item.price}
+                                                          type="filter"
+                                                          is_favorite={item.is_favorite}
+                                                          forceUpdate={refetch}
+                                                      />
+                                                  </li>
+                                              ))
+                                        : filteredSolutions?.results
+                                              ?.filter((item: any) => item.status === "public")
+                                              ?.map((item: PropsPlatformCard) => (
+                                                  <li
+                                                      key={item.id}
+                                                      onClick={() => {
+                                                          if (item.id) {
+                                                              handleClick(item.id);
+                                                          }
+                                                      }}
+                                                  >
+                                                      <SolutionCard
+                                                          id={item.id}
+                                                          title={item.title}
+                                                          short_description={item.short_description}
+                                                          tags={item.tags}
+                                                          image={item.image}
+                                                          price={item.price}
+                                                          type="filter"
+                                                          is_favorite={item.is_favorite}
+                                                      />
+                                                  </li>
+                                              ))}
                                     <div className={css.loaderSolutions}>
                                         <Loader isLoading={isFetching} />
                                     </div>
-                                    {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                                    {/* {filteredSolutions.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
                                 </ul>
                             )}
                         </div>

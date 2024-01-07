@@ -4,7 +4,7 @@ import Text from "@/src/components/shared/text/Text";
 import styles from "./BlockTasksBySteps.module.css";
 import img from "/public/img/Step.svg";
 import Image from "next/image";
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { useGetSolutionStepsQuery } from "@/src/store/services/solutions";
 import ListStepAccordion from "@/src/components/entities/lists/accordionList/ListStepAccordion";
 

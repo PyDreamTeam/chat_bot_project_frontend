@@ -23,6 +23,7 @@ export const TextAreaAddSolution: FC<PropsTextAreaAddSolution> = ({
                 {label}
             </Text>
             <textarea
+                // required={false}
                 className={`${css.textareaAddSolution}`}
                 onChange={onChange}
                 placeholder={placeholder}

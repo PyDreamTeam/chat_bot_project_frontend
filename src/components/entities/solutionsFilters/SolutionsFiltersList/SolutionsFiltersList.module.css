@@ -1,0 +1,22 @@
+.filtersListWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.additionalFilters {
+    margin-top: 24px;
+}
+
+.additionalFilters>p {
+    border-bottom: 1px solid var(--sub-color);
+    padding-bottom: 8px;
+    padding-left: 8px;
+}
+
+.noResultsImg {
+    margin-top: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

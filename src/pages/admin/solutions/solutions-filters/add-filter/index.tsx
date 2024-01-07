@@ -19,6 +19,7 @@ import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFil
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import { useRouter } from "next/router";
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
+import { useCreateSolutionFilterMutation, useGetSolutionFilterGroupsQuery } from "@/src/store/services/solutions";
 
 export interface PropsPlatformFilter {
     title: string;
@@ -45,11 +46,13 @@ export interface ITagM {
 const AddSolutionFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
-    const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useAddPlatformFilterMutation();
+    // TODO: addSolutionFilter
+    // useCreateSolutionFilterMutation
+    const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useCreateSolutionFilterMutation();
 
     const [isValid, setIsValid] = useState<boolean>(false);
 
-    const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
+    const { data: dataGroups } = useGetSolutionFilterGroupsQuery({});
     const [selectedGroup, setSelectedGroup] = useState("Выбрать группу");
 
     const [filter, setFilter] = useState<PropsPlatformFilter>({
@@ -108,7 +111,7 @@ const AddSolutionFilter = () => {
     const handleSetMessengers = (tagsM: (ITagM | undefined)[] | undefined) => {
         const newTagsMessengers: (ITagM | undefined)[] | undefined = tagsM?.map((item) => {
             return {
-                properties: item?.tag,
+                properties: item?.properties,
                 image: item?.image,
                 status: "save",
                 is_message: true,
@@ -151,7 +154,6 @@ const AddSolutionFilter = () => {
         if (newTags) {
             setFilter((prev) => ({ ...prev, tags: newTags }));
         }
-        console.log("useEffect newTags concat");
     }, [tags, tagsMessengers]);
 
     return (
@@ -176,6 +178,9 @@ const AddSolutionFilter = () => {
                     <span className={css.link}>/Добавить фильтр</span>
                 </div>
                 <div className={css.filterFormWrapper}>
+                    <Text type="reg24" color="red" className={css.devText}>
+                        🔨 Страница находится в разработке! 🔧
+                    </Text>
                     <DropDownSelectGroup
                         dataGroups={dataGroups?.results}
                         selected={selectedGroup}

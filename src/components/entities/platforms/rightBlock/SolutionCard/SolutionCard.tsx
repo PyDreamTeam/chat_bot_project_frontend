@@ -1,12 +1,12 @@
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import css from "./solutionCard.module.css";
-import { PropsSolutionCard } from "../../types";
-import Title from "@/src/components/shared/text/Title";
+import { PropsSolutionCard } from "../../../solutions/types";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
 import Cookies from "js-cookie";
 import ToolTip from "@/src/components/shared/toolTip/ToolTip";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
 
 export const SolutionCard: FC<PropsSolutionCard> = ({
     title,
@@ -16,23 +16,30 @@ export const SolutionCard: FC<PropsSolutionCard> = ({
     price,
     forceUpdate,
     id,
+    is_favorite,
 }) => {
     const [imageHeart, setImageHeart] = useState("dislike");
 
     const [addToFavorite] = useAddSolutionToFavoriteMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { isSuccess } = useDataUserQuery(token);
 
     const handleClickHeart = (e: MouseEvent) => {
-        addToFavorite({ id, token }).then(forceUpdate);
-        e.stopPropagation();
-        if (imageHeart === "like") {
-            setImageHeart("dislike");
-        }
-        if (imageHeart === "dislike") {
-            setImageHeart("like");
-        }
-        if (imageHeart === "hoverHeart") {
-            setImageHeart("like");
+        if (!isSuccess) {
+            e.stopPropagation();
+            console.log("sign in!");
+        } else {
+            addToFavorite({ id, token }).then(forceUpdate);
+            e.stopPropagation();
+            if (imageHeart === "like") {
+                setImageHeart("dislike");
+            }
+            if (imageHeart === "dislike") {
+                setImageHeart("like");
+            }
+            if (imageHeart === "hoverHeart") {
+                setImageHeart("like");
+            }
         }
     };
     const handleMouseEnter = () => {
@@ -43,6 +50,14 @@ export const SolutionCard: FC<PropsSolutionCard> = ({
             setImageHeart("dislike");
         }
     };
+
+    useEffect(() => {
+        if (is_favorite) {
+            setImageHeart("like");
+        } else {
+            setImageHeart("dislike");
+        }
+    }, []);
 
     return (
         <div className={css.onePlatform}>

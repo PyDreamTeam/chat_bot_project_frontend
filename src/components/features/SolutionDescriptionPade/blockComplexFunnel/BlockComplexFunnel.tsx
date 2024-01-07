@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useModal } from "@/src/hooks/useModal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import Modal from "@/src/components/shared/modal/Modal";
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { useGetSolutionAdvantagesQuery } from "@/src/store/services/solutions";
 import { ListAdvantages } from "@/src/components/entities/lists/listAdvantages";
 

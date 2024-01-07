@@ -76,7 +76,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
     }, [isSuccessSendToCreated]);
 
     useEffect(() => {
-        if (stateIcon === "workSolutionActive") {
+        if (stateIcon === "workPlatformActive") {
             getSolutionForArchive(Number(id));
         }
     }, [stateIcon]);

@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
@@ -122,7 +122,7 @@ const AddPlatformFilter = () => {
     const isValidFilter = () => {
         const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
 
-        if (typeof isUndefined == "undefined") {
+        if (typeof isUndefined == "undefined" && filter.tags.length !== 0) {
             setIsValid(true);
         } else setIsValid(false);
     };
@@ -152,6 +152,10 @@ const AddPlatformFilter = () => {
             setFilter((prev) => ({ ...prev, tags: newTags }));
         }
     }, [tags, tagsMessengers]);
+
+    useEffect(() => {
+        isValidFilter();
+    }, [filter]);
 
     return (
         <WrapperAdminPage>
@@ -234,6 +238,7 @@ const AddPlatformFilter = () => {
                                         });
                                         setTags(newTags);
                                         setFilter((prev) => ({ ...prev, tags: newTags }));
+                                        isValidFilter();
                                     }}
                                     placeholder="Параметр фильтра"
                                     className={css.inputAddFilter}

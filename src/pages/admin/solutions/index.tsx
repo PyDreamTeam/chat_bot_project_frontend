@@ -50,7 +50,6 @@ const SolutionsAdmin = () => {
         }
     };
     const router = useRouter();
-    console.log(combinedData);
     const handleRouter = () => {
         router.push("/admin/solutions/add-solution");
     };
@@ -122,7 +121,7 @@ const SolutionsAdmin = () => {
                                     .map((item) => (
                                         <li key={item.id}>
                                             <Solution
-                                                title={item.title}
+                                                title={item?.title}
                                                 link={item.link}
                                                 tags={item.tags}
                                                 id={item.id}

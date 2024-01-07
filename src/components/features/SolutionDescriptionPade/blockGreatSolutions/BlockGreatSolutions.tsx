@@ -1,9 +1,6 @@
 import React from "react";
-
 import CardStatistics, { CardProps } from "@/src/components/shared/tabs/cardStatistics/CardStatistics";
-import Image from "next/image";
 import Title from "@/src/components/shared/text/Title";
-import Text from "@/src/components/shared/text/Text";
 import { StatisticsCards } from "@/src/types";
 
 import styles from "./BlockGreatSolutions.module.css";

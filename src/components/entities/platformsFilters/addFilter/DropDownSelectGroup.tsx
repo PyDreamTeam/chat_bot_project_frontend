@@ -14,12 +14,8 @@ export interface IDropDownSelectGroup {
     dataGroups?: IPlatformGroup[] | undefined;
     selected?: string | undefined;
     selectedId?: number;
-    // setSelected: (title: string | undefined) => void;
     setSelected: Dispatch<SetStateAction<string>>;
     setSelectedId: (groupId: number) => void;
-    //     onChange?: (event: { currentTarget: { id: number } }) => void;
-    //     isChecked?: boolean;
-    //     activeDropDownItem?: number | string;
 }
 
 export const DropDownSelectGroup: FC<IDropDownSelectGroup> = ({
@@ -46,22 +42,13 @@ export const DropDownSelectGroup: FC<IDropDownSelectGroup> = ({
             </div>
             {isActive && (
                 <div className={styles.dropDownContent}>
-                    {dataGroups?.map((group) => (
-                        <div
-                            key={group.id}
-                            // onClick={(e) => {
-                            //     console.log(group.title);
-                            //     const title = group.title;
-                            //     setSelected(title);
-                            //     setSelectedId(group.id);
-                            //     setIsActive(false);
-                            // }}
-                            onClick={() => handleClick(group)}
-                            className={styles.dropDownItem}
-                        >
-                            {group.title}
-                        </div>
-                    ))}
+                    {dataGroups
+                        ?.filter((item) => item.status === "save" || item.status === "public")
+                        .map((group) => (
+                            <div key={group.id} onClick={() => handleClick(group)} className={styles.dropDownItem}>
+                                {group.title}
+                            </div>
+                        ))}
                 </div>
             )}
         </div>

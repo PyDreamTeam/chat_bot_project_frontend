@@ -5,26 +5,18 @@
     gap: 132px;
 }
 
-.blockLabel {
+.filters {
     display: flex;
     gap: 16px;
-    flex-wrap: wrap;
 }
 
 .blockText {
     display: flex;
     flex-direction: column;
-    gap: 24px;
 }
 .blockText p {
     max-width: 600px;
 }
-.tagsWrapper {
-    display: flex;
-    gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid #909090;
-    border-radius: 20px;
-    background: #f4f5f6;
-    justify-content: center;
+.title {
+    margin-bottom: 24px;
 }

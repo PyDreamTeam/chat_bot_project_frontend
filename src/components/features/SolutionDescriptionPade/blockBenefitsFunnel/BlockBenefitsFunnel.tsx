@@ -5,7 +5,7 @@ import styles from "./BlockBenefitsFunnel.module.css";
 import ElemSaleBot from "@/src/components/shared/elemChooseChatBot/ElemSaleBot";
 import { useGetSolutionCardsQuery } from "@/src/store/services/solutions";
 import ListBenefits from "@/src/components/entities/lists/listBenefits/listBenefits";
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 
 const BlockBenefitsFunnel: FC<PropsSolutionCard> = ({ cards_title, cards_description }) => {
     const { data } = useGetSolutionCardsQuery({});
