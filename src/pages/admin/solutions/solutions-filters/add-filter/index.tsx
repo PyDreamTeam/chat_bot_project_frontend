@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
@@ -7,6 +7,7 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./addFilter.module.css";
 import Image from "next/image";
+import { useAddPlatformFilterMutation, useGetPlatformFilterGroupsQuery } from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
@@ -45,7 +46,8 @@ export interface ITagM {
 const AddSolutionFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
-
+    // TODO: addSolutionFilter
+    // useCreateSolutionFilterMutation
     const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useCreateSolutionFilterMutation();
 
     const [isValid, setIsValid] = useState<boolean>(false);
@@ -94,6 +96,7 @@ const AddSolutionFilter = () => {
     const handleSetImageName = (imageName: string) => {
         setFilter((prev) => ({ ...prev, image: imageName }));
         isValidFilter();
+        console.log(filter);
     };
 
     const handleRadioMultiple = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,6 +130,7 @@ const AddSolutionFilter = () => {
     };
 
     const handleSubmit = () => {
+        console.log(filter);
         addFilter({ filter, token });
     };
 
@@ -174,6 +178,9 @@ const AddSolutionFilter = () => {
                     <span className={css.link}>/Добавить фильтр</span>
                 </div>
                 <div className={css.filterFormWrapper}>
+                    <Text type="reg24" color="red" className={css.devText}>
+                        🔨 Страница находится в разработке! 🔧
+                    </Text>
                     <DropDownSelectGroup
                         dataGroups={dataGroups?.results}
                         selected={selectedGroup}
@@ -182,6 +189,7 @@ const AddSolutionFilter = () => {
                     />
                     <InputAddFilter
                         label="Название фильтра"
+                        // value={platform.title}
                         onChange={(e) => {
                             isValidFilter();
                             setFilter((prev) => ({ ...prev, title: e.target.value }));
@@ -191,6 +199,7 @@ const AddSolutionFilter = () => {
                     />
                     <SelectGroupIcon setImageName={handleSetImageName} />
                     <TextAreaAddFilter
+                        // value={platform.short_description}
                         onChange={(e) => {
                             isValidFilter();
                             setFilter((prev) => ({ ...prev, functionality: e.target.value }));
@@ -219,6 +228,7 @@ const AddSolutionFilter = () => {
                                     />
                                 </div>
                                 <InputAddFilter
+                                    // value={platform.title}
                                     onChange={(e) => {
                                         const newInputs = [...inputsTags];
                                         newInputs[index] = e.target.value;
@@ -244,6 +254,7 @@ const AddSolutionFilter = () => {
                             Добавить фильтр
                         </ButtonSmallSecondary>
                     </div>
+
                     <SelectMessengers setMessengers={handleSetMessengers} />
                     <InputRadioFilterMultiple
                         className={css.multipleSelection}

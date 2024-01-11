@@ -200,6 +200,9 @@ const SolutionsFilters = () => {
                             </div>
                         ) : (
                             <div>
+                                <Text type="reg24" color="red" className={css.devText}>
+                                    🔨 Страница находится в разработке! 🔧
+                                </Text>
                                 {searchFilter ? (
                                     <div>
                                         <SearchSolutionsFiltersList
