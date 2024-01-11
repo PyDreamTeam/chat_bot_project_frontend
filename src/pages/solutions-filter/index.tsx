@@ -87,7 +87,6 @@ const SolutionsFilters = () => {
         },
         { refetchOnMountOrArgChange: true }
     );
-
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
             setSortAbc("a");
@@ -168,7 +167,7 @@ const SolutionsFilters = () => {
                                 <ul className={css.listSolutions}>
                                     {filteredFavSolutions
                                         ? filteredFavSolutions?.results
-                                              .filter((item: any) => item.status === "save")
+                                              //   .filter((item: any) => item.status === "save")
                                               ?.map((item: PropsPlatformCard) => (
                                                   <li
                                                       key={item.id}

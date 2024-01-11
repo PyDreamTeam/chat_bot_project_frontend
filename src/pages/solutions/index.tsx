@@ -39,6 +39,7 @@ const Solutions = () => {
     const handleScroll = () => {
         // readMore();
     };
+    console.log(combinedData);
     const router = useRouter();
     const handleClick = (idp: number) => {
         router.push(`/solutions/solution/${idp}`);
@@ -78,7 +79,7 @@ const Solutions = () => {
                             <ul className={styles.solutions}>
                                 {combinedData
                                     ? combinedData?.results
-                                          .filter((item: any) => item.status === "save")
+                                          //   .filter((item: any) => item.status === "save")
                                           .map((item: any) => (
                                               <li
                                                   className={styles.click}
@@ -102,7 +103,7 @@ const Solutions = () => {
                                               </li>
                                           ))
                                     : dataUnreg?.results
-                                          .filter((item: any) => item.status === "save")
+                                          //   .filter((item: any) => item.status === "save")
                                           .map((item: any) => (
                                               <li
                                                   className={styles.click}
