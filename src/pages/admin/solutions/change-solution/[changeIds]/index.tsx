@@ -34,9 +34,14 @@ import { Loader } from "@/src/components/shared/Loader/Loader";
 
 const ChangeSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
+    // const { data: dataDignities, isLoading: isLoadingFilters } = getSolutionDignities({});
+    // const { data: dataCards, isLoading: isLoadingFilters } = getSolutionCrds({});
+    // const { data: dataSteps, isLoading: isLoadingFilters } = getSolutionSteps({});
     const [changeSolution, { isSuccess: isSuccessChange, isLoading }] = useChangeSolutionMutation();
     const dispatch = useAppDispatch();
     const filters = useAppSelector((state) => state.reducerAddSolution.filters);
+    // const cards = useAppSelector((state) => state.reducerAddSolution.cards);
+    // const steps = useAppSelector((state) => state.reducerAddSolution.steps);
     const link = useAppSelector((state) => state.reducerAddSolution.linkToSolution);
     const links = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
     const router = useRouter();
@@ -55,9 +60,15 @@ const ChangeSolution = () => {
         link: "",
         links_to_platform: [],
         filter: [],
+        // cards_title: "",
+        // cards_description: "",
+        // steps_title: "",
+        // steps_description: """,
     });
 
     useEffect(() => {
+        //  dispatch(getFCardsFromBack(data?.cards));
+        //  dispatch(getFStepsFromBack(data?.steps));
         dispatch(getFilterFromBack(data?.tags));
         dispatch(getLinkToSolution(data?.link));
         dispatch(getLinkToPlatform(data?.links_to_platform));
@@ -75,6 +86,10 @@ const ChangeSolution = () => {
             full_description: data?.full_description,
             price: data?.price,
             image: data?.image,
+            // cards_title: data?.cards_title,
+            // cards_description: data?.cards_description,
+            // steps_title: data?.steps_title
+            // steps_description: data?.steps_description,
         }));
     }, [data]);
 
@@ -90,9 +105,17 @@ const ChangeSolution = () => {
         setSolution((prev) => ({ ...prev, filter: filters?.map((item) => item.id) }));
     }, [filters]);
 
+    // useEffect(() => {
+    //     setSolution((prev) => ({ ...prev, step: steps?.map((item) => item.id) }));
+    // }, [steps]);
+
+    // useEffect(() => {
+    //     setSolution((prev) => ({ ...prev, card: cards?.map((item) => item.id) }));
+    // }, [cards]);
+
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
-    const handleSuccessAddPlatform = () => {
+    const handleSuccessAddSolution = () => {
         setIsSuccessModal(!isSuccessModal);
     };
     const handleClickClose = () => {
@@ -259,7 +282,7 @@ const ChangeSolution = () => {
                                 width={24}
                                 height={24}
                                 className={css.imgCloseModal}
-                                onClick={handleSuccessAddPlatform}
+                                onClick={handleSuccessAddSolution}
                                 style={{ cursor: "pointer" }}
                             />
                             <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />

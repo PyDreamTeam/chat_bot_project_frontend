@@ -5,9 +5,22 @@ interface Filters {
     tag: string;
     filter?: string;
 }
+// interface Steps {
+//     id: number;
+//     step_title: string;
+//     step_description:string;
+// }
+// interface Cards {
+//     id: number;
+//     card_img: string;
+//     card_title: string;
+//     card_description:string;
+// }
 
 interface State {
     filters: Filters[];
+    // cards: Cards[];
+    // steps: Steps[];
     links_to_platform: string[];
     turnkey_platforms: number;
     linkToSolution: string;
@@ -15,6 +28,8 @@ interface State {
 
 const initialState: State = {
     filters: [],
+    // cards: [],
+    // steps: [],
     links_to_platform: [],
     turnkey_platforms: 0,
     linkToSolution: "",
@@ -58,6 +73,12 @@ const addSolutionSlice = createSlice({
         getFilterFromBack: (state, action) => {
             state.filters = action.payload;
         },
+        // getStepsFromBack: (state, action) => {
+        //     state.steps = action.payload;
+        // },
+        // getCardsFromBack: (state, action) => {
+        //     state.cards = action.payload;
+        // },
         deleteAllFiltersFromSolution: (state) => {
             state.filters = [];
         },

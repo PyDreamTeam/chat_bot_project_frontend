@@ -168,7 +168,7 @@ const SolutionsFilters = () => {
                                 <ul className={css.listSolutions}>
                                     {filteredFavSolutions
                                         ? filteredFavSolutions?.results
-                                              ?.filter((item: any) => item.status === "public")
+                                              .filter((item: any) => item.status === "save")
                                               ?.map((item: PropsPlatformCard) => (
                                                   <li
                                                       key={item.id}
@@ -192,7 +192,7 @@ const SolutionsFilters = () => {
                                                   </li>
                                               ))
                                         : filteredSolutions?.results
-                                              ?.filter((item: any) => item.status === "public")
+                                              .filter((item: any) => item.status === "save")
                                               ?.map((item: PropsPlatformCard) => (
                                                   <li
                                                       key={item.id}
@@ -214,6 +214,7 @@ const SolutionsFilters = () => {
                                                       />
                                                   </li>
                                               ))}
+
                                     <div className={css.loaderSolutions}>
                                         <Loader isLoading={isFetching} />
                                     </div>

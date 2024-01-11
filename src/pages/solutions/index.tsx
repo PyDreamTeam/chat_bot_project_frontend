@@ -43,7 +43,6 @@ const Solutions = () => {
     const handleClick = (idp: number) => {
         router.push(`/solutions/solution/${idp}`);
     };
-
     return (
         <>
             <Header type="other" />
@@ -78,8 +77,8 @@ const Solutions = () => {
                         ) : (
                             <ul className={styles.solutions}>
                                 {combinedData
-                                    ? combinedData.results
-                                          .filter((item: any) => item.status === "public")
+                                    ? combinedData?.results
+                                          .filter((item: any) => item.status === "save")
                                           .map((item: any) => (
                                               <li
                                                   className={styles.click}
@@ -102,8 +101,8 @@ const Solutions = () => {
                                                   />
                                               </li>
                                           ))
-                                    : dataUnreg.results
-                                          .filter((item: any) => item.status === "public")
+                                    : dataUnreg?.results
+                                          .filter((item: any) => item.status === "save")
                                           .map((item: any) => (
                                               <li
                                                   className={styles.click}
