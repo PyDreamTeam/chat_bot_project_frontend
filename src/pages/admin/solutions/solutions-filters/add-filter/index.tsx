@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
@@ -7,7 +7,6 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./addFilter.module.css";
 import Image from "next/image";
-import { useAddPlatformFilterMutation, useGetPlatformFilterGroupsQuery } from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
@@ -46,8 +45,7 @@ export interface ITagM {
 const AddSolutionFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
-    // TODO: addSolutionFilter
-    // useCreateSolutionFilterMutation
+
     const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useCreateSolutionFilterMutation();
 
     const [isValid, setIsValid] = useState<boolean>(false);
@@ -89,6 +87,14 @@ const AddSolutionFilter = () => {
         setTags(newTags);
     };
 
+    const isValidFilter = () => {
+        const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
+
+        if (typeof isUndefined == "undefined" && filter.tags.length !== 0) {
+            setIsValid(true);
+        } else setIsValid(false);
+    };
+
     const handleSelectedGroupId = (groupId: number) => {
         setFilter((prev) => ({ ...prev, group: groupId }));
         isValidFilter();
@@ -121,16 +127,7 @@ const AddSolutionFilter = () => {
         isValidFilter();
     };
 
-    const isValidFilter = () => {
-        const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
-
-        if (typeof isUndefined == "undefined") {
-            setIsValid(true);
-        } else setIsValid(false);
-    };
-
     const handleSubmit = () => {
-        console.log(filter);
         addFilter({ filter, token });
     };
 
@@ -178,9 +175,6 @@ const AddSolutionFilter = () => {
                     <span className={css.link}>/Добавить фильтр</span>
                 </div>
                 <div className={css.filterFormWrapper}>
-                    <Text type="reg24" color="red" className={css.devText}>
-                        🔨 Страница находится в разработке! 🔧
-                    </Text>
                     <DropDownSelectGroup
                         dataGroups={dataGroups?.results}
                         selected={selectedGroup}
@@ -243,6 +237,7 @@ const AddSolutionFilter = () => {
                                         });
                                         setTags(newTags);
                                         setFilter((prev) => ({ ...prev, tags: newTags }));
+                                        isValidFilter();
                                     }}
                                     placeholder="Параметр фильтра"
                                     className={css.inputAddFilter}
