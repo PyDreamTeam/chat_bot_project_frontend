@@ -3,7 +3,7 @@ import Text from "@/src/components/shared/text/Text";
 import css from "./style.module.css";
 import Image from "next/image";
 import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter/InputAddFilter";
-import { ITagM, PropsPlatformFilter } from "@/src/pages/admin/platforms/platforms-filters/add-filter";
+import { ITagM } from "@/src/pages/admin/platforms/platforms-filters/add-filter";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import { plusSvgPrimary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
@@ -35,7 +35,6 @@ export const MultipleTagsInput: FC<IMultipleTagsProps> = ({ filterData, setTextT
                 filter_id: filterData.id,
             };
         });
-    console.log(textTags);
     const [inputsTags, setInputsTags] = useState<ITagM[]>(textTags);
 
     const addInput = () => {

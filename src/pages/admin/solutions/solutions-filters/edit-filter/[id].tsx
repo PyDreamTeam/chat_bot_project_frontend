@@ -5,11 +5,6 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./editFilter.module.css";
 import { useRouter } from "next/router";
-import {
-    useGetPlatformFilterGroupsQuery,
-    useGetPlatformFilterQuery,
-    usePutPlatformFilterMutation,
-} from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Cookies from "js-cookie";
@@ -21,7 +16,11 @@ import { TextAreaAddFilter } from "@/src/components/entities/platformsFilters/ad
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
 import { MultipleTagsInput } from "@/src/components/entities/platformsFilters/addFilter/MultipleTagsInput";
-import { useGetSolutionFilterQuery, usePutSolutionFilterMutation } from "@/src/store/services/solutions";
+import {
+    useGetSolutionFilterGroupsQuery,
+    useGetSolutionFilterQuery,
+    usePutSolutionFilterMutation,
+} from "@/src/store/services/solutions";
 
 interface pageProps {
     params: { id: string };
@@ -32,27 +31,17 @@ const EditSolutionFilter: FC<pageProps> = () => {
     const router = useRouter();
     const filterId: string = router.query.id as string;
     const id = filterId;
-    // TODO: delete platform filter data
+
     const {
         data: filterData,
         isLoading: filterIsLoading,
         isSuccess: filterIsSuccess,
         refetch,
-    } = useGetPlatformFilterQuery({ id }, { refetchOnMountOrArgChange: true });
-
-    const {
-        data: solutionFilterData,
-        isLoading: solutionFilterIsLoading,
-        isSuccess: solutionFilterIsSuccess,
-        refetch: solutionFilterRefetch,
     } = useGetSolutionFilterQuery({ id }, { refetchOnMountOrArgChange: true });
-
-    console.log(filterData);
-    console.log(solutionFilterData);
 
     const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutSolutionFilterMutation();
 
-    const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
+    const { data: dataGroups } = useGetSolutionFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
 
     const [selectedGroup, setSelectedGroup] = useState(filterGroup?.title);
@@ -77,7 +66,7 @@ const EditSolutionFilter: FC<pageProps> = () => {
     const isValidFilter = () => {
         if (filter != undefined || filter != null) {
             const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
-            if (typeof isUndefined == "undefined") {
+            if (typeof isUndefined == "undefined" && filter.tags.length !== 0) {
                 setIsValid(true);
             } else setIsValid(false);
         }
@@ -131,7 +120,7 @@ const EditSolutionFilter: FC<pageProps> = () => {
     const handleSubmit = () => {
         putFilter({ filter, token, id })
             .then(refetch)
-            .then(() => router.push("/admin/platforms/platforms-filters/"));
+            .then(() => router.push("/admin/solutions/solutions-filters/"));
     };
 
     useEffect(() => {
@@ -218,7 +207,7 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                 onChange={handleRadioMultiple}
                             />
                             <div className={css.buttonsContainer}>
-                                <Link href={"/admin/platforms/platforms-filters"} className={css.buttonCancel}>
+                                <Link href={"/admin/solutions/solutions-filters"} className={css.buttonCancel}>
                                     <Text type="reg18" color="grey">
                                         Отмена
                                     </Text>
