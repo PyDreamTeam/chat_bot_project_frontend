@@ -7,8 +7,8 @@ import css from "./solutions-filters.module.css";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
-import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
+// import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
+// import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
@@ -97,7 +97,6 @@ const SolutionsFilters = () => {
     const handleSubmitAddGroup = (inputValue: string | undefined) => {
         if (inputValue) {
             setIsShownInput((prevState) => (prevState = false));
-            // createGroup({ token, title: inputValue }).then(router.reload);
             createGroup({ token, title: inputValue }).then(refetch);
         }
         setIsShownInput((prevState) => (prevState = false));
@@ -200,9 +199,6 @@ const SolutionsFilters = () => {
                             </div>
                         ) : (
                             <div>
-                                <Text type="reg24" color="red" className={css.devText}>
-                                    🔨 Страница находится в разработке! 🔧
-                                </Text>
                                 {searchFilter ? (
                                     <div>
                                         <SearchSolutionsFiltersList
