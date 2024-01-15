@@ -9,12 +9,13 @@ import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 
 const BlockBenefitsFunnel: FC<PropsSolutionCard> = ({ cards_title, cards_description }) => {
     const { data } = useGetSolutionCardsQuery({});
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.blockText}>
                 <Title type={"h3"} color={"dark"}>
-                    {cards_title}
-                    <ElemSaleBot text={"SALEBOT"} /> решает задачи{" "}
+                    {}
+                    <ElemSaleBot text={""} /> решает задачи{" "}
                 </Title>
                 <div className={styles.text}>
                     <Text type={"reg18"} color={"grey"}>

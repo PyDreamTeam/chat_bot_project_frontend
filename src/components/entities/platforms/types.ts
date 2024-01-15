@@ -164,11 +164,6 @@ export interface PropsSolutionCard {
     }[];
 }
 
-export interface PropsSolutionAdvantages {
-    id?: number;
-    advantage?: string;
-}
-
 export interface PropsSolutionCard {
     id?: number;
     title?: string;

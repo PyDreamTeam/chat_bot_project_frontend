@@ -9,12 +9,10 @@ import { useModal } from "@/src/hooks/useModal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import Modal from "@/src/components/shared/modal/Modal";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
-import { useGetSolutionAdvantagesQuery } from "@/src/store/services/solutions";
-import { ListAdvantages } from "@/src/components/entities/lists/listAdvantages";
+import { ListDescription } from "@/src/components/entities/lists/listDescription";
 
-const BlockComplexFunnel: FC<PropsSolutionCard> = ({ title }) => {
+const BlockComplexFunnel: FC<PropsSolutionCard> = ({ title, short_description }) => {
     const { isShown, toggle } = useModal();
-    const { data } = useGetSolutionAdvantagesQuery({});
 
     return (
         <div className={styles.wrapper}>
@@ -22,7 +20,7 @@ const BlockComplexFunnel: FC<PropsSolutionCard> = ({ title }) => {
                 <Title type={"h3"} color={"black"}>
                     {title}
                 </Title>
-                <ListAdvantages results={data?.results} />
+                <ListDescription short_description={short_description} />
                 <div className={styles.blockBtn}>
                     <div className={styles.button}>
                         <Button type="button" active={true} onClick={toggle}>

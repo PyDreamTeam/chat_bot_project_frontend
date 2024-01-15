@@ -36,7 +36,7 @@ const Solution = () => {
                         /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                <BlockComplexFunnel title={data?.title} />
+                <BlockComplexFunnel short_description={data?.short_description} title={data?.title} />
                 <BlockShotDescription
                     id={data?.id}
                     business_model={data?.business_model}
@@ -54,7 +54,11 @@ const Solution = () => {
                     integration_with_payment_systems={data?.integration_with_payment_systems}
                 />
                 <BlockGreatSolutions />
-                <BlockFunnelBenefits cards_title={data?.cards_title} cards_description={data?.cards_description} />
+                <BlockFunnelBenefits
+                    cards_title={data?.cards_title}
+                    cards_description={data?.cards_description}
+                    // filters={data?.filters}
+                />
                 <BlockHowItWorks />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
