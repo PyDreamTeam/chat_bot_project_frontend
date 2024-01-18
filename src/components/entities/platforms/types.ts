@@ -151,6 +151,7 @@ export interface PropsSolutionCard {
     type?: string | string;
     forceUpdate?: () => void;
     is_favorite?: boolean;
+    filters?: number[];
     tags?: {
         id?: number;
         tag?: string;
