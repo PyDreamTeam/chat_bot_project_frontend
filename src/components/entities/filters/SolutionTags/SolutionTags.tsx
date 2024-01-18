@@ -25,7 +25,8 @@ export const SolutionTags: FC<SolutionPropsFilters> = ({ filters = [] }) => {
                 <div className={styles.filterWrapper} key={item.id}>
                     <div className={styles.filter}>
                         <Text type={"reg14"} color={"telegray"}>
-                            {item.filter}
+                            {/* {item.filter !== " " && <>{item.filter}:</>} */}
+                            {item.filter}:
                         </Text>
                     </div>
                     <div className={styles.tags}>
@@ -37,7 +38,6 @@ export const SolutionTags: FC<SolutionPropsFilters> = ({ filters = [] }) => {
                                 />
                             </div>
                         ))}
-                        ;
                     </div>
                 </div>
             ))}
