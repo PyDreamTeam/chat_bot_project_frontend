@@ -7,7 +7,12 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./addFilter.module.css";
 import Image from "next/image";
-import { useAddPlatformFilterMutation, useGetPlatformFilterGroupsQuery } from "@/src/store/services/platforms";
+import {
+    useAddPlatformFilterMutation,
+    useGetPlatformFilterGroupsQuery,
+    usePlatformFilterGroupPublicMutation,
+    usePlatformFilterPublicMutation,
+} from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
@@ -19,6 +24,7 @@ import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFil
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import { useRouter } from "next/router";
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
+import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
 
 export interface PropsPlatformFilter {
     id?: number;
@@ -47,6 +53,9 @@ const AddPlatformFilter = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [addFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = useAddPlatformFilterMutation();
+    const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
+        usePlatformFilterGroupPublicMutation();
+    const [publicFilter, { isSuccess, error, isLoading: publicFilterIsLoading }] = usePlatformFilterPublicMutation();
 
     const [isValid, setIsValid] = useState<boolean>(false);
 
@@ -94,7 +103,6 @@ const AddPlatformFilter = () => {
     const handleSetImageName = (imageName: string) => {
         setFilter((prev) => ({ ...prev, image: imageName }));
         isValidFilter();
-        console.log(filter);
     };
 
     const handleRadioMultiple = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -132,7 +140,7 @@ const AddPlatformFilter = () => {
     };
 
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
-    const handleSuccessAddPlatform = () => {
+    const handleToggleSuccessModal = () => {
         setIsSuccessModal(!isSuccessModal);
     };
 
@@ -247,7 +255,7 @@ const AddPlatformFilter = () => {
                         ))}
                         <ButtonSmallSecondary active={true} type={"button"} onClick={addInput}>
                             {plusSvgPrimary}
-                            Добавить фильтр
+                            Добавить параметр фильтра
                         </ButtonSmallSecondary>
                     </div>
 
@@ -277,17 +285,45 @@ const AddPlatformFilter = () => {
                                         width={34}
                                         height={34}
                                         className={css.imgCloseModal}
-                                        onClick={handleSuccessAddPlatform}
+                                        onClick={handleToggleSuccessModal}
                                         style={{ cursor: "pointer" }}
                                     />
                                     <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
                                     <div className={css.textSuccess}>
                                         <Title type="h5" color="black">
-                                            Фильтр сохранен!
+                                            Фильтр создан!
                                         </Title>
                                         <Text type="reg16" color="grey">
-                                            Наши специалисты свяжутся с вами в течение суток
+                                            Вы можете сразу опубликовать его!
                                         </Text>
+                                        <div className={css.buttonsModalContainer}>
+                                            <ButtonCancel
+                                                type={"button"}
+                                                active={true}
+                                                onClick={handleToggleSuccessModal}
+                                                width={240}
+                                            >
+                                                Отмена
+                                            </ButtonCancel>
+                                            <Button
+                                                type={"button"}
+                                                active={true}
+                                                onClick={() => {
+                                                    const group = dataGroups?.results.find(
+                                                        (item: any) => item.id == filter.group
+                                                    );
+                                                    if (group.status === "save") {
+                                                        publicGroup({ id: filter.group, token });
+                                                    }
+                                                    publicFilter({ id: data.id, token })
+                                                        .then(handleToggleSuccessModal)
+                                                        .then(router.reload);
+                                                }}
+                                                width={240}
+                                            >
+                                                Опубликовать
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
