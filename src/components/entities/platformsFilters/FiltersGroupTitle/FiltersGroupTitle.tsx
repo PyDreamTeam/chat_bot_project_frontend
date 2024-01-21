@@ -1,18 +1,16 @@
-import React, { FC, useEffect, KeyboardEvent, useState } from "react";
-import styles from "./Group.module.css";
+import React, { FC, useEffect, useState } from "react";
+import styles from "./FiltersGroupTitle.module.css";
 import Image from "next/image";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
 import {
-    useEditPlatformFilterGroupMutation,
     usePlatformFilterGroupPublicMutation,
     usePlatformFilterGroupSaveMutation,
     usePlatformFilterPublicMutation,
     usePlatformFilterSaveMutation,
 } from "@/src/store/services/platforms";
 import { restoreFromArchive } from "../img/SvgConfig";
-import InputGroupEdit from "../InputGroupEdit/InputGroupEdit";
+import InputEditFiltersGroup from "../InputEditFiltersGroup/InputEditFiltersGroup";
 import { LoaderSmall } from "@/src/components/shared/LoaderSmall/LoaderSmall";
 
 interface PropsFilterGroup {
@@ -50,9 +48,10 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRestore, refresh }) => {
+const FiltersGroupTitle: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRestore, refresh }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
         usePlatformFilterGroupPublicMutation();
     const [publicFilter, { isSuccess: publicFilterIsSuccess, isLoading: publicFilterIsLoading }] =
@@ -61,8 +60,7 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
         moveToSaveGroup,
         { isSuccess: restoreGroupIsSuccess, error: restoreGroupError, isLoading: restoreGroupIsLoading },
     ] = usePlatformFilterGroupSaveMutation();
-    const [editGroup, { isSuccess: editIsSuccess, error: editError, isLoading: editIsLoading }] =
-        useEditPlatformFilterGroupMutation();
+
     const [
         moveToSaveFilter,
         { isSuccess: restoreFilterIsSuccess, error: restoreFilterError, isLoading: restoreFilterIsLoading },
@@ -118,40 +116,30 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
     };
 
     const [isShownInput, setIsShownInput] = useState(false);
-    const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key == "Enter" || e.key == "NumpadEnter") {
-            const title = (e.target as HTMLInputElement).value;
-            editGroup({ id, token, title }).then(refresh);
-        }
-        if (e.key == "Escape") {
-            setIsShownInput((prevState) => (prevState = false));
-        }
+
+    const handleSubmitEditGroup = () => {
+        setIsLoading(true);
+        if (refresh) refresh();
+        setIsShownInput((prevState) => (prevState = false));
     };
 
-    const handleSubmitEditGroup = (inputValue: string | undefined) => {
-        if (inputValue) {
-            editGroup({ id, token, title: inputValue })
-                .then(refresh)
-                .then(() => setIsShownInput((prevState) => (prevState = false)));
-        }
-    };
+    useEffect(() => {
+        setIsLoading(false);
+    }, [title]);
 
     return (
         <div className={styles.groupContainer}>
-            <InputGroupEdit
-                placeholder=" Добавьте название для группы фильтров"
+            <InputEditFiltersGroup
+                id={id}
                 value={title}
                 isShown={isShownInput}
-                onKeyDown={(e) => {
-                    handleKeyDownGroup(e);
-                }}
                 onCancel={() => setIsShownInput((prevState) => (prevState = false))}
                 onSubmit={handleSubmitEditGroup}
             />
             <div className={styles.groupItem}>
-                {editIsLoading ? (
+                {isLoading ? (
                     <div className={styles.loaderPlatforms}>
-                        <LoaderSmall isLoading={editIsLoading} />
+                        <LoaderSmall isLoading={isLoading} />
                     </div>
                 ) : (
                     <Text type="sem16" color="black">
@@ -206,4 +194,4 @@ const Group: FC<PropsFilterGroup> = ({ title, id, sort, filters, onDelete, onRes
     );
 };
 
-export default Group;
+export default FiltersGroupTitle;

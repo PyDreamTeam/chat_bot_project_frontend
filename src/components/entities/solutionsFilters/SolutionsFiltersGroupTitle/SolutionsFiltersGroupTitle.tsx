@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Text from "@/src/components/shared/text/Text";
 import { restoreFromArchive } from "@/src/components/entities/platformsFilters/img/SvgConfig";
-import InputGroupEdit from "@/src/components/entities/platformsFilters/InputGroupEdit/InputGroupEdit";
+import InputGroupEdit from "@/src/components/entities/platformsFilters/InputEditFiltersGroup/InputEditFiltersGroup";
 import {
     useEditSolutionFilterGroupMutation,
     usePublicSolutionFilterGroupMutation,
@@ -14,6 +14,7 @@ import {
     useSaveSolutionFilterMutation,
 } from "@/src/store/services/solutions";
 import { LoaderSmall } from "@/src/components/shared/LoaderSmall/LoaderSmall";
+import InputEditSolutionsFiltersGroup from "../InputEditSolutionsFiltersGroup/InputEditSolutionsFiltersGroup";
 
 interface PropsFilterGroup {
     title?: string;
@@ -60,6 +61,8 @@ const SolutionsFiltersGroupTitle: FC<PropsFilterGroup> = ({
     refresh,
 }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const [isLoading, setIsLoading] = useState(false);
+
     const router = useRouter();
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
         usePublicSolutionFilterGroupMutation();
@@ -126,40 +129,30 @@ const SolutionsFiltersGroupTitle: FC<PropsFilterGroup> = ({
     };
 
     const [isShownInput, setIsShownInput] = useState(false);
-    const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key == "Enter" || e.key == "NumpadEnter") {
-            const title = (e.target as HTMLInputElement).value;
-            editGroup({ id, token, title }).then(refresh);
-        }
-        if (e.key == "Escape") {
-            setIsShownInput((prevState) => (prevState = false));
-        }
+
+    const handleSubmitEditGroup = () => {
+        setIsLoading(true);
+        if (refresh) refresh();
+        setIsShownInput((prevState) => (prevState = false));
     };
 
-    const handleSubmitEditGroup = (inputValue: string | undefined) => {
-        if (inputValue) {
-            editGroup({ id, token, title: inputValue })
-                .then(refresh)
-                .then(() => setIsShownInput((prevState) => (prevState = false)));
-        }
-    };
+    useEffect(() => {
+        setIsLoading(false);
+    }, [title]);
 
     return (
         <div className={styles.groupContainer}>
-            <InputGroupEdit
-                placeholder=" Добавьте название для группы фильтров"
+            <InputEditSolutionsFiltersGroup
+                id={id}
                 value={title}
                 isShown={isShownInput}
-                onKeyDown={(e) => {
-                    handleKeyDownGroup(e);
-                }}
                 onCancel={() => setIsShownInput((prevState) => (prevState = false))}
                 onSubmit={handleSubmitEditGroup}
             />
             <div className={styles.groupItem}>
-                {editIsLoading ? (
+                {isLoading ? (
                     <div className={styles.loaderPlatforms}>
-                        <LoaderSmall isLoading={editIsLoading} />
+                        <LoaderSmall isLoading={isLoading} />
                     </div>
                 ) : (
                     <Text type="sem16" color="black">

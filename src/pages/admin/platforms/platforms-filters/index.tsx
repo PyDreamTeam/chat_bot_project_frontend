@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -19,7 +19,7 @@ import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallP
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import FiltersList from "@/src/components/entities/platformsFilters/FiltersList/FiltersList";
 import SearchFiltersList from "@/src/components/entities/platformsFilters/SearchFiltersList/SearchFiltersList";
-import InputGroup from "@/src/components/entities/platformsFilters/InputGroup/InputGroup";
+import InputFiltersGroup from "@/src/components/entities/platformsFilters/InputFiltersGroup/InputFiltersGroup";
 import Cookies from "js-cookie";
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
@@ -82,23 +82,9 @@ const PlatformsFilters = () => {
     };
     const [isShownInput, setIsShownInput] = useState(false);
 
-    const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key == "Enter" || e.key == "NumpadEnter") {
-            const title = (e.target as HTMLInputElement).value;
-            setIsShownInput((prevState) => (prevState = false));
-            createGroup({ token, title }).then(refetch);
-        }
-        if (e.key == "Escape") {
-            setIsShownInput((prevState) => (prevState = false));
-        }
-    };
-
-    const handleSubmitAddGroup = (inputValue: string | undefined) => {
-        if (inputValue) {
-            setIsShownInput((prevState) => (prevState = false));
-            createGroup({ token, title: inputValue }).then(refetch);
-        }
+    const handleSubmitAddGroup = (inputValue: string) => {
         setIsShownInput((prevState) => (prevState = false));
+        createGroup({ token, title: inputValue }).then(refetch);
     };
     const handleCancelAddGroup = () => {
         setIsShownInput((prevState) => (prevState = false));
@@ -181,12 +167,9 @@ const PlatformsFilters = () => {
                         ))}
                     </ul>
                 </div>
-                <InputGroup
+                <InputFiltersGroup
                     placeholder=" Добавьте название для группы фильтров"
                     isShown={isShownInput}
-                    onKeyDown={(e) => {
-                        handleKeyDownGroup(e);
-                    }}
                     onSubmit={handleSubmitAddGroup}
                     onCancel={handleCancelAddGroup}
                 />
