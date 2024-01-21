@@ -145,6 +145,28 @@ export const userAuth = createApi({
                 },
             }),
         }),
+        getTariffsList: builder.query({
+            query: () => ({
+                url: "/api/solution/tariffs/",
+                method: "GET",
+            }),
+        }),
+        getTariff: builder.query({
+            query: ({ id }) => ({
+                url: `/api/solution/tariffs/${id}/`,
+                method: "GET",
+            }),
+        }),
+        putTariff: builder.mutation({
+            query: ({ filter, token, id }) => ({
+                url: `/api/solution/tariffs/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+                body: filter,
+            }),
+        }),
     }),
 });
 
@@ -166,4 +188,7 @@ export const {
     usePutOrderMutation,
     usePatchOrderMutation,
     useDeleteOrderMutation,
+    useGetTariffsListQuery,
+    useGetTariffQuery,
+    usePutTariffMutation,
 } = userAuth;

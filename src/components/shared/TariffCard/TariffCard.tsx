@@ -4,6 +4,7 @@ import Text from "../text/Text";
 import { useRouter } from "next/navigation";
 import Title from "../text/Title";
 import Image from "next/image";
+import CheckMark from "@/src/components/shared/checkMark/CheckMark";
 import { Button } from "../buttons/Button";
 import css from "./tariffCard.module.css";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
@@ -12,7 +13,7 @@ import Modal from "../modal/Modal";
 import SelectionRequest from "../../entities/selectionRequest/SelectionRequest";
 import { useModal } from "@/src/hooks/useModal";
 
-export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, hotPlan, bestPlan, dataComment }) => {
+export const TariffCard: FC<TariffPlanCard> = ({ title, price, advantages, hotPlan }) => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { isSuccess } = useDataUserQuery(token);
     const router = useRouter();
@@ -34,21 +35,21 @@ export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, 
                                 {title}
                             </Text>
                         </div>
-                        <Image src={bestPlan === undefined ? "" : bestPlan} width={98} height={20} alt="hot plan" />
+                        <Image src={"/img/hotPlan.svg"} width={98} height={20} alt="hot plan" />
                     </div>
                 )}
             </div>
             <div className={css.priceBlock}>
                 <Title type="h4" color="black">
-                    {price}
+                    {`От ${price} ₽`}
                     <span className={css.price}>/месяц</span>
                 </Title>
             </div>
 
             <ul className={css.advantageBlock}>
-                {advantage.map((item, index) => (
+                {advantages.map((item, index) => (
                     <div key={index} className={css.advantage}>
-                        {icon}
+                        <CheckMark />
                         <Text type="reg16" color="dark">
                             {item}
                         </Text>
@@ -65,7 +66,7 @@ export const TariffCard: FC<TariffPlanCard> = ({ title, price, icon, advantage, 
                 </Button>
             )}
             <Modal isShown={isShown} hide={toggle}>
-                <SelectionRequest close={toggle} dataComment={dataComment} />
+                <SelectionRequest close={toggle} dataComment={`Выбранный тариф: ${title}`} />
             </Modal>
         </div>
     );

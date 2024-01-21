@@ -10,11 +10,10 @@ export enum LOAD_STATUS {
 export interface TariffPlanCard {
     title: string;
     price: string;
-    advantage: Array<string>;
-    icon: React.ReactNode;
+    advantages: Array<string>;
+    icon?: React.ReactNode;
     hotPlan?: boolean;
     bestPlan?: string;
-    dataComment?: string;
 }
 export interface Labels {
     name: React.ReactNode;
