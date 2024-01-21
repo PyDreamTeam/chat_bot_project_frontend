@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
+import Title from "@/src/components/shared/text/Title";
+import Image from "next/image";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./editFilter.module.css";
@@ -39,7 +41,7 @@ const EditSolutionFilter: FC<pageProps> = () => {
         refetch,
     } = useGetSolutionFilterQuery({ id }, { refetchOnMountOrArgChange: true });
 
-    const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutSolutionFilterMutation();
+    const [putFilter, { data, isSuccess: isSuccessPutFilter, isLoading }] = usePutSolutionFilterMutation();
 
     const { data: dataGroups } = useGetSolutionFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
@@ -118,10 +120,24 @@ const EditSolutionFilter: FC<pageProps> = () => {
     };
 
     const handleSubmit = () => {
-        putFilter({ filter, token, id })
-            .then(refetch)
-            .then(() => router.push("/admin/solutions/solutions-filters/"));
+        putFilter({ filter, token, id }).then(refetch);
+        // .then(() => router.push("/admin/solutions/solutions-filters/"));
     };
+
+    const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
+    const handleToggleSuccessModal = () => {
+        setIsSuccessModal(!isSuccessModal);
+    };
+
+    useEffect(() => {
+        if (isSuccessPutFilter) {
+            setIsSuccessModal(true);
+            setTimeout(() => {
+                setIsSuccessModal(false);
+                router.push("/admin/solutions/solutions-filters/");
+            }, 3000);
+        }
+    }, [isSuccessPutFilter]);
 
     useEffect(() => {
         if (filterIsSuccess) {
@@ -222,6 +238,42 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                     Сохранить изменения
                                 </Button>
                             </div>
+                            {isSuccessModal && (
+                                <div className={css.backdrop}>
+                                    <div className={css.modal}>
+                                        <div className={css.modalContent}>
+                                            <Image
+                                                src="/sign/close.svg"
+                                                alt="icon"
+                                                width={34}
+                                                height={34}
+                                                className={css.imgCloseModal}
+                                                onClick={handleToggleSuccessModal}
+                                                style={{ cursor: "pointer" }}
+                                            />
+                                            <Image
+                                                src={"/platforms/successModal.svg"}
+                                                alt="icon"
+                                                width={120}
+                                                height={120}
+                                            />
+                                            <div className={css.textSuccess}>
+                                                <Title type="h5" color="black">
+                                                    Фильтр сохранен!
+                                                </Title>
+                                                <Text type="reg16" color="grey">
+                                                    Все изменения фильтра сохранены!
+                                                </Text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                    {isLoading && (
+                        <div className={css.modal}>
+                            <Loader isLoading={isLoading} />
                         </div>
                     )}
                 </div>
