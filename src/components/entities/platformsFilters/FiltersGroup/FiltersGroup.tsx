@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import uuid from "uuid-random";
 import styles from "./FiltersGroup.module.css";
 import Filter from "../Filter/Filter";
-import Group from "../Group/Group";
+import FiltersGroupTitle from "../FiltersGroupTitle/FiltersGroupTitle";
 import { useModal } from "@/src/hooks/useModal";
 import Modal from "@/src/components/shared/modal/Modal";
 import DeleteFilterPopup from "../popups/DeleteFilterPopup";
@@ -61,7 +61,7 @@ const FiltersGroup: FC<PropsFiltersGroup> = ({ groupData, sort, refresh }) => {
 
     return (
         <div>
-            <Group
+            <FiltersGroupTitle
                 title={groupData.group}
                 id={groupData.id}
                 sort={sort}

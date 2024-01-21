@@ -2,6 +2,27 @@
     position: relative;
     display:flex;
     gap: 16px;
+    max-width: 932px;
+}
+
+.inputContainer {
+    /* padding: 8px 0px 6px 8px; */
+    width: 100%;
+}
+
+.errorBlock {
+    display: flex;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    padding-left: 8px;
+    padding-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.errorBlockHide {
+    display: none;
+    
 }
 
 .inputGroup,
@@ -33,4 +54,5 @@
 .buttonsContainer {
     display: flex;
     gap: 16px;
+    max-height: 39px;
 }
