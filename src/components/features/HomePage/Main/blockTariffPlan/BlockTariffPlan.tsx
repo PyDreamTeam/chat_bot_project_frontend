@@ -1,11 +1,11 @@
-import { TariffCard } from "@/src/components/shared/TariffCard/TariffCard";
+import { TariffCard } from "@/src/components/entities/cards/cardsTariffs/TariffCard/TariffCard";
 import { TariffPlanCard } from "@/src/types";
 import css from "./blockTariffPlan.module.css";
 import Title from "@/src/components/shared/text/Title";
 import Cookies from "js-cookie";
 import { useGetTariffsListQuery } from "@/src/store/services/userAuth";
 
-interface ITariff {
+export interface ITariff {
     id?: number;
     tags_of_rates: string[];
     title: string;
