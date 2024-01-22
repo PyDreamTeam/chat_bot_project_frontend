@@ -1,16 +1,16 @@
 import { TariffPlanCard } from "@/src/types";
 import { FC } from "react";
-import Text from "../text/Text";
+import Text from "@/src/components/shared/text/Text";
 import { useRouter } from "next/navigation";
-import Title from "../text/Title";
+import Title from "@/src/components/shared/text/Title";
 import Image from "next/image";
 import CheckMark from "@/src/components/shared/checkMark/CheckMark";
-import { Button } from "../buttons/Button";
-import css from "./tariffCard.module.css";
+import { Button } from "@/src/components/shared/buttons/Button";
+import css from "./TariffCard.module.css";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
 import Cookies from "js-cookie";
-import Modal from "../modal/Modal";
-import SelectionRequest from "../../entities/selectionRequest/SelectionRequest";
+import Modal from "@/src/components/shared/modal/Modal";
+import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import { useModal } from "@/src/hooks/useModal";
 
 export const TariffCard: FC<TariffPlanCard> = ({ title, price, advantages, hotPlan }) => {

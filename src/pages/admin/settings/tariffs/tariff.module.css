@@ -1,0 +1,149 @@
+.links {
+    display: flex;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+.link {
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #909090;
+}
+
+.Wrapper {
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tariffFormWrapper {
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.loaderOrders {
+    display: flex;
+    align-self: center;
+    margin-top: 100px;
+}
+
+.form {
+    width: 440px;
+    text-align: left;
+}
+
+.tariffParameters {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+.tariffParameters button {
+    margin-top: 12px;
+}
+
+.tagTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.buttonsContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 24px;
+    gap: 16px;
+}
+
+.buttonCancel {
+    max-width: 167px;
+    padding: 10px 24px;
+    align-self: center;
+}
+
+.buttonCancel:hover p{
+    color: red;
+}
+
+/* MODAL */
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(53, 53, 53, 0.66);
+    backdrop-tariff: blur(5px);
+    z-index: 500;
+    overflow: scroll;
+}
+
+.modal {
+    max-width: 1200px;
+    background-color: white;
+    position: relative;
+    margin: auto;
+    border-radius: 30px;
+}
+
+.modalContent {
+    position: relative;
+    width: 560px;
+    padding: 32px;
+    padding-bottom: 40px;
+    border-radius: 30px;
+    background: #FFF;
+    text-align: center;
+}
+
+.imgCloseModal {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+}
+
+.textSuccess {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.titleModalClose {
+    margin-top: 32px;
+}
+.subTitleModalClose {
+    margin-top: 16px;
+}
+.groupBtnModalClose {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+}
+.btnCloseModal {
+    padding: 10px 30px;
+    border-radius: 16px;
+    background: #FFF;
+    border: 1px solid #FFF;
+}
+.btnSaveModal {
+    padding: 10px 72px;
+    border-radius: 16px;
+    background: #4466F5;
+    border: 1px solid #4466F5
+}
