@@ -30,7 +30,8 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
+import { UploadImage } from "@/src/components/entities/solutions/addSolution/UploadImage";
+
 import { Loader } from "@/src/components/shared/Loader/Loader";
 
 const SolutionsAdmin = () => {
@@ -57,6 +58,8 @@ const SolutionsAdmin = () => {
         link: "",
         links_to_platform: [],
         filter: [],
+        steps_title: "",
+        steps_description: "",
     });
 
     useEffect(() => {
@@ -77,6 +80,8 @@ const SolutionsAdmin = () => {
             full_description: data?.full_description,
             price: data?.price,
             image: data?.image,
+            steps_title: data?.steps_title,
+            steps_description: data?.steps_description,
         }));
     }, [data]);
 
@@ -159,7 +164,14 @@ const SolutionsAdmin = () => {
                     className={css.titlePlatform}
                     style={css.size640}
                 />
-                <UploadImage onChange={handleFileChange} image={solution.image} isImage={Boolean(solution.image)} />
+                <UploadImage
+                    onChange={handleFileChange}
+                    text={"Логотип"}
+                    height={250}
+                    width={250}
+                    image={solution.image}
+                    isImage={Boolean(solution.image)}
+                />
                 <TextAreaAddSolution
                     value={solution.short_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, short_description: e.target.value }))}
@@ -173,6 +185,21 @@ const SolutionsAdmin = () => {
                     label="Полное описание решения"
                     placeholder="Текст до 800 символов"
                     className={css.textAreaPlatform}
+                />
+                <InputAddSolution
+                    label="Заголовок мероприятий"
+                    value={solution.steps_title}
+                    onChange={(e) => setSolution((prev) => ({ ...prev, steps_title: e.target.value }))}
+                    placeholder="Текст"
+                    className={css.titleSolution}
+                    style={css.size640}
+                />
+                <TextAreaAddSolution
+                    value={solution.steps_description}
+                    onChange={(e) => setSolution((prev) => ({ ...prev, steps_description: e.target.value }))}
+                    label="Описание мероприятий"
+                    placeholder="Текст (200 символов)"
+                    className={css.textAreaSolution}
                 />
                 <Title type="h5" color="dark" className={css.subTitle}>
                     Описание фильтров

@@ -61,6 +61,7 @@ export interface PropsPlatformCard {
     forceUpdate?: () => void;
     link?: string;
     links_to_solution?: string[];
+    isVisible?: boolean;
     type?: Card;
     filter?: number[];
     tags?: {
@@ -127,6 +128,7 @@ export interface PropsSolutionCard {
     business_area?: string;
     business_niche?: string;
     objective?: string;
+    platform_title?: string;
     turnkey_platforms?: number;
     links_to_platform?: string[];
     solution_type?: string;
@@ -152,6 +154,9 @@ export interface PropsSolutionCard {
     link?: string;
     type?: string | string;
     filter?: number[];
+    cards?: any[];
+    steps?: any[];
+    dignities?: any[];
     forceUpdate?: () => void;
     tags?: {
         id?: number;

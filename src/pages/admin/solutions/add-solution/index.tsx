@@ -9,23 +9,36 @@ import { InputAddSolution } from "@/src/components/entities/solutions/addSolutio
 import { TextAreaAddSolution } from "@/src/components/entities/solutions/addSolution/TextAreaAddPSolution";
 import { useEffect, useState } from "react";
 import { MultipleInput } from "@/src/components/entities/solutions/addSolution/MultipleInput";
-import { useAddSolutionMutation, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
+import {
+    useAddSolutionMutation,
+    useGetSolutionsFiltersQuery,
+    useGetSolutionCardsQuery,
+    useGetSolutionStepsQuery,
+} from "@/src/store/services/solutions";
 import {
     PropsGroupsFilters,
     GroupsFilters,
 } from "@/src/components/entities/solutions/addSolution/filtersForAddSolution/GroupsFiltrs/GroupsFilters";
 import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import { deleteAllFiltersFromPlatform, linkToPlatform } from "@/src/store/reducers/addPlatform/slice";
+import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
 import { deleteAllFiltersFromSolution, linkToSolution } from "@/src/store/reducers/addSolution/slice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
+import { UploadImage } from "@/src/components/entities/solutions/addSolution/UploadImage";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { CardsInput } from "@/src/components/entities/solutions/addSolution/CardsInput";
+import { StepsInput } from "@/src/components/entities/solutions/addSolution/StepsInput";
+import { DignitiesInput } from "@/src/components/entities/solutions/addSolution/DignitiesInput";
 
 const AddSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
+    const { data: dataCards, isLoading: isLoadingCards } = useGetSolutionCardsQuery({});
+    const { data: dataSteps, isLoading: isLoadingSteps } = useGetSolutionStepsQuery({});
+
+    const { data: PlatformsData } = useGetListPlatformsQuery({});
+
     const dispatch = useAppDispatch();
     const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
@@ -34,12 +47,14 @@ const AddSolution = () => {
         title: "",
         short_description: "",
         full_description: "",
-        turnkey_platforms: 0,
         price: "",
         image: "",
         link: "",
-        links_to_platform: [],
+        steps_title: "",
+        steps_description: "",
         filter: [],
+        cards: [],
+        steps: [],
     });
 
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
@@ -52,7 +67,7 @@ const AddSolution = () => {
     };
 
     useEffect(() => {
-        dispatch(deleteAllFiltersFromPlatform());
+        dispatch(deleteAllFiltersFromSolution());
     }, []);
 
     const inputsLinks = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
@@ -62,6 +77,8 @@ const AddSolution = () => {
     }, [inputsLinks]);
 
     const filters = useAppSelector((state) => state.reducerAddSolution.filters);
+    const cardsArray = useAppSelector((state) => state.reducerAddSolution.cards);
+    const stepsArray = useAppSelector((state) => state.reducerAddSolution.steps);
 
     useEffect(() => {
         setSolution((prev) => ({ ...prev, filter: filters.map((item) => item.id) }));
@@ -70,6 +87,12 @@ const AddSolution = () => {
     useEffect(() => {
         setSolution((prev) => ({ ...prev, link: link }));
     }, [link]);
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, cards: cardsArray }));
+    }, [cardsArray]);
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, cards: stepsArray }));
+    }, [stepsArray]);
 
     useEffect(() => {
         if (isSuccessAddSolution) {
@@ -84,8 +107,13 @@ const AddSolution = () => {
                 price: "",
                 image: "",
                 link: "",
+                steps_title: "",
+                steps_description: "",
                 links_to_solution: [],
                 filter: [],
+                cards: [],
+                steps: [],
+                dignities: [],
             }));
             dispatch(deleteAllFiltersFromSolution());
             setTimeout(() => {
@@ -138,7 +166,14 @@ const AddSolution = () => {
                     className={styles.titleSolution}
                     style={styles.size640}
                 />
-                <UploadImage onChange={handleFileChange} image={solution.image} isImage={Boolean(solution.image)} />
+                <UploadImage
+                    text={"Логотип"}
+                    height={250}
+                    width={250}
+                    onChange={handleFileChange}
+                    image={solution.image}
+                    isImage={Boolean(solution.image)}
+                />
                 <TextAreaAddSolution
                     value={solution.short_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, short_description: e.target.value }))}
@@ -146,13 +181,62 @@ const AddSolution = () => {
                     placeholder="Текст (200 символов)"
                     className={styles.textAreaSolution}
                 />
+
+                <InputAddSolution
+                    label="Название платформы на которой реализовано решение"
+                    results={PlatformsData?.results}
+                    value={solution.title}
+                    // value={solution.platfotm_title}
+                    is={true}
+                    onChange={(e) => setSolution((prev) => ({ ...prev, title: e.target.value }))}
+                    //  onChange={(e) => setSolution((prev) => ({ ...prev, platfotm_title: e.target.value }))}
+                    placeholder="Выбрать"
+                    className={styles.titleSolution}
+                    style={styles.size640}
+                />
+                <UploadImage
+                    text={"Логотип платформы"}
+                    height={250}
+                    width={250}
+                    onChange={handleFileChange}
+                    image={solution.image}
+                    // image={solution.platform_image}
+                    isImage={Boolean(solution.image)}
+                />
+                <Title type="h5" color="dark" className={styles.subTitle}>
+                    Полное описание
+                </Title>
                 <TextAreaAddSolution
                     value={solution.full_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, full_description: e.target.value }))}
-                    label="Полное описание решения"
-                    placeholder="Текст до 800 символов"
+                    label="Описание типа решения"
+                    placeholder="Текст до 200 символов"
                     className={styles.textAreaSolution}
                 />
+                <Title type="h5" color="dark" className={styles.subHead}>
+                    Задачи
+                </Title>
+
+                <CardsInput results={dataCards?.results} />
+                <Title type="h5" color="dark" className={styles.subHead}>
+                    Мероприятия
+                </Title>
+                <InputAddSolution
+                    label="Заголовок мероприятий"
+                    value={solution.steps_title}
+                    onChange={(e) => setSolution((prev) => ({ ...prev, steps_title: e.target.value }))}
+                    placeholder="Текст"
+                    className={styles.titleSolution}
+                    style={styles.size640}
+                />
+                <TextAreaAddSolution
+                    value={solution.steps_description}
+                    onChange={(e) => setSolution((prev) => ({ ...prev, steps_description: e.target.value }))}
+                    label="Описание мероприятий"
+                    placeholder="Текст (до 150 символов)"
+                    className={styles.textAreaSolution}
+                />
+                <StepsInput results={dataSteps?.results} />
                 <Title type="h5" color="dark" className={styles.subTitle}>
                     Описание фильтров
                 </Title>
@@ -163,20 +247,6 @@ const AddSolution = () => {
                         </li>
                     ))}
                 </ul>
-
-                <Title type="h5" color="dark" className={styles.subTitle}>
-                    Ссылки на платформы
-                </Title>
-                <MultipleInput />
-                <InputAddSolution
-                    label="Количество реализованных платформ"
-                    value={solution.turnkey_platforms}
-                    placeholder="0"
-                    className={styles.countPlatforms}
-                    style={styles.size203}
-                    disabled={true}
-                    countPlatforms={true}
-                />
                 <InputAddSolution
                     value={solution.price}
                     onChange={(e) => setSolution((prev) => ({ ...prev, price: Number(e.target.value) }))}
@@ -186,10 +256,11 @@ const AddSolution = () => {
                     style={styles.size203}
                     onKeyPress={handleKeyPress}
                 />
+                <DignitiesInput />
                 <InputAddSolution
-                    label="Ссылка на страницу решения"
+                    label="Ссылка на страницу с описанием платформы, на которой было создано решение"
                     onChange={(e) => {
-                        dispatch(linkToPlatform(e.target.value));
+                        dispatch(linkToSolution(e.target.value));
                     }}
                     placeholder="www.example.com"
                     className={styles.linkSolution}

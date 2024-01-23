@@ -14,6 +14,12 @@
 .title {
     margin-top: 32px;
 }
+.subTitle {
+    margin-bottom: 32px;
+}
+.subHead {
+    margin: 32px 0 24px 0;
+}
 .size640 {
     width: 640px;
 }
@@ -30,10 +36,16 @@
     margin-top: 16px;
     width: 640px;
 }
+.smallTextArea {
+    margin-top: 16px;
+    width: 640px;
+}
 .subTitle {
     margin-top: 56px;
 }
-
+.images {
+    display: flex;
+}
 .linksPlatforms {
     margin-top: 32px;
     margin-bottom: 8px;
@@ -79,6 +91,7 @@
 
 .listFilters {
     list-style: none;
+    margin-bottom: 56px;
 }
 
 .modal {

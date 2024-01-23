@@ -4,19 +4,19 @@ import Text from "@/src/components/shared/text/Text";
 import css from "./style.module.css";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import { countLinkToPlatform } from "@/src/store/reducers/addSolution/slice";
+import { getDignities } from "@/src/store/reducers/addSolution/slice";
 
-export const MultipleInput = () => {
+export const DignitiesInput = () => {
     const dispatch = useAppDispatch();
-    const linksToPlatform = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
+    const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
     const [inputs, setInputs] = useState<string[]>([]);
 
     useEffect(() => {
-        dispatch(countLinkToPlatform(inputs));
+        dispatch(getDignities(inputs));
     }, [inputs]);
 
     const addInput = () => {
-        setInputs([...linksToPlatform, ""]);
+        setInputs([...dignities, ""]);
     };
 
     const removeInput = (index: number) => {
@@ -27,7 +27,7 @@ export const MultipleInput = () => {
 
     return (
         <div>
-            {linksToPlatform?.map((input, index) => (
+            {dignities?.map((dignitie, index) => (
                 <div key={index}>
                     <div className={css.linksPlatform}>
                         <Text type="reg18" color="dark">
@@ -43,8 +43,8 @@ export const MultipleInput = () => {
                         />
                     </div>
                     <InputAddSolution
-                        value={input}
-                        placeholder="..."
+                        value={dignitie}
+                        placeholder="Текст"
                         link={false}
                         onChange={(e) => {
                             const newInputs = [...inputs];

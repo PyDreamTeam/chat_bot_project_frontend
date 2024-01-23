@@ -3,11 +3,13 @@ import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./BlockHowItWorks.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const BlockHowItWorks = () => {
     return (
         <div className={styles.wrapper} id={"video"}>
             <Image src={"/img/Video.png"} alt={"video"} width={520} height={298} />
+
             <div className={styles.blockText}>
                 <Title type={"h3"} color={"dark"}>
                     Как это работает?

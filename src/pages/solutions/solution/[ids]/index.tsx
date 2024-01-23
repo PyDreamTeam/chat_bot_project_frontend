@@ -19,7 +19,6 @@ const Solution = () => {
     const { ids } = router.query;
     const { data } = useGetSolutionQuery(Number(ids));
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
-    // console.log(dataFilters.results);
 
     return (
         <div>
