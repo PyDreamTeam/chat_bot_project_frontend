@@ -44,7 +44,6 @@ const Solution = () => {
                     full_description={data?.full_description}
                     results={dataFilters?.results}
                 />
-                <BlockGreatSolutions />
                 <BlockFunnelBenefits results={dataFilters?.results} cards_description={data?.cards_description} />
                 <BlockHowItWorks />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />

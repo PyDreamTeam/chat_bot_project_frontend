@@ -26,7 +26,6 @@ const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({ results = [], cards_desc
     const router = useRouter();
     const { ids } = router.query;
     const { data } = useGetSolutionQuery(Number(ids));
-    console.log(results);
 
     return (
         <div className={styles.wrapper}>
@@ -63,6 +62,7 @@ const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({ results = [], cards_desc
                             </div>
                         ))}
                     </>
+                    {/* text = platform_title из решений*/}
                     <ElemSaleBot text={""} /> решает задачи{" "}
                 </Title>
                 <div className={styles.text}>
