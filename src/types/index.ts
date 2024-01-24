@@ -22,7 +22,7 @@ export interface ITariff {
     title: string;
     price: string;
     tags_of_rates: Array<string>;
-    is_special: string;
+    is_special: string | null;
     created_at?: string;
 }
 export interface Labels {

@@ -55,6 +55,14 @@
     justify-content: space-between;
 }
 
+.isSpecial {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding-left: 16px;
+}
+
 
 .buttonsContainer {
     width: 100%;

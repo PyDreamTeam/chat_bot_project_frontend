@@ -12,8 +12,9 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import Cookies from "js-cookie";
 import InputAddFilter from "@/src/components/entities/platformsFilters/addFilter/InputAddFilter";
 import { ITariff } from "@/src/types";
-
 import { useGetTariffQuery, usePutTariffMutation } from "@/src/store/services/userAuth";
+import { Checkbox } from "@/src/components/entities/platforms/leftBlock/Checkbox/Checkbox";
+import { TariffTagsInput } from "@/src/components/entities/tariffs/TariffTagsInput/TariffTagsInput";
 
 interface pageProps {
     params: { id: string };
@@ -32,8 +33,6 @@ const EditTariff: FC<pageProps> = () => {
         refetch,
     } = useGetTariffQuery({ id }, { refetchOnMountOrArgChange: true });
 
-    console.log(tariffData);
-
     const [tariff, setTariff] = useState<ITariff>({
         title: tariffData?.title,
         price: tariffData?.price,
@@ -46,22 +45,27 @@ const EditTariff: FC<pageProps> = () => {
     const [putTariff, { isSuccess: isSuccessPutTariff, isLoading }] = usePutTariffMutation();
 
     const isValidTariff = () => {
-        if (tariff != undefined || tariff != null) {
-            const isUndefined = Object.values(tariff).find((value) => value === "" || value === null);
+        if (tariff) {
+            const isUndefined = Object.values(tariff).find((value) => value === "");
             if (typeof isUndefined == "undefined" && tariff.tags_of_rates.length !== 0) {
                 setIsValid(true);
             } else setIsValid(false);
         }
     };
 
+    const handleSetTextTags = (tagsT: string[]) => {
+        setTariff((prev) => ({ ...prev, tags_of_rates: tagsT }));
+        isValidTariff();
+    };
+
     const handleSubmit = () => {
         putTariff({ tariff, token, id }).then(refetch);
-        // .then(() => router.push("/admin/solutions/solutions-tariffs/"));
     };
 
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
     const handleToggleSuccessModal = () => {
         setIsSuccessModal(!isSuccessModal);
+        router.push("/admin/settings/tariffs/");
     };
 
     useEffect(() => {
@@ -79,13 +83,9 @@ const EditTariff: FC<pageProps> = () => {
             setTariff((prev) => ({
                 ...prev,
                 title: tariffData?.title,
-                functionality: tariffData?.functionality,
-                integration: tariffData?.integration,
-                multiple: tariffData?.multiple,
-                status: tariffData?.status,
-                image: tariffData?.image,
-                group: tariffData?.group,
-                tags: tariffData?.tags,
+                price: tariffData?.price,
+                tags_of_rates: tariffData?.tags_of_rates,
+                is_special: tariffData?.is_special,
             }));
         }
     }, [tariffIsSuccess]);
@@ -117,9 +117,6 @@ const EditTariff: FC<pageProps> = () => {
                     </Text>
                 </div>
                 <div className={css.Wrapper}>
-                    <Text type="med20" color="red">
-                        🛠️ Страница находится в разработке 🛠️
-                    </Text>
                     {tariffIsLoading ? (
                         <div className={css.loaderOrders}>
                             <Loader isLoading={tariffIsLoading} />
@@ -130,25 +127,41 @@ const EditTariff: FC<pageProps> = () => {
                                 label="Название тарифа"
                                 value={tariffData?.title}
                                 onChange={(e) => {
-                                    isValidTariff();
                                     setTariff((prev) => ({ ...prev, title: e.target.value }));
+                                    isValidTariff();
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
                             />
+                            <div className={css.isSpecial}>
+                                <Checkbox
+                                    defaultChecked={tariffData?.is_special === "hot plan" ? true : false}
+                                    onChange={() => {
+                                        if (tariff.is_special === "hot plan") {
+                                            setTariff((prev) => ({ ...prev, is_special: "not" }));
+                                        } else {
+                                            setTariff((prev) => ({ ...prev, is_special: "hot plan" }));
+                                        }
+                                        isValidTariff();
+                                    }}
+                                />
+                                <Text type="reg16" color="dark">
+                                    HOT PLAN
+                                </Text>
+                            </div>
                             <InputAddFilter
                                 label="Стоимость тарифа"
                                 value={tariffData?.price}
                                 onChange={(e) => {
-                                    isValidTariff();
                                     setTariff((prev) => ({ ...prev, price: e.target.value }));
+                                    isValidTariff();
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
                             />
-
+                            <TariffTagsInput tags={tariffData?.tags_of_rates} setTextTags={handleSetTextTags} />
                             <div className={css.buttonsContainer}>
-                                <Link href={"/admin/solutions/solutions-filters"} className={css.buttonCancel}>
+                                <Link href={"/admin/settings/tariffs"} className={css.buttonCancel}>
                                     <Text type="reg18" color="grey">
                                         Отмена
                                     </Text>
@@ -184,10 +197,10 @@ const EditTariff: FC<pageProps> = () => {
                                             />
                                             <div className={css.textSuccess}>
                                                 <Title type="h5" color="black">
-                                                    Фильтр сохранен!
+                                                    Тариф сохранен!
                                                 </Title>
                                                 <Text type="reg16" color="grey">
-                                                    Все изменения фильтра сохранены!
+                                                    Все изменения тарифа сохранены!
                                                 </Text>
                                             </div>
                                         </div>

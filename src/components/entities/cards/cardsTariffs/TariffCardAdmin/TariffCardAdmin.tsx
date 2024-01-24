@@ -5,19 +5,10 @@ import { useRouter } from "next/navigation";
 import Title from "@/src/components/shared/text/Title";
 import Image from "next/image";
 import CheckMark from "@/src/components/shared/checkMark/CheckMark";
-import { Button } from "@/src/components/shared/buttons/Button";
 import css from "./TariffCardAdmin.module.css";
-import { useDataUserQuery } from "@/src/store/services/userAuth";
-import Cookies from "js-cookie";
-import Modal from "@/src/components/shared/modal/Modal";
-import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
-import { useModal } from "@/src/hooks/useModal";
 
 export const TariffCardAdmin: FC<TariffPlanCard> = ({ id, title, price, advantages, hotPlan }) => {
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const { isSuccess } = useDataUserQuery(token);
     const router = useRouter();
-    const { isShown, toggle } = useModal();
 
     return (
         <div className={css.container}>

@@ -49,8 +49,8 @@ const superAdminNavigation = [
     {
         title: "Настройки",
         subTitles: [
-            { subTitle: "Персональные данные", subHref: "/admin/settings" },
-            { subTitle: "Настройки пароля", subHref: "/admin/settings" },
+            { subTitle: "Персональные данные", subHref: "/admin/settings/personal-data" },
+            { subTitle: "Тарифы", subHref: "/admin/settings/tariffs" },
         ],
         href: "/admin/settings",
         icon: "/admin/icon_settings.svg",
