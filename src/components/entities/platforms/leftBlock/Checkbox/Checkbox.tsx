@@ -6,12 +6,14 @@ interface PropsCheckbox {
     checked?: boolean;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
+    defaultChecked?: boolean;
 }
 
-export const Checkbox: FC<PropsCheckbox> = ({ checked, disabled, onChange, onClick }) => (
+export const Checkbox: FC<PropsCheckbox> = ({ checked, disabled, onChange, onClick, defaultChecked }) => (
     <input
         type="checkbox"
         className={css.checkbox}
+        defaultChecked={defaultChecked}
         checked={checked}
         onChange={onChange}
         disabled={disabled}

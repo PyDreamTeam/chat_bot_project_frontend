@@ -158,13 +158,13 @@ export const userAuth = createApi({
             }),
         }),
         putTariff: builder.mutation({
-            query: ({ filter, token, id }) => ({
+            query: ({ tariff, token, id }) => ({
                 url: `/api/solution/tariffs/${id}/`,
                 method: "PUT",
                 headers: {
                     Authorization: `JWT ${token?.access}`,
                 },
-                body: filter,
+                body: tariff,
             }),
         }),
     }),
