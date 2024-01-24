@@ -32,14 +32,10 @@ const AdminTariffs = () => {
                         Работа с тарифами
                     </Text>
                     <div className={styles.buttonsBlock}>
-                        <ButtonSmallPrimary
-                            active={true}
-                            type={"button"}
-                            // onClick={() => console.log("create tariff")}
-                        >
+                        {/* <ButtonSmallPrimary active={true} type={"button"} onClick={() => console.log("create tariff")}>
                             {plusSvgSecondary}
                             Создать тариф
-                        </ButtonSmallPrimary>
+                        </ButtonSmallPrimary> */}
                     </div>
                 </div>
                 <ListCardsTariffs results={data?.results} type="admin" />
