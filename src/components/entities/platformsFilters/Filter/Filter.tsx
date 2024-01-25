@@ -21,6 +21,7 @@ interface PropsFilter {
     sort?: string;
     groupStatus?: string;
     groupId?: number;
+    groupTitle?: string;
     onDelete: (id: number | undefined, title: string) => void;
     refresh?: () => void;
 }
@@ -37,16 +38,21 @@ const dropdownFilterSave = [
     { title: "Удалить", value: "delete" },
 ];
 
-const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDelete, refresh }) => {
+const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, groupTitle, onDelete, refresh }) => {
     const { isShown: isShownDeleteFilter, toggle: toggleDeleteFilter } = useModal();
+    const [openItem, setOpenItem] = useState(false);
+
+    const toggleOpenItem = () => {
+        setOpenItem((prevState) => {
+            return !prevState;
+        });
+    };
 
     const [publicGroup, { isSuccess: publicGroupIsSuccess, isLoading: publicGroupIsLoading }] =
         usePlatformFilterGroupPublicMutation();
     const [publicFilter, { isSuccess, error, isLoading }] = usePlatformFilterPublicMutation();
     const [moveToSaveFilter, { isSuccess: removeIsSuccess, error: removeError, isLoading: removeIsLoading }] =
         usePlatformFilterSaveMutation();
-    const [deleteFilter, { isSuccess: deleteIsSuccess, error: deleteError, isLoading: deleteIsLoading }] =
-        useDeletePlatformFilterMutation();
 
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
@@ -94,9 +100,30 @@ const Filter: FC<PropsFilter> = ({ title, id, sort, groupStatus, groupId, onDele
     return (
         <div>
             <div className={styles.filterItem}>
-                <Text type="reg16" color="black">
-                    {title}
-                </Text>
+                <div className={styles.titleContainer}>
+                    <Text type="reg16" color="black">
+                        {title}
+                    </Text>
+                    {sort === "archive" && groupStatus != "archive" && (
+                        <div className={styles.blockInfo} onClick={() => toggleOpenItem()}>
+                            {openItem ? (
+                                <img src="/img/clarity_help-lineActive.svg" alt="item" />
+                            ) : (
+                                <img src="/img/clarity_help-line.svg" alt="item" />
+                            )}
+                            {openItem && (
+                                <div className={styles.groupInfo}>
+                                    <div className={styles.info}>
+                                        <Text type="reg16" color="grey">
+                                            {"относится к группе фильтров "}
+                                            <span className={styles.infoText}>{groupTitle}</span>
+                                        </Text>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
                 {sort === "archive" ? (
                     <div className={groupStatus != "archive" ? styles.restoreIcon : styles.restoreIconHide}>
                         {groupStatus != "archive" && (
