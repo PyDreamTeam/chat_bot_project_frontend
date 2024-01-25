@@ -5,6 +5,12 @@
     padding: 8px;
 }
 
+.titleContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .workPlatform {
     width: 24px;
     height: 24px;
@@ -65,18 +71,6 @@
     gap: 12px;
     position: relative;
 }
-
-/* .restoreIcon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    border: 1px solid var(--back-color);
-    border-radius: 15px;
-
-} */
 
 .iconReSVG,
 .iconDelSVG {
@@ -141,4 +135,40 @@
 .iconDelSVG:hover::after {
     opacity: 1; /* Показываем его */
     visibility: visible;
+}
+
+.blockInfo {
+    min-width: 56px;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    cursor: pointer;
+}
+
+.groupInfo {
+    position: relative;
+}
+
+.info {
+    position: absolute;
+    top: -21px;
+    display: flex;
+    padding: 8px 12px;
+    max-width: 700px;
+    text-align: left;
+    text-wrap: nowrap;
+    overflow: auto;
+    z-index: 999;
+    background-color: #ffffff;
+    border: 1px solid #e1e2e6;
+    box-shadow: 2px 4px 8px #e1e2e6;
+    border-radius: 10px;
+}
+
+.infoText {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
 }

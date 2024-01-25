@@ -86,6 +86,7 @@ const SolutionsFiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
                                         .filter((group: any) => group.status != sort)
                                         .map((item: any) => {
                                             const groupStatus = item.status;
+                                            const group = item.group;
                                             return item.filters
                                                 .filter((filter: any) => filter.status === "archive")
                                                 .map((item: any) => (
@@ -95,6 +96,7 @@ const SolutionsFiltersList: FC<PropsTest> = ({ tagsData, sort, refresh }) => {
                                                             id={item.id}
                                                             sort={sort}
                                                             groupStatus={groupStatus}
+                                                            groupTitle={group}
                                                             onDelete={() => null}
                                                             refresh={refresh}
                                                         />
