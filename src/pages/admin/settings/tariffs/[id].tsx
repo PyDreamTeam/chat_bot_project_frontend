@@ -128,8 +128,13 @@ const EditTariff: FC<pageProps> = () => {
                                 label="Название тарифа"
                                 value={tariffData?.title}
                                 onChange={(e) => {
-                                    setTariff((prev) => ({ ...prev, title: e.target.value }));
-                                    isValidTariff();
+                                    if (e.target.value.length == 0) {
+                                        setIsValid(false);
+                                        setTariff((prev) => ({ ...prev, price: e.target.value }));
+                                    } else {
+                                        setTariff((prev) => ({ ...prev, price: e.target.value }));
+                                        isValidTariff();
+                                    }
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
@@ -156,8 +161,13 @@ const EditTariff: FC<pageProps> = () => {
                                 label="Стоимость тарифа"
                                 value={tariffData?.price}
                                 onChange={(e) => {
-                                    setTariff((prev) => ({ ...prev, price: e.target.value }));
-                                    isValidTariff();
+                                    if (e.target.value.length == 0) {
+                                        setIsValid(false);
+                                        setTariff((prev) => ({ ...prev, price: e.target.value }));
+                                    } else {
+                                        setTariff((prev) => ({ ...prev, price: e.target.value }));
+                                        isValidTariff();
+                                    }
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}

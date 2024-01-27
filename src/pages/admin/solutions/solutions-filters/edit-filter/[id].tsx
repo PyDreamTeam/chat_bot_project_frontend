@@ -23,6 +23,7 @@ import {
     useGetSolutionFilterQuery,
     usePutSolutionFilterMutation,
 } from "@/src/store/services/solutions";
+import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
 interface pageProps {
     params: { id: string };
@@ -91,10 +92,15 @@ const EditSolutionFilter: FC<pageProps> = () => {
                     return item?.is_message === false;
                 })
                 .concat(tagsM);
-
-            setFilter((prev) => ({ ...prev, tags: newTags }));
+            if (newTags.length == 0) {
+                setIsValid(false);
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+            } else {
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+                isValidFilter();
+                setIsValid(true);
+            }
         }
-        isValidFilter();
     };
 
     const handleSetTextTags = (tagsT: ITagM[]) => {
@@ -104,10 +110,14 @@ const EditSolutionFilter: FC<pageProps> = () => {
                     return item?.is_message === true;
                 })
                 .concat(tagsT);
-
-            setFilter((prev) => ({ ...prev, tags: newTags }));
+            if (newTags.length == 0) {
+                setIsValid(false);
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+            } else {
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+                isValidFilter();
+            }
         }
-        isValidFilter();
     };
 
     const handleRadioMultiple = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -193,8 +203,19 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                 label="Название фильтра"
                                 value={filterData?.title}
                                 onChange={(e) => {
-                                    isValidFilter();
-                                    setFilter((prev) => ({ ...prev, title: e.target.value }));
+                                    if (e.target.value.length == 0) {
+                                        setIsValid(false);
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            title: e.target.value,
+                                        }));
+                                    } else {
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            title: e.target.value,
+                                        }));
+                                        isValidFilter();
+                                    }
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
@@ -203,8 +224,19 @@ const EditSolutionFilter: FC<pageProps> = () => {
                             <TextAreaAddFilter
                                 value={filterData?.functionality}
                                 onChange={(e) => {
-                                    isValidFilter();
-                                    setFilter((prev) => ({ ...prev, functionality: e.target.value }));
+                                    if (e.target.value.length == 0) {
+                                        setIsValid(false);
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            functionality: e.target.value,
+                                        }));
+                                    } else {
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            functionality: e.target.value,
+                                        }));
+                                        isValidFilter();
+                                    }
                                 }}
                                 label="Краткое описание функционала фильтра"
                                 placeholder="Текст (200 символов)"
@@ -222,6 +254,9 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                 label="Выбор параметров"
                                 onChange={handleRadioMultiple}
                             />
+                            <ErrorMessage isShown={isValid} className={css.errorBlock}>
+                                Внесите изменения. Все поля должны быть заполнены
+                            </ErrorMessage>
                             <div className={css.buttonsContainer}>
                                 <Link href={"/admin/solutions/solutions-filters"} className={css.buttonCancel}>
                                     <Text type="reg18" color="grey">
