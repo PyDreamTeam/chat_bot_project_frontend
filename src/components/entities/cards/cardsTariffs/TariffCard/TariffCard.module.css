@@ -65,4 +65,9 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    overflow: hidden;
+}
+
+.advantage svg {
+  flex-shrink: 0;
 }

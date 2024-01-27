@@ -3,8 +3,8 @@ import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import styles from "./tariffs.module.css";
-import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
-import { plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
+// import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
+// import { plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import { useGetTariffsListQuery } from "@/src/store/services/userAuth";
 import ListCardsTariffs from "@/src/components/entities/lists/listCardsTariffs/ListCardsTariffs";
 

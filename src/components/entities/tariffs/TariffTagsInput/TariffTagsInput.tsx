@@ -33,7 +33,7 @@ export const TariffTagsInput: FC<IMultipleTagsProps> = ({ tags, setTextTags }) =
     };
 
     useEffect(() => {
-        if (tags.length < 5) {
+        if (tags?.length < 5) {
             setIsActive(true);
         }
     }, []);
@@ -41,7 +41,7 @@ export const TariffTagsInput: FC<IMultipleTagsProps> = ({ tags, setTextTags }) =
     return (
         <div className={css.tagsWrapper}>
             <Text type="reg18" color="black">
-                Тэги тарифа
+                Описание тарифа по пунктам
             </Text>
             <div className={css.filterParameters}>
                 {inputsTags?.map((input, index) => (
@@ -66,15 +66,17 @@ export const TariffTagsInput: FC<IMultipleTagsProps> = ({ tags, setTextTags }) =
                                     setInputsTags(newInputs);
                                     setTextTags(newInputs);
                                 }}
-                                placeholder="Параметр фильтра"
-                                className={css.width640}
+                                placeholder="Пункт описания тарифа"
+                                className={css.inputTag}
+                                maxLength={32}
+                                style="tag"
                             />
                         </div>
                     </div>
                 ))}
                 <ButtonSmallSecondary active={isActive} disabled={!isActive} type={"button"} onClick={addInput}>
                     {plusSvgPrimary}
-                    Добавить тэг
+                    Добавить пункт
                 </ButtonSmallSecondary>
             </div>
         </div>

@@ -30,6 +30,10 @@
     gap: 16px;
 }
 
+.inputTag {
+    width: 420px;
+}
+
 .buttonsContainer {
     width: 100%;
     display: flex;
