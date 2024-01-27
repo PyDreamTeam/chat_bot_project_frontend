@@ -15,6 +15,7 @@ import { ITariff } from "@/src/types";
 import { useGetTariffQuery, usePutTariffMutation } from "@/src/store/services/userAuth";
 import { Checkbox } from "@/src/components/entities/platforms/leftBlock/Checkbox/Checkbox";
 import { TariffTagsInput } from "@/src/components/entities/tariffs/TariffTagsInput/TariffTagsInput";
+import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
 interface pageProps {
     params: { id: string };
@@ -132,6 +133,8 @@ const EditTariff: FC<pageProps> = () => {
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
+                                maxLength={21}
+                                style="tag"
                             />
                             <div className={css.isSpecial}>
                                 <Checkbox
@@ -158,8 +161,13 @@ const EditTariff: FC<pageProps> = () => {
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
+                                maxLength={8}
+                                style="tag"
                             />
                             <TariffTagsInput tags={tariffData?.tags_of_rates} setTextTags={handleSetTextTags} />
+                            <ErrorMessage isShown={isValid} className={css.errorBlock}>
+                                Внесите изменения. Все поля должны быть заполнены
+                            </ErrorMessage>
                             <div className={css.buttonsContainer}>
                                 <Link href={"/admin/settings/tariffs"} className={css.buttonCancel}>
                                     <Text type="reg18" color="grey">
