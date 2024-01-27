@@ -54,12 +54,23 @@
     gap: 8px;
 }
 
+.errorBlock {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .buttonsContainer {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-top: 24px;
+    margin-top: 16px;
     gap: 16px;
 }
 
