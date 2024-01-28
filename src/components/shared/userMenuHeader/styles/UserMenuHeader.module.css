@@ -1,6 +1,5 @@
 .menuWrapper {
     min-width: 219px;
-    height: 208px;
     position: absolute;
     top: 60px;
     right: 0;
@@ -21,6 +20,7 @@
     position: relative;
     width: 100%;
     text-align: left;
+    text-wrap: nowrap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
