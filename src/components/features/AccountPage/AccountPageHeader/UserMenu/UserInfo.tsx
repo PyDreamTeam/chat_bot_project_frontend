@@ -105,6 +105,44 @@ const UserInfo: FC<IUserInfoProps> = ({
         },
     ];
 
+    const navElementsAdmin = [
+        {
+            text: "Кабинет Администратора",
+            onClick() {
+                router.replace(clientEndpoints.admin.get);
+            },
+        },
+        {
+            text: "Настройки",
+            onClick() {
+                router.replace(clientEndpoints.admin.settings.get);
+            },
+        },
+        {
+            text: "Выйти",
+            onClick: logout,
+        },
+    ];
+
+    const navElementsModerator = [
+        {
+            text: "Кабинет Модератора",
+            onClick() {
+                router.replace(clientEndpoints.admin.get);
+            },
+        },
+        {
+            text: "Настройки",
+            onClick() {
+                router.replace(clientEndpoints.admin.settings.get);
+            },
+        },
+        {
+            text: "Выйти",
+            onClick: logout,
+        },
+    ];
+
     return (
         <div className={`${styles.userInfoWrapper} ${className}`} onClick={onClick}>
             <div className={styles.avatarCircle}>
@@ -122,7 +160,9 @@ const UserInfo: FC<IUserInfoProps> = ({
             )}
             <div className={isOpen ? styles.headerArrowButtonOpen : styles.headerArrowButton}>{headerArrow}</div>
             {isOpen && userRole === "SA" && <UserMenuHeader activeMenu={isOpen} navButtons={navElementsSuperAdmin} />}
-            {isOpen && userRole !== "SA" && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
+            {isOpen && userRole === "AD" && <UserMenuHeader activeMenu={isOpen} navButtons={navElementsAdmin} />}
+            {isOpen && userRole === "MN" && <UserMenuHeader activeMenu={isOpen} navButtons={navElementsModerator} />}
+            {isOpen && userRole === "US" && <UserMenuHeader activeMenu={isOpen} navButtons={navElements} />}
         </div>
     );
 };
