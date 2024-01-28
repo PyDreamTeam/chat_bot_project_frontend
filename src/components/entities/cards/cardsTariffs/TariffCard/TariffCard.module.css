@@ -54,6 +54,7 @@
 }
 
 .advantageBlock {
+    min-height: 224px;
     display: flex;
     flex-direction: column;
     gap: 8px;
