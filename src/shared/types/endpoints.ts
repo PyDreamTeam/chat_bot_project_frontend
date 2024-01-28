@@ -24,6 +24,15 @@ export interface ClientEndpoints {
     };
     admin: {
         get: string;
+        account: {
+            get: string;
+        },
+        settings: {
+            get: string;
+            personalData: string;
+            changePassword: string;
+            payment: string;
+        },
         users: {
             get: string;
             all: string;
