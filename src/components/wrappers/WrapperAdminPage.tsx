@@ -14,6 +14,8 @@ const adminNavigation = [
     { title: "Настройки", href: "/admin/settings", icon: "/admin/icon_settings.svg" },
 ];
 
+// TODO: navigation for SuperAdmin, Admin and Moderator
+
 export const WrapperAdminPage: FC<PropsWithChildren> = ({ children }) => {
     return (
         <div>

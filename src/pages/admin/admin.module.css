@@ -1,13 +1,14 @@
 .listNav {
     display: flex;
     width: 932px;
-    gap: 30px;
+    gap: unset;
     justify-content: space-between;
     align-items: flex-start;
-    margin-top: 64px;
+    margin-top: 32px;
 }
 .wrap {
     flex-wrap: wrap;
+    gap: 16px;
 }
 
 .nav {
@@ -16,7 +17,7 @@
     padding: 30px;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     flex-shrink: 0;
     align-self: stretch;
     border-radius: 15px;
@@ -25,7 +26,7 @@
 }
 
 .superAdmin {
-    width: 450px;
+    width: 458px;
     padding: 24px 40px;
 }
 
@@ -45,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
     align-self: stretch;
 }
 .subTitles a p:hover {
