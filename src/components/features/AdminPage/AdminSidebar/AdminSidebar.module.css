@@ -1,0 +1,15 @@
+.asideWrapper {
+    max-width: 380px;
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    background: #e2ecff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    gap: 8px;
+    justify-content: flex-start;
+}
+.logoLink {
+    margin-bottom: 40px;
+}
