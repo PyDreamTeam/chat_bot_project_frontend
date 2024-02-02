@@ -14,12 +14,10 @@ interface IPropsSubmenu {
 }
 
 const SubMenu: FC<IPropsSubmenu> = ({ item, id, isOpen }) => {
-    console.log(`${id} -isOpen- ${isOpen}`);
     const pathname = usePathname();
     const router = useRouter();
 
     const [subnav, setSubnav] = useState(isOpen);
-
     const showSubnav = () => setSubnav(!subnav);
 
     return (
@@ -28,6 +26,7 @@ const SubMenu: FC<IPropsSubmenu> = ({ item, id, isOpen }) => {
                 href={item.path}
                 className={`${styles.nav} 
         ${pathname === item.path ? styles.active : null}
+        ${id === 1 || id == 5 ? styles.mainLink : null}
         `}
                 onClick={item.subNav && showSubnav}
             >
