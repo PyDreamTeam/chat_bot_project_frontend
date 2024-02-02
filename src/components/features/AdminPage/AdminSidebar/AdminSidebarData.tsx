@@ -16,7 +16,7 @@ export interface ISidebarItem {
 }
 
 export const sidebarData: ISidebarItem[] = [
-    { id: 1, title: "Кабинет администратора", path: "/admin", icon: "/admin/icon_home.svg" },
+    { id: 1, title: "Кабинет суперадминистратора", path: "/admin", icon: "/admin/icon_home.svg" },
     { id: 2, title: "Администрация и модерация", path: "/admin/users/all", icon: "/admin/icon_people.svg" },
     {
         id: 3,
