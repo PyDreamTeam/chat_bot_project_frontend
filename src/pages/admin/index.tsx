@@ -45,7 +45,6 @@ const superAdminNavigation = [
         href: "/admin/users/all",
         icon: "/admin/icon_people.svg",
     },
-    /* { title: "Личный кабинет", href: "/admin/account", icon: "/admin/icon_admin.svg" }, */
     {
         title: "Настройки",
         subTitles: [
@@ -60,25 +59,25 @@ const superAdminNavigation = [
 const AdminPage = () => {
     const route = useRouter();
 
-    const token = JSON.parse(Cookies.get("loginUser") || "[]").access;
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { data, isSuccess } = useDataUserQuery(token);
 
-    const { data } = useDataUserQuery(token);
+    const navigation = superAdminNavigation.slice();
 
-    const adminNavigation = superAdminNavigation.slice();
-    if (data?.user_role !== "SA") {
-        adminNavigation.splice(2, 1);
+    if (data?.user_role === "AD" || data?.user_role === "MN") {
+        navigation.splice(2, 1);
     }
 
     return (
         <WrapperAdminPage>
             <ContainerAdminFunction>
                 <Banner />
-                <ul className={`${css.listNav} ${adminNavigation.length === 4 && css.wrap}`}>
-                    {adminNavigation.map(({ title, subTitles, href, icon }) => {
+                <ul className={`${css.listNav} ${navigation.length === 4 && css.wrap}`}>
+                    {navigation.map(({ title, subTitles, href, icon }) => {
                         return (
-                            <div key={title} className={`${css.nav} ${adminNavigation.length === 4 && css.superAdmin}`}>
+                            <div key={title} className={`${css.nav} ${navigation.length === 4 && css.superAdmin}`}>
                                 <div className={css.header}>
-                                    <Image src={icon} alt="icon" width={64} height={64} className={css.icon} />
+                                    <Image src={icon} alt="icon" width={56} height={56} className={css.icon} />
                                     <Link href={href}>
                                         <Title type="h5" color="dark">
                                             {title}

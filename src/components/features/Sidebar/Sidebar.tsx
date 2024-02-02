@@ -20,7 +20,7 @@ const platformRoute = "/platforms";
 
 const Sidebar: FC = () => {
     const dispatch = useAppDispatch();
-    const [activeTabItem, setActiveTabItem] = useState<number>(1);
+    const [activeTabItem, setActiveTabItem] = useState<number>(0);
     const router = useRouter();
 
     useEffect(() => {
