@@ -116,7 +116,7 @@ const AccountPageHeader: FC<IHomePageHeader> = ({ name, title, page, orderNumber
                 )}
                 {page === "profile_payment" && (
                     <Title type={"h4"} color={"black"}>
-                        {"Способ оплаты"}
+                        Способ оплаты
                     </Title>
                 )}
             </>

@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import Text from "@/src/components/shared/text/Text";
-import styles from "./SearchSolutionsFiltersList.module.css";
+import styles from "./SolutionsSearchFiltersList.module.css";
 import SolutionsFiltersGroupTitle from "../SolutionsFiltersGroupTitle/SolutionsFiltersGroupTitle";
 import SolutionsFilter from "../SolutionsFilter/SolutionsFilter";
 import uuid from "uuid-random";

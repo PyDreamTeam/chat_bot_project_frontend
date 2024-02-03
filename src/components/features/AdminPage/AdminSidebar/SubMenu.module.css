@@ -1,0 +1,38 @@
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px 14px 30px;
+}
+.nav:hover, 
+.subNav:hover {
+    outline: 1px solid #ffffff;
+}
+
+.nav.active,
+.subNav.active {
+    background: #ffffff;
+}
+
+.mainLink {
+    margin-bottom: 32px;
+    margin-top: 32px;
+}
+
+.subNav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px 14px 60px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navArrow {
+    display: flex;
+    align-items: center;
+}

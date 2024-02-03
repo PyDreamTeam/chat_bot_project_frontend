@@ -8,13 +8,22 @@ export enum LOAD_STATUS {
 }
 
 export interface TariffPlanCard {
+    id?: number;
     title: string;
     price: string;
-    advantage: Array<string>;
-    icon: React.ReactNode;
+    advantages: Array<string>;
+    icon?: React.ReactNode;
     hotPlan?: boolean;
     bestPlan?: string;
-    dataComment?: string;
+}
+
+export interface ITariff {
+    id?: number;
+    title: string;
+    price: string;
+    tags_of_rates: Array<string>;
+    is_special: string | null;
+    created_at?: string;
 }
 export interface Labels {
     name: React.ReactNode;

@@ -4,6 +4,8 @@ const profile = `${myAccount}/profile`;
 const orders = `${myAccount}/orders`;
 
 const admin = "/admin";
+const account = `${admin}/account`;
+const settings = `${admin}/settings`;
 const users = `${admin}/users`;
 
 export const clientEndpoints: ClientEndpoints = {
@@ -32,6 +34,15 @@ export const clientEndpoints: ClientEndpoints = {
     },
     admin: {
         get: admin,
+        account: {
+            get: `${account}`,
+        },
+        settings: {
+            get: `${settings}`,
+            personalData: `${settings}/personal-data`,
+            changePassword: `${settings}/change-password`,
+            payment: `${settings}/payment`,
+        },
         users: {
             get: users,
             all: `${users}/all`,

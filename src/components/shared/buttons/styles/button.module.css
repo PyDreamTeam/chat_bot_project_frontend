@@ -122,6 +122,10 @@
     transition: 0.2s;
 }
 
+.buttonSmallSecondaryDisabled svg path {
+    fill: var(--sub-color);;
+}
+
 /* Стили для ButtonLogin */
 
 .active {
