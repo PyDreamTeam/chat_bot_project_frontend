@@ -5,10 +5,7 @@ import styles from "./BlockBenefitsFunnel.module.css";
 import ElemSaleBot from "@/src/components/shared/elemChooseChatBot/ElemSaleBot";
 import { useGetSolutionCardsQuery, useGetSolutionQuery } from "@/src/store/services/solutions";
 import ListBenefits from "@/src/components/entities/lists/listBenefits/listBenefits";
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
-import { SolutionTag, SolutionPropsTag } from "@/src/components/entities/filters/SolutionTag/SolutionTag";
-import ReadMore from "@/src/components/features/SolutionDescriptionPade/blockShortDescription/ReadMore";
-import { SolutionPropsFilters } from "@/src/components/entities/filters/SolutionTags/SolutionTags";
+import ReadMore from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/ReadMore";
 import { useRouter } from "next/router";
 
 interface BlockBenefitsFunnel {

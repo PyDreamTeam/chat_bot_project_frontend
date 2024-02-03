@@ -1,16 +1,15 @@
 import Header from "@/src/components/features/HomePage/Header/Header";
 import { useGetSolutionQuery, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
-import styles from "@/src/pages/solutions/solution/[ids]/soluiton.module.css";
+import styles from "@/src/pages/solutions/solution/[ids]/solution.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
-import BlockComplexFunnel from "@/src/components/features/SolutionDescriptionPade/blockComplexFunnel/BlockComplexFunnel";
-import BlockShotDescription from "@/src/components/features/SolutionDescriptionPade/blockShortDescription/BlockShortDescription";
-import BlockGreatSolutions from "@/src/components/features/SolutionDescriptionPade/blockGreatSolutions/BlockGreatSolutions";
-import BlockFunnelBenefits from "@/src/components/features/SolutionDescriptionPade/blockBenefitsFunnel/BlockBenefitsFunnel";
-import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPade/blockHowItWorks/BlockHowItWorks";
-import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPade/blockTasksBySteps/BlockTasksBySteps";
+import BlockSolutionCard from "@/src/components/features/SolutionDescriptionPage/BlockSolutionCard/BlockSolutionCard";
+import BlockShotDescription from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/BlockShortDescription";
+import BlockFunnelBenefits from "@/src/components/features/SolutionDescriptionPage/BlockBenefitsFunnel/BlockBenefitsFunnel";
+import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPage/BlockHowItWorks/BlockHowItWorks";
+import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPage/BlockTasksBySteps/BlockTasksBySteps";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
@@ -40,7 +39,7 @@ const Solution = () => {
                     </Text>
                 </div>
                 {/* TODO: advantages instead of short_description  */}
-                <BlockComplexFunnel
+                <BlockSolutionCard
                     id={data?.id}
                     short_description={data?.short_description}
                     title={data?.title}
