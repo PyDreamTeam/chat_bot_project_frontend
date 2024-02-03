@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Text from "@/src/components/shared/text/Text";
 import ButtonShowMore from "@/src/components/shared/buttons/ButtonShowMore";
-import styles from "./BlockShotDescription.module.css";
+import styles from "./BlockShortDescription.module.css";
 
 interface Props {
     text?: string;

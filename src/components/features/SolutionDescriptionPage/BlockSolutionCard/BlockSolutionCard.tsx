@@ -2,7 +2,7 @@ import React, { useState, MouseEvent, FC, useEffect } from "react";
 import { skipToken } from "@reduxjs/toolkit/query";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
-import styles from "./BlockComplexFunnel.module.css";
+import styles from "./BlockSolutionCard.module.css";
 import Image from "next/image";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Link from "next/link";
@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 import ToolTip from "@/src/components/shared/toolTip/ToolTip";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
 
-const BlockComplexFunnel: FC<PropsSolutionCard> = ({
+const BlockSolutionCard: FC<PropsSolutionCard> = ({
     id,
     title,
     short_description,
@@ -96,7 +96,7 @@ const BlockComplexFunnel: FC<PropsSolutionCard> = ({
                             />
                         </ToolTip>
                     </div>
-                    {/* TODO: list of short_description array */}
+                    {/* TODO: list of advantages array */}
                     <ListDescription short_description={short_description} />
                 </div>
                 <div className={styles.blockPlatform}>
@@ -128,4 +128,4 @@ const BlockComplexFunnel: FC<PropsSolutionCard> = ({
     );
 };
 
-export default BlockComplexFunnel;
+export default BlockSolutionCard;
