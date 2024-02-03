@@ -1,12 +1,6 @@
 import React, { useState, FC } from "react";
-import Title from "@/src/components/shared/text/Title";
-import Text from "@/src/components/shared/text/Text";
-import styles from "./BlockShotDescription.module.css";
-import { Labels } from "@/src/types";
-import CheckLabel from "@/src/components/shared/labels/CheckLabel";
+import styles from "./BlockShortDescription.module.css";
 import CardSales from "@/src/components/entities/cards/cardSales/CardSales";
-import ReadMore from "@/src/components/features/SolutionDescriptionPade/blockShotDescription/ReadMore";
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { useGetSolutionDignitiesQuery } from "@/src/store/services/solutions";
 import { SolutionTags } from "@/src/components/entities/filters/SolutionTags/SolutionTags";
 
@@ -39,7 +33,6 @@ const BlockShotDescription: FC<PropsShortDescription> = ({ id, full_description,
                         </div>
                     ))}
                 </div>
-                {/* <ReadMore text={full_description} maxLength={186} /> */}
             </div>
         </div>
     );

@@ -6,7 +6,7 @@ import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import BlockComplexFunnel from "@/src/components/features/SolutionDescriptionPade/blockComplexFunnel/BlockComplexFunnel";
-import BlockShotDescription from "@/src/components/features/SolutionDescriptionPade/blockShotDescription/BlockShotDescription";
+import BlockShotDescription from "@/src/components/features/SolutionDescriptionPade/blockShortDescription/BlockShortDescription";
 import BlockGreatSolutions from "@/src/components/features/SolutionDescriptionPade/blockGreatSolutions/BlockGreatSolutions";
 import BlockFunnelBenefits from "@/src/components/features/SolutionDescriptionPade/blockBenefitsFunnel/BlockBenefitsFunnel";
 import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPade/blockHowItWorks/BlockHowItWorks";

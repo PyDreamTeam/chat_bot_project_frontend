@@ -7,7 +7,7 @@ import { useGetSolutionCardsQuery, useGetSolutionQuery } from "@/src/store/servi
 import ListBenefits from "@/src/components/entities/lists/listBenefits/listBenefits";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { SolutionTag, SolutionPropsTag } from "@/src/components/entities/filters/SolutionTag/SolutionTag";
-import ReadMore from "@/src/components/features/SolutionDescriptionPade/blockShotDescription/ReadMore";
+import ReadMore from "@/src/components/features/SolutionDescriptionPade/blockShortDescription/ReadMore";
 import { SolutionPropsFilters } from "@/src/components/entities/filters/SolutionTags/SolutionTags";
 import { useRouter } from "next/router";
 
