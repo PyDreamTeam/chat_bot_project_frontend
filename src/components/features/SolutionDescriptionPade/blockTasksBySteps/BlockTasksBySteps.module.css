@@ -1,5 +1,5 @@
 .wrapper {
-    padding: 80px 0 0px;
+    padding-top: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,8 +9,8 @@
     margin: 0px 0px 24px 10px;
 }
 .blockScroll {
-    height: 648px;
-    max-width: 770px;
+    /* height: 648px; */
+    max-width: 742px;
     overflow: hidden;
     cursor: pointer;
     padding: 5px 10px 5px 10px;

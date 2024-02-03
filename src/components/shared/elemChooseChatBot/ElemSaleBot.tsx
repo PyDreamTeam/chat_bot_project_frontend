@@ -2,10 +2,11 @@ import React, { FC } from "react";
 import css from "./ElemChooseChatBot.module.css";
 
 interface TextProps {
-    text: string;
+    text?: string;
 }
 
 const ElemChooseChatBot: FC<TextProps> = ({ text }) => {
+    console.log(text);
     return (
         <>
             <span className={css.elemSaleBot}>

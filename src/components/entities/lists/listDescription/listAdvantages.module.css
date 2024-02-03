@@ -1,0 +1,8 @@
+.list {
+    display: flex;
+    gap: 8px;
+    padding-left: 24px;
+}
+.listItem {
+    list-style-type: disc;
+}

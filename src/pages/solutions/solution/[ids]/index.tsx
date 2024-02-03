@@ -1,5 +1,5 @@
 import Header from "@/src/components/features/HomePage/Header/Header";
-import { useGetSolutionQuery } from "@/src/store/services/solutions";
+import { useGetSolutionQuery, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import styles from "@/src/pages/solutions/solution/[ids]/soluiton.module.css";
 import Text from "@/src/components/shared/text/Text";
@@ -19,6 +19,9 @@ const Solution = () => {
     const { ids } = router.query;
 
     const { data } = useGetSolutionQuery(Number(ids));
+    console.log(data);
+
+    const { data: dataFilters } = useGetSolutionsFiltersQuery({});
 
     return (
         <div>
@@ -36,26 +39,29 @@ const Solution = () => {
                         /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                <BlockComplexFunnel title={data?.title} />
+                {/* TODO: advantages instead of short_description  */}
+                <BlockComplexFunnel
+                    id={data?.id}
+                    short_description={data?.short_description}
+                    title={data?.title}
+                    image={data?.image}
+                    turnkey_platform={data?.turnkey_platform}
+                    is_favorite={data?.is_favorite}
+                />
                 <BlockShotDescription
                     id={data?.id}
-                    business_model={data?.business_model}
-                    business_area={data?.business_area}
-                    business_niche={data?.business_niche}
-                    solution_type={data?.solution_type}
-                    objective={data?.objective}
                     price={data?.price}
-                    subtitle={data?.subtitle}
                     full_description={data?.full_description}
-                    short_description={data?.short_description}
-                    messengers={data?.messengers}
-                    platform={data?.platform}
-                    integration_with_CRM={data?.integration_with_CRM}
-                    integration_with_payment_systems={data?.integration_with_payment_systems}
+                    results={dataFilters?.results}
+                    dignities={data?.dignities}
                 />
-                <BlockGreatSolutions />
-                <BlockFunnelBenefits cards_title={data?.cards_title} cards_description={data?.cards_description} />
                 <BlockHowItWorks />
+                <BlockFunnelBenefits
+                    results={dataFilters?.results}
+                    cards_description={data?.cards_description}
+                    full_description={data?.full_description}
+                    platform={data?.platform}
+                />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />

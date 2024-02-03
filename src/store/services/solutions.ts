@@ -54,12 +54,6 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
-        getSolutionAdvantages: builder.query({
-            query: () => ({
-                url: "/api/solution/advantages/",
-                method: "GET",
-            }),
-        }),
         getSolutionDignities: builder.query({
             query: () => ({
                 url: "/api/solution/dignities/",
@@ -97,7 +91,7 @@ export const solutions = createApi({
             }),
         }),
         getFavoriteSolution: builder.query({
-            query: ({token, id}) => ({
+            query: ({ token, id }) => ({
                 url: `/api/solution/solutions/${id}/`,
                 method: "GET",
                 headers: {
@@ -112,7 +106,7 @@ export const solutions = createApi({
             }),
         }),
         createSolutionFilterGroup: builder.mutation({
-            query: ({token, title }) => ({
+            query: ({ token, title }) => ({
                 url: "/api/solution/groups/",
                 method: "POST",
                 headers: {
@@ -121,62 +115,60 @@ export const solutions = createApi({
                 body: {
                     title: title,
                     status: "save",
-                    image: "image"
-                }
-            })
+                    image: "image",
+                },
+            }),
         }),
         editSolutionFilterGroup: builder.mutation({
-            query: ({id, token, title }) => ({
+            query: ({ id, token, title }) => ({
                 url: `/api/solution/groups/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    title: title
-                }
-            })
+                    title: title,
+                },
+            }),
         }),
         publicSolutionFilterGroup: builder.mutation({
-            query: ({id, token }) => ({
+            query: ({ id, token }) => ({
                 url: `/api/solution/groups/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "public"
-                }
-            })
+                    status: "public",
+                },
+            }),
         }),
         saveSolutionFilterGroup: builder.mutation({
-            query: ({id, token }) => ({
+            query: ({ id, token }) => ({
                 url: `/api/solution/groups/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "save"
-                }
-            })
+                    status: "save",
+                },
+            }),
         }),
         archiveSolutionFilterGroup: builder.mutation({
-            query: ({id, token }) => ({
+            query: ({ id, token }) => ({
                 url: `/api/solution/groups/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "archive"
-                }
-            })
+                    status: "archive",
+                },
+            }),
         }),
         searchSolutionsFilters: builder.query({
-            query: (arg: {
-                title?: string;
-            }) => ({
+            query: (arg: { title?: string }) => ({
                 url: "/api/solution/filters-search/",
                 method: "POST",
                 body: arg,
@@ -209,40 +201,40 @@ export const solutions = createApi({
             }),
         }),
         publicSolutionFilter: builder.mutation({
-            query: ({id, token }) => ({
+            query: ({ id, token }) => ({
                 url: `/api/solution/filters/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "public"
-                }
-            })
+                    status: "public",
+                },
+            }),
         }),
         saveSolutionFilter: builder.mutation({
-            query: ({id, token }) => ({
+            query: ({ id, token }) => ({
                 url: `/api/solution/filters/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "save"
-                }
-            })
+                    status: "save",
+                },
+            }),
         }),
         archiveSolutionFilter: builder.mutation({
-            query: ({id, token }) => ({
+            query: ({ id, token }) => ({
                 url: `/api/solution/filters/${id}/`,
                 method: "PATCH",
                 headers: {
                     Authorization: `JWT ${token.access}`,
                 },
                 body: {
-                    status: "archive"
-                }
-            })
+                    status: "archive",
+                },
+            }),
         }),
         deleteSolutionFilter: builder.mutation({
             query: ({ id, token }) => ({
@@ -250,8 +242,8 @@ export const solutions = createApi({
                 method: "DELETE",
                 headers: {
                     Authorization: `JWT ${token.access}`,
-                }
-            })
+                },
+            }),
         }),
     }),
 });
@@ -266,7 +258,6 @@ export const {
     useGetFavoriteSolutionsQuery,
     useGetFavoriteSolutionQuery,
     useAddSolutionToFavoriteMutation,
-    useGetSolutionAdvantagesQuery,
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,

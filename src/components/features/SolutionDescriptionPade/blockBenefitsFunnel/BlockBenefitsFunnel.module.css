@@ -1,21 +1,27 @@
 .wrapper {
-    padding: 81px 0 142px;
+    padding-top: 64px;
+    margin-bottom: 128px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-direction: column;
     gap: 64px;
 }
 
 .blockText {
     display: flex;
+    flex-direction: row;
     gap: 168px;
 }
+
 .blockText h3 {
     line-height: 1;
 }
+.platformTitle {
+    display: flex;
+    flex-direction: column;
+}
 
-.text {
+.description {
     width: 619px;
 }
 
