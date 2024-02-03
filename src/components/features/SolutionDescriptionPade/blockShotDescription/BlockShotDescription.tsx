@@ -15,6 +15,7 @@ interface PropsShortDescription {
     id?: number;
     full_description?: string;
     results?: PropsGroupFilters[];
+    dignities?: string[];
 }
 
 interface PropsGroupFilters {
@@ -24,11 +25,12 @@ interface PropsGroupFilters {
     status?: string;
 }
 
-const BlockShotDescription: FC<PropsShortDescription> = ({ id, full_description, price, results = [] }) => {
+const BlockShotDescription: FC<PropsShortDescription> = ({ id, full_description, price, results = [], dignities }) => {
     const { data } = useGetSolutionDignitiesQuery({});
+    console.log(data);
     return (
         <div className={styles.wrapper}>
-            <CardSales price={price} results={data?.results} />
+            <CardSales price={price} dignities={dignities} />
             <div className={styles.blockText}>
                 <div className={styles.filtersWrapper}>
                     {results.map((item: PropsGroupFilters) => (
@@ -37,7 +39,7 @@ const BlockShotDescription: FC<PropsShortDescription> = ({ id, full_description,
                         </div>
                     ))}
                 </div>
-                <ReadMore text={full_description} maxLength={186} />
+                {/* <ReadMore text={full_description} maxLength={186} /> */}
             </div>
         </div>
     );

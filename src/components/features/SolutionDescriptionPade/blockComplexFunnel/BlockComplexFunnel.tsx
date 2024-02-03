@@ -1,4 +1,5 @@
-import React, { useState, FC } from "react";
+import React, { useState, MouseEvent, FC, useEffect } from "react";
+import { skipToken } from "@reduxjs/toolkit/query";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./BlockComplexFunnel.module.css";
@@ -10,17 +11,102 @@ import SelectionRequest from "@/src/components/entities/selectionRequest/Selecti
 import Modal from "@/src/components/shared/modal/Modal";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { ListDescription } from "@/src/components/entities/lists/listDescription";
+import { useGetPlatformQuery } from "@/src/store/services/platforms";
+import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
+import Cookies from "js-cookie";
+import ToolTip from "@/src/components/shared/toolTip/ToolTip";
+import { useDataUserQuery } from "@/src/store/services/userAuth";
 
-const BlockComplexFunnel: FC<PropsSolutionCard> = ({ title, short_description }) => {
+const BlockComplexFunnel: FC<PropsSolutionCard> = ({
+    id,
+    title,
+    short_description,
+    image,
+    turnkey_platform,
+    is_favorite,
+}) => {
     const { isShown, toggle } = useModal();
+    const [imageHeart, setImageHeart] = useState("dislike");
+    const [addToFavorite] = useAddSolutionToFavoriteMutation();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
+    const { isSuccess } = useDataUserQuery(token);
+
+    const { data } = useGetPlatformQuery(turnkey_platform || skipToken);
+
+    const handleClickHeart = (e: MouseEvent) => {
+        if (!isSuccess) {
+            e.stopPropagation();
+            console.log("sign in!");
+        } else {
+            addToFavorite({ id, token });
+
+            e.stopPropagation();
+            if (imageHeart === "like") {
+                setImageHeart("dislike");
+            }
+            if (imageHeart === "dislike") {
+                setImageHeart("like");
+            }
+            if (imageHeart === "hoverHeart") {
+                setImageHeart("like");
+            }
+        }
+    };
+    const handleMouseEnter = () => {
+        if (imageHeart === "dislike") setImageHeart("hoverHeart");
+    };
+    const handleMouseLeave = () => {
+        if (imageHeart === "hoverHeart") {
+            setImageHeart("dislike");
+        }
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
+            if (is_favorite) {
+                setImageHeart("like");
+            } else {
+                setImageHeart("dislike");
+            }
+        }
+    }, [isSuccess]);
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.blockText}>
-                <Title type={"h3"} color={"black"}>
-                    {title}
-                </Title>
-                <ListDescription short_description={short_description} />
+            <div className={styles.img}>
+                <Image src={image ? image : ""} alt={"ComplexFunnel"} width={230} height={230} />
+            </div>
+            <div className={styles.blockRight}>
+                <div className={styles.blockText}>
+                    <div className={styles.solutionTitle}>
+                        <Title type={"h3"} color={"black"}>
+                            {title}
+                        </Title>
+                        <ToolTip text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
+                            <Image
+                                src={`/platforms/${imageHeart}.svg`}
+                                alt="heart"
+                                width={24}
+                                height={24}
+                                onClick={handleClickHeart}
+                                onMouseLeave={handleMouseLeave}
+                                onMouseEnter={handleMouseEnter}
+                                className={styles.heart}
+                            />
+                        </ToolTip>
+                    </div>
+                    {/* TODO: list of short_description array */}
+                    <ListDescription short_description={short_description} />
+                </div>
+                <div className={styles.blockPlatform}>
+                    <div className={styles.platformImg}>
+                        <Image src={data?.image ? data?.image : ""} alt={"ComplexFunnel"} width={40} height={40} />
+                    </div>
+                    <Title type={"h5"} color={"black"}>
+                        {data?.title}
+                    </Title>
+                </div>
                 <div className={styles.blockBtn}>
                     <div className={styles.button}>
                         <Button type="button" active={true} onClick={toggle}>
@@ -28,15 +114,12 @@ const BlockComplexFunnel: FC<PropsSolutionCard> = ({ title, short_description })
                         </Button>
                     </div>
                     <Link href={"#video"} className={styles.btnPlay}>
-                        <Image src={"/page/Play.svg"} alt={"Play"} width={48} height={48} />
-                        <Text type={"reg16"} color={"grey"}>
+                        <Text type={"reg16"} color={"blue"}>
                             Посмотреть как это работает
                         </Text>
+                        <Image src={"/page/ArrowSquareOut.svg"} alt={"Play"} width={18} height={18} />
                     </Link>
                 </div>
-            </div>
-            <div className={styles.img}>
-                <Image src={"/page/ComplexFunnel.svg"} alt={"ComplexFunnel"} width={493} height={431} />
             </div>
             <Modal isShown={isShown} hide={toggle}>
                 <SelectionRequest close={toggle} dataComment={`Выбранное решение: ${title}`} />

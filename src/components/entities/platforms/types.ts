@@ -137,6 +137,7 @@ export interface PropsSolutionCard {
     integration_with_payment_systems?: string;
     tasks?: string;
     advantages?: string;
+    dignities?: string[];
     dignity?: string;
     steps_title?: string;
     steps_description?: string;
@@ -176,6 +177,7 @@ export interface PropsSolutionCard {
     short_description?: string;
     full_description?: string;
     turnkey_solutions?: number;
+    turnkey_platform?: number | undefined;
     price?: number | string;
     is_active?: boolean;
     created_at?: string;

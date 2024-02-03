@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./BlockTasksBySteps.module.css";
-import img from "/public/img/Step.svg";
+import img from "/public/img/step-by-step.svg";
 import Image from "next/image";
 import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
 import { useGetSolutionStepsQuery } from "@/src/store/services/solutions";

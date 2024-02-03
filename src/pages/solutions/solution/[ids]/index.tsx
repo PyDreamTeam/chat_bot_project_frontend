@@ -19,8 +19,10 @@ const Solution = () => {
     const { ids } = router.query;
 
     const { data } = useGetSolutionQuery(Number(ids));
+    console.log(data);
+
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
-    console.log(dataFilters);
+
     return (
         <div>
             <Header type="other" />
@@ -37,15 +39,29 @@ const Solution = () => {
                         /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                <BlockComplexFunnel short_description={data?.short_description} title={data?.title} />
+                {/* TODO: advantages instead of short_description  */}
+                <BlockComplexFunnel
+                    id={data?.id}
+                    short_description={data?.short_description}
+                    title={data?.title}
+                    image={data?.image}
+                    turnkey_platform={data?.turnkey_platform}
+                    is_favorite={data?.is_favorite}
+                />
                 <BlockShotDescription
                     id={data?.id}
                     price={data?.price}
                     full_description={data?.full_description}
                     results={dataFilters?.results}
+                    dignities={data?.dignities}
                 />
-                <BlockFunnelBenefits results={dataFilters?.results} cards_description={data?.cards_description} />
                 <BlockHowItWorks />
+                <BlockFunnelBenefits
+                    results={dataFilters?.results}
+                    cards_description={data?.cards_description}
+                    full_description={data?.full_description}
+                    platform={data?.platform}
+                />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />
