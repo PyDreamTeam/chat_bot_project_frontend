@@ -7,7 +7,7 @@ import Link from "next/link";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import BlockSolutionCard from "@/src/components/features/SolutionDescriptionPage/BlockSolutionCard/BlockSolutionCard";
 import BlockShotDescription from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/BlockShortDescription";
-import BlockFunnelBenefits from "@/src/components/features/SolutionDescriptionPage/BlockBenefitsFunnel/BlockBenefitsFunnel";
+import BlockBenefits from "@/src/components/features/SolutionDescriptionPage/BlockBenefits/BlockBenefits";
 import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPage/BlockHowItWorks/BlockHowItWorks";
 import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPage/BlockTasksBySteps/BlockTasksBySteps";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
@@ -52,7 +52,7 @@ const Solution = () => {
                     dignities={data?.dignities}
                 />
                 <BlockHowItWorks link={data?.link} />
-                <BlockFunnelBenefits full_description={data?.full_description} platform={data?.platform} />
+                <BlockBenefits full_description={data?.full_description} platform={data?.platform} />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />

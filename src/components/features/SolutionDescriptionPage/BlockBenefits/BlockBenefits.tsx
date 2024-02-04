@@ -1,19 +1,18 @@
 import React, { FC } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
-import styles from "./BlockBenefitsFunnel.module.css";
+import styles from "./BlockBenefits.module.css";
 import ElemSaleBot from "@/src/components/shared/elemChooseChatBot/ElemSaleBot";
 import { useGetSolutionCardsQuery, useGetSolutionQuery } from "@/src/store/services/solutions";
 import ListBenefits from "@/src/components/entities/lists/listBenefits/listBenefits";
 import ReadMore from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/ReadMore";
-import { useRouter } from "next/router";
 
-interface BlockBenefitsFunnel {
+interface BlockBenefits {
     full_description?: string;
     platform?: string;
 }
 
-const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({ full_description, platform }) => {
+const BlockBenefits: FC<BlockBenefits> = ({ full_description, platform }) => {
     const { data: DataCards } = useGetSolutionCardsQuery({});
 
     return (
@@ -39,4 +38,4 @@ const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({ full_description, platfo
     );
 };
 
-export default BlockBenefitsFunnel;
+export default BlockBenefits;
