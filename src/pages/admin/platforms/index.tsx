@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -28,9 +28,12 @@ const PlatformsAdmin = () => {
     const searchParams = useSearchParams();
     const [searchPlatform, setSearchPlatform] = useState<string>("");
 
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetPlatformsQuery, {
-        title: searchPlatform,
-    });
+    const { combinedData, isLoading, refetch, readMore, refresh, isFetching } = useInfiniteScroll(
+        useGetPlatformsQuery,
+        {
+            title: searchPlatform,
+        }
+    );
     const handleScroll = () => {
         readMore();
     };
@@ -56,6 +59,11 @@ const PlatformsAdmin = () => {
     const handleRouter = () => {
         router.push("/admin/platforms/add-platform");
     };
+
+    useEffect(() => {
+        // console.log("useEffect refresh");
+        refetch();
+    }, [sort]);
 
     return (
         <WrapperAdminPage>
@@ -129,6 +137,7 @@ const PlatformsAdmin = () => {
                                                 tags={item.tags}
                                                 id={item.id}
                                                 sort={sort}
+                                                refetch={refetch}
                                             />
                                         </li>
                                     ))}

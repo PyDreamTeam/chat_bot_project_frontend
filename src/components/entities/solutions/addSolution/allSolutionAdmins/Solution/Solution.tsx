@@ -4,7 +4,7 @@ import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import {
-    useDeleteSloutionMutation,
+    useDeleteSolutionMutation,
     useSolutionArchiveMutation,
     useGetSolutionForArchiveMutation,
     useSendToCreatedMutation,
@@ -44,7 +44,7 @@ const functionSolutionArchive = [
 ];
 
 export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }) => {
-    const [deleteSolution, { isSuccess }] = useDeleteSloutionMutation();
+    const [deleteSolution, { isSuccess }] = useDeleteSolutionMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [getSolutionForArchive, { data, isSuccess: isSuccessGetSolution }] = useGetSolutionForArchiveMutation();
