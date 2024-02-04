@@ -4,11 +4,9 @@ import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import TabAdvantages from "@/src/components/shared/tabs/tabAdvantages/TabAdvantages";
 import Image from "next/image";
-import ButtonFavorites from "@/src/components/shared/buttons/ButtonFavorites";
-import { PropsSolutionCard } from "../../solutions/types";
-import ToolTip from "@/src/components/shared/toolTip/ToolTip";
+import { PropsSolutionCard } from "../../platforms/types";
 
-const CardSales: FC<PropsSolutionCard> = ({ price, results = [] }) => {
+const CardSales: FC<PropsSolutionCard> = ({ price, dignities = [] }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.blueBlock}>
@@ -25,15 +23,10 @@ const CardSales: FC<PropsSolutionCard> = ({ price, results = [] }) => {
                 </div>
 
                 <div className={styles.advantages}>
-                    {results.map((item, id) => (
-                        <TabAdvantages key={id} text={item.dignities} />
+                    {dignities.map((item, id) => (
+                        <TabAdvantages key={id} text={item} />
                     ))}
                 </div>
-            </div>
-            <div className={styles.btnWrapper}>
-                <ToolTip type={true} text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
-                    <ButtonFavorites text={""} />
-                </ToolTip>
             </div>
         </div>
     );

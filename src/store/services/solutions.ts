@@ -54,12 +54,6 @@ export const solutions = createApi({
                 method: "GET",
             }),
         }),
-        getSolutionAdvantages: builder.query({
-            query: () => ({
-                url: "/api/solution/advantages/",
-                method: "GET",
-            }),
-        }),
         getSolutionDignities: builder.query({
             query: () => ({
                 url: "/api/solution/dignities/",
@@ -97,7 +91,7 @@ export const solutions = createApi({
             }),
         }),
         getFavoriteSolution: builder.query({
-            query: ({ token, id }) => ({
+            query: ({  token, id  }) => ({
                 url: `/api/solution/solutions/${id}/`,
                 method: "GET",
                 headers: {
@@ -112,7 +106,7 @@ export const solutions = createApi({
             }),
         }),
         createSolutionFilterGroup: builder.mutation({
-            query: ({ token, title }) => ({
+            query: ({  token, title }) => ({
                 url: "/api/solution/groups/",
                 method: "POST",
                 headers: {
@@ -197,7 +191,7 @@ export const solutions = createApi({
             }),
         }),
         editSolutionFilterGroup: builder.mutation({
-            query: ({ id, token, title }) => ({
+            query: ({  id, token, title }) => ({
                 url: `/api/solution/groups/${id}/`,
                 method: "PATCH",
                 headers: {
@@ -335,7 +329,6 @@ export const {
     useGetFavoriteSolutionsQuery,
     useGetFavoriteSolutionQuery,
     useAddSolutionToFavoriteMutation,
-    useGetSolutionAdvantagesQuery,
     useGetSolutionDignitiesQuery,
     useGetSolutionCardsQuery,
     useGetSolutionStepsQuery,

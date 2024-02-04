@@ -1,15 +1,12 @@
 import { FC, useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
+import Title from "@/src/components/shared/text/Title";
+import Image from "next/image";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
 import css from "./editFilter.module.css";
 import { useRouter } from "next/router";
-import {
-    useGetPlatformFilterGroupsQuery,
-    useGetPlatformFilterQuery,
-    usePutPlatformFilterMutation,
-} from "@/src/store/services/platforms";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { Button } from "@/src/components/shared/buttons/Button";
 import Cookies from "js-cookie";
@@ -21,7 +18,12 @@ import { TextAreaAddFilter } from "@/src/components/entities/platformsFilters/ad
 import { SelectMessengers } from "@/src/components/entities/platformsFilters/addFilter/SelectMessengers";
 import { InputRadioFilterMultiple } from "@/src/components/entities/platformsFilters/addFilter/InputRadioFilterMultiple";
 import { MultipleTagsInput } from "@/src/components/entities/platformsFilters/addFilter/MultipleTagsInput";
-import { useGetSolutionFilterQuery, usePutSolutionFilterMutation } from "@/src/store/services/solutions";
+import {
+    useGetSolutionFilterGroupsQuery,
+    useGetSolutionFilterQuery,
+    usePutSolutionFilterMutation,
+} from "@/src/store/services/solutions";
+import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
 interface pageProps {
     params: { id: string };
@@ -32,27 +34,17 @@ const EditSolutionFilter: FC<pageProps> = () => {
     const router = useRouter();
     const filterId: string = router.query.id as string;
     const id = filterId;
-    // TODO: delete platform filter data
+
     const {
         data: filterData,
         isLoading: filterIsLoading,
         isSuccess: filterIsSuccess,
         refetch,
-    } = useGetPlatformFilterQuery({ id }, { refetchOnMountOrArgChange: true });
-
-    const {
-        data: solutionFilterData,
-        isLoading: solutionFilterIsLoading,
-        isSuccess: solutionFilterIsSuccess,
-        refetch: solutionFilterRefetch,
     } = useGetSolutionFilterQuery({ id }, { refetchOnMountOrArgChange: true });
 
-    console.log(filterData);
-    console.log(solutionFilterData);
+    const [putFilter, { data, isSuccess: isSuccessPutFilter, isLoading }] = usePutSolutionFilterMutation();
 
-    const [putFilter, { data, isSuccess: isSuccessAddFilter, isLoading }] = usePutSolutionFilterMutation();
-
-    const { data: dataGroups } = useGetPlatformFilterGroupsQuery({});
+    const { data: dataGroups } = useGetSolutionFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
 
     const [selectedGroup, setSelectedGroup] = useState(filterGroup?.title);
@@ -77,7 +69,7 @@ const EditSolutionFilter: FC<pageProps> = () => {
     const isValidFilter = () => {
         if (filter != undefined || filter != null) {
             const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
-            if (typeof isUndefined == "undefined") {
+            if (typeof isUndefined == "undefined" && filter.tags.length !== 0) {
                 setIsValid(true);
             } else setIsValid(false);
         }
@@ -100,10 +92,15 @@ const EditSolutionFilter: FC<pageProps> = () => {
                     return item?.is_message === false;
                 })
                 .concat(tagsM);
-
-            setFilter((prev) => ({ ...prev, tags: newTags }));
+            if (newTags.length == 0) {
+                setIsValid(false);
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+            } else {
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+                isValidFilter();
+                setIsValid(true);
+            }
         }
-        isValidFilter();
     };
 
     const handleSetTextTags = (tagsT: ITagM[]) => {
@@ -113,10 +110,14 @@ const EditSolutionFilter: FC<pageProps> = () => {
                     return item?.is_message === true;
                 })
                 .concat(tagsT);
-
-            setFilter((prev) => ({ ...prev, tags: newTags }));
+            if (newTags.length == 0) {
+                setIsValid(false);
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+            } else {
+                setFilter((prev) => ({ ...prev, tags: newTags }));
+                isValidFilter();
+            }
         }
-        isValidFilter();
     };
 
     const handleRadioMultiple = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,10 +130,24 @@ const EditSolutionFilter: FC<pageProps> = () => {
     };
 
     const handleSubmit = () => {
-        putFilter({ filter, token, id })
-            .then(refetch)
-            .then(() => router.push("/admin/platforms/platforms-filters/"));
+        putFilter({ filter, token, id }).then(refetch);
+        // .then(() => router.push("/admin/solutions/solutions-filters/"));
     };
+
+    const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
+    const handleToggleSuccessModal = () => {
+        setIsSuccessModal(!isSuccessModal);
+    };
+
+    useEffect(() => {
+        if (isSuccessPutFilter) {
+            setIsSuccessModal(true);
+            setTimeout(() => {
+                setIsSuccessModal(false);
+                router.push("/admin/solutions/solutions-filters/");
+            }, 3000);
+        }
+    }, [isSuccessPutFilter]);
 
     useEffect(() => {
         if (filterIsSuccess) {
@@ -188,8 +203,19 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                 label="Название фильтра"
                                 value={filterData?.title}
                                 onChange={(e) => {
-                                    isValidFilter();
-                                    setFilter((prev) => ({ ...prev, title: e.target.value }));
+                                    if (e.target.value.length == 0) {
+                                        setIsValid(false);
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            title: e.target.value,
+                                        }));
+                                    } else {
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            title: e.target.value,
+                                        }));
+                                        isValidFilter();
+                                    }
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
@@ -198,8 +224,19 @@ const EditSolutionFilter: FC<pageProps> = () => {
                             <TextAreaAddFilter
                                 value={filterData?.functionality}
                                 onChange={(e) => {
-                                    isValidFilter();
-                                    setFilter((prev) => ({ ...prev, functionality: e.target.value }));
+                                    if (e.target.value.length == 0) {
+                                        setIsValid(false);
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            functionality: e.target.value,
+                                        }));
+                                    } else {
+                                        setFilter((prev) => ({
+                                            ...prev,
+                                            functionality: e.target.value,
+                                        }));
+                                        isValidFilter();
+                                    }
                                 }}
                                 label="Краткое описание функционала фильтра"
                                 placeholder="Текст (200 символов)"
@@ -217,8 +254,11 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                 label="Выбор параметров"
                                 onChange={handleRadioMultiple}
                             />
+                            <ErrorMessage isShown={isValid} className={css.errorBlock}>
+                                Внесите изменения. Все поля должны быть заполнены
+                            </ErrorMessage>
                             <div className={css.buttonsContainer}>
-                                <Link href={"/admin/platforms/platforms-filters"} className={css.buttonCancel}>
+                                <Link href={"/admin/solutions/solutions-filters"} className={css.buttonCancel}>
                                     <Text type="reg18" color="grey">
                                         Отмена
                                     </Text>
@@ -233,6 +273,42 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                     Сохранить изменения
                                 </Button>
                             </div>
+                            {isSuccessModal && (
+                                <div className={css.backdrop}>
+                                    <div className={css.modal}>
+                                        <div className={css.modalContent}>
+                                            <Image
+                                                src="/sign/close.svg"
+                                                alt="icon"
+                                                width={34}
+                                                height={34}
+                                                className={css.imgCloseModal}
+                                                onClick={handleToggleSuccessModal}
+                                                style={{ cursor: "pointer" }}
+                                            />
+                                            <Image
+                                                src={"/platforms/successModal.svg"}
+                                                alt="icon"
+                                                width={120}
+                                                height={120}
+                                            />
+                                            <div className={css.textSuccess}>
+                                                <Title type="h5" color="black">
+                                                    Фильтр сохранен!
+                                                </Title>
+                                                <Text type="reg16" color="grey">
+                                                    Все изменения фильтра сохранены!
+                                                </Text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                    {isLoading && (
+                        <div className={css.modal}>
+                            <Loader isLoading={isLoading} />
                         </div>
                     )}
                 </div>

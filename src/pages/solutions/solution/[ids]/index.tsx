@@ -1,16 +1,15 @@
 import Header from "@/src/components/features/HomePage/Header/Header";
-import { useGetSolutionQuery, useGetSolutionsFiltersQuery, useGetSolutionsQuery } from "@/src/store/services/solutions";
+import { useGetSolutionQuery, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
-import styles from "@/src/pages/solutions/solution/[ids]/soluiton.module.css";
+import styles from "@/src/pages/solutions/solution/[ids]/solution.module.css";
 import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
-import BlockComplexFunnel from "@/src/components/features/SolutionDescriptionPade/blockComplexFunnel/BlockComplexFunnel";
-import BlockShotDescription from "@/src/components/features/SolutionDescriptionPade/blockShotDescription/BlockShotDescription";
-import BlockGreatSolutions from "@/src/components/features/SolutionDescriptionPade/blockGreatSolutions/BlockGreatSolutions";
-import BlockFunnelBenefits from "@/src/components/features/SolutionDescriptionPade/blockBenefitsFunnel/BlockBenefitsFunnel";
-import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPade/blockHowItWorks/BlockHowItWorks";
-import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPade/blockTasksBySteps/BlockTasksBySteps";
+import BlockSolutionCard from "@/src/components/features/SolutionDescriptionPage/BlockSolutionCard/BlockSolutionCard";
+import BlockShotDescription from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/BlockShortDescription";
+import BlockBenefits from "@/src/components/features/SolutionDescriptionPage/BlockBenefits/BlockBenefits";
+import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPage/BlockHowItWorks/BlockHowItWorks";
+import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPage/BlockTasksBySteps/BlockTasksBySteps";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
@@ -18,6 +17,7 @@ const Solution = () => {
     const router = useRouter();
     const { ids } = router.query;
     const { data } = useGetSolutionQuery(Number(ids));
+    console.log(data);
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
 
     return (
@@ -36,16 +36,23 @@ const Solution = () => {
                         /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                <BlockComplexFunnel title={data?.title} />
-                <BlockShotDescription
-                    results={dataFilters?.results}
-                    price={data?.price}
-                    subtitle={data?.subtitle}
-                    full_description={data?.full_description}
+                <BlockSolutionCard
+                    id={data?.id}
+                    title={data?.title}
+                    image={data?.image}
+                    advantages={data?.advantages}
+                    turnkey_platform={data?.turnkey_platform}
+                    is_favorite={data?.is_favorite}
                 />
-                <BlockGreatSolutions />
-                <BlockFunnelBenefits cards_title={data?.cards_title} cards_description={data?.cards_description} />
-                <BlockHowItWorks />
+                <BlockShotDescription
+                    id={data?.id}
+                    price={data?.price}
+                    full_description={data?.full_description}
+                    results={dataFilters?.results}
+                    dignities={data?.dignities}
+                />
+                <BlockHowItWorks link={data?.link} />
+                <BlockBenefits full_description={data?.full_description} platform={data?.platform} />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />

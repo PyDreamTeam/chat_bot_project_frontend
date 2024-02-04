@@ -22,10 +22,11 @@ const ComponentSignIn = () => {
         if (isSuccess) {
             Cookies.set("loginUser", JSON.stringify(data));
         }
-    }, [isSuccess,]);
+    }, [isSuccess]);
 
     useEffect(() => {
         if (isSuccessUser) {
+            Cookies.set("userRole", userData?.user_role);
             if (userData?.user_role === "US") {
                 route.push("/my-account");
             } else {

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Title from "@/src/components/shared/text/Title";
 import styles from "./BlockShotDescription.module.css";
 import CardSales from "@/src/components/entities/cards/cardSales/CardSales";
-import ReadMore from "@/src/components/features/SolutionDescriptionPade/blockShotDescription/ReadMore";
+import ReadMore from "@/src/components/features/SolutionDescriptionPage/blockShortDescription/ReadMore";
 import { useGetSolutionDignitiesQuery } from "@/src/store/services/solutions";
 import { SolutionTags } from "@/src/components/entities/filters/SolutionTags/SolutionTags";
 

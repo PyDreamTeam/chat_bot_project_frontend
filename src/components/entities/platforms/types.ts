@@ -119,7 +119,8 @@ export interface PropsSolutionCard {
     integration_with_CRM?: string;
     integration_with_payment_systems?: string;
     tasks?: string;
-    advantages?: string;
+    advantages?: string[];
+    dignities?: string[];
     dignity?: string;
     steps_title?: string;
     steps_description?: string;
@@ -135,6 +136,7 @@ export interface PropsSolutionCard {
     type?: string | string;
     filter?: number[];
     forceUpdate?: () => void;
+    filters?: number[];
     tags?: {
         id?: number;
         tag?: string;
@@ -147,12 +149,19 @@ export interface PropsSolutionCard {
         dignities?: string;
     }[];
 }
-export interface PropsFavoriteSolutionCard {
+
+export interface PropsSolutionAdvantages {
+    id?: number;
+    advantage?: string;
+}
+
+export interface PropsSolutionCard {
     id?: number;
     title?: string;
     short_description?: string;
     full_description?: string;
     turnkey_solutions?: number;
+    turnkey_platform?: number | undefined;
     price?: number | string;
     status?: string;
     is_active?: boolean;

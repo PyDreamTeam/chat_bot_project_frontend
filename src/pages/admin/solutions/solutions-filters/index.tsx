@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -7,14 +7,13 @@ import css from "./solutions-filters.module.css";
 import InputSearch from "@/src/components/entities/platforms/rightBlock/InputSearch/InputSearch";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
-import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
+// import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
+// import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { ButtonSmallPrimary } from "@/src/components/shared/buttons/ButtonSmallPrimary";
 import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
 import SolutionsFiltersList from "@/src/components/entities/solutionsFilters/SolutionsFiltersList/SolutionsFiltersList";
-import SearchSolutionsFiltersList from "@/src/components/entities/solutionsFilters/SearchSolutionsFiltersList/SearchSolutionsFiltersList";
-import InputGroup from "@/src/components/entities/platformsFilters/InputGroup/InputGroup";
+import SolutionsSearchFiltersList from "@/src/components/entities/solutionsFilters/SolutionsSearchFiltersList/SolutionsSearchFiltersList";
 import Cookies from "js-cookie";
 import { plusSvgPrimary, plusSvgSecondary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 import {
@@ -22,6 +21,7 @@ import {
     useGetSolutionsFiltersQuery,
     useSearchSolutionsFiltersQuery,
 } from "@/src/store/services/solutions";
+import InputSolutionsFiltersGroup from "@/src/components/entities/solutionsFilters/InputSolutionsFiltersGroup/InputSolutionsFiltersGroup";
 
 const sortFiltersArr = [
     { title: "Опубликованные", value: "public" },
@@ -83,24 +83,9 @@ const SolutionsFilters = () => {
     };
     const [isShownInput, setIsShownInput] = useState(false);
 
-    const handleKeyDownGroup = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key == "Enter" || e.key == "NumpadEnter") {
-            const title = (e.target as HTMLInputElement).value;
-            setIsShownInput((prevState) => (prevState = false));
-            createGroup({ token, title }).then(refetch);
-        }
-        if (e.key == "Escape") {
-            setIsShownInput((prevState) => (prevState = false));
-        }
-    };
-
     const handleSubmitAddGroup = (inputValue: string | undefined) => {
-        if (inputValue) {
-            setIsShownInput((prevState) => (prevState = false));
-            // createGroup({ token, title: inputValue }).then(router.reload);
-            createGroup({ token, title: inputValue }).then(refetch);
-        }
         setIsShownInput((prevState) => (prevState = false));
+        createGroup({ token, title: inputValue }).then(refetch);
     };
     const handleCancelAddGroup = () => {
         setIsShownInput((prevState) => (prevState = false));
@@ -183,12 +168,9 @@ const SolutionsFilters = () => {
                         ))}
                     </ul>
                 </div>
-                <InputGroup
+                <InputSolutionsFiltersGroup
                     placeholder=" Добавьте название для группы фильтров"
                     isShown={isShownInput}
-                    onKeyDown={(e) => {
-                        handleKeyDownGroup(e);
-                    }}
                     onSubmit={handleSubmitAddGroup}
                     onCancel={handleCancelAddGroup}
                 />
@@ -200,12 +182,9 @@ const SolutionsFilters = () => {
                             </div>
                         ) : (
                             <div>
-                                <Text type="reg24" color="red" className={css.devText}>
-                                    🔨 Страница находится в разработке! 🔧
-                                </Text>
                                 {searchFilter ? (
                                     <div>
-                                        <SearchSolutionsFiltersList
+                                        <SolutionsSearchFiltersList
                                             searchData={searchData.search_results}
                                             tagsData={tagsData.results}
                                             sort={sort}

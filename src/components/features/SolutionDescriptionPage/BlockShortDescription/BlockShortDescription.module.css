@@ -1,0 +1,21 @@
+.wrapper {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    display: flex;
+    justify-content: space-between;
+    gap: 132px;
+}
+
+.blockText {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 600px;
+}
+.blockText p {
+    max-width: 600px;
+}
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+}

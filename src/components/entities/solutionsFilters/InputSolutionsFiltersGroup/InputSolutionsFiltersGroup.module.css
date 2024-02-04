@@ -1,0 +1,58 @@
+.container {
+    position: relative;
+    display:flex;
+    gap: 16px;
+    max-width: 932px;
+}
+
+.inputContainer {
+    /* padding: 8px 0px 6px 8px; */
+    width: 100%;
+}
+
+.errorBlock {
+    display: flex;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    padding-left: 8px;
+    padding-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.errorBlockHide {
+    display: none;
+    
+}
+
+.inputGroup,
+.inputGroupNew {
+    display: block;
+    width: 100%;
+    padding: 8px 0px 6px 8px;
+    border: none;
+    border-bottom: 1px solid var(--accent-color);
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    caret-color: var(--accent-color)
+}
+.inputGroupHide {
+    display: none;
+}
+
+.inputGroup::placeholder { /* Most modern browsers support this now. */
+   color:    var(--sub-color);
+}
+
+.inputGroup:focus {
+    outline: none;
+}
+
+.buttonsContainer {
+    display: flex;
+    gap: 16px;
+    max-height: 39px;
+}

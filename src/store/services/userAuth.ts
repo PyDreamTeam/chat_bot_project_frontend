@@ -13,6 +13,15 @@ export const userAuth = createApi({
                 },
             }),
         }),
+        getUserData: builder.query({
+            query: (token: { access: string; refresh: string }) => ({
+                url: "/api/auth/users/me/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
         changeDataUser: builder.mutation<void, { requestValues: Record<string, unknown>; token: string }>({
             query: ({ requestValues, token }) => ({
                 url: "/api/profile/",
@@ -73,6 +82,16 @@ export const userAuth = createApi({
                 url: "/api/auth/users/reset_password_confirm/",
                 method: "POST",
                 body: arg,
+            }),
+        }),
+        setPassword: builder.mutation({
+            query: ({ requestValues, token }) => ({
+                url: "/api/auth/users/set_password/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+                body: requestValues,
             }),
         }),
         verifyUser: builder.mutation({
@@ -145,6 +164,28 @@ export const userAuth = createApi({
                 },
             }),
         }),
+        getTariffsList: builder.query({
+            query: () => ({
+                url: "/api/solution/tariffs/",
+                method: "GET",
+            }),
+        }),
+        getTariff: builder.query({
+            query: ({ id }) => ({
+                url: `/api/solution/tariffs/${id}/`,
+                method: "GET",
+            }),
+        }),
+        putTariff: builder.mutation({
+            query: ({ tariff, token, id }) => ({
+                url: `/api/solution/tariffs/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+                body: tariff,
+            }),
+        }),
     }),
 });
 
@@ -155,9 +196,11 @@ export const {
     useUserActivationMutation,
     useLogoutUserMutation,
     useDataUserQuery,
+    useGetUserDataQuery,
     useChangeDataUserMutation,
     useRecoveryPasswordMutation,
     useChangePasswordMutation,
+    useSetPasswordMutation,
     useVerifyUserMutation,
     useCreateOrderMutation,
     useCreateOrderUnregisteredMutation,
@@ -166,4 +209,7 @@ export const {
     usePutOrderMutation,
     usePatchOrderMutation,
     useDeleteOrderMutation,
+    useGetTariffsListQuery,
+    useGetTariffQuery,
+    usePutTariffMutation,
 } = userAuth;

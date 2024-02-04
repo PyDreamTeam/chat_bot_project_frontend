@@ -14,6 +14,7 @@ interface PropsInputAddFilter {
     disabled?: boolean;
     link?: boolean;
     countSolutions?: boolean;
+    maxLength?: number;
     onKeyPress?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
@@ -25,9 +26,8 @@ const InputAddFilter: FC<PropsInputAddFilter> = ({
     value,
     style,
     disabled,
-    link,
-    countSolutions,
     onKeyPress,
+    maxLength,
 }) => {
     const [isActiveInfo, setIsActiveInfo] = useState<boolean>(false);
     const handleClick = () => {
@@ -40,11 +40,12 @@ const InputAddFilter: FC<PropsInputAddFilter> = ({
                 {label}
             </Text>
             <input
-                className={`${css.inputAddFilter} ${style}`}
+                className={style != "tag" ? `${css.inputAddFilter} ${style}` : css.tariffTag}
                 onChange={onChange}
                 placeholder={placeholder}
                 defaultValue={value}
                 disabled={disabled}
+                maxLength={maxLength}
                 onKeyPress={onKeyPress}
             />
         </div>

@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import Text from "@/src/components/shared/text/Text";
 import styles from "./SearchFiltersList.module.css";
-import Group from "../Group/Group";
+import Group from "../FiltersGroupTitle/FiltersGroupTitle";
 import Filter from "../Filter/Filter";
 import uuid from "uuid-random";
 import { useModal } from "@/src/hooks/useModal";

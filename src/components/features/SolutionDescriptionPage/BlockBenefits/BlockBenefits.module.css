@@ -1,0 +1,35 @@
+.wrapper {
+    padding-top: 64px;
+    margin-bottom: 128px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.blockText {
+    display: flex;
+    flex-direction: row;
+    gap: 168px;
+}
+
+.blockText h3 {
+    line-height: 1;
+}
+.platformTitle {
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    width: 619px;
+}
+
+.blockCard {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-row-gap: 24px;
+    grid-column-gap: 24px;
+}
