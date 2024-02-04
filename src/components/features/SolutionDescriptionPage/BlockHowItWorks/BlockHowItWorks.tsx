@@ -1,28 +1,30 @@
-import React from "react";
+import React, { FC } from "react";
+import styles from "./BlockHowItWorks.module.css";
+import Link from "next/link";
+import ArrowOut from "@/src/components/shared/images/ArrowOut";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
-
-import styles from "./BlockHowItWorks.module.css";
 import Image from "next/image";
 
-const BlockHowItWorks = () => {
+interface PropsBlockHowItWorks {
+    link?: string;
+}
+
+const BlockHowItWorks: FC<PropsBlockHowItWorks> = ({ link }) => {
     return (
         <div className={styles.wrapper} id={"video"}>
-            <Image src={"/img/Video.png"} alt={"video"} width={520} height={298} />
-            <div className={styles.blockText}>
-                <Title type={"h3"} color={"dark"}>
-                    Как это работает?
-                </Title>
-                <div className={styles.time}>
-                    <Image src={"/icon/Time Circle.svg"} alt={"Time"} width={20} height={20} />
-                    <Text type={"reg14"} color={"telegray"}>
-                        Продолжительность 2:30 минуты
+            <Title type={"h3"} color={"dark"}>
+                Как это работает?
+            </Title>
+            <Link href={`${link}`} className={styles.blockVideo}>
+                <Image src={"/img/video-solution.png"} alt={"video"} width={1264} height={503} />
+                <div className={styles.videoComment}>
+                    <Text type={"reg18"} color={"white"}>
+                        Подробнее
                     </Text>
+                    <ArrowOut />
                 </div>
-                <Text type={"reg18"} color={"grey"}>
-                    Короткий ролик, чтобы ознакомиться как работает решение на платформе Salebot
-                </Text>
-            </div>
+            </Link>
         </div>
     );
 };

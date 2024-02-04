@@ -9,28 +9,12 @@ import ReadMore from "@/src/components/features/SolutionDescriptionPage/BlockSho
 import { useRouter } from "next/router";
 
 interface BlockBenefitsFunnel {
-    cards_description?: string;
     full_description?: string;
-    results?: any;
     platform?: string;
 }
 
-interface SolutionFilters {
-    id?: number;
-    filter?: string;
-    tags: [];
-}
-
-const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({
-    results = [],
-    cards_description,
-    full_description,
-    platform,
-}) => {
+const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({ full_description, platform }) => {
     const { data: DataCards } = useGetSolutionCardsQuery({});
-    const router = useRouter();
-    const { ids } = router.query;
-    const { data } = useGetSolutionQuery(Number(ids));
 
     return (
         <div className={styles.wrapper}>

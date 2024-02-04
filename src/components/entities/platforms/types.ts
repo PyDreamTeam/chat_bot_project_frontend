@@ -136,7 +136,7 @@ export interface PropsSolutionCard {
     integration_with_CRM?: string;
     integration_with_payment_systems?: string;
     tasks?: string;
-    advantages?: string;
+    advantages?: string[];
     dignities?: string[];
     dignity?: string;
     steps_title?: string;

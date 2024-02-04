@@ -16,10 +16,8 @@ import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollTo
 const Solution = () => {
     const router = useRouter();
     const { ids } = router.query;
-
     const { data } = useGetSolutionQuery(Number(ids));
     console.log(data);
-
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
 
     return (
@@ -38,12 +36,11 @@ const Solution = () => {
                         /<span className={styles.link}>{data?.title}</span>
                     </Text>
                 </div>
-                {/* TODO: advantages instead of short_description  */}
                 <BlockSolutionCard
                     id={data?.id}
-                    short_description={data?.short_description}
                     title={data?.title}
                     image={data?.image}
+                    advantages={data?.advantages}
                     turnkey_platform={data?.turnkey_platform}
                     is_favorite={data?.is_favorite}
                 />
@@ -54,13 +51,8 @@ const Solution = () => {
                     results={dataFilters?.results}
                     dignities={data?.dignities}
                 />
-                <BlockHowItWorks />
-                <BlockFunnelBenefits
-                    results={dataFilters?.results}
-                    cards_description={data?.cards_description}
-                    full_description={data?.full_description}
-                    platform={data?.platform}
-                />
+                <BlockHowItWorks link={data?.link} />
+                <BlockFunnelBenefits full_description={data?.full_description} platform={data?.platform} />
                 <BlockTasksBySteps steps_title={data?.steps_title} steps_description={data?.steps_description} />
                 <ButtonOrder dataComment={`Выбранное решение: ${data?.title}`} />
                 <ButtonScrollToUp />
