@@ -4,7 +4,7 @@ import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import {
-    useDeleteSloutionMutation,
+    useDeleteSolutionMutation,
     useSolutionArchiveMutation,
     useGetSolutionForArchiveMutation,
     useSendToCreatedMutation,
@@ -21,6 +21,7 @@ interface PropsSolution {
     tags?: {
         tag?: string;
     }[];
+    refetch?: () => void;
 }
 
 const functionSolutionSave = [
@@ -43,8 +44,8 @@ const functionSolutionArchive = [
     // {title: "Удалить", value: "delete"},
 ];
 
-export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }) => {
-    const [deleteSolution, { isSuccess }] = useDeleteSloutionMutation();
+export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort, refetch }) => {
+    const [deleteSolution, { isSuccess: isSuccessDelete }] = useDeleteSolutionMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [getSolutionForArchive, { data, isSuccess: isSuccessGetSolution }] = useGetSolutionForArchiveMutation();
@@ -59,21 +60,18 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
     const [isSuccessDeleteSolutionFromPublic, setIsSuccessDeleteSolutionFromPublic] = useState(false);
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isSuccessDelete) {
             setIsSuccessModal(true);
             setIsModalDelete(false);
             setTimeout(() => {
                 setIsSuccessModal(false);
-                router.reload();
+                if (refetch) {
+                    refetch();
+                }
+                // router.reload();
             }, 3000);
         }
-    }, [isSuccess]);
-
-    useEffect(() => {
-        if (isSuccessSendToCreated) {
-            router.reload();
-        }
-    }, [isSuccessSendToCreated]);
+    }, [isSuccessDelete]);
 
     useEffect(() => {
         if (stateIcon === "workPlatformActive") {
@@ -88,7 +86,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
             setIsSuccessDeleteSolutionFromPublic(true);
             setTimeout(() => {
                 setIsSuccessDeleteSolutionFromPublic(false);
-                router.reload();
+                if (refetch) refetch();
             }, 3000);
         }
     }, [isSuccessSolutionArchive]);
@@ -119,7 +117,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
             setIsArchiveSolution(true);
         }
         if (value === "sendToCreated") {
-            sendToCreated({ id, token, data });
+            sendToCreated({ id, token, data }).then(refetch);
         }
         if (value === "delete") {
             setIsModalDelete(true);
@@ -304,7 +302,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
                             width={24}
                             height={24}
                             className={css.imgCloseModal}
-                            onClick={() => router.reload()}
+                            onClick={() => setIsSuccessDeleteSolutionFromPublic(false)}
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
@@ -322,7 +320,10 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort }
                             width={24}
                             height={24}
                             className={css.imgCloseModal}
-                            onClick={() => router.reload()}
+                            onClick={() => {
+                                setIsSuccessModal(false);
+                                if (refetch) refetch();
+                            }}
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>

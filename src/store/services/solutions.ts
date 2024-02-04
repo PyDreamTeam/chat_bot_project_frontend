@@ -119,7 +119,7 @@ export const solutions = createApi({
                 },
             }),
         }),
-        deleteSloution: builder.mutation({
+        deleteSolution: builder.mutation({
             query: ({ id, token }) => ({
                 url: `/api/solution/solutions/${id}/`,
                 method: "DELETE",
@@ -349,7 +349,7 @@ export const {
     useChangeSolutionMutation,
     useAddSolutionMutation,
     useSolutionPublicMutation,
-    useDeleteSloutionMutation,
+    useDeleteSolutionMutation,
     useSolutionArchiveMutation,
     useGetSolutionForArchiveMutation,
     useSendToCreatedMutation,

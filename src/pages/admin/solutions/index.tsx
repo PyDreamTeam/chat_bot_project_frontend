@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Text from "@/src/components/shared/text/Text";
@@ -26,9 +26,12 @@ const sortSolutions = [
 const SolutionsAdmin = () => {
     const searchParams = useSearchParams();
     const [searchSolution, setSearchSolution] = useState<string>("");
-    const { combinedData, isLoading, readMore, refresh, isFetching } = useInfiniteScroll(useGetSolutionsQuery, {
-        title: searchSolution,
-    });
+    const { combinedData, isLoading, refetch, readMore, refresh, isFetching } = useInfiniteScroll(
+        useGetSolutionsQuery,
+        {
+            title: searchSolution,
+        }
+    );
 
     const handleScroll = () => {
         readMore();
@@ -53,6 +56,10 @@ const SolutionsAdmin = () => {
     const handleRouter = () => {
         router.push("/admin/solutions/add-solution");
     };
+
+    useEffect(() => {
+        refetch();
+    }, [sort]);
 
     return (
         <WrapperAdminPage>
@@ -126,6 +133,7 @@ const SolutionsAdmin = () => {
                                                 tags={item.tags}
                                                 id={item.id}
                                                 sort={sort}
+                                                refetch={refetch}
                                             />
                                         </li>
                                     ))}

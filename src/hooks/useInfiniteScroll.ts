@@ -62,6 +62,7 @@ const useInfiniteScroll = (useGetPlatformsQuery: UseQuery<any>, { items_per_page
         refresh,
         isLoading: queryResponse?.isLoading,
         isFetching: queryResponse?.isFetching,
+        refetch: queryResponse?.refetch,
     };
 };
 

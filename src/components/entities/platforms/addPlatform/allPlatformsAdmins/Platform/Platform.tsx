@@ -21,6 +21,7 @@ interface PropsPlatform {
     tags?: {
         tag?: string;
     }[];
+    refetch?: () => void;
 }
 
 const functionPlatformSave = [
@@ -43,8 +44,8 @@ const functionPlatformArchive = [
     // {title: "Удалить", value: "delete"},
 ];
 
-export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }) => {
-    const [deletePlatform, { isSuccess }] = useDeletePlatformMutation();
+export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort, refetch }) => {
+    const [deletePlatform, { isSuccess: isSuccessDelete }] = useDeletePlatformMutation();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [getPlatformForArchive, { data, isSuccess: isSuccessGetPlatform }] = useGetPlatformForArchiveMutation();
@@ -59,21 +60,17 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
     const [isSuccessDeletePlatformFromPublic, setIsSuccessDeletePlatformFromPublic] = useState(false);
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isSuccessDelete) {
             setIsSuccessModal(true);
             setIsModalDelete(false);
             setTimeout(() => {
                 setIsSuccessModal(false);
-                router.reload();
+                if (refetch) {
+                    refetch();
+                }
             }, 3000);
         }
-    }, [isSuccess]);
-
-    useEffect(() => {
-        if (isSuccessSendToCreated) {
-            router.reload();
-        }
-    }, [isSuccessSendToCreated]);
+    }, [isSuccessDelete]);
 
     useEffect(() => {
         if (stateIcon === "workPlatformActive") {
@@ -88,7 +85,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
             setIsSuccessDeletePlatformFromPublic(true);
             setTimeout(() => {
                 setIsSuccessDeletePlatformFromPublic(false);
-                router.reload();
+                if (refetch) refetch();
             }, 3000);
         }
     }, [isSuccessPlatformArchive]);
@@ -119,7 +116,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
             setIsArchivePlatform(true);
         }
         if (value === "sendToCreated") {
-            sendToCreated({ id, token, data });
+            sendToCreated({ id, token, data }).then(refetch);
         }
         if (value === "delete") {
             setIsModalDelete(true);
@@ -304,7 +301,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                             width={24}
                             height={24}
                             className={css.imgCloseModal}
-                            onClick={() => router.reload()}
+                            onClick={() => setIsSuccessDeletePlatformFromPublic(false)}
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
@@ -322,7 +319,10 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort }
                             width={24}
                             height={24}
                             className={css.imgCloseModal}
-                            onClick={() => router.reload()}
+                            onClick={() => {
+                                setIsSuccessModal(false);
+                                if (refetch) refetch();
+                            }}
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
                         <Title type="h5" color="dark" className={css.titleModalClose}>
