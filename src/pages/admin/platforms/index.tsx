@@ -61,7 +61,6 @@ const PlatformsAdmin = () => {
     };
 
     useEffect(() => {
-        // console.log("useEffect refresh");
         refetch();
     }, [sort]);
 

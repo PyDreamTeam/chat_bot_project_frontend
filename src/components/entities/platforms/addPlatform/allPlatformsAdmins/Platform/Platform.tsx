@@ -68,7 +68,6 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort, 
                 if (refetch) {
                     refetch();
                 }
-                // router.reload();
             }, 3000);
         }
     }, [isSuccessDelete]);
@@ -87,7 +86,6 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort, 
             setTimeout(() => {
                 setIsSuccessDeletePlatformFromPublic(false);
                 if (refetch) refetch();
-                // router.reload();
             }, 3000);
         }
     }, [isSuccessPlatformArchive]);
@@ -131,7 +129,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort, 
         }
         if (value === "deletePublic") {
             setIsDeletePlatformFromPublic(true);
-            getPlatformForArchive(Number(id)).then(refetch);
+            getPlatformForArchive(Number(id));
         }
         if (value === "public") {
             router.push(`/admin/platforms/public-platform/${id}`);
@@ -303,7 +301,6 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort, 
                             width={24}
                             height={24}
                             className={css.imgCloseModal}
-                            // onClick={() => router.reload()}
                             onClick={() => setIsSuccessDeletePlatformFromPublic(false)}
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />
@@ -325,7 +322,6 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort, 
                             onClick={() => {
                                 setIsSuccessModal(false);
                                 if (refetch) refetch();
-                                // router.reload();
                             }}
                         />
                         <Image src={"/platforms/successModal.svg"} alt="icon" width={120} height={120} />

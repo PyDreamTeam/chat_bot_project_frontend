@@ -58,7 +58,6 @@ const SolutionsAdmin = () => {
     };
 
     useEffect(() => {
-        // console.log("useEffect refresh");
         refetch();
     }, [sort]);
 
@@ -134,6 +133,7 @@ const SolutionsAdmin = () => {
                                                 tags={item.tags}
                                                 id={item.id}
                                                 sort={sort}
+                                                refetch={refetch}
                                             />
                                         </li>
                                     ))}
