@@ -109,7 +109,7 @@ export interface PropsSolutionCard {
     business_area?: string;
     business_niche?: string;
     objective?: string;
-    turnkey_platforms?: number;
+    turnkey_platform?: number | undefined;
     links_to_platform?: string[];
     solution_type?: string;
     short_description?: string;
@@ -155,28 +155,28 @@ export interface PropsSolutionAdvantages {
     advantage?: string;
 }
 
-export interface PropsSolutionCard {
-    id?: number;
-    title?: string;
-    short_description?: string;
-    full_description?: string;
-    turnkey_solutions?: number;
-    turnkey_platform?: number | undefined;
-    price?: number | string;
-    status?: string;
-    is_active?: boolean;
-    created_at?: string;
-    image: any;
-    forceUpdate: () => void;
-    link?: string;
-    links_to_solution?: string[];
-    type?: Card;
-    filter?: number[];
-    tags?: {
-        id?: number;
-        tag?: string;
-        image_tag?: string;
-        is_active?: boolean;
-        is_message?: boolean;
-    }[];
-}
+// export interface PropsSolutionCard {
+//     id?: number;
+//     title?: string;
+//     short_description?: string;
+//     full_description?: string;
+//     turnkey_solutions?: number;
+//     turnkey_platform?: number | undefined;
+//     price?: number | string;
+//     status?: string;
+//     is_active?: boolean;
+//     created_at?: string;
+//     image: any;
+//     forceUpdate: () => void;
+//     link?: string;
+//     links_to_solution?: string[];
+//     type?: Card;
+//     filter?: number[];
+//     tags?: {
+//         id?: number;
+//         tag?: string;
+//         image_tag?: string;
+//         is_active?: boolean;
+//         is_message?: boolean;
+//     }[];
+// }

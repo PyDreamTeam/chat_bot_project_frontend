@@ -129,6 +129,7 @@ export interface PropsSolutionCard {
     business_niche?: string;
     objective?: string;
     platform_title?: string;
+    turnkey_platform?: number;
     turnkey_platforms?: number;
     links_to_platform?: string[];
     solution_type?: string;
@@ -139,7 +140,7 @@ export interface PropsSolutionCard {
     integration_with_CRM?: string;
     integration_with_payment_systems?: string;
     tasks?: string;
-    advantages?: string;
+    advantages?: string[];
     dignity?: string;
     steps_title?: string;
     steps_description?: string;
