@@ -3,17 +3,21 @@ import Text from "@/src/components/shared/text/Text";
 import styles from "./listAdvantages.module.css";
 
 interface IListSolutionDescription {
-    short_description?: string;
+    advantages?: string[];
 }
 
-export const ListDescription: FC<IListSolutionDescription> = ({ short_description }) => {
+export const ListDescription: FC<IListSolutionDescription> = ({ advantages }) => {
     return (
         <ul className={styles.list}>
-            <li className={styles.listItem}>
-                <Text type={"reg18"} color={"grey"}>
-                    {short_description}
-                </Text>
-            </li>
+            {advantages?.map((item, index) => (
+                <div key={index}>
+                    <li className={styles.listItem}>
+                        <Text type={"reg18"} color={"grey"}>
+                            {item}
+                        </Text>
+                    </li>
+                </div>
+            ))}
         </ul>
     );
 };

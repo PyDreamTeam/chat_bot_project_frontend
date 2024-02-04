@@ -1,36 +1,19 @@
 import React, { FC } from "react";
 import Title from "@/src/components/shared/text/Title";
 import Text from "@/src/components/shared/text/Text";
-import styles from "./BlockBenefitsFunnel.module.css";
+import styles from "./BlockBenefits.module.css";
 import ElemSaleBot from "@/src/components/shared/elemChooseChatBot/ElemSaleBot";
 import { useGetSolutionCardsQuery, useGetSolutionQuery } from "@/src/store/services/solutions";
 import ListBenefits from "@/src/components/entities/lists/listBenefits/listBenefits";
 import ReadMore from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/ReadMore";
-import { useRouter } from "next/router";
 
-interface BlockBenefitsFunnel {
-    cards_description?: string;
+interface BlockBenefits {
     full_description?: string;
-    results?: any;
     platform?: string;
 }
 
-interface SolutionFilters {
-    id?: number;
-    filter?: string;
-    tags: [];
-}
-
-const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({
-    results = [],
-    cards_description,
-    full_description,
-    platform,
-}) => {
+const BlockBenefits: FC<BlockBenefits> = ({ full_description, platform }) => {
     const { data: DataCards } = useGetSolutionCardsQuery({});
-    const router = useRouter();
-    const { ids } = router.query;
-    const { data } = useGetSolutionQuery(Number(ids));
 
     return (
         <div className={styles.wrapper}>
@@ -55,4 +38,4 @@ const BlockBenefitsFunnel: FC<BlockBenefitsFunnel> = ({
     );
 };
 
-export default BlockBenefitsFunnel;
+export default BlockBenefits;

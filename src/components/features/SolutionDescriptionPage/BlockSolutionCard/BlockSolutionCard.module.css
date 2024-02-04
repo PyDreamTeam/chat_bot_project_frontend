@@ -28,6 +28,9 @@
     align-items: center;
     gap: 12px;
 }
+.blockPlatform:hover h5{
+    color: var(--accent-color);
+}
 .platformImg {
     display: flex;
     align-items: center;

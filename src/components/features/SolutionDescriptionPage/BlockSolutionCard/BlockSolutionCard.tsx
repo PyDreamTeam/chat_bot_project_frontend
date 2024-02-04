@@ -17,14 +17,7 @@ import Cookies from "js-cookie";
 import ToolTip from "@/src/components/shared/toolTip/ToolTip";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
 
-const BlockSolutionCard: FC<PropsSolutionCard> = ({
-    id,
-    title,
-    short_description,
-    image,
-    turnkey_platform,
-    is_favorite,
-}) => {
+const BlockSolutionCard: FC<PropsSolutionCard> = ({ id, title, image, turnkey_platform, is_favorite, advantages }) => {
     const { isShown, toggle } = useModal();
     const [imageHeart, setImageHeart] = useState("dislike");
     const [addToFavorite] = useAddSolutionToFavoriteMutation();
@@ -96,17 +89,18 @@ const BlockSolutionCard: FC<PropsSolutionCard> = ({
                             />
                         </ToolTip>
                     </div>
-                    {/* TODO: list of advantages array */}
-                    <ListDescription short_description={short_description} />
+                    <ListDescription advantages={advantages} />
                 </div>
-                <div className={styles.blockPlatform}>
-                    <div className={styles.platformImg}>
-                        <Image src={data?.image ? data?.image : ""} alt={"ComplexFunnel"} width={40} height={40} />
+                <Link href={`/platforms/platform/${data?.id}`}>
+                    <div className={styles.blockPlatform}>
+                        <div className={styles.platformImg}>
+                            <Image src={data?.image ? data?.image : ""} alt={"ComplexFunnel"} width={40} height={40} />
+                        </div>
+                        <Title type={"h5"} color={"black"}>
+                            {data?.title}
+                        </Title>
                     </div>
-                    <Title type={"h5"} color={"black"}>
-                        {data?.title}
-                    </Title>
-                </div>
+                </Link>
                 <div className={styles.blockBtn}>
                     <div className={styles.button}>
                         <Button type="button" active={true} onClick={toggle}>
