@@ -10,14 +10,14 @@ interface State {
     filters: Filters[];
     links_to_solution: string[];
     turnkey_solutions: number;
-    linkToPlatform: string
+    linkToPlatform: string;
 }
 
 const initialState: State = {
     filters: [],
     links_to_solution: [],
     turnkey_solutions: 0,
-    linkToPlatform: ""
+    linkToPlatform: "",
 };
 
 const addPlatformSlice = createSlice({
@@ -25,13 +25,13 @@ const addPlatformSlice = createSlice({
     initialState,
     reducers: {
         countLinkToSolution: (state, action: PayloadAction<string[]>) => {
-            if(action.payload) {
-                const linkToSolution = action.payload.map(item => item);
+            if (action.payload) {
+                const linkToSolution = action.payload.map((item) => item);
                 state.links_to_solution = linkToSolution;
             }
         },
         getLinkToSolution: (state, action) => {
-            if(action.payload === null) {
+            if (action.payload === null) {
                 action.payload = [];
                 state.links_to_solution = action.payload;
             }
@@ -41,15 +41,14 @@ const addPlatformSlice = createSlice({
             state.linkToPlatform = action.payload;
         },
         getLinkToPlatform: (state, action) => {
-            if(action.payload){
+            if (action.payload) {
                 const link = action.payload.replace("https://", "");
                 state.linkToPlatform = link;
             }
-            
         },
-        addFilterForPlatform: (state, action: PayloadAction<{id: number; tag: string}>) => {
+        addFilterForPlatform: (state, action: PayloadAction<{ id: number; tag: string }>) => {
             const isFilterInStore = state.filters.find((item) => item.id === action.payload.id);
-            if(!isFilterInStore) {
+            if (!isFilterInStore) {
                 state.filters = [...state.filters, action.payload];
             }
         },
@@ -61,11 +60,11 @@ const addPlatformSlice = createSlice({
         },
         deleteAllFiltersFromPlatform: (state) => {
             state.filters = [];
-        }
+        },
     },
 });
 
-export const { 
+export const {
     countLinkToSolution,
     getLinkToSolution,
     addFilterForPlatform,
@@ -73,6 +72,6 @@ export const {
     linkToPlatform,
     getLinkToPlatform,
     deleteAllFiltersFromPlatform,
-    getFilterFromBack
+    getFilterFromBack,
 } = addPlatformSlice.actions;
 export const reducerAddPlatform = addPlatformSlice.reducer;

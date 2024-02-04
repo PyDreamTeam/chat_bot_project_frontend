@@ -1,4 +1,19 @@
 .filterWrapper {
+    flex-wrap: wrap;
+    display: flex;
+    padding: 8px 16px;
+    border: 1px solid #909090;
+    border-radius: 20px;
+    background: #f4f5f6;
+    margin-bottom: 16px;
+}
+
+.tags {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+.filterWrapper {
     display: flex;
     padding: 8px 16px;
     border: 1px solid #909090;

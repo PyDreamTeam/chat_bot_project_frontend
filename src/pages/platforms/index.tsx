@@ -80,7 +80,6 @@ const Platforms = () => {
                                 {skeletons.map((_, index) => (
                                     <CardSkeleton type={"list"} key={index} />
                                 ))}
-                                {/* <Loader isLoading={isLoading} /> */}
                             </div>
                         ) : (
                             <ul className={styles.platforms}>

@@ -1,6 +1,6 @@
 import { FC, MouseEvent, useState } from "react";
 import styles from "../FavoriteSolution/FavoriteSolution.module.css";
-import { PropsFavoriteSolutionCard } from "../platforms/types";
+import { PropsFavoriteSolutionCard } from "../solutions/types";
 import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";

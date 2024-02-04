@@ -1,0 +1,30 @@
+.close {
+    display: none;
+}
+
+.listFilters {
+    position: relative;
+    width: 360px;
+    list-style: none;
+}
+
+.listFilters::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    top: 0;
+    right: 0;
+    border: 1px solid #e1e2e6;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+.filter {
+    margin-top: 32px;
+}

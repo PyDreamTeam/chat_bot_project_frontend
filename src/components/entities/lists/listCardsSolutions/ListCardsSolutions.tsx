@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styles from "./styles/ListCardsSolutions.module.css";
 import CardSolution from "@/src/components/shared/tabs/cardSolution/CardSolution";
 import { useRouter } from "next/router";
-import { PropsSolutionCard } from "../../platforms/types";
+import { PropsSolutionCard } from "../../solutions/types";
 
 export interface IListCardsSolutions {
     results: PropsSolutionCard[];

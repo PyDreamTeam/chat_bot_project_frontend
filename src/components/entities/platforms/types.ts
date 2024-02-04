@@ -95,29 +95,10 @@ export interface PropsFavoritePlatformCard {
         is_message?: boolean;
     }[];
 }
-export interface PropsFavoriteSolutionCard {
+
+export interface PropsSolutionAdvantages {
     id?: number;
-    title?: string;
-    short_description?: string;
-    full_description?: string;
-    turnkey_solutions?: number;
-    price?: number | string;
-    status?: string;
-    is_active?: boolean;
-    created_at?: string;
-    image: any;
-    forceUpdate: () => void;
-    link?: string;
-    links_to_solution?: string[];
-    type?: Card;
-    filter?: number[];
-    tags?: {
-        id?: number;
-        tag?: string;
-        image_tag?: string;
-        is_active?: boolean;
-        is_message?: boolean;
-    }[];
+    advantage?: string;
 }
 
 export interface PropsSolutionCard {
@@ -128,6 +109,8 @@ export interface PropsSolutionCard {
     business_area?: string;
     business_niche?: string;
     objective?: string;
+    turnkey_platform?: number | undefined;
+    links_to_platform?: string[];
     solution_type?: string;
     short_description?: string;
     full_description?: string;
@@ -147,11 +130,12 @@ export interface PropsSolutionCard {
     price?: number | string;
     is_active?: boolean;
     created_at?: string;
-    image?: string;
+    image?: string | any;
+    is_favorite?: boolean;
     link?: string;
     type?: string | string;
+    filter?: number[];
     forceUpdate?: () => void;
-    is_favorite?: boolean;
     filters?: number[];
     tags?: {
         id?: number;
@@ -166,29 +150,33 @@ export interface PropsSolutionCard {
     }[];
 }
 
-export interface PropsSolutionCard {
+export interface PropsSolutionAdvantages {
     id?: number;
-    title?: string;
-    business_model?: string;
-    business_area?: string;
-    business_niche?: string;
-    objective?: string;
-    solution_type?: string;
-    short_description?: string;
-    full_description?: string;
-    turnkey_solutions?: number;
-    turnkey_platform?: number | undefined;
-    price?: number | string;
-    is_active?: boolean;
-    created_at?: string;
-    image?: string;
-    link?: string;
-    type?: string | string;
-    tags?: {
-        id?: number;
-        tag?: string;
-        image_tag?: string;
-        is_active?: boolean;
-        is_message?: boolean;
-    }[];
+    advantage?: string;
 }
+
+// export interface PropsSolutionCard {
+//     id?: number;
+//     title?: string;
+//     short_description?: string;
+//     full_description?: string;
+//     turnkey_solutions?: number;
+//     turnkey_platform?: number | undefined;
+//     price?: number | string;
+//     status?: string;
+//     is_active?: boolean;
+//     created_at?: string;
+//     image: any;
+//     forceUpdate: () => void;
+//     link?: string;
+//     links_to_solution?: string[];
+//     type?: Card;
+//     filter?: number[];
+//     tags?: {
+//         id?: number;
+//         tag?: string;
+//         image_tag?: string;
+//         is_active?: boolean;
+//         is_message?: boolean;
+//     }[];
+// }

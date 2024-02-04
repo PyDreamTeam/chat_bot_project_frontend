@@ -1,4 +1,5 @@
 import { reducerAddPlatform } from "./reducers/addPlatform/slice";
+import { reducerAddSolution } from "./reducers/addSolution/slice";
 import { platforms } from "./services/platforms";
 import { solutions } from "./services/solutions";
 import { configureStore } from "@reduxjs/toolkit";
@@ -13,6 +14,7 @@ export const store = configureStore({
     reducer: {
         reducerFilters,
         reducerAddPlatform,
+        reducerAddSolution,
         signUpError,
         credentialsSlice,
         reducerSolutions,
@@ -22,7 +24,12 @@ export const store = configureStore({
         [solutions.reducerPath]: solutions.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(changeRole.middleware, userAuth.middleware, platforms.middleware, solutions.middleware),
+        getDefaultMiddleware().concat(
+            changeRole.middleware,
+            userAuth.middleware,
+            platforms.middleware,
+            solutions.middleware
+        ),
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

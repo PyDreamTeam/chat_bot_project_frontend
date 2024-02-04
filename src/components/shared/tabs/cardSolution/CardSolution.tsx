@@ -3,7 +3,7 @@ import Text from "@/src/components/shared/text/Text";
 import Title from "../../text/Title";
 import Image from "next/image";
 import styles from "./styles/CardSolution.module.css";
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
 import Cookies from "js-cookie";
 import { useDataUserQuery } from "@/src/store/services/userAuth";

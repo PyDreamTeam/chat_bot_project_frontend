@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/FieldOptions/FieldOptions";
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
+// import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
@@ -86,7 +87,6 @@ const SolutionsFilters = () => {
         },
         { refetchOnMountOrArgChange: true }
     );
-
     useEffect(() => {
         if (filter.find((item) => item.tag === "A до Z (А до Я)")) {
             setSortAbc("a");
@@ -166,49 +166,54 @@ const SolutionsFilters = () => {
                             ) : (
                                 <ul className={css.listSolutions}>
                                     {filteredFavSolutions
-                                        ? filteredFavSolutions?.results?.map((item: PropsPlatformCard) => (
-                                              <li
-                                                  key={item.id}
-                                                  onClick={() => {
-                                                      if (item.id) {
-                                                          handleClick(item.id);
-                                                      }
-                                                  }}
-                                              >
-                                                  <SolutionCard
-                                                      id={item.id}
-                                                      title={item.title}
-                                                      short_description={item.short_description}
-                                                      tags={item.tags}
-                                                      image={item.image}
-                                                      price={item.price}
-                                                      type="filter"
-                                                      is_favorite={item.is_favorite}
-                                                      forceUpdate={refetch}
-                                                  />
-                                              </li>
-                                          ))
-                                        : filteredSolutions?.results?.map((item: PropsPlatformCard) => (
-                                              <li
-                                                  key={item.id}
-                                                  onClick={() => {
-                                                      if (item.id) {
-                                                          handleClick(item.id);
-                                                      }
-                                                  }}
-                                              >
-                                                  <SolutionCard
-                                                      id={item.id}
-                                                      title={item.title}
-                                                      short_description={item.short_description}
-                                                      tags={item.tags}
-                                                      image={item.image}
-                                                      price={item.price}
-                                                      type="filter"
-                                                      is_favorite={item.is_favorite}
-                                                  />
-                                              </li>
-                                          ))}
+                                        ? filteredFavSolutions?.results
+                                              //   .filter((item: any) => item.status === "save")
+                                              ?.map((item: PropsPlatformCard) => (
+                                                  <li
+                                                      key={item.id}
+                                                      onClick={() => {
+                                                          if (item.id) {
+                                                              handleClick(item.id);
+                                                          }
+                                                      }}
+                                                  >
+                                                      <SolutionCard
+                                                          id={item.id}
+                                                          title={item.title}
+                                                          short_description={item.short_description}
+                                                          tags={item.tags}
+                                                          image={item.image}
+                                                          price={item.price}
+                                                          type="filter"
+                                                          is_favorite={item.is_favorite}
+                                                          forceUpdate={refetch}
+                                                      />
+                                                  </li>
+                                              ))
+                                        : filteredSolutions?.results
+                                              .filter((item: any) => item.status === "save")
+                                              ?.map((item: PropsPlatformCard) => (
+                                                  <li
+                                                      key={item.id}
+                                                      onClick={() => {
+                                                          if (item.id) {
+                                                              handleClick(item.id);
+                                                          }
+                                                      }}
+                                                  >
+                                                      <SolutionCard
+                                                          id={item.id}
+                                                          title={item.title}
+                                                          short_description={item.short_description}
+                                                          tags={item.tags}
+                                                          image={item.image}
+                                                          price={item.price}
+                                                          type="filter"
+                                                          is_favorite={item.is_favorite}
+                                                      />
+                                                  </li>
+                                              ))}
+
                                     <div className={css.loaderSolutions}>
                                         <Loader isLoading={isFetching} />
                                     </div>

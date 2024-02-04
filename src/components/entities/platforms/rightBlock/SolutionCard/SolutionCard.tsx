@@ -1,6 +1,6 @@
 import { FC, MouseEvent, useEffect, useState } from "react";
 import css from "./solutionCard.module.css";
-import { PropsSolutionCard } from "../../types";
+import { PropsSolutionCard } from "../../../solutions/types";
 import Text from "@/src/components/shared/text/Text";
 import Image from "next/image";
 import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";

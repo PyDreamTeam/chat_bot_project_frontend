@@ -7,9 +7,8 @@ import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { countLinkToSolution } from "@/src/store/reducers/addPlatform/slice";
 
 export const MultipleInput = () => {
-
     const dispatch = useAppDispatch();
-    const linksToSolution = useAppSelector(state => state.reducerAddPlatform.links_to_solution);
+    const linksToSolution = useAppSelector((state) => state.reducerAddPlatform.links_to_solution);
     const [inputs, setInputs] = useState<string[]>([]);
 
     useEffect(() => {
@@ -31,8 +30,17 @@ export const MultipleInput = () => {
             {linksToSolution?.map((input, index) => (
                 <div key={index}>
                     <div className={css.linksSolution}>
-                        <Text type="reg18" color="dark">Ссылка</Text>
-                        <Image src="/img/close.svg" alt="icon" width={24} height={24} onClick={() => removeInput(index)} style={{cursor: "pointer"}}/>
+                        <Text type="reg18" color="dark">
+                            Ссылка
+                        </Text>
+                        <Image
+                            src="/img/close.svg"
+                            alt="icon"
+                            width={24}
+                            height={24}
+                            onClick={() => removeInput(index)}
+                            style={{ cursor: "pointer" }}
+                        />
                     </div>
                     <InputAddPlatform
                         value={input}
@@ -47,7 +55,9 @@ export const MultipleInput = () => {
                 </div>
             ))}
             <button className={css.addLinkSolutionBtn} onClick={addInput}>
-                <Text type="reg14" color="blue">+ Добавить ссылку</Text>
+                <Text type="reg14" color="blue">
+                    + Добавить ссылку
+                </Text>
             </button>
         </div>
     );

@@ -6,7 +6,7 @@ import Text from "@/src/components/shared/text/Text";
 import Link from "next/link";
 import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import BlockSolutionCard from "@/src/components/features/SolutionDescriptionPage/BlockSolutionCard/BlockSolutionCard";
-import BlockShotDescription from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/BlockShortDescription";
+import BlockShortDescription from "@/src/components/features/SolutionDescriptionPage/BlockShortDescription/BlockShortDescription";
 import BlockBenefits from "@/src/components/features/SolutionDescriptionPage/BlockBenefits/BlockBenefits";
 import BlockHowItWorks from "@/src/components/features/SolutionDescriptionPage/BlockHowItWorks/BlockHowItWorks";
 import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPage/BlockTasksBySteps/BlockTasksBySteps";
@@ -44,7 +44,7 @@ const Solution = () => {
                     turnkey_platform={data?.turnkey_platform}
                     is_favorite={data?.is_favorite}
                 />
-                <BlockShotDescription
+                <BlockShortDescription
                     id={data?.id}
                     price={data?.price}
                     full_description={data?.full_description}

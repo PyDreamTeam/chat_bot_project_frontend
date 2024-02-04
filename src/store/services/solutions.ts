@@ -1,4 +1,4 @@
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const solutions = createApi({
@@ -91,7 +91,7 @@ export const solutions = createApi({
             }),
         }),
         getFavoriteSolution: builder.query({
-            query: ({ token, id }) => ({
+            query: ({  token, id  }) => ({
                 url: `/api/solution/solutions/${id}/`,
                 method: "GET",
                 headers: {
@@ -106,7 +106,7 @@ export const solutions = createApi({
             }),
         }),
         createSolutionFilterGroup: builder.mutation({
-            query: ({ token, title }) => ({
+            query: ({  token, title }) => ({
                 url: "/api/solution/groups/",
                 method: "POST",
                 headers: {
@@ -119,8 +119,79 @@ export const solutions = createApi({
                 },
             }),
         }),
+        deleteSloution: builder.mutation({
+            query: ({ id, token }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "DELETE",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+            }),
+        }),
+        solutionArchive: builder.mutation({
+            query: ({ id, token, data }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: data.title,
+                    status: "archive",
+                },
+            }),
+        }),
+        getSolutionForArchive: builder.mutation<PropsSolutionCard, number>({
+            query: (id) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "GET",
+            }),
+        }),
+        sendToCreated: builder.mutation({
+            query: ({ id, token, data }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: { title: data.title, status: "save" },
+            }),
+        }),
+        changeSolution: builder.mutation({
+            query: ({ id, token, solution }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: solution,
+            }),
+        }),
+        solutionPublic: builder.mutation({
+            query: ({ id, token, solution }) => ({
+                url: `/api/solution/solutions/${id}/`,
+                method: "PUT",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: {
+                    title: solution.title,
+                    status: "public",
+                },
+            }),
+        }),
+        addSolution: builder.mutation({
+            query: ({ solution, token }) => ({
+                url: "/api/solution/solutions/",
+                method: "POST",
+                headers: {
+                    Authorization: `JWT ${token.access}`,
+                },
+                body: solution,
+            }),
+        }),
         editSolutionFilterGroup: builder.mutation({
-            query: ({ id, token, title }) => ({
+            query: ({  id, token, title }) => ({
                 url: `/api/solution/groups/${id}/`,
                 method: "PATCH",
                 headers: {
@@ -275,4 +346,11 @@ export const {
     useSaveSolutionFilterMutation,
     useArchiveSolutionFilterMutation,
     useDeleteSolutionFilterMutation,
+    useChangeSolutionMutation,
+    useAddSolutionMutation,
+    useSolutionPublicMutation,
+    useDeleteSloutionMutation,
+    useSolutionArchiveMutation,
+    useGetSolutionForArchiveMutation,
+    useSendToCreatedMutation,
 } = solutions;
