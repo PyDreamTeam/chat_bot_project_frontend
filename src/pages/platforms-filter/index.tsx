@@ -15,7 +15,8 @@ import Image from "next/image";
 import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/FieldOptions/FieldOptions";
 import AlphabeticalSorting from "@/src/components/entities/platforms/rightBlock/AlphabeticalSorting/AlphabeticalSorting";
 import { PlatformCard } from "@/src/components/entities/platforms/rightBlock/PlatformCard/PlatformCard";
-import { useAppSelector } from "@/src/hooks/types";
+import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
+import { deleteAllFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
 import { PropsPlatformCard } from "@/src/components/entities/platforms/types";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { useRouter } from "next/router";
@@ -39,6 +40,7 @@ const PlatformsFilters = () => {
         router.push(`/platforms/platform/${idp}`);
     };
 
+    const dispatch = useAppDispatch();
     const filter = useAppSelector((state) => state.reducerFilters.filters);
     const ids = filter.filter((item) => item.id >= 1).map((item) => item.id);
     const minPrice = useAppSelector((state) => state.reducerFilters.min_price);
@@ -87,6 +89,20 @@ const PlatformsFilters = () => {
             setSortAbc("z");
         } else setSortAbc("");
     }, [filter]);
+
+    useEffect(() => {
+        const handleRouteChange = (url: URL) => {
+            dispatch(deleteAllFilters());
+        };
+
+        router.events.on("routeChangeStart", handleRouteChange);
+
+        // If the component is unmounted, unsubscribe
+        // from the event with the `off` method:
+        return () => {
+            router.events.off("routeChangeStart", handleRouteChange);
+        };
+    }, [router]);
 
     // const handleScroll = () => {
     //     readMore();

@@ -12,7 +12,8 @@ import {
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { GroupFilters } from "@/src/components/entities/platforms/leftBlock/GroupFilters/GroupFilters";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
-import { useAppSelector } from "@/src/hooks/types";
+import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
+import { deleteAllFilters, deleteFilters } from "@/src/store/reducers/platforms/slice";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FieldOptions } from "@/src/components/entities/platforms/rightBlock/FieldOptions/FieldOptions";
@@ -37,7 +38,7 @@ const SolutionsFilters = () => {
     const handleClick = (ids: number) => {
         router.push(`/solutions/solution/${ids}`);
     };
-
+    const dispatch = useAppDispatch();
     const filter = useAppSelector((state) => state.reducerFilters.filters);
     const ids = filter.filter((item) => item.id >= 1).map((item) => item.id);
     const minPrice = useAppSelector((state) => state.reducerFilters.min_price);
@@ -94,6 +95,20 @@ const SolutionsFilters = () => {
             setSortAbc("z");
         } else setSortAbc("");
     }, [filter]);
+
+    useEffect(() => {
+        const handleRouteChange = (url: URL) => {
+            dispatch(deleteAllFilters());
+        };
+
+        router.events.on("routeChangeStart", handleRouteChange);
+
+        // If the component is unmounted, unsubscribe
+        // from the event with the `off` method:
+        return () => {
+            router.events.off("routeChangeStart", handleRouteChange);
+        };
+    }, [router]);
 
     // const handleScroll = () => {
     //     readMore();
