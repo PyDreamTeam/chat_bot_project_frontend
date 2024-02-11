@@ -23,14 +23,15 @@ export const UploadImage: FC<PropsUploadImage> = ({ onChange, isImage, image }) 
                 Логотип
             </Text>
             {isImage ? (
-                <Image
-                    src={image}
-                    alt="uploadFile"
-                    width={250}
-                    height={250}
-                    className={css.image}
-                    onClick={handleClick}
-                />
+                <div className={css.logo} onClick={handleClick}>
+                    <Image
+                        src={image ? `${image}` : ""}
+                        width={250}
+                        height={250}
+                        alt="uploadFile"
+                        className={css.img}
+                    />
+                </div>
             ) : (
                 <Image
                     src="/platforms/uploadFile.svg"

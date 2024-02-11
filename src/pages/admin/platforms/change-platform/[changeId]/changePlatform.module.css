@@ -63,10 +63,17 @@
     margin-top: 48px;
 }
 .btnClose {
-    padding: 10px 58px;
+    display: flex;
+    justify-content: center;
+    width: 212px;
+    padding: 10px 24px;
+    align-self: center;
     background:  #FFF;
     border: 1px solid #FFF;
     cursor: pointer;
+}
+.btnClose:hover p{
+    color: red;
 }
 
 .btnSave {
