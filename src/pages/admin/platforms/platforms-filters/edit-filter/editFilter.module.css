@@ -65,6 +65,11 @@
     white-space: nowrap;
 }
 
+.errorBlockHide {
+    display: none;
+    
+}
+
 .buttonsContainer {
     width: 100%;
     display: flex;

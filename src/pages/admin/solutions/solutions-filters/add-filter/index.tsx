@@ -21,10 +21,12 @@ import { SelectMessengers } from "@/src/components/entities/platformsFilters/add
 import {
     useCreateSolutionFilterMutation,
     useGetSolutionFilterGroupsQuery,
+    useGetSolutionsFiltersQuery,
     usePublicSolutionFilterGroupMutation,
     usePublicSolutionFilterMutation,
 } from "@/src/store/services/solutions";
 import { ButtonCancel } from "@/src/components/shared/buttons/ButtonCancel";
+import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
 export interface PropsPlatformFilter {
     title: string;
@@ -60,7 +62,14 @@ const AddSolutionFilter = () => {
 
     const [isValid, setIsValid] = useState<boolean>(false);
 
+    const [isShownErrorShort, setIsShownErrorShort] = useState(false);
+    const [isShownErrorExist, setIsShownErrorExist] = useState(false);
+
     const { data: dataGroups } = useGetSolutionFilterGroupsQuery({});
+    const { data: tagsData } = useGetSolutionsFiltersQuery({});
+
+    const groupsArray = tagsData?.results.map((item: any) => item);
+
     const [selectedGroup, setSelectedGroup] = useState("Выбрать группу");
 
     const [filter, setFilter] = useState<PropsPlatformFilter>({
@@ -100,9 +109,42 @@ const AddSolutionFilter = () => {
     const isValidFilter = () => {
         const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
 
-        if (typeof isUndefined == "undefined" && filter.tags.length !== 0) {
-            setIsValid(true);
-        } else setIsValid(false);
+        // isValidFilterName(filter.title);
+
+        if (typeof isUndefined == "undefined" && filter.tags.length !== 0 && isValidFilterName(filter.title)) {
+            if (!isShownErrorShort && !isShownErrorExist) {
+                setIsValid(true);
+            } else {
+                setIsValid(false);
+            }
+        } else {
+            setIsValid(false);
+        }
+    };
+
+    const checkFilterName = (name: string) => {
+        const group = groupsArray.find((item: any) => item.group === selectedGroup);
+
+        if (group?.filters.find((item: any) => item.filter === name.trim()) === undefined) {
+            return true;
+        } else {
+            console.log("ERROR same filter name");
+            return false;
+        }
+    };
+
+    const isValidFilterName = (name: string): boolean => {
+        if (name.trim().length <= 1) {
+            setIsShownErrorShort(true);
+            return false;
+        }
+        if (!checkFilterName(name)) {
+            setIsShownErrorExist(true);
+            return false;
+        }
+        setIsShownErrorShort(false);
+        setIsShownErrorExist(false);
+        return true;
     };
 
     const handleSelectedGroupId = (groupId: number) => {
@@ -199,11 +241,27 @@ const AddSolutionFilter = () => {
                         // value={platform.title}
                         onChange={(e) => {
                             isValidFilter();
-                            setFilter((prev) => ({ ...prev, title: e.target.value }));
+                            if (isValidFilterName(e.target.value)) {
+                                setFilter((prev) => ({ ...prev, title: e.target.value }));
+                            } else {
+                                setIsValid(false);
+                            }
                         }}
                         placeholder="Текст"
                         className={css.inputAddFilter}
                     />
+                    <div className={`${css.errorBlock} ${!isShownErrorShort ? css.errorBlockHide : null}`}>
+                        <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />
+                        <Text type="reg16" color="red">
+                            Слишком короткое название
+                        </Text>
+                    </div>
+                    <div className={`${css.errorBlock} ${!isShownErrorExist ? css.errorBlockHide : null}`}>
+                        <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />
+                        <Text type="reg16" color="red">
+                            Такой фильтр уже есть
+                        </Text>
+                    </div>
                     <SelectGroupIcon setImageName={handleSetImageName} />
                     <TextAreaAddFilter
                         // value={platform.short_description}
@@ -269,6 +327,9 @@ const AddSolutionFilter = () => {
                         label="Выбор параметров"
                         onChange={handleRadioMultiple}
                     />
+                    <ErrorMessage isShown={isValid} className={css.errorMessage}>
+                        Внесите изменения. Все поля должны быть заполнены
+                    </ErrorMessage>
                     <div className={css.buttonsContainer}>
                         <Link href={"/admin/platforms/platforms-filters"} className={css.buttonCancel}>
                             <Text type="reg18" color="grey">
