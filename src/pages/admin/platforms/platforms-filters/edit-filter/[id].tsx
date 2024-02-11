@@ -247,7 +247,7 @@ const EditPlatformFilter: FC<pageProps> = () => {
                                 setMessengers={handleSetMessengers}
                             />
                             <InputRadioFilterMultiple
-                                defaultValue={filterData.multiple ? "multiple" : "single"}
+                                defaultValue={filterData?.multiple ? "multiple" : "single"}
                                 className={css.multipleSelection}
                                 label="Выбор параметров"
                                 onChange={handleRadioMultiple}
