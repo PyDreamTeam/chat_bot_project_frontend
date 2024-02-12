@@ -106,22 +106,6 @@ const AddSolutionFilter = () => {
         setTags(newTags);
     };
 
-    const isValidFilter = () => {
-        const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
-
-        // isValidFilterName(filter.title);
-
-        if (typeof isUndefined == "undefined" && filter.tags.length !== 0 && isValidFilterName(filter.title)) {
-            if (!isShownErrorShort && !isShownErrorExist) {
-                setIsValid(true);
-            } else {
-                setIsValid(false);
-            }
-        } else {
-            setIsValid(false);
-        }
-    };
-
     const checkFilterName = (name: string) => {
         const group = groupsArray.find((item: any) => item.group === selectedGroup);
 
@@ -134,7 +118,7 @@ const AddSolutionFilter = () => {
     };
 
     const isValidFilterName = (name: string): boolean => {
-        if (name.trim().length <= 1) {
+        if (name.trim().length === 1) {
             setIsShownErrorShort(true);
             return false;
         }
@@ -145,6 +129,22 @@ const AddSolutionFilter = () => {
         setIsShownErrorShort(false);
         setIsShownErrorExist(false);
         return true;
+    };
+
+    const isValidFilter = () => {
+        const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
+
+        isValidFilterName(filter.title);
+
+        if (typeof isUndefined == "undefined" && filter.tags.length !== 0 && isValidFilterName(filter.title)) {
+            if (!isShownErrorShort && !isShownErrorExist) {
+                setIsValid(true);
+            } else {
+                setIsValid(false);
+            }
+        } else {
+            setIsValid(false);
+        }
     };
 
     const handleSelectedGroupId = (groupId: number) => {
@@ -240,7 +240,6 @@ const AddSolutionFilter = () => {
                         label="Название фильтра"
                         // value={platform.title}
                         onChange={(e) => {
-                            isValidFilter();
                             if (isValidFilterName(e.target.value)) {
                                 setFilter((prev) => ({ ...prev, title: e.target.value }));
                             } else {
