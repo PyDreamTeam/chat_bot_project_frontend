@@ -135,8 +135,35 @@ const AddPlatformFilter = () => {
         isValidFilter();
     };
 
+    const checkFilterName = (name: string) => {
+        const group = groupsArray.find((item: any) => item.group === selectedGroup);
+
+        if (group?.filters.find((item: any) => item.filter === name.trim()) === undefined) {
+            return true;
+        } else {
+            console.log("ERROR same filter name");
+            return false;
+        }
+    };
+
+    const isValidFilterName = (name: string): boolean => {
+        if (name.trim().length === 1) {
+            setIsShownErrorShort(true);
+            return false;
+        }
+        if (!checkFilterName(name)) {
+            setIsShownErrorExist(true);
+            return false;
+        }
+        setIsShownErrorShort(false);
+        setIsShownErrorExist(false);
+        return true;
+    };
+
     const isValidFilter = () => {
         const isUndefined = Object.values(filter).find((value) => value === "" || value === null);
+
+        isValidFilterName(filter.title);
 
         if (typeof isUndefined == "undefined" && filter.tags.length !== 0 && isValidFilterName(filter.title)) {
             if (!isShownErrorShort && !isShownErrorExist) {
@@ -156,31 +183,6 @@ const AddPlatformFilter = () => {
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
     const handleToggleSuccessModal = () => {
         setIsSuccessModal(!isSuccessModal);
-    };
-
-    const checkFilterName = (name: string) => {
-        const group = groupsArray.find((item: any) => item.group === selectedGroup);
-
-        if (group?.filters.find((item: any) => item.filter === name.trim()) === undefined) {
-            return true;
-        } else {
-            console.log("ERROR same filter name");
-            return false;
-        }
-    };
-
-    const isValidFilterName = (name: string): boolean => {
-        if (name.trim().length <= 1) {
-            setIsShownErrorShort(true);
-            return false;
-        }
-        if (!checkFilterName(name)) {
-            setIsShownErrorExist(true);
-            return false;
-        }
-        setIsShownErrorShort(false);
-        setIsShownErrorExist(false);
-        return true;
     };
 
     useEffect(() => {
@@ -235,7 +237,6 @@ const AddPlatformFilter = () => {
                     <InputAddFilter
                         label="Название фильтра"
                         onChange={(e) => {
-                            isValidFilter();
                             if (isValidFilterName(e.target.value)) {
                                 setFilter((prev) => ({ ...prev, title: e.target.value }));
                             } else {
