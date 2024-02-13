@@ -22,7 +22,6 @@ const Solution = () => {
     const platformId = Number(data?.links_to_platform ? data?.links_to_platform[0] : null);
     const { data: platform } = useGetPlatformQuery(isSuccess ? platformId : skipToken);
 
-    console.log(data);
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
 
     return (
@@ -59,7 +58,11 @@ const Solution = () => {
                     dignities={data?.dignities}
                 />
                 <BlockHowItWorks link={data?.link} />
-                <BlockBenefits full_description={data?.full_description} platform={platform?.title} />
+                <BlockBenefits
+                    full_description={data?.full_description}
+                    platform={platform?.title}
+                    cards={data?.cards}
+                />
                 <BlockTasksBySteps
                     steps_title={data?.steps_title}
                     steps_description={data?.steps_description}

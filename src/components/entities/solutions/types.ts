@@ -155,7 +155,11 @@ export interface PropsSolutionCard {
     link?: string;
     type?: string | string;
     filter?: number[];
-    cards?: any[];
+    cards?: {
+        img: string;
+        text: string;
+        title: string;
+    }[];
     steps?: {
         text: string;
         title: string;

@@ -6,7 +6,6 @@ interface TextProps {
 }
 
 const ElemChooseChatBot: FC<TextProps> = ({ text }) => {
-    console.log(text);
     return (
         <>
             <span className={css.elemSaleBot}>

@@ -21,7 +21,6 @@ const BlockSolutionCard: FC<PropsSolutionCard> = ({
     id,
     title,
     image,
-    turnkey_platform,
     links_to_platform,
     is_favorite,
     advantages,
@@ -79,7 +78,7 @@ const BlockSolutionCard: FC<PropsSolutionCard> = ({
     return (
         <div className={styles.wrapper}>
             <div className={styles.img}>
-                <Image src={image ? image : ""} alt={"ComplexFunnel"} width={230} height={230} />
+                <Image src={image ? image : ""} alt={"logo"} width={230} height={230} />
             </div>
             <div className={styles.blockRight}>
                 <div className={styles.blockText}>
