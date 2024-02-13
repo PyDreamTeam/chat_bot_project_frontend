@@ -136,7 +136,7 @@ const AddPlatformFilter = () => {
     };
 
     const checkFilterName = (name: string) => {
-        const group = groupsArray.find((item: any) => item.group === selectedGroup);
+        const group = groupsArray?.find((item: any) => item.group === selectedGroup);
 
         if (group?.filters.find((item: any) => item.filter === name.trim()) === undefined) {
             return true;
@@ -237,9 +237,8 @@ const AddPlatformFilter = () => {
                     <InputAddFilter
                         label="Название фильтра"
                         onChange={(e) => {
-                            if (isValidFilterName(e.target.value)) {
-                                setFilter((prev) => ({ ...prev, title: e.target.value }));
-                            } else {
+                            setFilter((prev) => ({ ...prev, title: e.target.value }));
+                            if (!isValidFilterName(e.target.value)) {
                                 setIsValid(false);
                             }
                         }}

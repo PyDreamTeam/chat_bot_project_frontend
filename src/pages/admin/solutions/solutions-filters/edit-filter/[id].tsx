@@ -21,6 +21,7 @@ import { MultipleTagsInput } from "@/src/components/entities/platformsFilters/ad
 import {
     useGetSolutionFilterGroupsQuery,
     useGetSolutionFilterQuery,
+    useGetSolutionsFiltersQuery,
     usePutSolutionFilterMutation,
 } from "@/src/store/services/solutions";
 import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
@@ -47,6 +48,10 @@ const EditSolutionFilter: FC<pageProps> = () => {
     const { data: dataGroups } = useGetSolutionFilterGroupsQuery({});
     const filterGroup = dataGroups?.results?.find((item: any) => item.id == filterData?.group);
 
+    const { data: tagsData } = useGetSolutionsFiltersQuery({});
+
+    const groupsArray = tagsData?.results.map((item: any) => item);
+
     const [selectedGroup, setSelectedGroup] = useState(filterGroup?.title);
 
     const cleanMessengersTags = filterData?.tags.filter((item: ITagM) => {
@@ -65,6 +70,36 @@ const EditSolutionFilter: FC<pageProps> = () => {
     });
 
     const [isValid, setIsValid] = useState<boolean>(false);
+
+    const [isShownErrorShort, setIsShownErrorShort] = useState(false);
+    const [isShownErrorExist, setIsShownErrorExist] = useState(false);
+
+    const checkFilterName = (name: string) => {
+        const group = groupsArray?.find((item: any) => item.group === selectedGroup);
+
+        // if ()
+
+        if (group?.filters.find((item: any) => item.filter === name.trim()) === undefined) {
+            return true;
+        } else {
+            console.log("ERROR same filter name");
+            return false;
+        }
+    };
+
+    const isValidFilterName = (name: string): boolean => {
+        if (name.trim().length === 1) {
+            setIsShownErrorShort(true);
+            return false;
+        }
+        if (!checkFilterName(name)) {
+            setIsShownErrorExist(true);
+            return false;
+        }
+        setIsShownErrorShort(false);
+        setIsShownErrorExist(false);
+        return true;
+    };
 
     const isValidFilter = () => {
         if (filter != undefined || filter != null) {
@@ -203,23 +238,41 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                 label="Название фильтра"
                                 value={filterData?.title}
                                 onChange={(e) => {
-                                    if (e.target.value.length == 0) {
-                                        setIsValid(false);
-                                        setFilter((prev) => ({
-                                            ...prev,
-                                            title: e.target.value,
-                                        }));
-                                    } else {
-                                        setFilter((prev) => ({
-                                            ...prev,
-                                            title: e.target.value,
-                                        }));
-                                        isValidFilter();
+                                    if (e.target.value != filterData?.title) {
+                                        isValidFilterName(e.target.value);
+                                        if (!isValidFilterName(e.target.value)) {
+                                            setIsValid(false);
+                                            if (e.target.value.length == 0) {
+                                                setIsValid(false);
+                                                setFilter((prev) => ({
+                                                    ...prev,
+                                                    title: e.target.value,
+                                                }));
+                                            }
+                                        } else {
+                                            setFilter((prev) => ({
+                                                ...prev,
+                                                title: e.target.value,
+                                            }));
+                                            isValidFilter();
+                                        }
                                     }
                                 }}
                                 placeholder="Текст"
                                 className={css.inputAddFilter}
                             />
+                            <div className={`${css.errorBlock} ${!isShownErrorShort ? css.errorBlockHide : null}`}>
+                                <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />
+                                <Text type="reg16" color="red">
+                                    Слишком короткое название
+                                </Text>
+                            </div>
+                            <div className={`${css.errorBlock} ${!isShownErrorExist ? css.errorBlockHide : null}`}>
+                                <Image src="/sign/errorIcon.svg" width={24} height={24} alt="errorIcon" />
+                                <Text type="reg16" color="red">
+                                    Такой фильтр уже есть
+                                </Text>
+                            </div>
                             <SelectGroupIcon defaultImage={filterData?.image} setImageName={handleSetImageName} />
                             <TextAreaAddFilter
                                 value={filterData?.functionality}
@@ -254,7 +307,7 @@ const EditSolutionFilter: FC<pageProps> = () => {
                                 label="Выбор параметров"
                                 onChange={handleRadioMultiple}
                             />
-                            <ErrorMessage isShown={isValid} className={css.errorBlock}>
+                            <ErrorMessage isShown={isValid} className={css.errorMessage}>
                                 Внесите изменения. Все поля должны быть заполнены
                             </ErrorMessage>
                             <div className={css.buttonsContainer}>

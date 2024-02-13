@@ -54,13 +54,40 @@
     gap: 8px;
 }
 
-.errorBlock {
+/* .errorBlock {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
     color: var(--status-color-error-color);
+    overflow: hidden;
+    white-space: nowrap;
+} */
+
+.errorBlock {
+    display: flex;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    padding-left: 8px;
+    padding-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.errorBlockHide {
+    display: none;
+    
+}
+
+.errorMessage {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    padding-left: 8px;
+    padding-top: 8px;
     overflow: hidden;
     white-space: nowrap;
 }
