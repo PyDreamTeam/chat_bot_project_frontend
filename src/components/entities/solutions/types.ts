@@ -156,7 +156,10 @@ export interface PropsSolutionCard {
     type?: string | string;
     filter?: number[];
     cards?: any[];
-    steps?: any[];
+    steps?: {
+        text: string;
+        title: string;
+    }[];
     dignities?: any[];
     forceUpdate?: () => void;
     tags?: {
