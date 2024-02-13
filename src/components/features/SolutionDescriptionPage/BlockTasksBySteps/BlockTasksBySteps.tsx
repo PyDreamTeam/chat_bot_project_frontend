@@ -5,12 +5,9 @@ import styles from "./BlockTasksBySteps.module.css";
 import img from "/public/img/step-by-step.svg";
 import Image from "next/image";
 import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
-import { useGetSolutionStepsQuery } from "@/src/store/services/solutions";
 import ListStepAccordion from "@/src/components/entities/lists/accordionList/ListStepAccordion";
 
 const BlockTasksBySteps: FC<PropsSolutionCard> = ({ steps_title, steps_description, steps }) => {
-    const { data } = useGetSolutionStepsQuery({});
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.blockText}>

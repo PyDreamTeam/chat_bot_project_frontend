@@ -1,7 +1,6 @@
 import React, { useState, FC } from "react";
 import styles from "./BlockShortDescription.module.css";
 import CardSales from "@/src/components/entities/cards/cardSales/CardSales";
-import { useGetSolutionDignitiesQuery } from "@/src/store/services/solutions";
 import { SolutionTags } from "@/src/components/entities/filters/SolutionTags/SolutionTags";
 
 interface PropsShortDescription {
@@ -19,9 +18,7 @@ interface PropsGroupFilters {
     status?: string;
 }
 
-const BlockShotDescription: FC<PropsShortDescription> = ({ id, full_description, price, results = [], dignities }) => {
-    const { data } = useGetSolutionDignitiesQuery({});
-    console.log(data);
+const BlockShotDescription: FC<PropsShortDescription> = ({ price, results = [], dignities }) => {
     return (
         <div className={styles.wrapper}>
             <CardSales price={price} dignities={dignities} />
