@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useModal } from "@/src/hooks/useModal";
 import SelectionRequest from "@/src/components/entities/selectionRequest/SelectionRequest";
 import Modal from "@/src/components/shared/modal/Modal";
-import { PropsSolutionCard } from "@/src/components/entities/platforms/types";
+import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { ListDescription } from "@/src/components/entities/lists/listDescription";
 import { useGetPlatformQuery } from "@/src/store/services/platforms";
 import { useAddSolutionToFavoriteMutation } from "@/src/store/services/solutions";
@@ -17,7 +17,16 @@ import Cookies from "js-cookie";
 import ToolTip from "@/src/components/shared/toolTip/ToolTip";
 import { useDataUserQuery } from "@/src/store/services/userAuth";
 
-const BlockSolutionCard: FC<PropsSolutionCard> = ({ id, title, image, turnkey_platform, is_favorite, advantages }) => {
+const BlockSolutionCard: FC<PropsSolutionCard> = ({
+    id,
+    title,
+    image,
+    turnkey_platform,
+    links_to_platform,
+    is_favorite,
+    advantages,
+    platform,
+}) => {
     const { isShown, toggle } = useModal();
     const [imageHeart, setImageHeart] = useState("dislike");
     const [addToFavorite] = useAddSolutionToFavoriteMutation();
@@ -25,7 +34,9 @@ const BlockSolutionCard: FC<PropsSolutionCard> = ({ id, title, image, turnkey_pl
 
     const { isSuccess } = useDataUserQuery(token);
 
-    const { data } = useGetPlatformQuery(turnkey_platform || skipToken);
+    const platformId = Number(links_to_platform ? links_to_platform[0] : null);
+
+    const { data } = useGetPlatformQuery(platformId || skipToken);
 
     const handleClickHeart = (e: MouseEvent) => {
         if (!isSuccess) {
@@ -94,7 +105,7 @@ const BlockSolutionCard: FC<PropsSolutionCard> = ({ id, title, image, turnkey_pl
                 <Link href={`/platforms/platform/${data?.id}`}>
                     <div className={styles.blockPlatform}>
                         <div className={styles.platformImg}>
-                            <Image src={data?.image ? data?.image : ""} alt={"ComplexFunnel"} width={40} height={40} />
+                            <Image src={platform ? platform : ""} alt={"ComplexFunnel"} width={40} height={40} />
                         </div>
                         <Title type={"h5"} color={"black"}>
                             {data?.title}

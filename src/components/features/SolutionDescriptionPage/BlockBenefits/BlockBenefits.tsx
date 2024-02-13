@@ -10,9 +10,10 @@ import ReadMore from "@/src/components/features/SolutionDescriptionPage/BlockSho
 interface BlockBenefits {
     full_description?: string;
     platform?: string;
+    links_to_platform?: string[];
 }
 
-const BlockBenefits: FC<BlockBenefits> = ({ full_description, platform }) => {
+const BlockBenefits: FC<BlockBenefits> = ({ full_description, platform, links_to_platform }) => {
     const { data: DataCards } = useGetSolutionCardsQuery({});
 
     return (

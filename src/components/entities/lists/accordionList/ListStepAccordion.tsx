@@ -1,18 +1,14 @@
 import React, { FC, useState } from "react";
 import StepsAccordion from "@/src/components/shared/tabs/itemAccordion/StepsAccordion";
 import styles from "./styles/AccordionList.module.css";
-import Title from "@/src/components/shared/text/Title";
-import Image from "next/image";
-import Text from "@/src/components/shared/text/Text";
 
 export interface IAccordionList {
     title: string;
     text: string;
-    id: number;
 }
 
 interface IAccordionProps {
-    data: IAccordionList[];
+    data: IAccordionList[] | undefined;
 }
 
 const ListStepAccordion: FC<IAccordionProps> = ({ data = [] }) => {
