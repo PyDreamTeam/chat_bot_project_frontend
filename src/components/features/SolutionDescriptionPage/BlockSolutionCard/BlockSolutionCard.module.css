@@ -39,6 +39,10 @@
     height: 40px;
 }
 
+.platformImg>img {
+    object-fit: contain;
+}
+
 .blockBtn {
     display: flex;
     gap: 25px;
