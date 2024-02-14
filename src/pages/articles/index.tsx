@@ -4,6 +4,7 @@ import styles from "@/src/pages/articles/articles.module.css";
 import Title from "@/src/components/shared/text/Title";
 import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
 
 const Articles = () => {
     return (
@@ -31,6 +32,7 @@ const Articles = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

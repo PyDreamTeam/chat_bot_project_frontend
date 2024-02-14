@@ -3,14 +3,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 50px;
+    gap: 48px;
 }
 .blockText h3 {
     margin: 0px 0px 24px 10px;
 }
 .blockScroll {
-    /* height: 648px; */
-    max-width: 742px;
+    max-width: 752px;
     overflow: hidden;
     cursor: pointer;
     padding: 5px 10px 5px 10px;

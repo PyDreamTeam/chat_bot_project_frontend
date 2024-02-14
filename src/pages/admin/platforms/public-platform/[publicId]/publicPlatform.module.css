@@ -56,8 +56,9 @@
     width: 640px;
 }
 .groupBtn {
+    width: 640px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 16px;
     margin-top: 48px;
@@ -68,6 +69,9 @@
     border: 1px solid #FFF;
     cursor: pointer;
 }
+.btnClose:hover p {
+    color: var(--status-color-error-color);
+}
 
 .btnSave {
     padding: 10px 58px;
@@ -75,6 +79,9 @@
     background: #4466F5;
     border: 1px solid #4466F5;
     cursor: pointer;
+}
+.btnSave:hover {
+    opacity: 0.8;
 }
 
 .listFilters {

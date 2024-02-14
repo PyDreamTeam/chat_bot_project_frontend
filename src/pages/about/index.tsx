@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "@/src/components/features/HomePage/Header/Header";
+import Footer from "@/src/components/features/HomePage/Footer/Footer";
 import styles from "@/src/pages/about/about.module.css";
 import Title from "@/src/components/shared/text/Title";
 import Link from "next/link";
@@ -31,6 +32,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };
