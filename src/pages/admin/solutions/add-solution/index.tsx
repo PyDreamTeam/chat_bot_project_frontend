@@ -52,9 +52,11 @@ const AddSolution = () => {
         link: "",
         steps_title: "",
         steps_description: "",
+        steps: [],
         filter: [],
         cards: [],
-        steps: [],
+        dignities: [],
+        links_to_platform: [],
     });
 
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
@@ -79,7 +81,11 @@ const AddSolution = () => {
     const filters = useAppSelector((state) => state.reducerAddSolution.filters);
     const cardsArray = useAppSelector((state) => state.reducerAddSolution.cards);
     const stepsArray = useAppSelector((state) => state.reducerAddSolution.steps);
+    const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
 
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, dignities: dignities }));
+    }, [dignities]);
     useEffect(() => {
         setSolution((prev) => ({ ...prev, filter: filters.map((item) => item.id) }));
     }, [filters]);
@@ -91,7 +97,7 @@ const AddSolution = () => {
         setSolution((prev) => ({ ...prev, cards: cardsArray }));
     }, [cardsArray]);
     useEffect(() => {
-        setSolution((prev) => ({ ...prev, cards: stepsArray }));
+        setSolution((prev) => ({ ...prev, steps: stepsArray }));
     }, [stepsArray]);
 
     useEffect(() => {
@@ -103,17 +109,16 @@ const AddSolution = () => {
                 title: "",
                 short_description: "",
                 full_description: "",
-                turnkey_solutions: 0,
                 price: "",
                 image: "",
                 link: "",
                 steps_title: "",
                 steps_description: "",
-                links_to_solution: [],
+                steps: [],
                 filter: [],
                 cards: [],
-                steps: [],
                 dignities: [],
+                links_to_platform: [],
             }));
             dispatch(deleteAllFiltersFromSolution());
             setTimeout(() => {
@@ -139,6 +144,11 @@ const AddSolution = () => {
             reader.readAsDataURL(file);
         }
     };
+
+    // solution log
+    useEffect(() => {
+        console.log(solution);
+    }, [solution]);
 
     return (
         <WrapperAdminPage>
@@ -181,9 +191,9 @@ const AddSolution = () => {
                     placeholder="Текст (200 символов)"
                     className={styles.textAreaSolution}
                 />
-
+                {/* TODO: dropdownSelectPlatform */}
                 <InputAddSolution
-                    label="Название платформы на которой реализовано решение"
+                    label="Платформа на которой реализовано решение"
                     results={PlatformsData?.results}
                     value={solution.title}
                     // value={solution.platfotm_title}
@@ -194,15 +204,17 @@ const AddSolution = () => {
                     className={styles.titleSolution}
                     style={styles.size640}
                 />
-                <UploadImage
-                    text={"Логотип платформы"}
-                    height={250}
-                    width={250}
-                    onChange={handleFileChange}
-                    image={solution.image}
-                    // image={solution.platform_image}
-                    isImage={Boolean(solution.image)}
+                <InputAddSolution
+                    value={solution.price}
+                    onChange={(e) => setSolution((prev) => ({ ...prev, price: Number(e.target.value) }))}
+                    label="Стоимость решения"
+                    placeholder="0 RUB"
+                    className={styles.countPlatforms}
+                    style={styles.size203}
+                    onKeyPress={handleKeyPress}
                 />
+                <DignitiesInput />
+
                 <Title type="h5" color="dark" className={styles.subTitle}>
                     Полное описание
                 </Title>
@@ -210,7 +222,7 @@ const AddSolution = () => {
                     value={solution.full_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, full_description: e.target.value }))}
                     label="Описание типа решения"
-                    placeholder="Текст до 200 символов"
+                    placeholder="Текст (200 символов)"
                     className={styles.textAreaSolution}
                 />
                 <Title type="h5" color="dark" className={styles.subHead}>
@@ -247,16 +259,6 @@ const AddSolution = () => {
                         </li>
                     ))}
                 </ul>
-                <InputAddSolution
-                    value={solution.price}
-                    onChange={(e) => setSolution((prev) => ({ ...prev, price: Number(e.target.value) }))}
-                    label="Стоимость решения"
-                    placeholder="0 RUB"
-                    className={styles.countPlatforms}
-                    style={styles.size203}
-                    onKeyPress={handleKeyPress}
-                />
-                <DignitiesInput />
                 <InputAddSolution
                     label="Ссылка на страницу с описанием платформы, на которой было создано решение"
                     onChange={(e) => {
