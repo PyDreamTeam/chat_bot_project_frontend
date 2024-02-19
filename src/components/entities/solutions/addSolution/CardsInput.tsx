@@ -7,26 +7,29 @@ import css from "./style.module.css";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { getCardsFromBack } from "@/src/store/reducers/addSolution/slice";
+import { TextAreaAddTask } from "./TextAreaAddTask";
 export interface PropsCards {
-    results?: {
-        title: string;
-        text: string;
-        img: any;
-        id: number;
-    }[];
+    results?: ICard[];
+}
+
+interface ICard {
+    title: string;
+    text: string;
+    img: any;
+    id?: number;
 }
 
 export const CardsInput: FC<PropsCards> = ({ results = [] }) => {
     const dispatch = useAppDispatch();
     const cards = useAppSelector((state) => state.reducerAddSolution.cards);
-    const [card, setCard] = useState<any[]>([]);
+    const [card, setCard] = useState<ICard[]>([]);
 
     useEffect(() => {
         dispatch(getCardsFromBack(card));
     }, [card]);
 
     const addInput = () => {
-        setCard([...cards, ""]);
+        setCard([...cards, { title: "", text: "", img: "" }]);
     };
 
     const removeInput = (index: number) => {
@@ -59,31 +62,42 @@ export const CardsInput: FC<PropsCards> = ({ results = [] }) => {
                         placeholder="Текст"
                         link={false}
                         onChange={(e) => {
-                            const newInputs = [...card];
-                            newInputs[index] = e.target.value;
+                            const newInputs = card.map((a) => ({ ...a }));
+                            newInputs[index].title = e.target.value;
                             setCard(newInputs);
                         }}
                     />
                     <div className={css.img}>
                         <UploadImage
                             text={"Логотип"}
-                            height={100}
-                            width={100}
-                            // onChange={}
+                            height={64}
+                            width={64}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = () => {
+                                        const newInputs = card.map((a) => ({ ...a }));
+                                        newInputs[index].img = reader.result as string;
+                                        setCard(newInputs);
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            }}
                             image={item.img}
                             isImage={Boolean(item.img)}
                         />
                     </div>
-                    <TextAreaAddSolution
+                    <TextAreaAddTask
                         value={item.text}
                         onChange={(e) => {
-                            const newInputs = [...card];
-                            newInputs[index] = e.target.value;
+                            const newInputs = card.map((a) => ({ ...a }));
+                            newInputs[index].text = e.target.value;
                             setCard(newInputs);
                         }}
                         label="Описание задачи"
                         placeholder="Текст (до 150 символов)"
-                        className={css.textAreaSolution}
+                        className={css.addTaskTextWrapper}
                     />
                 </div>
             ))}

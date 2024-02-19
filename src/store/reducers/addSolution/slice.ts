@@ -9,7 +9,7 @@ interface Steps {
     id: number;
     title: string;
     text: string;
-    img: string;
+    media: string;
 }
 interface Cards {
     id: number;
@@ -87,7 +87,7 @@ const addSolutionSlice = createSlice({
             state.cards = action.payload;
         },
         getStepsFromBack: (state, action) => {
-            state.cards = action.payload;
+            state.steps = action.payload;
         },
         deleteAllFiltersFromSolution: (state) => {
             state.filters = [];

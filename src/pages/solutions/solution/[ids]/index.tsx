@@ -45,7 +45,6 @@ const Solution = () => {
                     title={data?.title}
                     image={data?.image}
                     advantages={data?.advantages}
-                    turnkey_platform={platform?.id}
                     links_to_platform={data?.links_to_platform}
                     is_favorite={data?.is_favorite}
                     platform={platform?.image}

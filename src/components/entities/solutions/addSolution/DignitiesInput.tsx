@@ -26,13 +26,16 @@ export const DignitiesInput = () => {
     };
 
     return (
-        <div>
-            {dignities?.map((dignitie, index) => (
-                <div key={index}>
-                    <div className={css.linksPlatform}>
-                        <Text type="reg18" color="dark">
+        <div className={css.dignitiesWrapper}>
+            <Text type="reg18" color="black">
+                Достоинства
+            </Text>
+            {dignities?.map((dignity, index) => (
+                <div key={index} className={css.dignity}>
+                    <div className={css.dignityTitle}>
+                        {/* <Text type="reg18" color="dark">
                             Достоинство
-                        </Text>
+                        </Text> */}
                         <Image
                             src="/img/close.svg"
                             alt="icon"
@@ -43,7 +46,7 @@ export const DignitiesInput = () => {
                         />
                     </div>
                     <InputAddSolution
-                        value={dignitie}
+                        value={dignity}
                         placeholder="Текст"
                         link={false}
                         onChange={(e) => {

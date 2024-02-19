@@ -7,31 +7,34 @@ import css from "./style.module.css";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { getStepsFromBack } from "@/src/store/reducers/addSolution/slice";
-export interface PropsCards {
-    results?: {
-        title: string;
-        text: string;
-        img: any;
-        id: number;
-    }[];
+import { TextAreaAddTask } from "./TextAreaAddTask";
+export interface PropsCardsSteps {
+    results?: ICard[];
 }
 
-export const StepsInput: FC<PropsCards> = ({ results = [] }) => {
+interface ICard {
+    title: string;
+    text: string;
+    media?: any;
+    id?: number;
+}
+
+export const StepsInput: FC<PropsCardsSteps> = ({ results = [] }) => {
     const dispatch = useAppDispatch();
     const steps = useAppSelector((state) => state.reducerAddSolution.steps);
-    const [step, setStep] = useState<any[]>([]);
+    const [step, setStep] = useState<ICard[]>([]);
 
     useEffect(() => {
         dispatch(getStepsFromBack(step));
     }, [step]);
 
     const addInput = () => {
-        setStep([...steps, ""]);
+        setStep([...steps, { title: "", text: "", media: null }]);
     };
 
-    const addImg = () => {
-        <></>;
-    };
+    // const addImg = () => {
+    //     <></>;
+    // };
 
     const removeInput = (index: number) => {
         const newInputs = [...step];
@@ -65,12 +68,12 @@ export const StepsInput: FC<PropsCards> = ({ results = [] }) => {
                         placeholder="Текст"
                         link={false}
                         onChange={(e) => {
-                            const newInputs = [...step];
-                            newInputs[index] = e.target.value;
+                            const newInputs = step.map((a) => ({ ...a }));
+                            newInputs[index].title = e.target.value;
                             setStep(newInputs);
                         }}
                     />
-                    <div className={css.imagesWrapper}>
+                    {/* <div className={css.imagesWrapper}>
                         <Text type="reg18" color="dark" className={css.logoText}>
                             Картинка или видео
                         </Text>
@@ -89,17 +92,17 @@ export const StepsInput: FC<PropsCards> = ({ results = [] }) => {
                                 + Добавить
                             </Text>
                         </button>
-                    </div>
-                    <TextAreaAddSolution
+                    </div> */}
+                    <TextAreaAddTask
                         value={item.text}
                         onChange={(e) => {
-                            const newInputs = [...step];
-                            newInputs[index] = e.target.value;
+                            const newInputs = step.map((a) => ({ ...a }));
+                            newInputs[index].text = e.target.value;
                             setStep(newInputs);
                         }}
                         label="Описание мероприятия"
                         placeholder="Текст (до 150 символов)"
-                        className={css.textAreaSolution}
+                        className={css.addTaskTextWrapper}
                     />
                 </div>
             ))}
