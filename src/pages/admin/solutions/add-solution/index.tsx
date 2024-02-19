@@ -8,7 +8,6 @@ import Title from "@/src/components/shared/text/Title";
 import { InputAddSolution } from "@/src/components/entities/solutions/addSolution/InputAddSolution";
 import { TextAreaAddSolution } from "@/src/components/entities/solutions/addSolution/TextAreaAddPSolution";
 import { useEffect, useState } from "react";
-import { MultipleInput } from "@/src/components/entities/solutions/addSolution/MultipleInput";
 import {
     useAddSolutionMutation,
     useGetSolutionsFiltersQuery,
@@ -31,6 +30,7 @@ import { Loader } from "@/src/components/shared/Loader/Loader";
 import { CardsInput } from "@/src/components/entities/solutions/addSolution/CardsInput";
 import { StepsInput } from "@/src/components/entities/solutions/addSolution/StepsInput";
 import { DignitiesInput } from "@/src/components/entities/solutions/addSolution/DignitiesInput";
+import { DropdownSelectPlatform } from "@/src/components/entities/solutions/addSolution/DropdownSelectPlatform";
 
 const AddSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
@@ -38,6 +38,8 @@ const AddSolution = () => {
     const { data: dataSteps, isLoading: isLoadingSteps } = useGetSolutionStepsQuery({});
 
     const { data: PlatformsData } = useGetListPlatformsQuery({});
+
+    const [selectedPlatform, setSelectedPlatform] = useState("Выбрать платформу");
 
     const dispatch = useAppDispatch();
     const router = useRouter();
@@ -145,6 +147,12 @@ const AddSolution = () => {
         }
     };
 
+    const handleSelectedPlatformId = (groupId: number) => {
+        const newLinkToPlatform = [groupId.toString()];
+        setSolution((prev) => ({ ...prev, links_to_platform: newLinkToPlatform }));
+        // isValidSolution();
+    };
+
     // solution log
     useEffect(() => {
         console.log(solution);
@@ -192,17 +200,11 @@ const AddSolution = () => {
                     className={styles.textAreaSolution}
                 />
                 {/* TODO: dropdownSelectPlatform */}
-                <InputAddSolution
-                    label="Платформа на которой реализовано решение"
-                    results={PlatformsData?.results}
-                    value={solution.title}
-                    // value={solution.platfotm_title}
-                    is={true}
-                    onChange={(e) => setSolution((prev) => ({ ...prev, title: e.target.value }))}
-                    //  onChange={(e) => setSolution((prev) => ({ ...prev, platfotm_title: e.target.value }))}
-                    placeholder="Выбрать"
-                    className={styles.titleSolution}
-                    style={styles.size640}
+                <DropdownSelectPlatform
+                    data={PlatformsData?.results}
+                    selected={selectedPlatform}
+                    setSelected={setSelectedPlatform}
+                    setSelectedId={handleSelectedPlatformId}
                 />
                 <InputAddSolution
                     value={solution.price}

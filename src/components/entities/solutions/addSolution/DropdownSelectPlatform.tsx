@@ -3,38 +3,38 @@ import styles from "./style.module.css";
 import Text from "@/src/components/shared/text/Text";
 import { dropDownArrow } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
-interface IPlatformGroup {
+interface IPlatform {
     id: number;
     image: string | null;
     status: string;
     title: string;
 }
 
-export interface IDropDownSelectGroup {
-    dataGroups?: IPlatformGroup[] | undefined;
+export interface IDropdownSelectPlatform {
+    data?: IPlatform[] | undefined;
     selected?: string | undefined;
     selectedId?: number;
     setSelected: Dispatch<SetStateAction<string>>;
     setSelectedId: (groupId: number) => void;
 }
 
-export const DropDownSelectGroup: FC<IDropDownSelectGroup> = ({
-    dataGroups,
+export const DropdownSelectPlatform: FC<IDropdownSelectPlatform> = ({
+    data,
     selected,
     selectedId,
     setSelected,
     setSelectedId,
 }) => {
     const [isActive, setIsActive] = useState(false);
-    const handleClick = (group: IPlatformGroup) => {
-        setSelected(group.title);
-        setSelectedId(group.id);
+    const handleClick = (platform: IPlatform) => {
+        setSelected(platform.title);
+        setSelectedId(platform.id);
         setIsActive(false);
     };
     return (
         <div className={styles.dropDown}>
             <Text type="reg18" color="dark">
-                Группы фильтров
+                Платформа на которой реализовано решение
             </Text>
             <div className={styles.dropDownBtn} onClick={(e) => setIsActive(!isActive)}>
                 {selected}
@@ -42,11 +42,15 @@ export const DropDownSelectGroup: FC<IDropDownSelectGroup> = ({
             </div>
             {isActive && (
                 <div className={styles.dropDownContent}>
-                    {dataGroups
+                    {data
                         ?.filter((item) => item.status === "save" || item.status === "public")
-                        .map((group) => (
-                            <div key={group.id} onClick={() => handleClick(group)} className={styles.dropDownItem}>
-                                {group.title}
+                        .map((platform) => (
+                            <div
+                                key={platform.id}
+                                onClick={() => handleClick(platform)}
+                                className={styles.dropDownItem}
+                            >
+                                {platform.title}
                             </div>
                         ))}
                 </div>
