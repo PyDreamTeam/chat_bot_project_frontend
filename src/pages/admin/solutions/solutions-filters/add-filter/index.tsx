@@ -192,7 +192,7 @@ const AddSolutionFilter = () => {
             setIsSuccessModal(true);
             setTimeout(() => {
                 setIsSuccessModal(false);
-                router.reload();
+                router.push("/admin/solutions/solutions-filters");
             }, 3000);
         }
     }, [isSuccessAddFilter]);

@@ -39,7 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 16px;
+    margin-top: 8px;
     margin-bottom: 8px;
 }
 .btnclose {
@@ -177,6 +177,9 @@
     margin-top: 8px;
     cursor: pointer;
 }
+.logoImage:hover {
+    opacity: 0.8;
+}
 
 .image {
     margin-top: 8px;
@@ -242,14 +245,15 @@
 
 /* Стили для dignities */
 
-.dignitiesWrapper {
+.dignitiesWrapper,
+.advantagesWrapper {
     margin-top: 16px;
     width: 640px;
 }
 
-.dignity {
+/* .dignity {
     margin-top: 8px;
-}
+} */
 .dignityTitle {
     display: flex;
     flex-direction: row-reverse;
@@ -263,6 +267,7 @@
     width: 640px;
     user-select: none;
     position: relative;
+    margin-top: 16px;
 }
 .dropDown .dropDownBtn {
     margin-top: 8px;

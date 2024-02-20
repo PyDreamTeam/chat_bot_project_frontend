@@ -24,6 +24,7 @@ interface State {
     steps: Steps[];
     links_to_platform: string[];
     dignities: any[];
+    advantages: string[];
     turnkey_platforms: number;
     linkToSolution: string;
 }
@@ -33,6 +34,7 @@ const initialState: State = {
     cards: [],
     steps: [],
     dignities: [],
+    advantages: [],
     links_to_platform: [],
     turnkey_platforms: 0,
     linkToSolution: "",
@@ -61,6 +63,13 @@ const addSolutionSlice = createSlice({
                 state.dignities = action.payload;
             }
             state.dignities = action.payload;
+        },
+        getAdvantages: (state, action) => {
+            if (action.payload === null) {
+                action.payload = [];
+                state.advantages = action.payload;
+            }
+            state.advantages = action.payload;
         },
         linkToSolution: (state, action: PayloadAction<string>) => {
             state.linkToSolution = action.payload;
@@ -106,6 +115,7 @@ export const {
     getFilterFromBack,
     getCardsFromBack,
     getDignities,
+    getAdvantages,
     getStepsFromBack,
 } = addSolutionSlice.actions;
 export const reducerAddSolution = addSolutionSlice.reducer;

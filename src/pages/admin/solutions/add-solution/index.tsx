@@ -3,17 +3,12 @@ import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFu
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
 import Link from "next/link";
-import styles from "./addSolutiom.module.css";
+import styles from "./addSolution.module.css";
 import Title from "@/src/components/shared/text/Title";
 import { InputAddSolution } from "@/src/components/entities/solutions/addSolution/InputAddSolution";
 import { TextAreaAddSolution } from "@/src/components/entities/solutions/addSolution/TextAreaAddPSolution";
 import { useEffect, useState } from "react";
-import {
-    useAddSolutionMutation,
-    useGetSolutionsFiltersQuery,
-    useGetSolutionCardsQuery,
-    useGetSolutionStepsQuery,
-} from "@/src/store/services/solutions";
+import { useAddSolutionMutation, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
 import {
     PropsGroupsFilters,
     GroupsFilters,
@@ -31,22 +26,21 @@ import { CardsInput } from "@/src/components/entities/solutions/addSolution/Card
 import { StepsInput } from "@/src/components/entities/solutions/addSolution/StepsInput";
 import { DignitiesInput } from "@/src/components/entities/solutions/addSolution/DignitiesInput";
 import { DropdownSelectPlatform } from "@/src/components/entities/solutions/addSolution/DropdownSelectPlatform";
+import { ThesesInput } from "@/src/components/entities/solutions/addSolution/ThesesInput";
 
 const AddSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
-    const { data: dataCards, isLoading: isLoadingCards } = useGetSolutionCardsQuery({});
-    const { data: dataSteps, isLoading: isLoadingSteps } = useGetSolutionStepsQuery({});
-
     const { data: PlatformsData } = useGetListPlatformsQuery({});
-
-    const [selectedPlatform, setSelectedPlatform] = useState("Выбрать платформу");
-
+    const [addSolution, { isSuccess: isSuccessAddSolution, isLoading }] = useAddSolutionMutation();
     const dispatch = useAppDispatch();
     const router = useRouter();
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const [addSolution, { data, isSuccess: isSuccessAddSolution, isLoading }] = useAddSolutionMutation();
+
+    const [selectedPlatform, setSelectedPlatform] = useState("Выбрать платформу");
+
     const [solution, setSolution] = useState<PropsSolutionCard>({
         title: "",
+        advantages: [],
         short_description: "",
         full_description: "",
         price: "",
@@ -65,6 +59,7 @@ const AddSolution = () => {
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
     const handleSuccessAddPlatform = () => {
         setIsSuccessModal(!isSuccessModal);
+        router.push("/admin/solutions");
     };
     const handleClickClose = () => {
         setIsModalClose(!isModalClose);
@@ -84,10 +79,14 @@ const AddSolution = () => {
     const cardsArray = useAppSelector((state) => state.reducerAddSolution.cards);
     const stepsArray = useAppSelector((state) => state.reducerAddSolution.steps);
     const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
+    const advantages = useAppSelector((state) => state.reducerAddSolution.advantages);
 
     useEffect(() => {
         setSolution((prev) => ({ ...prev, dignities: dignities }));
     }, [dignities]);
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, advantages: advantages }));
+    }, [advantages]);
     useEffect(() => {
         setSolution((prev) => ({ ...prev, filter: filters.map((item) => item.id) }));
     }, [filters]);
@@ -109,6 +108,7 @@ const AddSolution = () => {
             setSolution((prev) => ({
                 ...prev,
                 title: "",
+                advantages: [],
                 short_description: "",
                 full_description: "",
                 price: "",
@@ -125,6 +125,7 @@ const AddSolution = () => {
             dispatch(deleteAllFiltersFromSolution());
             setTimeout(() => {
                 setIsSuccessModal(false);
+                router.push("/admin/solutions");
             }, 3000);
         }
     }, [isSuccessAddSolution]);
@@ -150,10 +151,9 @@ const AddSolution = () => {
     const handleSelectedPlatformId = (groupId: number) => {
         const newLinkToPlatform = [groupId.toString()];
         setSolution((prev) => ({ ...prev, links_to_platform: newLinkToPlatform }));
-        // isValidSolution();
+        // TODO: isValidSolution();
     };
 
-    // solution log
     useEffect(() => {
         console.log(solution);
     }, [solution]);
@@ -191,6 +191,7 @@ const AddSolution = () => {
                     onChange={handleFileChange}
                     image={solution.image}
                     isImage={Boolean(solution.image)}
+                    type="logo"
                 />
                 <TextAreaAddSolution
                     value={solution.short_description}
@@ -199,7 +200,7 @@ const AddSolution = () => {
                     placeholder="Текст (200 символов)"
                     className={styles.textAreaSolution}
                 />
-                {/* TODO: dropdownSelectPlatform */}
+                <ThesesInput />
                 <DropdownSelectPlatform
                     data={PlatformsData?.results}
                     selected={selectedPlatform}
@@ -231,7 +232,9 @@ const AddSolution = () => {
                     Задачи
                 </Title>
 
-                <CardsInput results={dataCards?.results} />
+                <CardsInput
+                // results={dataCards?.results}
+                />
                 <Title type="h5" color="dark" className={styles.subHead}>
                     Мероприятия
                 </Title>
@@ -250,7 +253,9 @@ const AddSolution = () => {
                     placeholder="Текст (до 150 символов)"
                     className={styles.textAreaSolution}
                 />
-                <StepsInput results={dataSteps?.results} />
+                <StepsInput
+                // results={dataSteps?.results}
+                />
                 <Title type="h5" color="dark" className={styles.subTitle}>
                     Описание фильтров
                 </Title>
@@ -264,7 +269,8 @@ const AddSolution = () => {
                 <InputAddSolution
                     label="Ссылка на страницу с описанием платформы, на которой было создано решение"
                     onChange={(e) => {
-                        dispatch(linkToSolution(e.target.value));
+                        const httpString = "https://";
+                        dispatch(linkToSolution(httpString.concat(e.target.value)));
                     }}
                     placeholder="www.example.com"
                     className={styles.linkSolution}
@@ -293,7 +299,7 @@ const AddSolution = () => {
                             <div className={styles.groupBtnModalClose}>
                                 <button
                                     className={styles.btnCloseModal}
-                                    onClick={() => router.push("/admin/platforms")}
+                                    onClick={() => router.push("/admin/solutions")}
                                 >
                                     <Text type="reg18" color="red">
                                         Удалить изменения
@@ -317,8 +323,8 @@ const AddSolution = () => {
                             <Image
                                 src="/img/close.svg"
                                 alt="icon"
-                                width={24}
-                                height={24}
+                                width={34}
+                                height={34}
                                 className={styles.imgCloseModal}
                                 onClick={handleSuccessAddPlatform}
                                 style={{ cursor: "pointer" }}

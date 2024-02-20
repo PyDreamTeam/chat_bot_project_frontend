@@ -70,8 +70,8 @@ export const CardsInput: FC<PropsCards> = ({ results = [] }) => {
                     <div className={css.img}>
                         <UploadImage
                             text={"Логотип"}
-                            height={64}
-                            width={64}
+                            height={48}
+                            width={48}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                 const file = e.target.files?.[0];
                                 if (file) {

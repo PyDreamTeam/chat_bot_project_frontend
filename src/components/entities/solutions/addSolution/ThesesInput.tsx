@@ -4,19 +4,19 @@ import Text from "@/src/components/shared/text/Text";
 import css from "./style.module.css";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
-import { getDignities } from "@/src/store/reducers/addSolution/slice";
+import { getAdvantages } from "@/src/store/reducers/addSolution/slice";
 
-export const DignitiesInput = () => {
+export const ThesesInput = () => {
     const dispatch = useAppDispatch();
-    const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
+    const advantages = useAppSelector((state) => state.reducerAddSolution.advantages);
     const [inputs, setInputs] = useState<string[]>([]);
 
     useEffect(() => {
-        dispatch(getDignities(inputs));
+        dispatch(getAdvantages(inputs));
     }, [inputs]);
 
     const addInput = () => {
-        setInputs([...dignities, ""]);
+        setInputs([...advantages, ""]);
     };
 
     const removeInput = (index: number) => {
@@ -26,11 +26,11 @@ export const DignitiesInput = () => {
     };
 
     return (
-        <div className={css.dignitiesWrapper}>
+        <div className={css.advantagesWrapper}>
             <Text type="reg18" color="black">
-                Достоинства
+                Основные тезисы
             </Text>
-            {dignities?.map((dignity, index) => (
+            {advantages?.map((dignity, index) => (
                 <div key={index} className={css.dignity}>
                     <div className={css.dignityTitle}>
                         <Image
