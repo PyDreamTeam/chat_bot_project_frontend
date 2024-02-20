@@ -10,9 +10,10 @@ interface PropsUploadImage {
     text?: string;
     height?: number;
     width?: number;
+    type?: "logo" | "icon";
 }
 
-export const UploadImage: FC<PropsUploadImage> = ({ onChange, isImage, image, text, width, height }) => {
+export const UploadImage: FC<PropsUploadImage> = ({ onChange, isImage, image, text, width, height, type }) => {
     const filePicker = useRef(null);
 
     const handleClick = () => {
@@ -36,7 +37,7 @@ export const UploadImage: FC<PropsUploadImage> = ({ onChange, isImage, image, te
                 />
             ) : (
                 <Image
-                    src="/platforms/uploadFile.svg"
+                    src={type === "logo" ? "/platforms/uploadFile.svg" : "/platforms/addPlus.svg"}
                     alt="uploadFile"
                     width={width}
                     height={height}
