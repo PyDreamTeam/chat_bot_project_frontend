@@ -73,9 +73,10 @@
     justify-content: flex-end;
     align-items: center;
     gap: 16px;
-    margin-top: 48px;
+    margin-top: 32px;
 }
 .btnClose {
+    width: 212px;
     padding: 10px 58px;
     background:  #FFF;
     border: 1px solid #FFF;
@@ -137,6 +138,33 @@
 .subTitleModalClose {
     margin-top: 16px;
 }
+
+.errorBlock {
+    display: flex;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    padding-left: 8px;
+    padding-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.errorBlockHide {
+    display: none;
+    
+}
+
+.errorMessage {
+    width: 640px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    margin-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .groupBtnModalClose {
     display: flex;
     align-items: center;
@@ -155,3 +183,5 @@
     background: #4466f5;
     border: 1px solid #4466f5;
 }
+
+
