@@ -62,25 +62,33 @@
     width: 640px;
 }
 .groupBtn {
+    width: 640px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 16px;
-    margin-top: 48px;
+    margin-top: 32px;
 }
 .btnClose {
+    width: 212px;
     padding: 10px 58px;
-    background: #fff;
-    border: 1px solid #fff;
+    background:  #FFF;
+    border: 1px solid #FFF;
     cursor: pointer;
+}
+.btnClose:hover p {
+    color: var(--status-color-error-color);
 }
 
 .btnSave {
     padding: 10px 58px;
     border-radius: 16px;
-    background: #4466f5;
-    border: 1px solid #4466f5;
+    background: #4466F5;
+    border: 1px solid #4466F5;
     cursor: pointer;
+}
+.btnSave:hover {
+    opacity: 0.8;
 }
 
 .listFilters {

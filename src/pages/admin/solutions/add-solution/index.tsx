@@ -16,7 +16,11 @@ import {
 import { PropsSolutionCard } from "@/src/components/entities/solutions/types";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
-import { deleteAllFiltersFromSolution, linkToSolution } from "@/src/store/reducers/addSolution/slice";
+import {
+    deleteAllFiltersFromSolution,
+    linkToSolution,
+    getLinkToPlatform,
+} from "@/src/store/reducers/addSolution/slice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
@@ -27,6 +31,8 @@ import { StepsInput } from "@/src/components/entities/solutions/addSolution/Step
 import { DignitiesInput } from "@/src/components/entities/solutions/addSolution/DignitiesInput";
 import { DropdownSelectPlatform } from "@/src/components/entities/solutions/addSolution/DropdownSelectPlatform";
 import { ThesesInput } from "@/src/components/entities/solutions/addSolution/ThesesInput";
+import { Button } from "@/src/components/shared/buttons/Button";
+import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
 const AddSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
@@ -55,6 +61,37 @@ const AddSolution = () => {
         links_to_platform: [],
     });
 
+    const [isValid, setIsValid] = useState<boolean>(false);
+    // const [isShownErrorShort, setIsShownErrorShort] = useState(false);
+    // const [isShownErrorExist, setIsShownErrorExist] = useState(false);
+
+    const isValidSolution = () => {
+        const isUndefined = Object.values(solution).find((value) => value === "" || value === null);
+
+        // isValidFilterName(filter.title);
+
+        if (
+            typeof isUndefined == "undefined" &&
+            solution.steps?.length !== 0 &&
+            solution.cards?.length !== 0 &&
+            solution.dignities?.length !== 0 &&
+            solution.links_to_platform?.length !== 0 &&
+            solution.filter?.length !== 0 &&
+            solution.advantages?.length !== 0
+        ) {
+            setIsValid(true);
+            console.log("solution is VALID");
+            // if (!isShownErrorShort && !isShownErrorExist) {
+            //     setIsValid(true);
+            // } else {
+            //     setIsValid(false);
+            // }
+        } else {
+            setIsValid(false);
+            console.log("solution is NOT VALID");
+        }
+    };
+
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
     const handleSuccessAddPlatform = () => {
@@ -66,13 +103,14 @@ const AddSolution = () => {
     };
 
     useEffect(() => {
+        dispatch(linkToSolution(""));
         dispatch(deleteAllFiltersFromSolution());
     }, []);
 
     const inputsLinks = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
 
     useEffect(() => {
-        setSolution((prev) => ({ ...prev, links_to_platform: inputsLinks, turnkey_platforms: inputsLinks.length }));
+        setSolution((prev) => ({ ...prev, links_to_platform: inputsLinks }));
     }, [inputsLinks]);
 
     const filters = useAppSelector((state) => state.reducerAddSolution.filters);
@@ -151,11 +189,16 @@ const AddSolution = () => {
     const handleSelectedPlatformId = (groupId: number) => {
         const newLinkToPlatform = [groupId.toString()];
         setSolution((prev) => ({ ...prev, links_to_platform: newLinkToPlatform }));
-        // TODO: isValidSolution();
+        dispatch(getLinkToPlatform(newLinkToPlatform));
+    };
+
+    const handleSubmit = () => {
+        addSolution({ solution, token });
     };
 
     useEffect(() => {
         console.log(solution);
+        isValidSolution();
     }, [solution]);
 
     return (
@@ -228,13 +271,14 @@ const AddSolution = () => {
                     placeholder="Текст (200 символов)"
                     className={styles.textAreaSolution}
                 />
+
                 <Title type="h5" color="dark" className={styles.subHead}>
                     Задачи
                 </Title>
-
                 <CardsInput
                 // results={dataCards?.results}
                 />
+
                 <Title type="h5" color="dark" className={styles.subHead}>
                     Мероприятия
                 </Title>
@@ -256,6 +300,7 @@ const AddSolution = () => {
                 <StepsInput
                 // results={dataSteps?.results}
                 />
+
                 <Title type="h5" color="dark" className={styles.subTitle}>
                     Описание фильтров
                 </Title>
@@ -272,7 +317,7 @@ const AddSolution = () => {
                         const httpString = "https://";
                         dispatch(linkToSolution(httpString.concat(e.target.value)));
                     }}
-                    placeholder="www.example.com"
+                    placeholder="example.com"
                     className={styles.linkSolution}
                     style={styles.size640}
                     link={true}
@@ -347,17 +392,13 @@ const AddSolution = () => {
                             Отмена
                         </Text>
                     </button>
-                    <button
-                        className={styles.btnSave}
-                        onClick={() => {
-                            addSolution({ solution, token });
-                        }}
-                    >
-                        <Text type="reg18" color="white">
-                            Сохранить
-                        </Text>
-                    </button>
+                    <Button disabled={!isValid} active={isValid} type={"button"} onClick={handleSubmit} width={212}>
+                        Создать
+                    </Button>
                 </div>
+                <ErrorMessage isShown={isValid} className={styles.errorMessage}>
+                    Внесите изменения. Все поля должны быть заполнены
+                </ErrorMessage>
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );
