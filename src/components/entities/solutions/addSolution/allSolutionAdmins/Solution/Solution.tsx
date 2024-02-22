@@ -69,7 +69,7 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort, 
                     refetch();
                 }
                 // router.reload();
-            }, 3000);
+            }, 2000);
         }
     }, [isSuccessDelete]);
 

@@ -9,7 +9,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useGetListPlatformsQuery, useGetPlatformQuery, useGetPlatformsQuery } from "@/src/store/services/platforms";
 import { PlatformsList } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/PlatformsList/PlatformsList";
-import { Platforms } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platforms/Platforms";
 import useInfiniteScroll from "@/src/hooks/useInfiniteScroll";
 import { InfiniteScroll } from "@/src/components/entities/platforms/rightBlock/InfiniteScroll/InfiniteScroll";
 import { Platform } from "@/src/components/entities/platforms/addPlatform/allPlatformsAdmins/Platform/Platform";
@@ -28,40 +27,50 @@ const PlatformsAdmin = () => {
     const searchParams = useSearchParams();
     const [searchPlatform, setSearchPlatform] = useState<string>("");
 
-    const { combinedData, isLoading, refetch, readMore, refresh, isFetching } = useInfiniteScroll(
-        useGetPlatformsQuery,
-        {
-            title: searchPlatform,
-        }
-    );
-    const handleScroll = () => {
-        readMore();
-    };
+    // const { combinedData, isLoading, refetch, readMore, refresh, isFetching } = useInfiniteScroll(
+    //     useGetPlatformsQuery,
+    //     { title: searchPlatform }
+    // );
+
+    const {
+        data: searchData,
+        isLoading: searchIsLoading,
+        isFetching: searchIsFetching,
+        refetch: refetchSearch,
+    } = useGetPlatformsQuery({ title: searchPlatform }, { refetchOnMountOrArgChange: true });
+
+    // const handleScroll = () => {
+    //     readMore();
+    // };
     const sortFromQuery = searchParams.get("sort") || "save";
 
     const [sort, setSort] = useState<string>(sortFromQuery);
     const handleChangeSortPlatform = (title: string) => {
         if (title === "Опубликованные") {
-            refresh();
+            // refresh();
             setSort("public");
         }
         if (title === "Созданные") {
-            refresh();
+            // refresh();
             setSort("save");
         }
         if (title === "Архив") {
-            refresh();
+            // refresh();
+            // refetch();
+
             setSort("archive");
         }
     };
-    console.log(combinedData);
+
+    console.log(searchData?.results);
+
     const router = useRouter();
     const handleRouter = () => {
         router.push("/admin/platforms/add-platform");
     };
 
     useEffect(() => {
-        refetch();
+        refetchSearch();
     }, [sort]);
 
     return (
@@ -100,7 +109,7 @@ const PlatformsAdmin = () => {
                         onChange={(e) => setSearchPlatform(e.target.value)}
                     />
                 </div>
-                {combinedData.length > 0 ? (
+                {searchData?.results.length > 0 ? (
                     <div>
                         <ul className={css.sortListPlatform}>
                             {sortPlatforms.map(({ title, value }) => (
@@ -120,15 +129,15 @@ const PlatformsAdmin = () => {
                             ))}
                         </ul>
                         <PlatformsList />
-                        {isLoading ? (
+                        {searchIsLoading ? (
                             <div className={css.loaderPlatforms}>
-                                <Loader isLoading={isLoading} />
+                                <Loader isLoading={searchIsLoading} />
                             </div>
                         ) : (
                             <ul>
-                                {combinedData
-                                    .filter((item) => item.status === sort)
-                                    .map((item) => (
+                                {searchData?.results
+                                    .filter((item: any) => item.status === sort)
+                                    .map((item: any) => (
                                         <li key={item.id}>
                                             <Platform
                                                 title={item.title}
@@ -136,28 +145,36 @@ const PlatformsAdmin = () => {
                                                 tags={item.tags}
                                                 id={item.id}
                                                 sort={sort}
-                                                refetch={refetch}
+                                                refetch={refetchSearch}
                                             />
                                         </li>
                                     ))}
                             </ul>
                         )}
                         <div className={css.loaderPlatforms}>
-                            <Loader isLoading={isFetching} />
+                            <Loader isLoading={searchIsFetching} />
                         </div>
                     </div>
                 ) : (
-                    <div className={css.addPlatformImg} onClick={handleRouter}>
-                        <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
-                        <Text type="med18btn" color="dark">
-                            Платформ пока нет
-                        </Text>
-                        <Text type="reg18" color="telegray" className={css.text}>
-                            Создайте новую платформу
-                        </Text>
+                    <div>
+                        {searchIsLoading ? (
+                            <div className={css.loaderPlatforms}>
+                                <Loader isLoading={searchIsLoading} />
+                            </div>
+                        ) : (
+                            <div className={css.addPlatformImg} onClick={handleRouter}>
+                                <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
+                                <Text type="med18btn" color="dark">
+                                    Платформ пока нет
+                                </Text>
+                                <Text type="reg18" color="telegray" className={css.text}>
+                                    Создайте новую платформу
+                                </Text>
+                            </div>
+                        )}
                     </div>
                 )}
-                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );

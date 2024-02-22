@@ -26,29 +26,33 @@ const sortSolutions = [
 const SolutionsAdmin = () => {
     const searchParams = useSearchParams();
     const [searchSolution, setSearchSolution] = useState<string>("");
-    const { combinedData, isLoading, refetch, readMore, refresh, isFetching } = useInfiniteScroll(
-        useGetSolutionsQuery,
-        {
-            title: searchSolution,
-        }
-    );
+    // const { combinedData, isLoading, refetch, readMore, refresh, isFetching } = useInfiniteScroll(
+    //     useGetSolutionsQuery,
+    //     { title: searchSolution }
+    // );
+    const {
+        data: searchData,
+        isLoading: searchIsLoading,
+        isFetching: searchIsFetching,
+        refetch: refetchSearch,
+    } = useGetSolutionsQuery({ title: searchSolution }, { refetchOnMountOrArgChange: true });
 
-    const handleScroll = () => {
-        readMore();
-    };
+    // const handleScroll = () => {
+    //     readMore();
+    // };
     const sortFromQuery = searchParams.get("sort") || "save";
     const [sort, setSort] = useState<string>(sortFromQuery);
     const handleChangeSortSolution = (title: string) => {
         if (title === "Опубликованные") {
-            refresh();
+            // refresh();
             setSort("public");
         }
         if (title === "Созданные") {
-            refresh();
+            // refresh();
             setSort("save");
         }
         if (title === "Архив") {
-            refresh();
+            // refresh();
             setSort("archive");
         }
     };
@@ -58,7 +62,7 @@ const SolutionsAdmin = () => {
     };
 
     useEffect(() => {
-        refetch();
+        refetchSearch();
     }, [sort]);
 
     return (
@@ -97,7 +101,7 @@ const SolutionsAdmin = () => {
                         onChange={(e) => setSearchSolution(e.target.value)}
                     />
                 </div>
-                {combinedData.length > 0 ? (
+                {searchData?.results.length > 0 ? (
                     <div>
                         <ul className={css.sortListSolution}>
                             {sortSolutions.map(({ title, value }) => (
@@ -117,15 +121,15 @@ const SolutionsAdmin = () => {
                             ))}
                         </ul>
                         <SolutionsList />
-                        {isLoading ? (
+                        {searchIsLoading ? (
                             <div className={css.loaderSolutions}>
-                                <Loader isLoading={isLoading} />
+                                <Loader isLoading={searchIsLoading} />
                             </div>
                         ) : (
                             <ul>
-                                {combinedData
-                                    .filter((item) => item.status === sort)
-                                    .map((item) => (
+                                {searchData?.results
+                                    .filter((item: any) => item.status === sort)
+                                    .map((item: any) => (
                                         <li key={item.id}>
                                             <Solution
                                                 title={item?.title}
@@ -133,28 +137,36 @@ const SolutionsAdmin = () => {
                                                 tags={item.tags}
                                                 id={item.id}
                                                 sort={sort}
-                                                refetch={refetch}
+                                                refetch={refetchSearch}
                                             />
                                         </li>
                                     ))}
                             </ul>
                         )}
                         <div className={css.loaderSolutions}>
-                            <Loader isLoading={isFetching} />
+                            <Loader isLoading={searchIsFetching} />
                         </div>
                     </div>
                 ) : (
-                    <div className={css.addSolutionImg} onClick={handleRouter}>
-                        <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
-                        <Text type="med18btn" color="dark">
-                            Решений пока нет
-                        </Text>
-                        <Text type="reg18" color="telegray" className={css.text}>
-                            Создайте новое решение
-                        </Text>
+                    <div>
+                        {searchIsLoading ? (
+                            <div className={css.loaderSolutions}>
+                                <Loader isLoading={searchIsLoading} />
+                            </div>
+                        ) : (
+                            <div className={css.addSolutionImg} onClick={handleRouter}>
+                                <Image src="/admin/platform_plus.svg" alt="icon" width={120} height={120} />
+                                <Text type="med18btn" color="dark">
+                                    Решений пока нет
+                                </Text>
+                                <Text type="reg18" color="telegray" className={css.text}>
+                                    Создайте новое решение
+                                </Text>
+                            </div>
+                        )}
                     </div>
                 )}
-                {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />}
+                {/* {combinedData.length > 0 && <InfiniteScroll onLoadMore={handleScroll} />} */}
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );
