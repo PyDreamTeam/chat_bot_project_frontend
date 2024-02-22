@@ -186,6 +186,24 @@ export const userAuth = createApi({
                 body: tariff,
             }),
         }),
+        getHistorySolutions: builder.query({
+            query: (token: { access: string; refresh: string }) => ({
+                url: "/api/history/solutions/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
+        getHistoryPlatforms: builder.query({
+            query: (token: { access: string; refresh: string }) => ({
+                url: "/api/history/platforms/",
+                method: "GET",
+                headers: {
+                    Authorization: `JWT ${token?.access}`,
+                },
+            }),
+        }),
     }),
 });
 
@@ -212,4 +230,6 @@ export const {
     useGetTariffsListQuery,
     useGetTariffQuery,
     usePutTariffMutation,
+    useGetHistoryPlatformsQuery,
+    useGetHistorySolutionsQuery,
 } = userAuth;

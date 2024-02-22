@@ -9,6 +9,7 @@ const nextConfig = {
     images: {
         domains: ["*"],
         unoptimized: true,
+        loader: "default",
     },
     async redirects() {
         return [

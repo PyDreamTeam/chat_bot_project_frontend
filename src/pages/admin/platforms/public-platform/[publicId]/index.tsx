@@ -217,6 +217,18 @@ const PublicPlatform = () => {
                     style={css.size640}
                     link={true}
                 />
+                <div className={css.groupBtn}>
+                    <button className={css.btnClose} onClick={handleClickClose}>
+                        <Text type="reg18" color="grey">
+                            Отмена
+                        </Text>
+                    </button>
+                    <button className={css.btnSave} onClick={() => changePlatform({ id, token, platform })}>
+                        <Text type="reg18" color="white">
+                            Опубликовать
+                        </Text>
+                    </button>
+                </div>
                 {isModalClose && (
                     <div className={css.modal}>
                         <div className={css.modalContent}>
@@ -293,18 +305,6 @@ const PublicPlatform = () => {
                         <Loader isLoading={isLoading} />
                     </div>
                 )}
-                <div className={css.groupBtn}>
-                    <button className={css.btnClose} onClick={handleClickClose}>
-                        <Text type="reg18" color="grey">
-                            Отмена
-                        </Text>
-                    </button>
-                    <button className={css.btnSave} onClick={() => changePlatform({ id, token, platform })}>
-                        <Text type="reg18" color="white">
-                            Опубликовать
-                        </Text>
-                    </button>
-                </div>
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );
