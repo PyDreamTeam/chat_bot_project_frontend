@@ -1,0 +1,15 @@
+.tabs {
+    margin-top: 48px;
+}
+.activePlatformContainer {
+    display: block;
+}
+.inActivePlatformContainer {
+    display: none;
+}
+.activeSolutionContainer {
+    display: block;
+}
+.inActiveSolutionContainer {
+    display: none;
+}

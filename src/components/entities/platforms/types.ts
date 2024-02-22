@@ -70,6 +70,8 @@ export interface PropsPlatformCard {
         image_tag?: string;
         is_active?: boolean;
         is_message?: boolean;
+        properties?: string;
+        image?: string;
     }[];
 }
 
