@@ -86,7 +86,7 @@ export const Platform: FC<PropsPlatform> = ({ title, link, tags = [], id, sort, 
             setTimeout(() => {
                 setIsSuccessDeletePlatformFromPublic(false);
                 if (refetch) refetch();
-            }, 3000);
+            }, 2000);
         }
     }, [isSuccessPlatformArchive]);
 
