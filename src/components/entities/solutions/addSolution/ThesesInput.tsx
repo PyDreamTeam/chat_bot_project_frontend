@@ -28,7 +28,7 @@ export const ThesesInput = () => {
     return (
         <div className={css.advantagesWrapper}>
             <Text type="reg18" color="black">
-                Основные тезисы
+                Основные тезисы (для страницы решения)
             </Text>
             {advantages?.map((dignity, index) => (
                 <div key={index} className={css.dignity}>

@@ -7,6 +7,7 @@ import { useGetHistoryPlatformsQuery, useGetHistorySolutionsQuery } from "@/src/
 import Cookies from "js-cookie";
 import FavoriteTabs from "@/src/components/entities/FavoriteTabs/FavoriteTabs";
 import HistoryPlatformsList from "@/src/components/entities/HistoryPlatformsList/HistoryPlatformsList";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const tabs = ["Платформы", "Решения"];
 
@@ -48,6 +49,7 @@ const SearchHistoryPage = () => {
                     {/* <FavoritesSolutionsComponent forceUpdate={() => setKey((k) => k + 1)} /> */}
                 </div>
             </div>
+            <ButtonScrollToUp />
         </AccountPageWrapper>
     );
 };
