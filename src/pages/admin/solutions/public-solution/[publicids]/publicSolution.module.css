@@ -85,6 +85,32 @@
     opacity: 0.8;
 }
 
+.errorBlock {
+    display: flex;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    padding-left: 8px;
+    padding-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.errorBlockHide {
+    display: none;
+    
+}
+
+.errorMessage {
+    width: 640px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    color: var(--status-color-error-color);
+    margin-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .listFilters {
     list-style: none;
 }

@@ -42,6 +42,7 @@ import { DropdownSelectPlatform } from "@/src/components/entities/solutions/addS
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ThesesInput } from "@/src/components/entities/solutions/addSolution/ThesesInput";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
+import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
 const ChangeSolution = () => {
     const router = useRouter();
@@ -260,7 +261,7 @@ const ChangeSolution = () => {
                 <TextAreaAddSolution
                     value={solution.short_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, short_description: e.target.value }))}
-                    label="Краткое описание решения"
+                    label="Краткое описание решения (для карточки)"
                     placeholder="Текст (200 символов)"
                     className={css.textAreaSolution}
                 />
@@ -351,6 +352,9 @@ const ChangeSolution = () => {
                         Сохранить
                     </Button>
                 </div>
+                <ErrorMessage isShown={isValid} className={css.errorMessage}>
+                    Внесите изменения. Все поля должны быть заполнены
+                </ErrorMessage>
                 {isModalClose && (
                     <div className={css.modal}>
                         <div className={css.modalContent}>

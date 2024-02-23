@@ -41,7 +41,7 @@ export const StepsInput: FC<PropsCardsSteps> = ({ results = [] }) => {
     };
 
     useEffect(() => {
-        stepsStore?.length < 12 ? setIsActive(true) : setIsActive(false);
+        stepsStore?.length < 15 ? setIsActive(true) : setIsActive(false);
     }, [stepsStore]);
 
     return (

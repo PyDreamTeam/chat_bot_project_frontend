@@ -43,6 +43,7 @@ import { CardsInput } from "@/src/components/entities/solutions/addSolution/Card
 import { StepsInput } from "@/src/components/entities/solutions/addSolution/StepsInput";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
+import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
 const PublicSolution = () => {
     const router = useRouter();
@@ -263,7 +264,7 @@ const PublicSolution = () => {
                 <TextAreaAddSolution
                     value={solution.short_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, short_description: e.target.value }))}
-                    label="Краткое описание решения"
+                    label="Краткое описание решения (для карточки)"
                     placeholder="Текст (200 символов)"
                     className={css.textAreaPlatform}
                 />
@@ -354,6 +355,9 @@ const PublicSolution = () => {
                         Опубликовать
                     </Button>
                 </div>
+                <ErrorMessage isShown={isValid} className={css.errorMessage}>
+                    Внесите изменения. Все поля должны быть заполнены
+                </ErrorMessage>
                 {isModalClose && (
                     <div className={css.modal}>
                         <div className={css.modalContent}>
