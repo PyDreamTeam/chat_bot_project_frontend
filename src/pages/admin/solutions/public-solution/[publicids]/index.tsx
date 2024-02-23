@@ -42,6 +42,7 @@ import { DignitiesInput } from "@/src/components/entities/solutions/addSolution/
 import { CardsInput } from "@/src/components/entities/solutions/addSolution/CardsInput";
 import { StepsInput } from "@/src/components/entities/solutions/addSolution/StepsInput";
 import { Button } from "@/src/components/shared/buttons/Button";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const PublicSolution = () => {
     const router = useRouter();
@@ -429,6 +430,7 @@ const PublicSolution = () => {
                         <Loader isLoading={isLoading} />
                     </div>
                 )}
+                <ButtonScrollToUp />
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );
