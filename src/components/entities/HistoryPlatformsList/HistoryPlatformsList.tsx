@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./HistoryPlatformsList.module.css";
 import Cookies from "js-cookie";
+import Image from "next/image";
+import Text from "@/src/components/shared/text/Text";
 import { Loader } from "@/src/components/shared/Loader/Loader";
 import { useGetHistoryPlatformsQuery } from "@/src/store/services/userAuth";
-import { FavoritePlatform } from "../FavoritePlatform/FavoritePlatform";
-import FavoriteStub from "../FavoriteStub/FavoriteStub";
 import { HistoryPlatform } from "../HistoryPlatform/HistoryPlatform";
 import uuid from "uuid-random";
 
@@ -40,7 +40,21 @@ const HistoryPlatformsList = () => {
                             />
                         ))
                     ) : (
-                        <FavoriteStub text={"Избранных платформ пока нет"} link={"/platforms"} />
+                        <div className={styles.containerEmptyHistory}>
+                            <Image
+                                src="/img/Show.svg"
+                                alt="edit"
+                                width={120}
+                                height={120}
+                                className={styles.imgClose}
+                            ></Image>
+                            <Text type="med18btn" color="black" className={styles.text}>
+                                История пуста
+                            </Text>
+                            <Text type="reg16" color="telegray" className={styles.text}>
+                                Со временем история будет пополняться
+                            </Text>
+                        </div>
                     )}
                 </div>
             )}

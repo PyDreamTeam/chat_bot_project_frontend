@@ -1,16 +1,16 @@
 import { FC, useState } from "react";
-import styles from "./HistoryPlatform.module.css";
-import { PropsPlatformCard } from "../platforms/types";
+import styles from "./HistorySolution.module.css";
 import Link from "next/link";
 import Text from "@/src/components/shared/text/Text";
 import Title from "@/src/components/shared/text/Title";
 import Image from "next/image";
-import { useAddPlatformToFavoriteMutation } from "@/src/store/services/platforms";
 import Cookies from "js-cookie";
+import { PropsSolutionCard } from "../solutions/types";
 
-export const HistoryPlatform: FC<PropsPlatformCard> = ({
+export const HistorySolution: FC<PropsSolutionCard> = ({
     id,
     title,
+    price,
     short_description,
     image,
     tags = [],
@@ -29,6 +29,9 @@ export const HistoryPlatform: FC<PropsPlatformCard> = ({
                         </Title>
                     </Link>
                 </div>
+                <div>
+                    <p className={styles.price}> {price} ₽</p>
+                </div>
                 <div className={styles.infoCard}>
                     <Text type="reg18" color="grey">
                         {short_description}
@@ -40,7 +43,7 @@ export const HistoryPlatform: FC<PropsPlatformCard> = ({
                         .map((item) => (
                             <li key={item.id} className={styles.tag}>
                                 <Text type="reg18" color="grey">
-                                    {item.properties}
+                                    {item.image_tag}
                                 </Text>
                             </li>
                         ))}
@@ -50,13 +53,13 @@ export const HistoryPlatform: FC<PropsPlatformCard> = ({
                         .filter((item) => item.is_message === true)
                         .map((item) => (
                             <li key={item.id}>
-                                <Image src={`/platforms/${item.image}.svg`} width={40} height={40} alt="message" />
+                                <Image src={`/platforms/${item.image_tag}.svg`} width={40} height={40} alt="message" />
                             </li>
                         ))}
                 </ul>
             </div>
             <div className={styles.logo}>
-                <img src={image ? `${image}` : ""} width={186} height={186} alt="logo" className={styles.img} />
+                <img src={image ? `${image}` : "any"} width={186} height={186} alt="logo" className={styles.img} />
             </div>
         </div>
     );

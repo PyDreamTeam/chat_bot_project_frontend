@@ -33,6 +33,7 @@ import { DropdownSelectPlatform } from "@/src/components/entities/solutions/addS
 import { ThesesInput } from "@/src/components/entities/solutions/addSolution/ThesesInput";
 import { Button } from "@/src/components/shared/buttons/Button";
 import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const AddSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
@@ -239,7 +240,7 @@ const AddSolution = () => {
                 <TextAreaAddSolution
                     value={solution.short_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, short_description: e.target.value }))}
-                    label="Краткое описание решения"
+                    label="Краткое описание решения (для карточки)"
                     placeholder="Текст (200 символов)"
                     className={styles.textAreaSolution}
                 />
@@ -399,6 +400,7 @@ const AddSolution = () => {
                 <ErrorMessage isShown={isValid} className={styles.errorMessage}>
                     Внесите изменения. Все поля должны быть заполнены
                 </ErrorMessage>
+                <ButtonScrollToUp />
             </ContainerAdminFunction>
         </WrapperAdminPage>
     );

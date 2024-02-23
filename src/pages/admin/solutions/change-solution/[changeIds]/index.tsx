@@ -41,6 +41,7 @@ import { StepsInput } from "@/src/components/entities/solutions/addSolution/Step
 import { DropdownSelectPlatform } from "@/src/components/entities/solutions/addSolution/DropdownSelectPlatform";
 import { Button } from "@/src/components/shared/buttons/Button";
 import { ThesesInput } from "@/src/components/entities/solutions/addSolution/ThesesInput";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const ChangeSolution = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
@@ -435,6 +436,7 @@ const ChangeSolution = () => {
                     </Button>
                 </div>
             </ContainerAdminFunction>
+            <ButtonScrollToUp />
         </WrapperAdminPage>
     );
 };

@@ -33,6 +33,7 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { UploadImage } from "@/src/components/entities/platforms/addPlatform/UploadImage";
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const ChangePlatform = () => {
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetPlatformsFiltersQuery({});
@@ -293,6 +294,7 @@ const ChangePlatform = () => {
                     </Button>
                 </div>
             </ContainerAdminFunction>
+            <ButtonScrollToUp />
         </WrapperAdminPage>
     );
 };
