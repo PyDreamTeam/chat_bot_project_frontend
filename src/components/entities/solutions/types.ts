@@ -172,6 +172,8 @@ export interface PropsSolutionCard {
         image_tag?: string;
         is_active?: boolean;
         is_message?: boolean;
+        properties?: string;
+        image?: string;
     }[];
     results?: {
         id?: number;

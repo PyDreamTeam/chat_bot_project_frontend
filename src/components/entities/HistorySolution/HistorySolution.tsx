@@ -29,9 +29,9 @@ export const HistorySolution: FC<PropsSolutionCard> = ({
                         </Title>
                     </Link>
                 </div>
-                <div>
-                    <p className={styles.price}> {price} ₽</p>
-                </div>
+                <Title type="h4" color="black" className={styles.price}>
+                    {price} ₽
+                </Title>
                 <div className={styles.infoCard}>
                     <Text type="reg18" color="grey">
                         {short_description}
@@ -43,7 +43,7 @@ export const HistorySolution: FC<PropsSolutionCard> = ({
                         .map((item) => (
                             <li key={item.id} className={styles.tag}>
                                 <Text type="reg18" color="grey">
-                                    {item.image_tag}
+                                    {item.properties}
                                 </Text>
                             </li>
                         ))}
@@ -53,7 +53,7 @@ export const HistorySolution: FC<PropsSolutionCard> = ({
                         .filter((item) => item.is_message === true)
                         .map((item) => (
                             <li key={item.id}>
-                                <Image src={`/platforms/${item.image_tag}.svg`} width={40} height={40} alt="message" />
+                                <Image src={`/platforms/${item.image}.svg`} width={40} height={40} alt="message" />
                             </li>
                         ))}
                 </ul>

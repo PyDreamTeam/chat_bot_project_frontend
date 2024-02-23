@@ -1,5 +1,9 @@
 import Header from "@/src/components/features/HomePage/Header/Header";
-import { useGetSolutionQuery, useGetSolutionsFiltersQuery } from "@/src/store/services/solutions";
+import {
+    useGetFavoriteSolutionQuery,
+    useGetSolutionQuery,
+    useGetSolutionsFiltersQuery,
+} from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import { skipToken } from "@reduxjs/toolkit/query";
 import styles from "@/src/pages/solutions/solution/[ids]/solution.module.css";
@@ -14,10 +18,14 @@ import BlockTasksBySteps from "@/src/components/features/SolutionDescriptionPage
 import { ButtonOrder } from "@/src/components/shared/buttons/ButtonOrder";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import { useGetPlatformQuery } from "@/src/store/services/platforms";
+import Cookies from "js-cookie";
 
 const Solution = () => {
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+
     const router = useRouter();
     const { ids } = router.query;
+    const { data: favData } = useGetFavoriteSolutionQuery({ token, id: ids });
     const { data, isSuccess } = useGetSolutionQuery(Number(ids));
     const platformId = Number(data?.links_to_platform ? data?.links_to_platform[0] : null);
     const { data: platform } = useGetPlatformQuery(isSuccess ? platformId : skipToken);
@@ -46,7 +54,7 @@ const Solution = () => {
                     image={data?.image}
                     advantages={data?.advantages}
                     links_to_platform={data?.links_to_platform}
-                    is_favorite={data?.is_favorite}
+                    is_favorite={favData?.is_favorite}
                     platform={platform?.image}
                 />
                 <BlockShortDescription
