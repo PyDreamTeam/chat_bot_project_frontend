@@ -276,9 +276,7 @@ const AddSolution = () => {
                 <Title type="h5" color="dark" className={styles.subHead}>
                     Задачи
                 </Title>
-                <CardsInput
-                // results={dataCards?.results}
-                />
+                <CardsInput />
 
                 <Title type="h5" color="dark" className={styles.subHead}>
                     Мероприятия
@@ -298,9 +296,7 @@ const AddSolution = () => {
                     placeholder="Текст (до 150 символов)"
                     className={styles.textAreaSolution}
                 />
-                <StepsInput
-                // results={dataSteps?.results}
-                />
+                <StepsInput />
 
                 <Title type="h5" color="dark" className={styles.subTitle}>
                     Описание фильтров
@@ -323,6 +319,19 @@ const AddSolution = () => {
                     style={styles.size640}
                     link={true}
                 />
+                <div className={styles.groupBtn}>
+                    <button className={styles.btnClose} onClick={handleClickClose}>
+                        <Text type="reg18" color="grey">
+                            Отмена
+                        </Text>
+                    </button>
+                    <Button disabled={!isValid} active={isValid} type={"button"} onClick={handleSubmit} width={212}>
+                        Создать
+                    </Button>
+                </div>
+                <ErrorMessage isShown={isValid} className={styles.errorMessage}>
+                    Внесите изменения. Все поля должны быть заполнены
+                </ErrorMessage>
                 {isModalClose && (
                     <div className={styles.modal}>
                         <div className={styles.modalContent}>
@@ -387,19 +396,6 @@ const AddSolution = () => {
                         <Loader isLoading={isLoading} />
                     </div>
                 )}
-                <div className={styles.groupBtn}>
-                    <button className={styles.btnClose} onClick={handleClickClose}>
-                        <Text type="reg18" color="grey">
-                            Отмена
-                        </Text>
-                    </button>
-                    <Button disabled={!isValid} active={isValid} type={"button"} onClick={handleSubmit} width={212}>
-                        Создать
-                    </Button>
-                </div>
-                <ErrorMessage isShown={isValid} className={styles.errorMessage}>
-                    Внесите изменения. Все поля должны быть заполнены
-                </ErrorMessage>
                 <ButtonScrollToUp />
             </ContainerAdminFunction>
         </WrapperAdminPage>
