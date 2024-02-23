@@ -148,21 +148,17 @@ const ChangeSolution = () => {
     }, [data]);
 
     useEffect(() => {
-        setSolution((prev) => ({ ...prev, links_to_platform: links, turnkey_platforms: links?.length }));
+        setSolution((prev) => ({ ...prev, links_to_platform: links }));
     }, [links]);
-
     useEffect(() => {
         setSolution((prev) => ({ ...prev, dignities: dignities }));
     }, [dignities]);
-
     useEffect(() => {
         setSolution((prev) => ({ ...prev, advantages: advantages }));
     }, [advantages]);
-
     useEffect(() => {
         setSolution((prev) => ({ ...prev, link: link }));
     }, [link]);
-
     useEffect(() => {
         setSolution((prev) => ({ ...prev, filter: filters?.map((item) => item.id) }));
     }, [filters]);

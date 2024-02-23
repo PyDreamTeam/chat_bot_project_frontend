@@ -8,7 +8,6 @@ import Title from "@/src/components/shared/text/Title";
 import { InputAddSolution } from "@/src/components/entities/solutions/addSolution/InputAddSolution";
 import { TextAreaAddSolution } from "@/src/components/entities/solutions/addSolution/TextAreaAddPSolution";
 import { useEffect, useState } from "react";
-import { MultipleInput } from "@/src/components/entities/solutions/addSolution/MultipleInput";
 import {
     useChangeSolutionMutation,
     useGetSolutionQuery,
@@ -26,46 +25,108 @@ import {
     getLinkToSolution,
     getLinkToPlatform,
     linkToSolution,
+    getDignities,
+    getAdvantages,
+    getStepsFromBack,
+    getCardsFromBack,
 } from "@/src/store/reducers/addSolution/slice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { UploadImage } from "@/src/components/entities/solutions/addSolution/UploadImage";
-
 import { Loader } from "@/src/components/shared/Loader/Loader";
+import { useGetListPlatformsQuery } from "@/src/store/services/platforms";
+import { ThesesInput } from "@/src/components/entities/solutions/addSolution/ThesesInput";
+import { DropdownSelectPlatform } from "@/src/components/entities/solutions/addSolution/DropdownSelectPlatform";
+import { DignitiesInput } from "@/src/components/entities/solutions/addSolution/DignitiesInput";
+import { CardsInput } from "@/src/components/entities/solutions/addSolution/CardsInput";
+import { StepsInput } from "@/src/components/entities/solutions/addSolution/StepsInput";
+import { Button } from "@/src/components/shared/buttons/Button";
 
-const SolutionsAdmin = () => {
+const PublicSolution = () => {
+    const router = useRouter();
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const { publicIds } = router.query;
+    const dispatch = useAppDispatch();
+
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
+    const { data: PlatformsData } = useGetListPlatformsQuery({});
+
     const [changeSolution, { isSuccess: isSuccessChange, isLoading }] = useChangeSolutionMutation();
     const [solutionPublic, { isSuccess: isSuccessPublic }] = useSolutionPublicMutation();
-    const dispatch = useAppDispatch();
+
     const filters = useAppSelector((state) => state.reducerAddSolution.filters);
+    const cardsArray = useAppSelector((state) => state.reducerAddSolution.cards);
+    const stepsArray = useAppSelector((state) => state.reducerAddSolution.steps);
     const link = useAppSelector((state) => state.reducerAddSolution.linkToSolution);
     const links = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
-    const router = useRouter();
-    const { publicids } = router.query;
-    const { data } = useGetSolutionQuery(Number(publicids));
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
+    const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
+    const advantages = useAppSelector((state) => state.reducerAddSolution.advantages);
+
+    const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
+
     const [id, setId] = useState<number | undefined>(undefined);
 
     const [solution, setSolution] = useState<PropsSolutionCard>({
         title: "",
+        advantages: [],
         short_description: "",
         full_description: "",
-        turnkey_platforms: 0,
         price: "",
         image: "",
         link: "",
-        links_to_platform: [],
-        filter: [],
         steps_title: "",
         steps_description: "",
+        steps: [],
+        filter: [],
+        cards: [],
+        dignities: [],
+        links_to_platform: [],
     });
+
+    const platform = PlatformsData?.results?.find((item: any) => {
+        if (data?.links_to_platform) {
+            return item.id == data?.links_to_platform[0];
+        }
+    });
+
+    const [selectedPlatform, setSelectedPlatform] = useState(platform?.title);
+
+    const [isValid, setIsValid] = useState<boolean>(false);
+
+    const isValidSolution = () => {
+        const isUndefined = Object.values(solution).find((value) => value === "" || value === null);
+
+        if (
+            typeof isUndefined == "undefined" &&
+            solution.steps?.length !== 0 &&
+            solution.cards?.length !== 0 &&
+            solution.dignities?.length !== 0 &&
+            solution.links_to_platform?.length !== 0 &&
+            solution.filter?.length !== 0 &&
+            solution.advantages?.length !== 0
+        ) {
+            setIsValid(true);
+            console.log("solution is VALID");
+            // if (!isShownErrorShort && !isShownErrorExist) {
+            //     setIsValid(true);
+            // } else {
+            //     setIsValid(false);
+            // }
+        } else {
+            setIsValid(false);
+            console.log("solution is NOT VALID");
+        }
+    };
 
     useEffect(() => {
         dispatch(getFilterFromBack(data?.tags));
         dispatch(getLinkToSolution(data?.link));
         dispatch(getLinkToPlatform(data?.links_to_platform));
+        dispatch(getDignities(data?.dignities));
+        dispatch(getAdvantages(data?.advantages));
+        dispatch(getCardsFromBack(data?.cards));
+        dispatch(getStepsFromBack(data?.steps));
     }, [data]);
 
     useEffect(() => {
@@ -82,20 +143,31 @@ const SolutionsAdmin = () => {
             image: data?.image,
             steps_title: data?.steps_title,
             steps_description: data?.steps_description,
+            steps: data?.steps,
         }));
     }, [data]);
 
     useEffect(() => {
-        setSolution((prev) => ({ ...prev, links_to_platform: links, turnkey_platformss: links?.length }));
+        setSolution((prev) => ({ ...prev, links_to_platform: links }));
     }, [links]);
-
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, dignities: dignities }));
+    }, [dignities]);
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, advantages: advantages }));
+    }, [advantages]);
     useEffect(() => {
         setSolution((prev) => ({ ...prev, link: link }));
     }, [link]);
-
     useEffect(() => {
         setSolution((prev) => ({ ...prev, filter: filters?.map((item) => item.id) }));
     }, [filters]);
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, cards: cardsArray }));
+    }, [cardsArray]);
+    useEffect(() => {
+        setSolution((prev) => ({ ...prev, steps: stepsArray }));
+    }, [stepsArray]);
 
     const [isModalClose, setIsModalClose] = useState<boolean>(false);
     const [isPublicModal, setIsPublicModal] = useState<boolean>(false);
@@ -136,7 +208,21 @@ const SolutionsAdmin = () => {
             reader.readAsDataURL(file);
         }
     };
-    console.log(data);
+
+    const handleSelectedPlatformId = (groupId: number) => {
+        const newLinkToPlatform = [groupId.toString()];
+        setSolution((prev) => ({ ...prev, links_to_platform: newLinkToPlatform }));
+        dispatch(getLinkToPlatform(newLinkToPlatform));
+    };
+
+    const handleSubmit = () => {
+        changeSolution({ id, token, solution });
+    };
+
+    useEffect(() => {
+        console.log(solution);
+        isValidSolution();
+    }, [solution]);
 
     return (
         <WrapperAdminPage>
@@ -151,10 +237,10 @@ const SolutionsAdmin = () => {
                         <span className={css.link}>/Решения</span>
                         <span className={css.link}>/Работа с решениями</span>
                     </Link>
-                    <span className={css.link}>/Создание решения</span>
+                    <span className={css.link}>/Публикация решения</span>
                 </div>
                 <Title type="h5" color="dark" className={css.title}>
-                    Создание решения
+                    Публикация решения
                 </Title>
                 <InputAddSolution
                     label="Название решения"
@@ -171,6 +257,7 @@ const SolutionsAdmin = () => {
                     width={250}
                     image={solution.image}
                     isImage={Boolean(solution.image)}
+                    type="logo"
                 />
                 <TextAreaAddSolution
                     value={solution.short_description}
@@ -179,13 +266,43 @@ const SolutionsAdmin = () => {
                     placeholder="Текст (200 символов)"
                     className={css.textAreaPlatform}
                 />
+                <ThesesInput />
+                <DropdownSelectPlatform
+                    data={PlatformsData?.results}
+                    selected={selectedPlatform || platform?.title}
+                    setSelected={setSelectedPlatform}
+                    setSelectedId={handleSelectedPlatformId}
+                />
+                <InputAddSolution
+                    value={solution.price}
+                    onChange={(e) => setSolution((prev) => ({ ...prev, price: Number(e.target.value) }))}
+                    label="Стоимость решения"
+                    placeholder="0 RUB"
+                    className={css.countSolutions}
+                    style={css.size203}
+                    onKeyPress={handleKeyPress}
+                />
+                <DignitiesInput />
+
+                <Title type="h5" color="dark" className={css.subTitle}>
+                    Полное описание
+                </Title>
                 <TextAreaAddSolution
                     value={solution.full_description}
                     onChange={(e) => setSolution((prev) => ({ ...prev, full_description: e.target.value }))}
-                    label="Полное описание решения"
-                    placeholder="Текст до 800 символов"
-                    className={css.textAreaPlatform}
+                    label="Описание типа решения"
+                    placeholder="Текст до 200 символов"
+                    className={css.textAreaSolution}
                 />
+
+                <Title type="h5" color="dark" className={css.subTitle}>
+                    Задачи
+                </Title>
+                <CardsInput />
+
+                <Title type="h5" color="dark" className={css.subHead}>
+                    Мероприятия
+                </Title>
                 <InputAddSolution
                     label="Заголовок мероприятий"
                     value={solution.steps_title}
@@ -201,6 +318,8 @@ const SolutionsAdmin = () => {
                     placeholder="Текст (200 символов)"
                     className={css.textAreaSolution}
                 />
+                <StepsInput />
+
                 <Title type="h5" color="dark" className={css.subTitle}>
                     Описание фильтров
                 </Title>
@@ -212,32 +331,11 @@ const SolutionsAdmin = () => {
                     ))}
                 </ul>
 
-                <Title type="h5" color="dark" className={css.subTitle}>
-                    Ссылки на пдатформы
-                </Title>
-                <MultipleInput />
                 <InputAddSolution
-                    label="Количество реализованных платформ"
-                    value={solution.turnkey_platforms}
-                    placeholder="0"
-                    className={css.countSolutions}
-                    style={css.size203}
-                    disabled={true}
-                    countPlatforms={true}
-                />
-                <InputAddSolution
-                    value={solution.price}
-                    onChange={(e) => setSolution((prev) => ({ ...prev, price: Number(e.target.value) }))}
-                    label="Стоимость решения"
-                    placeholder="0 RUB"
-                    className={css.countSolutions}
-                    style={css.size203}
-                    onKeyPress={handleKeyPress}
-                />
-                <InputAddSolution
-                    label="Ссылка на страницу решения"
+                    label="Ссылка на страницу с описанием платформы, на которой было создано решение"
                     value={link}
                     onChange={(e) => {
+                        // const httpString = "https://";
                         dispatch(linkToSolution(e.target.value));
                     }}
                     placeholder="www.example.com"
@@ -251,11 +349,9 @@ const SolutionsAdmin = () => {
                             Отмена
                         </Text>
                     </button>
-                    <button className={css.btnSave} onClick={() => changeSolution({ id, token, solution })}>
-                        <Text type="reg18" color="white">
-                            Сохранить
-                        </Text>
-                    </button>
+                    <Button disabled={!isValid} active={isValid} type={"button"} onClick={handleSubmit} width={212}>
+                        Опубликовать
+                    </Button>
                 </div>
                 {isModalClose && (
                     <div className={css.modal}>
@@ -338,4 +434,4 @@ const SolutionsAdmin = () => {
     );
 };
 
-export default SolutionsAdmin;
+export default PublicSolution;
