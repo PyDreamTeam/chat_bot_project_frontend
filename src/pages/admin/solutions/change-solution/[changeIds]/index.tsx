@@ -412,8 +412,8 @@ const ChangeSolution = () => {
                         <Loader isLoading={isLoading} />
                     </div>
                 )}
+                <ButtonScrollToUp />
             </ContainerAdminFunction>
-            <ButtonScrollToUp />
         </WrapperAdminPage>
     );
 };
