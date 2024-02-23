@@ -44,11 +44,18 @@ import { ThesesInput } from "@/src/components/entities/solutions/addSolution/The
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 
 const ChangeSolution = () => {
-    const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
-
-    const { data: PlatformsData } = useGetListPlatformsQuery({});
-    const [changeSolution, { isSuccess: isSuccessChange, isLoading }] = useChangeSolutionMutation();
+    const router = useRouter();
+    const { changeIds } = router.query;
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const dispatch = useAppDispatch();
+
+    const { data } = useGetSolutionQuery(Number(changeIds), { refetchOnMountOrArgChange: true });
+
+    const { data: dataFilters } = useGetSolutionsFiltersQuery({});
+    const { data: PlatformsData } = useGetListPlatformsQuery({});
+
+    const [changeSolution, { isSuccess: isSuccessChange, isLoading }] = useChangeSolutionMutation();
+
     const filters = useAppSelector((state) => state.reducerAddSolution.filters);
     const cardsArray = useAppSelector((state) => state.reducerAddSolution.cards);
     const stepsArray = useAppSelector((state) => state.reducerAddSolution.steps);
@@ -56,11 +63,7 @@ const ChangeSolution = () => {
     const links = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
     const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
     const advantages = useAppSelector((state) => state.reducerAddSolution.advantages);
-    const router = useRouter();
-    const { changeIds } = router.query;
-    const { data } = useGetSolutionQuery(Number(changeIds));
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
-    const [id, setId] = useState<number | undefined>(undefined);
+    const [id, setId] = useState<number | undefined>(Number(changeIds));
 
     const [solution, setSolution] = useState<PropsSolutionCard>({
         title: "",
@@ -272,24 +275,6 @@ const ChangeSolution = () => {
                     setSelected={setSelectedPlatform}
                     setSelectedId={handleSelectedPlatformId}
                 />
-                {/* <InputAddSolution
-                    label="Название платформы на которой реализовано решение"
-                    results={PlatformsData?.results}
-                    value={solution.title}
-                    is={true}
-                    onChange={(e) => setSolution((prev) => ({ ...prev, title: e.target.value }))}
-                    placeholder="Выбрать"
-                    className={css.titleSolution}
-                    style={css.size640}
-                /> */}
-                {/* <UploadImage
-                    text={"Логотип платформы"}
-                    height={250}
-                    width={250}
-                    // onChange={handleFileChange}
-                    image={platform.image}
-                    isImage={Boolean(solution.image)}
-                /> */}
                 <InputAddSolution
                     value={solution.price}
                     onChange={(e) => setSolution((prev) => ({ ...prev, price: Number(e.target.value) }))}
@@ -315,9 +300,7 @@ const ChangeSolution = () => {
                 <Title type="h5" color="dark" className={css.subTitle}>
                     Задачи
                 </Title>
-                <CardsInput
-                // results={dataCards?.results}
-                />
+                <CardsInput />
 
                 <Title type="h5" color="dark" className={css.subHead}>
                     Мероприятия
@@ -337,9 +320,7 @@ const ChangeSolution = () => {
                     placeholder="Текст (до 150 символов)"
                     className={css.textAreaSolution}
                 />
-                <StepsInput
-                // results={dataSteps?.results}
-                />
+                <StepsInput />
 
                 <Title type="h5" color="dark" className={css.subTitle}>
                     Описание фильтров
@@ -364,6 +345,16 @@ const ChangeSolution = () => {
                     style={css.size640}
                     link={true}
                 />
+                <div className={css.groupBtn}>
+                    <button className={css.btnClose} onClick={handleClickClose}>
+                        <Text type="reg18" color="grey">
+                            Отмена
+                        </Text>
+                    </button>
+                    <Button disabled={!isValid} active={isValid} type={"button"} onClick={handleSubmit} width={212}>
+                        Сохранить
+                    </Button>
+                </div>
                 {isModalClose && (
                     <div className={css.modal}>
                         <div className={css.modalContent}>
@@ -425,16 +416,6 @@ const ChangeSolution = () => {
                         <Loader isLoading={isLoading} />
                     </div>
                 )}
-                <div className={css.groupBtn}>
-                    <button className={css.btnClose} onClick={handleClickClose}>
-                        <Text type="reg18" color="grey">
-                            Отмена
-                        </Text>
-                    </button>
-                    <Button disabled={!isValid} active={isValid} type={"button"} onClick={handleSubmit} width={212}>
-                        Сохранить
-                    </Button>
-                </div>
             </ContainerAdminFunction>
             <ButtonScrollToUp />
         </WrapperAdminPage>

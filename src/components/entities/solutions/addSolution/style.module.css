@@ -42,7 +42,9 @@
     margin-top: 8px;
     margin-bottom: 8px;
 }
-.btnclose {
+.btnClose {
+    display: flex;
+    align-items: center;
 }
 .input1 {
     width: 92px;
@@ -243,7 +245,7 @@
     box-shadow: 1px 8px 33px -4px rgba(34, 60, 80, 0.2);
 }
 
-/* Стили для dignities */
+/* Стили для dignities, advantages, cards */
 
 .dignitiesWrapper,
 .advantagesWrapper {
@@ -251,9 +253,12 @@
     width: 640px;
 }
 
-/* .dignity {
-    margin-top: 8px;
-} */
+.advantagesWrapper button,
+.dignitiesWrapper button,
+.cardsWrapper button {
+    margin-top: 16px;
+}
+
 .dignityTitle {
     display: flex;
     flex-direction: row-reverse;

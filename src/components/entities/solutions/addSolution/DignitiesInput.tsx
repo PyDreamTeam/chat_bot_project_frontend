@@ -5,11 +5,15 @@ import css from "./style.module.css";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/types";
 import { getDignities } from "@/src/store/reducers/addSolution/slice";
+import { ButtonSmallSecondary } from "@/src/components/shared/buttons/ButtonSmallSecondary";
+import { plusSvgPrimary } from "@/src/components/entities/platformsFilters/img/SvgConfig";
 
 export const DignitiesInput = () => {
     const dispatch = useAppDispatch();
     const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
     const [inputs, setInputs] = useState<string[]>([]);
+
+    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         dispatch(getDignities(inputs));
@@ -20,10 +24,14 @@ export const DignitiesInput = () => {
     };
 
     const removeInput = (index: number) => {
-        const newInputs = [...inputs];
+        const newInputs = [...dignities];
         newInputs.splice(index, 1);
         setInputs(newInputs);
     };
+
+    useEffect(() => {
+        dignities?.length < 5 ? setIsActive(true) : setIsActive(false);
+    }, [dignities]);
 
     return (
         <div className={css.dignitiesWrapper}>
@@ -47,18 +55,17 @@ export const DignitiesInput = () => {
                         placeholder="Текст"
                         link={false}
                         onChange={(e) => {
-                            const newInputs = [...inputs];
+                            const newInputs = [...dignities];
                             newInputs[index] = e.target.value;
                             setInputs(newInputs);
                         }}
                     />
                 </div>
             ))}
-            <button className={css.addLinkPlatformBtn} onClick={addInput}>
-                <Text type="reg14" color="blue">
-                    + Добавить
-                </Text>
-            </button>
+            <ButtonSmallSecondary active={isActive} disabled={!isActive} type={"button"} onClick={addInput}>
+                {plusSvgPrimary}
+                Добавить достоинство
+            </ButtonSmallSecondary>
         </div>
     );
 };
