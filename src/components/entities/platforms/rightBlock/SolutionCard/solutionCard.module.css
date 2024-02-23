@@ -5,6 +5,7 @@
     /* max-width: 864px; */
     width: 720px;
     margin: 40px auto 0;
+    cursor: pointer;
 }
 
 .onePlatform {
@@ -14,6 +15,7 @@
     /* max-width: 1264px; */
     width: 720px;
     margin: 40px auto 0;
+    cursor: pointer;
 }
 
 .title {
@@ -44,7 +46,7 @@
 .platformOne:hover {
     cursor: pointer;
     color: #4466f5;
-    border-bottom: 1px solid #4466f5;
+    /* border-bottom: 1px solid #4466f5; */
 }
 
 .heart {
