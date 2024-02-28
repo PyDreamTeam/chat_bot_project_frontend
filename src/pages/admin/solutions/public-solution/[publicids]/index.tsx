@@ -53,9 +53,9 @@ const PublicSolution = () => {
     const dispatch = useAppDispatch();
 
     // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
-    const { data } = useGetSolutionQuery(router.isReady ? Number(publicIds) : skipToken);
-
-    // isSuccess ? platformId : skipToken;
+    const { data } = useGetSolutionQuery(router.isReady ? Number(publicIds) : skipToken, {
+        refetchOnMountOrArgChange: true,
+    });
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
     const { data: PlatformsData } = useGetListPlatformsQuery({});
