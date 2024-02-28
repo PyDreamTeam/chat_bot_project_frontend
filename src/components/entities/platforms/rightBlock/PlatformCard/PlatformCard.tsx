@@ -68,7 +68,7 @@ export const PlatformCard: FC<PropsPlatformCard> = ({
 
     return (
         <div className={type === "filter" ? `${css.platforms}` : `${css.onePlatform}`}>
-            <div>
+            <div className={css.leftBlock}>
                 <div className={css.title}>
                     {/* {type === "filter" && <h4 className={css.platform}>{title}</h4>}
                     {type === "platform" && (

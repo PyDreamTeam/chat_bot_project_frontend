@@ -133,7 +133,10 @@ const PlatformsFilters = () => {
                                     <FilterSkeleton count={11} type="listFilter" />
                                 </div>
                             ) : (
-                                <GroupFilters results={dataFilters?.results} onClick={() => refetch} />
+                                <GroupFilters
+                                    results={dataFilters?.results.filter((item: any) => item.status === "public")}
+                                    onClick={() => refetch}
+                                />
                             )}
                         </div>
 

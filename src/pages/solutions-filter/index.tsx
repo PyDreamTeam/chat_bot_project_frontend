@@ -142,7 +142,7 @@ const SolutionsFilters = () => {
                                 </div>
                             ) : (
                                 <GroupFilters
-                                    results={dataFilters?.results}
+                                    results={dataFilters?.results.filter((item: any) => item.status === "public")}
                                     onClick={() => refetchFilteredSolutions()}
                                 />
                             )}
@@ -184,7 +184,7 @@ const SolutionsFilters = () => {
                                 <ul className={css.listSolutions}>
                                     {filteredFavSolutions
                                         ? filteredFavSolutions?.results
-                                              //   .filter((item: any) => item.status === "save")
+                                              .filter((item: any) => item.status === "public")
                                               ?.map((item: PropsPlatformCard) => (
                                                   <li
                                                       key={item.id}
@@ -208,7 +208,7 @@ const SolutionsFilters = () => {
                                                   </li>
                                               ))
                                         : filteredSolutions?.results
-                                              .filter((item: any) => item.status === "save")
+                                              .filter((item: any) => item.status === "public")
                                               ?.map((item: PropsPlatformCard) => (
                                                   <li
                                                       key={item.id}

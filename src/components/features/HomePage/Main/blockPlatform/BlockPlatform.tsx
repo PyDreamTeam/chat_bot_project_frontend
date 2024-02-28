@@ -53,9 +53,11 @@ const BlockPlatform = () => {
             ) : (
                 <Slider cardType="644" type="homeSlider">
                     {combinedData ? (
-                        <ListCardsPlatforms results={combinedData.results} />
+                        <ListCardsPlatforms
+                            results={combinedData.results.filter((item: any) => item.status === "public")}
+                        />
                     ) : (
-                        <ListCardsPlatforms results={data?.results} />
+                        <ListCardsPlatforms results={data?.results.filter((item: any) => item.status === "public")} />
                     )}
                 </Slider>
             )}
