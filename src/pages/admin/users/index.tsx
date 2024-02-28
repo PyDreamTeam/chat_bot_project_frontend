@@ -54,16 +54,24 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
             <ContainerAdminFunction>
                 <div className={css.links}>
                     <Link href={"/admin"}>
-                        <Text type="reg16" color="telegray">Главная</Text>
+                        <Text type="reg16" color="telegray">
+                            Главная
+                        </Text>
                     </Link>
-                    <Text type="reg16" color="telegray">/Администрация и модерация</Text>
-                    <Text type="reg16" color="telegray">/Управление пользователями</Text>
+                    <Text type="reg16" color="telegray">
+                        /Администрация и модерация
+                    </Text>
+                    <Text type="reg16" color="telegray">
+                        /Управление пользователями
+                    </Text>
                 </div>
 
                 <div className={css.work}>
-                    <Text type="med20" color="dark">Управление пользователями</Text>
+                    <Text type="med20" color="dark">
+                        Управление пользователями
+                    </Text>
                 </div>
-                <div className={css.groupSearch}>
+                {/* <div className={css.groupSearch}>
                     <Image
                         src="/img/Icon_найти_платформу.svg"
                         alt="search"
@@ -84,7 +92,7 @@ const UsersAdmin: FC<PropsWithChildren> = ({ children }) => {
                             }
                         }}
                     />
-                </div>
+                </div> */}
                 <SettingsTabs config={TABS_CONFIG} activeTabItem={activeTabItem} page="adminPage" />
                 {children}
             </ContainerAdminFunction>

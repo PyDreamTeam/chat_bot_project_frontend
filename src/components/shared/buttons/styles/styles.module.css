@@ -29,6 +29,10 @@
     border-radius: 16px;
     padding: 10px 24px;
     align-self: start;
+    transition: 0.2s;
+}
+.buttonAuth:hover {
+    opacity: 0.8;
 }
 .signIn {
     color: #4466f5;

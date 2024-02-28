@@ -22,12 +22,26 @@
     flex-direction: column;
     gap: 16px;
 }
+.mid p {
+    overflow: hidden;
+    display: -webkit-box; /* Включаем флекс-боксы */
+    -webkit-line-clamp: 3; /* количество строк */
+    -webkit-box-orient: vertical;
+}
 
 .title {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 24px;
+}
+
+.platformTitle h5 {
+    overflow: hidden;
+    display: -webkit-box; /* Включаем флекс-боксы */
+    -webkit-line-clamp: 2; /* количество строк */
+    -webkit-box-orient: vertical;
+
 }
 
 .likeButton {
@@ -51,6 +65,8 @@
     gap: 13px 16px;
     flex-wrap: wrap;
     align-items: center;
+    max-height: 84px;
+    overflow: hidden;
 }
 
 .tag {
