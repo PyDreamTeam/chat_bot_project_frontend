@@ -8,6 +8,7 @@ import Title from "@/src/components/shared/text/Title";
 import { InputAddSolution } from "@/src/components/entities/solutions/addSolution/InputAddSolution";
 import { TextAreaAddSolution } from "@/src/components/entities/solutions/addSolution/TextAreaAddPSolution";
 import { useEffect, useState } from "react";
+import { skipToken } from "@reduxjs/toolkit/query";
 import {
     useChangeSolutionMutation,
     useGetSolutionQuery,
@@ -51,6 +52,11 @@ const PublicSolution = () => {
     const { publicIds } = router.query;
     const dispatch = useAppDispatch();
 
+    // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
+    const { data } = useGetSolutionQuery(router.isReady ? Number(publicIds) : skipToken);
+
+    // isSuccess ? platformId : skipToken;
+
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
     const { data: PlatformsData } = useGetListPlatformsQuery({});
 
@@ -64,8 +70,6 @@ const PublicSolution = () => {
     const links = useAppSelector((state) => state.reducerAddSolution.links_to_platform);
     const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
     const advantages = useAppSelector((state) => state.reducerAddSolution.advantages);
-
-    const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
 
     const [id, setId] = useState<number | undefined>(undefined);
 
