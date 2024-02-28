@@ -76,9 +76,11 @@ const CardSolution: FC<PropsSolutionCard> = ({
                         />
                     </div>
                     <div className={styles.title}>
-                        <Title type="h5" color="dark">
-                            {title}
-                        </Title>
+                        <div className={styles.solutionTitle}>
+                            <Title type="h5" color="dark">
+                                {title}
+                            </Title>
+                        </div>
                         <ToolTip text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
                             <Image
                                 src={`/platforms/${imageHeart}.svg`}

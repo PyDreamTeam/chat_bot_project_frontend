@@ -73,9 +73,11 @@ const CardPlatform: FC<PropsPlatformCard> = ({
                         />
                     </div>
                     <div className={styles.title}>
-                        <Title type="h4" color="dark">
-                            {title}
-                        </Title>
+                        <div className={styles.platformTitle}>
+                            <Title type="h5" color="dark">
+                                {title}
+                            </Title>
+                        </div>
                         <div>
                             <ToolTip text={"Зарегистрируйтесь,чтобы добавить в избранное"}>
                                 <Image
