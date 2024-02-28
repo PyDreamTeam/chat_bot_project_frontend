@@ -46,20 +46,13 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
-interface pageProps {
-    params: { publicIds: string };
-}
-
-const PublicSolution: FC<pageProps> = () => {
+const PublicSolution = () => {
     const router = useRouter();
-    // const { publicIds } = router.query;
-    const publicIds: string = router.query.publicIds as string;
-    // const routerId = Number(publicIds);
+    const { publicIds } = router.query;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const dispatch = useAppDispatch();
 
-    // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
-    const { data, refetch } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
+    const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
 
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
     const { data: PlatformsData } = useGetListPlatformsQuery({});
@@ -152,6 +145,15 @@ const PublicSolution: FC<pageProps> = () => {
             console.log("solution is NOT VALID");
         }
     };
+
+    // useEffect(() => {
+    //     if (!publicIds) {
+    //         console.log("gl");
+    //     } else {
+    //         console.log("refetch");
+    //         refetch();
+    //     }
+    // }, [publicIds]);
 
     useEffect(() => {
         dispatch(getFilterFromBack(data?.tags));
@@ -254,7 +256,7 @@ const PublicSolution: FC<pageProps> = () => {
     };
 
     useEffect(() => {
-        // console.log(solution);
+        console.log(solution);
         isValidSolution();
     }, [solution]);
 
