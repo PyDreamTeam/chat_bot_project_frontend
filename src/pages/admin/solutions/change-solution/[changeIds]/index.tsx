@@ -95,6 +95,28 @@ const ChangeSolution = () => {
     // const [isShownErrorShort, setIsShownErrorShort] = useState(false);
     // const [isShownErrorExist, setIsShownErrorExist] = useState(false);
 
+    const isValidCards = (cards: PropsSolutionCard["cards"]): boolean => {
+        let isValid = true;
+        cards?.forEach((card) => {
+            if (card.title === "" || card.text === "" || card.img === "") {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    };
+
+    const isValidSteps = (steps: PropsSolutionCard["steps"]): boolean => {
+        let isValid = true;
+        steps?.forEach((step) => {
+            if (step.title === "" || step.text === "") {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    };
+
     const isValidSolution = () => {
         const isUndefined = Object.values(solution).find((value) => value === "" || value === null);
 
@@ -105,7 +127,9 @@ const ChangeSolution = () => {
             solution.dignities?.length !== 0 &&
             solution.links_to_platform?.length !== 0 &&
             solution.filter?.length !== 0 &&
-            solution.advantages?.length !== 0
+            solution.advantages?.length !== 0 &&
+            isValidCards(solution.cards) !== false &&
+            isValidSteps(solution.steps) !== false
         ) {
             setIsValid(true);
             console.log("solution is VALID");
