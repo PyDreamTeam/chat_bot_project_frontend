@@ -48,14 +48,16 @@ import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMe
 
 const PublicSolution = () => {
     const router = useRouter();
-    const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const { publicIds } = router.query;
+    const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const dispatch = useAppDispatch();
 
     // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
-    const { data } = useGetSolutionQuery(router.isReady ? Number(publicIds) : skipToken, {
+    const { data } = useGetSolutionQuery(publicIds ? Number(publicIds) : skipToken, {
         refetchOnMountOrArgChange: true,
     });
+
+    console.log(data);
 
     const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
     const { data: PlatformsData } = useGetListPlatformsQuery({});
@@ -71,7 +73,7 @@ const PublicSolution = () => {
     const dignities = useAppSelector((state) => state.reducerAddSolution.dignities);
     const advantages = useAppSelector((state) => state.reducerAddSolution.advantages);
 
-    const [id, setId] = useState<number | undefined>(undefined);
+    const [id, setId] = useState<number | undefined>(Number(publicIds));
 
     const [solution, setSolution] = useState<PropsSolutionCard>({
         title: "",
@@ -250,7 +252,7 @@ const PublicSolution = () => {
     };
 
     useEffect(() => {
-        console.log(solution);
+        // console.log(solution);
         isValidSolution();
     }, [solution]);
 
