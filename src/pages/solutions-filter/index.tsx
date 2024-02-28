@@ -68,6 +68,7 @@ const SolutionsFilters = () => {
         price_max: maxPrice,
         title: search,
         sort_abc: sortAbc,
+        items_per_page: 20,
     });
 
     const {
@@ -84,6 +85,7 @@ const SolutionsFilters = () => {
                 price_max: maxPrice,
                 title: search,
                 sort_abc: sortAbc,
+                items_per_page: 20,
             },
         },
         { refetchOnMountOrArgChange: true }

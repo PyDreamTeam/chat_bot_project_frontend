@@ -56,7 +56,7 @@
     cursor: pointer;
 }
 
-.wrapper .img {
+.img img{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,4 +64,5 @@
     height: 239px;
     border-radius: 20px;
     box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
 }

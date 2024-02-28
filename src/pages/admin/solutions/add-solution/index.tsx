@@ -279,7 +279,7 @@ const AddSolution = () => {
                 />
                 <DignitiesInput />
 
-                <Title type="h5" color="dark" className={styles.subTitle}>
+                <Title type="h5" color="dark" className={styles.subHead}>
                     Полное описание
                 </Title>
                 <TextAreaAddSolution

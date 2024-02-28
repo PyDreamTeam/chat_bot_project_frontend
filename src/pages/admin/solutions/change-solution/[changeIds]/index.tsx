@@ -307,7 +307,7 @@ const ChangeSolution = () => {
                 />
                 <DignitiesInput />
 
-                <Title type="h5" color="dark" className={css.subTitle}>
+                <Title type="h5" color="dark" className={css.subHead}>
                     Полное описание
                 </Title>
                 <TextAreaAddSolution
@@ -318,7 +318,7 @@ const ChangeSolution = () => {
                     className={css.textAreaSolution}
                 />
 
-                <Title type="h5" color="dark" className={css.subTitle}>
+                <Title type="h5" color="dark" className={css.subHead}>
                     Задачи
                 </Title>
                 <CardsInput />

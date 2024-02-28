@@ -188,6 +188,7 @@
     border-radius: 20px;
     box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.05);
     cursor: pointer;
+    object-fit: contain;
 }
 
 /*Dropdown*/
