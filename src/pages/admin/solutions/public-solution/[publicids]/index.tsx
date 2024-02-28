@@ -96,6 +96,28 @@ const PublicSolution = () => {
 
     const [isValid, setIsValid] = useState<boolean>(false);
 
+    const isValidCards = (cards: PropsSolutionCard["cards"]): boolean => {
+        let isValid = true;
+        cards?.forEach((card) => {
+            if (card.title === "" || card.text === "" || card.img === "") {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    };
+
+    const isValidSteps = (steps: PropsSolutionCard["steps"]): boolean => {
+        let isValid = true;
+        steps?.forEach((step) => {
+            if (step.title === "" || step.text === "") {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    };
+
     const isValidSolution = () => {
         const isUndefined = Object.values(solution).find((value) => value === "" || value === null);
 
@@ -106,7 +128,9 @@ const PublicSolution = () => {
             solution.dignities?.length !== 0 &&
             solution.links_to_platform?.length !== 0 &&
             solution.filter?.length !== 0 &&
-            solution.advantages?.length !== 0
+            solution.advantages?.length !== 0 &&
+            isValidCards(solution.cards) !== false &&
+            isValidSteps(solution.steps) !== false
         ) {
             setIsValid(true);
             console.log("solution is VALID");
@@ -286,7 +310,7 @@ const PublicSolution = () => {
                 />
                 <DignitiesInput />
 
-                <Title type="h5" color="dark" className={css.subTitle}>
+                <Title type="h5" color="dark" className={css.subHead}>
                     Полное описание
                 </Title>
                 <TextAreaAddSolution
@@ -297,7 +321,7 @@ const PublicSolution = () => {
                     className={css.textAreaSolution}
                 />
 
-                <Title type="h5" color="dark" className={css.subTitle}>
+                <Title type="h5" color="dark" className={css.subHead}>
                     Задачи
                 </Title>
                 <CardsInput />
