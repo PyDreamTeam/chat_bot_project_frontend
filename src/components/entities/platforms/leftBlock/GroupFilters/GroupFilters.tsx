@@ -16,6 +16,8 @@ export const GroupFilters: FC<PropsGroupFilters> = ({ results = [], onClick }) =
         });
     };
 
+    console.log(results);
+
     return (
         <div>
             <ul className={css.listFilters}>
@@ -32,7 +34,10 @@ export const GroupFilters: FC<PropsGroupFilters> = ({ results = [], onClick }) =
                             )}
                         </div>
                         <div className={openItems[item.id] ? css.open : css.close}>
-                            <Filters filters={item.filters} onClick={onClick} />
+                            <Filters
+                                filters={item.filters.filter((item: any) => item.status === "public")}
+                                onClick={onClick}
+                            />
                         </div>
                     </li>
                 ))}

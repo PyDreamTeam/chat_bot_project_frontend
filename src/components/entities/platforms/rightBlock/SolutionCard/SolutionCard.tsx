@@ -60,7 +60,7 @@ export const SolutionCard: FC<PropsSolutionCard> = ({
     }, []);
 
     return (
-        <div className={css.onePlatform}>
+        <div className={css.oneCard}>
             <div>
                 <div className={css.title}>
                     <h4 className={css.platformOne}>{title}</h4>

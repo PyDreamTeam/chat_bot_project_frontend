@@ -55,11 +55,13 @@ const BlockSolution = () => {
                 <>Loading ....</>
             ) : combinedData ? (
                 <Slider cardType="644" type="homeSlider">
-                    <ListCardsSolutions results={combinedData.results} />
+                    <ListCardsSolutions
+                        results={combinedData.results.filter((item: any) => item.status === "public")}
+                    />
                 </Slider>
             ) : (
                 <Slider cardType="644" type="homeSlider">
-                    <ListCardsSolutions results={data?.results} />
+                    <ListCardsSolutions results={data?.results.filter((item: any) => item.status === "public")} />
                 </Slider>
             )}
         </div>

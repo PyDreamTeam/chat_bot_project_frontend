@@ -79,7 +79,7 @@ const Solutions = () => {
                             <ul className={styles.solutions}>
                                 {combinedData
                                     ? combinedData?.results
-                                          //   .filter((item: any) => item.status === "save")
+                                          .filter((item: any) => item.status === "public")
                                           .map((item: any) => (
                                               <li
                                                   className={styles.click}
@@ -103,7 +103,7 @@ const Solutions = () => {
                                               </li>
                                           ))
                                     : dataUnreg?.results
-                                          //   .filter((item: any) => item.status === "save")
+                                          .filter((item: any) => item.status === "public")
                                           .map((item: any) => (
                                               <li
                                                   className={styles.click}

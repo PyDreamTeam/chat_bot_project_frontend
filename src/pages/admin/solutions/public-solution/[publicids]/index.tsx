@@ -441,14 +441,14 @@ const PublicSolution = () => {
                                         Отмена
                                     </Text>
                                 </button>
-                                <button
-                                    className={css.btnSaveModal}
+                                <Button
+                                    active={true}
+                                    type={"button"}
                                     onClick={() => solutionPublic({ id, token, solution })}
+                                    width={212}
                                 >
-                                    <Text type="reg18" color="white">
-                                        Опубликовать
-                                    </Text>
-                                </button>
+                                    Опубликовать
+                                </Button>
                             </div>
                         </div>
                     </div>

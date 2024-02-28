@@ -30,11 +30,11 @@ const CardSkeleton: FC<ICard> = ({ type }) => {
                             <Skeleton className={styles.price} count={1} width={80} height={30} />
                         </div>
                         <span>
-                            <Skeleton width={450} count={3} />
+                            <Skeleton width={574} count={3} />
                         </span>
                     </div>
                     <div className={styles.logo}>
-                        <Skeleton borderRadius={30} width={200} height={230} />
+                        <Skeleton borderRadius={30} width={230} height={230} />
                     </div>
                 </div>
             )}
