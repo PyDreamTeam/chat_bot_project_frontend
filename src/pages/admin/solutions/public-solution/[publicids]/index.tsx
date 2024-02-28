@@ -53,7 +53,7 @@ const PublicSolution = () => {
     const dispatch = useAppDispatch();
 
     // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
-    const { data } = useGetSolutionQuery(publicIds ? Number(publicIds) : skipToken, {
+    const { data, refetch } = useGetSolutionQuery(Number(publicIds) ?? skipToken, {
         refetchOnMountOrArgChange: true,
     });
 
@@ -150,6 +150,13 @@ const PublicSolution = () => {
             console.log("solution is NOT VALID");
         }
     };
+
+    useEffect(() => {
+        if (router.isReady) {
+            console.log("refetch");
+            refetch();
+        }
+    }, [router.isReady]);
 
     useEffect(() => {
         dispatch(getFilterFromBack(data?.tags));
