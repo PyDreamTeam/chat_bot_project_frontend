@@ -49,13 +49,12 @@ import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMe
 const PublicSolution = () => {
     const router = useRouter();
     const { publicIds } = router.query;
+    const routerId = Number(publicIds) || undefined;
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const dispatch = useAppDispatch();
 
     // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
-    const { data, refetch } = useGetSolutionQuery(Number(publicIds) ?? skipToken, {
-        refetchOnMountOrArgChange: true,
-    });
+    const { data } = useGetSolutionQuery(routerId ?? skipToken);
 
     console.log(data);
 
@@ -154,7 +153,8 @@ const PublicSolution = () => {
     useEffect(() => {
         if (router.isReady) {
             console.log("refetch");
-            refetch();
+            console.log(routerId);
+            // refetch();
         }
     }, [router.isReady]);
 
