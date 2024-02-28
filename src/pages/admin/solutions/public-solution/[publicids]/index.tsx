@@ -59,7 +59,7 @@ const PublicSolution: FC<pageProps> = () => {
     const dispatch = useAppDispatch();
 
     // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
-    const { data, refetch } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
+    const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
 
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
     const { data: PlatformsData } = useGetListPlatformsQuery({});
@@ -152,6 +152,15 @@ const PublicSolution: FC<pageProps> = () => {
             console.log("solution is NOT VALID");
         }
     };
+
+    // useEffect(() => {
+    //     if (!publicIds) {
+    //         console.log("gl");
+    //     } else {
+    //         console.log("refetch");
+    //         refetch();
+    //     }
+    // }, [publicIds]);
 
     useEffect(() => {
         dispatch(getFilterFromBack(data?.tags));
@@ -254,7 +263,7 @@ const PublicSolution: FC<pageProps> = () => {
     };
 
     useEffect(() => {
-        // console.log(solution);
+        console.log(solution);
         isValidSolution();
     }, [solution]);
 
