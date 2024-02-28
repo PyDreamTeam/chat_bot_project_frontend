@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { ContainerAdminFunction } from "@/src/components/layout/ContainerAdminFunction";
 import Text from "@/src/components/shared/text/Text";
 import { WrapperAdminPage } from "@/src/components/wrappers/WrapperAdminPage";
@@ -46,19 +46,22 @@ import { Button } from "@/src/components/shared/buttons/Button";
 import { ButtonScrollToUp } from "@/src/components/shared/buttons/ButtonScrollToUp";
 import ErrorMessage from "@/src/components/entities/tariffs/ErrorMessage/ErrorMessage";
 
-const PublicSolution = () => {
+interface pageProps {
+    params: { publicIds: string };
+}
+
+const PublicSolution: FC<pageProps> = () => {
     const router = useRouter();
-    const { publicIds } = router.query;
-    const routerId = Number(publicIds) || undefined;
+    // const { publicIds } = router.query;
+    const publicIds: string = router.query.publicIds as string;
+    // const routerId = Number(publicIds);
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const dispatch = useAppDispatch();
 
     // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
-    const { data } = useGetSolutionQuery(routerId ?? skipToken);
+    const { data, refetch } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
 
-    console.log(data);
-
-    const { data: dataFilters, isLoading: isLoadingFilters } = useGetSolutionsFiltersQuery({});
+    const { data: dataFilters } = useGetSolutionsFiltersQuery({});
     const { data: PlatformsData } = useGetListPlatformsQuery({});
 
     const [changeSolution, { isSuccess: isSuccessChange, isLoading }] = useChangeSolutionMutation();
@@ -149,14 +152,6 @@ const PublicSolution = () => {
             console.log("solution is NOT VALID");
         }
     };
-
-    useEffect(() => {
-        if (router.isReady) {
-            console.log("refetch");
-            console.log(routerId);
-            // refetch();
-        }
-    }, [router.isReady]);
 
     useEffect(() => {
         dispatch(getFilterFromBack(data?.tags));
