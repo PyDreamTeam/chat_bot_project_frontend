@@ -52,7 +52,10 @@ const PublicSolution = () => {
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const dispatch = useAppDispatch();
 
-    const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
+    const [skip, setSkip] = React.useState(true);
+
+    // const { data } = useGetSolutionQuery(Number(publicIds), { refetchOnMountOrArgChange: true });
+    const { data, isSuccess } = useGetSolutionQuery(Number(publicIds), { skip: skip });
 
     const { data: dataFilters } = useGetSolutionsFiltersQuery({});
     const { data: PlatformsData } = useGetListPlatformsQuery({});
@@ -156,6 +159,13 @@ const PublicSolution = () => {
     // }, [publicIds]);
 
     useEffect(() => {
+        if (publicIds) {
+            setSkip(false);
+            // setIsValid(true);
+        }
+    }, [router.isReady]);
+
+    useEffect(() => {
         dispatch(getFilterFromBack(data?.tags));
         dispatch(getLinkToSolution(data?.link));
         dispatch(getLinkToPlatform(data?.links_to_platform));
@@ -196,7 +206,7 @@ const PublicSolution = () => {
         setSolution((prev) => ({ ...prev, link: link }));
     }, [link]);
     useEffect(() => {
-        setSolution((prev) => ({ ...prev, filter: filters?.map((item) => item.id) }));
+        setSolution((prev) => ({ ...prev, filter: filters?.map((item: any) => item.id) }));
     }, [filters]);
     useEffect(() => {
         setSolution((prev) => ({ ...prev, cards: cardsArray }));
