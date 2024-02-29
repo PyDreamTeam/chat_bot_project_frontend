@@ -100,98 +100,95 @@ const PublicSolution = () => {
 
     const [isValid, setIsValid] = useState<boolean>(false);
 
-    const isValidCards = (cards: PropsSolutionCard["cards"]): boolean => {
-        let isValid = true;
-        cards?.forEach((card) => {
-            if (card.title === "" || card.text === "" || card.img === "") {
-                isValid = false;
-            }
-        });
+    // const isValidCards = (cards: PropsSolutionCard["cards"]): boolean => {
+    //     let isValid = true;
+    //     cards?.forEach((card) => {
+    //         if (card.title === "" || card.text === "" || card.img === "") {
+    //             isValid = false;
+    //         }
+    //     });
 
-        return isValid;
-    };
+    //     return isValid;
+    // };
 
-    const isValidSteps = (steps: PropsSolutionCard["steps"]): boolean => {
-        let isValid = true;
-        steps?.forEach((step) => {
-            if (step.title === "" || step.text === "") {
-                isValid = false;
-            }
-        });
+    // const isValidSteps = (steps: PropsSolutionCard["steps"]): boolean => {
+    //     let isValid = true;
+    //     steps?.forEach((step) => {
+    //         if (step.title === "" || step.text === "") {
+    //             isValid = false;
+    //         }
+    //     });
 
-        return isValid;
-    };
+    //     return isValid;
+    // };
 
-    const isValidSolution = () => {
-        const isUndefined = Object.values(solution).find((value) => value === "" || value === null);
+    // const isValidSolution = () => {
+    //     const isUndefined = Object.values(solution).find((value) => value === "" || value === null);
 
-        if (
-            typeof isUndefined == "undefined" &&
-            solution.steps?.length !== 0 &&
-            solution.cards?.length !== 0 &&
-            solution.dignities?.length !== 0 &&
-            solution.links_to_platform?.length !== 0 &&
-            solution.filter?.length !== 0 &&
-            solution.advantages?.length !== 0 &&
-            isValidCards(solution.cards) !== false &&
-            isValidSteps(solution.steps) !== false
-        ) {
-            setIsValid(true);
-            console.log("solution is VALID");
-            // if (!isShownErrorShort && !isShownErrorExist) {
-            //     setIsValid(true);
-            // } else {
-            //     setIsValid(false);
-            // }
-        } else {
-            setIsValid(false);
-            console.log("solution is NOT VALID");
-        }
-    };
-
-    // useEffect(() => {
-    //     if (!publicIds) {
-    //         console.log("gl");
+    //     if (
+    //         typeof isUndefined == "undefined" &&
+    //         solution.steps?.length !== 0 &&
+    //         solution.cards?.length !== 0 &&
+    //         solution.dignities?.length !== 0 &&
+    //         solution.links_to_platform?.length !== 0 &&
+    //         solution.filter?.length !== 0 &&
+    //         solution.advantages?.length !== 0 &&
+    //         isValidCards(solution.cards) !== false &&
+    //         isValidSteps(solution.steps) !== false
+    //     ) {
+    //         setIsValid(true);
+    //         console.log("solution is VALID");
+    //         // if (!isShownErrorShort && !isShownErrorExist) {
+    //         //     setIsValid(true);
+    //         // } else {
+    //         //     setIsValid(false);
+    //         // }
     //     } else {
-    //         console.log("refetch");
-    //         refetch();
+    //         setIsValid(false);
+    //         console.log("solution is NOT VALID");
     //     }
-    // }, [publicIds]);
+    // };
 
     useEffect(() => {
         if (publicIds) {
             setSkip(false);
-            // setIsValid(true);
+            setIsValid(true);
         }
     }, [router.isReady]);
 
     useEffect(() => {
-        dispatch(getFilterFromBack(data?.tags));
-        dispatch(getLinkToSolution(data?.link));
-        dispatch(getLinkToPlatform(data?.links_to_platform));
-        dispatch(getDignities(data?.dignities));
-        dispatch(getAdvantages(data?.advantages));
-        dispatch(getCardsFromBack(data?.cards));
-        dispatch(getStepsFromBack(data?.steps));
-    }, [data]);
+        if (isSuccess) {
+            dispatch(getFilterFromBack(data?.tags));
+            dispatch(getLinkToSolution(data?.link));
+            dispatch(getLinkToPlatform(data?.links_to_platform));
+            dispatch(getDignities(data?.dignities));
+            dispatch(getAdvantages(data?.advantages));
+            dispatch(getCardsFromBack(data?.cards));
+            dispatch(getStepsFromBack(data?.steps));
+        }
+    }, [isSuccess]);
 
     useEffect(() => {
-        setId(data?.id);
-    }, [data]);
+        if (isSuccess) {
+            setId(data?.id);
+        }
+    }, [isSuccess]);
 
     useEffect(() => {
-        setSolution((prev) => ({
-            ...prev,
-            title: data?.title,
-            short_description: data?.short_description,
-            full_description: data?.full_description,
-            price: data?.price,
-            image: data?.image,
-            steps_title: data?.steps_title,
-            steps_description: data?.steps_description,
-            steps: data?.steps,
-        }));
-    }, [data]);
+        if (isSuccess) {
+            setSolution((prev) => ({
+                ...prev,
+                title: data?.title,
+                short_description: data?.short_description,
+                full_description: data?.full_description,
+                price: data?.price,
+                image: data?.image,
+                steps_title: data?.steps_title,
+                steps_description: data?.steps_description,
+                steps: data?.steps,
+            }));
+        }
+    }, [isSuccess]);
 
     useEffect(() => {
         setSolution((prev) => ({ ...prev, links_to_platform: links }));
@@ -265,10 +262,10 @@ const PublicSolution = () => {
         changeSolution({ id, token, solution });
     };
 
-    useEffect(() => {
-        console.log(solution);
-        isValidSolution();
-    }, [solution]);
+    // useEffect(() => {
+    //     console.log(solution);
+    //     isValidSolution();
+    // }, [solution]);
 
     return (
         <WrapperAdminPage>
