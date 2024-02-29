@@ -8,6 +8,7 @@ import {
     useSolutionArchiveMutation,
     useGetSolutionForArchiveMutation,
     useSendToCreatedMutation,
+    useSolutionPublicMutation,
 } from "@/src/store/services/solutions";
 import { useRouter } from "next/router";
 import Title from "@/src/components/shared/text/Title";
@@ -46,6 +47,8 @@ const functionSolutionArchive = [
 
 export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort, refetch }) => {
     const [deleteSolution, { isSuccess: isSuccessDelete }] = useDeleteSolutionMutation();
+    const [solutionPublic, { isSuccess: isSuccessPublic }] = useSolutionPublicMutation();
+
     const token = JSON.parse(Cookies.get("loginUser") || "[]");
     const router = useRouter();
     const [getSolutionForArchive, { data, isSuccess: isSuccessGetSolution }] = useGetSolutionForArchiveMutation();
@@ -133,7 +136,9 @@ export const Solution: FC<PropsSolution> = ({ title, link, tags = [], id, sort, 
             getSolutionForArchive(Number(id));
         }
         if (value === "public") {
-            router.push(`/admin/solutions/public-solution/${id}`);
+            // router.push(`/admin/solutions/public-solution/${id}`);
+            const solution = { title: title };
+            solutionPublic({ id, token, solution }).then(refetch);
         }
     };
 
