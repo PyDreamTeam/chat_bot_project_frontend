@@ -3,7 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const solutions = createApi({
     reducerPath: "solutions",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    // baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://python.devlaba.online" }),
     endpoints: (builder) => ({
         getSolutionsFilters: builder.query({
             query: () => ({

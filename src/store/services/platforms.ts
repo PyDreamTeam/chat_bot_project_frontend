@@ -5,7 +5,9 @@ const boundary = "----WebKitFormBoundaryexample";
 
 export const platforms = createApi({
     reducerPath: "platforms",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    // baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    // python.devlaba.online
+    baseQuery: fetchBaseQuery({ baseUrl: "https://python.devlaba.online" }),
     endpoints: (builder) => ({
         getPlatformsFilters: builder.query({
             query: () => ({

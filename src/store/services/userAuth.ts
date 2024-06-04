@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const userAuth = createApi({
     reducerPath: "userAuth",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    // baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://python.devlaba.online" }),
     endpoints: (builder) => ({
         dataUser: builder.query({
             query: (token: { access: string; refresh: string }) => ({

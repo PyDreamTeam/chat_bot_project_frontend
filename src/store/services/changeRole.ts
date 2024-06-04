@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const changeRole = createApi({
     reducerPath: "changeRole",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    // baseQuery: fetchBaseQuery({ baseUrl: "https://python.twnsnd.online" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://python.devlaba.online" }),
     endpoints: (builder) => ({
         ChangeUserInfo: builder.mutation<void, { requestValues: Record<string, unknown>; token: string; id: number }>({
             query: ({ requestValues, token, id }) => ({
